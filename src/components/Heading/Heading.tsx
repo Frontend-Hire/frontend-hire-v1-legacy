@@ -18,11 +18,11 @@ const heading = cva('scroll-m-20 tracking-tight', {
 });
 
 export default function Heading({ variant, className, children }: Props) {
-  const Variant = variant;
+  const Component = variant;
 
   return (
-    <Variant className={heading({ intent: variant, className })}>
+    <Component className={heading({ intent: variant, className })}>
       {children}
-    </Variant>
+    </Component>
   );
 }
