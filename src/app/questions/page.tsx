@@ -8,10 +8,16 @@ export default function Questions() {
         Questions
       </Heading>
 
-      <QuestionCategoryCard category="HTML" noOfQuestions={3} />
-      <QuestionCategoryCard category="CSS" noOfQuestions={3} />
-      <QuestionCategoryCard category="JavaScript" noOfQuestions={5} />
-      <QuestionCategoryCard category="React" noOfQuestions={5} />
+      <div>
+        <QuestionCategoryCard
+          category="HTML"
+          description="Can you solve the basic HTML"
+          noOfQuestions={3}
+        />
+        <QuestionCategoryCard category="CSS" noOfQuestions={3} />
+        <QuestionCategoryCard category="JavaScript" noOfQuestions={5} />
+        <QuestionCategoryCard category="React" noOfQuestions={5} />
+      </div>
     </section>
   );
 }

@@ -8,7 +8,7 @@ interface Props {
 
 const heading = cva('scroll-m-20 tracking-tight', {
   variants: {
-    intent: {
+    variant: {
       h1: 'text-4xl font-extrabold lg:text-5xl',
       h2: 'border-b pb-2 text-3xl font-semibold transition-colors first:mt-0',
       h3: 'text-2xl font-semibold',
@@ -21,7 +21,7 @@ export default function Heading({ variant, className, children }: Props) {
   const Component = variant;
 
   return (
-    <Component className={heading({ intent: variant, className })}>
+    <Component className={heading({ variant, className })}>
       {children}
     </Component>
   );
