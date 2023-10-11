@@ -47,12 +47,7 @@ export default function QuestionItem({
   return (
     <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900">
       <DifficultyLabel difficulty={difficulty} />
-      <Tooltip
-        tooltipRootProps={{
-          delayDuration: 300,
-        }}
-        title="Submit a solution to mark as completed"
-      >
+      <Tooltip title="Submit a solution to mark as completed">
         <Checkbox checked={isCompleted} size="md" />
       </Tooltip>
       <Link href={`questions/${skill}/${id}`}>
