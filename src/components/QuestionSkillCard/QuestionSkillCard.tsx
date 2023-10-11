@@ -15,7 +15,7 @@ export default function QuestionSkillCard({
 }: Props) {
   return (
     <Link
-      href={`/questions/${skill.toLowerCase()}`}
+      href={`/questions/${skill}`}
       className="flex min-h-[150px] min-w-[250px] flex-col items-center justify-around rounded-lg border p-2 text-center shadow-sm hover:bg-gray-100"
     >
       <Heading variant="h3">{skill}</Heading>
