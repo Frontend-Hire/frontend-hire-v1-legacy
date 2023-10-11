@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Text from '../Text';
 import VisuallyHidden from '../VisuallyHidden';
 import Checkbox from '../Checkbox';
+import Tooltip from '../Tooltip';
 
 interface Props {
   id: string;
@@ -46,7 +47,14 @@ export default function QuestionItem({
   return (
     <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900">
       <DifficultyLabel difficulty={difficulty} />
-      <Checkbox checked={isCompleted} size="md" />
+      <Tooltip
+        tooltipRootProps={{
+          delayDuration: 300,
+        }}
+        title="Submit a solution to mark as completed"
+      >
+        <Checkbox checked={isCompleted} size="md" />
+      </Tooltip>
       <Link href={`questions/${skill}/${id}`}>
         <Text className="text-xl">{title}</Text>
       </Link>
