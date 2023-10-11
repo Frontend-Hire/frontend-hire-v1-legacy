@@ -50,7 +50,7 @@ export default function QuestionItem({
       <Tooltip title="Submit a solution to mark as completed">
         <Checkbox checked={isCompleted} size="md" />
       </Tooltip>
-      <Link href={`questions/${skill}/${id}`}>
+      <Link href={`/questions/${skill}/${id}`}>
         <Text className="text-xl">{title}</Text>
       </Link>
     </div>
