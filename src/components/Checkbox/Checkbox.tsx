@@ -6,13 +6,13 @@ import { Check } from 'lucide-react';
 import { cva } from 'cva';
 
 const checkbox = cva(
-  'flex items-center justify-center h-4 w-4 rounded-md border data-[state=checked]:bg-gray-900 data-[state=checked]:text-white',
+  'flex items-center justify-center border border-gray-900 data-[state=checked]:bg-gray-900 data-[state=checked]:text-white',
   {
     variants: {
       size: {
-        default: 'h-4 w-4',
-        md: 'h-8 w-8',
-        lg: 'h-12 w-12',
+        default: 'h-5 w-5 rounded-sm',
+        md: 'h-6 w-6 rounded-sm',
+        lg: 'h-8 w-8 rounded-sm',
       },
     },
     defaultVariants: {

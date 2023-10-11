@@ -12,6 +12,29 @@ interface Props {
   isFavorite: boolean;
 }
 
+const DifficultyLabel = ({
+  difficulty,
+}: {
+  difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+}) => {
+  let className = 'flex flex-col w-2 h-full';
+
+  if (difficulty == 'EASY') {
+    className += ' bg-green-600';
+  } else if (difficulty == 'MEDIUM') {
+    className += ' bg-yellow-500';
+  } else {
+    className += ' bg-red-600';
+  }
+
+  return (
+    <>
+      <div className={className} />
+      <VisuallyHidden>{difficulty}</VisuallyHidden>
+    </>
+  );
+};
+
 export default function QuestionItem({
   id,
   skill,
@@ -21,11 +44,11 @@ export default function QuestionItem({
   isFavorite,
 }: Props) {
   return (
-    <div>
-      <VisuallyHidden>{difficulty}</VisuallyHidden>
-      <Checkbox size="md" />
+    <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900">
+      <DifficultyLabel difficulty={difficulty} />
+      <Checkbox checked={isCompleted} size="md" />
       <Link href={`questions/${skill}/${id}`}>
-        <Text>{title}</Text>
+        <Text className="text-xl">{title}</Text>
       </Link>
     </div>
   );
