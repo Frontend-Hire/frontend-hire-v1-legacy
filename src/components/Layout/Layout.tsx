@@ -1,4 +1,9 @@
-import LayoutItem from './LayoutItem';
+'use client';
+
+import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
+import 'react-reflex/styles.css';
+
+// import styles from './Layout.module.css';
 
 interface Props {
   topLeft: React.ReactNode;
@@ -14,11 +19,25 @@ export default function Layout({
   bottomRight,
 }: Props) {
   return (
-    <div className="grid h-full border-collapse grid-cols-2">
-      <LayoutItem>{topLeft}</LayoutItem>
-      <LayoutItem>{topRight}</LayoutItem>
-      <LayoutItem>{bottomLeft}</LayoutItem>
-      <LayoutItem>{bottomRight}</LayoutItem>
-    </div>
+    <ReflexContainer
+      className="rounded-sm border-[10px] border-gray-400"
+      orientation="vertical"
+    >
+      <ReflexElement>
+        <ReflexContainer orientation="horizontal">
+          <ReflexElement>{topLeft}</ReflexElement>
+          <ReflexSplitter />
+          <ReflexElement>{bottomLeft}</ReflexElement>
+        </ReflexContainer>
+      </ReflexElement>
+      <ReflexSplitter />
+      <ReflexElement>
+        <ReflexContainer orientation="horizontal">
+          <ReflexElement>{topRight}</ReflexElement>
+          <ReflexSplitter />
+          <ReflexElement>{bottomRight}</ReflexElement>
+        </ReflexContainer>
+      </ReflexElement>
+    </ReflexContainer>
   );
 }

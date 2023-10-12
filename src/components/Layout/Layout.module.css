@@ -1,0 +1,9 @@
+.horizontalSplitter {
+  width: 10px !important;
+  @apply bg-gray-400 !important;
+}
+
+.verticalSplitter {
+  height: 10px !important;
+  @apply bg-gray-400 !important;
+}

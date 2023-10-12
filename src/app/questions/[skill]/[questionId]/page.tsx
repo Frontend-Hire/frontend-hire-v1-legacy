@@ -3,7 +3,6 @@
 import Layout from '@/components/Layout';
 import {
   SandpackProvider,
-  SandpackLayout,
   SandpackCodeEditor,
   SandpackPreview,
 } from '@codesandbox/sandpack-react';
@@ -21,11 +20,17 @@ export default function Question({
         style={{
           height: '100%',
         }}
-        template="static"
+        template="react"
       >
         <Layout
           topLeft={<div className="h-full">Question</div>}
-          topRight={<SandpackCodeEditor className="h-full" />}
+          topRight={
+            <SandpackCodeEditor
+              showLineNumbers
+              wrapContent
+              className="h-full"
+            />
+          }
           bottomLeft={<div className="h-full">Expected Output</div>}
           bottomRight={<SandpackPreview className="h-full" />}
         />
