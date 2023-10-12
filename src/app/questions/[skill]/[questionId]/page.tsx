@@ -20,7 +20,11 @@ export default function Question({
         style={{
           height: '100%',
         }}
-        template="react"
+        template="static"
+        options={{
+          autoReload: true,
+          autorun: false,
+        }}
       >
         <Layout
           topLeft={<div className="h-full">Question</div>}

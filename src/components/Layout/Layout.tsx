@@ -3,7 +3,7 @@
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
 
-// import styles from './Layout.module.css';
+import styles from './Layout.module.css';
 
 interface Props {
   topLeft: React.ReactNode;
@@ -26,15 +26,15 @@ export default function Layout({
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
           <ReflexElement>{topLeft}</ReflexElement>
-          <ReflexSplitter />
+          <ReflexSplitter className={styles.verticalSplitter} />
           <ReflexElement>{bottomLeft}</ReflexElement>
         </ReflexContainer>
       </ReflexElement>
-      <ReflexSplitter />
+      <ReflexSplitter className={styles.horizontalSplitter} />
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
           <ReflexElement>{topRight}</ReflexElement>
-          <ReflexSplitter />
+          <ReflexSplitter className={styles.verticalSplitter} />
           <ReflexElement>{bottomRight}</ReflexElement>
         </ReflexContainer>
       </ReflexElement>
