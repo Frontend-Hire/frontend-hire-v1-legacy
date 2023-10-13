@@ -12,7 +12,7 @@ export default function QuestionLayoutItem({ question }: Props) {
           {
             label: 'Question',
             value: 'question',
-            content: question,
+            content: <div className="prose">{question}</div>,
           },
         ]}
       />
