@@ -1,3 +1,3 @@
 declare module '*.mdx' {
-  export const meta: { id?: string; title?: string };
+  export const meta: { id?: string; title?: string; expectedOutput?: string };
 }

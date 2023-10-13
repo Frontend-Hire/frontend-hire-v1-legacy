@@ -17,8 +17,6 @@ export default function Question({
 }) {
   const { questionId, skill } = params;
 
-  console.log({ meta });
-
   const { template } = getQuestionConfig(skill.toLowerCase() as Skill);
 
   return (
@@ -37,13 +35,13 @@ export default function Question({
         topRight={
           <SandpackCodeEditor showLineNumbers wrapContent className="h-full" />
         }
-        // bottomLeft={
-        //   question.expectedOutput ? (
-        //     <div className="h-full">Expected Output</div>
-        //   ) : (
-        //     ''
-        //   )
-        // }
+        bottomLeft={
+          meta.expectedOutput ? (
+            <div className="h-full">Expected Output</div>
+          ) : (
+            ''
+          )
+        }
         bottomRight={<SandpackPreview className="h-full" />}
       />
     </SandpackProvider>
