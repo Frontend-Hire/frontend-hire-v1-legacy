@@ -1,12 +1,14 @@
 'use client';
 
-import Layout from '@/components/Layout';
-import { Skill, getQuestionConfig } from '@/utils/template';
 import {
   SandpackProvider,
   SandpackCodeEditor,
   SandpackPreview,
 } from '@codesandbox/sandpack-react';
+import Layout from '@/components/Layout';
+import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import { Skill, getQuestionConfig } from '@/utils/template';
+import FormsQuestion, { meta } from '@/sampleQuestion/forms.mdx';
 
 export default function Question({
   params,
@@ -14,6 +16,8 @@ export default function Question({
   params: { questionId: string; skill: string };
 }) {
   const { questionId, skill } = params;
+
+  console.log({ meta });
 
   const { template } = getQuestionConfig(skill.toLowerCase() as Skill);
 
@@ -29,11 +33,17 @@ export default function Question({
       }}
     >
       <Layout
-        topLeft={<div className="h-full">Question</div>}
+        topLeft={<QuestionLayoutItem question={<FormsQuestion />} />}
         topRight={
           <SandpackCodeEditor showLineNumbers wrapContent className="h-full" />
         }
-        bottomLeft={<div className="h-full">Expected Output</div>}
+        // bottomLeft={
+        //   question.expectedOutput ? (
+        //     <div className="h-full">Expected Output</div>
+        //   ) : (
+        //     ''
+        //   )
+        // }
         bottomRight={<SandpackPreview className="h-full" />}
       />
     </SandpackProvider>

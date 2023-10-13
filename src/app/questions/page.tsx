@@ -3,7 +3,7 @@ import QuestionSkillCard from '@/components/QuestionSkillCard';
 
 export default function Questions() {
   return (
-    <section>
+    <main>
       <Heading variant="h1" className="mb-8 text-center">
         Questions
       </Heading>
@@ -30,6 +30,6 @@ export default function Questions() {
           noOfQuestions={5}
         />
       </div>
-    </section>
+    </main>
   );
 }

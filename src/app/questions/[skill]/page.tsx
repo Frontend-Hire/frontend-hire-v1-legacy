@@ -5,7 +5,7 @@ export default function Skill({ params }: { params: { skill: string } }) {
   const { skill } = params;
 
   return (
-    <section>
+    <main>
       <Heading variant="h1" className="mb-8 text-center">
         {skill} Questions
       </Heading>
@@ -43,6 +43,6 @@ export default function Skill({ params }: { params: { skill: string } }) {
           isFavorite={false}
         />
       </div>
-    </section>
+    </main>
   );
 }

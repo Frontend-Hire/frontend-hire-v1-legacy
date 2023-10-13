@@ -3,5 +3,5 @@ export default function QuestionLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <section className="h-full">{children}</section>;
+  return <main className="h-full bg-white">{children}</main>;
 }

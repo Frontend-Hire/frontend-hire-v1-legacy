@@ -6,10 +6,10 @@ import 'react-reflex/styles.css';
 import styles from './Layout.module.css';
 
 interface Props {
-  topLeft: React.ReactNode;
-  topRight: React.ReactNode;
-  bottomLeft: React.ReactNode;
-  bottomRight: React.ReactNode;
+  topLeft?: React.ReactNode;
+  topRight?: React.ReactNode;
+  bottomLeft?: React.ReactNode;
+  bottomRight?: React.ReactNode;
 }
 
 export default function Layout({
@@ -25,17 +25,21 @@ export default function Layout({
     >
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
-          <ReflexElement>{topLeft}</ReflexElement>
-          <ReflexSplitter className={styles.verticalSplitter} />
-          <ReflexElement>{bottomLeft}</ReflexElement>
+          {topLeft && <ReflexElement>{topLeft}</ReflexElement>}
+          {topLeft && bottomLeft && (
+            <ReflexSplitter className={styles.verticalSplitter} />
+          )}
+          {bottomLeft && <ReflexElement>{bottomLeft}</ReflexElement>}
         </ReflexContainer>
       </ReflexElement>
       <ReflexSplitter className={styles.horizontalSplitter} />
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
-          <ReflexElement>{topRight}</ReflexElement>
-          <ReflexSplitter className={styles.verticalSplitter} />
-          <ReflexElement>{bottomRight}</ReflexElement>
+          {topRight && <ReflexElement>{topRight}</ReflexElement>}
+          {topRight && bottomRight && (
+            <ReflexSplitter className={styles.verticalSplitter} />
+          )}
+          {bottomRight && <ReflexElement>{bottomRight}</ReflexElement>}
         </ReflexContainer>
       </ReflexElement>
     </ReflexContainer>
