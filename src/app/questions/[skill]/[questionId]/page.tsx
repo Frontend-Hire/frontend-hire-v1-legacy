@@ -10,6 +10,8 @@ import Layout from '@/components/Layout';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { Skill, getQuestionConfig } from '@/utils/template';
 import { Meta } from '@/types/mdx';
+import { Status } from '@/types/status';
+import LayoutSkeleton from '@/components/LayoutSkeleton';
 
 export default function Question({
   params,
@@ -21,7 +23,7 @@ export default function Question({
     getContent: () => React.ReactNode;
     meta: Meta;
   }>();
-  const [loading, setLoading] = React.useState(true);
+  const [status, setStatus] = React.useState<Status>('idle');
 
   const { template } = getQuestionConfig(skill.toLowerCase() as Skill);
 
@@ -36,16 +38,26 @@ export default function Question({
         return { getContent, meta };
       } catch (e) {
         console.log(e);
+        setStatus('error');
       }
     };
 
+    setStatus('loading');
     getQuestion().then((data) => {
       setQuestion(data);
-      setLoading(false);
+      const timeout = setTimeout(() => {
+        setStatus('success');
+      }, 2000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
     });
   }, [questionId]);
 
-  if (loading) return '---------------LOADING---------------';
+  if (status === 'loading' || status === 'idle') return <LayoutSkeleton />;
+
+  if (status === 'error') return '---------------ERROR---------------';
 
   return (
     <SandpackProvider
