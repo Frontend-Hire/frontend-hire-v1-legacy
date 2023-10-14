@@ -8,10 +8,8 @@ import {
 import * as React from 'react';
 import Layout from '@/components/Layout';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import { Skill, getQuestionConfig } from '@/utils/template';
-import { Meta } from '@/types/mdx';
-import { Status } from '@/types/status';
 import LayoutSkeleton from '@/components/LayoutSkeleton';
+import useQuestion from './useQuestion';
 
 export default function Question({
   params,
@@ -19,64 +17,37 @@ export default function Question({
   params: { questionId: string; skill: string };
 }) {
   const { questionId, skill } = params;
-  const [question, setQuestion] = React.useState<{
-    getContent: () => React.ReactNode;
-    meta: Meta;
-  }>();
-  const [status, setStatus] = React.useState<Status>('idle');
+  const { data } = useQuestion(skill, questionId);
 
-  const { template } = getQuestionConfig(skill.toLowerCase() as Skill);
+  if (data.status === 'loading' || data.status === 'idle')
+    return <LayoutSkeleton />;
 
-  React.useEffect(() => {
-    const getQuestion = async () => {
-      try {
-        const {
-          default: getContent,
-          meta,
-        } = require('@/sampleQuestion/forms.mdx');
-
-        return { getContent, meta };
-      } catch (e) {
-        console.log(e);
-        setStatus('error');
-      }
-    };
-
-    setStatus('loading');
-    getQuestion().then((data) => {
-      setQuestion(data);
-      const timeout = setTimeout(() => {
-        setStatus('success');
-      }, 2000);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    });
-  }, [questionId]);
-
-  if (status === 'loading' || status === 'idle') return <LayoutSkeleton />;
-
-  if (status === 'error') return '---------------ERROR---------------';
+  if (data.status === 'error') return '---------------ERROR---------------';
 
   return (
     <SandpackProvider
       style={{
         height: '100%',
       }}
-      template={template}
+      template={data.question.meta.template}
+      files={data.question.meta.files}
       options={{
         autoReload: true,
         autorun: false,
       }}
     >
       <Layout
-        topLeft={<QuestionLayoutItem question={question?.getContent()} />}
+        topLeft={<QuestionLayoutItem question={data.question.getContent()} />}
         topRight={
-          <SandpackCodeEditor showLineNumbers wrapContent className="h-full" />
+          <SandpackCodeEditor
+            showTabs
+            showLineNumbers
+            wrapContent
+            className="h-full"
+          />
         }
         bottomLeft={
-          question?.meta.expectedOutput ? (
+          data.question.meta.expectedOutput ? (
             <div className="h-full">Expected Output</div>
           ) : (
             ''
