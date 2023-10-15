@@ -10,7 +10,7 @@ interface Props {
 
 export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
   return (
-    <div className="h-full min-w-[150px]">
+    <div className="h-full min-w-[200px]">
       <Tabs
         className="flex h-full flex-col"
         defaultValue={tabs[0]?.value || ''}
