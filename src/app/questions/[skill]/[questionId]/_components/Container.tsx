@@ -7,11 +7,11 @@ import {
   useSandpack,
 } from '@codesandbox/sandpack-react';
 import { InfoIcon } from 'lucide-react';
-import Tooltip from '@/components/Tooltip';
 
 import { IQuestionSuccess } from '../_hooks/useQuestion';
-import Button from '@/components/Button';
-import { ITab } from '@/components/Tabs';
+import { Button } from '@/components/ui/button';
+import Tooltip from '@/components/ui/tooltip';
+import { QuestionTab } from '@/types/QuestionTab';
 
 interface Props {
   data: IQuestionSuccess;
@@ -26,7 +26,9 @@ export default function Container({ data }: Props) {
         {
           label: 'Question',
           value: 'Question',
-          content: <div className="prose">{data.question.getContent()}</div>,
+          content: (
+            <div className="prose p-2">{data.question.getContent()}</div>
+          ),
         },
       ]}
     />
@@ -65,7 +67,7 @@ export default function Container({ data }: Props) {
     );
 
   const bottomRight = () => {
-    const tabs: ITab[] = [];
+    const tabs: QuestionTab[] = [];
 
     if (data.question.meta.showPreview) {
       tabs.push({
@@ -86,8 +88,8 @@ export default function Container({ data }: Props) {
     return (
       <QuestionLayoutItem
         rightButtons={
-          <Tooltip title="Click on Run Code in the Code Editor to see preview">
-            <InfoIcon className="mx-2 cursor-pointer hover:opacity-70" />
+          <Tooltip title="Run code to see preview">
+            <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
           </Tooltip>
         }
         tabs={tabs}

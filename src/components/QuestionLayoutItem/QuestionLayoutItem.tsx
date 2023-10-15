@@ -1,15 +1,43 @@
 import { ReactNode } from 'react';
-import Tabs, { ITab } from '../Tabs';
+// import Tabs, { ITab } from '../Tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { QuestionTab } from '@/types/QuestionTab';
 
 interface Props {
-  tabs: ITab[];
+  tabs: QuestionTab[];
   rightButtons?: ReactNode;
 }
 
 export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
   return (
-    <div className="h-full min-w-[300px]">
-      <Tabs tabs={tabs} rightButtons={rightButtons} />
+    <div className="h-full min-w-[150px]">
+      <Tabs
+        className="flex h-full flex-col"
+        defaultValue={tabs[0]?.value || ''}
+      >
+        <div className="flex h-[40px] items-center justify-between bg-gray-600">
+          <TabsList>
+            {tabs.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value}>
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          <div>{rightButtons}</div>
+        </div>
+        {tabs.map((tab) => (
+          <TabsContent
+            className="flex flex-col"
+            asChild
+            key={tab.value}
+            value={tab.value}
+          >
+            <div className="h-0 flex-grow overflow-auto">{tab.content}</div>
+          </TabsContent>
+        ))}
+      </Tabs>
+
+      {/* <Tabs tabs={tabs} rightButtons={rightButtons} /> */}
     </div>
   );
 }

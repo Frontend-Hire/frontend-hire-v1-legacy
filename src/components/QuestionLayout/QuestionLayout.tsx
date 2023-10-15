@@ -20,7 +20,7 @@ export default function QuestionLayout({
 }: Props) {
   return (
     <ReflexContainer
-      className="rounded-sm border-[10px] border-gray-400"
+      className="border-[10px] border-gray-400"
       orientation="vertical"
     >
       <ReflexElement>

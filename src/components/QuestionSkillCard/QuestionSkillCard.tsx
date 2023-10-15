@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Heading from '@/components/Heading';
-import Text from '@/components/Text';
 
 interface Props {
   skill: string;
@@ -19,8 +18,8 @@ export default function QuestionSkillCard({
       className="flex min-h-[150px] min-w-[250px] flex-col items-center justify-around rounded-lg border p-2 text-center shadow-sm hover:bg-gray-100"
     >
       <Heading variant="h3">{skill}</Heading>
-      <Text variant="muted">{description}</Text>
-      <Text>{noOfQuestions} Questions</Text>
+      <p>{description}</p>
+      <p>{noOfQuestions} Questions</p>
     </Link>
   );
 }
