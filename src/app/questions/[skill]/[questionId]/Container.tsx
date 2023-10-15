@@ -9,7 +9,7 @@ import {
 import { InfoIcon } from 'lucide-react';
 import Tooltip from '@/components/Tooltip';
 
-import { IQuestionSuccess } from './useQuestion';
+import { IQuestionSuccess } from './_hooks/useQuestion';
 import Button from '@/components/Button';
 import { ITab } from '@/components/Tabs';
 
