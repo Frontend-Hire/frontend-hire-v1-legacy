@@ -23,7 +23,7 @@ export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
               </TabsTrigger>
             ))}
           </TabsList>
-          <div>{rightButtons}</div>
+          <div className="flex items-center">{rightButtons}</div>
         </div>
         {tabs.map((tab) => (
           <TabsContent

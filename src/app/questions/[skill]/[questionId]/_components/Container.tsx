@@ -12,6 +12,7 @@ import { IQuestionSuccess } from '../_hooks/useQuestion';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/QuestionTab';
+import ResetButtonWithAlert from './ResetButtonWithAlert';
 
 interface Props {
   data: IQuestionSuccess;
@@ -37,9 +38,12 @@ export default function Container({ data }: Props) {
   const topRight = () => (
     <QuestionLayoutItem
       rightButtons={
-        <Button className="rounded-none" onClick={sandpack.runSandpack}>
-          Run Code
-        </Button>
+        <>
+          <ResetButtonWithAlert onReset={sandpack.resetAllFiles} />
+          <Button className="rounded-none" onClick={sandpack.runSandpack}>
+            Run Code
+          </Button>
+        </>
       }
       tabs={[
         {
