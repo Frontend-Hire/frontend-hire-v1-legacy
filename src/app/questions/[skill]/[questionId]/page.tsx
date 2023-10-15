@@ -4,7 +4,7 @@ import { SandpackProvider } from '@codesandbox/sandpack-react';
 import * as React from 'react';
 import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
 import useQuestion from './_hooks/useQuestion';
-import Container from './Container';
+import Container from './_components/Container';
 
 export default function Question({
   params,
