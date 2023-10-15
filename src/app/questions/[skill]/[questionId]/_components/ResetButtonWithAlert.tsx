@@ -28,7 +28,7 @@ export default function ResetButtonWithAlert({ onReset }: Props) {
         <AlertDialogHeader>
           <AlertDialogTitle>Reset Code Editor</AlertDialogTitle>
           <AlertDialogDescription>
-            This will reset your progess. Are you sure?
+            This will reset your code editor. Are you sure?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
