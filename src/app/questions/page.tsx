@@ -1,7 +1,27 @@
 import Heading from '@/components/Heading';
 import QuestionSkillCard from '@/components/QuestionSkillCard';
+import fs from 'fs';
+import path from 'path';
 
-export default function Questions() {
+const questionsPath = path.join(process.cwd(), '/src/questions');
+
+async function getQuestionsFromLocal() {
+  const questions: {
+    [key: string]: string[];
+  } = {};
+
+  const skills = fs.readdirSync(questionsPath);
+
+  for (const skill of skills) {
+    questions[skill] = fs.readdirSync(path.join(questionsPath, skill));
+  }
+
+  return questions;
+}
+
+export default async function Questions() {
+  const data = await getQuestionsFromLocal();
+
   return (
     <main>
       <Heading variant="h1" className="mb-8 text-center">
@@ -12,22 +32,22 @@ export default function Questions() {
         <QuestionSkillCard
           skill="HTML"
           description="Do you really know HTML?"
-          noOfQuestions={3}
+          noOfQuestions={data['HTML'].length}
         />
         <QuestionSkillCard
           skill="CSS"
           description="Scared?"
-          noOfQuestions={3}
+          noOfQuestions={data['CSS'].length}
         />
         <QuestionSkillCard
           skill="JavaScript"
           description="Not so easy!"
-          noOfQuestions={5}
+          noOfQuestions={data['JavaScript'].length}
         />
         <QuestionSkillCard
           skill="React"
           description="Crowd Favorite!"
-          noOfQuestions={5}
+          noOfQuestions={data['React']?.length || 0}
         />
       </div>
     </main>
