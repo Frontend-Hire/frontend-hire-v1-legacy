@@ -1,0 +1,38 @@
+import Image from 'next/image';
+import image from './HTML forms 101.png';
+
+export const meta = {
+  title: 'Job Application Form - 1',
+  difficulty: 'easy',
+  description: 'Job Application - 1',
+  template: 'static',
+  files: {
+    '/index.html': '<body>Hello</body>',
+  },
+  showPreview: true,
+};
+
+# Job Application Form - 1
+
+Building forms is not easy.
+
+This questions expects you to build a simple job application form as requested in the written requirement or the below design.
+
+#### Note
+
+- This is an HTML question, do not worry about CSS yet!
+- Make sure accessibility is great!
+
+#### Requirement
+
+- Get the user's full name. (Have a placeholder too)
+- Get the user's email with browser validations. (Have a placeholder too)
+- Ask for user's gender with three options (Male, Female, and Not Listed)
+- Ask the user why would they want to join us? (This can be a long input)
+- Get the user's primary skill (This is a select input, use random list of options)
+- A checkbox to agree or disagree to our terms and conditions.
+- A submit button
+
+#### Design
+
+<Image src={image} alt="design" priority />

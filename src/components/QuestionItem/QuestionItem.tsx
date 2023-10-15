@@ -45,7 +45,7 @@ export default function QuestionItem({
     <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:opacity-80">
       <DifficultyLabel difficulty={difficulty} />
       <Link href={`/questions/${skill}/${id}`}>
-        <p className="text-xl">{title}</p>
+        <p className="text-xl">{title.split('_').join(' ')}</p>
       </Link>
     </div>
   );
