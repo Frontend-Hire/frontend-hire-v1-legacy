@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 // import Tabs, { ITab } from '../Tabs';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { QuestionTab } from '@/types/QuestionTab';
+import { QuestionTab } from '@/types/Question';
 
 interface Props {
   tabs: QuestionTab[];

@@ -11,7 +11,7 @@ import { InfoIcon } from 'lucide-react';
 import { IQuestionSuccess } from '../_hooks/useQuestion';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
-import { QuestionTab } from '@/types/QuestionTab';
+import { QuestionTab } from '@/types/Question';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 
 interface Props {

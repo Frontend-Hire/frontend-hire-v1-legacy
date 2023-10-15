@@ -37,7 +37,7 @@ export default function useQuestion(skill: string, questionId: string) {
     const getQuestion = async () => {
       try {
         const { default: getContent, meta } = require(
-          `@/questions/${skill.toLowerCase()}/${questionId.toLowerCase()}/prompt.mdx`,
+          `@/questions/${skill}/${questionId}/prompt.mdx`,
         );
 
         return { getContent, meta };

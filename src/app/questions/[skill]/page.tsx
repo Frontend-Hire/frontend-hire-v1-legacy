@@ -1,8 +1,13 @@
 import Heading from '@/components/Heading';
 import QuestionItem from '@/components/QuestionItem';
+import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 
-export default function Skill({ params }: { params: { skill: string } }) {
+export default async function Skill({ params }: { params: { skill: string } }) {
   const { skill } = params;
+
+  const data = await getQuestionsFromLocal();
+
+  const currentSkillData = data[skill];
 
   return (
     <main>
@@ -10,38 +15,17 @@ export default function Skill({ params }: { params: { skill: string } }) {
         {skill} Questions
       </Heading>
       <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
-        <QuestionItem
-          id="123"
-          skill={skill}
-          title="Forms"
-          difficulty="MEDIUM"
-          isCompleted={false}
-          isFavorite={false}
-        />
-        <QuestionItem
-          id="123"
-          skill={skill}
-          title="Forms"
-          difficulty="MEDIUM"
-          isCompleted={false}
-          isFavorite={false}
-        />
-        <QuestionItem
-          id="123"
-          skill={skill}
-          title="Forms"
-          difficulty="MEDIUM"
-          isCompleted={false}
-          isFavorite={false}
-        />
-        <QuestionItem
-          id="123"
-          skill={skill}
-          title="Forms"
-          difficulty="MEDIUM"
-          isCompleted={false}
-          isFavorite={false}
-        />
+        {currentSkillData.map((question) => (
+          <QuestionItem
+            key={question.name}
+            id={question.name}
+            skill={skill}
+            title={question.name}
+            difficulty={question.difficulty}
+            isCompleted={false}
+            isFavorite={false}
+          />
+        ))}
       </div>
     </main>
   );

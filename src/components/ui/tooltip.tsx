@@ -32,7 +32,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function ToolTip({ title, children }: Props) {
+export default function Tooltip({ title, children }: Props) {
   return (
     <TooltipProvider>
       <TooltipRoot>

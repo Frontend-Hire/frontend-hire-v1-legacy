@@ -1,23 +1,6 @@
 import Heading from '@/components/Heading';
 import QuestionSkillCard from '@/components/QuestionSkillCard';
-import fs from 'fs';
-import path from 'path';
-
-const questionsPath = path.join(process.cwd(), '/src/questions');
-
-async function getQuestionsFromLocal() {
-  const questions: {
-    [key: string]: string[];
-  } = {};
-
-  const skills = fs.readdirSync(questionsPath);
-
-  for (const skill of skills) {
-    questions[skill] = fs.readdirSync(path.join(questionsPath, skill));
-  }
-
-  return questions;
-}
+import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 
 export default async function Questions() {
   const data = await getQuestionsFromLocal();
