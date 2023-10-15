@@ -12,17 +12,15 @@ interface Props {
 }
 
 export default function Tabs({ tabs, rightButtons }: Props) {
-  if (tabs.length === 0) return null;
-
   return (
     <RadixTabs.Root
       className="flex h-full flex-col"
-      defaultValue={tabs[0].value}
+      defaultValue={tabs[0]?.value}
     >
-      <RadixTabs.List className="flex border-b border-gray-800 bg-gray-600 font-semibold text-white">
+      <RadixTabs.List className="flex h-[40px] border-b border-gray-800 bg-gray-600 font-semibold text-white">
         {tabs.map((tab) => (
           <RadixTabs.Trigger
-            className="flex items-center justify-center px-4 py-3 hover:bg-gray-700 data-[state=active]:bg-gray-800"
+            className="flex items-center justify-center px-4 hover:bg-gray-700 data-[state=active]:bg-gray-800"
             value={tab.value}
             key={tab.value}
           >
