@@ -1,16 +1,19 @@
 import * as RadixTabs from '@radix-ui/react-tabs';
 
-interface Props {
-  tabs: [
-    {
-      value: string;
-      label: React.ReactNode;
-      content: React.ReactNode;
-    },
-  ];
+export interface ITab {
+  value: string;
+  label: React.ReactNode;
+  content: React.ReactNode;
 }
 
-export default function Tabs({ tabs }: Props) {
+interface Props {
+  tabs: ITab[];
+  rightButtons?: React.ReactNode;
+}
+
+export default function Tabs({ tabs, rightButtons }: Props) {
+  if (tabs.length === 0) return null;
+
   return (
     <RadixTabs.Root
       className="flex h-full flex-col"
@@ -26,6 +29,11 @@ export default function Tabs({ tabs }: Props) {
             {tab.label}
           </RadixTabs.Trigger>
         ))}
+        {rightButtons ? (
+          <div className="flex grow items-center justify-end gap-2">
+            {rightButtons}
+          </div>
+        ) : null}
       </RadixTabs.List>
       {tabs.map((tab) => (
         <RadixTabs.Content

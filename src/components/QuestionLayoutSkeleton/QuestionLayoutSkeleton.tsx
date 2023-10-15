@@ -3,9 +3,9 @@
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
 
-import styles from './Layout.module.css';
+import styles from './QuestionLayout.module.css';
 
-export default function LayoutSkeleton() {
+export default function QuestionLayoutSkeleton() {
   return (
     <ReflexContainer
       className="rounded-sm border-[10px] border-gray-400"

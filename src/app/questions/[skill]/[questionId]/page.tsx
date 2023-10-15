@@ -1,15 +1,10 @@
 'use client';
 
-import {
-  SandpackProvider,
-  SandpackCodeEditor,
-  SandpackPreview,
-} from '@codesandbox/sandpack-react';
+import { SandpackProvider } from '@codesandbox/sandpack-react';
 import * as React from 'react';
-import Layout from '@/components/Layout';
-import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import LayoutSkeleton from '@/components/LayoutSkeleton';
+import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
 import useQuestion from './useQuestion';
+import Container from './Container';
 
 export default function Question({
   params,
@@ -20,7 +15,7 @@ export default function Question({
   const { data } = useQuestion(skill, questionId);
 
   if (data.status === 'loading' || data.status === 'idle')
-    return <LayoutSkeleton />;
+    return <QuestionLayoutSkeleton />;
 
   if (data.status === 'error') return '---------------ERROR---------------';
 
@@ -33,28 +28,10 @@ export default function Question({
       files={data.question.meta.files}
       options={{
         autoReload: true,
-        autorun: false,
+        autorun: false, // If true results in infinite loader
       }}
     >
-      <Layout
-        topLeft={<QuestionLayoutItem question={data.question.getContent()} />}
-        topRight={
-          <SandpackCodeEditor
-            showTabs
-            showLineNumbers
-            wrapContent
-            className="h-full"
-          />
-        }
-        bottomLeft={
-          data.question.meta.expectedOutput ? (
-            <div className="h-full">Expected Output</div>
-          ) : (
-            ''
-          )
-        }
-        bottomRight={<SandpackPreview className="h-full" />}
-      />
+      <Container data={data} />
     </SandpackProvider>
   );
 }

@@ -3,7 +3,7 @@
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
 
-import styles from './Layout.module.css';
+import styles from './QuestionLayout.module.css';
 
 interface Props {
   topLeft?: React.ReactNode;
@@ -12,7 +12,7 @@ interface Props {
   bottomRight?: React.ReactNode;
 }
 
-export default function Layout({
+export default function QuestionLayout({
   topLeft,
   topRight,
   bottomLeft,

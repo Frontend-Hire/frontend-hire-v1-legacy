@@ -1,21 +1,15 @@
-import Tabs from '../Tabs';
+import { ReactNode } from 'react';
+import Tabs, { ITab } from '../Tabs';
 
 interface Props {
-  question: React.ReactNode;
+  tabs: ITab[];
+  rightButtons?: ReactNode;
 }
 
-export default function QuestionLayoutItem({ question }: Props) {
+export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
   return (
-    <div className="h-full">
-      <Tabs
-        tabs={[
-          {
-            label: 'Question',
-            value: 'question',
-            content: <div className="prose">{question}</div>,
-          },
-        ]}
-      />
+    <div className="h-full min-w-[300px]">
+      <Tabs tabs={tabs} rightButtons={rightButtons} />
     </div>
   );
 }

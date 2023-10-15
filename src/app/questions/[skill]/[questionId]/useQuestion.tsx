@@ -1,16 +1,16 @@
 import { Meta } from '@/types/mdx';
 import * as React from 'react';
 
-interface ILoading {
+export interface IQuestionLoading {
   status: 'loading';
 }
 
-interface IError {
+export interface IQuestionError {
   status: 'error';
   message: string;
 }
 
-interface ISuccess {
+export interface IQuestionSuccess {
   status: 'success';
   question: {
     getContent: () => React.ReactNode;
@@ -18,11 +18,15 @@ interface ISuccess {
   };
 }
 
-interface IIdle {
+export interface IQuestionIdle {
   status: 'idle';
 }
 
-type Question = ILoading | IError | ISuccess | IIdle;
+export type Question =
+  | IQuestionLoading
+  | IQuestionError
+  | IQuestionSuccess
+  | IQuestionIdle;
 
 export default function useQuestion(skill: string, questionId: string) {
   const [data, setData] = React.useState<Question>({
@@ -46,7 +50,10 @@ export default function useQuestion(skill: string, questionId: string) {
     setData({ status: 'loading' });
     getQuestion().then((data) => {
       const timeout = setTimeout(() => {
-        setData({ status: 'success', question: data as ISuccess['question'] });
+        setData({
+          status: 'success',
+          question: data as IQuestionSuccess['question'],
+        });
       }, 2000);
 
       return () => {

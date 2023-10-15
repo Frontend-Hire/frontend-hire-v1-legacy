@@ -1,5 +1,5 @@
-import LayoutSkeleton from '@/components/LayoutSkeleton';
+import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
 
 export default function Loading() {
-  return <LayoutSkeleton />;
+  return <QuestionLayoutSkeleton />;
 }
