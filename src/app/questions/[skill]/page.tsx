@@ -7,10 +7,12 @@ export default async function Skill({ params }: { params: { skill: string } }) {
 
   const data = await getQuestionsFromLocal();
 
-  const currentSkillData = data[skill];
+  const currentSkillData = data[skill].sort((a, b) =>
+    a.difficulty.localeCompare(b.difficulty),
+  );
 
   return (
-    <main>
+    <main className="h-full bg-gray-200">
       <Heading variant="h1" className="mb-8 text-center">
         {skill} Questions
       </Heading>

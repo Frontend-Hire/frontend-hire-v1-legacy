@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
+import { QuestionDifficulty } from '@/types/Question';
 
 interface Props {
   id: string;
-  difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+  difficulty: QuestionDifficulty;
   title: string;
   skill: string;
   isCompleted: boolean;
@@ -13,16 +14,18 @@ interface Props {
 const DifficultyLabel = ({
   difficulty,
 }: {
-  difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+  difficulty: QuestionDifficulty;
 }) => {
   let className = 'flex flex-col w-2 h-full';
 
-  if (difficulty == 'EASY') {
+  if (difficulty == 'easy') {
     className += ' bg-green-600';
-  } else if (difficulty == 'MEDIUM') {
+  } else if (difficulty == 'medium') {
     className += ' bg-yellow-500';
-  } else {
+  } else if (difficulty == 'hard') {
     className += ' bg-red-600';
+  } else {
+    className += ' bg-gray-800';
   }
 
   return (
@@ -42,7 +45,7 @@ export default function QuestionItem({
   isFavorite,
 }: Props) {
   return (
-    <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:opacity-80">
+    <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:bg-gray-100">
       <DifficultyLabel difficulty={difficulty} />
       <Link href={`/questions/${skill}/${id}`}>
         <p className="text-xl">{title.split('_').join(' ')}</p>

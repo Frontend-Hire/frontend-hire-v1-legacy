@@ -4,4 +4,4 @@ export type QuestionTab = {
   content: React.ReactNode;
 };
 
-export type QuestionDifficulty = 'EASY' | 'MEDIUM' | 'HARD';
+export type QuestionDifficulty = 'easy' | 'medium' | 'hard' | 'master';
