@@ -19,13 +19,13 @@ const DifficultyLabel = ({
   let className = 'flex flex-col w-2 h-full';
 
   if (difficulty == 'easy') {
-    className += ' bg-green-600';
+    className += ' bg-green-500';
   } else if (difficulty == 'medium') {
     className += ' bg-yellow-500';
   } else if (difficulty == 'hard') {
-    className += ' bg-red-600';
+    className += ' bg-red-500';
   } else {
-    className += ' bg-gray-800';
+    className += ' bg-gray-500';
   }
 
   return (
