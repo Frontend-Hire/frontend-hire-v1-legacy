@@ -1,6 +1,7 @@
 import DifficultyLegend from '@/components/DifficultyLegend';
 import Heading from '@/components/Heading';
 import QuestionItem from '@/components/QuestionItem';
+import SkillDescription from '@/components/SkillDescription';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 
 export default async function Skill({ params }: { params: { skill: string } }) {
@@ -13,10 +14,11 @@ export default async function Skill({ params }: { params: { skill: string } }) {
   );
 
   return (
-    <main className="h-full bg-gray-200">
-      <Heading variant="h1" className="mb-8 text-center">
+    <section className="h-full bg-gray-100 p-2">
+      <Heading variant="h1" className="mb-4 text-center">
         {skill} Questions
       </Heading>
+      <SkillDescription skill={skill} />
       <DifficultyLegend />
       <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
         {currentSkillData.map((question) => (
@@ -31,6 +33,6 @@ export default async function Skill({ params }: { params: { skill: string } }) {
           />
         ))}
       </div>
-    </main>
+    </section>
   );
 }
