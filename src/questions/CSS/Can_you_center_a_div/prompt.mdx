@@ -1,0 +1,44 @@
+export const meta = {
+  title: 'Can you center a div?',
+  difficulty: 'easy',
+  template: 'static',
+  showPreview: true,
+  files: {
+    '/index.html': `<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Parcel Sandbox</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <div>Center Me</div>
+</body>
+
+</html>`,
+    '/styles.css': `body {
+      font-size: 20px;
+    }`,
+  },
+};
+
+# Can you center a div?
+
+> This is a classic joke in the CSS community.
+
+All you gotta do for this question is **center (horizontally and vertically) the div**.
+
+```
+<div>Center Me</div>
+```
+
+#### Note
+
+- Though this question expects you to write classic CSS a.k.a in the **styles.css** file, you can use _TailwindCSS_ if you want to.
+- For enabling _TailwindCSS_, just add the below snippet to the **head** of the **index.html** file.
+
+```
+<script src="https://cdn.tailwindcss.com"></script>
+```

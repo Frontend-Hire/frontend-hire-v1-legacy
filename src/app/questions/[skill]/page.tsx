@@ -23,10 +23,10 @@ export default async function Skill({ params }: { params: { skill: string } }) {
       <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
         {currentSkillData.map((question) => (
           <QuestionItem
-            key={question.name}
-            id={question.name}
+            key={question.id}
+            id={question.id}
             skill={skill}
-            title={question.name}
+            title={question.title}
             difficulty={question.difficulty}
             isCompleted={false}
             isFavorite={false}

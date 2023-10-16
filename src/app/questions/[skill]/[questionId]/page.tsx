@@ -27,6 +27,7 @@ export default function Question({
       template={data.question.meta.template}
       files={data.question.meta.files}
       options={{
+        externalResources: data.question.meta.externalCDNs,
         autoReload: true,
         autorun: false, // If true results in infinite loader
       }}

@@ -7,6 +7,7 @@ export type Meta = {
   title: string;
   difficulty: 'easy' | 'medium' | 'hard' | 'master';
   template: SandpackPredefinedTemplate;
+  externalCDNs?: string[];
   showPreview?: boolean;
   showConsole?: boolean;
   description?: string;

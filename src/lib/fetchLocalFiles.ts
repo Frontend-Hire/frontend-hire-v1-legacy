@@ -7,7 +7,8 @@ const questionsPath = path.join(process.cwd(), '/src/questions');
 export async function getQuestionsFromLocal() {
   const questions: {
     [skill: string]: {
-      name: string;
+      id: string;
+      title: string;
       difficulty: QuestionDifficulty;
     }[];
   } = {};
@@ -21,7 +22,11 @@ export async function getQuestionsFromLocal() {
       const { default: getContent, meta } = require(
         `@/questions/${skill}/${question}/prompt.mdx`,
       );
-      questions[skill].push({ name: question, difficulty: meta.difficulty });
+      questions[skill].push({
+        id: question,
+        title: meta.title,
+        difficulty: meta.difficulty,
+      });
     }
   }
 
