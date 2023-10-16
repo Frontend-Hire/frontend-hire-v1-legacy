@@ -12,6 +12,7 @@ export type Meta = {
   description?: string;
   expectedOutput?: string;
   files?: SandpackFiles;
+  submittedBy?: string;
 };
 
 declare module '*.mdx' {
