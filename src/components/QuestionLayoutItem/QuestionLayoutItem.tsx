@@ -1,11 +1,10 @@
-import { ReactNode } from 'react';
-// import Tabs, { ITab } from '../Tabs';
+import * as React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { QuestionTab } from '@/types/Question';
 
 interface Props {
   tabs: QuestionTab[];
-  rightButtons?: ReactNode;
+  rightButtons?: React.ReactNode;
 }
 
 export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
@@ -27,7 +26,7 @@ export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
         </div>
         {tabs.map((tab) => (
           <TabsContent
-            className="flex flex-col"
+            className="flex h-full flex-col"
             asChild
             key={tab.value}
             value={tab.value}
