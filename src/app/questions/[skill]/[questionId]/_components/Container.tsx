@@ -16,6 +16,7 @@ import { QuestionTab } from '@/types/Question';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
+import Output from './Output';
 
 interface Props {
   data: IQuestionSuccess;
@@ -95,7 +96,13 @@ export default function Container({ data }: Props) {
       topLeft={<QuestionContainer content={data.question.getContent()} />}
       topRight={<CodeEditor />}
       bottomLeft={bottomLeft()}
-      bottomRight={bottomRight()}
+      bottomRight={
+        <Output
+          showConsole={data.question.meta.showConsole}
+          showPreview={data.question.meta.showPreview}
+          showTests={data.question.meta.showTests}
+        />
+      }
     />
   );
 }
