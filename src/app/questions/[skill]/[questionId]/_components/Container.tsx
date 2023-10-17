@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/Question';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
+import QuestionContainer from './QuestionContainer';
 
 interface Props {
   data: IQuestionSuccess;
@@ -22,20 +23,6 @@ interface Props {
 
 export default function Container({ data }: Props) {
   const { sandpack, dispatch } = useSandpack();
-
-  const topLeft = () => (
-    <QuestionLayoutItem
-      tabs={[
-        {
-          label: 'Question',
-          value: 'Question',
-          content: (
-            <div className="prose p-2">{data.question.getContent()}</div>
-          ),
-        },
-      ]}
-    />
-  );
 
   const topRight = () => (
     <QuestionLayoutItem
@@ -133,7 +120,7 @@ export default function Container({ data }: Props) {
 
   return (
     <QuestionLayout
-      topLeft={topLeft()}
+      topLeft={<QuestionContainer content={data.question.getContent()} />}
       topRight={topRight()}
       bottomLeft={bottomLeft()}
       bottomRight={bottomRight()}
