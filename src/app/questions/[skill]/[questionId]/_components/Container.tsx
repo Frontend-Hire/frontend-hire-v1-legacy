@@ -6,7 +6,6 @@ import {
   SandpackPreview,
   SandpackTests,
   useSandpack,
-  useSandpackShell,
 } from '@codesandbox/sandpack-react';
 import { InfoIcon } from 'lucide-react';
 
@@ -16,6 +15,7 @@ import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/Question';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import QuestionContainer from './QuestionContainer';
+import CodeEditor from './CodeEditor';
 
 interface Props {
   data: IQuestionSuccess;
@@ -23,34 +23,6 @@ interface Props {
 
 export default function Container({ data }: Props) {
   const { sandpack, dispatch } = useSandpack();
-
-  const topRight = () => (
-    <QuestionLayoutItem
-      rightButtons={
-        <>
-          <ResetButtonWithAlert onReset={sandpack.resetAllFiles} />
-          <Button className="rounded-none" onClick={sandpack.runSandpack}>
-            Run Code
-          </Button>
-        </>
-      }
-      tabs={[
-        {
-          label: 'Editor',
-          value: 'Editor',
-          content: (
-            <SandpackCodeEditor
-              showTabs
-              showRunButton={false}
-              showLineNumbers
-              wrapContent
-              className="h-full"
-            />
-          ),
-        },
-      ]}
-    />
-  );
 
   const bottomLeft = () =>
     data.question.meta.expectedOutput ? (
@@ -121,7 +93,7 @@ export default function Container({ data }: Props) {
   return (
     <QuestionLayout
       topLeft={<QuestionContainer content={data.question.getContent()} />}
-      topRight={topRight()}
+      topRight={<CodeEditor />}
       bottomLeft={bottomLeft()}
       bottomRight={bottomRight()}
     />
