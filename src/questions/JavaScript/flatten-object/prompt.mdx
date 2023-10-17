@@ -1,0 +1,21 @@
+export const meta = {
+  title: 'Flatten an Object',
+  difficulty: 'medium',
+  description:
+    "A standard requirement just like Lodash's flatten array method!",
+  template: 'test-ts',
+  files: {
+    '/index.js': `export function flattenObjectToString(inputObject) {
+  return '';
+}`,
+  '/index.test.js': `import { flattenObjectToString } from './index';
+
+describe('flattenObjectToString', () => {
+test('Flatten Object', () => {
+expect(flattenObjectToString({})).toBe('');
+});
+});`
+},
+showTests: true,
+showConsole: true,
+};

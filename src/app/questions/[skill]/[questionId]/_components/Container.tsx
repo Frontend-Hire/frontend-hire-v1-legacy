@@ -4,7 +4,9 @@ import {
   SandpackCodeEditor,
   SandpackConsole,
   SandpackPreview,
+  SandpackTests,
   useSandpack,
+  useSandpackShell,
 } from '@codesandbox/sandpack-react';
 import { InfoIcon } from 'lucide-react';
 
@@ -19,7 +21,7 @@ interface Props {
 }
 
 export default function Container({ data }: Props) {
-  const { sandpack } = useSandpack();
+  const { sandpack, dispatch } = useSandpack();
 
   const topLeft = () => (
     <QuestionLayoutItem
@@ -52,8 +54,8 @@ export default function Container({ data }: Props) {
           content: (
             <SandpackCodeEditor
               showTabs
-              showLineNumbers
               showRunButton={false}
+              showLineNumbers
               wrapContent
               className="h-full"
             />
@@ -81,20 +83,48 @@ export default function Container({ data }: Props) {
       });
     }
 
+    if (data.question.meta.showTests) {
+      tabs.push({
+        label: 'Tests',
+        value: 'Tests',
+        content: <SandpackTests className="h-full" />,
+      });
+    }
+
     if (data.question.meta.showConsole) {
       tabs.push({
         label: 'Console',
         value: 'Console',
-        content: <SandpackConsole className="h-full" />,
+        content: (
+          <SandpackConsole
+            standalone={!data.question.meta.showPreview}
+            showHeader={false}
+            className="h-full"
+          />
+        ),
       });
     }
 
     return (
       <QuestionLayoutItem
         rightButtons={
-          <Tooltip title="Run code to see preview">
-            <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
-          </Tooltip>
+          <>
+            <Tooltip title="Run code to see preview">
+              <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
+            </Tooltip>
+            <Button
+              className="rounded-none"
+              onClick={() => {
+                if (sandpack.status !== 'running') {
+                  sandpack.runSandpack();
+                  return;
+                }
+                dispatch({ type: 'run-all-tests' });
+              }}
+            >
+              Run Tests
+            </Button>
+          </>
         }
         tabs={tabs}
       />

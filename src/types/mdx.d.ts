@@ -10,6 +10,7 @@ export type Meta = {
   externalCDNs?: string[];
   showPreview?: boolean;
   showConsole?: boolean;
+  showTests?: boolean;
   description?: string;
   expectedOutput?: string;
   files?: SandpackFiles;
