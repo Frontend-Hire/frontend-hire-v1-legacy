@@ -10,7 +10,7 @@ export default function CodeEditor() {
     <QuestionLayoutItem
       rightButtons={
         <>
-          <ResetButtonWithAlert onReset={sandpack.resetAllFiles} />
+          <ResetButtonWithAlert />
           <Button className="rounded-none" onClick={sandpack.runSandpack}>
             Run Code
           </Button>

@@ -10,13 +10,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import { useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
 
-interface Props {
-  onReset: () => void;
-}
+export default function ResetButtonWithAlert() {
+  const { sandpack } = useSandpack();
 
-export default function ResetButtonWithAlert({ onReset }: Props) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -33,7 +32,9 @@ export default function ResetButtonWithAlert({ onReset }: Props) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onReset}>Yes, reset</AlertDialogAction>
+          <AlertDialogAction onClick={sandpack.resetAllFiles}>
+            Yes, reset
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
