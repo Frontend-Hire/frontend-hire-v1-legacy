@@ -1,14 +1,13 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/Question';
 import {
   SandpackConsole,
   SandpackPreview,
   SandpackTests,
-  useSandpack,
 } from '@codesandbox/sandpack-react';
 import { InfoIcon } from 'lucide-react';
+import RunTestsButton from './RunTestsButton';
 
 interface Props {
   showPreview?: boolean;
@@ -17,8 +16,6 @@ interface Props {
 }
 
 export default function Output({ showPreview, showConsole, showTests }: Props) {
-  const { sandpack, dispatch } = useSandpack();
-
   const tabs: QuestionTab[] = [];
 
   if (showPreview) {
@@ -58,18 +55,7 @@ export default function Output({ showPreview, showConsole, showTests }: Props) {
           <Tooltip title="Run code to see preview">
             <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
           </Tooltip>
-          <Button
-            className="rounded-none"
-            onClick={() => {
-              if (sandpack.status !== 'running') {
-                sandpack.runSandpack();
-                return;
-              }
-              dispatch({ type: 'run-all-tests' });
-            }}
-          >
-            Run Tests
-          </Button>
+          <RunTestsButton />
         </>
       }
       tabs={tabs}
