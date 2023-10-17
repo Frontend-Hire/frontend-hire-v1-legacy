@@ -1,19 +1,15 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import { SandpackCodeEditor } from '@codesandbox/sandpack-react';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
-import { Button } from '@/components/ui/button';
-import { SandpackCodeEditor, useSandpack } from '@codesandbox/sandpack-react';
+import RunCodeButton from './RunCodeButton';
 
 export default function CodeEditor() {
-  const { sandpack } = useSandpack();
-
   return (
     <QuestionLayoutItem
       rightButtons={
         <>
           <ResetButtonWithAlert />
-          <Button className="rounded-none" onClick={sandpack.runSandpack}>
-            Run Code
-          </Button>
+          <RunCodeButton />
         </>
       }
       tabs={[
