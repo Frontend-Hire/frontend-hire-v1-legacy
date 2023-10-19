@@ -55,7 +55,7 @@ export default function Output({ showPreview, showConsole, showTests }: Props) {
           <Tooltip title="Run code to see preview">
             <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
           </Tooltip>
-          <RunTestsButton />
+          {showTests && <RunTestsButton />}
         </>
       }
       tabs={tabs}

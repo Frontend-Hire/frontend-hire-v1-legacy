@@ -11,7 +11,7 @@ export default function QuestionContainer({ content }: Props) {
         {
           label: 'Question',
           value: 'Question',
-          content: <div className="prose p-2">{content}</div>,
+          content: <div className="prose p-4">{content}</div>,
         },
       ]}
     />

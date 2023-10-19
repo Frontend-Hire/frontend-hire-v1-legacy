@@ -1,5 +1,6 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { SandpackCodeEditor } from '@codesandbox/sandpack-react';
+import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
 
@@ -18,6 +19,8 @@ export default function CodeEditor() {
           value: 'Editor',
           content: (
             <SandpackCodeEditor
+              extensions={[autocompletion()]}
+              extensionsKeymap={[completionKeymap as any]} // For TS error
               showTabs
               showRunButton={false}
               showLineNumbers
