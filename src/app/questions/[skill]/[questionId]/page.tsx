@@ -26,9 +26,7 @@ export default function Question({
       }}
       template={data.question.meta.template}
       files={data.question.meta.files}
-      customSetup={{}}
       options={{
-        // activeFile: Object.keys(data.question.meta.files || [])[0] || undefined,
         externalResources: data.question.meta.externalCDNs,
         autoReload: true,
         autorun: false, // If true results in infinite loader

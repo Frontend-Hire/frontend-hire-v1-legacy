@@ -14,7 +14,7 @@ export default function RunTestsButton() {
 
   return (
     <Button className="rounded-none" onClick={handleRunTests}>
-      {sandpack.status !== 'running' ? 'Run Tests' : 'Tests Running'}
+      Run Tests
     </Button>
   );
 }
