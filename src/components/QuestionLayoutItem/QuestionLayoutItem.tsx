@@ -8,11 +8,14 @@ interface Props {
 }
 
 export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
+  const [activeTab, setActiveTab] = React.useState(tabs[0]?.value || '');
+
   return (
     <div className="h-full min-w-[200px]">
       <Tabs
         className="flex h-full flex-col"
-        defaultValue={tabs[0]?.value || ''}
+        value={activeTab}
+        onValueChange={setActiveTab}
       >
         <div className="flex h-[40px] items-center justify-between bg-gray-600">
           <TabsList>
@@ -28,15 +31,16 @@ export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
           <TabsContent
             className="flex h-full flex-col"
             asChild
+            forceMount
             key={tab.value}
             value={tab.value}
           >
-            <div className="h-0 flex-grow overflow-auto">{tab.content}</div>
+            <div className="h-0 flex-grow overflow-auto data-[state=inactive]:hidden">
+              {tab.content}
+            </div>
           </TabsContent>
         ))}
       </Tabs>
-
-      {/* <Tabs tabs={tabs} rightButtons={rightButtons} /> */}
     </div>
   );
 }
