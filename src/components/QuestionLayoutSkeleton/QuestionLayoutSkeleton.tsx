@@ -4,24 +4,21 @@ import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
 
 import styles from './QuestionLayout.module.css';
-import FakeHeader from './FakeHeader';
+import FakeTabHeader from './FakeTabHeader';
 
 export default function QuestionLayoutSkeleton() {
   return (
-    <ReflexContainer
-      className="border-[10px] border-gray-400"
-      orientation="vertical"
-    >
+    <ReflexContainer orientation="vertical">
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
           <ReflexElement className="animate-pulse bg-zinc-300">
-            <FakeHeader />
+            <FakeTabHeader />
           </ReflexElement>
 
           <ReflexSplitter className={styles.verticalSplitter} />
 
           <ReflexElement className="animate-pulse bg-zinc-300">
-            <FakeHeader />
+            <FakeTabHeader />
           </ReflexElement>
         </ReflexContainer>
       </ReflexElement>
@@ -29,13 +26,13 @@ export default function QuestionLayoutSkeleton() {
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
           <ReflexElement className="animate-pulse bg-zinc-300">
-            <FakeHeader />
+            <FakeTabHeader />
           </ReflexElement>
 
           <ReflexSplitter className={styles.verticalSplitter} />
 
           <ReflexElement className="animate-pulse bg-zinc-300">
-            <FakeHeader />
+            <FakeTabHeader />
           </ReflexElement>
         </ReflexContainer>
       </ReflexElement>
