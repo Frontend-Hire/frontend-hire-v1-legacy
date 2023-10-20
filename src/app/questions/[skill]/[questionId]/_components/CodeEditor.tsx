@@ -1,10 +1,22 @@
+import * as React from 'react';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import { SandpackCodeEditor } from '@codesandbox/sandpack-react';
+import { keymap } from '@codemirror/view';
+import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
 import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
 
 export default function CodeEditor() {
+  const codemirrorInstance = React.useRef<CodeEditorRef>(null);
+
+  React.useEffect(() => {
+    const cmInstance = codemirrorInstance.current?.getCodemirror();
+
+    if (!cmInstance) return;
+
+    cmInstance.state.update({});
+  }, []);
+
   return (
     <QuestionLayoutItem
       rightButtons={
@@ -19,7 +31,16 @@ export default function CodeEditor() {
           value: 'Editor',
           content: (
             <SandpackCodeEditor
-              extensions={[autocompletion()]}
+              ref={codemirrorInstance}
+              extensions={[
+                autocompletion(),
+                keymap.of([
+                  {
+                    key: 'Mod-s',
+                    run: () => true,
+                  },
+                ]),
+              ]}
               extensionsKeymap={[completionKeymap as any]} // For TS error
               showTabs
               showRunButton={false}
