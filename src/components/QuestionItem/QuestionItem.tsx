@@ -45,11 +45,11 @@ export default function QuestionItem({
   isFavorite,
 }: Props) {
   return (
-    <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:bg-gray-100">
-      <DifficultyLabel difficulty={difficulty} />
-      <Link href={`/questions/${skill}/${id}`}>
+    <Link href={`/questions/${skill}/${id}`}>
+      <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:bg-gray-100">
+        <DifficultyLabel difficulty={difficulty} />
         <p className="text-xl">{title.split('_').join(' ')}</p>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
