@@ -11,14 +11,14 @@ export default function Header({ skill }: Props) {
   return (
     <header className="flex h-[40px] items-center gap-4">
       <Tooltip title={`Back to ${skill} questions`}>
-        <Button size="icon" asChild>
+        <Button className="rounded-t-none" size="icon" asChild>
           <Link href={`/questions/${skill}`}>
             <ArrowLeftIcon />
           </Link>
         </Button>
       </Tooltip>
       <Tooltip title={`All Questions`}>
-        <Button size="icon" asChild>
+        <Button className="rounded-t-none" size="icon" asChild>
           <Link href="/questions">
             <ListIcon />
           </Link>
