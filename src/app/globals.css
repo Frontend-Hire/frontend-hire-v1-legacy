@@ -74,3 +74,7 @@
     @apply flex h-screen flex-col bg-background text-foreground;
   }
 }
+
+.sp-cube-wrapper {
+  @apply hidden;
+}
