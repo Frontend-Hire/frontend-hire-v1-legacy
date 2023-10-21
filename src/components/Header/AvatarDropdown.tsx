@@ -19,7 +19,9 @@ export default async function AvatarDropdown({ picture, name }: Props) {
       <DropdownMenuTrigger className="hover:opacity-80">
         <Avatar>
           <AvatarImage src={picture} />
-          <AvatarFallback>{(name && name[0]) || '?'}</AvatarFallback>
+          <AvatarFallback className="bg-primary">
+            {(name && name[0]) || '?'}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
