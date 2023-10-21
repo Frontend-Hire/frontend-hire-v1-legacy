@@ -19,10 +19,7 @@ export default function QuestionLayout({
   bottomRight,
 }: Props) {
   return (
-    <ReflexContainer
-      className="border-[10px] border-gray-400"
-      orientation="vertical"
-    >
+    <ReflexContainer orientation="vertical">
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
           {topLeft && <ReflexElement>{topLeft}</ReflexElement>}
