@@ -16,7 +16,7 @@ const DifficultyLabel = ({
 }: {
   difficulty: QuestionDifficulty;
 }) => {
-  let className = 'flex flex-col w-2 h-full';
+  let className = 'w-2 h-full';
 
   if (difficulty == 'easy') {
     className += ' bg-green-500';
@@ -46,9 +46,11 @@ export default function QuestionItem({
 }: Props) {
   return (
     <Link href={`/questions/${skill}/${id}`}>
-      <div className="flex h-10 min-w-[200px] items-center gap-2 overflow-hidden rounded-md border border-gray-900 bg-white hover:bg-gray-100">
+      <div className="flex h-[40px] min-w-[200px] items-center gap-2 overflow-hidden text-ellipsis rounded-md border border-gray-900 bg-white hover:bg-gray-100">
         <DifficultyLabel difficulty={difficulty} />
-        <p className="text-xl">{title.split('_').join(' ')}</p>
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">
+          {title.split('_').join(' ')}
+        </p>
       </div>
     </Link>
   );

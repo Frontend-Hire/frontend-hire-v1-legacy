@@ -1,6 +1,6 @@
 export default function DifficultyLegend() {
   return (
-    <div className="mb-6 mt-2 flex items-center justify-center gap-2">
+    <div className="flex flex-wrap items-center justify-center gap-2">
       <div className="flex items-center gap-2">
         <span className="h-6 w-2 bg-green-500" />
         Easy

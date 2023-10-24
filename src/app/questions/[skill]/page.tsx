@@ -14,13 +14,15 @@ export default async function Skill({ params }: { params: { skill: string } }) {
   );
 
   return (
-    <section className="h-full bg-gray-100 p-2">
+    <main className="h-full p-2">
       <Heading variant="h1" className="mb-4 text-center">
         {skill} Questions
       </Heading>
-      <SkillDescription skill={skill} />
-      <DifficultyLegend />
-      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-4 rounded-md bg-white p-1">
+        <SkillDescription skill={skill} />
+        <DifficultyLegend />
+      </div>
+      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 md:grid-cols-2 lg:grid-cols-3">
         {currentSkillData.map((question) => (
           <QuestionItem
             key={question.id}
@@ -33,6 +35,6 @@ export default async function Skill({ params }: { params: { skill: string } }) {
           />
         ))}
       </div>
-    </section>
+    </main>
   );
 }
