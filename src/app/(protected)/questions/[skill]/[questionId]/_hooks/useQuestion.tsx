@@ -1,5 +1,6 @@
-import { Meta } from '@/types/mdx';
 import * as React from 'react';
+import { Meta } from '@/types/mdx';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export interface IQuestionLoading {
   status: 'loading';
@@ -29,6 +30,7 @@ export type Question =
   | IQuestionIdle;
 
 export default function useQuestion(skill: string, questionId: string) {
+  const supabaseBrowserClient = createClientComponentClient();
   const [data, setData] = React.useState<Question>({
     status: 'idle',
   });
@@ -39,6 +41,22 @@ export default function useQuestion(skill: string, questionId: string) {
         const { default: getContent, meta } = require(
           `@/questions/${skill}/${questionId}/prompt.mdx`,
         );
+
+        const { data } = await supabaseBrowserClient
+          .from('code_submissions')
+          .select(`id, files (file_name, code)`)
+          .eq('question_id', questionId)
+          .limit(1)
+          .maybeSingle();
+
+        if (data) {
+          data.files.forEach(
+            (file) => (meta.files[file.file_name].code = file.code),
+          );
+        }
+
+        localStorage.setItem('submission_id', data?.id || '');
+        localStorage.setItem('question_id', questionId || '');
 
         return { getContent, meta };
       } catch (e) {
@@ -60,7 +78,7 @@ export default function useQuestion(skill: string, questionId: string) {
         clearTimeout(timeout);
       };
     });
-  }, [questionId, skill]);
+  }, [questionId, skill, supabaseBrowserClient]);
 
   return { data };
 }

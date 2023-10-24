@@ -4,7 +4,7 @@ export const meta = {
   template: 'static',
   showPreview: true,
   files: {
-    '/index.html': `<!DOCTYPE html>
+    '/index.html': {code: `<!DOCTYPE html>
 <html>
 
 <head>
@@ -17,10 +17,10 @@ export const meta = {
   <div>Center Me</div>
 </body>
 
-</html>`,
-    '/styles.css': `body {
+</html>`},
+    '/styles.css': {code: `body {
       font-size: 20px;
-    }`,
+    }`},
   },
 };
 
