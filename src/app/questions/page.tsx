@@ -6,7 +6,7 @@ export default async function Questions() {
   const data = await getQuestionsFromLocal();
 
   return (
-    <section>
+    <main>
       <Heading variant="h1" className="mb-8 text-center">
         Questions
       </Heading>
@@ -23,6 +23,6 @@ export default async function Questions() {
           noOfQuestions={data['React']?.length || 0}
         />
       </div>
-    </section>
+    </main>
   );
 }
