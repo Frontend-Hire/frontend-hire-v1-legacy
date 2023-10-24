@@ -1,3 +1,5 @@
+import BackButton from '@/components/BackButton';
+import Header from '@/components/Header';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -13,7 +15,15 @@ export default async function ProtectedLayout({
   } = await supabaseServerClient.auth.getSession();
 
   if (!session) {
-    redirect('/auth');
+    return (
+      <>
+        <Header />
+        <BackButton />
+        <div className="flex flex-col items-center justify-center">
+          Sign In To Access This Page!
+        </div>
+      </>
+    );
   }
 
   return <>{children}</>;

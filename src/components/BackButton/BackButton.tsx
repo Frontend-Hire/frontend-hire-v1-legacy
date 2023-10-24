@@ -1,16 +1,20 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Button } from '../ui/button';
 import { ArrowLeftIcon } from 'lucide-react';
+import Link from 'next/link';
+import { getBackPath } from './getBackPath';
 
 export default function BackButton() {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <div className="mt-2">
-      <Button size="sm" variant="link" onClick={router.back}>
-        <ArrowLeftIcon /> Go Back
+      <Button size="sm" variant="link">
+        <Link className="flex items-center" href={getBackPath(pathname)}>
+          <ArrowLeftIcon /> Go Back
+        </Link>
       </Button>
     </div>
   );
