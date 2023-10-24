@@ -29,23 +29,23 @@ export default function Question({
   if (data.status === 'error') return '---------------ERROR---------------';
 
   return (
-    <PrimaryLayout header={<Header skill={skill} />}>
-      <QuestionHotkeysProvider>
-        <SandpackProvider
-          style={{
-            height: '100%',
-          }}
-          template={data.question.meta.template}
-          files={data.question.meta.files}
-          options={{
-            externalResources: data.question.meta.externalCDNs,
-            autoReload: true,
-            autorun: false, // If true results in infinite loader
-          }}
-        >
+    <QuestionHotkeysProvider>
+      <SandpackProvider
+        style={{
+          height: '100%',
+        }}
+        template={data.question.meta.template}
+        files={data.question.meta.files}
+        options={{
+          externalResources: data.question.meta.externalCDNs,
+          autoReload: true,
+          autorun: false, // If true results in infinite loader
+        }}
+      >
+        <PrimaryLayout header={<Header skill={skill} />}>
           <Container data={data} />
-        </SandpackProvider>
-      </QuestionHotkeysProvider>
-    </PrimaryLayout>
+        </PrimaryLayout>
+      </SandpackProvider>
+    </QuestionHotkeysProvider>
   );
 }
