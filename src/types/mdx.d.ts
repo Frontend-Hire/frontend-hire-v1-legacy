@@ -15,6 +15,7 @@ export type Meta = {
   expectedOutput?: string;
   files?: SandpackFiles;
   submittedBy?: string;
+  dependencies?: { [key: string]: string };
 };
 
 declare module '*.mdx' {
