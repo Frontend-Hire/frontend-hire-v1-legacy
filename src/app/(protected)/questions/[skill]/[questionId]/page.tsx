@@ -35,6 +35,9 @@ export default function Question({
           height: '100%',
         }}
         template={data.question.meta.template}
+        customSetup={{
+          dependencies: data.question.meta.dependencies,
+        }}
         files={data.question.meta.files}
         options={{
           externalResources: data.question.meta.externalCDNs,
