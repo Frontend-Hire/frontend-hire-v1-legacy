@@ -16,6 +16,10 @@ export default function SubmitSolutionButton() {
       submission_id: string;
     }[] = [];
 
+    const editableVisibleFiles = visibleFiles.filter(
+      (file) => !files[file].readOnly,
+    );
+
     const submissionId = localStorage.getItem('submission_id');
 
     const submissionPayload: { id?: string; question_id: string | null } = {
@@ -34,7 +38,7 @@ export default function SubmitSolutionButton() {
       .maybeSingle();
 
     if (data) {
-      visibleFiles.forEach((visibleFile) => {
+      editableVisibleFiles.forEach((visibleFile) => {
         const fileToUpdate = data.files.find(
           (file) => file.file_name === visibleFile,
         );
