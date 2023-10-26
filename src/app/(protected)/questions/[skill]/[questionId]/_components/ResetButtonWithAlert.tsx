@@ -10,6 +10,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import Tooltip from '@/components/ui/tooltip';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
 
@@ -18,11 +19,13 @@ export default function ResetButtonWithAlert() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <Button variant="ghost" size="icon" className="rounded-none">
-          <RotateCcwIcon className="text-white" />
-        </Button>
-      </AlertDialogTrigger>
+      <Tooltip title="Reset Workspace">
+        <AlertDialogTrigger asChild>
+          <Button variant="ghost" size="icon" className="rounded-none">
+            <RotateCcwIcon className="text-white" />
+          </Button>
+        </AlertDialogTrigger>
+      </Tooltip>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Reset Code Editor</AlertDialogTitle>
