@@ -18,7 +18,7 @@ export default function ResetButtonWithAlert() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
+      <AlertDialogTrigger>
         <Button variant="ghost" size="icon" className="rounded-none">
           <RotateCcwIcon className="text-white" />
         </Button>
