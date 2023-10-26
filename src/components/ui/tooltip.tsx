@@ -37,7 +37,7 @@ export default function Tooltip({ title, children }: Props) {
     <TooltipProvider delayDuration={0}>
       <TooltipRoot>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent>{title}</TooltipContent>
+        <TooltipContent className="z-[200]">{title}</TooltipContent>
       </TooltipRoot>
     </TooltipProvider>
   );
