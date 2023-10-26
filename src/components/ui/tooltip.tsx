@@ -36,7 +36,7 @@ export default function Tooltip({ title, children }: Props) {
   return (
     <TooltipProvider>
       <TooltipRoot>
-        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent>{title}</TooltipContent>
       </TooltipRoot>
     </TooltipProvider>
