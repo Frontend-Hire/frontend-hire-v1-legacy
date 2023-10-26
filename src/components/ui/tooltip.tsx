@@ -34,7 +34,7 @@ interface Props {
 
 export default function Tooltip({ title, children }: Props) {
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <TooltipRoot>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent>{title}</TooltipContent>
