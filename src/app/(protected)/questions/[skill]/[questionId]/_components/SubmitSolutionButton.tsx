@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Database } from '@/lib/supabase/supabase';
+import { Database } from '@/types/supabase';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 

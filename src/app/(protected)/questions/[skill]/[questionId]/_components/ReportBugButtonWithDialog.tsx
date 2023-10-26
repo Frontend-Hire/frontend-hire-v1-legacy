@@ -16,7 +16,7 @@ import { BugIcon } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '@/lib/supabase/supabase';
+import { Database } from '@/types/supabase';
 import { Input } from '@/components/ui/input';
 
 export default function ReportBugButtonWithDialog() {
