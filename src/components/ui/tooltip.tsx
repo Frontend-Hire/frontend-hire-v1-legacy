@@ -34,10 +34,10 @@ interface Props {
 
 export default function Tooltip({ title, children }: Props) {
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={0}>
       <TooltipRoot>
-        <TooltipTrigger>{children}</TooltipTrigger>
-        <TooltipContent>{title}</TooltipContent>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipContent className="z-[200]">{title}</TooltipContent>
       </TooltipRoot>
     </TooltipProvider>
   );

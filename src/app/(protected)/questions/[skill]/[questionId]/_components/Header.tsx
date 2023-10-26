@@ -3,6 +3,7 @@ import Tooltip from '@/components/ui/tooltip';
 import { ArrowLeftIcon, ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
+import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
 
 interface Props {
   skill: string;
@@ -28,6 +29,7 @@ export default function Header({ skill }: Props) {
         </Tooltip>
       </div>
       <div className="flex items-center gap-4">
+        <ReportBugButtonWithDialog />
         <SubmitSolutionButton />
       </div>
     </header>
