@@ -15,7 +15,9 @@ export default function QuestionSkillCard({ skill, noOfQuestions }: Props) {
     >
       <Heading variant="h3">{skill}</Heading>
       <p>{SKILL_DESCRIPTION_MAP[skill]}</p>
-      <p>{noOfQuestions} Questions</p>
+      <p>
+        {noOfQuestions} Question{noOfQuestions > 1 ? 's' : ''}
+      </p>
     </Link>
   );
 }
