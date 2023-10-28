@@ -6,6 +6,8 @@ interface Props {
 
 export default function WelcomeMessage({ userName = 'Guest' }: Props) {
   return (
-    <p className="my-2 font-medium">{getRandomWelcomeMessage(userName)}</p>
+    <p className="my-4 text-center text-lg font-medium">
+      {getRandomWelcomeMessage(userName)}
+    </p>
   );
 }
