@@ -9,10 +9,16 @@ import { getBackPath } from './getBackPath';
 export default function BackButton() {
   const pathname = usePathname();
 
+  const backPath = getBackPath(pathname);
+
+  if (pathname === backPath || backPath === '') {
+    return null;
+  }
+
   return (
     <div className="mt-2">
       <Button size="sm" variant="link">
-        <Link className="flex items-center" href={getBackPath(pathname)}>
+        <Link className="flex items-center" href={backPath}>
           <ArrowLeftIcon /> Go Back
         </Link>
       </Button>
