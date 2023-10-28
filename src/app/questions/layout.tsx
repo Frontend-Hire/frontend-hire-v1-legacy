@@ -3,7 +3,6 @@ import Header from '@/components/Header';
 
 export default function QuestionsLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
   params: any;
