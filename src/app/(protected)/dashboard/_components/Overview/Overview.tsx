@@ -2,6 +2,8 @@ import { getTotalQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import SubmittedQuestions from './SubmittedQuestions';
 import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Overview() {
   const [totalQuestions, submittedQuestions] = await Promise.all([
     getTotalQuestionsFromLocal(),

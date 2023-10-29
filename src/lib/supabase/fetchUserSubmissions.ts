@@ -1,8 +1,11 @@
 import { Database } from '@/types/supabase';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { cache } from 'react';
 
-export default async function fetchUserSubmissions() {
+export const revalidate = 0;
+
+const fetchUserSubmissions = cache(async () => {
   const supabaseServerClient = createServerComponentClient<Database>({
     cookies,
   });
@@ -12,4 +15,6 @@ export default async function fetchUserSubmissions() {
     .select('question_id');
 
   return data || [];
-}
+});
+
+export default fetchUserSubmissions;
