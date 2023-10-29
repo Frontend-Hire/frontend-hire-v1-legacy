@@ -2,7 +2,6 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import WelcomeMessage from './_components/WelcomeMessage';
 import Overview from './_components/Overview';
-import ShowAllQuestions from './_components/ShowAllQuestions';
 
 export default async function Dashboard() {
   const supabaseServerClient = createServerComponentClient({ cookies });
@@ -14,7 +13,6 @@ export default async function Dashboard() {
     <main className="flex flex-col gap-2 px-4">
       <WelcomeMessage userName={user?.user_metadata?.name} />
       <Overview />
-      <ShowAllQuestions />
     </main>
   );
 }

@@ -2,6 +2,8 @@ import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import SubmittedQuestions from './SubmittedQuestions';
 import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
 import { getTotalQuestions } from '../../_utils/getTotalQuestions';
+import SkillLevelStats from './SkillLevelStats';
+import { getSubmittedSkillQuestions } from '../../_utils/getSubmittedSkillQuestions';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,9 +19,12 @@ export default async function Overview() {
         submitted={submittedQuestions.length}
         total={getTotalQuestions(allQuestions)}
       />
-      <div className="flex h-full flex-col items-center justify-center rounded-sm bg-gray-300 text-center">
-        <p className="text-lg font-medium">Skill Level Stats</p>
-      </div>
+      <SkillLevelStats
+        skillStats={getSubmittedSkillQuestions(
+          allQuestions,
+          submittedQuestions,
+        )}
+      />
     </div>
   );
 }
