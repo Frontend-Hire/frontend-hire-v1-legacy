@@ -2,6 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import AvatarDropdown from './AvatarDropdown';
 import SignInButton from '../SignInButton';
+import Menu from './Menu';
 
 export default async function Header() {
   const supabaseServerClient = createServerComponentClient({ cookies });
@@ -13,6 +14,7 @@ export default async function Header() {
   return (
     <header className="flex h-[40px] items-center justify-between bg-primary px-4 text-primary-foreground">
       <div>Logo</div>
+      <Menu />
       <div className="flex items-center">
         {user ? (
           <AvatarDropdown
