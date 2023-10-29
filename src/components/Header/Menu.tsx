@@ -1,15 +1,14 @@
-'use client';
-
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
+import MenuLinkItem from './MenuLinkItem';
 
 const MENU_SKILL_LINKS = [
   {
@@ -30,38 +29,36 @@ const MENU_SKILL_LINKS = [
   },
 ];
 
-export default function Menu() {
+export default async function Menu() {
+  const supabaseServerClient = createServerComponentClient({ cookies });
+
+  const {
+    data: { session },
+  } = await supabaseServerClient.auth.getSession();
+
   return (
     <div className="flex h-[40px] items-center justify-center bg-primary/60">
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <Link href="/questions" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} rounded-t-none`}
-              >
-                All Questions
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          {session && (
+            <NavigationMenuItem>
+              <MenuLinkItem href="/dashboard">Dashboard</MenuLinkItem>
+            </NavigationMenuItem>
+          )}
           <NavigationMenuItem>
             <NavigationMenuTrigger className="rounded-t-none">
               Skills
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               {MENU_SKILL_LINKS.map((skillLink) => (
-                <Link
-                  key={skillLink.path}
-                  href={skillLink.path}
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {skillLink.label}
-                  </NavigationMenuLink>
-                </Link>
+                <MenuLinkItem key={skillLink.path} href={skillLink.path}>
+                  {skillLink.label}
+                </MenuLinkItem>
               ))}
             </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <MenuLinkItem href="/questions">All Questions</MenuLinkItem>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
