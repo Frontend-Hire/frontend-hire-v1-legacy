@@ -2,7 +2,6 @@ import BackButton from '@/components/BackButton';
 import Header from '@/components/Header';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export default async function ProtectedLayout({
   children,

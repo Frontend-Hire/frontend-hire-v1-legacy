@@ -1,11 +1,10 @@
 import BackButton from '@/components/BackButton';
 import Header from '@/components/Header';
 
-export default function QuestionsLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
-  params: any;
 }) {
   return (
     <>

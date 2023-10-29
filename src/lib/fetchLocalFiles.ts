@@ -32,3 +32,16 @@ export async function getQuestionsFromLocal() {
 
   return questions;
 }
+
+export async function getTotalQuestionsFromLocal() {
+  let total = 0;
+
+  const skills = fs.readdirSync(questionsPath);
+
+  for (const skill of skills) {
+    const allQuestions = fs.readdirSync(path.join(questionsPath, skill));
+    total += allQuestions.length;
+  }
+
+  return total;
+}
