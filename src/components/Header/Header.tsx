@@ -12,7 +12,7 @@ export default async function Header() {
   } = await supabaseServerClient.auth.getUser();
 
   return (
-    <header className="flex h-[80px] w-full flex-col text-primary-foreground [&>*]:px-4">
+    <header className="mb-2 flex h-[80px] w-full flex-col text-primary-foreground [&>*]:px-4">
       <div className="flex h-[40px] items-center justify-between bg-primary">
         <div>Logo</div>
         <div className="flex items-center">

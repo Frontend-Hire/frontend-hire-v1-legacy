@@ -3,15 +3,38 @@ import Heading from '@/components/Heading';
 import QuestionItem from '@/components/QuestionItem';
 import SkillDescription from '@/components/SkillDescription';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
+import { Database } from '@/types/supabase';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Skill({ params }: { params: { skill: string } }) {
   const { skill } = params;
 
-  const data = await getQuestionsFromLocal();
+  const supabaseServerClient = createServerComponentClient<Database>({
+    cookies,
+  });
 
-  const currentSkillData = data[skill].sort((a, b) =>
+  const {
+    data: { session },
+  } = await supabaseServerClient.auth.getSession();
+
+  const [localQuestions, solvedQuestions] = await Promise.all([
+    getQuestionsFromLocal(),
+    session ? fetchUserSubmissions() : null,
+  ]);
+
+  const currentSkillData = localQuestions[skill].sort((a, b) =>
     a.difficulty.localeCompare(b.difficulty),
   );
+
+  const checkQuestionCompletion = (questionId: string) => {
+    if (!solvedQuestions) return false;
+
+    return solvedQuestions.map((item) => item.question_id).includes(questionId);
+  };
 
   return (
     <main className="h-full p-2">
@@ -30,7 +53,7 @@ export default async function Skill({ params }: { params: { skill: string } }) {
             skill={skill}
             title={question.title}
             difficulty={question.difficulty}
-            isCompleted={false}
+            isCompleted={checkQuestionCompletion(question.id)}
             isFavorite={false}
           />
         ))}

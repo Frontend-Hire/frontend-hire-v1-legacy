@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
 import { QuestionDifficulty } from '@/types/Question';
+import { CheckSquareIcon, SquareIcon } from 'lucide-react';
+import Tooltip from '../ui/tooltip';
 
 interface Props {
   id: string;
@@ -36,6 +38,18 @@ const DifficultyLabel = ({
   );
 };
 
+const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
+  return isCompleted ? (
+    <Tooltip title="Completed">
+      <CheckSquareIcon />
+    </Tooltip>
+  ) : (
+    <Tooltip title="Yet to solve">
+      <SquareIcon />
+    </Tooltip>
+  );
+};
+
 export default function QuestionItem({
   id,
   skill,
@@ -46,11 +60,14 @@ export default function QuestionItem({
 }: Props) {
   return (
     <Link href={`/questions/${skill}/${id}`}>
-      <div className="flex h-[40px] min-w-[200px] items-center gap-2 overflow-hidden text-ellipsis rounded-md border border-gray-900 bg-white hover:bg-gray-100">
-        <DifficultyLabel difficulty={difficulty} />
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">
-          {title.split('_').join(' ')}
-        </p>
+      <div className="flex h-[40px] min-w-[200px] items-center justify-between overflow-hidden rounded-md border border-gray-900 bg-white pr-2 hover:bg-gray-100">
+        <div className="flex h-full items-center gap-2 overflow-hidden text-ellipsis">
+          <DifficultyLabel difficulty={difficulty} />
+          <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">
+            {title.split('_').join(' ')}
+          </p>
+        </div>
+        <CompletedBox isCompleted={isCompleted} />
       </div>
     </Link>
   );

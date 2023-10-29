@@ -1,4 +1,3 @@
-import BackButton from '@/components/BackButton';
 import Header from '@/components/Header';
 
 export default function DashboardLayout({
@@ -9,7 +8,6 @@ export default function DashboardLayout({
   return (
     <>
       <Header />
-      <BackButton />
       {children}
     </>
   );

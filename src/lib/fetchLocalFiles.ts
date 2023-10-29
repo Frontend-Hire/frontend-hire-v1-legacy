@@ -1,17 +1,11 @@
-import { QuestionDifficulty } from '@/types/Question';
+import { SkillQuestions } from '@/types/Question';
 import fs from 'fs';
 import path from 'path';
 
 const questionsPath = path.join(process.cwd(), '/src/questions');
 
 export async function getQuestionsFromLocal() {
-  const questions: {
-    [skill: string]: {
-      id: string;
-      title: string;
-      difficulty: QuestionDifficulty;
-    }[];
-  } = {};
+  const questions: SkillQuestions = {};
 
   const skills = fs.readdirSync(questionsPath);
 
@@ -31,17 +25,4 @@ export async function getQuestionsFromLocal() {
   }
 
   return questions;
-}
-
-export async function getTotalQuestionsFromLocal() {
-  let total = 0;
-
-  const skills = fs.readdirSync(questionsPath);
-
-  for (const skill of skills) {
-    const allQuestions = fs.readdirSync(path.join(questionsPath, skill));
-    total += allQuestions.length;
-  }
-
-  return total;
 }
