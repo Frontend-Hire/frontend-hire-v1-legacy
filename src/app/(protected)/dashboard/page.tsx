@@ -2,9 +2,6 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import WelcomeMessage from './_components/WelcomeMessage';
 import Overview from './_components/Overview';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ListIcon } from 'lucide-react';
 import ShowAllQuestions from './_components/ShowAllQuestions';
 
 export default async function Dashboard() {
