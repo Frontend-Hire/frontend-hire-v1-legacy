@@ -1,4 +1,3 @@
-import BackButton from '@/components/BackButton';
 import Header from '@/components/Header';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
@@ -17,7 +16,6 @@ export default async function ProtectedLayout({
     return (
       <>
         <Header />
-        <BackButton />
         <div className="flex flex-col items-center justify-center">
           Sign In To Access This Page!
         </div>
