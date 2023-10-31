@@ -18,4 +18,11 @@ export type QuestionTab = {
   content: React.ReactNode;
 };
 
-export type QuestionDifficulty = 'easy' | 'medium' | 'hard' | 'master';
+export enum DIFFICULTY {
+  EASY = 'easy',
+  MEDIUM = 'medium',
+  HARD = 'hard',
+  MASTER = 'master',
+}
+
+export type QuestionDifficulty = DIFFICULTY;

@@ -20,7 +20,12 @@ export default function Container({ data }: Props) {
 
   return (
     <QuestionLayout
-      topLeft={<QuestionContainer content={data.question.getContent()} />}
+      topLeft={
+        <QuestionContainer
+          content={data.question.getContent()}
+          difficulty={data.question.meta.difficulty}
+        />
+      }
       topRight={<CodeEditor />}
       bottomLeft={bottomLeft()}
       bottomRight={
