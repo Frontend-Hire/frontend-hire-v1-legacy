@@ -17,7 +17,7 @@ function SkillStatItem({
   total: number;
 }) {
   return (
-    <Button className="w-max text-lg font-semibold" variant="link">
+    <Button asChild className="w-max text-lg font-semibold" variant="link">
       <Link className="flex items-center gap-2" href={`/questions/${skill}`}>
         <ArrowRightIcon /> {skill}: {submitted}/{total}
       </Link>
