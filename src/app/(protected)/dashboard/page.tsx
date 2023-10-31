@@ -4,7 +4,10 @@ import WelcomeMessage from './_components/WelcomeMessage';
 import Overview from './_components/Overview';
 
 export default async function Dashboard() {
-  const supabaseServerClient = createServerComponentClient({ cookies });
+  const cookieStore = cookies();
+  const supabaseServerClient = createServerComponentClient({
+    cookies: () => cookieStore,
+  });
   const {
     data: { user },
   } = await supabaseServerClient.auth.getUser();

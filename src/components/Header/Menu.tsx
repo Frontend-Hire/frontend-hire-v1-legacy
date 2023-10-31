@@ -29,7 +29,10 @@ const MENU_SKILL_LINKS = [
 ];
 
 export default async function Menu() {
-  const supabaseServerClient = createServerComponentClient({ cookies });
+  const cookieStore = cookies();
+  const supabaseServerClient = createServerComponentClient({
+    cookies: () => cookieStore,
+  });
 
   const {
     data: { session },

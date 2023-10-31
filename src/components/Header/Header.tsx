@@ -7,7 +7,10 @@ import Link from 'next/link';
 import HeaderLogo from '../HeaderLogo';
 
 export default async function Header() {
-  const supabaseServerClient = createServerComponentClient({ cookies });
+  const cookieStore = cookies();
+  const supabaseServerClient = createServerComponentClient({
+    cookies: () => cookieStore,
+  });
 
   const {
     data: { user },

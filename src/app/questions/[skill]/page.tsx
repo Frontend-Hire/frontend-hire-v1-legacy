@@ -13,8 +13,9 @@ export const dynamic = 'force-dynamic';
 export default async function Skill({ params }: { params: { skill: string } }) {
   const { skill } = params;
 
-  const supabaseServerClient = createServerComponentClient<Database>({
-    cookies,
+  const cookieStore = cookies();
+  const supabaseServerClient = createServerComponentClient({
+    cookies: () => cookieStore,
   });
 
   const {

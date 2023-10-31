@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Frontend Hire',

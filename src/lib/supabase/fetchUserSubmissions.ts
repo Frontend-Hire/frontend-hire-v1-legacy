@@ -6,8 +6,9 @@ import { cache } from 'react';
 export const revalidate = 0;
 
 const fetchUserSubmissions = cache(async () => {
+  const cookieStore = cookies();
   const supabaseServerClient = createServerComponentClient<Database>({
-    cookies,
+    cookies: () => cookieStore,
   });
 
   const { data } = await supabaseServerClient
