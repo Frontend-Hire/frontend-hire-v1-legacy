@@ -3,6 +3,9 @@ import { cookies } from 'next/headers';
 import AvatarDropdown from './AvatarDropdown';
 import SignInButton from '../SignInButton';
 import Menu from './Menu';
+import Logo from '@/assets/Logo.png';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Header() {
   const supabaseServerClient = createServerComponentClient({ cookies });
@@ -14,7 +17,14 @@ export default async function Header() {
   return (
     <header className="mb-2 flex h-[80px] w-full flex-col text-primary-foreground [&>*]:px-4">
       <div className="flex h-[40px] items-center justify-between bg-primary">
-        <div>Logo</div>
+        <Link href="/">
+          <Image
+            priority
+            src={Logo}
+            className="h-[32px] w-full sm:h-[40px]"
+            alt="Frontend Hire"
+          />
+        </Link>
         <div className="flex items-center">
           {user ? (
             <AvatarDropdown
