@@ -4,6 +4,8 @@ import { ArrowLeftIcon, ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
 import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
+import Image from 'next/image';
+import Logo from '@/assets/Logo.png';
 
 interface Props {
   skill: string;
@@ -28,6 +30,16 @@ export default function Header({ skill }: Props) {
           </Button>
         </Tooltip>
       </div>
+      <Button asChild className="rounded-t-none">
+        <Link href="/">
+          <Image
+            priority
+            src={Logo}
+            className="h-[32px] w-full sm:h-[40px]"
+            alt="Frontend Hire"
+          />
+        </Link>
+      </Button>
       <div className="flex items-center gap-4">
         <ReportBugButtonWithDialog />
         <SubmitSolutionButton />
