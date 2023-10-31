@@ -2,10 +2,11 @@ import {
   SandpackFiles,
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
+import { QuestionDifficulty } from './Question';
 
 export type Meta = {
   title: string;
-  difficulty: 'easy' | 'medium' | 'hard' | 'master';
+  difficulty: QuestionDifficulty;
   template: SandpackPredefinedTemplate;
   externalCDNs?: string[];
   showPreview?: boolean;
