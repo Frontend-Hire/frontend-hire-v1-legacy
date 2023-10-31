@@ -1,12 +1,18 @@
+import DifficultyBadge from '@/components/DifficultyBadge';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import { QuestionDifficulty } from '@/types/Question';
 
 interface Props {
   content: React.ReactNode;
+  difficulty?: QuestionDifficulty;
 }
 
-export default function QuestionContainer({ content }: Props) {
+export default function QuestionContainer({ content, difficulty }: Props) {
   return (
     <QuestionLayoutItem
+      rightButtons={
+        <>{difficulty && <DifficultyBadge difficulty={difficulty} />}</>
+      }
       tabs={[
         {
           label: 'Question',
