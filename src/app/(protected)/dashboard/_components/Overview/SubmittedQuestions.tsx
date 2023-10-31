@@ -16,7 +16,7 @@ export default function SubmittedQuestions({ submitted, total }: Props) {
         <span className="relative font-black">/</span>
         <span className="relative font-semibold">{total}</span>
       </p>
-      <Button className="font-semibold" variant="link">
+      <Button asChild className="font-semibold" variant="link">
         <Link className="flex items-center gap-2" href="/questions">
           <ListIcon /> Show All Questions
         </Link>
