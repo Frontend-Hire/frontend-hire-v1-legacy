@@ -10,7 +10,7 @@ export default function Home() {
         <Heading variant="h1">Practice Frontend Development</Heading>
         <BetaAlert />
         <Button asChild>
-          <Link href={'/skills'}>Check out Questions</Link>
+          <Link href={'/questions'}>Check out Questions</Link>
         </Button>
       </section>
     </main>
