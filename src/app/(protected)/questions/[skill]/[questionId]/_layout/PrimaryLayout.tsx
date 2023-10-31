@@ -5,7 +5,7 @@ interface Props {
 
 export default function PrimaryLayout({ header, children }: Props) {
   return (
-    <div className="flex h-full flex-col border-x-[10px] border-gray-400">
+    <div className="flex h-full flex-col border-x-[10px] border-gray-400 bg-gray-400">
       {header}
       <main className="h-0 flex-grow border-y-[10px] border-gray-400 bg-white">
         {children}
