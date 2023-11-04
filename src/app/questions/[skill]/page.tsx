@@ -4,7 +4,6 @@ import QuestionItem from '@/components/QuestionItem';
 import SkillDescription from '@/components/SkillDescription';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
-import { Database } from '@/types/supabase';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
