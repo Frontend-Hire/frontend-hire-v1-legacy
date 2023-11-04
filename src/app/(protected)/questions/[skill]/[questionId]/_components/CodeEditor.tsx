@@ -5,6 +5,7 @@ import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
 import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
+import PrettierButton from './PrettierButton';
 
 export default function CodeEditor() {
   const codemirrorInstance = React.useRef<CodeEditorRef>(null);
@@ -22,6 +23,7 @@ export default function CodeEditor() {
       rightButtons={
         <>
           <ResetButtonWithAlert />
+          <PrettierButton />
           <RunCodeButton />
         </>
       }
