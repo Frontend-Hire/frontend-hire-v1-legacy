@@ -10,20 +10,12 @@ import PrettierButton from './PrettierButton';
 export default function CodeEditor() {
   const codemirrorInstance = React.useRef<CodeEditorRef>(null);
 
-  React.useEffect(() => {
-    const cmInstance = codemirrorInstance.current?.getCodemirror();
-
-    if (!cmInstance) return;
-
-    cmInstance.state.update({});
-  }, []);
-
   return (
     <QuestionLayoutItem
       rightButtons={
         <>
           <ResetButtonWithAlert />
-          <PrettierButton />
+          <PrettierButton editorInstance={codemirrorInstance} />
           <RunCodeButton />
         </>
       }

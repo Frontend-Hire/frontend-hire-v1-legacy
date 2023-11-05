@@ -1,22 +1,34 @@
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { useActiveCode } from '@codesandbox/sandpack-react';
+import {
+  CodeEditorRef,
+  useActiveCode,
+  useSandpack,
+} from '@codesandbox/sandpack-react';
 import { SparklesIcon } from 'lucide-react';
 import prettier from 'prettier/standalone';
-import babelParser from 'prettier/plugins/babel';
-import esTree from 'prettier/plugins/estree';
+import { getPrettierOptions } from './getPrettierOptions';
 
-export default function PrettierButton() {
+interface Props {
+  editorInstance: React.RefObject<CodeEditorRef>;
+}
+
+export default function PrettierButton({ editorInstance }: Props) {
   const { code, updateCode } = useActiveCode();
+  const {
+    sandpack: { activeFile },
+  } = useSandpack();
 
   const prettify = async () => {
-    const prettyCode = await prettier.format(code, {
-      parser: 'babel',
-      plugins: [babelParser, esTree],
-    });
+    const prettierOptions = getPrettierOptions(activeFile);
+    const prettyCode = await prettier.format(code, prettierOptions);
 
     updateCode(prettyCode);
+
+    if (!editorInstance) return;
+
+    editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
   };
 
   return (
