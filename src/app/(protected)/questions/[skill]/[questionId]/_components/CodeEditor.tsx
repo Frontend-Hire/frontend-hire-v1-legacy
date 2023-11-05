@@ -9,13 +9,17 @@ import PrettierButton from './PrettierButton';
 
 export default function CodeEditor() {
   const codemirrorInstance = React.useRef<CodeEditorRef>(null);
+  const prettierButtonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <QuestionLayoutItem
       rightButtons={
         <>
           <ResetButtonWithAlert />
-          <PrettierButton editorInstance={codemirrorInstance} />
+          <PrettierButton
+            ref={prettierButtonRef}
+            editorInstance={codemirrorInstance}
+          />
           <RunCodeButton />
         </>
       }
@@ -31,7 +35,10 @@ export default function CodeEditor() {
                 keymap.of([
                   {
                     key: 'Mod-s',
-                    run: () => true,
+                    run: () => {
+                      prettierButtonRef.current?.click();
+                      return true;
+                    },
                   },
                 ]),
               ]}

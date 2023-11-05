@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import VisuallyHidden from '@/components/ui/visually-hidden';
@@ -13,31 +14,38 @@ interface Props {
   editorInstance: React.RefObject<CodeEditorRef>;
 }
 
-export default function PrettierButton({ editorInstance }: Props) {
-  const { code, updateCode } = useActiveCode();
-  const {
-    sandpack: { activeFile },
-  } = useSandpack();
+const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
+  ({ editorInstance }, ref) => {
+    const { code, updateCode } = useActiveCode();
+    const {
+      sandpack: { activeFile },
+    } = useSandpack();
 
-  const prettify = async () => {
-    const prettyCode = await formatCodeWithPrettier(code, activeFile);
-    updateCode(prettyCode);
+    const prettify = async () => {
+      const prettyCode = await formatCodeWithPrettier(code, activeFile);
+      updateCode(prettyCode);
 
-    if (!editorInstance) return;
-    editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
-  };
+      if (!editorInstance) return;
+      editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
+    };
 
-  return (
-    <Tooltip title="Format Code">
-      <Button
-        onClick={prettify}
-        variant="ghost"
-        size="icon"
-        className="rounded-none"
-      >
-        <SparklesIcon className="text-white" />
-        <VisuallyHidden>Format Code</VisuallyHidden>
-      </Button>
-    </Tooltip>
-  );
-}
+    return (
+      <Tooltip title="Format Code">
+        <Button
+          ref={ref}
+          onClick={prettify}
+          variant="ghost"
+          size="icon"
+          className="rounded-none"
+        >
+          <SparklesIcon className="text-white" />
+          <VisuallyHidden>Format Code</VisuallyHidden>
+        </Button>
+      </Tooltip>
+    );
+  },
+);
+
+PrettierButton.displayName = 'PrettierButton';
+
+export default PrettierButton;
