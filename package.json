@@ -39,6 +39,7 @@
     "lucide-react": "^0.284.0",
     "next": "13.5.4",
     "react": "^18",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18",
     "react-hotkeys-hook": "^4.4.1",
     "react-reflex": "^4.1.0",
