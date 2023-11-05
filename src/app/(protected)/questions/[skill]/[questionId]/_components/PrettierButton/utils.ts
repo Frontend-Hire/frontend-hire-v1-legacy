@@ -1,3 +1,4 @@
+import prettier from 'prettier/standalone';
 import { Options } from 'prettier';
 
 const plugins = {
@@ -7,7 +8,7 @@ const plugins = {
   esTree: require('prettier/plugins/estree'),
 };
 
-export const getPrettierOptions = (filename: string): Options => {
+const getPrettierOptions = (filename: string): Options => {
   const fileType = filename.split('.').pop();
 
   switch (fileType) {
@@ -30,4 +31,11 @@ export const getPrettierOptions = (filename: string): Options => {
     default:
       return {};
   }
+};
+
+export const formatCodeWithPrettier = async (code: string, file: string) => {
+  const prettierOptions = getPrettierOptions(file);
+  const prettyCode = await prettier.format(code, prettierOptions);
+
+  return prettyCode;
 };

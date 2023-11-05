@@ -7,8 +7,7 @@ import {
   useSandpack,
 } from '@codesandbox/sandpack-react';
 import { SparklesIcon } from 'lucide-react';
-import prettier from 'prettier/standalone';
-import { getPrettierOptions } from './getPrettierOptions';
+import { formatCodeWithPrettier } from './utils';
 
 interface Props {
   editorInstance: React.RefObject<CodeEditorRef>;
@@ -21,13 +20,10 @@ export default function PrettierButton({ editorInstance }: Props) {
   } = useSandpack();
 
   const prettify = async () => {
-    const prettierOptions = getPrettierOptions(activeFile);
-    const prettyCode = await prettier.format(code, prettierOptions);
-
+    const prettyCode = await formatCodeWithPrettier(code, activeFile);
     updateCode(prettyCode);
 
     if (!editorInstance) return;
-
     editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
   };
 
