@@ -16,13 +16,13 @@ export default function CodeEditor() {
     <QuestionLayoutItem
       rightButtons={
         <>
+          <AutoSave />
           <ResetButtonWithAlert />
           <PrettierButton
             ref={prettierButtonRef}
             editorInstance={codemirrorInstance}
           />
           <RunCodeButton />
-          <AutoSave />
         </>
       }
       tabs={[
