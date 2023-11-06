@@ -1,11 +1,14 @@
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Database } from '@/types/supabase';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import SubmissionConfetti from './SubmissionConfetti';
 
 export default function SubmitSolutionButton() {
   const supabaseBrowserClient = createClientComponentClient<Database>();
   const { sandpack } = useSandpack();
+  const [showConfetti, setShowConfetti] = React.useState(false);
 
   const { visibleFiles, files } = sandpack;
 
@@ -53,17 +56,23 @@ export default function SubmitSolutionButton() {
       await supabaseBrowserClient
         .from('files')
         .upsert(filesPayload, { defaultToNull: false });
-    }
 
-    localStorage.setItem('submission_id', data!.id.toString());
+      localStorage.setItem('submission_id', data.id.toString());
+      setShowConfetti(true);
+    }
   };
 
   return (
-    <Button
-      className="rounded-t-none bg-green-600 hover:bg-green-700"
-      onClick={handleSubmit}
-    >
-      Submit Solution
-    </Button>
+    <>
+      <Button
+        className="rounded-t-none bg-green-600 hover:bg-green-700"
+        onClick={handleSubmit}
+      >
+        Submit Solution
+      </Button>
+      {showConfetti && (
+        <SubmissionConfetti onClose={() => setShowConfetti(false)} />
+      )}
+    </>
   );
 }
