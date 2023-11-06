@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import Confetti from 'react-confetti';
+import Link from 'next/link';
 
 interface Props {
   onClose: () => void;
@@ -22,7 +23,9 @@ export default function SubmissionConfetti({ onClose }: Props) {
           <DialogTitle>Great Job!</DialogTitle>
           <DialogDescription>That was good practice!</DialogDescription>
         </DialogHeader>
-        <Button>Solve More Questions</Button>
+        <Button asChild>
+          <Link href="/questions">Solve More Questions</Link>
+        </Button>
       </DialogContent>
     </Dialog>
   );
