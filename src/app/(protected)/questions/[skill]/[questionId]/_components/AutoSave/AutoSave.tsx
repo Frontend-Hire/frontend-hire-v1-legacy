@@ -73,9 +73,7 @@ export default function AutoSave() {
   const debouncedSave = useDebounce(handleSave);
 
   React.useEffect(() => {
-    setSaveStatus('saving');
     debouncedSave();
-    setSaveStatus('saved');
   }, [debouncedSave, code]);
 
   if (saveStatus == 'saving')
