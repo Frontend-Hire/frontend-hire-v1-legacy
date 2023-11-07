@@ -16,12 +16,14 @@ interface Props {
 
 const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
   ({ editorInstance }, ref) => {
-    const { code, updateCode } = useActiveCode();
+    const { code, updateCode, readOnly } = useActiveCode();
     const {
-      sandpack: { activeFile },
+      sandpack: { activeFile, visibleFiles, files },
     } = useSandpack();
 
     const prettify = async () => {
+      if (readOnly) return;
+
       const prettyCode = await formatCodeWithPrettier(code, activeFile);
       updateCode(prettyCode);
 
@@ -33,6 +35,7 @@ const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
       <Tooltip title="Format Code">
         <Button
           ref={ref}
+          disabled={readOnly}
           onClick={prettify}
           variant="ghost"
           size="icon"
