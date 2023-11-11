@@ -30,7 +30,7 @@ export default function Header({ skill }: Props) {
         </Tooltip>
       </div>
       <Button asChild className="rounded-t-none">
-        <Link href="/">
+        <Link href="/dashboard">
           <HeaderLogo />
         </Link>
       </Button>
