@@ -1,22 +1,18 @@
 import Image from 'next/image';
-import Logo from '@/assets/Logo.png';
-import ShortLogo from '@/assets/ShortLogo.png';
+import WhiteLogo from '@/assets/WhiteLogo.svg';
+import GrayLogo from '@/assets/GrayLogo.svg';
 
-export default function HeaderLogo() {
+interface Props {
+  fill?: 'GRAY' | 'WHITE';
+}
+
+export default function HeaderLogo({ fill = 'WHITE' }: Props) {
   return (
-    <>
-      <Image
-        src={Logo}
-        priority={true}
-        className="hidden h-[40px] w-full xs:block"
-        alt="Frontend Hire"
-      />
-      <Image
-        priority={true}
-        src={ShortLogo}
-        className="h-[40px] w-full xs:hidden"
-        alt="Frontend Hire"
-      />
-    </>
+    <Image
+      src={fill == 'WHITE' ? WhiteLogo : GrayLogo}
+      priority={true}
+      className="h-[40px] w-full"
+      alt="Frontend Hire"
+    />
   );
 }
