@@ -1,5 +1,4 @@
 import Heading from '@/components/Heading';
-import QuestionSkillCard from '@/components/QuestionSkillCard';
 
 export default async function Questions() {
   return (
