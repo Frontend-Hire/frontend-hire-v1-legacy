@@ -3,6 +3,7 @@ import {
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
 import { QuestionDifficulty } from './Question';
+import { ProjectDifficulty } from './Project';
 
 export type Meta = {
   title: string;
@@ -17,6 +18,13 @@ export type Meta = {
   files?: SandpackFiles;
   submittedBy?: string;
   dependencies?: { [key: string]: string };
+};
+
+export type ProjectMeta = {
+  title: string;
+  difficulty: ProjectDifficulty;
+  description?: string;
+  tasks: number;
 };
 
 declare module '*.mdx' {

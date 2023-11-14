@@ -9,22 +9,42 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import MenuLinkItem from './MenuLinkItem';
 
-const MENU_SKILL_LINKS = [
+type Link = {
+  label: string;
+  isProtected?: boolean;
+  path?: string;
+  subLinks?: Link[];
+};
+
+const LINKS: Link[] = [
   {
-    label: 'HTML',
-    path: '/questions/HTML',
+    label: 'Skills',
+    subLinks: [
+      {
+        label: 'HTML',
+        path: '/questions/HTML',
+      },
+      {
+        label: 'CSS',
+        path: '/questions/CSS',
+      },
+      {
+        label: 'JavaScript',
+        path: '/questions/JavaScript',
+      },
+      {
+        label: 'React',
+        path: '/questions/React',
+      },
+    ],
   },
   {
-    label: 'CSS',
-    path: '/questions/CSS',
+    label: 'All Questions',
+    path: '/questions',
   },
   {
-    label: 'JavaScript',
-    path: '/questions/JavaScript',
-  },
-  {
-    label: 'React',
-    path: '/questions/React',
+    label: 'Projects',
+    path: '/projects',
   },
 ];
 
@@ -38,31 +58,45 @@ export default async function Menu() {
     data: { session },
   } = await supabaseServerClient.auth.getSession();
 
-  return (
-    <div className="flex h-[40px] items-center justify-center bg-primary/60">
-      <NavigationMenu>
-        <NavigationMenuList>
-          {session && (
-            <NavigationMenuItem>
-              <MenuLinkItem href="/dashboard">Dashboard</MenuLinkItem>
-            </NavigationMenuItem>
-          )}
-          <NavigationMenuItem>
+  const renderLinks = () => {
+    return LINKS.map((link) => {
+      if (link.isProtected && session) {
+        return (
+          <NavigationMenuItem key={link.label}>
+            <MenuLinkItem href={link.path || ''}>{link.label}</MenuLinkItem>
+          </NavigationMenuItem>
+        );
+      }
+
+      if (link.subLinks && link.subLinks.length !== 0) {
+        return (
+          <NavigationMenuItem key={link.label}>
             <NavigationMenuTrigger className="rounded-t-none">
-              Skills
+              {link.label}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              {MENU_SKILL_LINKS.map((skillLink) => (
-                <MenuLinkItem key={skillLink.path} href={skillLink.path}>
-                  {skillLink.label}
+              {link.subLinks.map((subLink) => (
+                <MenuLinkItem key={subLink.path} href={subLink.path || ''}>
+                  {subLink.label}
                 </MenuLinkItem>
               ))}
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <MenuLinkItem href="/questions">All Questions</MenuLinkItem>
-          </NavigationMenuItem>
-        </NavigationMenuList>
+        );
+      }
+
+      return (
+        <NavigationMenuItem key={link.label}>
+          <MenuLinkItem href={link.path || ''}>{link.label}</MenuLinkItem>
+        </NavigationMenuItem>
+      );
+    });
+  };
+
+  return (
+    <div className="flex h-[40px] items-center justify-center bg-primary/60">
+      <NavigationMenu>
+        <NavigationMenuList>{renderLinks()}</NavigationMenuList>
       </NavigationMenu>
     </div>
   );

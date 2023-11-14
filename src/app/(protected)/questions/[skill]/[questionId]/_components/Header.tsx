@@ -29,9 +29,11 @@ export default function Header({ skill }: Props) {
           </Button>
         </Tooltip>
       </div>
+
       <Link href="/" className="max-xs:hidden">
         <HeaderLogo fill="GRAY" />
       </Link>
+
       <div className="flex items-center gap-4">
         <ReportBugButtonWithDialog />
         <SubmitSolutionButton />
