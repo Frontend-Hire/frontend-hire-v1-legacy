@@ -39,7 +39,7 @@ export default function useQuestion(skill: string, questionId: string) {
     const getQuestion = async () => {
       try {
         const { default: getContent, meta } = require(
-          `@/questions/${skill}/${questionId}/prompt.mdx`,
+          `@/data/questions/${skill}/${questionId}/prompt.mdx`,
         );
 
         const [{ data: codeSubmissionData }, { data: codeHistoryData }] =

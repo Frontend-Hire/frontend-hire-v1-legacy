@@ -2,7 +2,7 @@ import { SkillQuestions } from '@/types/Question';
 import fs from 'fs';
 import path from 'path';
 
-const questionsPath = path.join(process.cwd(), '/src/questions');
+const questionsPath = path.join(process.cwd(), '/src/data/questions');
 
 export async function getQuestionsFromLocal() {
   const questions: SkillQuestions = {};
@@ -14,7 +14,7 @@ export async function getQuestionsFromLocal() {
     const allQuestions = fs.readdirSync(path.join(questionsPath, skill));
     for (const question of allQuestions) {
       const { default: getContent, meta } = require(
-        `@/questions/${skill}/${question}/prompt.mdx`,
+        `@/data/questions/${skill}/${question}/prompt.mdx`,
       );
       questions[skill].push({
         id: question,
