@@ -49,8 +49,8 @@ export default function DeleteAccountButtonWithAlert() {
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Account</AlertDialogTitle>
           <AlertDialogDescription>
-            This will delete your account and any data related to it. This is
-            irreversible. Are you sure?
+            This will delete your account and any data related to it. This
+            action is irreversible. Are you sure?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
