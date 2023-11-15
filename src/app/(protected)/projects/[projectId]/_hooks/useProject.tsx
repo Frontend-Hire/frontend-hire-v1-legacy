@@ -42,7 +42,7 @@ export default function useProject(projectId: string) {
           `@/data/projects/${projectId}/project.mdx`,
         );
 
-        localStorage.setItem('project_id', projectId || '');
+        sessionStorage.setItem('project_id', projectId || '');
 
         return { getContent, meta };
       } catch (e) {

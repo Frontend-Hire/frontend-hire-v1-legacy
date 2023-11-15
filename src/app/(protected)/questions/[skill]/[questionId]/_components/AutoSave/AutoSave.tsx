@@ -29,10 +29,10 @@ export default function AutoSave() {
         (file) => !files[file].readOnly,
       );
 
-      const historyId = localStorage.getItem('code_history_id');
+      const historyId = sessionStorage.getItem('code_history_id');
 
       const historyPayload: { id?: number; question_id: string } = {
-        question_id: localStorage.getItem('question_id')!,
+        question_id: sessionStorage.getItem('question_id')!,
       };
 
       if (historyId) {
@@ -62,7 +62,7 @@ export default function AutoSave() {
           .from('code_history_files')
           .upsert(filesPayload, { defaultToNull: false });
 
-        localStorage.setItem('code_history_id', data.id.toString());
+        sessionStorage.setItem('code_history_id', data.id.toString());
       }
       setSaveStatus('saved');
     } catch (e) {
