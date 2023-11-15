@@ -51,7 +51,7 @@ export default function ReportBugButtonWithDialog() {
       const { data: bugData } = await supabaseBrowserClient
         .from('bug_submissions')
         .insert({
-          question_id: localStorage.getItem('question_id')!,
+          question_id: sessionStorage.getItem('question_id')!,
           description: description.trim(),
           sandbox_link: sandboxLink,
         })

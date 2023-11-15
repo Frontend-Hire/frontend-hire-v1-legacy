@@ -24,10 +24,10 @@ export default function SubmitSolutionButton() {
       (file) => !files[file].readOnly,
     );
 
-    const submissionId = localStorage.getItem('code_submission_id');
+    const submissionId = sessionStorage.getItem('code_submission_id');
 
     const submissionPayload: { id?: number; question_id: string } = {
-      question_id: localStorage.getItem('question_id')!,
+      question_id: sessionStorage.getItem('question_id')!,
     };
 
     if (submissionId) {
@@ -57,7 +57,7 @@ export default function SubmitSolutionButton() {
         .from('code_submission_files')
         .upsert(filesPayload, { defaultToNull: false });
 
-      localStorage.setItem('code_submission_id', data.id.toString());
+      sessionStorage.setItem('code_submission_id', data.id.toString());
       setShowConfetti(true);
     }
   };

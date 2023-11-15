@@ -29,6 +29,7 @@ export default function DeleteAccountButtonWithAlert() {
           method: 'DELETE',
           body: JSON.stringify({ id: user.id }),
         });
+        sessionStorage.clear();
         await supabaseBrowserClient.auth.signOut();
         router.replace('/');
       }

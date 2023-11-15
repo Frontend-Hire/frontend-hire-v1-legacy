@@ -64,12 +64,12 @@ export default function useQuestion(skill: string, questionId: string) {
           );
         }
 
-        localStorage.setItem(
+        sessionStorage.setItem(
           'code_submission_id',
           codeSubmissionData?.id || '',
         );
-        localStorage.setItem('code_history_id', codeHistoryData?.id || '');
-        localStorage.setItem('question_id', questionId || '');
+        sessionStorage.setItem('code_history_id', codeHistoryData?.id || '');
+        sessionStorage.setItem('question_id', questionId || '');
 
         return { getContent, meta };
       } catch (e) {
