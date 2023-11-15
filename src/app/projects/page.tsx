@@ -7,7 +7,9 @@ export default async function Questions() {
         Projects
       </Heading>
 
-      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3"></div>
+      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
+        Coming Soon!
+      </div>
     </main>
   );
 }
