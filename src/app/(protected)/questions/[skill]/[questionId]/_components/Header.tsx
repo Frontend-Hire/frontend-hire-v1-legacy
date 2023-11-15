@@ -21,7 +21,7 @@ export default function Header({ skill }: Props) {
             </Link>
           </Button>
         </Tooltip>
-        <Tooltip title={`All Questions`}>
+        <Tooltip title="All Questions">
           <Button className="rounded-t-none" size="icon" asChild>
             <Link href="/questions">
               <ListIcon />
@@ -29,11 +29,11 @@ export default function Header({ skill }: Props) {
           </Button>
         </Tooltip>
       </div>
-      <Button asChild className="rounded-t-none">
-        <Link href="/">
-          <HeaderLogo />
-        </Link>
-      </Button>
+
+      <Link href="/" className="max-xs:hidden">
+        <HeaderLogo fill="GRAY" />
+      </Link>
+
       <div className="flex items-center gap-4">
         <ReportBugButtonWithDialog />
         <SubmitSolutionButton />

@@ -1,11 +1,14 @@
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Database } from '@/types/supabase';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import SubmissionConfetti from './SubmissionConfetti';
 
 export default function SubmitSolutionButton() {
   const supabaseBrowserClient = createClientComponentClient<Database>();
   const { sandpack } = useSandpack();
+  const [showConfetti, setShowConfetti] = React.useState(false);
 
   const { visibleFiles, files } = sandpack;
 
@@ -14,17 +17,17 @@ export default function SubmitSolutionButton() {
       id?: number;
       file_name: string;
       code: string;
-      submission_id: number;
+      code_submission_id: number;
     }[] = [];
 
     const editableVisibleFiles = visibleFiles.filter(
       (file) => !files[file].readOnly,
     );
 
-    const submissionId = localStorage.getItem('submission_id');
+    const submissionId = sessionStorage.getItem('code_submission_id');
 
     const submissionPayload: { id?: number; question_id: string } = {
-      question_id: localStorage.getItem('question_id')!,
+      question_id: sessionStorage.getItem('question_id')!,
     };
 
     if (submissionId) {
@@ -34,36 +37,42 @@ export default function SubmitSolutionButton() {
     const { data } = await supabaseBrowserClient
       .from('code_submissions')
       .upsert([submissionPayload], { defaultToNull: false })
-      .select('id, files (id, file_name)')
+      .select('id, code_submission_files (id, file_name)')
       .limit(1)
       .maybeSingle();
 
     if (data) {
       editableVisibleFiles.forEach((visibleFile) => {
-        const fileToUpdate = data.files.find(
+        const fileToUpdate = data.code_submission_files.find(
           (file) => file.file_name === visibleFile,
         );
         filesPayload.push({
           id: fileToUpdate?.id,
           file_name: visibleFile,
           code: files[visibleFile].code,
-          submission_id: data.id,
+          code_submission_id: data.id,
         });
       });
       await supabaseBrowserClient
-        .from('files')
+        .from('code_submission_files')
         .upsert(filesPayload, { defaultToNull: false });
-    }
 
-    localStorage.setItem('submission_id', data!.id.toString());
+      sessionStorage.setItem('code_submission_id', data.id.toString());
+      setShowConfetti(true);
+    }
   };
 
   return (
-    <Button
-      className="rounded-t-none bg-green-600 hover:bg-green-700"
-      onClick={handleSubmit}
-    >
-      Submit Solution
-    </Button>
+    <>
+      <Button
+        className="rounded-t-none bg-green-600 hover:bg-green-700"
+        onClick={handleSubmit}
+      >
+        Submit Solution
+      </Button>
+      {showConfetti && (
+        <SubmissionConfetti onClose={() => setShowConfetti(false)} />
+      )}
+    </>
   );
 }
