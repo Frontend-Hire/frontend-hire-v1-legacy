@@ -5,6 +5,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import SignOut from './SignOut';
+import Link from 'next/link';
+import SettingsLink from './SettingsLink';
 
 interface Props {
   picture?: string;
@@ -23,6 +25,7 @@ export default async function AvatarDropdown({ picture, name }: Props) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <SettingsLink />
         <SignOut />
       </DropdownMenuContent>
     </DropdownMenu>

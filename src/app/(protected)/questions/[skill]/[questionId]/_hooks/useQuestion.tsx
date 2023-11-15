@@ -39,24 +39,37 @@ export default function useQuestion(skill: string, questionId: string) {
     const getQuestion = async () => {
       try {
         const { default: getContent, meta } = require(
-          `@/questions/${skill}/${questionId}/prompt.mdx`,
+          `@/data/questions/${skill}/${questionId}/prompt.mdx`,
         );
 
-        const { data } = await supabaseBrowserClient
-          .from('code_submissions')
-          .select(`id, files (file_name, code)`)
-          .eq('question_id', questionId)
-          .limit(1)
-          .maybeSingle();
+        const [{ data: codeSubmissionData }, { data: codeHistoryData }] =
+          await Promise.all([
+            supabaseBrowserClient
+              .from('code_submissions')
+              .select(`id`)
+              .eq('question_id', questionId)
+              .limit(1)
+              .maybeSingle(),
+            supabaseBrowserClient
+              .from('code_history')
+              .select(`id, code_history_files (file_name, code)`)
+              .eq('question_id', questionId)
+              .limit(1)
+              .maybeSingle(),
+          ]);
 
-        if (data) {
-          data.files.forEach(
+        if (codeHistoryData) {
+          codeHistoryData.code_history_files.forEach(
             (file) => (meta.files[file.file_name].code = file.code),
           );
         }
 
-        localStorage.setItem('submission_id', data?.id || '');
-        localStorage.setItem('question_id', questionId || '');
+        sessionStorage.setItem(
+          'code_submission_id',
+          codeSubmissionData?.id || '',
+        );
+        sessionStorage.setItem('code_history_id', codeHistoryData?.id || '');
+        sessionStorage.setItem('question_id', questionId || '');
 
         return { getContent, meta };
       } catch (e) {

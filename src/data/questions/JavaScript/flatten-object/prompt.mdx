@@ -5,29 +5,20 @@ export const meta = {
     "A standard requirement just like Lodash's flatten array method!",
   template: 'test-ts',
   files: {
-    '/package.json': {
-      code: `{
-  "dependencies": {},
-  "devDependencies": {
-    "typescript": "^4.0.0",
-    "jest": "latest"
-  },
-  "main": "index.js"
-}`,
-    hidden: true
-    },
     '/index.js': {
       code: `export function flattenObject(inputObject) {
-  return '';
-}`,
+  return "";
+}
+`,
       active: true
     },
     '/index.test.js': {
-      code: `import { flattenObject } from './index';
+      code: `import { flattenObject } from "./index";
 
-test('Empty Object', () => {
+test("Empty Object", () => {
   expect(flattenObject({})).toBe("");
-});`
+});
+`
       },
     '/add.test.ts': {
       code: '',
