@@ -1,7 +1,7 @@
 import Heading from '@/components/Heading';
-import DeleteAccountButtonWithDialog from './_components/DeleteAccountButtonWithDialog';
-import DeleteCodeSubmissionsButtonWithDialog from './_components/DeleteCodeSubmissionsButtonWithDialog';
-import DeleteProjectSubmissionsButtonWithDialog from './_components/DeleteProjectSubmissionsButtonWithDialog';
+import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
+import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
+import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 
 export default function Settings() {
   return (
@@ -10,9 +10,9 @@ export default function Settings() {
         Settings
       </Heading>
       <div className="mt-[40px] flex flex-col items-center justify-center gap-[30px]">
-        <DeleteCodeSubmissionsButtonWithDialog />
-        <DeleteProjectSubmissionsButtonWithDialog />
-        <DeleteAccountButtonWithDialog />
+        <DeleteCodeSubmissionsButtonWithAlert />
+        <DeleteProjectSubmissionsButtonWithAlert />
+        <DeleteAccountButtonWithAlert />
       </div>
     </main>
   );
