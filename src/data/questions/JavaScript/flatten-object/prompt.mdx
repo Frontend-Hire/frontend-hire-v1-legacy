@@ -1,0 +1,76 @@
+export const meta = {
+  title: 'Flatten an Object',
+  difficulty: 'medium',
+  description:
+    "A standard requirement just like Lodash's flatten array method!",
+  template: 'test-ts',
+  files: {
+    '/index.js': {
+      code: `export function flattenObject(inputObject) {
+  return "";
+}
+`,
+      active: true
+    },
+    '/index.test.js': {
+      code: `import { flattenObject } from "./index";
+
+test("Empty Object", () => {
+  expect(flattenObject({})).toBe("");
+});
+`
+      },
+    '/add.test.ts': {
+      code: '',
+      hidden: true,
+    }
+  },
+  showTests: true,
+  showConsole: true,
+};
+
+# Flatten an Object
+
+This is a question that I personally ask to any developer with at least one year of experience.
+
+> Use case? Pretty common to have an object with nested structure and you want to flatten it! Sample inputs might give you better idea of the use case. 
+
+#### What to do?
+Give an object, print out the keys and values in-order. 
+Do handle the edge cases:
+- Empty Object can return empty strings.
+- Think of other edge cases!
+
+```
+Input - 1: 
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": "49"
+}
+```
+```
+Output - 1:
+firstName: John
+lastName: Doe
+age: 49
+```
+```
+Input - 2: 
+{
+  "id": "123",
+  "name": {
+    "firstName": "John"
+    "lastName": "Doe",
+  }
+  "age": "49"
+}
+```
+```
+Output - 2:
+id: 123
+name:
+firstName: John
+lastName: Doe
+age: 49
+```

@@ -1,0 +1,109 @@
+export const meta = {
+  title: 'Action Button With Modal',
+  difficulty: 'medium',
+  description:
+    "This is often overlooked when working with modal",
+  template: 'react',
+  dependencies: {
+    'react-modal': 'latest'
+  },
+  files: {
+    '/App.js': {
+      code: `import * as React from 'react';
+import SuperSlowComponent from './SuperSlowComponent';
+import Modal from './Modal';
+
+export default function App() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleDelete = () => {
+    console.log('Deleted!');
+    closeModal();
+  };
+
+  return (
+    <div>
+      <button onClick={openModal}>Fake Delete</button>
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <div>Are you sure?</div>
+        <span>
+          <button onClick={closeModal}>Cancel</button>
+          <button onClick={handleDelete}>Delete</button>
+        </span>
+      </Modal>
+      <SuperSlowComponent />
+    </div>
+  );
+}`},
+    '/ActionButtonWithModal.js': {
+      code: `export default function ActionButtonWithModal() {}`
+    },
+    '/Modal.js': {
+      readOnly: true,
+      code: `import ReactModal from 'react-modal';
+
+ReactModal.setAppElement('#root');
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+export default function Modal({ isOpen, onClose, children }) {
+  return (
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      style={customStyles}
+      contentLabel='Example Modal'
+    >
+      {children}
+    </ReactModal>
+  );
+}
+`},
+'/SuperSlowComponent.js': {
+      readOnly: true,
+      code: `export default function SuperSlowComponent() {
+  console.log('In this case, I should ideally not render more than twice!');
+
+  return <div>Super Slow Component</div>;
+}
+`
+    },
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+# Action Button With Modal
+
+Modals are pretty common in any user facing application. Modals are often triggered by a user action.
+
+This question expects you to optimize the current implemented logic for such a modal. At the moment it would re-render the **SuperSlowComponent** (Check console logs).
+
+### Requirements
+- A **modal component (Modal.js)** has already been created, so there is no need to create one!
+- There are various ways to get this done but ideally there is a **good way** to do this without affecting other components that do not depend on this modal.
+- You just need to **refactor** the logic in **App.js** to a component called __**ActionButtonWithModal**__ (file already available!).
+
+### Must Read Resource For This question
+- <a target="_blank" href="https://www.developerway.com/posts/react-re-renders-guide">A great article from Nadia Makarevich</a>
+- <a target="_blank" href="https://react.dev/reference/react/StrictMode">The **SuperSlowComponent** still renders twice?</a>
+
+### External Dependencies Used
+- <a target="_blank" href="https://www.npmjs.com/package/react-modal">react-modal</a> (Bare minimum example configured for you!)
