@@ -2,6 +2,7 @@ import BetaAlert from '@/components/BetaAlert';
 import Heading from '@/components/Heading';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import FeedbackForm from './FeedbackForm';
 
 export default function Home() {
   return (
@@ -12,6 +13,8 @@ export default function Home() {
         <Button asChild>
           <Link href={'/questions'}>Check out Questions</Link>
         </Button>
+        <p>Feedback can be sent through the below embeded Google form.</p>
+        <FeedbackForm />
       </section>
     </main>
   );
