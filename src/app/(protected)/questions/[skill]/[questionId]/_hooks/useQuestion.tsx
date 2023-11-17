@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Meta } from '@/types/mdx';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Database } from '@/types/supabase';
 
 export interface IQuestionLoading {
   status: 'loading';
@@ -30,7 +31,7 @@ export type Question =
   | IQuestionIdle;
 
 export default function useQuestion(skill: string, questionId: string) {
-  const supabaseBrowserClient = createClientComponentClient();
+  const supabaseBrowserClient = createClientComponentClient<Database>();
   const [data, setData] = React.useState<Question>({
     status: 'idle',
   });
@@ -64,11 +65,17 @@ export default function useQuestion(skill: string, questionId: string) {
           );
         }
 
-        sessionStorage.setItem(
-          'code_submission_id',
-          codeSubmissionData?.id || '',
-        );
-        sessionStorage.setItem('code_history_id', codeHistoryData?.id || '');
+        if (codeSubmissionData?.id) {
+          sessionStorage.setItem(
+            'code_submission_id',
+            `${codeSubmissionData.id}`,
+          );
+        }
+
+        if (codeHistoryData?.id) {
+          sessionStorage.setItem('code_history_id', `${codeHistoryData.id}`);
+        }
+
         sessionStorage.setItem('question_id', questionId || '');
 
         return { getContent, meta };
