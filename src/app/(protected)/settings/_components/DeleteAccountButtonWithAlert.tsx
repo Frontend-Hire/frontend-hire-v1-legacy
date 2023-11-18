@@ -25,7 +25,7 @@ export default function DeleteAccountButtonWithAlert() {
         data: { user },
       } = await supabaseBrowserClient.auth.getUser();
       if (user) {
-        await fetch('http://127.0.0.1:3000/settings/account', {
+        await fetch(`${location.origin}/settings/account`, {
           method: 'DELETE',
           body: JSON.stringify({ id: user.id }),
         });
