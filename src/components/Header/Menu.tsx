@@ -5,9 +5,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import MenuLinkItem from './MenuLinkItem';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 type Link = {
   label: string;
@@ -49,10 +48,7 @@ const LINKS: Link[] = [
 ];
 
 export default async function Menu() {
-  const cookieStore = cookies();
-  const supabaseServerClient = createServerComponentClient({
-    cookies: () => cookieStore,
-  });
+  const supabaseServerClient = createSupabaseServerClient();
 
   const {
     data: { session },

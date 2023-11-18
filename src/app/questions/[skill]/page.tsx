@@ -4,18 +4,14 @@ import QuestionItem from '@/components/QuestionItem';
 import SkillDescription from '@/components/SkillDescription';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Skill({ params }: { params: { skill: string } }) {
   const { skill } = params;
 
-  const cookieStore = cookies();
-  const supabaseServerClient = createServerComponentClient({
-    cookies: () => cookieStore,
-  });
+  const supabaseServerClient = createSupabaseServerClient();
 
   const {
     data: { session },

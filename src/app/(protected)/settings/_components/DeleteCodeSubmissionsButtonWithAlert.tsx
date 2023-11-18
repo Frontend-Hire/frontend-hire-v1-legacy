@@ -12,11 +12,10 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { Database } from '@/types/supabase';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function DeleteCodeSubmissionsButtonWithAlert() {
-  const supabaseBrowserClient = createClientComponentClient<Database>();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const clearCodeSubmissions = async () => {
     try {
       const {

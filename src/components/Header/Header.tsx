@@ -1,16 +1,12 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import AvatarDropdown from './AvatarDropdown';
 import SignInButton from '../SignInButton';
 import Menu from './Menu';
 import Link from 'next/link';
 import HeaderLogo from '../HeaderLogo';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function Header() {
-  const cookieStore = cookies();
-  const supabaseServerClient = createServerComponentClient({
-    cookies: () => cookieStore,
-  });
+  const supabaseServerClient = createSupabaseServerClient();
 
   const {
     data: { session },
