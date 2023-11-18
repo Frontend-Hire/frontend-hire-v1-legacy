@@ -1,15 +1,10 @@
-import { Database } from '@/types/supabase';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import { cache } from 'react';
+import createSupabaseServerClient from './supabaseServerClient';
 
 export const revalidate = 0;
 
 const fetchUserSubmissions = cache(async () => {
-  const cookieStore = cookies();
-  const supabaseServerClient = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
-  });
+  const supabaseServerClient = createSupabaseServerClient();
 
   const { data } = await supabaseServerClient
     .from('code_submissions')

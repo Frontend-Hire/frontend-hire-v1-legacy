@@ -1,6 +1,6 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 
@@ -9,17 +9,22 @@ interface Props {
 }
 
 export default function SignInButton({ label = 'Sign In With Google' }: Props) {
-  const supabaseClient = createClientComponentClient();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const router = useRouter();
 
   const handleSignIn = async () => {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+    const { error } = await supabaseBrowserClient.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${location.origin}/auth/callback?redirectTo=${location.pathname}`,
       },
     });
-    router.refresh();
+
+    if (error) {
+      console.log(error);
+    } else {
+      router.refresh();
+    }
   };
 
   return <Button onClick={handleSignIn}>{label}</Button>;

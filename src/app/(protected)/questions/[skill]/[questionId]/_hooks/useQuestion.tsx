@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Meta } from '@/types/mdx';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '@/types/supabase';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export interface IQuestionLoading {
   status: 'loading';
@@ -31,7 +30,7 @@ export type Question =
   | IQuestionIdle;
 
 export default function useQuestion(skill: string, questionId: string) {
-  const supabaseBrowserClient = createClientComponentClient<Database>();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const [data, setData] = React.useState<Question>({
     status: 'idle',
   });

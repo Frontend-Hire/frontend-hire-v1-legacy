@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
-import { Database } from '@/types/supabase';
 import { useSandpack } from '@codesandbox/sandpack-react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import SubmissionConfetti from './SubmissionConfetti';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function SubmitSolutionButton() {
-  const supabaseBrowserClient = createClientComponentClient<Database>();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const { sandpack } = useSandpack();
   const [showConfetti, setShowConfetti] = React.useState(false);
 

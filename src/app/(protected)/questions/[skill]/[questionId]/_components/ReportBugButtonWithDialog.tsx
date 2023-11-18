@@ -15,9 +15,8 @@ import { useSandpack } from '@codesandbox/sandpack-react';
 import { BugIcon } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '@/types/supabase';
 import { Input } from '@/components/ui/input';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function ReportBugButtonWithDialog() {
   const [open, setOpen] = React.useState(false);
@@ -25,7 +24,7 @@ export default function ReportBugButtonWithDialog() {
   const [sandboxLink, setSandboxLink] = React.useState('');
   const [error, setError] = React.useState('');
 
-  const supabaseBrowserClient = createClientComponentClient<Database>();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
 
   const { sandpack } = useSandpack();
   const { visibleFiles, files } = sandpack;

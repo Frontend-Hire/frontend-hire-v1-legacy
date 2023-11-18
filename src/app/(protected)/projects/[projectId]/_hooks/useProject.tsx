@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ProjectMeta } from '@/types/mdx';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export interface IProjectLoading {
   status: 'loading';
@@ -30,7 +30,7 @@ export type Project =
   | IProjectIdle;
 
 export default function useProject(projectId: string) {
-  const supabaseBrowserClient = createClientComponentClient();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const [data, setData] = React.useState<Project>({
     status: 'idle',
   });

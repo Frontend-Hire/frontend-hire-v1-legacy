@@ -12,11 +12,11 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useRouter } from 'next/navigation';
 
 export default function DeleteAccountButtonWithAlert() {
-  const supabaseBrowserClient = createClientComponentClient();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const router = useRouter();
 
   const handleDelete = async () => {

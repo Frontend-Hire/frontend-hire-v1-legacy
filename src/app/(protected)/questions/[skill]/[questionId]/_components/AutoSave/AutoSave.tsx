@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
-import { Database } from '@/types/supabase';
 import { LoaderIcon } from 'lucide-react';
 import useDebounce from '../../_hooks/useDebounce';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function AutoSave() {
-  const supabaseBrowserClient = createClientComponentClient<Database>();
+  const supabaseBrowserClient = createSupabaseBrowserClient();
   const { sandpack } = useSandpack();
   const { code } = useActiveCode();
   const [saveStatus, setSaveStatus] = React.useState<
