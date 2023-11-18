@@ -31,7 +31,7 @@ export default async function Header() {
               name={session.user.user_metadata.name}
             />
           ) : (
-            <SignInButton label="Sign In" />
+            <SignInButton />
           )}
         </div>
       </div>
