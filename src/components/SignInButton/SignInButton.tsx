@@ -1,6 +1,5 @@
 'use client';
 
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 
@@ -9,23 +8,29 @@ interface Props {
 }
 
 export default function SignInButton({ label = 'Sign In With Google' }: Props) {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
   const router = useRouter();
 
   const handleSignIn = async () => {
-    const { error } = await supabaseBrowserClient.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${location.origin}/auth/callback?redirectTo=${location.pathname}`,
-      },
-    });
-
-    if (error) {
-      console.log(error);
-    } else {
-      router.refresh();
+    try {
+      const response = await fetch('/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          redirectTo: location.pathname,
+        }),
+      });
+      const { data } = await response.json();
+      if (!data?.url) throw new Error('No url returned');
+      router.push(data.url);
+    } catch (error) {
+      console.error(error);
     }
   };
-
-  return <Button onClick={handleSignIn}>{label}</Button>;
+  return (
+    <Button className="bg-blue-600" size="sm" onClick={handleSignIn}>
+      {label}
+    </Button>
+  );
 }
