@@ -3,8 +3,13 @@ import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { LoaderIcon } from 'lucide-react';
 import useDebounce from '../../_hooks/useDebounce';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
 export default function AutoSave() {
+  const { questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const { sandpack } = useSandpack();
   const { code } = useActiveCode();
@@ -31,7 +36,7 @@ export default function AutoSave() {
       const historyId = sessionStorage.getItem('code_history_id');
 
       const historyPayload: { id?: number; question_id: string } = {
-        question_id: sessionStorage.getItem('question_id')!,
+        question_id: questionId,
       };
 
       if (historyId) {

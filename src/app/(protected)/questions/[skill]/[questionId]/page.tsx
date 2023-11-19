@@ -10,14 +10,14 @@ import Container from './_components/Container';
 import QuestionHotkeysProvider from './_components/QuestionHotkeysProvider';
 import Header from './_components/Header';
 import PrimaryLayout from './_layout/PrimaryLayout';
+import { useParams } from 'next/navigation';
 
-export default function Question({
-  params,
-}: {
-  params: { questionId: string; skill: string };
-}) {
-  const { questionId, skill } = params;
-  const { data } = useQuestion(skill, questionId);
+export default function Question() {
+  const { skill, questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
+  const { data } = useQuestion();
 
   if (data.status === 'loading' || data.status === 'idle')
     return (

@@ -3,8 +3,13 @@ import { Button } from '@/components/ui/button';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import SubmissionConfetti from './SubmissionConfetti';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
 export default function SubmitSolutionButton() {
+  const { questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const { sandpack } = useSandpack();
   const [showConfetti, setShowConfetti] = React.useState(false);
@@ -26,7 +31,7 @@ export default function SubmitSolutionButton() {
     const submissionId = sessionStorage.getItem('code_submission_id');
 
     const submissionPayload: { id?: number; question_id: string } = {
-      question_id: sessionStorage.getItem('question_id')!,
+      question_id: questionId,
     };
 
     if (submissionId) {

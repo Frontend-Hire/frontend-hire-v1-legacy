@@ -17,8 +17,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
 export default function ReportBugButtonWithDialog() {
+  const { questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
   const [open, setOpen] = React.useState(false);
   const [description, setDescription] = React.useState('');
   const [sandboxLink, setSandboxLink] = React.useState('');
@@ -50,7 +55,7 @@ export default function ReportBugButtonWithDialog() {
       const { data: bugData } = await supabaseBrowserClient
         .from('bug_submissions')
         .insert({
-          question_id: sessionStorage.getItem('question_id')!,
+          question_id: questionId,
           description: description.trim(),
           sandbox_link: sandboxLink,
         })
