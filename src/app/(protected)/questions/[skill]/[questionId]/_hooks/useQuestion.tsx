@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Meta } from '@/types/mdx';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
 export interface IQuestionLoading {
   status: 'loading';
@@ -29,7 +30,11 @@ export type Question =
   | IQuestionSuccess
   | IQuestionIdle;
 
-export default function useQuestion(skill: string, questionId: string) {
+export default function useQuestion() {
+  const { skill, questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const [data, setData] = React.useState<Question>({
     status: 'idle',
@@ -76,8 +81,6 @@ export default function useQuestion(skill: string, questionId: string) {
         if (codeHistoryData?.id) {
           sessionStorage.setItem('code_history_id', `${codeHistoryData.id}`);
         }
-
-        sessionStorage.setItem('question_id', questionId || '');
 
         return { getContent, meta: metaDeepCopy };
       } catch (e) {
