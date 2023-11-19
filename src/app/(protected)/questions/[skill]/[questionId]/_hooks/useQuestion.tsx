@@ -42,6 +42,8 @@ export default function useQuestion(skill: string, questionId: string) {
           `@/data/questions/${skill}/${questionId}/prompt.mdx`,
         );
 
+        const metaDeepCopy = structuredClone(meta);
+
         const [{ data: codeSubmissionData }, { data: codeHistoryData }] =
           await Promise.all([
             supabaseBrowserClient
@@ -60,7 +62,7 @@ export default function useQuestion(skill: string, questionId: string) {
 
         if (codeHistoryData) {
           codeHistoryData.code_history_files.forEach(
-            (file) => (meta.files[file.file_name].code = file.code),
+            (file) => (metaDeepCopy.files[file.file_name].code = file.code),
           );
         }
 
@@ -77,7 +79,7 @@ export default function useQuestion(skill: string, questionId: string) {
 
         sessionStorage.setItem('question_id', questionId || '');
 
-        return { getContent, meta };
+        return { getContent, meta: metaDeepCopy };
       } catch (e) {
         console.log(e);
         setData({ status: 'error', message: e as string });

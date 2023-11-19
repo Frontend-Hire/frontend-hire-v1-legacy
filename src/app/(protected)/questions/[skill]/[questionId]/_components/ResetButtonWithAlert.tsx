@@ -11,11 +11,34 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
+import { Meta } from '@/types/mdx';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 export default function ResetButtonWithAlert() {
-  const { sandpack } = useSandpack();
+  const { skill, questionId } = useParams<{
+    skill: string;
+    questionId: string;
+  }>();
+  const {
+    sandpack: { updateFile },
+  } = useSandpack();
+
+  const reset = () => {
+    try {
+      const { meta } = require(
+        `@/data/questions/${skill}/${questionId}/prompt.mdx`,
+      ) as { meta: Meta };
+
+      const metaDeepCopy = structuredClone(meta);
+      if (metaDeepCopy.files) {
+        updateFile(metaDeepCopy.files);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <AlertDialog>
@@ -35,9 +58,7 @@ export default function ResetButtonWithAlert() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={sandpack.resetAllFiles}>
-            Yes, reset
-          </AlertDialogAction>
+          <AlertDialogAction onClick={reset}>Yes, reset</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
