@@ -18,7 +18,7 @@ const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
   ({ editorInstance }, ref) => {
     const { code, updateCode, readOnly } = useActiveCode();
     const {
-      sandpack: { activeFile, visibleFiles, files },
+      sandpack: { activeFile },
     } = useSandpack();
 
     const prettify = async () => {
