@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 export default function QuestionsLayout({
@@ -10,6 +11,7 @@ export default function QuestionsLayout({
     <>
       <Header />
       {children}
+      <Footer />
     </>
   );
 }

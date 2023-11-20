@@ -1,16 +1,14 @@
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 
-export default function LandingLayout({
+export default function QuestionLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <>
-      <Header />
       {children}
-      <Footer />
+      <Footer className="bg-gray-400 text-[10px] text-white" />
     </>
   );
 }

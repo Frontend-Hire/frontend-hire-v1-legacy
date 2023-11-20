@@ -13,7 +13,7 @@ import PrimaryLayout from './_layout/PrimaryLayout';
 import { useParams } from 'next/navigation';
 
 export default function Question() {
-  const { skill, questionId } = useParams<{
+  const { skill } = useParams<{
     skill: string;
     questionId: string;
   }>();
