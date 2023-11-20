@@ -41,6 +41,11 @@ export default function useQuestion() {
   });
 
   React.useEffect(() => {
+    // SO THAT NEW QUESTIONS DONT CONFLICT
+    sessionStorage.clear();
+  }, [questionId, skill]);
+
+  React.useEffect(() => {
     const getQuestion = async () => {
       try {
         const { default: getContent, meta } = require(
