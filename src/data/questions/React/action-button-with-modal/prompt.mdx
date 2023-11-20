@@ -92,18 +92,20 @@ export default function Modal({ isOpen, onClose, children }) {
 
 # Action Button With Modal
 
-Modals are pretty common in any user facing application. Modals are often triggered by a user action.
+Modals are a staple in user interfaces, often triggered by user actions. In this challenge, you'll optimize the implementation of a modal in a React application. The current setup causes unnecessary re-renders of the SuperSlowComponent (verify this through console logs).
 
-This question expects you to optimize the current implemented logic for such a modal. At the moment it would re-render the **SuperSlowComponent** (Check console logs).
+### Objective
+Your task is to refactor the logic in **App.js**, transferring the relevant modal handling to a new component named **ActionButtonWithModal**. The modal component (Modal.js) is already implemented, so focus solely on the refactoring process.
 
-### Requirements
-- A **modal component (Modal.js)** has already been created, so there is no need to create one!
-- There are various ways to get this done but ideally there is a **good way** to do this without affecting other components that do not depend on this modal.
-- You just need to **refactor** the logic in **App.js** to a component called __**ActionButtonWithModal**__ (file already available!).
+### Key Points
+
+- Refactor the existing modal logic in **App.js** into **ActionButtonWithModal**. The new component should handle modal interactions without impacting unrelated components.
+- Ensure your solution optimizes performance, particularly avoiding unnecessary re-renders of **SuperSlowComponent**.
+- The file **ActionButtonWithModal.js** is provided for your implementation.
 
 ### Must Read Resource For This question
 - <a target="_blank" href="https://www.developerway.com/posts/react-re-renders-guide">A great article from Nadia Makarevich</a>
 - <a target="_blank" href="https://react.dev/reference/react/StrictMode">The **SuperSlowComponent** still renders twice?</a>
 
 ### External Dependencies Used
-- <a target="_blank" href="https://www.npmjs.com/package/react-modal">react-modal</a> (Bare minimum example configured for you!)
+- <a target="_blank" href="https://www.npmjs.com/package/react-modal">react-modal</a> (A minimal configuration is already set up for your convenience.)
