@@ -1,5 +1,4 @@
 import QuestionLayout from '@/components/QuestionLayout';
-import { useSandpack } from '@codesandbox/sandpack-react';
 
 import { IQuestionSuccess } from '../_hooks/useQuestion';
 import QuestionContainer from './QuestionContainer';
@@ -11,30 +10,28 @@ interface Props {
 }
 
 export default function Container({ data }: Props) {
-  const bottomLeft = () =>
-    data.question.meta.expectedOutput ? (
-      <div className="h-full">Expected Output</div>
-    ) : (
-      ''
-    );
-
   return (
     <QuestionLayout
-      topLeft={
-        <QuestionContainer
-          content={data.question.getContent()}
-          difficulty={data.question.meta.difficulty}
-        />
-      }
-      topRight={<CodeEditor />}
-      bottomLeft={bottomLeft()}
-      bottomRight={
-        <Output
-          showConsole={data.question.meta.showConsole}
-          showPreview={data.question.meta.showPreview}
-          showTests={data.question.meta.showTests}
-        />
-      }
+      topLeft={{
+        label: 'Question Prompt',
+        content: (
+          <QuestionContainer
+            content={data.question.getContent()}
+            difficulty={data.question.meta.difficulty}
+          />
+        ),
+      }}
+      topRight={{ label: 'Code Editor', content: <CodeEditor /> }}
+      bottomRight={{
+        label: 'Output',
+        content: (
+          <Output
+            showConsole={data.question.meta.showConsole}
+            showPreview={data.question.meta.showPreview}
+            showTests={data.question.meta.showTests}
+          />
+        ),
+      }}
     />
   );
 }

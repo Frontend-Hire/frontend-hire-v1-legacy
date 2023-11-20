@@ -26,7 +26,13 @@ export default function Question() {
       </PrimaryLayout>
     );
 
-  if (data.status === 'error') return '---------------ERROR---------------';
+  if (data.status === 'error') {
+    throw new Error(data.message);
+  }
+
+  if (data.question == undefined) {
+    throw new Error('This was unexepected');
+  }
 
   return (
     <QuestionHotkeysProvider>
