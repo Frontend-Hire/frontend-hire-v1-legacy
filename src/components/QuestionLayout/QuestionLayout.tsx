@@ -5,7 +5,6 @@ import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
 import 'react-reflex/styles.css';
 
 import styles from './QuestionLayout.module.css';
-import { Tabs } from '../ui/tabs';
 import QuestionMobileLayout from './QuestionMobileLayout';
 
 interface Props {
@@ -33,11 +32,11 @@ export default function QuestionLayout({
   bottomLeft,
   bottomRight,
 }: Props) {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 400);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 450);
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 400);
+      setIsMobile(window.innerWidth <= 450);
     };
 
     window.addEventListener('resize', handleResize);
