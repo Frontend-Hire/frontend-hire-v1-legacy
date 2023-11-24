@@ -30,7 +30,7 @@ export default function Header({ skill }: Props) {
         </Tooltip>
       </div>
 
-      <Link href="/" className="max-xs:hidden">
+      <Link href="/dashboard" className="max-xs:hidden">
         <HeaderLogo fill="GRAY" />
       </Link>
 
