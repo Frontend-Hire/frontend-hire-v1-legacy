@@ -5,14 +5,26 @@ import Header from './_components/Header';
 import ProjectLayoutItem from '@/components/ProjectLayoutItem';
 import useProject from './_hooks/useProject';
 import ResetProgressButtonWithAlert from './_components/ResetProgressButtonWithAlert';
+import HeaderSkeleton from '@/components/HeaderSkeleton';
+import ProjectLayoutSkeleton from '@/components/ProjectLayoutSkeleton';
 
 export default function ProjectPage() {
   const { data } = useProject();
 
   if (data.status === 'loading' || data.status === 'idle')
-    return '---------------LOADING---------------';
+    return (
+      <PrimaryLayout header={<HeaderSkeleton />}>
+        <ProjectLayoutSkeleton />
+      </PrimaryLayout>
+    );
 
-  if (data.status === 'error') return '---------------ERROR---------------';
+  if (data.status === 'error') {
+    throw new Error(data.message);
+  }
+
+  if (data.project == undefined) {
+    throw new Error('This was unexepected');
+  }
 
   return (
     <PrimaryLayout header={<Header />}>
