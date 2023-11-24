@@ -42,9 +42,11 @@ export default function Header() {
           </Button>
         </Tooltip>
       </div>
-      <Link href="/" className="max-xs:hidden">
+
+      <Link href="/dashboard" className="max-xs:hidden">
         <HeaderLogo fill="GRAY" />
       </Link>
+      
       <div className="flex items-center gap-4">
         <ReportBugButtonWithDialog />
         {renderSubmitProjectButton()}
