@@ -1,5 +1,3 @@
-'use client';
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,22 +11,23 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
-export default function DeleteProjectSubmissionsButtonWithAlert() {
+export default function ResetProgressButtonWithAlert() {
+  const { projectId } = useParams<{
+    projectId: string;
+  }>();
+
   const supabaseBrowserClient = createSupabaseBrowserClient();
 
-  const clearProjectSubmissions = async () => {
+  const reset = async () => {
     try {
-      const {
-        data: { user },
-      } = await supabaseBrowserClient.auth.getUser();
+      await supabaseBrowserClient
+        .from('project_submissions')
+        .delete()
+        .eq('project_id', projectId);
 
-      if (user) {
-        await supabaseBrowserClient
-          .from('project_submissions')
-          .delete()
-          .eq('user_id', user.id);
-      }
+      location.reload();
     } catch (e) {
       console.log(e);
     }
@@ -37,25 +36,24 @@ export default function DeleteProjectSubmissionsButtonWithAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive-outline" className="min-w-[200px]">
-          Clear Project Submissions
+        <Button className="rounded-none bg-red-500 hover:bg-red-600">
+          Reset Progress
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Clear Project Submissions</AlertDialogTitle>
+          <AlertDialogTitle>Reset Project</AlertDialogTitle>
           <AlertDialogDescription>
-            This will clear all the project submissions associated with your
-            account. This action is irreversible. Are you sure?
+            This will reset your project submission. Are you sure?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            className="bg-destructive hover:bg-destructive/90"
-            onClick={clearProjectSubmissions}
+            className="bg-red-500 hover:bg-red-600"
+            onClick={reset}
           >
-            Yes, Clear
+            Yes, reset
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

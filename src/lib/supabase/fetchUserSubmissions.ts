@@ -3,7 +3,7 @@ import createSupabaseServerClient from './supabaseServerClient';
 
 export const revalidate = 0;
 
-const fetchUserSubmissions = cache(async () => {
+export const fetchUserQuestionSubmissions = cache(async () => {
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data } = await supabaseServerClient
@@ -13,4 +13,12 @@ const fetchUserSubmissions = cache(async () => {
   return data || [];
 });
 
-export default fetchUserSubmissions;
+export const fetchUserProjectSubmissions = cache(async () => {
+  const supabaseServerClient = createSupabaseServerClient();
+
+  const { data } = await supabaseServerClient
+    .from('project_submissions')
+    .select('project_id, completed_tasks, github_link');
+
+  return data || [];
+});

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ProjectMeta } from '@/types/mdx';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useParams } from 'next/navigation';
 
 export interface IProjectLoading {
   status: 'loading';
@@ -29,8 +29,10 @@ export type Project =
   | IProjectSuccess
   | IProjectIdle;
 
-export default function useProject(projectId: string) {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
+export default function useProject() {
+  const { projectId } = useParams<{
+    projectId: string;
+  }>();
   const [data, setData] = React.useState<Project>({
     status: 'idle',
   });
@@ -42,9 +44,9 @@ export default function useProject(projectId: string) {
           `@/data/projects/${projectId}/project.mdx`,
         );
 
-        sessionStorage.setItem('project_id', projectId || '');
+        const metaDeepCopy = structuredClone(meta);
 
-        return { getContent, meta };
+        return { getContent, meta: metaDeepCopy };
       } catch (e) {
         console.log(e);
         setData({ status: 'error', message: e as string });
@@ -64,7 +66,7 @@ export default function useProject(projectId: string) {
         clearTimeout(timeout);
       };
     });
-  }, [projectId, supabaseBrowserClient]);
+  }, [projectId]);
 
   return { data };
 }
