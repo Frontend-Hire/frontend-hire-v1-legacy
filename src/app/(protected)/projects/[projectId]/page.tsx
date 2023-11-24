@@ -4,6 +4,7 @@ import PrimaryLayout from './_layout/PrimaryLayout';
 import Header from './_components/Header';
 import ProjectLayoutItem from '@/components/ProjectLayoutItem';
 import useProject from './_hooks/useProject';
+import ResetProgressButtonWithAlert from './_components/ResetProgressButtonWithAlert';
 
 export default function ProjectPage() {
   const { data } = useProject();
@@ -16,6 +17,11 @@ export default function ProjectPage() {
   return (
     <PrimaryLayout header={<Header />}>
       <ProjectLayoutItem
+        rightButtons={
+          <>
+            <ResetProgressButtonWithAlert />
+          </>
+        }
         tabs={[
           {
             label: 'Project',
