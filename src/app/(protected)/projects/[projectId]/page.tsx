@@ -5,14 +5,8 @@ import Header from './_components/Header';
 import ProjectLayoutItem from '@/components/ProjectLayoutItem';
 import useProject from './_hooks/useProject';
 
-export default function ProjectPage({
-  params,
-}: {
-  params: { projectId: string };
-}) {
-  const { projectId } = params;
-
-  const { data } = useProject(projectId);
+export default function ProjectPage() {
+  const { data } = useProject();
 
   if (data.status === 'loading' || data.status === 'idle')
     return '---------------LOADING---------------';

@@ -258,27 +258,27 @@ export interface Database {
         Row: {
           completed_tasks: number[] | null;
           created_at: string;
-          github_link: string | null;
+          github_link: string;
           id: number;
-          live_link: string | null;
+          live_link: string;
           project_id: string;
           user_id: string;
         };
         Insert: {
           completed_tasks?: number[] | null;
           created_at?: string;
-          github_link?: string | null;
+          github_link?: string;
           id?: number;
-          live_link?: string | null;
+          live_link?: string;
           project_id: string;
           user_id?: string;
         };
         Update: {
           completed_tasks?: number[] | null;
           created_at?: string;
-          github_link?: string | null;
+          github_link?: string;
           id?: number;
-          live_link?: string | null;
+          live_link?: string;
           project_id?: string;
           user_id?: string;
         };

@@ -36,7 +36,7 @@ export default function ProjectTasksProvider({ children }: Props) {
         .maybeSingle();
 
       if (data) {
-        sessionStorage.setItem('projectId', `${data.id}`);
+        sessionStorage.setItem('projectSubmissionId', `${data.id}`);
         return data.completed_tasks || [];
       }
 
@@ -55,7 +55,7 @@ export default function ProjectTasksProvider({ children }: Props) {
     } = {
       project_id: projectId,
       completed_tasks: newTasks,
-      id: +(sessionStorage.getItem('projectId') || ''),
+      id: +(sessionStorage.getItem('projectSubmissionId') || ''),
     };
     const { data } = await supabaseBrowserClient
       .from('project_submissions')
@@ -65,7 +65,7 @@ export default function ProjectTasksProvider({ children }: Props) {
       .maybeSingle();
 
     if (data) {
-      sessionStorage.setItem('projectId', `${data.id}`);
+      sessionStorage.setItem('projectSubmissionId', `${data.id}`);
       setCompletedTasks(newTasks);
     }
   };
@@ -79,7 +79,7 @@ export default function ProjectTasksProvider({ children }: Props) {
     } = {
       project_id: projectId,
       completed_tasks: newTasks,
-      id: +(sessionStorage.getItem('projectId') || ''),
+      id: +(sessionStorage.getItem('projectSubmissionId') || ''),
     };
     const { data } = await supabaseBrowserClient
       .from('project_submissions')
@@ -89,7 +89,7 @@ export default function ProjectTasksProvider({ children }: Props) {
       .maybeSingle();
 
     if (data) {
-      sessionStorage.setItem('projectId', `${data.id}`);
+      sessionStorage.setItem('projectSubmissionId', `${data.id}`);
       setCompletedTasks(newTasks);
     }
   };
