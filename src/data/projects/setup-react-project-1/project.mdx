@@ -3,28 +3,35 @@ import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
 export const meta = {
   title: 'Setup React Project 1',
   difficulty: 'easy',
-  description:
-    "",
+  description: 'A streamlined guide to setting up a React project with essential development tools.',
   tasks: ['Vite', 'Prettier', 'ESLint', 'Husky'],
 };
 
 # Setup React Project - 1
 
-A React project can be setup in many ways.
-
-This is one of the easy ways that just requires a single command but in reality we need to setup additional things so that our development experience is better.
+Welcome to our React project setup guide! This easy-to-follow guide will show you how to set up a React project using Vite, along with integrating key tools like Prettier, ESLint, and Husky to enhance your development workflow.
 
 <ProjectTasks>
   <ProjectTaskItem id={1} taskName='Vite'>
-    <a href="https://vitejs.dev/" target="_blank">Vite</a> is the core tool for this project. They provide great templates and you are supposed to use such a template to quickly scaffold this project.
-    You need to setup the `JavaScript React Template` in your **local**.
-    
-    - This link will guide you <a href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project" target="_blank">"Scaffolding Your First Vite Project"</a>
+    Vite is a fast and efficient tool to kickstart your project.
+    - Set up the <code>JavaScript React Template</code> on your local machine.
+    - Need help? Check out: <a href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project" target="_blank">Vite's First Project Guide</a>.
   </ProjectTaskItem>
-  
   <ProjectTaskItem id={2} taskName='Prettier'>
-    <a href="https://prettier.io/" target="_blank">Prettier</a> is an industry standard tool for formatting code. **What** and **Why** are pretty much answered on the homepage of their website.
-
-    - This link will guide you in installing it into your project <a href="https://prettier.io/docs/en/install" target="_blank">"Install Prettier"</a>.
+    Prettier ensures your code is clean and readable.
+    - Discover why it's important at the <a href="https://prettier.io/" target="_blank">Prettier website</a>.
+    - How to install? Here's a guide: <a href="https://prettier.io/docs/en/install" target="_blank">Installing Prettier</a>.
+  </ProjectTaskItem>
+  <ProjectTaskItem id={3} taskName='ESLint'>
+    ESLint helps keep your code quality high.
+    - Start with the ESLint rules included in the Vite template.
+    - Customize ESLint to suit your needs.
+    - Learn how to make Prettier and ESLint work together: <a href="https://prettier.io/docs/en/install#eslint-and-other-linters" target="_blank">Integrating Prettier with ESLint</a>.
+    - For installation and setup tips, visit: <a href="https://eslint.org/docs/user-guide/getting-started" target="_blank">ESLint Starter Guide</a>.
+  </ProjectTaskItem>
+  <ProjectTaskItem id={4} taskName='Husky and Lint Staged'>
+    Husky and Lint Staged automate and streamline your Git workflows.
+    - Set up Prettier with Git hooks: <a href="https://prettier.io/docs/en/install#git-hooks" target="_blank">Prettier Git Hooks</a>.
+    - Learn how to use Husky: <a href="https://typicode.github.io/husky/#/" target="_blank">Husky Official Documentation</a>.
   </ProjectTaskItem>
 </ProjectTasks>

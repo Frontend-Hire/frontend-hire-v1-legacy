@@ -18,7 +18,11 @@ interface ProjectTasksProps {
 export function ProjectTasks({ children }: ProjectTasksProps) {
   return (
     <ProjectTasksProvider>
-      <Accordion className="my-2 prose-h3:m-0" type="single" collapsible>
+      <Accordion
+        className="my-2 flex flex-col gap-4 prose-h3:m-0"
+        type="single"
+        collapsible
+      >
         {children}
       </Accordion>
     </ProjectTasksProvider>
@@ -42,14 +46,14 @@ export function ProjectTaskItem({
   const isCompleted = completedTasks.includes(id);
 
   return (
-    <AccordionItem value={taskName}>
+    <AccordionItem className="overflow-hidden rounded" value={taskName}>
       <AccordionTrigger className="h-[40px] bg-foreground px-4 py-2 text-white">
         <span className="flex items-center gap-4">
           {isCompleted ? <CheckCircleIcon /> : <CircleIcon />}
           {taskName}
         </span>
       </AccordionTrigger>
-      <AccordionContent className="prose prose-invert flex max-w-none flex-col rounded-b bg-accent-foreground px-4 py-2 text-white prose-a:text-red-500 prose-a:no-underline prose-a:after:content-['_↗'] prose-strong:text-red-500 prose-code:bg-red-800 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
+      <AccordionContent className="prose prose-invert flex max-w-none flex-col rounded-b bg-accent-foreground px-4 py-2 text-white prose-p:m-0 prose-a:text-red-500 prose-a:no-underline prose-a:after:content-['_↗'] prose-strong:text-red-500 prose-code:bg-red-800 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:m-0">
         {children}
         {isCompleted ? (
           <Button
