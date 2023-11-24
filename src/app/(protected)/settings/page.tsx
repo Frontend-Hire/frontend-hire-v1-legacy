@@ -1,7 +1,7 @@
 import Heading from '@/components/Heading';
 import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
 import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
-// import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
+import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 
 export default function Settings() {
   return (
@@ -11,7 +11,7 @@ export default function Settings() {
       </Heading>
       <div className="mt-[40px] flex flex-col items-center justify-center gap-[30px]">
         <DeleteCodeSubmissionsButtonWithAlert />
-        {/* <DeleteProjectSubmissionsButtonWithAlert /> */}
+        <DeleteProjectSubmissionsButtonWithAlert />
         <DeleteAccountButtonWithAlert />
       </div>
     </main>
