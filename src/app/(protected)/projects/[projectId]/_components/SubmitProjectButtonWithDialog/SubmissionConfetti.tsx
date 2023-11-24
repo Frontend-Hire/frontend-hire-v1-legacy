@@ -1,0 +1,32 @@
+import * as React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import Confetti from 'react-confetti';
+import Link from 'next/link';
+
+interface Props {
+  onClose: () => void;
+}
+
+export default function SubmissionConfetti({ onClose }: Props) {
+  return (
+    <Dialog open={true} onOpenChange={onClose}>
+      <Confetti />
+      <DialogContent onCloseAutoFocus={(e) => e.preventDefault()}>
+        <DialogHeader>
+          <DialogTitle>Great Job!</DialogTitle>
+          <DialogDescription>That was a good project!</DialogDescription>
+        </DialogHeader>
+        <Button asChild>
+          <Link href="/projects">Try one more</Link>
+        </Button>
+      </DialogContent>
+    </Dialog>
+  );
+}

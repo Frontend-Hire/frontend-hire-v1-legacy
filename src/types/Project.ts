@@ -1,3 +1,10 @@
+export type ProjectOverview = {
+  id: string;
+  title: string;
+  difficulty: PROJECT_DIFFICULTY;
+  tasks: string[];
+};
+
 export type ProjectTab = {
   value: string;
   label: React.ReactNode;
