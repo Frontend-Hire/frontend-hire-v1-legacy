@@ -3,8 +3,7 @@ import Tooltip from '@/components/ui/tooltip';
 import HeaderLogo from '@/components/HeaderLogo';
 import { ListIcon } from 'lucide-react';
 import Link from 'next/link';
-// import SubmitSolutionButton from './SubmitSolutionButton';
-// import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
+import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
 
 export default function Header() {
   return (
@@ -24,8 +23,8 @@ export default function Header() {
         </Link>
       </Button>
       <div className="flex items-center gap-4">
-        {/* <ReportBugButtonWithDialog />
-        <SubmitSolutionButton /> */}
+        <ReportBugButtonWithDialog />
+        {/* <SubmitSolutionButton /> */}
       </div>
     </header>
   );

@@ -220,6 +220,40 @@ export interface Database {
           },
         ];
       };
+      project_bug_submissions: {
+        Row: {
+          created_at: string;
+          description: string;
+          id: number;
+          is_fixed: boolean;
+          project_id: string;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          description: string;
+          id?: number;
+          is_fixed?: boolean;
+          project_id: string;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          description?: string;
+          id?: number;
+          is_fixed?: boolean;
+          project_id?: string;
+          user_id?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'project_bug_submissions_user_id_fkey';
+            columns: ['user_id'];
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       project_submissions: {
         Row: {
           completed_tasks: number[] | null;
