@@ -3,7 +3,7 @@ import Heading from '@/components/Heading';
 import QuestionItem from '@/components/QuestionItem';
 import SkillDescription from '@/components/SkillDescription';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import fetchUserSubmissions from '@/lib/supabase/fetchUserSubmissions';
+import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export const dynamic = 'force-dynamic';
@@ -19,7 +19,7 @@ export default async function Skill({ params }: { params: { skill: string } }) {
 
   const [localQuestions, solvedQuestions] = await Promise.all([
     getQuestionsFromLocal(),
-    session ? fetchUserSubmissions() : null,
+    session ? fetchUserQuestionSubmissions() : null,
   ]);
 
   const currentSkillData = localQuestions[skill].sort((a, b) =>

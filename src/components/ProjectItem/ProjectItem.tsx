@@ -42,7 +42,7 @@ export default function ProjectItem({
 
   const renderLinkText = () => {
     if (isSubmitted) {
-      return 'Check Submission';
+      return 'Check';
     }
 
     if (completedTasks.length === 0) {
@@ -69,7 +69,7 @@ export default function ProjectItem({
           </div>
           <Link
             href={`/projects/${id}`}
-            className="flex  h-[25px] min-w-[75px] items-center justify-center rounded-full bg-secondary text-primary"
+            className="flex h-[25px] min-w-[75px] items-center justify-center rounded-full bg-secondary text-primary"
           >
             {renderLinkText()}
           </Link>
