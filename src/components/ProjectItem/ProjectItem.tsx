@@ -42,7 +42,7 @@ export default function ProjectItem({
 
   const renderLinkText = () => {
     if (isSubmitted) {
-      return 'Check';
+      return 'Revisit';
     }
 
     if (completedTasks.length === 0) {
