@@ -33,14 +33,9 @@ export default function SkillLevelStats({ skillStats }: Props) {
       </p>
 
       <SkillStatItem
-        skill="HTML"
-        submitted={skillStats['HTML'].submitted}
-        total={skillStats['HTML'].total}
-      />
-      <SkillStatItem
-        skill="CSS"
-        submitted={skillStats['CSS'].submitted}
-        total={skillStats['CSS'].total}
+        skill="HTML & CSS"
+        submitted={skillStats['HTML-CSS'].submitted}
+        total={skillStats['HTML-CSS'].total}
       />
       <SkillStatItem
         skill="JavaScript"
