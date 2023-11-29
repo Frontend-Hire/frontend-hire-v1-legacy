@@ -20,12 +20,8 @@ const LINKS: Link[] = [
     label: 'Skills',
     subLinks: [
       {
-        label: 'HTML',
-        path: '/questions/HTML',
-      },
-      {
-        label: 'CSS',
-        path: '/questions/CSS',
+        label: 'HTML & CSS',
+        path: '/questions/HTML-CSS',
       },
       {
         label: 'JavaScript',
