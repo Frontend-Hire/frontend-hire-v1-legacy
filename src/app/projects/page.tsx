@@ -37,7 +37,7 @@ export default async function Projects() {
     );
 
   return (
-    <main>
+    <main className="container">
       <Heading variant="h1" className="mb-8 text-center">
         Projects
       </Heading>
@@ -45,7 +45,7 @@ export default async function Projects() {
         <DifficultyLegend />
       </div>
 
-      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-wrap items-center justify-center gap-5 md:justify-start">
         {localProjects.map((project) => {
           const solvedProject = solvedProjectsMap[project.id] || {};
           const completedTasks = solvedProject.completedTasks || [];
