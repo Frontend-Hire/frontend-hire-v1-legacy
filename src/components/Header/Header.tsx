@@ -1,6 +1,5 @@
 import AvatarDropdown from './AvatarDropdown';
 import SignInButton from '../SignInButton';
-import Menu from './Menu';
 import Link from 'next/link';
 import HeaderLogo from '../HeaderLogo';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
@@ -19,23 +18,22 @@ export default async function Header() {
   };
 
   return (
-    <header className="mb-2 flex h-[80px] w-full flex-col text-primary-foreground [&>*]:px-4">
-      <div className="flex h-[40px] items-center justify-between bg-primary">
-        <Link href={getLogoLink()}>
-          <HeaderLogo />
-        </Link>
-        <div className="flex items-center">
-          {session ? (
-            <AvatarDropdown
-              picture={session.user.user_metadata.picture}
-              name={session.user.user_metadata.name}
-            />
-          ) : (
-            <SignInButton />
-          )}
-        </div>
+    <header className="flex justify-between border-b p-[10px] shadow-sm md:px-[40px] md:py-[10px]">
+      <Link href={getLogoLink()}>
+        <HeaderLogo />
+      </Link>
+      <div className="md:text-md flex items-center gap-[20px] text-sm font-medium md:gap-[40px]">
+        <Link href="/questions">Questions</Link>
+        <Link href="/projects">Projects</Link>
+        {session ? (
+          <AvatarDropdown
+            picture={session.user.user_metadata.picture}
+            name={session.user.user_metadata.name}
+          />
+        ) : (
+          <SignInButton />
+        )}
       </div>
-      <Menu />
     </header>
   );
 }

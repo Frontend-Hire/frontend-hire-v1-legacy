@@ -29,7 +29,7 @@ export default function SignInButton({ label = 'Sign In With Google' }: Props) {
     }
   };
   return (
-    <Button className="bg-blue-600" size="sm" onClick={handleSignIn}>
+    <Button className="rounded-[10px] p-[10px]" onClick={handleSignIn}>
       {label}
     </Button>
   );
