@@ -13,7 +13,7 @@ export default async function Questions() {
 
       <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
         <QuestionSkillCard
-          skill="HTML & CSS"
+          skill="HTML-CSS"
           noOfQuestions={data['HTML-CSS'].length}
         />
         <QuestionSkillCard
