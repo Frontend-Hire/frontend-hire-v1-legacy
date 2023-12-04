@@ -1,30 +1,33 @@
 import Heading from '@/components/Heading';
-import QuestionSkillCard from '@/components/QuestionSkillCard';
+import QuestionItem from '@/components/QuestionItem';
+import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import { DIFFICULTY } from '@/types/Question';
 
 export default async function Questions() {
   const data = await getQuestionsFromLocal();
 
   return (
-    <main>
-      <Heading variant="h1" className="mb-8 text-center">
-        Questions
-      </Heading>
-
-      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
-        <QuestionSkillCard
-          skill="HTML & CSS"
-          noOfQuestions={data['HTML-CSS'].length}
-        />
-        <QuestionSkillCard
-          skill="JavaScript"
-          noOfQuestions={data['JavaScript'].length}
-        />
-        <QuestionSkillCard
-          skill="React"
-          noOfQuestions={data['React']?.length || 0}
-        />
+    <main className="flex flex-col p-[10px] md:px-[250px] md:py-[20px]">
+      <div className="flex flex-col gap-[15px] py-[10px]">
+        <Heading variant="h1">Questions</Heading>
+        <p className="text-sm text-muted">Real World And Interview Based</p>
       </div>
+      <section className="flex flex-col gap-[20px]">
+        <VisuallyHidden>Questions List</VisuallyHidden>
+        <ul>
+          <li>
+            <QuestionItem
+              id="curry-what"
+              title="Question Title"
+              description="Question Description"
+              difficulty={DIFFICULTY.EASY}
+              isCompleted={false}
+              skills={['React', 'JS', 'HTML', 'CSS']}
+            />
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }

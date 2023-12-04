@@ -56,6 +56,9 @@ module.exports = {
           DEFAULT: 'rgb(var(--card) / <alpha-value>)',
           foreground: 'rgb(var(--card-foreground) / <alpha-value>)',
         },
+        easy: 'rgb(var(--easy) / <alpha-value>)',
+        medium: 'rgb(var(--medium) / <alpha-value>)',
+        hard: 'rgb(var(--hard) / <alpha-value>)',
       },
       borderRadius: {
         lg: 'var(--radius)',

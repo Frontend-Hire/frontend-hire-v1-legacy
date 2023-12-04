@@ -7,11 +7,11 @@
     --background: 0 0 0;
     --foreground: 255 255 255;
 
-    --card: 255 255 255;
+    --card: 4 4 4;
     --card-foreground: 255 255 255;
 
     --popover: 255 255 255;
-    --popover-foreground: 255 255 255;
+    --popover-foreground: 0 0 0;
 
     --primary: 94 0 85;
     --primary-foreground: 255 255 255;
@@ -19,7 +19,7 @@
     --secondary: 255 255 255;
     --secondary-foreground: 255 255 255;
 
-    --muted: 255 255 255;
+    --muted: 202 202 202;
     --muted-foreground: 255 255 255;
 
     --accent: 255 255 255;
@@ -33,6 +33,10 @@
     --ring: 255 255 255;
 
     --radius: 0.5rem;
+
+    --easy: 85 166 48;
+    --medium: 255 195 0;
+    --hard: 164 22 26;
   }
 }
 
