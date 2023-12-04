@@ -23,8 +23,18 @@ export default async function Header() {
         <HeaderLogo />
       </Link>
       <div className="flex items-center gap-[20px] text-sm font-medium md:gap-[40px] md:text-base">
-        <Link href="/questions">Questions</Link>
-        <Link href="/projects">Projects</Link>
+        <Link
+          className="transition-all duration-300 hover:text-primary"
+          href="/questions"
+        >
+          Questions
+        </Link>
+        <Link
+          className="transition-all duration-300 hover:text-primary"
+          href="/projects"
+        >
+          Projects
+        </Link>
         {session ? (
           <AvatarDropdown
             picture={session.user.user_metadata.picture}
