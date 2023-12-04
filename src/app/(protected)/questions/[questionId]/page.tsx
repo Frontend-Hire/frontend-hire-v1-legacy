@@ -10,13 +10,8 @@ import Container from './_components/Container';
 import QuestionHotkeysProvider from './_components/QuestionHotkeysProvider';
 import Header from './_components/Header';
 import PrimaryLayout from './_layout/PrimaryLayout';
-import { useParams } from 'next/navigation';
 
 export default function Question() {
-  const { skill } = useParams<{
-    skill: string;
-    questionId: string;
-  }>();
   const { data } = useQuestion();
 
   if (data.status === 'loading' || data.status === 'idle')
@@ -51,7 +46,7 @@ export default function Question() {
           autorun: false, // If true results in infinite loader
         }}
       >
-        <PrimaryLayout header={<Header skill={skill} />}>
+        <PrimaryLayout header={<Header />}>
           <Container data={data} />
         </PrimaryLayout>
       </SandpackProvider>

@@ -13,21 +13,21 @@ export default async function Questions() {
         <Heading variant="h1">Questions</Heading>
         <p className="text-sm text-muted">Real World And Interview Based</p>
       </div>
-      <section className="flex flex-col gap-[20px]">
-        <VisuallyHidden>Questions List</VisuallyHidden>
-        <ul>
-          <li>
+      <VisuallyHidden>Questions List</VisuallyHidden>
+      <ul className="flex flex-col gap-[20px]">
+        {data.map((question) => (
+          <li key={question.id}>
             <QuestionItem
-              id="curry-what"
-              title="Question Title"
-              description="Question Description"
-              difficulty={DIFFICULTY.EASY}
+              id={question.id}
+              title={question.title}
+              description={question.description}
+              difficulty={question.difficulty}
               isCompleted={false}
-              skills={['React', 'JS', 'HTML', 'CSS']}
+              skills={question.skills}
             />
           </li>
-        </ul>
-      </section>
+        ))}
+      </ul>
     </main>
   );
 }

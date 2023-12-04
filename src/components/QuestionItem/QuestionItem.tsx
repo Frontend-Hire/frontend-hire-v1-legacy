@@ -19,7 +19,7 @@ const DifficultyLabel = ({
 }: {
   difficulty: QuestionDifficulty;
 }) => {
-  let className = 'w-[20px] h-full';
+  let className = 'w-[20px] self-stretch';
 
   if (difficulty == 'easy') {
     className += ' bg-easy';
@@ -39,11 +39,12 @@ const DifficultyLabel = ({
   );
 };
 
-const SKILL_CLASS: { [skill: string]: string } = {
-  HTML: 'bg-[#E44D26] text-white',
-  CSS: 'bg-[#2062AF] text-white',
-  JS: 'bg-[#F0DB4F] text-black',
-  REACT: 'bg-[#61DAFB] text-black',
+const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
+  HTML: { className: 'bg-[#E44D26] text-white', label: 'HTML' },
+  CSS: { className: 'bg-[#2062AF] text-white', label: 'CSS' },
+  JS: { className: 'bg-[#F0DB4F] text-black', label: 'js' },
+  REACT: { className: 'bg-[#61DAFB] text-black', label: 'React' },
+  JEST: { className: 'bg-[#99425B] text-white', label: 'JEST' },
 };
 
 const SkillBadge = ({ skill }: { skill: string }) => {
@@ -51,10 +52,10 @@ const SkillBadge = ({ skill }: { skill: string }) => {
     <div
       className={cn(
         'flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium leading-[100%]',
-        SKILL_CLASS[skill.toUpperCase()],
+        SKILL_CLASS[skill.toUpperCase()].className,
       )}
     >
-      {skill}
+      {SKILL_CLASS[skill.toUpperCase()].label}
     </div>
   );
 };
@@ -73,7 +74,7 @@ const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
 
 export default function QuestionItem({
   id,
-  skills,
+  skills = [],
   title,
   description,
   difficulty,
@@ -81,9 +82,9 @@ export default function QuestionItem({
 }: Props) {
   return (
     <Link href={`/questions/${id}`}>
-      <div className="flex h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground">
+      <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground">
         <DifficultyLabel difficulty={difficulty} />
-        <div className="flex grow flex-col gap-[5px] py-[10px]">
+        <div className="flex w-full flex-col gap-[5px] py-[10px]">
           <p className="font-bold">{title}</p>
           <p className="text-sm leading-[100%] text-muted">{description}</p>
           <div className="flex gap-[10px]">

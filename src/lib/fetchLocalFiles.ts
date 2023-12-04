@@ -1,32 +1,31 @@
 import { ProjectOverview } from '@/types/Project';
-import { SkillQuestions } from '@/types/Question';
+import { QuestionOverview } from '@/types/Question';
 import fs from 'fs';
 import path from 'path';
+import { cache } from 'react';
 
 const questionsPath = path.join(process.cwd(), '/src/data/questions');
 
-export async function getQuestionsFromLocal() {
-  const questions: SkillQuestions = {};
+export const getQuestionsFromLocal = cache(() => {
+  const questionsList: QuestionOverview[] = [];
 
-  const skills = fs.readdirSync(questionsPath);
+  const questions = fs.readdirSync(questionsPath);
 
-  for (const skill of skills) {
-    questions[skill] = [];
-    const allQuestions = fs.readdirSync(path.join(questionsPath, skill));
-    for (const question of allQuestions) {
-      const { default: getContent, meta } = require(
-        `@/data/questions/${skill}/${question}/prompt.mdx`,
-      );
-      questions[skill].push({
-        id: question,
-        title: meta.title,
-        difficulty: meta.difficulty,
-      });
-    }
+  for (const question of questions.sort()) {
+    const { default: getContent, meta } = require(
+      `@/data/questions/${question}/prompt.mdx`,
+    );
+    questionsList.push({
+      id: question,
+      title: meta.title,
+      description: meta.description,
+      skills: meta.skills,
+      difficulty: meta.difficulty,
+    });
   }
 
-  return questions;
-}
+  return questionsList;
+});
 
 const projectsPath = path.join(process.cwd(), '/src/data/projects');
 

@@ -31,8 +31,7 @@ export type Question =
   | IQuestionIdle;
 
 export default function useQuestion() {
-  const { skill, questionId } = useParams<{
-    skill: string;
+  const { questionId } = useParams<{
     questionId: string;
   }>();
   const supabaseBrowserClient = createSupabaseBrowserClient();
@@ -43,13 +42,13 @@ export default function useQuestion() {
   React.useEffect(() => {
     // SO THAT NEW QUESTIONS DONT CONFLICT
     sessionStorage.clear();
-  }, [questionId, skill]);
+  }, [questionId]);
 
   React.useEffect(() => {
     const getQuestion = async () => {
       try {
         const { default: getContent, meta } = require(
-          `@/data/questions/${skill}/${questionId}/prompt.mdx`,
+          `@/data/questions/${questionId}/prompt.mdx`,
         );
 
         const metaDeepCopy = structuredClone(meta);
@@ -107,7 +106,7 @@ export default function useQuestion() {
         clearTimeout(timeout);
       };
     });
-  }, [questionId, skill, supabaseBrowserClient]);
+  }, [questionId, supabaseBrowserClient]);
 
   return { data };
 }
