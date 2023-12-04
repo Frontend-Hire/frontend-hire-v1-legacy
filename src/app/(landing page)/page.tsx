@@ -34,8 +34,8 @@ export default function Home() {
         <div className="absolute bottom-4 flex flex-col gap-[20px]">
           <p className="font-bold">
             A Growing Library of{' '}
-            <span className="text-primary">30+ Questions</span> and{' '}
-            <span className="text-primary">10+ Projects</span>
+            <span className="text-primary">7+ Questions</span> and{' '}
+            <span className="text-primary">2+ Projects</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-[25px]">
             <Image src={HTMLLogo} alt="HTML Logo" />
