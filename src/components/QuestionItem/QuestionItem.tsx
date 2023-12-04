@@ -3,6 +3,7 @@ import VisuallyHidden from '../ui/visually-hidden';
 import { QuestionDifficulty } from '@/types/Question';
 import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
+import { cn } from '@/lib/utils';
 
 interface Props {
   id: string;
@@ -38,9 +39,21 @@ const DifficultyLabel = ({
   );
 };
 
+const SKILL_CLASS: { [skill: string]: string } = {
+  HTML: 'bg-[#E44D26] text-white',
+  CSS: 'bg-[#2062AF] text-white',
+  JS: 'bg-[#F0DB4F] text-black',
+  REACT: 'bg-[#61DAFB] text-black',
+};
+
 const SkillBadge = ({ skill }: { skill: string }) => {
   return (
-    <div className="flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium">
+    <div
+      className={cn(
+        'flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium leading-[100%]',
+        SKILL_CLASS[skill.toUpperCase()],
+      )}
+    >
       {skill}
     </div>
   );
@@ -70,11 +83,11 @@ export default function QuestionItem({
     <Link href={`/questions/${id}`}>
       <div className="flex h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground">
         <DifficultyLabel difficulty={difficulty} />
-        <div className="flex grow flex-col gap-[5px]">
+        <div className="flex grow flex-col gap-[5px] py-[10px]">
           <p className="font-bold">{title}</p>
-          <p className="text-sm text-muted">{description}</p>
+          <p className="text-sm leading-[100%] text-muted">{description}</p>
           <div className="flex gap-[10px]">
-            {skills.map((skill) => (
+            {skills.sort().map((skill) => (
               <SkillBadge key={skill} skill={skill} />
             ))}
           </div>
