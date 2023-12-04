@@ -22,7 +22,7 @@ export default async function Header() {
       <Link href={getLogoLink()}>
         <HeaderLogo />
       </Link>
-      <div className="md:text-md flex items-center gap-[20px] text-sm font-medium md:gap-[40px]">
+      <div className="flex items-center gap-[20px] text-sm font-medium md:gap-[40px] md:text-base">
         <Link href="/questions">Questions</Link>
         <Link href="/projects">Projects</Link>
         {session ? (
