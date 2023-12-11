@@ -61,7 +61,7 @@ export default function QuestionItem({
 }: Props) {
   return (
     <Link href={`/questions/${id}`}>
-      <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground">
+      <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground hover:bg-card/80">
         <DifficultyLabel difficulty={difficulty} />
         <div className="flex w-full flex-col gap-[5px] py-[10px]">
           <p className="font-bold">{title}</p>

@@ -17,7 +17,9 @@ export default function QuestionContainer({ content, difficulty }: Props) {
         {
           label: 'Question',
           value: 'Question',
-          content: <div className="prose p-4">{content}</div>,
+          content: (
+            <div className="prose prose-invert bg-[#151515] p-4">{content}</div>
+          ),
         },
       ]}
     />

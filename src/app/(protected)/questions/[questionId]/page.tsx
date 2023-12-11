@@ -39,6 +39,7 @@ export default function Question() {
         customSetup={{
           dependencies: data.question.meta.dependencies,
         }}
+        theme="dark"
         files={data.question.meta.files}
         options={{
           externalResources: data.question.meta.externalCDNs,

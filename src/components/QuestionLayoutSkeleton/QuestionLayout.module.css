@@ -1,7 +1,7 @@
 .horizontalSplitter {
-  @apply w-[10px] rounded-none border-none bg-gray-400 hover:bg-gray-700 !important;
+  @apply w-[10px] rounded-none border-none bg-neutral-800 hover:bg-neutral-600 !important;
 }
 
 .verticalSplitter {
-  @apply h-[10px] rounded-none border-none bg-gray-400 hover:bg-gray-700 !important;
+  @apply h-[10px] rounded-none border-none bg-neutral-900 hover:bg-neutral-600 !important;
 }

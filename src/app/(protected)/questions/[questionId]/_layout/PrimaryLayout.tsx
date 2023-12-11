@@ -5,9 +5,9 @@ interface Props {
 
 export default function PrimaryLayout({ header, children }: Props) {
   return (
-    <div className="flex h-full flex-col border-x-[10px] border-gray-400 bg-gray-400">
+    <div className="flex h-full flex-col px-[10px]">
       {header}
-      <main className="flex grow flex-col border-t-[10px] border-gray-400 bg-white">
+      <main className="mt-[10px] flex grow flex-col overflow-hidden rounded">
         {children}
       </main>
     </div>

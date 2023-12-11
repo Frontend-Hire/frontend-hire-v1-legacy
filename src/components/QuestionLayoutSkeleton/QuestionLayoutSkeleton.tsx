@@ -11,13 +11,13 @@ export default function QuestionLayoutSkeleton() {
     <ReflexContainer orientation="vertical">
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
-          <ReflexElement className="animate-pulse bg-zinc-300">
+          <ReflexElement className="animate-pulse bg-[#151515]">
             <FakeTabHeader />
           </ReflexElement>
 
           <ReflexSplitter className={styles.verticalSplitter} />
 
-          <ReflexElement className="animate-pulse bg-zinc-300">
+          <ReflexElement className="animate-pulse bg-[#151515]">
             <FakeTabHeader />
           </ReflexElement>
         </ReflexContainer>
@@ -25,13 +25,13 @@ export default function QuestionLayoutSkeleton() {
       <ReflexSplitter className={styles.horizontalSplitter} />
       <ReflexElement>
         <ReflexContainer orientation="horizontal">
-          <ReflexElement className="animate-pulse bg-zinc-300">
+          <ReflexElement className="animate-pulse bg-[#151515]">
             <FakeTabHeader />
           </ReflexElement>
 
           <ReflexSplitter className={styles.verticalSplitter} />
 
-          <ReflexElement className="animate-pulse bg-zinc-300">
+          <ReflexElement className="animate-pulse bg-[#151515]">
             <FakeTabHeader />
           </ReflexElement>
         </ReflexContainer>

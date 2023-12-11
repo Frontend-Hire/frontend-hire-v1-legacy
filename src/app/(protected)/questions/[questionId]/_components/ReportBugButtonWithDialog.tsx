@@ -93,7 +93,10 @@ export default function ReportBugButtonWithDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <Tooltip title="Report Bug">
         <DialogTrigger asChild>
-          <Button size="icon" className="rounded-t-none">
+          <Button
+            size="icon"
+            className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
+          >
             <BugIcon />
             <VisuallyHidden>Report Bug</VisuallyHidden>
           </Button>

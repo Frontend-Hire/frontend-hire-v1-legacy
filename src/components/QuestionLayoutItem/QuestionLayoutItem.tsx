@@ -17,7 +17,7 @@ export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <div className="flex h-[40px] items-center justify-between bg-gray-600">
+        <div className="flex h-[40px] items-center justify-between bg-card">
           <TabsList>
             {tabs.map((tab) => (
               <TabsTrigger key={tab.value} value={tab.value}>
