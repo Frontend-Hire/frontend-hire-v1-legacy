@@ -6,7 +6,7 @@ import { cache } from 'react';
 
 const questionsPath = path.join(process.cwd(), '/src/data/questions');
 
-export const getQuestionsFromLocal = cache(() => {
+export const getQuestionsFromLocal = cache(async () => {
   const questionsList: QuestionOverview[] = [];
 
   const questions = fs.readdirSync(questionsPath);

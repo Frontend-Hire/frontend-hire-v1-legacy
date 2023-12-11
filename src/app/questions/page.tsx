@@ -2,10 +2,30 @@ import Heading from '@/components/Heading';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import { DIFFICULTY } from '@/types/Question';
+import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function Questions() {
-  const data = await getQuestionsFromLocal();
+  const supabaseServerClient = createSupabaseServerClient();
+
+  const {
+    data: { session },
+  } = await supabaseServerClient.auth.getSession();
+
+  const [localQuestions, solvedQuestions] = await Promise.all([
+    getQuestionsFromLocal(),
+    session ? fetchUserQuestionSubmissions() : null,
+  ]);
+
+  const currentSkillData = localQuestions.sort((a, b) =>
+    a.difficulty.localeCompare(b.difficulty),
+  );
+
+  const checkQuestionCompletion = (questionId: string) => {
+    if (!solvedQuestions) return false;
+
+    return solvedQuestions.map((item) => item.question_id).includes(questionId);
+  };
 
   return (
     <main className="flex flex-col p-[10px] md:px-[150px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
@@ -15,14 +35,14 @@ export default async function Questions() {
       </div>
       <VisuallyHidden>Questions List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
-        {data.map((question) => (
+        {currentSkillData.map((question) => (
           <li key={question.id}>
             <QuestionItem
               id={question.id}
               title={question.title}
               description={question.description}
               difficulty={question.difficulty}
-              isCompleted={false}
+              isCompleted={checkQuestionCompletion(question.id)}
               skills={question.skills}
             />
           </li>
