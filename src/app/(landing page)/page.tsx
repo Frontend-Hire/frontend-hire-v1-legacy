@@ -18,7 +18,7 @@ export default function Home() {
     <main className="h-full">
       <section className="relative flex h-full flex-col items-center justify-center gap-[25px] p-[10px] text-center md:px-[40px] md:py-[10px]">
         <p className="rounded-[5px] bg-[#18005F] px-[10px] py-[5px]">
-          100% Free
+          100% Free Access to Questions and Projects
         </p>
         <h1 className="max-w-[25ch] text-5xl font-black">
           Practice Core Frontend Skills For Interviews And Real World
@@ -69,8 +69,8 @@ function Line() {
       <path
         d="M2 2.5H464"
         stroke="white"
-        stroke-width="4"
-        stroke-linecap="round"
+        strokeWidth="4"
+        strokeLinecap="round"
       />
     </svg>
   );
