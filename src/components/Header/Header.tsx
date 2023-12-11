@@ -12,7 +12,7 @@ export default async function Header() {
   } = await supabaseServerClient.auth.getSession();
 
   const getLogoLink = () => {
-    if (session) return '/dashboard';
+    if (session) return '/';
 
     return '/';
   };

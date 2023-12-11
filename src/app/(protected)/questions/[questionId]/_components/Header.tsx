@@ -19,7 +19,7 @@ export default function Header() {
         </Tooltip>
       </div>
 
-      <Link href="/dashboard" className="max-xs:hidden">
+      <Link href="/" className="max-xs:hidden">
         <HeaderLogo fill="GRAY" />
       </Link>
 
