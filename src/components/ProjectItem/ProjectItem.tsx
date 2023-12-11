@@ -1,13 +1,23 @@
 import { ProjectDifficulty } from '@/types/Project';
 import VisuallyHidden from '../ui/visually-hidden';
 import Link from 'next/link';
-import { LayoutListIcon, ListChecksIcon, ListTodoIcon } from 'lucide-react';
+import {
+  GemIcon,
+  LayoutListIcon,
+  ListChecksIcon,
+  ListTodoIcon,
+} from 'lucide-react';
+import { Button } from '../ui/button';
+import SkillBadges from '../SkillBadges';
 
 interface Props {
   id: string;
   title: string;
+  description: string;
   difficulty: ProjectDifficulty;
   tasks: string[];
+  skills: string[];
+  isRecommended?: boolean;
   isSubmitted?: boolean;
   completedTasks?: number[];
 }
@@ -15,8 +25,11 @@ interface Props {
 export default function ProjectItem({
   id,
   title,
+  description,
   difficulty,
   tasks,
+  skills,
+  isRecommended = false,
   isSubmitted = false,
   completedTasks = [],
 }: Props) {
@@ -53,34 +66,34 @@ export default function ProjectItem({
   };
 
   return (
-    <div className="flex h-[200px] w-[200px] flex-col overflow-hidden rounded-md bg-primary text-primary-foreground">
-      <DifficultyLabel difficulty={difficulty} />
-      <div className="flex grow flex-col justify-between gap-2 p-2">
-        <h2 className="text-center">{title}</h2>
-        <ul className="ml-2 list-inside list-disc text-sm">
-          {tasks.slice(0, 4).map((task) => (
-            <li key={task}>{task}</li>
-          ))}
-        </ul>
-        <div className="flex items-center justify-between text-sm font-medium">
-          <div className="flex items-center gap-2">
-            {renderIcon()}
-            {renderTasksLengthText()}
-          </div>
-          <Link
-            href={`/projects/${id}`}
-            className="flex h-[25px] min-w-[75px] items-center justify-center rounded-full bg-secondary text-primary"
-          >
-            {renderLinkText()}
-          </Link>
+    <div className="flex h-[300px] w-[300px] flex-col gap-[10px] overflow-hidden rounded-md bg-card text-card-foreground">
+      <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
+      <div className="flex grow flex-col gap-[5px] px-[10px]">
+        <h2 className="text-xl font-bold md:text-2xl">{title}</h2>
+        <p className="grow text-sm text-muted">{description}</p>
+        <SkillBadges skills={skills} />
+      </div>
+      <div className="flex items-center justify-between p-[10px] text-sm font-medium">
+        <div className="flex items-center gap-2">
+          {renderIcon()}
+          {renderTasksLengthText()}
         </div>
+        <Button asChild>
+          <Link href={`/projects/${id}`}>{renderLinkText()}</Link>
+        </Button>
       </div>
     </div>
   );
 }
 
-function DifficultyLabel({ difficulty }: { difficulty: ProjectDifficulty }) {
-  let className = 'w-full h-[20px]';
+function DifficultyLabel({
+  difficulty,
+  isRecommended = false,
+}: {
+  difficulty: ProjectDifficulty;
+  isRecommended?: boolean;
+}) {
+  let className = 'w-full flex items-center justify-center h-[20px]';
 
   if (difficulty == 'easy') {
     className += ' bg-green-500';
@@ -95,6 +108,13 @@ function DifficultyLabel({ difficulty }: { difficulty: ProjectDifficulty }) {
   return (
     <div className={className}>
       <VisuallyHidden>{difficulty}</VisuallyHidden>
+      {isRecommended && (
+        <span className="flex items-center gap-[10px]">
+          <GemIcon size={14} />
+          <span className="text-xs font-bold tracking-wide">Recommended</span>
+          <GemIcon size={14} />
+        </span>
+      )}
     </div>
   );
 }

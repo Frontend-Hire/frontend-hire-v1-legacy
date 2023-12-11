@@ -29,7 +29,7 @@ export const getQuestionsFromLocal = cache(async () => {
 
 const projectsPath = path.join(process.cwd(), '/src/data/projects');
 
-export async function getProjectsFromLocal() {
+export const getProjectsFromLocal = cache(async () => {
   const projects: ProjectOverview[] = [];
   const allProjects = fs.readdirSync(projectsPath);
 
@@ -40,10 +40,13 @@ export async function getProjectsFromLocal() {
     projects.push({
       id: project,
       title: meta.title,
+      description: meta.description,
       difficulty: meta.difficulty,
+      isRecommended: meta.isRecommended,
       tasks: meta.tasks,
+      skills: meta.skills,
     });
   }
 
   return projects;
-}
+});

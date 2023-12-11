@@ -1,8 +1,11 @@
 export type ProjectOverview = {
   id: string;
   title: string;
+  description: string;
   difficulty: PROJECT_DIFFICULTY;
+  isRecommended?: boolean;
   tasks: string[];
+  skills: string[];
 };
 
 export type ProjectTab = {

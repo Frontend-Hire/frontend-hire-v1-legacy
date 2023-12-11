@@ -3,7 +3,7 @@ import VisuallyHidden from '../ui/visually-hidden';
 import { QuestionDifficulty } from '@/types/Question';
 import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
-import { cn } from '@/lib/utils';
+import SkillBadges from '../SkillBadges';
 
 interface Props {
   id: string;
@@ -39,27 +39,6 @@ const DifficultyLabel = ({
   );
 };
 
-const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
-  HTML: { className: 'bg-[#E44D26] text-white', label: 'HTML' },
-  CSS: { className: 'bg-[#2062AF] text-white', label: 'CSS' },
-  JS: { className: 'bg-[#F0DB4F] text-black', label: 'js' },
-  REACT: { className: 'bg-[#61DAFB] text-black', label: 'React' },
-  JEST: { className: 'bg-[#99425B] text-white', label: 'JEST' },
-};
-
-const SkillBadge = ({ skill }: { skill: string }) => {
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium leading-[100%]',
-        SKILL_CLASS[skill.toUpperCase()].className,
-      )}
-    >
-      {SKILL_CLASS[skill.toUpperCase()].label}
-    </div>
-  );
-};
-
 const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
   return isCompleted ? (
     <Tooltip title="Completed">
@@ -87,11 +66,7 @@ export default function QuestionItem({
         <div className="flex w-full flex-col gap-[5px] py-[10px]">
           <p className="font-bold">{title}</p>
           <p className="text-sm leading-[100%] text-muted">{description}</p>
-          <div className="flex gap-[10px]">
-            {skills.sort().map((skill) => (
-              <SkillBadge key={skill} skill={skill} />
-            ))}
-          </div>
+          <SkillBadges skills={skills} />
         </div>
         <CompletedBox isCompleted={isCompleted} />
       </div>
