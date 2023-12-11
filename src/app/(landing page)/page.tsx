@@ -17,15 +17,15 @@ export default function Home() {
   return (
     <main className="h-full">
       <section className="relative flex h-full flex-col items-center justify-center gap-[25px] p-[10px] text-center md:px-[40px] md:py-[10px]">
-        <p className="rounded-[5px] bg-[#18005F] px-[10px] py-[5px]">
+        <p className="rounded-[5px] bg-[#18005F] px-[10px] py-[5px] text-sm md:text-base">
           100% Free Access to Questions and Projects
         </p>
-        <h1 className="max-w-[25ch] text-5xl font-black">
+        <h1 className="max-w-[25ch] text-4xl font-black md:text-5xl">
           Practice Core Frontend Skills For Interviews And Real World
         </h1>
         <div className="flex items-center gap-[10px]">
           <Line />
-          <h2 className="whitespace-nowrap text-2xl font-bold">
+          <h2 className="whitespace-nowrap text-xl font-bold md:text-2xl">
             Make A Hiring Profile And Get Hired
           </h2>
           <Line />
@@ -37,7 +37,7 @@ export default function Home() {
             <span className="text-primary">7+ Questions</span> and{' '}
             <span className="text-primary">2+ Projects</span>
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-[25px]">
+          <div className="flex flex-wrap items-center justify-center gap-[20px] md:gap-[25px]">
             <Image src={HTMLLogo} alt="HTML Logo" />
             <Image src={CSSLogo} alt="CSS Logo" />
             <Image src={JSLogo} alt="JavaScript Logo" />
