@@ -53,16 +53,28 @@ export default function ProjectItem({
     return tasks.length;
   };
 
-  const renderLinkText = () => {
+  const renderActionButton = () => {
     if (isSubmitted) {
-      return 'Revisit';
+      return (
+        <Button asChild variant="outline">
+          <Link href={`/projects/${id}`}>Revist</Link>
+        </Button>
+      );
     }
 
     if (completedTasks.length === 0) {
-      return 'Start';
+      return (
+        <Button asChild>
+          <Link href={`/projects/${id}`}>Start</Link>
+        </Button>
+      );
     }
 
-    return 'Continue';
+    return (
+      <Button asChild variant="secondary">
+        <Link href={`/projects/${id}`}>Continue</Link>
+      </Button>
+    );
   };
 
   return (
@@ -78,9 +90,7 @@ export default function ProjectItem({
           {renderIcon()}
           {renderTasksLengthText()}
         </div>
-        <Button asChild>
-          <Link href={`/projects/${id}`}>{renderLinkText()}</Link>
-        </Button>
+        {renderActionButton()}
       </div>
     </div>
   );
