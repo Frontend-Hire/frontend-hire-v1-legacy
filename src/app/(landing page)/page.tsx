@@ -26,12 +26,16 @@ export default function Home() {
         <div className="flex items-center gap-[10px]">
           <Line />
           <h2 className="whitespace-nowrap text-xl font-bold md:text-2xl">
-            Make A Hiring Profile And Get Hired
+            Make A Hiring Profile And Get Hired *
           </h2>
           <Line />
         </div>
         <SignInButton label="Just Need A Google Account To Get Started " />
+
         <div className="absolute bottom-4 flex flex-col gap-[20px]">
+          <p className="max-w-fit self-center rounded-[5px] bg-destructive px-[5px] py-[2.5px] text-xs md:text-sm">
+            * Currently in Beta! Hiring Profiles available early 2024!
+          </p>
           <p className="font-bold">
             A Growing Library of{' '}
             <span className="text-primary">7+ Questions</span> and{' '}
