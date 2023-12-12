@@ -58,7 +58,12 @@ export default function ResetButtonWithAlert() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={reset}>Yes, reset</AlertDialogAction>
+          <AlertDialogAction
+            className="bg-red-500 hover:bg-red-600"
+            onClick={reset}
+          >
+            Yes, reset
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

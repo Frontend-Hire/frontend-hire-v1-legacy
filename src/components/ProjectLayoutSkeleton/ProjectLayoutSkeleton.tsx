@@ -8,7 +8,7 @@ import FakeTabHeader from './FakeTabHeader';
 export default function ProjectLayoutSkeleton() {
   return (
     <ReflexContainer orientation="vertical">
-      <ReflexElement className="animate-pulse bg-zinc-300">
+      <ReflexElement className="animate-pulse bg-[#151515]">
         <FakeTabHeader />
       </ReflexElement>
     </ReflexContainer>
