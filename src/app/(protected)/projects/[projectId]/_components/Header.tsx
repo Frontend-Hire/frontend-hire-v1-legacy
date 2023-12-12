@@ -35,7 +35,11 @@ export default function Header() {
     <header className="flex h-[40px] items-center justify-between gap-2">
       <div className="flex items-center gap-4">
         <Tooltip title={`Back to all projects`}>
-          <Button className="rounded-t-none" size="icon" asChild>
+          <Button
+            className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
+            size="icon"
+            asChild
+          >
             <Link href={`/projects`}>
               <ListIcon />
             </Link>
@@ -43,10 +47,10 @@ export default function Header() {
         </Tooltip>
       </div>
 
-      <Link href="/dashboard" className="max-xs:hidden">
-        <HeaderLogo fill="GRAY" />
+      <Link href="/projects" className="max-xs:hidden">
+        <HeaderLogo />
       </Link>
-      
+
       <div className="flex items-center gap-4">
         <ReportBugButtonWithDialog />
         {renderSubmitProjectButton()}

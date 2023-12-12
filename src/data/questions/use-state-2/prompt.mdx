@@ -1,0 +1,97 @@
+export const meta = {
+  title: 'useState - 2',
+  difficulty: 'easy',
+  skills: ['js', 'react'],
+  description:
+    "Buggy, buggy, buggy logic",
+  template: 'react',
+  externalCDNs: ["https://cdn.tailwindcss.com"],
+  files: {
+    '/App.js': {
+      code: `import { useState } from "react";
+
+import AddTask from './AddTask';
+import Tasks from './Tasks';
+
+export default function App() {
+  const [items, setItems] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const addItem = (newItem) => {
+    if (inputValue.trim()) {
+      setItems([...items, newItem]);
+      setInputValue("");
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-4 p-2">
+      <AddTask value={inputValue} onValueChange={setInputValue} onAddItem={addItem} />
+      <Tasks items={items} />
+    </div>
+  );
+}
+`,
+    },
+    '/AddTask.js': {
+      code: `export default function AddTask({value, onValueChange, onAddItem}) {
+  return (
+    <div className="flex gap-2">
+      <input
+        className="border p-1"
+        placeholder="Item"
+        value={value}
+        onChange={(e) => onValueChange(e.target.value)}
+      />
+      <button className="bg-blue-600 p-2 text-white" onClick={() => onAddItem(value)}>
+        Add Item
+      </button>
+    </div>
+  );
+}
+`
+    },
+    '/Tasks.js': {
+      code: `import { useState } from "react";
+
+export default function Tasks({ items }) {
+  const [tasks, setTasks] = useState(items);
+
+  const deleteItem = (index) => {
+    tasks.splice(index, 1);
+    setTasks(items);
+  };
+
+  return (
+    <ul>
+      {tasks.map((task, index) => (
+        <li className="flex items-center gap-2" key={index}>
+          {task}
+          <button
+            className="bg-red-600 p-2 text-white"
+            onClick={() => deleteItem(index)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+`
+    },
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+
+# useState - 2
+
+> Why did the React component feel relieved? Because with useState, it could finally let go of its props!
+
+There are several issues present in this code. Identify and resolve them!
+
+### Must Read Resources For This question
+- <a target="_blank" href="https://react.dev/learn/state-a-components-memory">State: A Components Memory</a> -  A guide to understanding state in React.
+- <a target="_blank" href="https://react.dev/reference/react/useState">API Reference: useState</a> - Official documentation for the useState hook.

@@ -37,7 +37,10 @@ export default function DeleteProjectSubmissionsButtonWithAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive-outline" className="min-w-[200px]">
+        <Button
+          variant="outline"
+          className="min-w-[200px] hover:border-destructive hover:text-destructive active:border-destructive"
+        >
           Clear Project Submissions
         </Button>
       </AlertDialogTrigger>

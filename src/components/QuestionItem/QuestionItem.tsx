@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
 import { QuestionDifficulty } from '@/types/Question';
-import { CheckSquareIcon, SquareIcon } from 'lucide-react';
+import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
+import SkillBadges from '../SkillBadges';
 
 interface Props {
   id: string;
   difficulty: QuestionDifficulty;
   title: string;
-  skill: string;
+  description: string;
+  skills: string[];
   isCompleted: boolean;
-  isFavorite: boolean;
 }
 
 const DifficultyLabel = ({
@@ -18,14 +19,14 @@ const DifficultyLabel = ({
 }: {
   difficulty: QuestionDifficulty;
 }) => {
-  let className = 'w-2 h-full';
+  let className = 'w-[20px] self-stretch';
 
   if (difficulty == 'easy') {
-    className += ' bg-green-500';
+    className += ' bg-easy';
   } else if (difficulty == 'medium') {
-    className += ' bg-yellow-500';
+    className += ' bg-medium';
   } else if (difficulty == 'hard') {
-    className += ' bg-red-500';
+    className += ' bg-hard';
   } else {
     className += ' bg-gray-500';
   }
@@ -41,31 +42,31 @@ const DifficultyLabel = ({
 const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
   return isCompleted ? (
     <Tooltip title="Completed">
-      <CheckSquareIcon />
+      <CheckCircleIcon size="48px" strokeWidth={2} />
     </Tooltip>
   ) : (
     <Tooltip title="Yet to solve">
-      <SquareIcon />
+      <CircleIcon size="48px" strokeWidth={2} />
     </Tooltip>
   );
 };
 
 export default function QuestionItem({
   id,
-  skill,
+  skills = [],
   title,
+  description,
   difficulty,
   isCompleted,
-  isFavorite,
 }: Props) {
   return (
-    <Link href={`/questions/${skill}/${id}`}>
-      <div className="flex h-[40px] min-w-[200px] items-center justify-between overflow-hidden rounded-md border border-gray-900 bg-white pr-2 hover:bg-gray-100">
-        <div className="flex h-full items-center gap-2 overflow-hidden text-ellipsis">
-          <DifficultyLabel difficulty={difficulty} />
-          <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">
-            {title.split('_').join(' ')}
-          </p>
+    <Link href={`/questions/${id}`}>
+      <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground hover:bg-card/80">
+        <DifficultyLabel difficulty={difficulty} />
+        <div className="flex w-full flex-col gap-[5px] py-[10px]">
+          <p className="font-bold">{title}</p>
+          <p className="text-sm leading-[100%] text-muted">{description}</p>
+          <SkillBadges skills={skills} />
         </div>
         <CompletedBox isCompleted={isCompleted} />
       </div>

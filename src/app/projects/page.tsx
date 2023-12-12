@@ -1,11 +1,9 @@
-import DifficultyLegend from '@/components/DifficultyLegend';
 import Heading from '@/components/Heading';
 import ProjectItem from '@/components/ProjectItem';
+import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getProjectsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserProjectSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-
-export const dynamic = 'force-dynamic';
 
 interface SolvedProjectData {
   completedTasks: number[];
@@ -37,33 +35,37 @@ export default async function Projects() {
     );
 
   return (
-    <main className="container">
-      <Heading variant="h1" className="mb-8 text-center">
-        Projects
-      </Heading>
-      <div className="mb-4">
-        <DifficultyLegend />
+    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+      <div className="flex flex-col gap-[15px] py-[10px]">
+        <Heading variant="h1">Projects</Heading>
+        <p className="text-sm text-muted">
+          Not some stupid clones but highly feature focused projects
+        </p>
       </div>
-
-      <div className="flex flex-wrap items-center justify-center gap-5 md:justify-start">
+      <VisuallyHidden>Projects List</VisuallyHidden>
+      <ul className="flex flex-wrap gap-[20px]">
         {localProjects.map((project) => {
           const solvedProject = solvedProjectsMap[project.id] || {};
           const completedTasks = solvedProject.completedTasks || [];
           const isSubmitted = solvedProject.isSubmitted || false;
 
           return (
-            <ProjectItem
-              key={project.id}
-              id={project.id}
-              tasks={project.tasks}
-              title={project.title}
-              difficulty={project.difficulty}
-              completedTasks={completedTasks}
-              isSubmitted={isSubmitted}
-            />
+            <li key={project.id}>
+              <ProjectItem
+                id={project.id}
+                tasks={project.tasks}
+                description={project.description}
+                title={project.title}
+                difficulty={project.difficulty}
+                skills={project.skills}
+                completedTasks={completedTasks}
+                isSubmitted={isSubmitted}
+                isRecommended={project.isRecommended}
+              />
+            </li>
           );
         })}
-      </div>
+      </ul>
     </main>
   );
 }

@@ -39,7 +39,7 @@ export default function ProjectPage() {
             label: 'Project',
             value: 'Project',
             content: (
-              <div className="prose max-w-none p-4">
+              <div className="prose prose-invert max-w-none bg-[#151515] p-4">
                 {data.project.getContent()}
               </div>
             ),
