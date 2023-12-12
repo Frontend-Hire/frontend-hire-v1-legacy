@@ -23,7 +23,7 @@ export default function Header() {
         </Tooltip>
       </div>
 
-      <Link href="/" className="max-xs:hidden">
+      <Link href="/questions" className="max-xs:hidden">
         <HeaderLogo />
       </Link>
 
