@@ -21,12 +21,12 @@ export default function Home() {
           <p className="rounded-[5px] bg-[#18005F] px-[10px] py-[5px] text-sm md:text-base">
             100% Free Access to Questions and Projects
           </p>
-          <h1 className="max-w-[25ch] text-4xl font-black md:text-5xl">
+          <h1 className="max-w-[25ch] text-3xl font-black md:text-4xl">
             Practice Core Frontend Skills For Interviews And Real World
           </h1>
           <div className="flex items-center gap-[10px]">
             <Line />
-            <h2 className="whitespace-nowrap text-xl font-bold md:text-2xl">
+            <h2 className="whitespace-nowrap text-lg font-bold md:text-xl">
               Make A Hiring Profile And Get Hired *
             </h2>
             <Line />
