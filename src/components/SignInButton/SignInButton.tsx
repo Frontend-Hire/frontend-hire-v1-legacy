@@ -18,7 +18,8 @@ export default function SignInButton({ label = 'Sign In With Google' }: Props) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          redirectTo: location.pathname,
+          redirectTo:
+            location.pathname === '/' ? '/questions' : location.pathname,
         }),
       });
       const { data } = await response.json();
