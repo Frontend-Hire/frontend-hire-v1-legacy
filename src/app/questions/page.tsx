@@ -21,6 +21,7 @@ export default async function Questions() {
     a.difficulty.localeCompare(b.difficulty),
   );
 
+
   const checkQuestionCompletion = (questionId: string) => {
     if (!solvedQuestions) return false;
 
