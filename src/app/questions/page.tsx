@@ -1,30 +1,54 @@
 import Heading from '@/components/Heading';
-import QuestionSkillCard from '@/components/QuestionSkillCard';
+import QuestionItem from '@/components/QuestionItem';
+import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function Questions() {
-  const data = await getQuestionsFromLocal();
+  const supabaseServerClient = createSupabaseServerClient();
+
+  const {
+    data: { session },
+  } = await supabaseServerClient.auth.getSession();
+
+  const [localQuestions, solvedQuestions] = await Promise.all([
+    getQuestionsFromLocal(),
+    session ? fetchUserQuestionSubmissions() : null,
+  ]);
+
+  const currentSkillData = localQuestions.sort((a, b) =>
+    a.difficulty.localeCompare(b.difficulty),
+  );
+
+
+  const checkQuestionCompletion = (questionId: string) => {
+    if (!solvedQuestions) return false;
+
+    return solvedQuestions.map((item) => item.question_id).includes(questionId);
+  };
 
   return (
-    <main>
-      <Heading variant="h1" className="mb-8 text-center">
-        Questions
-      </Heading>
-
-      <div className="grid grid-cols-1 justify-center justify-items-stretch gap-4 px-4 md:grid-cols-2 lg:grid-cols-3">
-        <QuestionSkillCard
-          skill="HTML-CSS"
-          noOfQuestions={data['HTML-CSS'].length}
-        />
-        <QuestionSkillCard
-          skill="JavaScript"
-          noOfQuestions={data['JavaScript'].length}
-        />
-        <QuestionSkillCard
-          skill="React"
-          noOfQuestions={data['React']?.length || 0}
-        />
+    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+      <div className="flex flex-col gap-[15px] py-[10px]">
+        <Heading variant="h1">Questions</Heading>
+        <p className="text-sm text-muted">Real World And Interview Based</p>
       </div>
+      <VisuallyHidden>Questions List</VisuallyHidden>
+      <ul className="flex flex-col gap-[20px]">
+        {currentSkillData.map((question) => (
+          <li key={question.id}>
+            <QuestionItem
+              id={question.id}
+              title={question.title}
+              description={question.description}
+              difficulty={question.difficulty}
+              isCompleted={checkQuestionCompletion(question.id)}
+              skills={question.skills}
+            />
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

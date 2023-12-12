@@ -5,7 +5,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import SignOut from './SignOut';
-import Link from 'next/link';
 import SettingsLink from './SettingsLink';
 
 interface Props {

@@ -1,6 +1,8 @@
 export type QuestionOverview = {
   id: string;
   title: string;
+  description: string;
+  skills: string[];
   difficulty: QuestionDifficulty;
 };
 

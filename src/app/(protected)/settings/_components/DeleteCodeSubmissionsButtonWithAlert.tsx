@@ -36,7 +36,10 @@ export default function DeleteCodeSubmissionsButtonWithAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive-outline" className="min-w-[200px]">
+        <Button
+          variant="outline"
+          className="min-w-[200px] hover:border-destructive hover:text-destructive active:border-destructive"
+        >
           Clear Code Submissions
         </Button>
       </AlertDialogTrigger>

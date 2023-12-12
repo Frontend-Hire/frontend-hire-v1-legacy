@@ -8,7 +8,7 @@ export default function ProjectLayout({
   return (
     <>
       {children}
-      <Footer className="bg-gray-400 text-[10px] text-white" />
+      <Footer className="text-[10px]" />
     </>
   );
 }
