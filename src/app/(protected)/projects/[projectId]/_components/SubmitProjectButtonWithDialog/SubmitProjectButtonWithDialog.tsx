@@ -87,14 +87,14 @@ export default function SubmitProjectButtonWithDialog({
           <DialogHeader>
             <DialogTitle>Submit Project</DialogTitle>
             <DialogDescription>
-              Submit the project links here. This will be later used to create
+              Submit the project links here. This will later be used to create
               your hiring profile.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={onSubmitProject} className="grid gap-2">
             <div className="grid gap-2 py-1">
               <Label htmlFor="github">GitHub Link</Label>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted">
                 Be sure to include good Readme doc in the repo.
               </p>
               <Input
@@ -109,7 +109,7 @@ export default function SubmitProjectButtonWithDialog({
             </div>
             <div className="grid gap-2 py-1">
               <Label htmlFor="liveLink">Live Link (Optional)</Label>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted">
                 Use Vercel, Netlify or your favorite hosting platform to host
                 the project.
               </p>

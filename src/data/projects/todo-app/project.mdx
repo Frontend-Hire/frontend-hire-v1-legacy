@@ -1,0 +1,78 @@
+import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
+
+export const meta = {
+  title: 'Todo App',
+  difficulty: 'medium',
+  description: 'We assure you that this project is far more than a mere to-do application. It is designed to incorporate robust features, similar to those found in Todoist or TickTick, facilitating effortless task addition and management.',
+  tasks: ['Setup React Project', 'Vitest', 'Read', 'Create', 'Update', 'Delete', 'Complete', 'Refactor', 'Tokens'],
+  skills: ['React', 'JS', 'Vitest'],
+  isRecommended: true,
+};
+
+# Todo App
+
+While many developers create Todo apps, only a few stand out enough to be noteworthy on a resume. Beyond basic CRUD (create, read, update, delete) operations, exceptional Todo apps offer advanced functionalities, significantly enhancing the user experience.
+
+<ProjectTasks>
+  <ProjectTaskItem id={1} taskName='Setup React Project'>
+    Use any of your preferred way to setup a new React project.
+    - Note: We suggest <strong>Vite</strong> and <strong>Vitest</strong> for this project but feel free to use alternatives if you do not prefer Vite.
+    - Our projects lists these setup guides as projects themselves!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={2} taskName='Vitest & React Testing Library'>
+    This project recommends using a testing library to build with confidence.
+    - We suggest using Vitest as the testing framework: <a href="https://vitest.dev/" target='_blank'>Vitest</a>.
+    - React Testing Library is a popular library for testing React apps: <a href='https://testing-library.com/docs/react-testing-library/intro' target='_blank'>React Testing Library (RTL)</a>.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={3} taskName='Custom Hook for Tasks'>
+    Develop a custom React hook to manage tasks. This hook should encapsulate all task-related logic including fetching, adding, updating, and deleting tasks. 
+    - Use React's `useState` and `useEffect` hooks for state management and side effects.
+    - Note: There is no need to bring in a network storage, but you should at least persist them in the browser storage such as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Local Storage</a> or <a href='https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API' target='_blank'>IndexedDB</a>.
+    - Consider creating custom functions within the hook for operations like addTask, deleteTask, updateTask, etc.
+    - These functions can be placeholders for now (Bonus: Add TypeScript).
+    - This hook will centralize the task logic, making it reusable across different components while also making testing the business logic easier!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={4} taskName='Feature: Tokens'>
+    Develop a token-based system for parsing and interpreting user input when adding new tasks. This feature aims to enhance user experience by allowing natural language inputs and automatically extracting key information such as dates, priorities, and tags.
+    - Examples: <a href='https://todoist.com/' target='_blank'>Todoist</a> and <a href='https://ticktick.com/' target='_blank'>TickTick</a>.
+    - Implement a function to parse the user's input and identify key tokens (e.g., dates, priorities).
+    - Utilize regular expressions or string matching techniques to identify patterns in the input.
+    - After parsing, convert the identified tokens into structured data that can be used by the task management system.
+    - Integrate this feature into the task creation process, ensuring that users can input tasks using natural language, and the system will automatically categorize and organize these tasks based on the extracted tokens.
+    - Provide examples and documentation on how users can effectively use this feature.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={5} taskName='Feature: Read'>
+    Implement the 'Read' feature to display tasks. Focus on fetching and rendering tasks from a mock API or local state.
+    - Consider pagination or infinite scroll for handling large numbers of tasks.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={6} taskName='Feature: Create'>
+    Implement the 'Create' feature to add new tasks. This should include an accessible form with validations. Highlight the input tokens identified.
+    - Try using dynamic form fields for additional task details.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={7} taskName='Feature: Update'>
+    Implement the 'Update' feature to update existing tasks. This should allow editing task details inline or through a dedicated edit view.
+    - Emphasize state management and the seamless update of the UI.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={8} taskName='Feature: Delete'>
+    Implement task deletion, ensuring a smooth user experience. Include confirmations to prevent accidental deletions.
+    - Think of the importance of updating the application state post-deletion.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={9} taskName='Feature: Complete'>
+    Add a feature to mark tasks as complete or incomplete. This could include striking through completed tasks and filtering them out or moving them to a 'completed' section.
+    - Focus on UI feedback and state transitions for a better user experience.
+    - Make sure the feature is <strong>Unit Tested</strong>!
+  </ProjectTaskItem>
+</ProjectTasks>
