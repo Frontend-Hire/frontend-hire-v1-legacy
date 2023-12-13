@@ -36,3 +36,5 @@ next-env.d.ts
 
 # swc
 .swc
+# Sentry Config File
+.sentryclirc
