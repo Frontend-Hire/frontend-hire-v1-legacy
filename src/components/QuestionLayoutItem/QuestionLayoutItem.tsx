@@ -35,7 +35,7 @@ export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
             key={tab.value}
             value={tab.value}
           >
-            <div className="h-0 flex-grow overflow-auto data-[state=inactive]:hidden">
+            <div className="h-0 flex-grow overflow-auto bg-[#151515] data-[state=inactive]:hidden">
               {tab.content}
             </div>
           </TabsContent>
