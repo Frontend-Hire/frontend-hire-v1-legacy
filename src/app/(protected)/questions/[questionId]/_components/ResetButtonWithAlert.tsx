@@ -17,8 +17,7 @@ import { RotateCcwIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 export default function ResetButtonWithAlert() {
-  const { skill, questionId } = useParams<{
-    skill: string;
+  const { questionId } = useParams<{
     questionId: string;
   }>();
   const {
@@ -27,9 +26,9 @@ export default function ResetButtonWithAlert() {
 
   const reset = () => {
     try {
-      const { meta } = require(
-        `@/data/questions/${skill}/${questionId}/prompt.mdx`,
-      ) as { meta: Meta };
+      const { meta } = require(`@/data/questions/${questionId}/prompt.mdx`) as {
+        meta: Meta;
+      };
 
       const metaDeepCopy = structuredClone(meta);
       if (metaDeepCopy.files) {
