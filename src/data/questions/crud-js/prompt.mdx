@@ -1,0 +1,53 @@
+export const meta = {
+  title: 'CRUD',
+  difficulty: 'easy',
+  skills: ['js', 'jest'],
+  description:
+    "Most software out there is about creating, reading, updating, and deleting data.",
+  template: 'test-ts',
+  files: {
+    '/index.js': {
+      code: `export function createTask(task) {
+  // Write the code here
+}
+
+export function readTasks(taskIds) {
+  // Write the code here
+}
+
+export function updateTask(taskId, task) {
+  // Write the code here
+}
+
+export function deleteTask(taskId) {
+  // Write the code here
+}
+`,
+      active: true
+    },
+    '/index.test.js': {
+      code: `import { createTask, readTasks, updateTasks, deleteTasks } from "./index";
+
+`
+      },
+    '/add.test.ts': {
+      code: '',
+      hidden: true,
+    }
+  },
+  showTests: true,
+  showConsole: true,
+};
+
+# CRUD
+
+> Why did the software developer go broke? 
+> Because he only knew how to CRUD - Create, Read, Update, Delete - but forgot the most important one: SELL!
+
+
+### Objectives
+
+
+#### Resources
+
+- 
