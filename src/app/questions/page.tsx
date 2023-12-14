@@ -4,6 +4,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import { DIFFICULTY_ORDER } from '@/types/Question';
 
 export default async function Questions() {
   const supabaseServerClient = createSupabaseServerClient();
@@ -17,10 +18,9 @@ export default async function Questions() {
     session ? fetchUserQuestionSubmissions() : null,
   ]);
 
-  const currentSkillData = localQuestions.sort((a, b) =>
-    a.difficulty.localeCompare(b.difficulty),
-  );
-
+  const currentSkillData = localQuestions.sort((a, b) => {
+    return DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty];
+  });
 
   const checkQuestionCompletion = (questionId: string) => {
     if (!solvedQuestions) return false;

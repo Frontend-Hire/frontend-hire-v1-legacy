@@ -27,4 +27,11 @@ export enum DIFFICULTY {
   MASTER = 'master',
 }
 
+export const DIFFICULTY_ORDER = {
+  [DIFFICULTY.EASY]: 1,
+  [DIFFICULTY.MEDIUM]: 2,
+  [DIFFICULTY.HARD]: 3,
+  [DIFFICULTY.MASTER]: 4,
+};
+
 export type QuestionDifficulty = DIFFICULTY;
