@@ -18,11 +18,11 @@ export default async function Header() {
   };
 
   return (
-    <header className="flex justify-between border-b p-[10px] shadow-sm md:px-[40px] md:py-[10px]">
+    <header className="flex justify-between gap-[20px] border-b p-[10px] shadow-sm md:px-[40px] md:py-[10px]">
       <Link href={getLogoLink()}>
         <HeaderLogo />
       </Link>
-      <div className="flex items-center gap-[20px] text-sm font-medium md:gap-[40px] md:text-base">
+      <div className="flex flex-wrap items-center justify-end gap-[20px] text-sm font-medium md:gap-[40px] md:text-base">
         <Link
           className="transition-all duration-300 hover:text-primary"
           href="/questions"
