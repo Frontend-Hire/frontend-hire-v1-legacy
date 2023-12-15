@@ -1,0 +1,126 @@
+export const meta = {
+  title: 'useTasks',
+  difficulty: 'medium',
+  skills: ['react'],
+  description:
+    "Custom hooks are a great way to reuse and abstract logic in React.",
+  template: 'react',
+  externalCDNs: ["https://cdn.tailwindcss.com"],
+  files: {
+    '/useTasks.js': {
+      code: `import React, { useState, useEffect } from 'react';
+
+export default function useTasks() {
+  
+}`
+},
+    '/App.js': {
+      code: `import React, { useState, useEffect } from 'react';
+import useTasks from './useTasks';
+
+export default function App() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    // Load tasks from local storage on initial render
+  }, []);
+
+  const createTask = () => {
+    // Create a new task with a unique id and add it to the tasks state
+  };
+
+  const editTask = (taskId, newText) => {
+    // Update the text of a task
+  };
+
+  const deleteTask = (taskId) => {
+    // Delete a task from the tasks state
+  };
+
+  const toggleCompleteTask = (taskId) => {
+    // Toggle the completed status of a task
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
+
+      <div className="mb-4">
+        <input 
+          type="text" 
+          className="border p-2 rounded mr-2"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Enter a new task"
+        />
+        <button 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={createTask}
+        >
+          Add Task
+        </button>
+      </div>
+
+      <div>
+        {tasks.map(task => (
+          <div key={task.id} className="flex items-center mb-2">
+            <input 
+              type="text"
+              className={\`flex-1 p-2 mr-2 \${task.completed ? 'line-through' : ''}\`}
+              value={task.text}
+              onChange={(e) => editTask(task.id, e.target.value)}
+            />
+            <button 
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2"
+              onClick={() => deleteTask(task.id)}
+            >
+              Delete
+            </button>
+            <button 
+              className={\`bg-\${task.completed ? 'yellow' : 'green'}-500 hover:bg-\${task.completed ? 'yellow' : 'green'}-700 text-white font-bold py-1 px-2 rounded\`}
+              onClick={() => toggleCompleteTask(task.id)}
+            >
+              {task.completed ? 'Not Complete' : 'Complete'}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+`,
+    }
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+
+# useTasks
+
+> Why don't programmers like nature?
+> It has too many bugs!
+
+### Objective
+Implement task management functionality (create, update, delete, complete) in the App component, then abstract this logic into a custom useTasks hook. Use Local Storage to persist the task data between page reloads.
+
+
+### Requirements
+- Initial Implementation in App Component: Start by implementing the task management logic directly in the App component. This includes creating, updating, deleting, and completing tasks, with the state being persisted in local storage.
+- Local Storage for Persistence: Ensure that the task data persists between page reloads using local storage.
+- Task Management Features:
+  - Create Task: Functionality to add a new task.
+  - Update Task: Ability to modify an existing task.
+  - Delete Task: Option to remove a task.
+  - Complete Task: Feature to mark a task as completed.
+- Abstract to useTasks Hook: After implementing the features in the App component, refactor the code by creating a custom useTasks hook (file has been created for you already!). This hook should encapsulate all the task management logic.
+- The code should now be lot cleaner and easier to understand. The App component should only be responsible for rendering the UI and calling the useTasks hook.
+
+### Note
+The current implementation uses TailwindCSS for styling, which is highly customizable and offers a wide range of classes for various styling needs.
+
+Remember, the primary goal of this question is to understand the custom hook concept. The styling is secondary and can be tailored to fit your unique design aesthetics or the specific requirements of your project.
+
+### Must Read Resources For This question
+- <a target="_blank" href="https://react.dev/learn/reusing-logic-with-custom-hooks">React Docs: Reusing Logic with Custom Hooks</a>
