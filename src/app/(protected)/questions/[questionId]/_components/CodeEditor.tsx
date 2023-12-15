@@ -2,7 +2,7 @@ import * as React from 'react';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { keymap } from '@codemirror/view';
 import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
-import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
+// import { autocompletion, completionKeymap } from '@codemirror/autocomplete';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
 import PrettierButton from './PrettierButton';
@@ -33,7 +33,7 @@ export default function CodeEditor() {
             <SandpackCodeEditor
               ref={codemirrorInstance}
               extensions={[
-                autocompletion(),
+                // autocompletion(),
                 keymap.of([
                   {
                     key: 'Mod-s',
@@ -44,7 +44,7 @@ export default function CodeEditor() {
                   },
                 ]),
               ]}
-              extensionsKeymap={[completionKeymap as any]} // For TS error
+              // extensionsKeymap={[completionKeymap as any]} // For TS error
               showTabs
               showRunButton={false}
               showLineNumbers
