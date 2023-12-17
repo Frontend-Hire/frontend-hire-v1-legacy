@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Meta } from '@/types/mdx';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
+import { SandpackFile } from '@codesandbox/sandpack-react';
+import { QuestionData } from '../_types/questionData';
 
 export interface IQuestionLoading {
   status: 'loading';
@@ -15,7 +17,7 @@ export interface IQuestionError {
 export interface IQuestionSuccess {
   status: 'success';
   question: {
-    getContent: () => React.ReactNode;
+    content: string;
     meta: Meta;
   };
 }
@@ -30,10 +32,11 @@ export type Question =
   | IQuestionSuccess
   | IQuestionIdle;
 
-export default function useQuestion() {
+export default function useClientData(questionData: QuestionData) {
   const { questionId } = useParams<{
     questionId: string;
   }>();
+  const { content, meta } = questionData;
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const [data, setData] = React.useState<Question>({
     status: 'idle',
@@ -47,10 +50,6 @@ export default function useQuestion() {
   React.useEffect(() => {
     const getQuestion = async () => {
       try {
-        const { default: getContent, meta } = require(
-          `@/data/questions/${questionId}/prompt.mdx`,
-        );
-
         const metaDeepCopy = structuredClone(meta);
 
         const [{ data: codeSubmissionData }, { data: codeHistoryData }] =
@@ -71,7 +70,9 @@ export default function useQuestion() {
 
         if (codeHistoryData) {
           codeHistoryData.code_history_files.forEach(
-            (file) => (metaDeepCopy.files[file.file_name].code = file.code),
+            (file) =>
+              ((metaDeepCopy.files[file.file_name] as SandpackFile).code =
+                file.code),
           );
         }
 
@@ -86,7 +87,7 @@ export default function useQuestion() {
           sessionStorage.setItem('code_history_id', `${codeHistoryData.id}`);
         }
 
-        return { getContent, meta: metaDeepCopy };
+        return { content, meta: metaDeepCopy };
       } catch (e) {
         console.log(e);
         setData({ status: 'error', message: e as string });
@@ -106,7 +107,7 @@ export default function useQuestion() {
         clearTimeout(timeout);
       };
     });
-  }, [questionId, supabaseBrowserClient]);
+  }, [content, meta, questionId, supabaseBrowserClient]);
 
   return { data };
 }
