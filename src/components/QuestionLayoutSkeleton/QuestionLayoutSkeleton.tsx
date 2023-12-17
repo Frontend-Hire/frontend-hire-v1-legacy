@@ -1,7 +1,3 @@
-'use client';
-
-import 'react-reflex/styles.css';
-
 import FakeTabHeader from './FakeTabHeader';
 
 export default function QuestionLayoutSkeleton() {
