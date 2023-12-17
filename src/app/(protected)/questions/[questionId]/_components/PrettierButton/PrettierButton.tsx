@@ -22,13 +22,17 @@ const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
     } = useSandpack();
 
     const prettify = async () => {
-      if (readOnly) return;
+      try {
+        if (readOnly) return;
 
-      const prettyCode = await formatCodeWithPrettier(code, activeFile);
-      updateCode(prettyCode);
+        const prettyCode = await formatCodeWithPrettier(code, activeFile);
+        updateCode(prettyCode);
 
-      if (!editorInstance) return;
-      editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
+        if (!editorInstance) return;
+        editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
+      } catch (e) {
+        console.error(e);
+      }
     };
 
     return (

@@ -11,28 +11,23 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
-import { Meta } from '@/types/mdx';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { useQuestionData } from '../_context/QuestionDataProvider';
 
 export default function ResetButtonWithAlert() {
-  const { questionId } = useParams<{
-    questionId: string;
-  }>();
+  const {
+    meta: { files },
+  } = useQuestionData();
+
   const {
     sandpack: { updateFile },
   } = useSandpack();
 
   const reset = () => {
     try {
-      const { meta } = require(`@/data/questions/${questionId}/prompt.mdx`) as {
-        meta: Meta;
-      };
-
-      const metaDeepCopy = structuredClone(meta);
-      if (metaDeepCopy.files) {
-        updateFile(metaDeepCopy.files);
+      if (files) {
+        updateFile(files);
       }
     } catch (e) {
       console.log(e);

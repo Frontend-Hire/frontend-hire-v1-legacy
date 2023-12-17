@@ -5,6 +5,12 @@ import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { DIFFICULTY_ORDER } from '@/types/Question';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Questions | Frontend Hire',
+  description: 'Real World And Interview Based Questions',
+};
 
 export default async function Questions() {
   const supabaseServerClient = createSupabaseServerClient();

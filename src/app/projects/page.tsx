@@ -5,6 +5,12 @@ import { getProjectsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserProjectSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects | Frontend Hire',
+  description: 'Not some stupid clones but highly feature focused projects',
+};
 interface SolvedProjectData {
   completedTasks: number[];
   isSubmitted: boolean;

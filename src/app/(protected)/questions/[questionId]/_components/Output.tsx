@@ -8,14 +8,13 @@ import {
 } from '@codesandbox/sandpack-react';
 import { InfoIcon } from 'lucide-react';
 import RunTestsButton from './RunTestsButton';
+import { useQuestionData } from '../_context/QuestionDataProvider';
 
-interface Props {
-  showPreview?: boolean;
-  showTests?: boolean;
-  showConsole?: boolean;
-}
+export default function Output() {
+  const {
+    meta: { showPreview, showConsole, showTests },
+  } = useQuestionData();
 
-export default function Output({ showPreview, showConsole, showTests }: Props) {
   const tabs: QuestionTab[] = [];
 
   if (showPreview) {

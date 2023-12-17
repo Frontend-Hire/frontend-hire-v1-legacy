@@ -15,7 +15,7 @@ export type Meta = {
   showTests?: boolean;
   description?: string;
   expectedOutput?: string;
-  files?: SandpackFiles;
+  files: SandpackFiles;
   submittedBy?: string;
   dependencies?: { [key: string]: string };
 };
