@@ -10,7 +10,8 @@ export async function generateMetadata({
 }) {
   const questionData = await getQuestion(params.questionId);
   return {
-    title: `${questionData?.meta.title || 'Frontend Hire'}`,
+    title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
+    description: questionData?.meta.description,
   };
 }
 
