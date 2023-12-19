@@ -10,7 +10,7 @@ const heading = cva('scroll-m-20', {
   variants: {
     variant: {
       h1: 'text-4xl font-black leading-[100%] tracking-tight',
-      h2: 'border-b pb-2 text-3xl font-semibold transition-colors first:mt-0',
+      h2: 'text-3xl font-semibold transition-colors first:mt-0',
       h3: 'text-2xl font-semibold',
       h4: 'text-xl font-semibold',
     },
