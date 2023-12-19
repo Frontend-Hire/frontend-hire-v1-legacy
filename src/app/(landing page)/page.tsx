@@ -5,6 +5,7 @@ import CSSLogo from '@/assets/toollogos/css.png';
 import JSLogo from '@/assets/toollogos/js.png';
 import TSLogo from '@/assets/toollogos/ts.png';
 import ReactLogo from '@/assets/toollogos/react.png';
+import TailwindLogo from '@/assets/toollogos/tailwindCSS.png';
 import ViteLogo from '@/assets/toollogos/vite.png';
 import ParcelLogo from '@/assets/toollogos/parcel.png';
 import JestLogo from '@/assets/toollogos/jest.png';
@@ -40,7 +41,7 @@ export default function Home() {
           </p>
           <p className="text-sm font-bold md:text-base">
             A Growing Library of{' '}
-            <span className="text-primary">7+ Questions</span> and{' '}
+            <span className="text-primary">10+ Questions</span> and{' '}
             <span className="text-primary">2+ Projects</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-[20px] md:gap-[25px]">
@@ -68,6 +69,11 @@ export default function Home() {
               className="h-[24px] w-max md:h-[40px]"
               src={ReactLogo}
               alt="React Logo"
+            />
+            <Image
+              className="h-[24px] w-max md:h-[40px]"
+              src={TailwindLogo}
+              alt="TailwindCSS Logo"
             />
             <Image
               className="h-[24px] w-max md:h-[40px]"
