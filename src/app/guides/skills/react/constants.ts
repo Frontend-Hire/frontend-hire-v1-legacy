@@ -27,7 +27,7 @@ export const COURSE_ITEMS: SpecialItem[] = [
     isPaid: true,
     isRecommended: true,
     description:
-      'This is a book that teaches you the why behind React and the advanced concepts do not feel advanced anymore. Highly Recommended!',
+      'This is a book that teaches you the why behind React make the advanced concepts feel basic. Highly Recommended!',
     isCourseItem: true,
   },
   {
