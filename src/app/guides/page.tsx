@@ -1,5 +1,7 @@
+import GuideItem from '@/components/GuideItem';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
+import { GraduationCapIcon, UserSquareIcon } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -17,6 +19,22 @@ export default async function Guides() {
         </p>
       </div>
       <VisuallyHidden>Guides List</VisuallyHidden>
+      <ul className="flex flex-col gap-[20px]">
+        <li>
+          <GuideItem
+            title="Skill Guides"
+            link="/guides/skill"
+            icon={<GraduationCapIcon size={40} />}
+          />
+        </li>
+        <li>
+          <GuideItem
+            title="Interview Guides"
+            link="/guides/interview"
+            icon={<UserSquareIcon size={40} />}
+          />
+        </li>
+      </ul>
     </main>
   );
 }
