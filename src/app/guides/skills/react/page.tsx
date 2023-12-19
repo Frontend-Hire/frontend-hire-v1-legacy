@@ -51,7 +51,7 @@ export default function ReactSkillGuide() {
           <p className="text-sm text-muted">
             Choose only one, immediately switch if chosen one does not suit your
             learning style (
-            <SpecialText>money can be earned back, time cannot</SpecialText>)
+            <SpecialText>money can be earned back but time?</SpecialText>)
           </p>
           <ol className="flex flex-col gap-[10px]">
             {COURSE_ITEMS.map((item) => (
