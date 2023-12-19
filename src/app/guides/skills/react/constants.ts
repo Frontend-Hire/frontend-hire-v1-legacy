@@ -21,6 +21,16 @@ export const COURSE_ITEMS: SpecialItem[] = [
     author: 'React Team and external contributors',
   },
   {
+    title: 'Advanced React',
+    link: 'https://advanced-react.com/',
+    author: 'Nadia Makarevich',
+    isPaid: true,
+    isRecommended: true,
+    description:
+      'This is a book that teaches you the why behind React and the advanced concepts do not feel advanced anymore. Highly Recommended!',
+    isCourseItem: true,
+  },
+  {
     title: 'Complete Intro to React, v8',
     link: 'https://frontendmasters.com/courses/complete-react-v8/',
     author: 'Brian Holt on Frontend Masters',
