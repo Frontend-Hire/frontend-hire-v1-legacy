@@ -4,6 +4,12 @@ import ReactLogo from '@/assets/toollogos/react.png';
 import SpecialText from '@/components/SpecialText';
 import GuideSpecialItem from '@/components/GuideSpecialItem';
 import { COURSE_ITEMS } from './constants';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'React Learning Guide | Frontend Hire',
+  description: 'Our compilation of best resources out there',
+};
 
 export default function ReactSkillGuide() {
   return (

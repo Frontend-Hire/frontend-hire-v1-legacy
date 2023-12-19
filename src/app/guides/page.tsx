@@ -5,8 +5,8 @@ import { GraduationCapIcon, UserSquareIcon } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Questions | Frontend Hire',
-  description: 'Real World And Interview Based Questions',
+  title: 'Guides | Frontend Hire',
+  description: "All the guides you'd ever need",
 };
 
 export default async function Guides() {

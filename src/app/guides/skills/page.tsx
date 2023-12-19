@@ -4,6 +4,12 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 
 import ReactLogo from '@/assets/toollogos/react.png';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Skill Guides | Frontend Hire',
+  description: 'All the resources to be confident in a skill',
+};
 
 export default function SkillGuides() {
   return (
