@@ -23,17 +23,17 @@ export default async function Guides() {
         <li>
           <GuideItem
             title="Skill Guides"
-            link="/guides/skill"
+            link="/guides/skills"
             icon={<GraduationCapIcon size={40} />}
           />
         </li>
-        <li>
+        {/* <li>
           <GuideItem
             title="Interview Guides"
             link="/guides/interview"
             icon={<UserSquareIcon size={40} />}
           />
-        </li>
+        </li> */}
       </ul>
     </main>
   );
