@@ -1,6 +1,7 @@
 import { Meta } from '@/types/mdx';
 
 export type QuestionData = {
-  content: string;
-  meta: Meta;
+  getContent: () => React.ReactNode;
+  userMeta: Meta;
+  originalMeta: Meta;
 };

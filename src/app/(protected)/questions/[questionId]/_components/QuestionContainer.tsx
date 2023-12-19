@@ -4,8 +4,8 @@ import { useQuestionData } from '../_context/QuestionDataProvider';
 
 export default function QuestionContainer() {
   const {
-    content,
-    meta: { difficulty },
+    getContent,
+    originalMeta: { difficulty },
   } = useQuestionData();
 
   return (
@@ -19,7 +19,7 @@ export default function QuestionContainer() {
           value: 'Question',
           content: (
             <div className="prose prose-invert max-w-none bg-[#151515] p-4">
-              {content}
+              {getContent()}
             </div>
           ),
         },

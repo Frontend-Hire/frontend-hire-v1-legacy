@@ -17,7 +17,7 @@ import { useQuestionData } from '../_context/QuestionDataProvider';
 
 export default function ResetButtonWithAlert() {
   const {
-    meta: { files },
+    originalMeta: { files },
   } = useQuestionData();
 
   const {

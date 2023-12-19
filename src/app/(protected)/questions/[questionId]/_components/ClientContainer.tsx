@@ -13,12 +13,8 @@ import useClientData from '../_hooks/useClientData';
 import { QuestionData } from '../_types/questionData';
 import { QuestionDataProvider } from '../_context/QuestionDataProvider';
 
-interface Props {
-  questionData: QuestionData;
-}
-
-export default function ClientContainer({ questionData }: Props) {
-  const { data } = useClientData(questionData);
+export default function ClientContainer() {
+  const { data } = useClientData();
 
   if (data.status === 'loading' || data.status === 'idle')
     return (
@@ -36,20 +32,20 @@ export default function ClientContainer({ questionData }: Props) {
   }
 
   return (
-    <QuestionDataProvider questionData={questionData}>
+    <QuestionDataProvider questionData={data.question}>
       <QuestionHotkeysProvider>
         <SandpackProvider
           style={{
             height: '100%',
           }}
-          template={data.question.meta.template}
+          template={data.question.originalMeta.template}
           customSetup={{
-            dependencies: data.question.meta.dependencies,
+            dependencies: data.question.originalMeta.dependencies,
           }}
           theme="dark"
-          files={data.question.meta.files}
+          files={data.question.userMeta.files}
           options={{
-            externalResources: data.question.meta.externalCDNs,
+            externalResources: data.question.originalMeta.externalCDNs,
             autoReload: true,
             autorun: false, // If true results in infinite loader
           }}
