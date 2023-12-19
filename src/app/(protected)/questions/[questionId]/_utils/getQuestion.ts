@@ -1,18 +1,11 @@
 import { Meta } from '@/types/mdx';
 import { cache } from 'react';
 
-const getQuestion = cache(async (questionId: string) => {
+const getQuestionMetaData = cache(async (questionId: string) => {
   try {
-    const { default: getContent, meta } = require(
-      `@/data/questions/${questionId}/prompt.mdx`,
-    );
+    const { meta } = require(`@/data/questions/${questionId}/prompt.mdx`);
 
-    const metaDeepCopy = structuredClone(meta);
-
-    const content = getContent();
-
-    return { content, meta: metaDeepCopy } as {
-      content: string;
+    return { meta } as {
       meta: Meta;
     };
   } catch (e) {
@@ -20,4 +13,4 @@ const getQuestion = cache(async (questionId: string) => {
   }
 });
 
-export default getQuestion;
+export default getQuestionMetaData;

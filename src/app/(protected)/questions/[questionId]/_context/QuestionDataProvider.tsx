@@ -1,4 +1,3 @@
-import { Meta } from '@/types/mdx';
 import React from 'react';
 import { QuestionData } from '../_types/questionData';
 

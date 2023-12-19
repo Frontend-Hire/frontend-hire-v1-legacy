@@ -12,7 +12,7 @@ import { useQuestionData } from '../_context/QuestionDataProvider';
 
 export default function Output() {
   const {
-    meta: { showPreview, showConsole, showTests },
+    originalMeta: { showPreview, showConsole, showTests },
   } = useQuestionData();
 
   const tabs: QuestionTab[] = [];

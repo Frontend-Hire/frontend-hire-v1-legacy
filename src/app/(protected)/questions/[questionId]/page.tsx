@@ -15,12 +15,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function Question({
-  params,
-}: {
-  params: { questionId: string };
-}) {
-  const questionData = await getQuestion(params.questionId);
-
-  return <ClientContainer questionData={questionData!} />;
+export default async function Question() {
+  return <ClientContainer />;
 }
