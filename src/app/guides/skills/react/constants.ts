@@ -6,7 +6,7 @@ export const COURSE_ITEMS: SpecialItem[] = [
     link: 'https://www.joyofreact.com/',
     author: 'Josh W Comeau',
     description:
-      'Interactive courses are the best. This course comes with a lot of fun and joy. Highly recommended!',
+      "Interactive courses are the best. This course comes with a lot of fun and joy while teaching you almost everything you'd ever need. Highly recommended!",
     isPaid: true,
     isRecommended: true,
     isCourseItem: true,
