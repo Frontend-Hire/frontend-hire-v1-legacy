@@ -32,12 +32,17 @@ export default function ReactSkillGuide() {
               learning <SpecialText>foundational JavaScript!</SpecialText>
             </li>
             <li>
-              React is at <SpecialText>its core is simple</SpecialText>, most of
+              React at <SpecialText>its core is simple</SpecialText>, most of
               the complexity comes from the ecosystem of React.
             </li>
             <li>
-              If you are <SpecialText>foundations are strong</SpecialText>, you
-              can easily be comfortable in the React ecosystem.
+              If your <SpecialText>foundations are strong</SpecialText>, you can
+              easily be comfortable in the React ecosystem.
+            </li>
+            <li>
+              Learn the different{' '}
+              <SpecialText>component design patterns</SpecialText> as quickly as
+              possible.
             </li>
           </ul>
         </section>
