@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import TodoistGif from './todoist.gif';
+
 import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
 
 export const meta = {
@@ -12,6 +15,8 @@ export const meta = {
 # Todo App
 
 While many developers create Todo apps, only a few stand out enough to be noteworthy on a resume. Beyond basic CRUD (create, read, update, delete) operations, exceptional Todo apps offer advanced functionalities, significantly enhancing the user experience.
+
+<Image src={TodoistGif} alt='todoist token detection' />
 
 <ProjectTasks>
   <ProjectTaskItem id={1} taskName='Setup React Project'>
