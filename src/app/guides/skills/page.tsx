@@ -1,4 +1,4 @@
-import GuideItem from '@/components/GuideItem';
+import CardLinkItem from '@/components/CardLinkItem';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 
@@ -25,7 +25,7 @@ export default function SkillGuides() {
       <VisuallyHidden>Skill Guides List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
         <li>
-          <GuideItem
+          <CardLinkItem
             title="React Learning Guide"
             link="/guides/skills/react"
             icon={<Image src={ReactLogo} alt="" />}
