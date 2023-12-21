@@ -7,7 +7,7 @@ interface Props {
   icon?: React.ReactNode;
 }
 
-export default function GuideItem({ link, icon, title }: Props) {
+export default function CardLinkItem({ link, icon, title }: Props) {
   return (
     <Link
       className="flex items-center justify-between rounded bg-card p-[10px] hover:bg-card/80"
