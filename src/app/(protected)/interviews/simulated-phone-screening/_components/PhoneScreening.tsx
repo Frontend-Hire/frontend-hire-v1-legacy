@@ -11,9 +11,13 @@ enum SimulationState {
   DONE,
 }
 
-export default function PhoneScreening() {
+interface Props {
+  candidateName: string;
+}
+
+export default function PhoneScreening({ candidateName }: Props) {
   const [simulation, setSimulation] = React.useState<SimulationState>(
-    SimulationState.INPROGRESS,
+    SimulationState.IDLE,
   );
 
   const handleStart = () => {
@@ -25,7 +29,7 @@ export default function PhoneScreening() {
   }
 
   if (simulation === SimulationState.INPROGRESS) {
-    return <Progress />;
+    return <Progress candidateName={candidateName} />;
   }
 
   if (simulation === SimulationState.DONE) {

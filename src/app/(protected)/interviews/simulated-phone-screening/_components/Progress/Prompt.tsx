@@ -5,13 +5,10 @@ import { useSpeechSynthesis } from '../../_context/SpeechSynthesisContext';
 
 interface Props {
   isActive: boolean;
-  text?: string;
+  text: string;
 }
 
-export default function Prompt({
-  isActive,
-  text = 'Hi, am I speaking to username?',
-}: Props) {
+export default function Prompt({ isActive, text }: Props) {
   const { speak, cancel } = useSpeechSynthesis();
   const [displayText, setDisplayText] = React.useState('');
   const [charIndex, setCharIndex] = React.useState(0);
@@ -34,16 +31,16 @@ export default function Prompt({
 
   React.useEffect(() => {
     if (isActive) {
-      speak('Hi, am I speaking to username?');
+      speak(text);
     }
 
     return () => {
       cancel();
     };
-  }, [isActive, speak, cancel]);
+  }, [isActive, speak, cancel, text]);
 
   const onPardon = () => {
-    speak('Hi, am I speaking to username?');
+    speak(text);
   };
 
   return (

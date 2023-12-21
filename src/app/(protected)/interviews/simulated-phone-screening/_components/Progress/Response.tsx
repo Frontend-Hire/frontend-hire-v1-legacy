@@ -55,7 +55,7 @@ export default function Response({ isActive }: Props) {
           </Button>
         )}
       </div>
-      {error && <div className="text-red-500">{error}</div>}
+      {error && <div className="text-destructive">{error}</div>}
     </div>
   );
 }

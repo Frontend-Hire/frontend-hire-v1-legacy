@@ -4,6 +4,7 @@ import { PhoneCallIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import PhoneScreening from './_components/PhoneScreening';
 import { SpeechSynthesisProvider } from './_context/SpeechSynthesisContext';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
@@ -11,6 +12,12 @@ export const metadata: Metadata = {
 };
 
 export default async function SimulatedPhoneScreening() {
+  const supabaseServerClient = createSupabaseServerClient();
+
+  const {
+    data: { session },
+  } = await supabaseServerClient.auth.getSession();
+
   return (
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <div className="flex justify-between gap-[10px]">
@@ -23,7 +30,9 @@ export default async function SimulatedPhoneScreening() {
         <PhoneCallIcon size={60} />
       </div>
       <SpeechSynthesisProvider>
-        <PhoneScreening />
+        <PhoneScreening
+          candidateName={session?.user.user_metadata?.name || ''}
+        />
       </SpeechSynthesisProvider>
     </main>
   );
