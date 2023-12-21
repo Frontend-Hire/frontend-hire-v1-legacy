@@ -1,9 +1,7 @@
+import CardLinkItem from '@/components/CardLinkItem';
 import Heading from '@/components/Heading';
-import ProjectItem from '@/components/ProjectItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { getProjectsFromLocal } from '@/lib/fetchLocalFiles';
-import { fetchUserProjectSubmissions } from '@/lib/supabase/fetchUserSubmissions';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import { PhoneCallIcon } from 'lucide-react';
 
 import { Metadata } from 'next';
 
@@ -22,7 +20,15 @@ export default async function Projects() {
         </p>
       </div>
       <VisuallyHidden>Interview Types</VisuallyHidden>
-      <ul className="flex flex-wrap gap-[20px]"></ul>
+      <ul className="flex flex-col gap-[20px]">
+        <li>
+          <CardLinkItem
+            title="Simulated Phone Screening"
+            link="/interviews/simulated-phone-screening"
+            icon={<PhoneCallIcon size={40} />}
+          />
+        </li>
+      </ul>
     </main>
   );
 }
