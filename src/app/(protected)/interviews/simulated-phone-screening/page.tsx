@@ -2,13 +2,14 @@ import Heading from '@/components/Heading';
 import { PhoneCallIcon } from 'lucide-react';
 
 import { Metadata } from 'next';
+import PhoneScreening from './_components/PhoneScreening';
 
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
 };
 
-export default async function Projects() {
+export default async function SimulatedPhoneScreening() {
   return (
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <div className="flex justify-between gap-[10px]">
@@ -20,6 +21,7 @@ export default async function Projects() {
         </div>
         <PhoneCallIcon size={60} />
       </div>
+      <PhoneScreening />
     </main>
   );
 }
