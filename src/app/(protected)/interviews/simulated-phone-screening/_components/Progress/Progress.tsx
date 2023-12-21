@@ -4,8 +4,8 @@ import Response from './Response';
 import { Button } from '@/components/ui/button';
 
 export default function Progress() {
-  const [currentStage, setCurrentStage] = React.useState(1);
-  const totalStages = 3;
+  const [currentStage, setCurrentStage] = React.useState(0);
+  const totalStages = 2;
 
   const handleStageCompletion = () => {
     if (currentStage < totalStages) {
@@ -15,7 +15,7 @@ export default function Progress() {
 
   const renderStages = () => {
     let stages = [];
-    for (let stage = 1; stage <= currentStage; stage++) {
+    for (let stage = 0; stage <= currentStage; stage++) {
       stages.push(
         <React.Fragment key={stage}>
           <Prompt isActive={currentStage === stage} />

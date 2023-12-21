@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { SmartphoneNfcIcon } from 'lucide-react';
 
@@ -6,6 +7,32 @@ interface Props {
 }
 
 export default function Prompt({ isActive }: Props) {
+  React.useEffect(() => {
+    const speak = () => {
+      if ('speechSynthesis' in window) {
+        const msg = new SpeechSynthesisUtterance(
+          'Hi, am I speaking to username?',
+        );
+        msg.voice = window.speechSynthesis
+          .getVoices()
+          .filter((voice) => voice.lang === 'hi-IN')[0];
+        window.speechSynthesis.speak(msg);
+      } else {
+        console.log('Speech synthesis not supported');
+      }
+    };
+
+    if (isActive) {
+      speak();
+    }
+
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [isActive]);
+
   const onPardon = () => {
     if ('speechSynthesis' in window) {
       var msg = new SpeechSynthesisUtterance();
