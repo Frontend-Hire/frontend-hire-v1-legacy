@@ -1,52 +1,27 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { SmartphoneNfcIcon } from 'lucide-react';
+import { useSpeechSynthesis } from '../../_context/SpeechSynthesisContext';
 
 interface Props {
   isActive: boolean;
 }
 
 export default function Prompt({ isActive }: Props) {
-  React.useEffect(() => {
-    const speak = () => {
-      if ('speechSynthesis' in window) {
-        const msg = new SpeechSynthesisUtterance(
-          'Hi, am I speaking to username?',
-        );
-        msg.voice = window.speechSynthesis
-          .getVoices()
-          .filter((voice) => voice.lang === 'hi-IN')[0];
-        window.speechSynthesis.speak(msg);
-      } else {
-        console.log('Speech synthesis not supported');
-      }
-    };
+  const { speak, cancel } = useSpeechSynthesis();
 
+  React.useEffect(() => {
     if (isActive) {
-      speak();
+      speak('Hi, am I speaking to username?');
     }
 
     return () => {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      cancel();
     };
-  }, [isActive]);
+  }, [isActive, speak, cancel]);
 
   const onPardon = () => {
-    if ('speechSynthesis' in window) {
-      var msg = new SpeechSynthesisUtterance();
-
-      msg.text = 'Hi, am I speaking to username?';
-
-      msg.voice = window.speechSynthesis
-        .getVoices()
-        .filter((voice) => voice.lang === 'hi-IN')[0];
-
-      window.speechSynthesis.speak(msg);
-    } else {
-      console.log('Speech synthesis not supported');
-    }
+    speak('Hi, am I speaking to username?');
   };
 
   return (

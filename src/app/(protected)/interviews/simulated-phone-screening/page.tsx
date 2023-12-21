@@ -3,6 +3,7 @@ import { PhoneCallIcon } from 'lucide-react';
 
 import { Metadata } from 'next';
 import PhoneScreening from './_components/PhoneScreening';
+import { SpeechSynthesisProvider } from './_context/SpeechSynthesisContext';
 
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
@@ -21,7 +22,9 @@ export default async function SimulatedPhoneScreening() {
         </div>
         <PhoneCallIcon size={60} />
       </div>
-      <PhoneScreening />
+      <SpeechSynthesisProvider>
+        <PhoneScreening />
+      </SpeechSynthesisProvider>
     </main>
   );
 }
