@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { RotateCwIcon } from 'lucide-react';
 
-export default function Response() {
+interface Props {
+  isActive: boolean;
+}
+
+export default function Response({ isActive }: Props) {
   const [recognition, setRecognition] =
     React.useState<SpeechRecognition | null>(null);
   const [isRecording, setIsRecording] = React.useState(false);
@@ -14,6 +18,10 @@ export default function Response() {
   React.useEffect(() => {
     if (!('webkitSpeechRecognition' in window)) {
       setError('webkitSpeechRecognition is not supported');
+      return;
+    }
+
+    if (!isActive) {
       return;
     }
 
@@ -53,7 +61,7 @@ export default function Response() {
         setIsRecording(false);
       }
     };
-  }, []);
+  }, [isActive]);
 
   const startRecognition = () => {
     if (recognition) {
@@ -84,22 +92,26 @@ export default function Response() {
           {finalTranscript}
           <span className="text-blue-500">{interimTranscript}</span>
         </span>
-        {isRecording ? (
-          <Button
-            onClick={stopRecognition}
-            className="bg-red-500 text-white hover:bg-red-600"
-          >
-            Stop
-          </Button>
-        ) : (
-          <Button
-            onClick={startRecognition}
-            className="bg-green-500 text-white hover:bg-green-600"
-          >
-            Start
-          </Button>
+        {isActive && (
+          <>
+            {isRecording ? (
+              <Button
+                onClick={stopRecognition}
+                className="bg-red-500 text-white hover:bg-red-600"
+              >
+                Stop
+              </Button>
+            ) : (
+              <Button
+                onClick={startRecognition}
+                className="bg-green-500 text-white hover:bg-green-600"
+              >
+                Start
+              </Button>
+            )}
+          </>
         )}
-        {!isRecording && attemptMade && (
+        {isActive && !isRecording && attemptMade && (
           <Button
             onClick={retryRecognition}
             className="bg-white text-black hover:bg-gray-200 active:bg-gray-200"
