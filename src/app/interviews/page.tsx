@@ -26,6 +26,7 @@ export default async function Projects() {
             title="Simulated Phone Screening"
             link="/interviews/simulated-phone-screening"
             icon={<PhoneCallIcon size={40} />}
+            isBeta
           />
         </li>
       </ul>
