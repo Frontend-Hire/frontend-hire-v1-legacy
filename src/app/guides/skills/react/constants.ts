@@ -27,7 +27,7 @@ export const COURSE_ITEMS: SpecialItem[] = [
     isPaid: true,
     isRecommended: true,
     description:
-      'This is a book that teaches you the why behind React make the advanced concepts feel basic. Highly Recommended!',
+      'This is a book that teaches you the why behind React and makes the advanced concepts feel basic. Highly Recommended!',
     isCourseItem: true,
   },
   {
@@ -36,7 +36,7 @@ export const COURSE_ITEMS: SpecialItem[] = [
     author: 'Brian Holt on Frontend Masters',
     isPaid: true,
     description:
-      'This course is the most practical React course out there. Brian has a great teaching style and you will learn a lot in a short time! Once done with this, continue with the Intermediate React course.',
+      'This course is the most practical one out there. Brian has a great teaching style and you will learn a lot in a short time! Once done with this, continue with the Intermediate React course.',
     isCourseItem: true,
   },
   {
