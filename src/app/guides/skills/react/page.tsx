@@ -5,6 +5,7 @@ import SpecialText from '@/components/SpecialText';
 import GuideSpecialItem from '@/components/GuideSpecialItem';
 import { COURSE_ITEMS } from './constants';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'React Learning Guide | Frontend Hire',
@@ -43,6 +44,13 @@ export default function ReactSkillGuide() {
               Learn the different{' '}
               <SpecialText>component design patterns</SpecialText> as quickly as
               possible.
+            </li>
+            <li>
+              Have{' '}
+              <Link target="_blank" href="https://roadmap.sh/react">
+                <SpecialText isLink>this roadmap from roadmap.sh</SpecialText>
+              </Link>{' '}
+              in your bookmarks and refer to it often.
             </li>
           </ul>
         </section>

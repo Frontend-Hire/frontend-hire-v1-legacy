@@ -1,7 +1,25 @@
+import { cn } from '@/lib/utils';
+
 interface Props {
   children: React.ReactNode;
+  className?: string;
+  isLink?: boolean;
 }
 
-export default function SpecialText({ children }: Props) {
-  return <span className="font-bold text-primary">{children}</span>;
+export default function SpecialText({
+  children,
+  isLink = false,
+  className,
+}: Props) {
+  return (
+    <span
+      className={cn(
+        'font-bold text-primary',
+        isLink ? 'underline' : '',
+        className,
+      )}
+    >
+      {children}
+    </span>
+  );
 }
