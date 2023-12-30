@@ -1,6 +1,7 @@
 import Heading from '@/components/Heading';
 import SpecialText from '@/components/SpecialText';
 import { Button } from '@/components/ui/button';
+import Settings from './Settings';
 
 interface Props {
   onStart: () => void;
@@ -36,6 +37,7 @@ export default function Instructions({ onStart }: Props) {
           this feature will not work.
         </li>
       </ul>
+      <Settings />
       <div className="flex justify-center">
         <Button onClick={onStart}>Start Simulation</Button>
       </div>

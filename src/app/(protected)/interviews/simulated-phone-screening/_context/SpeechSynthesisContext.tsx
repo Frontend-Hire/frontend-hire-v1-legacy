@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useSettings } from './SettingsContext';
 
 interface SpeechSynthesisContextType {
   speak: (text: string) => void;
@@ -28,6 +29,7 @@ interface Props {
 }
 
 export const SpeechSynthesisProvider = ({ children }: Props) => {
+  const { recruiterVoice } = useSettings();
   const [voice, setVoice] = React.useState<SpeechSynthesisVoice | null>(null);
   const [isSpeechAvailable, setIsSpeechAvailable] =
     React.useState<boolean>(false);
@@ -38,20 +40,30 @@ export const SpeechSynthesisProvider = ({ children }: Props) => {
       setIsSpeechAvailable(true);
       const handleVoicesChanged = () => {
         const voices = window.speechSynthesis.getVoices();
-        const selectedVoice = voices.find((voice) => voice.lang === 'en-IN');
+        const selectedVoice = voices.find(
+          (voice) => voice.lang === recruiterVoice,
+        );
         if (selectedVoice) {
           setVoice(selectedVoice);
         } else {
-          setError('No suitable voice found for en-IN');
+          setError('Something went wrong while selecting the voice');
+          setVoice(voices[0]);
         }
       };
 
+      handleVoicesChanged();
       window.speechSynthesis.onvoiceschanged = handleVoicesChanged;
     } else {
       setIsSpeechAvailable(false);
       setError('Speech synthesis is not supported in this browser');
     }
-  }, []);
+
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [recruiterVoice]);
 
   const speak = (text: string) => {
     if (isSpeechAvailable && voice) {
