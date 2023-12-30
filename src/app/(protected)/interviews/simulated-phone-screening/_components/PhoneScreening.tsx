@@ -24,12 +24,16 @@ export default function PhoneScreening({ candidateName }: Props) {
     setSimulation(SimulationState.INPROGRESS);
   };
 
+  const handleRestart = () => {
+    setSimulation(SimulationState.IDLE);
+  };
+
   if (simulation === SimulationState.IDLE) {
     return <Instructions onStart={handleStart} />;
   }
 
   if (simulation === SimulationState.INPROGRESS) {
-    return <Progress candidateName={candidateName} />;
+    return <Progress candidateName={candidateName} onRestart={handleRestart} />;
   }
 
   if (simulation === SimulationState.DONE) {

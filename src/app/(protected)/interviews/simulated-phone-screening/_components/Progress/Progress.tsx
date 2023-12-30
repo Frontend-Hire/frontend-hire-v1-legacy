@@ -8,12 +8,12 @@ import { PROMPTS } from '../../_constants';
 
 interface Props {
   candidateName: string;
+  onRestart: () => void;
 }
 
-export default function Progress({ candidateName }: Props) {
+export default function Progress({ candidateName, onRestart }: Props) {
   const { recruiterVoice, experienceLevel } = useSettings();
   const [currentStage, setCurrentStage] = React.useState(0);
-  const totalStages = 2;
 
   const prompts = fillPrompts(
     PROMPTS[experienceLevel][0].prompts,
@@ -22,7 +22,7 @@ export default function Progress({ candidateName }: Props) {
   );
 
   const handleStageCompletion = () => {
-    if (currentStage < totalStages) {
+    if (currentStage < prompts.length - 1) {
       setCurrentStage(currentStage + 1);
     }
   };
@@ -33,7 +33,11 @@ export default function Progress({ candidateName }: Props) {
       stages.push(
         <React.Fragment key={stage}>
           <Prompt isActive={currentStage === stage} text={prompts[stage]} />
-          <Response isActive={currentStage === stage} />
+          <Response
+            isActive={currentStage === stage}
+            isFinal={currentStage === prompts.length - 1}
+            onCompletion={handleStageCompletion}
+          />
         </React.Fragment>,
       );
     }
@@ -43,8 +47,8 @@ export default function Progress({ candidateName }: Props) {
   return (
     <div className="flex flex-col gap-[20px]">
       {renderStages()}
-      {currentStage < totalStages && (
-        <Button onClick={handleStageCompletion}>Continue</Button>
+      {currentStage === prompts.length - 1 && (
+        <Button onClick={onRestart}>Restart</Button>
       )}
     </div>
   );

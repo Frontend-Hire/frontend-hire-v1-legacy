@@ -40,6 +40,7 @@ export default function Prompt({ isActive, text }: Props) {
   }, [isActive, speak, cancel, text]);
 
   const onPardon = () => {
+    if (isActive) cancel();
     speak(text);
   };
 
