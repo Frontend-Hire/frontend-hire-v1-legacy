@@ -12,12 +12,12 @@ interface Props {
 }
 
 export default function Progress({ candidateName, onRestart }: Props) {
-  const { recruiterVoice, experienceLevel } = useSettings();
+  const { recruiter, experienceLevel } = useSettings();
   const [currentStage, setCurrentStage] = React.useState(0);
 
   const prompts = fillPrompts(
     PROMPTS[experienceLevel][0].prompts,
-    recruiterVoice,
+    recruiter,
     candidateName,
   );
 

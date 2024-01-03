@@ -1,20 +1,20 @@
 'use client';
 
 import * as React from 'react';
-import { ExperienceLevel, RecruiterVoice } from '../_constants';
+import { ExperienceLevel, Recruiter } from '../_constants';
 
 type Settings = {
   experienceLevel: ExperienceLevel;
-  recruiterVoice: RecruiterVoice;
+  recruiter: Recruiter;
   updateExperienceLevel: (level: ExperienceLevel) => void;
-  updateRecruiterVoice: (voice: RecruiterVoice) => void;
+  updateRecruiter: (recruiter: Recruiter) => void;
 };
 
 const SettingsContext = React.createContext<Settings>({
   experienceLevel: ExperienceLevel.Entry,
-  recruiterVoice: RecruiterVoice.Indian,
+  recruiter: Recruiter.Indian,
   updateExperienceLevel: () => {},
-  updateRecruiterVoice: () => {},
+  updateRecruiter: () => {},
 });
 
 export const useSettings = () => React.useContext(SettingsContext);
@@ -27,22 +27,19 @@ export default function SettingsProvider({ children }: Props) {
   const [experienceLevel, setExperienceLevel] = React.useState<ExperienceLevel>(
     ExperienceLevel.Entry,
   );
-  const [recruiterVoice, setRecruiterVoice] = React.useState<RecruiterVoice>(
-    RecruiterVoice.Indian,
-  );
+  const [recruiter, setRecruiter] = React.useState<Recruiter>(Recruiter.Indian);
 
   const updateExperienceLevel = (level: ExperienceLevel) =>
     setExperienceLevel(level);
-  const updateRecruiterVoice = (voice: RecruiterVoice) =>
-    setRecruiterVoice(voice);
+  const updateRecruiter = (recruiter: Recruiter) => setRecruiter(recruiter);
 
   return (
     <SettingsContext.Provider
       value={{
         experienceLevel,
-        recruiterVoice,
+        recruiter,
         updateExperienceLevel,
-        updateRecruiterVoice,
+        updateRecruiter,
       }}
     >
       {children}

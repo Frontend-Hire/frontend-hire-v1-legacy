@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Prompt({ isActive, text }: Props) {
-  const { speak, cancel } = useSpeechSynthesis();
+  const { speak, cancel, isSpeechAvailable } = useSpeechSynthesis();
   const [displayText, setDisplayText] = React.useState('');
   const [charIndex, setCharIndex] = React.useState(0);
 
@@ -49,7 +49,7 @@ export default function Prompt({ isActive, text }: Props) {
       <div className="bg-primary px-[10px] py-[5px] font-medium">RECRUITER</div>
       <div className="flex gap-[5px] p-[10px]">
         <span className="grow">{displayText}</span>
-        {isActive && (
+        {isSpeechAvailable && isActive && (
           <Button
             onClick={onPardon}
             className="bg-white text-black hover:bg-gray-200 active:bg-gray-200"

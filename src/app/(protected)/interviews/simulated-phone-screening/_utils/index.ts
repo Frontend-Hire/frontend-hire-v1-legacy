@@ -1,11 +1,11 @@
-import { GENDER_NEUTRAL_NAMES, RecruiterVoice } from '../_constants';
+import { GENDER_NEUTRAL_NAMES, Recruiter } from '../_constants';
 
 export function fillPrompts(
   prompts: string[],
-  recruiterVoice: RecruiterVoice,
+  recruiter: Recruiter,
   candidateName: string,
 ) {
-  const namesSet = GENDER_NEUTRAL_NAMES[recruiterVoice] || ['Simulant'];
+  const namesSet = GENDER_NEUTRAL_NAMES[recruiter] || ['Simulant'];
 
   const recruiterName = namesSet[Math.floor(Math.random() * namesSet.length)];
 

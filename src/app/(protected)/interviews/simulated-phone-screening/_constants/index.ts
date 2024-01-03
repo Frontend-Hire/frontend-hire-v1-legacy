@@ -4,15 +4,17 @@ export enum ExperienceLevel {
   Advanced = '2-4 Years',
 }
 
-export enum RecruiterVoice {
+export enum Recruiter {
+  Off = 'off',
   Indian = 'en-IN',
   American = 'en-US',
   British = 'en-GB',
 }
 
 export const GENDER_NEUTRAL_NAMES: {
-  [key in RecruiterVoice]: string[];
+  [key in Recruiter]: string[];
 } = {
+  off: ['Rishi'],
   'en-IN': ['Kiran', 'Rishi'],
   'en-US': ['Taylor', 'Casey'],
   'en-GB': ['Alex', 'Morgan'],

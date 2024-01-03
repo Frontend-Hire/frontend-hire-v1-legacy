@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { useSettings } from './SettingsContext';
+import { Recruiter } from '../_constants';
 
 interface SpeechSynthesisContextType {
   speak: (text: string) => void;
@@ -29,20 +30,23 @@ interface Props {
 }
 
 export const SpeechSynthesisProvider = ({ children }: Props) => {
-  const { recruiterVoice } = useSettings();
+  const { recruiter } = useSettings();
   const [voice, setVoice] = React.useState<SpeechSynthesisVoice | null>(null);
   const [isSpeechAvailable, setIsSpeechAvailable] =
     React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    if (recruiter === Recruiter.Off) {
+      setIsSpeechAvailable(false);
+      return;
+    }
+
     if ('speechSynthesis' in window) {
       setIsSpeechAvailable(true);
       const handleVoicesChanged = () => {
         const voices = window.speechSynthesis.getVoices();
-        const selectedVoice = voices.find(
-          (voice) => voice.lang === recruiterVoice,
-        );
+        const selectedVoice = voices.find((voice) => voice.lang === recruiter);
         if (selectedVoice) {
           setVoice(selectedVoice);
         } else {
@@ -63,7 +67,7 @@ export const SpeechSynthesisProvider = ({ children }: Props) => {
         window.speechSynthesis.cancel();
       }
     };
-  }, [recruiterVoice]);
+  }, [recruiter]);
 
   const speak = (text: string) => {
     if (isSpeechAvailable && voice) {

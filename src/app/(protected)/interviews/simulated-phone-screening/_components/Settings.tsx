@@ -1,15 +1,11 @@
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { ExperienceLevel, RecruiterVoice } from '../_constants';
+import { ExperienceLevel, Recruiter } from '../_constants';
 import { useSettings } from '../_context/SettingsContext';
 
 export default function Settings() {
-  const {
-    experienceLevel,
-    recruiterVoice,
-    updateExperienceLevel,
-    updateRecruiterVoice,
-  } = useSettings();
+  const { experienceLevel, recruiter, updateExperienceLevel, updateRecruiter } =
+    useSettings();
 
   return (
     <div className="flex flex-col gap-[15px]">
@@ -31,15 +27,15 @@ export default function Settings() {
         </RadioGroup>
       </div>
       <div className="flex flex-col gap-[10px]">
-        <Label>Recruiter Voice</Label>
+        <Label>Recruiter</Label>
         <RadioGroup
           orientation="horizontal"
           className="flex flex-wrap gap-[10px]"
-          defaultValue={RecruiterVoice.Indian}
-          value={recruiterVoice}
-          onValueChange={updateRecruiterVoice}
+          defaultValue={Recruiter.Indian}
+          value={recruiter}
+          onValueChange={updateRecruiter}
         >
-          {Object.entries(RecruiterVoice).map(([label, value]) => (
+          {Object.entries(Recruiter).map(([label, value]) => (
             <div key={value} className="flex gap-[5px]">
               <RadioGroupItem id={value} value={value} />
               <Label htmlFor={value}>{label}</Label>
