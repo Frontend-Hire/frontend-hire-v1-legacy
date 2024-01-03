@@ -52,3 +52,7 @@
 .sp-cube-wrapper {
   @apply hidden;
 }
+
+.cm-lineNumbers {
+  font-size: 1em;
+}
