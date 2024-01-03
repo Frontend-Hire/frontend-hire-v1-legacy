@@ -54,5 +54,5 @@
 }
 
 .cm-lineNumbers {
-  font-size: 1em;
+  font-size: 1em !important;
 }
