@@ -18,11 +18,11 @@ export default async function Header() {
   };
 
   return (
-    <header className="grid grid-cols-1 items-center gap-[20px] border-b p-[10px] shadow-sm sm:grid-cols-4 sm:justify-start md:px-[40px] md:py-[10px]">
+    <header className="grid grid-cols-1 items-center gap-[20px] border-b p-[10px] shadow-sm sm:grid-cols-6 sm:justify-start md:px-[40px] md:py-[10px]">
       <Link className="xs:" href={getLogoLink()}>
         <HeaderLogo />
       </Link>
-      <div className="flex flex-wrap items-center justify-center gap-[20px] text-sm font-medium sm:col-span-3 sm:justify-end md:gap-[40px] md:text-base">
+      <div className="flex flex-wrap items-center justify-center gap-[20px] text-sm font-medium sm:col-span-5 sm:justify-end md:gap-[30px] md:text-base">
         <Link
           className="transition-all duration-300 hover:text-primary"
           href="/questions"
@@ -34,6 +34,12 @@ export default async function Header() {
           href="/projects"
         >
           Projects
+        </Link>
+        <Link
+          className="transition-all duration-300 hover:text-primary"
+          href="/interviews"
+        >
+          Interviews
         </Link>
         <Link
           className="transition-all duration-300 hover:text-primary"

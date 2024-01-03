@@ -1,4 +1,4 @@
-import GuideItem from '@/components/GuideItem';
+import CardLinkItem from '@/components/CardLinkItem';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { GraduationCapIcon, UserSquareIcon } from 'lucide-react';
@@ -21,7 +21,7 @@ export default async function Guides() {
       <VisuallyHidden>Guides List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
         <li>
-          <GuideItem
+          <CardLinkItem
             title="Skill Guides"
             link="/guides/skills"
             icon={<GraduationCapIcon size={40} />}

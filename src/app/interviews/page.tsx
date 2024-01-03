@@ -1,34 +1,32 @@
 import CardLinkItem from '@/components/CardLinkItem';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
+import { PhoneCallIcon } from 'lucide-react';
 
-import ReactLogo from '@/assets/toollogos/react.png';
-import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Skill Guides | Frontend Hire',
-  description: 'All the resources to be confident in a skill',
+  title: 'Interviews | Frontend Hire',
+  description: 'Simulated and Real Interviews for Frontend Developers',
 };
 
-export default function SkillGuides() {
+export default async function Projects() {
   return (
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <div className="flex flex-col gap-[15px] py-[10px]">
-        <Heading variant="h1" className="flex gap-[20px]">
-          Skill Guides
-        </Heading>
+        <Heading variant="h1">Interviews</Heading>
         <p className="text-sm text-muted">
-          All the resources to be confident in a skill
+          Simulated and Real Interviews for anytime practice
         </p>
       </div>
-      <VisuallyHidden>Skill Guides List</VisuallyHidden>
+      <VisuallyHidden>Interview Types</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
         <li>
           <CardLinkItem
-            title="React Learning Guide"
-            link="/guides/skills/react"
-            icon={<Image src={ReactLogo} alt="" />}
+            title="Simulated Phone Screening"
+            link="/interviews/simulated-phone-screening"
+            icon={<PhoneCallIcon size={40} />}
+            isBeta
           />
         </li>
       </ul>
