@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { QuestionTab } from '@/types/Question';
 

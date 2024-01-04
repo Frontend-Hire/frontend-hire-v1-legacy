@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import ClientContainer from './_components/ClientContainer';
 import getQuestion from './_utils/getQuestion';

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { TabsContent } from '@radix-ui/react-tabs';
 

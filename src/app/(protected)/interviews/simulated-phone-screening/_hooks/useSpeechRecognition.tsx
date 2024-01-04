@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export default function useSpeechRecognition(isActive: boolean) {
   const [recognition, setRecognition] =

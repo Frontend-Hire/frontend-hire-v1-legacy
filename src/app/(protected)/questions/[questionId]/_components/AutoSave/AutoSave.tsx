@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
 import { LoaderIcon } from 'lucide-react';
 import useDebounce from '../../_hooks/useDebounce';

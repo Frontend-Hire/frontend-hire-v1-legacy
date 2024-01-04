@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
 

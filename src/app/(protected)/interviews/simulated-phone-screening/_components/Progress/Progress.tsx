@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Prompt from './Prompt';
 import Response from './Response';
 import { Button } from '@/components/ui/button';

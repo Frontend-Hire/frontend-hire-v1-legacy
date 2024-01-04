@@ -1,6 +1,6 @@
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
-import * as React from 'react';
+import React from 'react';
 
 type ProjectTasksContextState = {
   completedTasks: number[];

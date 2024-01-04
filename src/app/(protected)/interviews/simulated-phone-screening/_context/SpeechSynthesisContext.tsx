@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 import { useSettings } from './SettingsContext';
 import { Recruiter } from '../_constants';
 

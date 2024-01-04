@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 
 import { SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';

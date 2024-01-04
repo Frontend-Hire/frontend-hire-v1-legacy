@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { RotateCwIcon } from 'lucide-react';
 import useSpeechRecognition from '../../_hooks/useSpeechRecognition';

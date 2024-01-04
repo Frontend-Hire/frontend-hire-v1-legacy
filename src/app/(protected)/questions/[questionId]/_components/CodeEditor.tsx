@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { keymap } from '@codemirror/view';
 import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';

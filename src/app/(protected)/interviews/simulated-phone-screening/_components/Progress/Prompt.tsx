@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { SmartphoneNfcIcon } from 'lucide-react';
 import { useSpeechSynthesis } from '../../_context/SpeechSynthesisContext';
