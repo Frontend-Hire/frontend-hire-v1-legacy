@@ -27,12 +27,14 @@ const TooltipContent = React.forwardRef<
 ));
 TooltipContent.displayName = TooltipPrimitive.Content.displayName;
 
-interface Props {
+type TooltipProps = {
   title: React.ReactNode;
-  children: React.ReactNode;
-}
+};
 
-export default function Tooltip({ title, children }: Props) {
+export default function Tooltip({
+  title,
+  children,
+}: React.PropsWithChildren<TooltipProps>) {
   return (
     <TooltipProvider delayDuration={0}>
       <TooltipRoot>

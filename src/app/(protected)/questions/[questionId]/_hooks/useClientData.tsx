@@ -4,33 +4,33 @@ import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
 import { SandpackFile } from '@codesandbox/sandpack-react';
 
-export interface IQuestionLoading {
+export type QuestionLoading = {
   status: 'loading';
-}
+};
 
-export interface IQuestionError {
+export type QuestionError = {
   status: 'error';
   message: string;
-}
+};
 
-export interface IQuestionSuccess {
+export type QuestionSuccess = {
   status: 'success';
   question: {
     getContent: () => React.ReactNode;
     userMeta: Meta;
     originalMeta: Meta;
   };
-}
+};
 
-export interface IQuestionIdle {
+export type QuestionIdle = {
   status: 'idle';
-}
+};
 
 export type Question =
-  | IQuestionLoading
-  | IQuestionError
-  | IQuestionSuccess
-  | IQuestionIdle;
+  | QuestionLoading
+  | QuestionError
+  | QuestionSuccess
+  | QuestionIdle;
 
 export default function useClientData() {
   const { questionId } = useParams<{
@@ -103,7 +103,7 @@ export default function useClientData() {
       const timeout = setTimeout(() => {
         setData({
           status: 'success',
-          question: data as IQuestionSuccess['question'],
+          question: data as QuestionSuccess['question'],
         });
       }, 2000);
 

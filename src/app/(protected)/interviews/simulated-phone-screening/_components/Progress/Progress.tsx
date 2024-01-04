@@ -6,12 +6,12 @@ import { useSettings } from '../../_context/SettingsContext';
 import { fillPrompts } from '../../_utils';
 import { PROMPTS } from '../../_constants';
 
-interface Props {
+type ProgressProps = {
   candidateName: string;
   onRestart: () => void;
-}
+};
 
-export default function Progress({ candidateName, onRestart }: Props) {
+export default function Progress({ candidateName, onRestart }: ProgressProps) {
   const { recruiter, experienceLevel } = useSettings();
   const [currentStage, setCurrentStage] = React.useState(0);
 

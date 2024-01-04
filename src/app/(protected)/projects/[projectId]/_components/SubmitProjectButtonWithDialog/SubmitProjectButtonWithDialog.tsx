@@ -15,15 +15,15 @@ import { useParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import SubmissionConfetti from './SubmissionConfetti';
 
-interface Props {
+type SubmitProjectButtonWithDialogProps = {
   githubLink?: string;
   liveLink?: string;
-}
+};
 
 export default function SubmitProjectButtonWithDialog({
   githubLink = '',
   liveLink = '',
-}: Props) {
+}: SubmitProjectButtonWithDialogProps) {
   const { projectId } = useParams<{
     projectId: string;
   }>();

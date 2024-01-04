@@ -2,21 +2,19 @@ import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
 import * as React from 'react';
 
-interface ProjectTasksContextState {
+type ProjectTasksContextState = {
   completedTasks: number[];
   markTaskAsComplete: (id: number) => Promise<void>;
   markTaskAsIncomplete: (id: number) => Promise<void>;
-}
+};
 
 const ProjectTasksContext = React.createContext<
   ProjectTasksContextState | undefined
 >(undefined);
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function ProjectTasksProvider({ children }: Props) {
+export default function ProjectTasksProvider({
+  children,
+}: React.PropsWithChildren) {
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const { projectId } = useParams<{ projectId: string }>();
   const [completedTasks, setCompletedTasks] = React.useState<number[]>([]);

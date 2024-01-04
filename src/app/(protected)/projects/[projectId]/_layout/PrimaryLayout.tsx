@@ -1,9 +1,11 @@
-interface Props {
+type PrimaryLayoutProps = {
   header: React.ReactNode;
-  children: React.ReactNode;
-}
+};
 
-export default function PrimaryLayout({ header, children }: Props) {
+export default function PrimaryLayout({
+  header,
+  children,
+}: React.PropsWithChildren<PrimaryLayoutProps>) {
   return (
     <div className="flex h-full flex-col px-[10px]">
       {header}

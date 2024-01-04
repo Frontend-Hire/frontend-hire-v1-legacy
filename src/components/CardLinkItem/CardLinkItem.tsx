@@ -1,14 +1,19 @@
 import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
-interface Props {
+type CardLinkItemProps = {
   link: string;
   title: string;
   icon?: React.ReactNode;
   isBeta?: boolean;
-}
+};
 
-export default function CardLinkItem({ link, icon, title, isBeta }: Props) {
+export default function CardLinkItem({
+  link,
+  icon,
+  title,
+  isBeta,
+}: CardLinkItemProps) {
   return (
     <Link
       className="flex items-center justify-between rounded bg-card p-[10px] hover:bg-card/80"

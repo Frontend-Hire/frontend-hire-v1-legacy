@@ -10,7 +10,7 @@ import {
 import { Button } from '../ui/button';
 import SkillBadges from '../SkillBadges';
 
-interface Props {
+type ProjectItemProps = {
   id: string;
   title: string;
   description: string;
@@ -20,7 +20,7 @@ interface Props {
   isRecommended?: boolean;
   isSubmitted?: boolean;
   completedTasks?: number[];
-}
+};
 
 export default function ProjectItem({
   id,
@@ -32,7 +32,7 @@ export default function ProjectItem({
   isRecommended = false,
   isSubmitted = false,
   completedTasks = [],
-}: Props) {
+}: ProjectItemProps) {
   const renderIcon = () => {
     if (completedTasks.length === tasks.length) {
       return <ListChecksIcon />;

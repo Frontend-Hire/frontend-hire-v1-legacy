@@ -1,7 +1,3 @@
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function VisuallyHidden({ children }: Props) {
+export default function VisuallyHidden({ children }: React.PropsWithChildren) {
   return <span className="sr-only">{children}</span>;
 }

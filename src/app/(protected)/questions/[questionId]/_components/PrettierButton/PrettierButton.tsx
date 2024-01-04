@@ -10,11 +10,11 @@ import {
 import { SparklesIcon } from 'lucide-react';
 import { formatCodeWithPrettier } from './utils';
 
-interface Props {
+type PrettierButtonProps = {
   editorInstance: React.RefObject<CodeEditorRef>;
-}
+};
 
-const PrettierButton = React.forwardRef<HTMLButtonElement, Props>(
+const PrettierButton = React.forwardRef<HTMLButtonElement, PrettierButtonProps>(
   ({ editorInstance }, ref) => {
     const { code, updateCode, readOnly } = useActiveCode();
     const {

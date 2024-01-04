@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/button';
 import { SmartphoneNfcIcon } from 'lucide-react';
 import { useSpeechSynthesis } from '../../_context/SpeechSynthesisContext';
 
-interface Props {
+type PromptProps = {
   isActive: boolean;
   text: string;
-}
+};
 
-export default function Prompt({ isActive, text }: Props) {
+export default function Prompt({ isActive, text }: PromptProps) {
   const { speak, cancel, isSpeechAvailable } = useSpeechSynthesis();
   const [displayText, setDisplayText] = React.useState('');
   const [charIndex, setCharIndex] = React.useState(0);

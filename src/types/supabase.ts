@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
-export interface Database {
+export type Database = {
   graphql_public: {
     Tables: {
       [_ in never]: never;
@@ -483,4 +483,4 @@ export interface Database {
       [_ in never]: never;
     };
   };
-}
+};

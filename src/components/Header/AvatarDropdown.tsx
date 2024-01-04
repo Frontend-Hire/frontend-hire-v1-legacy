@@ -7,12 +7,15 @@ import {
 import SignOut from './SignOut';
 import SettingsLink from './SettingsLink';
 
-interface Props {
+type AvatarDropdownProps = {
   picture?: string;
   name?: string;
-}
+};
 
-export default async function AvatarDropdown({ picture, name }: Props) {
+export default async function AvatarDropdown({
+  picture,
+  name,
+}: AvatarDropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="hover:opacity-80">

@@ -10,11 +10,13 @@ import { Button } from '@/components/ui/button';
 import Confetti from 'react-confetti';
 import Link from 'next/link';
 
-interface Props {
+type SubmissionConfettiProps = {
   onClose: () => void;
-}
+};
 
-export default function SubmissionConfetti({ onClose }: Props) {
+export default function SubmissionConfetti({
+  onClose,
+}: SubmissionConfettiProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
       <Confetti />

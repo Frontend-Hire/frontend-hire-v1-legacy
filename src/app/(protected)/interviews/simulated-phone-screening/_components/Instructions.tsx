@@ -3,11 +3,11 @@ import SpecialText from '@/components/SpecialText';
 import { Button } from '@/components/ui/button';
 import Settings from './Settings';
 
-interface Props {
+type InstructionProps = {
   onStart: () => void;
-}
+};
 
-export default function Instructions({ onStart }: Props) {
+export default function Instructions({ onStart }: InstructionProps) {
   return (
     <section className="flex flex-col gap-[15px] rounded bg-card p-[20px]">
       <Heading variant="h3">Instructions:</Heading>

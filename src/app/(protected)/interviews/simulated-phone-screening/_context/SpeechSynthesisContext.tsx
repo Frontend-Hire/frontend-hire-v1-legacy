@@ -4,12 +4,12 @@ import * as React from 'react';
 import { useSettings } from './SettingsContext';
 import { Recruiter } from '../_constants';
 
-interface SpeechSynthesisContextType {
+type SpeechSynthesisContextType = {
   speak: (text: string) => void;
   cancel: () => void;
   isSpeechAvailable: boolean;
   error: string | null;
-}
+};
 
 const SpeechSynthesisContext = React.createContext<
   SpeechSynthesisContextType | undefined
@@ -25,11 +25,9 @@ export const useSpeechSynthesis = (): SpeechSynthesisContextType => {
   return context;
 };
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const SpeechSynthesisProvider = ({ children }: Props) => {
+export const SpeechSynthesisProvider = ({
+  children,
+}: React.PropsWithChildren) => {
   const { recruiter } = useSettings();
   const [voice, setVoice] = React.useState<SpeechSynthesisVoice | null>(null);
   const [isSpeechAvailable, setIsSpeechAvailable] =

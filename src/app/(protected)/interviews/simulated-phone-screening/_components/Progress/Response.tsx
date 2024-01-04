@@ -3,13 +3,17 @@ import { Button } from '@/components/ui/button';
 import { RotateCwIcon } from 'lucide-react';
 import useSpeechRecognition from '../../_hooks/useSpeechRecognition';
 
-interface Props {
+type ResponseProps = {
   isActive: boolean;
   onCompletion: () => void;
   isFinal?: boolean;
-}
+};
 
-export default function Response({ isActive, onCompletion, isFinal }: Props) {
+export default function Response({
+  isActive,
+  onCompletion,
+  isFinal,
+}: ResponseProps) {
   const {
     startRecognition,
     stopRecognition,

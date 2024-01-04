@@ -20,12 +20,15 @@ const badge = cva('font-semibold rounded-full mx-2', {
   },
 });
 
-interface Props {
+type DifficultyBadgeProps = {
   difficulty: QuestionDifficulty;
   size?: 'small' | 'medium';
-}
+};
 
-export default function DifficultyBadge({ difficulty, size }: Props) {
+export default function DifficultyBadge({
+  difficulty,
+  size,
+}: DifficultyBadgeProps) {
   return (
     <span className={badge({ intent: difficulty, size })}>
       {difficulty.toUpperCase()}

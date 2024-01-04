@@ -5,14 +5,14 @@ import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
 import SkillBadges from '../SkillBadges';
 
-interface Props {
+type QuestionItemProps = {
   id: string;
   difficulty: QuestionDifficulty;
   title: string;
   description: string;
   skills: string[];
   isCompleted: boolean;
-}
+};
 
 const DifficultyLabel = ({
   difficulty,
@@ -58,7 +58,7 @@ export default function QuestionItem({
   description,
   difficulty,
   isCompleted,
-}: Props) {
+}: QuestionItemProps) {
   return (
     <Link href={`/questions/${id}`}>
       <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground hover:bg-card/80">

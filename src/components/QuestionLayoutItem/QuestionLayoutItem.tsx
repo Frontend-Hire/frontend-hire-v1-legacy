@@ -2,12 +2,15 @@ import * as React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { QuestionTab } from '@/types/Question';
 
-interface Props {
+type QuestionLayoutItemProps = {
   tabs: QuestionTab[];
   rightButtons?: React.ReactNode;
-}
+};
 
-export default function QuestionLayoutItem({ tabs, rightButtons }: Props) {
+export default function QuestionLayoutItem({
+  tabs,
+  rightButtons,
+}: QuestionLayoutItemProps) {
   const [activeTab, setActiveTab] = React.useState(tabs[0]?.value || '');
 
   return (

@@ -1,16 +1,15 @@
 import { cn } from '@/lib/utils';
 
-interface Props {
-  children: React.ReactNode;
+type SpecialTextProps = {
   className?: string;
   isLink?: boolean;
-}
+};
 
 export default function SpecialText({
   children,
   isLink = false,
   className,
-}: Props) {
+}: React.PropsWithChildren<SpecialTextProps>) {
   return (
     <span
       className={cn(

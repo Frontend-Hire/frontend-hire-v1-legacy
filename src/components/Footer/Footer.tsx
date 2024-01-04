@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils';
 
-interface Props {
+type FooterProps = {
   className?: string;
-}
+};
 
-export default function Footer({ className }: Props) {
+export default function Footer({ className }: FooterProps) {
   const thisYear = new Date().getFullYear();
 
   return (

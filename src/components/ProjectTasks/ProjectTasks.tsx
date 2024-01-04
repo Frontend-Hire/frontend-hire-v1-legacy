@@ -11,11 +11,7 @@ import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProjectTasksProvider, { useProjectTasks } from './ProjectTasksContext';
 
-interface ProjectTasksProps {
-  children: React.ReactNode;
-}
-
-export function ProjectTasks({ children }: ProjectTasksProps) {
+export function ProjectTasks({ children }: React.PropsWithChildren) {
   return (
     <ProjectTasksProvider>
       <Accordion
@@ -29,17 +25,16 @@ export function ProjectTasks({ children }: ProjectTasksProps) {
   );
 }
 
-interface ProjectTaskItemProps {
+type ProjectTaskItemProps = {
   id: number;
   taskName: string;
-  children: React.ReactNode;
-}
+};
 
 export function ProjectTaskItem({
   id,
   taskName,
   children,
-}: ProjectTaskItemProps) {
+}: React.PropsWithChildren<ProjectTaskItemProps>) {
   const { markTaskAsComplete, markTaskAsIncomplete, completedTasks } =
     useProjectTasks();
 

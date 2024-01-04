@@ -11,10 +11,11 @@ export const metadata: Metadata = {
   title: 'Projects | Frontend Hire',
   description: 'Not some stupid clones but highly feature focused projects',
 };
-interface SolvedProjectData {
+
+type SolvedProject = {
   completedTasks: number[];
   isSubmitted: boolean;
-}
+};
 
 export default async function Projects() {
   const supabaseServerClient = createSupabaseServerClient();
@@ -28,7 +29,7 @@ export default async function Projects() {
     session ? fetchUserProjectSubmissions() : [],
   ]);
 
-  const solvedProjectsMap: Record<string, SolvedProjectData> =
+  const solvedProjectsMap: Record<string, SolvedProject> =
     solvedProjects.reduce(
       (acc, project) => {
         acc[project.project_id] = {
@@ -37,7 +38,7 @@ export default async function Projects() {
         };
         return acc;
       },
-      {} as Record<string, SolvedProjectData>,
+      {} as Record<string, SolvedProject>,
     );
 
   return (

@@ -1,4 +1,4 @@
-export interface SpecialItem {
+export type SpecialItem = {
   title: string;
   description?: string;
   link: string;
@@ -6,4 +6,4 @@ export interface SpecialItem {
   isRecommended?: boolean;
   isPaid?: boolean;
   isCourseItem?: boolean;
-}
+};

@@ -3,11 +3,13 @@
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
 
-interface Props {
+type SignInButtonProps = {
   label?: string;
-}
+};
 
-export default function SignInButton({ label = 'Sign In With Google' }: Props) {
+export default function SignInButton({
+  label = 'Sign In With Google',
+}: SignInButtonProps) {
   const router = useRouter();
 
   const handleSignIn = async () => {

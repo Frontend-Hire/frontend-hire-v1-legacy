@@ -2,32 +2,32 @@ import * as React from 'react';
 import { ProjectMeta } from '@/types/mdx';
 import { useParams } from 'next/navigation';
 
-export interface IProjectLoading {
+export type ProjectLoading = {
   status: 'loading';
-}
+};
 
-export interface IProjectError {
+export type ProjectError = {
   status: 'error';
   message: string;
-}
+};
 
-export interface IProjectSuccess {
+export type ProjectSuccess = {
   status: 'success';
   project: {
     getContent: () => React.ReactNode;
     meta: ProjectMeta;
   };
-}
+};
 
-export interface IProjectIdle {
+export type ProjectIdle = {
   status: 'idle';
-}
+};
 
 export type Project =
-  | IProjectLoading
-  | IProjectError
-  | IProjectSuccess
-  | IProjectIdle;
+  | ProjectLoading
+  | ProjectError
+  | ProjectSuccess
+  | ProjectIdle;
 
 export default function useProject() {
   const { projectId } = useParams<{
@@ -58,7 +58,7 @@ export default function useProject() {
       const timeout = setTimeout(() => {
         setData({
           status: 'success',
-          project: data as IProjectSuccess['project'],
+          project: data as ProjectSuccess['project'],
         });
       }, 2000);
 

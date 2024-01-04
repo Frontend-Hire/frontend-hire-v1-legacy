@@ -1,10 +1,9 @@
 import { cva } from 'cva';
 
-interface Props {
+type HeadingProps = {
   variant: 'h1' | 'h2' | 'h3' | 'h4';
   className?: string;
-  children: React.ReactNode;
-}
+};
 
 const heading = cva('scroll-m-20', {
   variants: {
@@ -17,7 +16,11 @@ const heading = cva('scroll-m-20', {
   },
 });
 
-export default function Heading({ variant, className, children }: Props) {
+export default function Heading({
+  variant,
+  className,
+  children,
+}: React.PropsWithChildren<HeadingProps>) {
   const Component = variant;
 
   return (

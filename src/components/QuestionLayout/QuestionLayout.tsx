@@ -7,7 +7,7 @@ import 'react-reflex/styles.css';
 import styles from './QuestionLayout.module.css';
 import QuestionMobileLayout from './QuestionMobileLayout';
 
-interface Props {
+type QuestionLayoutProps = {
   topLeft?: {
     label: string;
     content: React.ReactNode;
@@ -24,14 +24,14 @@ interface Props {
     label: string;
     content: React.ReactNode;
   };
-}
+};
 
 export default function QuestionLayout({
   topLeft,
   topRight,
   bottomLeft,
   bottomRight,
-}: Props) {
+}: QuestionLayoutProps) {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 450);
 
   React.useEffect(() => {

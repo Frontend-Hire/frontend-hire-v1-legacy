@@ -19,11 +19,9 @@ const SettingsContext = React.createContext<Settings>({
 
 export const useSettings = () => React.useContext(SettingsContext);
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function SettingsProvider({ children }: Props) {
+export default function SettingsProvider({
+  children,
+}: React.PropsWithChildren) {
   const [experienceLevel, setExperienceLevel] = React.useState<ExperienceLevel>(
     ExperienceLevel.Entry,
   );

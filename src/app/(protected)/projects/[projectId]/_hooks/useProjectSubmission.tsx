@@ -2,33 +2,33 @@ import * as React from 'react';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
 
-export interface IProjectSubmissionLoading {
+export type ProjectSubmissionLoading = {
   status: 'loading';
-}
+};
 
-export interface IProjectSubmissionError {
+export type ProjectSubmissionError = {
   status: 'error';
   message: string;
-}
+};
 
-export interface IProjectSubmissionSuccess {
+export type ProjectSubmissionSuccess = {
   status: 'success';
   projectSubmission: {
     id: number;
     github_link: string;
     live_link: string;
   } | null;
-}
+};
 
-export interface IProjectSubmissionIdle {
+export type ProjectSubmissionIdle = {
   status: 'idle';
-}
+};
 
 export type ProjectSubmission =
-  | IProjectSubmissionLoading
-  | IProjectSubmissionError
-  | IProjectSubmissionSuccess
-  | IProjectSubmissionIdle;
+  | ProjectSubmissionLoading
+  | ProjectSubmissionError
+  | ProjectSubmissionSuccess
+  | ProjectSubmissionIdle;
 
 export default function useProjectSubmission() {
   const { projectId } = useParams<{

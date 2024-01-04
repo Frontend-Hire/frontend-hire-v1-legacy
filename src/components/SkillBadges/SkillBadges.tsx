@@ -13,11 +13,11 @@ const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
   PARCEL: { className: 'bg-[#D8A974] text-black', label: 'Parcel' },
 };
 
-interface Props {
+type SkillsBadgesProps = {
   skills: string[];
-}
+};
 
-export default function SkillsBadges({ skills }: Props) {
+export default function SkillsBadges({ skills }: SkillsBadgesProps) {
   return (
     <div className="flex flex-wrap gap-[10px]">
       {skills.sort().map((skill) => (

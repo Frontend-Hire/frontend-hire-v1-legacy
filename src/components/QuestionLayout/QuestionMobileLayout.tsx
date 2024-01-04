@@ -4,16 +4,18 @@ import * as React from 'react';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { TabsContent } from '@radix-ui/react-tabs';
 
-interface Tab {
+type Tab = {
   label: string;
   content: React.ReactNode;
-}
+};
 
-interface Props {
+type QuestionMobileLayoutProps = {
   tabs: (Tab | undefined)[];
-}
+};
 
-export default function QuestionMobileLayout({ tabs }: Props) {
+export default function QuestionMobileLayout({
+  tabs,
+}: QuestionMobileLayoutProps) {
   const tabsCleaned: NonNullable<Tab>[] = tabs.filter(
     (tab) => tab !== undefined,
   ) as NonNullable<Tab>[];

@@ -5,12 +5,14 @@ const QuestionDataContext = React.createContext<QuestionData | undefined>(
   undefined,
 );
 
-interface Props {
-  children: React.ReactNode;
+type QuestionDataProviderProps = {
   questionData: QuestionData;
-}
+};
 
-const QuestionDataProvider = ({ children, questionData }: Props) => {
+const QuestionDataProvider = ({
+  children,
+  questionData,
+}: React.PropsWithChildren<QuestionDataProviderProps>) => {
   return (
     <QuestionDataContext.Provider value={questionData}>
       {children}

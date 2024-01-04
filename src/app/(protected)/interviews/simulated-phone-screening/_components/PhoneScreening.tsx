@@ -11,11 +11,11 @@ enum SimulationState {
   DONE,
 }
 
-interface Props {
+type PhoneScreeningProps = {
   candidateName: string;
-}
+};
 
-export default function PhoneScreening({ candidateName }: Props) {
+export default function PhoneScreening({ candidateName }: PhoneScreeningProps) {
   const [simulation, setSimulation] = React.useState<SimulationState>(
     SimulationState.IDLE,
   );

@@ -4,12 +4,15 @@ import * as React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProjectTab } from '@/types/Project';
 
-interface Props {
+type ProjectLayoutItemProps = {
   tabs: ProjectTab[];
   rightButtons?: React.ReactNode;
-}
+};
 
-export default function ProjectLayoutItem({ tabs, rightButtons }: Props) {
+export default function ProjectLayoutItem({
+  tabs,
+  rightButtons,
+}: ProjectLayoutItemProps) {
   const [activeTab, setActiveTab] = React.useState(tabs[0]?.value || '');
 
   return (
