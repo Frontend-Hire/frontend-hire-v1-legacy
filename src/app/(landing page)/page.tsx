@@ -1,4 +1,3 @@
-import SignInButton from '@/components/SignInButton';
 import Image from 'next/image';
 import HTMLLogo from '@/assets/toollogos/html.png';
 import CSSLogo from '@/assets/toollogos/css.png';
@@ -13,6 +12,9 @@ import PrettierLogo from '@/assets/toollogos/prettier.png';
 import StoryBookLogo from '@/assets/toollogos/storybook.png';
 import ESLintLogo from '@/assets/toollogos/eslint.png';
 import HuskyLogo from '@/assets/toollogos/husky.png';
+import CTA from './_components/CTA';
+
+export const dynamic = 'force-static';
 
 export default function Home() {
   return (
@@ -32,7 +34,7 @@ export default function Home() {
             </h2>
             <Line />
           </div>
-          <SignInButton label="Just Need A Google Account To Get Started " />
+          <CTA label="Practice Now For Free" />
         </div>
 
         <div className="flex flex-col gap-[20px]">
