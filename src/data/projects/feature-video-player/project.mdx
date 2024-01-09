@@ -1,0 +1,67 @@
+import Image from 'next/image';
+import NetflixImage from './netflix-video-player.png';
+
+import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
+
+export const meta = {
+  title: 'Feature: Video Player',
+  difficulty: 'hard',
+  description: 'You see clones of Netlfix on the internet but not the video player. Just have a look at the sophistication of Netflix\'s or any prominient video streaming service\'s video player and try building one of similar quality.',
+  tasks: ['Setup Vite Project', 'Vitest & React Testing Library', 'UseReducer for State Management', 'Video Playback', 'Custom Controls', 'Skip Button', 'Responsive Design', 'Performance Optimization', 'Accessibility'],
+  skills: ['React', 'JS', 'Vitest', 'CSS'],
+  isRecommended: true,
+};
+
+# Feature: Video Player
+
+You see a lot of clones of Netflix on the internet but not the video player. Imagine you join a company that is building a video streaming service and you would rarely be responsible for building the whole project rather you would be assigned to build a component of the project. So, you are assigned to build a video player component for the project. Just have a look at the sophistication of Netflix's or any prominient video streaming service's video player and try building one of similar quality.
+
+<Image src={NetflixImage} alt='Netflix video player UI screenshot' />
+
+<ProjectTasks>
+  <ProjectTaskItem id={1} taskName='Setup React Project'>
+    Use any of your preferred way to setup a new React project.
+    - Note: We suggest <strong>Vite</strong> and <strong>Vitest</strong> for this project but feel free to use alternatives if you do not prefer Vite.
+    - Our projects lists these setup guides as projects themselves!
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={2} taskName='Vitest & React Testing Library'>
+    This project recommends using a testing library to build with confidence.
+    - We suggest using Vitest as the testing framework: <a href="https://vitest.dev/" target='_blank'>Vitest</a>.
+    - React Testing Library is a popular library for testing React apps: <a href='https://testing-library.com/docs/react-testing-library/intro' target='_blank'>React Testing Library (RTL)</a>.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={3} taskName='UseReducer for State Management'>
+    Use the `useReducer` hook to handle the video player's state.
+    - This is crucial for managing various actions like play, pause, skip, volume control, and more.
+    - `useReducer` makes it easier to manage complex state logic in a more predictable way compared to `useState`.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={4} taskName='Video Playback'>
+    Implement the core functionality of video playback.
+    - Use HTML5 `<video>` element as the base for your custom player.
+    - Ensure compatibility with various video formats and resolutions.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={5} taskName='Custom Controls'>
+    Develop custom controls for the video player.
+    - Include play/pause, volume control, fullscreen toggle, captions, and a progress bar.
+    - Make sure these controls are intuitive and easy to use.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={6} taskName='Skip Button'>
+    Implement a skip button to bypass opening credits or songs.
+    - The button should appear at predetermined times and disappear after a short interval.
+    - Ensure that the skip functionality is precise and user-friendly.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={7} taskName='Responsive Design'>
+    Design your video player to be responsive across various devices and screen sizes.
+    - Pay attention to the placement and size of controls on different devices.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={8} taskName='Accessibility'>
+    Ensure your video player is accessible.
+    - Include keyboard navigation for controls.
+  </ProjectTaskItem>
+</ProjectTasks>
