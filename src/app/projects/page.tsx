@@ -4,6 +4,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getProjectsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserProjectSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import { PROJECT_DIFFICULTY_ORDER } from '@/types/Project';
 
 import { Metadata } from 'next';
 
@@ -29,6 +30,13 @@ export default async function Projects() {
     session ? fetchUserProjectSubmissions() : [],
   ]);
 
+  const sortedLocalProjects = localProjects.sort((a, b) => {
+    return (
+      PROJECT_DIFFICULTY_ORDER[a.difficulty] -
+      PROJECT_DIFFICULTY_ORDER[b.difficulty]
+    );
+  });
+
   const solvedProjectsMap: Record<string, SolvedProject> =
     solvedProjects.reduce(
       (acc, project) => {
@@ -51,7 +59,7 @@ export default async function Projects() {
       </div>
       <VisuallyHidden>Projects List</VisuallyHidden>
       <ul className="flex flex-wrap gap-[20px]">
-        {localProjects.map((project) => {
+        {sortedLocalProjects.map((project) => {
           const solvedProject = solvedProjectsMap[project.id] || {};
           const completedTasks = solvedProject.completedTasks || [];
           const isSubmitted = solvedProject.isSubmitted || false;

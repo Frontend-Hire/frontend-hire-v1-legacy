@@ -11,7 +11,9 @@ export const getQuestionsFromLocal = cache(async () => {
 
   const questions = fs.readdirSync(questionsPath);
 
-  for (const question of questions.sort()) {
+  for (const question of questions.filter(
+    (question) => !question.startsWith('.'),
+  )) {
     const { default: getContent, meta } = require(
       `@/data/questions/${question}/prompt.mdx`,
     );
@@ -33,7 +35,9 @@ export const getProjectsFromLocal = cache(async () => {
   const projects: ProjectOverview[] = [];
   const allProjects = fs.readdirSync(projectsPath);
 
-  for (const project of allProjects) {
+  for (const project of allProjects.filter(
+    (project) => !project.startsWith('.'),
+  )) {
     const { default: getContent, meta } = require(
       `@/data/projects/${project}/project.mdx`,
     );
