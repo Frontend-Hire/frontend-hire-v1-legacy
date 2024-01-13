@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 
 import ClientContainer from './_components/ClientContainer';
-import getQuestion from './_utils/getQuestion';
+import getQuestionMetaData from './_utils/getQuestionMetaData';
 
 export async function generateMetadata({
   params,
 }: {
   params: { questionId: string };
 }): Promise<Metadata> {
-  const questionData = await getQuestion(params.questionId);
+  const questionData = await getQuestionMetaData(params.questionId);
   return {
     title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
     description: questionData?.meta.description,
@@ -19,6 +19,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function Question() {
+export default function Question() {
   return <ClientContainer />;
 }
