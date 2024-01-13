@@ -5,5 +5,5 @@ export default function QuestionLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <ProtectedLayout>{children}</ProtectedLayout>;
+  return <ProtectedLayout showHeader={false}>{children}</ProtectedLayout>;
 }

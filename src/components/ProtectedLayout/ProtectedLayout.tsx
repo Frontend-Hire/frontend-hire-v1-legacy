@@ -4,11 +4,16 @@ import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import Footer from '../Footer';
 import Header from '../Header';
 
+type ProtectedLayoutProps = {
+  showHeader?: boolean;
+  showFooter?: boolean;
+};
+
 export default async function ProtectedLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+  showHeader = true,
+  showFooter = true,
+}: React.PropsWithChildren<ProtectedLayoutProps>) {
   const supabaseServerClient = createSupabaseServerClient();
   const {
     data: { session },
@@ -42,9 +47,9 @@ export default async function ProtectedLayout({
 
   return (
     <>
-      <Header />
+      {showHeader && <Header />}
       {children}
-      <Footer />
+      {showFooter && <Footer />}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import ProtectedLayout from '@/components/ProtectedLayout';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <ProtectedLayout>{children}</ProtectedLayout>;
+  return <ProtectedLayout showHeader={false}>{children}</ProtectedLayout>;
 }
