@@ -1,14 +1,9 @@
-import Footer from '@/components/Footer';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 export default function QuestionLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      {children}
-      <Footer className="text-[10px]" />
-    </>
-  );
+  return <ProtectedLayout>{children}</ProtectedLayout>;
 }
