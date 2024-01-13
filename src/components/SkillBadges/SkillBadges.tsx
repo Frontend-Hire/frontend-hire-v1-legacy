@@ -11,6 +11,9 @@ const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
   PRETTIER: { className: 'bg-[#1A2B34] text-white', label: 'Prettier' },
   VITE: { className: 'bg-[#FFC21B] text-black', label: 'Vite' },
   PARCEL: { className: 'bg-[#D8A974] text-black', label: 'Parcel' },
+  NEXTJS: { className: 'bg-[#000000] text-white', label: 'Next.js' },
+  FIGMA: { className: 'bg-[#F24E1E] text-white', label: 'Figma' },
+  VERCEL: { className: 'bg-[#000000] text-white', label: 'Vercel' },
 };
 
 type SkillsBadgesProps = {
