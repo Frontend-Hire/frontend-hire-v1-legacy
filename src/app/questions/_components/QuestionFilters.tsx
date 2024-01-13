@@ -3,7 +3,7 @@
 import { ListFilterIcon, SearchIcon } from 'lucide-react';
 
 import VisuallyHidden from '../../../components/ui/visually-hidden';
-import { Input } from '../../../components/ui/input';
+import InputWithIcon from '@/components/InputWithIcon';
 
 type QuestionFiltersProps = {
   search: string;
@@ -21,15 +21,12 @@ export default function QuestionFilters({
         <VisuallyHidden>Filters</VisuallyHidden>
       </div>
       <div>
-        <div className="relative flex items-center">
-          <SearchIcon className="absolute left-2 h-4 w-4 text-muted" />
-          <Input
-            value={search}
-            onChange={(e) => onSearch(e.target.value)}
-            className="pl-8"
-            placeholder="Search questions..."
-          />
-        </div>
+        <InputWithIcon
+          icon={<SearchIcon />}
+          value={search}
+          onChange={(e) => onSearch(e.target.value)}
+          placeholder="Search Questions..."
+        />
       </div>
     </div>
   );
