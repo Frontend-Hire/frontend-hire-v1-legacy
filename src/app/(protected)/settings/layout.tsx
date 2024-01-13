@@ -1,16 +1,9 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <Header />
-      {children}
-      <Footer />
-    </>
-  );
+  return <ProtectedLayout>{children}</ProtectedLayout>;
 }
