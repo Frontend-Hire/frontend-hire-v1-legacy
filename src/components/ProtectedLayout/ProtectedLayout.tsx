@@ -25,7 +25,7 @@ export default async function ProtectedLayout({
             </Heading>
             <p className="text-sm text-muted">
               So, sign in for free with your Google account for unrestricted
-              access to questions and projects!
+              access to questions, projects and interviews!
             </p>
           </div>
           <SignInButton />
