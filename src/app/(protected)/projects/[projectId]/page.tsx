@@ -19,5 +19,5 @@ export async function generateMetadata({
 }
 
 export default function ProjectPage() {
-  <ClientContainer />;
+  return <ClientContainer />;
 }
