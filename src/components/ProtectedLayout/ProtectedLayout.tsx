@@ -1,7 +1,8 @@
-import Header from '@/components/Header';
 import Heading from '@/components/Heading';
 import SignInButton from '@/components/SignInButton';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import Footer from '../Footer';
+import Header from '../Header';
 
 export default async function ProtectedLayout({
   children,
@@ -24,7 +25,7 @@ export default async function ProtectedLayout({
             </Heading>
             <p className="text-sm text-muted">
               So, sign in for free with your Google account for unrestricted
-              access to questions and projects!
+              access to questions, projects and interviews!
             </p>
           </div>
           <SignInButton />
@@ -34,9 +35,16 @@ export default async function ProtectedLayout({
             (once signed in, click on your avatar to open a menu with settings).
           </p>
         </div>
+        <Footer />
       </>
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }

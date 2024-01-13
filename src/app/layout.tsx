@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: 'Frontend Hire',
   description:
     'A frontend coding platform for actual development skills and interviews',
+  openGraph: {
+    title: 'Frontend Hire',
+    description:
+      'A frontend coding platform for actual development skills and interviews',
+  },
 };
 
 export default function RootLayout({

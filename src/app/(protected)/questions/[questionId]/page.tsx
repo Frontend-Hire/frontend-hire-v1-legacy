@@ -1,20 +1,24 @@
-import React from 'react';
+import { Metadata } from 'next';
 
 import ClientContainer from './_components/ClientContainer';
-import getQuestion from './_utils/getQuestion';
+import getQuestionMetaData from './_utils/getQuestionMetaData';
 
 export async function generateMetadata({
   params,
 }: {
   params: { questionId: string };
-}) {
-  const questionData = await getQuestion(params.questionId);
+}): Promise<Metadata> {
+  const questionData = await getQuestionMetaData(params.questionId);
   return {
     title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
     description: questionData?.meta.description,
+    openGraph: {
+      title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
+      description: questionData?.meta.description,
+    },
   };
 }
 
-export default async function Question() {
+export default function Question() {
   return <ClientContainer />;
 }
