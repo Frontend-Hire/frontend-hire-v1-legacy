@@ -10,7 +10,10 @@ type QuestionFiltersProps = {
   onSearch: (search: string) => void;
 };
 
-export default function QuestionFilters() {
+export default function QuestionFilters({
+  search,
+  onSearch,
+}: QuestionFiltersProps) {
   return (
     <div className="flex flex-wrap items-center gap-[10px]">
       <div>
@@ -20,7 +23,12 @@ export default function QuestionFilters() {
       <div>
         <div className="relative flex items-center">
           <SearchIcon className="absolute left-2 h-4 w-4 text-muted" />
-          <Input className="pl-8" placeholder="Search questions..." />
+          <Input
+            value={search}
+            onChange={(e) => onSearch(e.target.value)}
+            className="pl-8"
+            placeholder="Search questions..."
+          />
         </div>
       </div>
     </div>
