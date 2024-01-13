@@ -12,6 +12,9 @@ import PrettierLogo from '@/assets/toollogos/prettier.png';
 import StoryBookLogo from '@/assets/toollogos/storybook.png';
 import ESLintLogo from '@/assets/toollogos/eslint.png';
 import HuskyLogo from '@/assets/toollogos/husky.png';
+import NextLogo from '@/assets/toollogos/next-js.png';
+import FigmaLogo from '@/assets/toollogos/figma.png';
+
 import CTA from './_components/CTA';
 
 export const dynamic = 'force-static';
@@ -74,6 +77,11 @@ export default function Home() {
             />
             <Image
               className="h-[24px] w-max md:h-[40px]"
+              src={NextLogo}
+              alt="Next Logo"
+            />
+            <Image
+              className="h-[24px] w-max md:h-[40px]"
               src={TailwindLogo}
               alt="TailwindCSS Logo"
             />
@@ -111,6 +119,11 @@ export default function Home() {
               className="h-[24px] w-max md:h-[40px]"
               src={HuskyLogo}
               alt="Husky Logo"
+            />
+            <Image
+              className="h-[24px] w-max md:h-[40px]"
+              src={FigmaLogo}
+              alt="Figma Logo"
             />
           </div>
         </div>
