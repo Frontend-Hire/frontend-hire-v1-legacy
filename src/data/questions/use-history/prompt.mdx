@@ -1,0 +1,101 @@
+export const meta = {
+  title: 'useHistory: Custom Hook with a touch of Data Structures',
+  difficulty: 'hard',
+  skills: ['react', 'js'],
+  description:
+    "DSA ain't just for backend devs! In this challenge, you'll implement a custom hook to manage history in React.",
+  template: 'react',
+  files: {
+    '/useHistory.js': {
+      code: `import React from "react";
+
+export const useHistory = (initialState) => {
+  // You'd need some state to manage
+  const state = [];
+
+  const setState = (newState) => {
+    // How would you do it?
+  };
+
+  const undo = () => {
+    // How would you do it?
+  };
+
+  const redo = () => {
+    // How would you do it?
+  };
+
+  const clearHistory = () => {
+    // How would you do it?
+  };
+
+  return { state, setState, undo, redo, clearHistory };
+};
+`,
+      active: true
+    },
+    '/App.js': {
+      code: `import React from "react";
+import { useHistory } from "./useHistory";
+
+const App = () => {
+  const [inputValue, setInputValue] = React.useState('');
+  const { state: todos, setState: setTodos, undo, redo, clearHistory } = useHistory([]);
+
+  const addTodo = () => {
+    if (inputValue.trim()) {
+      // Ideally add you todos to state here.
+      setInputValue('');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Todo Application</h2>
+      <div>
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
+      </div>
+      <input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Enter a todo"
+      />
+      <button onClick={addTodo}>Add Todo</button>
+      <button onClick={clearHistory}>Clear History</button>
+
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+`,
+      active: false
+    },
+  },
+  showConsole: true,
+  showPreview: true,
+};
+
+# useHistory: Custom Hook with a touch of Data Structures
+
+> "Mistakes are always forgivable if one has the courage to admit them." - Bruce Lee
+
+## Objectives
+- Implement the `useHistory` hook, which should manage the history of states.
+- Use this hook in a simple Todo application to add, undo, and redo tasks.
+- Ensure the hook handles the history of states efficiently.
+
+## Todo App
+- The app should allow adding new todos.
+- Implement undo and redo functionality using the `useHistory` hook.
+- Clearing history should reset the state to its initial value.
+
+#### Resources
+- <a target="_blank" href="https://react.dev/learn/reusing-logic-with-custom-hooks">React Docs: Reusing Logic with Custom Hooks</a>
+- <a target="_blank" href="https://usehooks.com/usehistorystate">Some Inspiration for the API</a>
