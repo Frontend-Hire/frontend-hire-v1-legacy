@@ -21,8 +21,12 @@ export default function QuestionFilters({
         <VisuallyHidden>Filters</VisuallyHidden>
       </div>
       <div>
+        <VisuallyHidden>
+          <label htmlFor="search">Search</label>
+        </VisuallyHidden>
         <InputWithIcon
           icon={<SearchIcon />}
+          id="search"
           value={search}
           onChange={(e) => onSearch(e.target.value)}
           placeholder="Search Questions..."
