@@ -46,11 +46,21 @@ export default function QuestionLayout({
     };
   }, []);
 
+  const MemoTopLeft = React.useCallback(() => topLeft, [topLeft]);
+  const MemoTopRight = React.useCallback(() => topRight, [topRight]);
+  const MemoBottomLeft = React.useCallback(() => bottomLeft, [bottomLeft]);
+  const MemoBottomRight = React.useCallback(() => bottomRight, [bottomRight]);
+
   if (isMobile) {
     return (
       <div className="h-0 flex-grow">
         <QuestionMobileLayout
-          tabs={[topLeft, bottomLeft, topRight, bottomRight]}
+          tabs={[
+            MemoTopLeft(),
+            MemoBottomLeft(),
+            MemoTopRight(),
+            MemoBottomRight(),
+          ]}
         />
       </div>
     );
@@ -60,17 +70,17 @@ export default function QuestionLayout({
     <div className="h-0 flex-grow">
       {layout === 'col-3' ? (
         <ThreeColumnLayout
-          topLeft={topLeft?.content}
-          topRight={topRight?.content}
-          bottomLeft={bottomLeft?.content}
-          bottomRight={bottomRight?.content}
+          topLeft={MemoTopLeft()?.content}
+          topRight={MemoTopRight()?.content}
+          bottomLeft={MemoBottomLeft()?.content}
+          bottomRight={MemoBottomRight()?.content}
         />
       ) : (
         <TwoColumnLayout
-          topLeft={topLeft?.content}
-          topRight={topRight?.content}
-          bottomLeft={bottomLeft?.content}
-          bottomRight={bottomRight?.content}
+          topLeft={MemoTopLeft()?.content}
+          topRight={MemoTopRight()?.content}
+          bottomLeft={MemoBottomLeft()?.content}
+          bottomRight={MemoBottomRight()?.content}
         />
       )}
     </div>

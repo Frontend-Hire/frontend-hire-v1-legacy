@@ -33,32 +33,32 @@ export default function ClientContainer() {
 
   return (
     <QuestionDataProvider questionData={data.question}>
-      <QuestionLayoutProvider
-        questionLayout={data.question.originalMeta.recommendedLayout}
-      >
-        <QuestionHotkeysProvider>
-          <SandpackProvider
-            style={{
-              height: '100%',
-            }}
-            template={data.question.originalMeta.template}
-            customSetup={{
-              dependencies: data.question.originalMeta.dependencies,
-            }}
-            theme="dark"
-            files={data.question.userMeta.files}
-            options={{
-              externalResources: data.question.originalMeta.externalCDNs,
-              autoReload: true,
-              autorun: false, // If true results in infinite loader
-            }}
+      <QuestionHotkeysProvider>
+        <SandpackProvider
+          style={{
+            height: '100%',
+          }}
+          template={data.question.originalMeta.template}
+          customSetup={{
+            dependencies: data.question.originalMeta.dependencies,
+          }}
+          theme="dark"
+          files={data.question.userMeta.files}
+          options={{
+            externalResources: data.question.originalMeta.externalCDNs,
+            autoReload: true,
+            autorun: false, // If true results in infinite loader
+          }}
+        >
+          <QuestionLayoutProvider
+            questionLayout={data.question.originalMeta.recommendedLayout}
           >
             <PrimaryLayout header={<Header />}>
               <Container />
             </PrimaryLayout>
-          </SandpackProvider>
-        </QuestionHotkeysProvider>
-      </QuestionLayoutProvider>
+          </QuestionLayoutProvider>
+        </SandpackProvider>
+      </QuestionHotkeysProvider>
     </QuestionDataProvider>
   );
 }
