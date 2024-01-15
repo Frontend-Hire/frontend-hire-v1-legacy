@@ -10,8 +10,8 @@ import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
 import useClientData from '../_hooks/useClientData';
-import { QuestionData } from '../_types/questionData';
 import { QuestionDataProvider } from '../_context/QuestionDataProvider';
+import { QuestionLayoutProvider } from '../_context/QuestionLayoutProvider';
 
 export default function ClientContainer() {
   const { data } = useClientData();
@@ -33,28 +33,32 @@ export default function ClientContainer() {
 
   return (
     <QuestionDataProvider questionData={data.question}>
-      <QuestionHotkeysProvider>
-        <SandpackProvider
-          style={{
-            height: '100%',
-          }}
-          template={data.question.originalMeta.template}
-          customSetup={{
-            dependencies: data.question.originalMeta.dependencies,
-          }}
-          theme="dark"
-          files={data.question.userMeta.files}
-          options={{
-            externalResources: data.question.originalMeta.externalCDNs,
-            autoReload: true,
-            autorun: false, // If true results in infinite loader
-          }}
-        >
-          <PrimaryLayout header={<Header />}>
-            <Container />
-          </PrimaryLayout>
-        </SandpackProvider>
-      </QuestionHotkeysProvider>
+      <QuestionLayoutProvider
+        questionLayout={data.question.originalMeta.recommendedLayout}
+      >
+        <QuestionHotkeysProvider>
+          <SandpackProvider
+            style={{
+              height: '100%',
+            }}
+            template={data.question.originalMeta.template}
+            customSetup={{
+              dependencies: data.question.originalMeta.dependencies,
+            }}
+            theme="dark"
+            files={data.question.userMeta.files}
+            options={{
+              externalResources: data.question.originalMeta.externalCDNs,
+              autoReload: true,
+              autorun: false, // If true results in infinite loader
+            }}
+          >
+            <PrimaryLayout header={<Header />}>
+              <Container />
+            </PrimaryLayout>
+          </SandpackProvider>
+        </QuestionHotkeysProvider>
+      </QuestionLayoutProvider>
     </QuestionDataProvider>
   );
 }

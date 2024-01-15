@@ -1,22 +1,17 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { PanelsLeftBottomIcon, Columns3Icon } from 'lucide-react';
 import Tooltip from '@/components/ui/tooltip';
+import { QuestionLayout } from '@/types/Question';
+import { useQuestionLayout } from '../_context/QuestionLayoutProvider';
 
-type Layout = 'col-3' | 'col-2';
-
-const LayoutIcons: { [key in Layout]: React.ReactNode } = {
+const LayoutIcons: { [key in QuestionLayout]: React.ReactNode } = {
   'col-3': <Columns3Icon />,
   'col-2': <PanelsLeftBottomIcon />,
 };
 
 export default function ToggleLayoutButton() {
-  const [layout, setLayout] = React.useState<Layout>('col-3');
-
-  const toggleLayout = () => {
-    setLayout((prev) => (prev === 'col-3' ? 'col-2' : 'col-3'));
-  };
+  const { layout, toggleLayout } = useQuestionLayout();
 
   return (
     <Tooltip title="Toggle Layout">
