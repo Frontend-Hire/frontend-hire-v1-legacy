@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
-import 'react-reflex/styles.css';
-
-import styles from './QuestionLayout.module.css';
 import QuestionMobileLayout from './QuestionMobileLayout';
+import { useQuestionLayout } from '@/app/(protected)/questions/[questionId]/_context/QuestionLayoutProvider';
+import ThreeColumnLayout from './ThreeColumnLayout';
+import TwoColumnLayout from './TwoColumnLayout';
 
 type QuestionLayoutProps = {
   topLeft?: {
@@ -33,6 +32,7 @@ export default function QuestionLayout({
   bottomRight,
 }: QuestionLayoutProps) {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 450);
+  const { layout } = useQuestionLayout();
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -46,38 +46,32 @@ export default function QuestionLayout({
     };
   }, []);
 
-  return (
-    <div className="h-0 flex-grow">
-      {isMobile ? (
+  if (isMobile) {
+    return (
+      <div className="h-0 flex-grow">
         <QuestionMobileLayout
           tabs={[topLeft, bottomLeft, topRight, bottomRight]}
         />
+      </div>
+    );
+  }
+
+  return (
+    <div className="h-0 flex-grow">
+      {layout === 'col-3' ? (
+        <ThreeColumnLayout
+          topLeft={topLeft?.content}
+          topRight={topRight?.content}
+          bottomLeft={bottomLeft?.content}
+          bottomRight={bottomRight?.content}
+        />
       ) : (
-        <ReflexContainer orientation="vertical">
-          <ReflexElement>
-            <ReflexContainer orientation="horizontal">
-              {topLeft && <ReflexElement>{topLeft.content}</ReflexElement>}
-              {topLeft && bottomLeft && (
-                <ReflexSplitter className={styles.verticalSplitter} />
-              )}
-              {bottomLeft && (
-                <ReflexElement>{bottomLeft.content}</ReflexElement>
-              )}
-            </ReflexContainer>
-          </ReflexElement>
-          <ReflexSplitter className={styles.horizontalSplitter} />
-          <ReflexElement>
-            <ReflexContainer orientation="horizontal">
-              {topRight && <ReflexElement>{topRight.content}</ReflexElement>}
-              {topRight && bottomRight && (
-                <ReflexSplitter className={styles.verticalSplitter} />
-              )}
-              {bottomRight && (
-                <ReflexElement>{bottomRight.content}</ReflexElement>
-              )}
-            </ReflexContainer>
-          </ReflexElement>
-        </ReflexContainer>
+        <TwoColumnLayout
+          topLeft={topLeft?.content}
+          topRight={topRight?.content}
+          bottomLeft={bottomLeft?.content}
+          bottomRight={bottomRight?.content}
+        />
       )}
     </div>
   );
