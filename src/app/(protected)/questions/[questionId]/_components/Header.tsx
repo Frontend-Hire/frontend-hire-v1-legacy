@@ -5,6 +5,7 @@ import { ArrowLeftIcon, ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
 import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
+import ToggleLayoutButton from './ToggleLayoutButton';
 
 export default function Header() {
   return (
@@ -28,6 +29,7 @@ export default function Header() {
       </Link>
 
       <div className="flex items-center gap-4">
+        <ToggleLayoutButton />
         <ReportBugButtonWithDialog />
         <SubmitSolutionButton />
       </div>
