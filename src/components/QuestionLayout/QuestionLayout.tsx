@@ -2,8 +2,6 @@
 
 import React from 'react';
 import QuestionMobileLayout from './QuestionMobileLayout';
-import { useQuestionLayout } from '@/app/(protected)/questions/[questionId]/_context/QuestionLayoutProvider';
-import ThreeColumnLayout from './ThreeColumnLayout';
 import TwoColumnLayout from './TwoColumnLayout';
 
 type QuestionLayoutProps = {
@@ -32,7 +30,6 @@ export default function QuestionLayout({
   bottomRight,
 }: QuestionLayoutProps) {
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 450);
-  const { layout } = useQuestionLayout();
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -46,21 +43,11 @@ export default function QuestionLayout({
     };
   }, []);
 
-  const MemoTopLeft = React.useCallback(() => topLeft, [topLeft]);
-  const MemoTopRight = React.useCallback(() => topRight, [topRight]);
-  const MemoBottomLeft = React.useCallback(() => bottomLeft, [bottomLeft]);
-  const MemoBottomRight = React.useCallback(() => bottomRight, [bottomRight]);
-
   if (isMobile) {
     return (
       <div className="h-0 flex-grow">
         <QuestionMobileLayout
-          tabs={[
-            MemoTopLeft(),
-            MemoBottomLeft(),
-            MemoTopRight(),
-            MemoBottomRight(),
-          ]}
+          tabs={[topLeft, bottomLeft, topRight, bottomRight]}
         />
       </div>
     );
@@ -68,21 +55,12 @@ export default function QuestionLayout({
 
   return (
     <div className="h-0 flex-grow">
-      {layout === 'col-3' ? (
-        <ThreeColumnLayout
-          topLeft={MemoTopLeft()?.content}
-          topRight={MemoTopRight()?.content}
-          bottomLeft={MemoBottomLeft()?.content}
-          bottomRight={MemoBottomRight()?.content}
-        />
-      ) : (
-        <TwoColumnLayout
-          topLeft={MemoTopLeft()?.content}
-          topRight={MemoTopRight()?.content}
-          bottomLeft={MemoBottomLeft()?.content}
-          bottomRight={MemoBottomRight()?.content}
-        />
-      )}
+      <TwoColumnLayout
+        topLeft={topLeft?.content}
+        topRight={topRight?.content}
+        bottomLeft={bottomLeft?.content}
+        bottomRight={bottomRight?.content}
+      />
     </div>
   );
 }
