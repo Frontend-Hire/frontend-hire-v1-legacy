@@ -5,6 +5,7 @@ import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { DIFFICULTY_ORDER } from '@/types/Question';
 import { Metadata } from 'next';
 import QuestionList from './_components/QuestionList';
+import QuestionFilters from './_components/QuestionFilters';
 
 export const metadata: Metadata = {
   title: 'Questions | Frontend Hire',
@@ -33,6 +34,7 @@ export default async function Questions() {
         <Heading variant="h1">Questions</Heading>
         <p className="text-sm text-muted">Real World And Interview Based</p>
       </div>
+      <QuestionFilters />
       <QuestionList
         questions={currentSkillData}
         solvedQuestions={solvedQuestions}
