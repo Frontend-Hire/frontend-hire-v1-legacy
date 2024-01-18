@@ -6,7 +6,7 @@ import {
   SandpackPreview,
   SandpackTests,
 } from '@codesandbox/sandpack-react';
-import { InfoIcon } from 'lucide-react';
+import { ShieldAlertIcon } from 'lucide-react';
 import RunTestsButton from './RunTestsButton';
 import { useQuestionData } from '../_context/QuestionDataProvider';
 
@@ -47,13 +47,19 @@ export default function Output() {
     });
   }
 
+  const getAlertTitle = () => {
+    return 'If tests take too long (more than 15 seconds) to render refresh the browser! There is a known issue that breaks tests when the layout switches to mobile view or vice versa.';
+  };
+
   return (
     <QuestionLayoutItem
       rightButtons={
         <>
-          <Tooltip title="Run code to see preview">
-            <InfoIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
-          </Tooltip>
+          {showTests && (
+            <Tooltip title={getAlertTitle()}>
+              <ShieldAlertIcon className="mx-2 cursor-pointer text-white hover:opacity-70" />
+            </Tooltip>
+          )}
           {showTests && <RunTestsButton />}
         </>
       }
