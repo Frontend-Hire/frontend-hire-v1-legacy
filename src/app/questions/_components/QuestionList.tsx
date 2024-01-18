@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useQueryState } from 'nuqs';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { QuestionOverview } from '@/types/Question';
-import { useSearchParams } from 'next/navigation';
 
 type QuestionListProps = {
   questions: QuestionOverview[];
@@ -15,8 +15,7 @@ export default function QuestionList({
   questions,
   solvedQuestions = [],
 }: QuestionListProps) {
-  const filterParams = useSearchParams();
-  const search = filterParams.get('search') || '';
+  const [search, _] = useQueryState('search');
 
   const filteredQuestions = React.useMemo(() => {
     if (!search) return questions;
