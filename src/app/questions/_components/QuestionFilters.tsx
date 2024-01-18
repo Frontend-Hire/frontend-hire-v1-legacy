@@ -1,19 +1,26 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ListFilterIcon, SearchIcon } from 'lucide-react';
 
 import VisuallyHidden from '../../../components/ui/visually-hidden';
 import InputWithIcon from '@/components/InputWithIcon';
 
-type QuestionFiltersProps = {
-  search: string;
-  onSearch: (search: string) => void;
-};
+export default function QuestionFilters() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-export default function QuestionFilters({
-  search,
-  onSearch,
-}: QuestionFiltersProps) {
+  const handleSearch = (value: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (value) {
+      params.set('search', value);
+    } else {
+      params.delete('search');
+    }
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className="flex flex-wrap items-center gap-[10px]">
       <div>
@@ -27,8 +34,8 @@ export default function QuestionFilters({
         <InputWithIcon
           icon={<SearchIcon />}
           id="search"
-          value={search}
-          onChange={(e) => onSearch(e.target.value)}
+          defaultValue={searchParams.get('search')?.toString()}
+          onChange={(e) => handleSearch(e.target.value)}
           placeholder="Search Questions..."
         />
       </div>

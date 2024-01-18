@@ -4,7 +4,7 @@ import React from 'react';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { QuestionOverview } from '@/types/Question';
-import QuestionFilters from './QuestionFilters';
+import { useSearchParams } from 'next/navigation';
 
 type QuestionListProps = {
   questions: QuestionOverview[];
@@ -15,7 +15,8 @@ export default function QuestionList({
   questions,
   solvedQuestions = [],
 }: QuestionListProps) {
-  const [search, setSearch] = React.useState('');
+  const filterParams = useSearchParams();
+  const search = filterParams.get('search') || '';
 
   const filteredQuestions = React.useMemo(() => {
     if (!search) return questions;
@@ -33,7 +34,6 @@ export default function QuestionList({
 
   return (
     <>
-      <QuestionFilters search={search} onSearch={setSearch} />
       <VisuallyHidden>Questions List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
         {filteredQuestions.length !== 0 &&
