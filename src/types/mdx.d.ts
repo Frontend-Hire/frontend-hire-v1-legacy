@@ -2,7 +2,7 @@ import {
   SandpackFiles,
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
-import { QuestionDifficulty } from './Question';
+import { QuestionDifficulty, QuestionLayout } from './Question';
 import { ProjectDifficulty } from './Project';
 
 export type Meta = {
@@ -18,6 +18,7 @@ export type Meta = {
   files: SandpackFiles;
   submittedBy?: string;
   dependencies?: { [key: string]: string };
+  recommendedLayout?: QuestionLayout;
 };
 
 export type ProjectMeta = {

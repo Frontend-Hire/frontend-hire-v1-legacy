@@ -34,4 +34,6 @@ export const DIFFICULTY_ORDER = {
   [DIFFICULTY.MASTER]: 4,
 };
 
+export type QuestionLayout = 'col-3' | 'col-2';
+
 export type QuestionDifficulty = DIFFICULTY;

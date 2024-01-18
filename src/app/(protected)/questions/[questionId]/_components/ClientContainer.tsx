@@ -10,8 +10,8 @@ import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
 import useClientData from '../_hooks/useClientData';
-import { QuestionData } from '../_types/questionData';
 import { QuestionDataProvider } from '../_context/QuestionDataProvider';
+import { QuestionLayoutProvider } from '../_context/QuestionLayoutProvider';
 
 export default function ClientContainer() {
   const { data } = useClientData();
@@ -50,9 +50,13 @@ export default function ClientContainer() {
             autorun: false, // If true results in infinite loader
           }}
         >
-          <PrimaryLayout header={<Header />}>
-            <Container />
-          </PrimaryLayout>
+          <QuestionLayoutProvider
+            questionLayout={data.question.originalMeta.recommendedLayout}
+          >
+            <PrimaryLayout header={<Header />}>
+              <Container />
+            </PrimaryLayout>
+          </QuestionLayoutProvider>
         </SandpackProvider>
       </QuestionHotkeysProvider>
     </QuestionDataProvider>
