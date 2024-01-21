@@ -1,0 +1,68 @@
+export const meta = {
+  title: 'JS Polyfill: String.split() Method',
+  difficulty: 'medium',
+  skills: ['js', 'jest'],
+  description:
+    "The String.split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array. It uses a separator string to determine where each split should occur.",
+  template: 'test-ts',
+  recommendedLayout: 'col-2',
+  files: {
+    '/index.js': {
+      code: `// Normally, a polyfill would be implemented as part of the prototype of a global object.
+/* Something like the below
+if (!String.prototype.split) {
+  String.prototype.split = function(separator, limit) {
+    // Implementation goes here.
+  };
+} 
+*/
+// However, for this exercise, we'll define it as a regular function.
+
+export function stringSplit(str, separator, limit) {
+  // TODO: Implement the functionality of String.split here
+}
+`,
+      active: true
+    },
+    '/index.test.js': {
+      code: `import { stringSplit } from "./index.js";
+
+describe("String.split Polyfill", () => {
+  // Write your tests here
+});
+`},
+    '/add.test.ts': {
+      code: '',
+      hidden: true,
+    }
+  },
+  showTests: true,
+  showConsole: true,
+};
+
+# JS Polyfill: String.split() Method
+
+> "Divide and conquer your strings!"
+
+Polyfills are a way to add functionality to the JavaScript language by implementing methods that are not natively supported. This is useful for older browsers that do not support newer features of the language. In this exercise, you will implement a polyfill for the String.split() method. Also, they are interview questions that are commonly asked in JavaScript interviews.
+
+## Objectives
+- Implement the functionality of the String.split() method in a standalone function.
+- The function should correctly use the separator and handle cases where the separator is not provided.
+- It should also respect the optional limit argument.
+
+## Tests
+
+Write tests to cover the following scenarios:
+- The function splits a string correctly using a provided separator.
+- The function returns the original string as a single-element array when no separator is provided.
+- The function correctly applies the limit argument when provided.
+
+
+#### Resources
+
+- <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">MDN Web Docs: String.split()</a>
+- <a target="_blank" href="https://remysharp.com/2010/10/08/what-is-a-polyfill">What is a Polyfill?</a>
+- <a target="_blank" href="https://javascript.info/polyfills">JavaScript Info: Polyfills and transpilers</a>
+- <a target="_blank" href="https://polyfill.io/">Polyfill.io</a>
+- <a target="_blank" href="https://www.oddbird.net/2023/05/01/web-platform-tests-polyfills/">Using Web Platform Tests to Write and Test Polyfills</a>
