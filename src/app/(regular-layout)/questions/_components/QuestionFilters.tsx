@@ -3,7 +3,7 @@
 import { useQueryState } from 'nuqs';
 import { ListFilterIcon, SearchIcon } from 'lucide-react';
 
-import VisuallyHidden from '../../../components/ui/visually-hidden';
+import VisuallyHidden from '@/components/ui/visually-hidden';
 import InputWithIcon from '@/components/InputWithIcon';
 
 export default function QuestionFilters() {

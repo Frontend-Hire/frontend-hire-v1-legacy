@@ -1,12 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
-export default function GuidesLayout({
-  children,
-}: {
-  children: React.ReactNode;
-  params: any;
-}) {
+export default function RegularLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <Header />
