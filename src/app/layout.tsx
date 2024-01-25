@@ -12,7 +12,10 @@ const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
 });
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Frontend Hire',
