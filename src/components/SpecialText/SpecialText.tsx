@@ -11,14 +11,14 @@ export default function SpecialText({
   className,
 }: React.PropsWithChildren<SpecialTextProps>) {
   return (
-    <span
+    <strong
       className={cn(
-        'font-bold text-primary',
+        'rounded-sm bg-primary px-0.5',
         isLink ? 'underline' : '',
         className,
       )}
     >
       {children}
-    </span>
+    </strong>
   );
 }

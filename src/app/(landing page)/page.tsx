@@ -23,16 +23,16 @@ export default function Home() {
   return (
     <main className="h-full">
       <section className="flex h-full flex-col items-center justify-center gap-[25px] p-[10px] text-center md:px-[40px] md:py-[10px]">
-        <div className="flex h-full grow flex-col items-center justify-center gap-[25px]">
+        <div className="flex w-full grow flex-col items-center justify-center gap-[25px]">
           <p className="rounded-[5px] bg-[#18005F] px-[10px] py-[5px] text-sm md:text-base">
-            100% Free Access to Questions and Projects
+            100% Free Access to Questions, Projects, and Guides.
           </p>
           <h1 className="max-w-[25ch] text-3xl font-black md:text-4xl">
             Practice Core Frontend Skills For Interviews And Real World
           </h1>
-          <div className="flex items-center gap-[10px]">
+          <div className="flex w-full items-center gap-[10px]">
             <Line />
-            <h2 className="whitespace-nowrap text-lg font-bold md:text-xl">
+            <h2 className="text-lg font-bold xs:whitespace-nowrap md:text-xl">
               Make A Hiring Profile And Get Hired *
             </h2>
             <Line />
@@ -44,10 +44,9 @@ export default function Home() {
           <p className="max-w-fit self-center rounded-[5px] bg-destructive px-[5px] py-[2.5px] text-xs md:text-sm">
             * Currently in Beta! Hiring Profiles available early 2024!
           </p>
-          <p className="text-sm font-bold md:text-base">
-            A Growing Library of{' '}
-            <span className="text-primary">10+ Questions</span> and{' '}
-            <span className="text-primary">2+ Projects</span>
+          <p className="text-sm text-muted md:text-base">
+            A Growing Library of <strong>20+ Questions</strong> and{' '}
+            <strong>5+ Projects</strong>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-[20px] md:gap-[25px]">
             <Image
@@ -133,20 +132,5 @@ export default function Home() {
 }
 
 function Line() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="5"
-      viewBox="0 0 466 5"
-      fill="none"
-    >
-      <path
-        d="M2 2.5H464"
-        stroke="white"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  return <div className="h-1 w-full rounded-full bg-white" />;
 }

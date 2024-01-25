@@ -16,14 +16,15 @@ export default function QuestionList({
   solvedQuestions = [],
 }: QuestionListProps) {
   const [search, _] = useQueryState('search');
+  const trimmedSearch = search?.trim();
 
   const filteredQuestions = React.useMemo(() => {
-    if (!search) return questions;
+    if (!trimmedSearch) return questions;
 
     return questions.filter((question) =>
-      question.title.toLowerCase().includes(search.toLowerCase()),
+      question.title.toLowerCase().includes(trimmedSearch.toLowerCase()),
     );
-  }, [search, questions]);
+  }, [trimmedSearch, questions]);
 
   const checkQuestionCompletion = (questionId: string) => {
     if (!solvedQuestions) return false;
@@ -34,6 +35,10 @@ export default function QuestionList({
   return (
     <>
       <VisuallyHidden>Questions List</VisuallyHidden>
+      <span>
+        {trimmedSearch ? 'Filtered' : 'Total'} questions count:{' '}
+        {filteredQuestions.length}
+      </span>
       <ul className="flex flex-col gap-[20px]">
         {filteredQuestions.length !== 0 &&
           filteredQuestions.map((question) => (
