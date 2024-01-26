@@ -26,9 +26,10 @@ export default function SkillGuides() {
       <ul className="flex flex-col gap-[20px]">
         <li>
           <CardLinkItem
+            type="link"
             title="React Learning Guide"
             link="/guides/skills/react"
-            icon={<Image src={ReactLogo} alt="" />}
+            leftIcon={<Image src={ReactLogo} alt="" />}
           />
         </li>
       </ul>

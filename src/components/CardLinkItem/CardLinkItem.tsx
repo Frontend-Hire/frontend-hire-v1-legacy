@@ -1,36 +1,50 @@
-import { ChevronRightIcon } from 'lucide-react';
 import Link from 'next/link';
 
-type CardLinkItemProps = {
-  link: string;
-  title: string;
-  icon?: React.ReactNode;
-  isBeta?: boolean;
-};
+type CardLinkItemProps =
+  | {
+      type: 'link';
+      link: string;
+      title: React.ReactNode;
+      leftIcon?: React.ReactNode;
+      rightIcon?: React.ReactNode;
+    }
+  | {
+      type: 'comingSoon';
+      title: React.ReactNode;
+      leftIcon?: React.ReactNode;
+    };
 
-export default function CardLinkItem({
-  link,
-  icon,
-  title,
-  isBeta,
-}: CardLinkItemProps) {
+export default function CardLinkItem(props: CardLinkItemProps) {
+  const { title, leftIcon } = props;
+
+  if (props.type === 'comingSoon') {
+    return (
+      <div className="flex items-center justify-between rounded bg-card p-[10px] opacity-60 hover:bg-card/80">
+        <span className="flex items-center gap-[40px]">
+          {leftIcon}
+          <h3 className="flex items-center gap-[10px] text-2xl font-bold">
+            {title}
+            <span className="rounded-full bg-muted px-2 py-1 text-xs text-background">
+              Coming Soon
+            </span>
+          </h3>
+        </span>
+      </div>
+    );
+  }
+
   return (
     <Link
       className="flex items-center justify-between rounded bg-card p-[10px] hover:bg-card/80"
-      href={link}
+      href={props.link}
     >
       <span className="flex items-center gap-[40px]">
-        {icon}
-        <h3 className="text-2xl font-bold">{title}</h3>
+        {leftIcon}
+        <h3 className="flex items-center gap-[10px] text-2xl font-bold">
+          {title}
+        </h3>
       </span>
-      <div className="flex items-center gap-[5px]">
-        {isBeta && (
-          <span className="rounded-full bg-primary px-2 py-1 text-xs text-white">
-            Beta
-          </span>
-        )}
-        <ChevronRightIcon size={40} />
-      </div>
+      {props.rightIcon}
     </Link>
   );
 }
