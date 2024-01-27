@@ -1,7 +1,13 @@
 import CardLinkItem from '@/components/CardLinkItem';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { PhoneCallIcon } from 'lucide-react';
+import {
+  ChevronRightIcon,
+  ExternalLinkIcon,
+  LaptopIcon,
+  PhoneCallIcon,
+  UserIcon,
+} from 'lucide-react';
 
 import { Metadata } from 'next';
 
@@ -23,10 +29,34 @@ export default async function Projects() {
       <ul className="flex flex-col gap-[20px]">
         <li>
           <CardLinkItem
+            type="link"
             title="Simulated Phone Screening"
             link="/interviews/simulated-phone-screening"
-            icon={<PhoneCallIcon size={40} />}
-            isBeta
+            leftIcon={<PhoneCallIcon size={40} />}
+            rightIcon={<ChevronRightIcon size={40} />}
+          />
+        </li>
+        <li>
+          <CardLinkItem
+            type="link"
+            title={
+              <>
+                Mock In-Person Interview{' '}
+                <span className="rounded-full bg-primary px-2 py-1 text-xs text-white">
+                  20% Off
+                </span>
+              </>
+            }
+            link="https://topmate.io/iamyhr/362939?coupon_code=FRONTENDHIRE"
+            leftIcon={<UserIcon size={40} />}
+            rightIcon={<ExternalLinkIcon size={40} />}
+          />
+        </li>
+        <li>
+          <CardLinkItem
+            type="comingSoon"
+            title="Online Assessment"
+            leftIcon={<LaptopIcon size={40} />}
           />
         </li>
       </ul>
