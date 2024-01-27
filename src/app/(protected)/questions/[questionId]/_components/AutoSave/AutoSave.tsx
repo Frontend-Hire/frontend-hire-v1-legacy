@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActiveCode, useSandpack } from '@codesandbox/sandpack-react';
+import { useSandpack } from '@codesandbox/sandpack-react';
 import { LoaderIcon } from 'lucide-react';
 import useDebounce from '../../_hooks/useDebounce';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
@@ -12,7 +12,7 @@ export default function AutoSave() {
   }>();
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const { sandpack } = useSandpack();
-  const { code } = useActiveCode();
+  const [hasRendered, setHasRendered] = React.useState(false);
   const [saveStatus, setSaveStatus] = React.useState<
     'saving' | 'saved' | 'idle'
   >('idle');
@@ -77,8 +77,14 @@ export default function AutoSave() {
   const debouncedSave = useDebounce(handleSave);
 
   React.useEffect(() => {
+    setHasRendered(true);
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasRendered) return;
     debouncedSave();
-  }, [debouncedSave, code]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSave, files]);
 
   if (saveStatus == 'saving')
     return (
