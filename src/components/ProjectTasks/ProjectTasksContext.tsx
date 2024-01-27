@@ -46,6 +46,9 @@ export default function ProjectTasksProvider({
 
   const markTaskAsComplete = async (id: number) => {
     const newTasks = [...completedTasks, id];
+
+    const projectSubmissionId = sessionStorage.getItem('projectSubmissionId');
+
     const payload: {
       id?: number;
       project_id: string;
@@ -53,8 +56,12 @@ export default function ProjectTasksProvider({
     } = {
       project_id: projectId,
       completed_tasks: newTasks,
-      id: +(sessionStorage.getItem('projectSubmissionId') || ''),
     };
+
+    if (projectSubmissionId) {
+      payload.id = +projectSubmissionId;
+    }
+
     const { data } = await supabaseBrowserClient
       .from('project_submissions')
       .upsert(payload)
@@ -70,6 +77,9 @@ export default function ProjectTasksProvider({
 
   const markTaskAsIncomplete = async (id: number) => {
     const newTasks = [...completedTasks.filter((taskId) => taskId !== id)];
+
+    const projectSubmissionId = sessionStorage.getItem('projectSubmissionId');
+
     const payload: {
       id?: number;
       project_id: string;
@@ -77,8 +87,12 @@ export default function ProjectTasksProvider({
     } = {
       project_id: projectId,
       completed_tasks: newTasks,
-      id: +(sessionStorage.getItem('projectSubmissionId') || ''),
     };
+
+    if (projectSubmissionId) {
+      payload.id = +projectSubmissionId;
+    }
+
     const { data } = await supabaseBrowserClient
       .from('project_submissions')
       .upsert(payload)
