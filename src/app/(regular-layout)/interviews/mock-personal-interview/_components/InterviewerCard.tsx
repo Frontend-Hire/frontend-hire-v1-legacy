@@ -28,6 +28,7 @@ export default function InterviewerCard({
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-[10px]">
           <Image
+            priority
             src={avatar}
             alt={name}
             className="h-[60px] w-[60px] rounded-full md:h-[80px] md:w-[80px]"
