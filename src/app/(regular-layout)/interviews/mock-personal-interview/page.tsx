@@ -2,9 +2,7 @@ import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { UserIcon } from 'lucide-react';
 import InterviewerCard from './_components/InterviewerCard';
-
-import hruthikImage from './_assets/hruthikReddyInterviewer.jpeg';
-import deepakImage from './_assets/deepakSharmaInterviewer.jpeg';
+import { INTERVIEWERS } from './interviewers';
 
 export default function MockPersonalInterview() {
   return (
@@ -24,28 +22,11 @@ export default function MockPersonalInterview() {
       </span>
       <VisuallyHidden>Available Interviews</VisuallyHidden>
       <ul className="grid grid-cols-1 gap-[20px] md:grid-cols-2">
-        <li>
-          <InterviewerCard
-            avatar={hruthikImage}
-            name="Hruthik Reddy"
-            headline="Building Frontend Hire"
-            badge="Top 1%"
-            description="Perfect for folks with less than 2 years of frontend experience."
-            linkedIn="https://www.linkedin.com/in/yarala-hruthik-reddy/"
-            bookingLink="https://topmate.io/iamyhr/362939?coupon_code=FRONTENDHIRE"
-          />
-        </li>
-        <li>
-          <InterviewerCard
-            avatar={deepakImage}
-            name="Deepak Sharma"
-            headline="UI Engineer at ACKO"
-            badge="Top 1%"
-            description="Level up your React JS Interview with Personalized Mock Interviews!"
-            linkedIn="https://www.linkedin.com/in/depaksharma/"
-            bookingLink="https://topmate.io/deepak_sharma/493434?coupon_code=FRONTENDHIRE20"
-          />
-        </li>
+        {INTERVIEWERS.map((interviewer) => (
+          <li key={interviewer.name}>
+            <InterviewerCard {...interviewer} />
+          </li>
+        ))}
       </ul>
     </main>
   );
