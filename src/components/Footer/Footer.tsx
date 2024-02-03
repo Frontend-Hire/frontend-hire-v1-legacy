@@ -14,7 +14,7 @@ export default function Footer({ className }: FooterProps) {
         className,
       )}
     >
-      © Yarala Hruthik Reddy {thisYear}
+      © Frontend Hire {thisYear}
     </footer>
   );
 }
