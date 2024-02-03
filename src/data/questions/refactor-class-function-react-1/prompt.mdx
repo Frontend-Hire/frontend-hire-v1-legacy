@@ -1,0 +1,125 @@
+export const meta = {
+  title: 'Refactor: React - Class to Function Components',
+  difficulty: 'medium',
+  skills: ['react'],
+  description:
+    "Though modern React applications are built using function components, there are still many class components in the wild. You might need to refactor a class component to a function component for various reasons.",
+  template: 'react',
+  files: {
+    '/App.js': {
+      code: `import React, { Component } from "react";
+
+class AddTodo extends Component {
+  state = { input: "" };
+
+  handleChange = (e) => {
+    this.setState({ input: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTodo({
+      id: Date.now(),
+      title: this.state.input,
+      completed: false,
+    });
+    this.setState({ input: "" });
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.input}
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+    );
+  }
+}
+
+export default AddTodo;
+`,
+      active: true
+    },
+    '/TodoList.js': {
+      code: `import React, { Component } from "react";
+
+class TodoList extends Component {
+  render() {
+    return (
+      <ul>
+        {this.props.todos.map((todo) => (
+          <li
+            key={todo.id}
+            onClick={() => this.props.toggleTodoCompletion(todo.id)}
+          >
+            {todo.title} {todo.completed ? "(completed)" : ""}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
+
+export default TodoList;
+`},
+    '/AddTodo.js': {
+      code: `import React, { Component } from "react";
+
+class AddTodo extends Component {
+  state = { input: "" };
+
+  handleChange = (e) => {
+    this.setState({ input: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTodo({
+      id: Date.now(),
+      title: this.state.input,
+      completed: false,
+    });
+    this.setState({ input: "" });
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.input}
+        />
+        <button type="submit">Add Todo</button>
+      </form>
+    );
+  }
+}
+
+export default AddTodo;
+`,
+    }
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+# Refactor: React - Class to Function Components
+
+> "The art of programming is the skill of controlling complexity." - Marijn Haverbeke
+
+## Objectives
+- Refactor the `App`, `TodoList`, and `AddTodo` class components to function components using React Hooks.
+- Use the `useState` hook to manage state within the function components.
+- Use the `useEffect` hook if necessary for lifecycle methods replacement.
+- Ensure the application functionality remains unchanged after the refactor.
+
+## Resources
+
+- <a target="_blank" href="https://reactjs.org/docs/hooks-intro.html">React Docs: Introducing Hooks</a>
+- <a target="_blank" href="https://reactjs.org/docs/hooks-state.html">React Docs: Using the State Hook</a>
+- <a target="_blank" href="https://reactjs.org/docs/hooks-effect.html">React Docs: Using the Effect Hook</a>
