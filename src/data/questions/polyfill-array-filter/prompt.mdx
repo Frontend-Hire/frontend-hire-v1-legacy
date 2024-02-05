@@ -1,0 +1,68 @@
+export const meta = {
+  title: 'JS Polyfill: Array.filter() Method',
+  difficulty: 'medium',
+  skills: ['js'],
+  description:
+    "The Array.filter() method creates a new array with all elements that pass the test implemented by the provided function. Your task is to implement a polyfill for Array.filter called arrayFilter.",
+  template: 'test-ts',
+  recommendedLayout: 'col-2',
+  files: {
+    '/index.js': {
+      code: `// Normally, a polyfill would be implemented as part of the prototype of a global object.
+/* Something like the below
+if (!Array.prototype.filter) {
+  Array.prototype.filter = function(callback) {
+    // Implementation goes here.
+  };
+} 
+*/
+// However, for this exercise, we'll define it as a regular function.
+
+export function arrayFilter(array, callback) {
+  // TODO: Implement the functionality of Array.filter here
+}
+`,
+      active: true
+    },
+    '/index.test.js': {
+      code: `import { arrayFilter } from "./index.js";
+
+describe("Array.filter Polyfill", () => {
+  // Write your tests here
+});
+`},
+    '/add.test.ts': {
+      code: '',
+      hidden: true,
+    }
+  },
+  showTests: true,
+  showConsole: true,
+};
+
+# Implement Array.filter Polyfill
+
+> "Why did the JavaScript developer leave the restaurant? Because they didn't like the array of options and decided to filter them out themselves!"
+
+Polyfills are a way to add functionality to the JavaScript language by implementing methods that are not natively supported. This is useful for older browsers that do not support newer features of the language. In this exercise, you will implement a polyfill for the Array.filter() method. Also, they are interview questions that are commonly asked in JavaScript interviews.
+
+## Objectives
+- Understand how the Array.filter method works in JavaScript.
+- Implement a polyfill for the Array.filter method called arrayFilter.
+- Write tests to verify your implementation behaves as expected.
+
+## Tests
+
+Consider writing tests for the following scenarios:
+- The polyfill filters elements of an array based on a condition.
+- It handles empty arrays without throwing errors.
+- Add more tests to cover edge cases and ensure your implementation is robust.
+
+
+#### Resources
+
+- [MDN Web Docs: Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [What is a Polyfill?](https://remysharp.com/2010/10/08/what-is-a-polyfill)
+- [Polyfill.io](https://polyfill.io/)
+- [Using Web Platform Tests to Write and Test Polyfills](https://www.oddbird.net/2023/05/01/web-platform-tests-polyfills/)
+- [JavaScript Info: Polyfills and transpilers](https://javascript.info/polyfills)
