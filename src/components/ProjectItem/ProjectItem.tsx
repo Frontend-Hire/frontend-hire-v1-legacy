@@ -82,7 +82,7 @@ export default function ProjectItem({
       <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
       <div className="flex grow flex-col gap-[5px] px-[10px]">
         <h2 className="text-xl font-bold md:text-2xl">{title}</h2>
-        <p className="grow text-sm text-muted">{description}</p>
+        <p className="grow text-sm text-gray-300">{description}</p>
         <SkillBadges skills={skills} />
       </div>
       <div className="flex items-center justify-between p-[10px] text-sm font-medium">
