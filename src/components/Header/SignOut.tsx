@@ -15,7 +15,7 @@ export default function SignOut() {
   };
 
   return (
-    <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
+    <DropdownMenuItem className="cursor-pointer" onClick={handleSignOut}>
       Sign Out
     </DropdownMenuItem>
   );

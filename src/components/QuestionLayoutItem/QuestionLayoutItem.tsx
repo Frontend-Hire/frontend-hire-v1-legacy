@@ -20,10 +20,14 @@ export default function QuestionLayoutItem({
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <div className="flex h-[40px] items-center justify-between bg-card">
-          <TabsList>
+        <div className="z-[1] flex h-[40px] items-center justify-between bg-card/60">
+          <TabsList className="rounded-none p-0">
             {tabs.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
+              <TabsTrigger
+                className="h-full rounded-none data-[state=active]:bg-card"
+                key={tab.value}
+                value={tab.value}
+              >
                 {tab.label}
               </TabsTrigger>
             ))}
@@ -32,7 +36,7 @@ export default function QuestionLayoutItem({
         </div>
         {tabs.map((tab) => (
           <TabsContent
-            className="flex h-full flex-col"
+            className="mt-0 flex h-full flex-col"
             asChild
             forceMount
             key={tab.value}

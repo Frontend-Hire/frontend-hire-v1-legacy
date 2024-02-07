@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Badge } from '../ui/badge';
 
 type CardLinkItemProps =
   | {
@@ -24,9 +25,7 @@ export default function CardLinkItem(props: CardLinkItemProps) {
           {leftIcon}
           <h3 className="flex items-center gap-[10px] text-2xl font-bold">
             {title}
-            <span className="rounded-full bg-muted px-2 py-1 text-xs text-background">
-              Coming Soon
-            </span>
+            <Badge>Coming Soon</Badge>
           </h3>
         </span>
       </div>

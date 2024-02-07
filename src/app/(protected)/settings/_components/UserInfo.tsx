@@ -8,7 +8,7 @@ export default async function UserInfo() {
   } = await supabaseServerClient.auth.getSession();
 
   return (
-    <p className="text-center text-muted">
+    <p className="text-gray-300">
       You are logged in as:{' '}
       <span className="bg-secondary p-1 font-bold text-foreground">
         {session?.user.email}

@@ -65,7 +65,7 @@ export default function QuestionItem({
         <DifficultyLabel difficulty={difficulty} />
         <div className="flex w-full flex-col gap-[5px] py-[10px]">
           <p className="font-bold">{title}</p>
-          <p className="text-sm leading-[100%] text-muted">{description}</p>
+          <p className="text-sm leading-[100%] text-gray-300">{description}</p>
           <SkillBadges skills={skills} />
         </div>
         <CompletedBox isCompleted={isCompleted} />

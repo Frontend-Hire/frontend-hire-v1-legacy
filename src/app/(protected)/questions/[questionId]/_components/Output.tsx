@@ -48,7 +48,7 @@ export default function Output() {
   }
 
   const getAlertTitle = () => {
-    return 'If tests take too long (more than 15 seconds) to render refresh the browser! There is a known issue that breaks tests when the layout switches to mobile view or vice versa.';
+    return 'If tests take too long (more than 15 seconds) to render refresh the browser!';
   };
 
   return (

@@ -38,7 +38,7 @@ export default function GuideSpecialItem({
             </div>
           )}
         </div>
-        {description && <p className="text-sm text-muted">{description}</p>}
+        {description && <p className="text-sm text-gray-300">{description}</p>}
         {author && <p className="text-sm">Author: {author}</p>}
       </div>
     </div>

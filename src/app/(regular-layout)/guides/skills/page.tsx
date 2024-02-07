@@ -5,6 +5,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import ReactLogo from '@/assets/toollogos/react.png';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import CustomHeading from '@/components/CustomHeading';
 
 export const metadata: Metadata = {
   title: 'Skill Guides | Frontend Hire',
@@ -14,14 +15,11 @@ export const metadata: Metadata = {
 export default function SkillGuides() {
   return (
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
-      <div className="flex flex-col gap-[15px] py-[10px]">
-        <Heading variant="h1" className="flex gap-[20px]">
-          Skill Guides
-        </Heading>
-        <p className="text-sm text-muted">
-          All the resources to be confident in a skill
-        </p>
-      </div>
+      <CustomHeading
+        title="Skill Guides"
+        subTitle="All the resources to be confident in a skill"
+      />
+
       <VisuallyHidden>Skill Guides List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
         <li>

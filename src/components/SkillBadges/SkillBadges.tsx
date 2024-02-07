@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { Badge } from '../ui/badge';
 
 const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
   HTML: { className: 'bg-[#E44D26] text-white', label: 'HTML' },
@@ -32,13 +33,13 @@ export default function SkillsBadges({ skills }: SkillsBadgesProps) {
 
 function SkillBadge({ skill }: { skill: string }) {
   return (
-    <div
+    <Badge
       className={cn(
-        'flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium leading-[100%]',
         SKILL_CLASS[skill.toUpperCase()]?.className || 'bg-gray-800 text-white',
+        'text-white',
       )}
     >
       {SKILL_CLASS[skill.toUpperCase()]?.label || skill}
-    </div>
+    </Badge>
   );
 }

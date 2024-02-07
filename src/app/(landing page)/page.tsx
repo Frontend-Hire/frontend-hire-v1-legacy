@@ -42,9 +42,9 @@ export default function Home() {
 
         <div className="flex flex-col gap-[20px]">
           <p className="max-w-fit self-center rounded-[5px] bg-destructive px-[5px] py-[2.5px] text-xs md:text-sm">
-            * Currently in Beta! Hiring Profiles available early 2024!
+            * Currently in Beta! Hiring Profiles available mid 2024!
           </p>
-          <p className="text-sm text-muted md:text-base">
+          <p className="text-sm text-gray-300 md:text-base">
             A Growing Library of <strong>20+ Questions</strong> and{' '}
             <strong>5+ Projects</strong>
           </p>

@@ -1,4 +1,4 @@
-import Badge from '@/components/Badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLinkIcon, LinkedinIcon } from 'lucide-react';
 import Image, { StaticImageData } from 'next/image';
@@ -35,10 +35,10 @@ export default function InterviewerCard({
           />
           <div className="flex flex-col justify-center gap-[5px]">
             <h3 className="text-xl font-bold">{name}</h3>
-            <p className="text-sm font-medium text-muted">{headline}</p>
+            <p className="text-sm font-medium text-gray-300">{headline}</p>
           </div>
         </div>
-        <Badge>{badge}</Badge>
+        <Badge className="text-center">{badge}</Badge>
       </div>
       <p className="grow text-sm font-medium leading-5">{description}</p>
       <div className="flex items-center justify-between">
