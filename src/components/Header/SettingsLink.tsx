@@ -5,7 +5,7 @@ import { DropdownMenuItem } from '../ui/dropdown-menu';
 
 export default function SettingsLink() {
   return (
-    <DropdownMenuItem asChild>
+    <DropdownMenuItem className="cursor-pointer" asChild>
       <Link href="/settings">Settings</Link>
     </DropdownMenuItem>
   );
