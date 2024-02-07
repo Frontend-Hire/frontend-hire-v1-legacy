@@ -45,6 +45,12 @@ export default async function Header() {
         >
           Guides
         </Link>
+        <Link
+          className="transition-all duration-300 hover:text-primary"
+          href="/guides"
+        >
+          Courses
+        </Link>
         {session ? (
           <AvatarDropdown
             picture={session.user.user_metadata.picture}

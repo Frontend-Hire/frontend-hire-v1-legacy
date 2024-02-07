@@ -31,6 +31,12 @@ export default function Header() {
           className="transition-all duration-300 hover:text-primary"
           href="/guides"
         >
+          Courses
+        </Link>
+        <Link
+          className="transition-all duration-300 hover:text-primary"
+          href="/guides"
+        >
           Guides
         </Link>
         <CTA />
