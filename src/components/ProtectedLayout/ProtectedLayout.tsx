@@ -28,13 +28,13 @@ export default async function ProtectedLayout({
             <Heading variant="h1">
               Our platform is free for registered users!
             </Heading>
-            <p className="text-sm text-muted">
+            <p className="text-sm text-gray-300">
               So, sign in for free with your Google account for unrestricted
               access to questions, projects and interviews!
             </p>
           </div>
           <SignInButton />
-          <p className="text-sm text-muted">
+          <p className="text-sm text-gray-300">
             We will never share your data with anyone without your permission!
             Also, you can delete your account anytime you want through settings
             (once signed in, click on your avatar to open a menu with settings).

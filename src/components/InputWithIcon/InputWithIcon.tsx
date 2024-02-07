@@ -9,7 +9,7 @@ interface InputWithIconProps extends InputProps {
 const InputWithIcon = React.forwardRef<HTMLInputElement, InputWithIconProps>(
   ({ icon, className, ...props }, ref) => {
     const cloneIcon = React.cloneElement(icon as React.ReactElement, {
-      className: 'absolute left-2 h-4 w-4 text-muted',
+      className: 'absolute left-2 h-4 w-4 text-gray-300',
     });
 
     return (
