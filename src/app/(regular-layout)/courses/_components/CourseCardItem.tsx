@@ -10,7 +10,7 @@ type CourseCardItemProps = {
   description: string;
   liveLink?: string;
   preRecordedLink?: string;
-  isFreeCourseMaterialAvailable?: boolean;
+  freeCourseMaterial?: string;
 };
 
 export default function CourseCardItem({
@@ -19,7 +19,7 @@ export default function CourseCardItem({
   description,
   liveLink,
   preRecordedLink,
-  isFreeCourseMaterialAvailable = false,
+  freeCourseMaterial,
 }: CourseCardItemProps) {
   return (
     <div className="flex flex-col gap-[10px] rounded bg-card p-[10px]">
@@ -37,8 +37,12 @@ export default function CourseCardItem({
       </div>
       <p className="font-medium">{description}</p>
       <div className="flex flex-wrap items-center justify-between gap-[10px]">
-        {isFreeCourseMaterialAvailable && (
-          <Badge className="bg-secondary">Free Course Material</Badge>
+        {freeCourseMaterial && (
+          <Badge className="bg-secondary">
+            <Link target="_blank" href={freeCourseMaterial}>
+              Free Course Material
+            </Link>
+          </Badge>
         )}
         <div className="flex flex-wrap gap-[10px]">
           {liveLink && (

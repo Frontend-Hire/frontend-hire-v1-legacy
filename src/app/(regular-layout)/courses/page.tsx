@@ -9,7 +9,7 @@ export default function CoursesPage() {
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <CustomHeading
         title="Courses"
-        subTitle="Live and pre-recorded practical focused courses"
+        subTitle="Live and recorded practical courses"
       />
 
       <CourseBanner />
@@ -25,7 +25,7 @@ export default function CoursesPage() {
               headline: 'Frontend Hire',
             }}
             description="Todo apps are a great way to learn a new language or framework. We teach this course with more than just React. You would learn about a good React project setup, hooks, component composition and testing."
-            isFreeCourseMaterialAvailable
+            freeCourseMaterial="https://courses.frontendhire.com/todo-app/react"
             liveLink="https://topmate.io/iamyhr/730371"
           />
         </li>
