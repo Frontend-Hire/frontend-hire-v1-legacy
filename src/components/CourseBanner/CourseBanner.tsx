@@ -32,11 +32,18 @@ export default function CourseBanner({ isRootTop }: CourseBannerProps) {
 }
 
 function RootTopBanner() {
-  const [banner, setBanner] = React.useState<'open' | 'close'>(
-    () => (sessionStorage.getItem('banner') as 'open' | 'close') ?? 'open',
-  );
+  const [banner, setBanner] = React.useState<'open' | 'close' | ''>('');
 
-  if (banner === 'close') return null;
+  React.useEffect(() => {
+    const bannerState = sessionStorage.getItem('banner');
+    if (bannerState === 'close') {
+      setBanner('close');
+    } else {
+      setBanner('open');
+    }
+  }, []);
+
+  if (banner !== 'open') return null;
 
   const closeBanner = () => {
     sessionStorage.setItem('banner', 'close');
