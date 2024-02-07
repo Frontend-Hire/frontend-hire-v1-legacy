@@ -94,7 +94,7 @@ export default function SubmitProjectButtonWithDialog({
           <form onSubmit={onSubmitProject} className="grid gap-2">
             <div className="grid gap-2 py-1">
               <Label htmlFor="github">GitHub Link</Label>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-gray-300">
                 Be sure to include good Readme doc in the repo.
               </p>
               <Input
@@ -109,7 +109,7 @@ export default function SubmitProjectButtonWithDialog({
             </div>
             <div className="grid gap-2 py-1">
               <Label htmlFor="liveLink">Live Link (Optional)</Label>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-gray-300">
                 Use Vercel, Netlify or your favorite hosting platform to host
                 the project.
               </p>

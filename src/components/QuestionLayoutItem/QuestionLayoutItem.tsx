@@ -20,7 +20,7 @@ export default function QuestionLayoutItem({
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <div className="flex h-[40px] items-center justify-between bg-card/60">
+        <div className="z-[1] flex h-[40px] items-center justify-between bg-card/60">
           <TabsList className="rounded-none p-0">
             {tabs.map((tab) => (
               <TabsTrigger
