@@ -1,10 +1,10 @@
+import Badge from '@/components/Badge';
 import CardLinkItem from '@/components/CardLinkItem';
 import CustomHeading from '@/components/CustomHeading';
 import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import {
   ChevronRightIcon,
-  ExternalLinkIcon,
   LaptopIcon,
   PhoneCallIcon,
   UserIcon,
@@ -41,15 +41,12 @@ export default async function Projects() {
             type="link"
             title={
               <>
-                Mock In-Person Interview{' '}
-                <span className="rounded-full bg-primary px-2 py-1 text-xs text-white">
-                  20% Off
-                </span>
+                Mock In-Person Interview <Badge>20% Off</Badge>
               </>
             }
-            link="https://topmate.io/iamyhr/362939?coupon_code=FRONTENDHIRE"
+            link="/interviews/mock-personal-interview"
             leftIcon={<UserIcon size={40} />}
-            rightIcon={<ExternalLinkIcon size={40} />}
+            rightIcon={<ChevronRightIcon size={40} />}
           />
         </li>
         <li>

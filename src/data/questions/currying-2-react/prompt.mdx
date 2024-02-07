@@ -1,0 +1,67 @@
+export const meta = {
+  title: 'Currying Event Handlers in React',
+  difficulty: 'medium',
+  skills: ['react'],
+  description:
+    "Currying is a functional programming technique that can be applied in React to handle events more efficiently, especially when dealing with multiple similar inputs. However, it's important to note that this approach is not commonly used and should be adopted based on the team's consensus and coding standards.",
+  template: 'react',
+  files: {
+    '/App.js': {
+      code: `import React, { useState } from "react";
+
+const App = () => {
+  const [formData, setFormData] = useState({ name: "", email: "" });
+
+  // Implement the curried handleChange function
+  const handleChange = () => {};
+
+  return (
+    <>
+      <div>
+        <label htmlFor="name">Name: </label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange("name")}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="email">Email: </label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange("email")}
+        />
+      </div>
+    </>
+  );
+};
+
+export default App;
+`,
+      active: true
+    },
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+# Currying Event Handlers in React
+
+> Why did the functional programmer get thrown out of school?
+> Because they refused to stop currying functions!
+
+## Objectives
+- Understand the concept of currying in functional programming.
+- Implement a curried function for handling input changes.
+- Recognize that while currying can be a powerful tool, it's not commonly used in every React project. It's essential to align with your team's coding preferences and standards.
+
+## Resources
+
+- <a href="https://javascript.info/currying-partials" target="_blank">Currying Partials from javascript.info</a>
+

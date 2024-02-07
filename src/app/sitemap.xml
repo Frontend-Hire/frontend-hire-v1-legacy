@@ -4,89 +4,178 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
 <url>
   <loc>https://www.frontendhire.com/</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/interviews</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/guides</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/can-you-center-a-div</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/crud-js</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/questions/use-effect-1</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/questions/use-state-1</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/questions/use-state-2</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/questions/action-button-with-modal</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/questions/early-returns-js</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/questions/flatten-object</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <loc>https://www.frontendhire.com/questions/design-system-buttons-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/job-application-form-1</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/react-closures-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/responsive-card-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/use-effect-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/use-state-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/use-state-2</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/action-button-with-modal</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/early-returns-js</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/flatten-object</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/polyfill-array-at</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/polyfill-string-split</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/refactor-long-method-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/refactor-simplify-conditional-flows-1</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/use-effect-2</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-tasks</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/currying-1</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/use-history</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/setup-react-project-1</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/setup-react-project-2</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/projects/personal-portfolio-website</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/todo-app</loc>
-  <lastmod>2023-12-17T21:39:53+00:00</lastmod>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
   <priority>0.64</priority>
 </url>
+<url>
+  <loc>https://www.frontendhire.com/projects/feature-video-player</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/interviews/simulated-phone-screening</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/interviews/mock-personal-interview</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/guides/skills</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/guides/skills/react</loc>
+  <lastmod>2024-01-31T15:45:28+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
 </urlset>
