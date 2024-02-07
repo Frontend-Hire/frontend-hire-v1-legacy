@@ -10,7 +10,7 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn(
-        'flex grow items-end justify-center py-0.5 text-center text-xs font-medium text-muted',
+        'flex grow items-end justify-center py-0.5 text-center text-xs font-medium text-gray-300',
         className,
       )}
     >
