@@ -1,4 +1,4 @@
-import hruthikImage from './_assets/hruthikReddyInterviewer.jpeg';
+import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
 import deepakImage from './_assets/deepakSharmaInterviewer.jpeg';
 import ashwinImage from './_assets/ashwinKumarInterviewer.jpg';
 
