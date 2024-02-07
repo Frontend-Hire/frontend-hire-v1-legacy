@@ -1,4 +1,3 @@
-import { cn } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 
 const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
