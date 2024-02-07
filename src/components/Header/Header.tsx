@@ -3,6 +3,7 @@ import SignInButton from '../SignInButton';
 import Link from 'next/link';
 import HeaderLogo from '../HeaderLogo';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import CustomNavigationMenu from '../CustomNavigationMenu';
 
 export default async function Header() {
   const supabaseServerClient = createSupabaseServerClient();
@@ -21,36 +22,7 @@ export default async function Header() {
         <HeaderLogo />
       </Link>
       <div className="flex flex-wrap items-center justify-center gap-[20px] text-sm font-medium sm:col-span-5 sm:justify-end md:gap-[30px] md:text-base">
-        <Link
-          className="transition-all duration-300 hover:text-primary"
-          href="/questions"
-        >
-          Questions
-        </Link>
-        <Link
-          className="transition-all duration-300 hover:text-primary"
-          href="/projects"
-        >
-          Projects
-        </Link>
-        <Link
-          className="transition-all duration-300 hover:text-primary"
-          href="/interviews"
-        >
-          Interviews
-        </Link>
-        <Link
-          className="transition-all duration-300 hover:text-primary"
-          href="/guides"
-        >
-          Guides
-        </Link>
-        <Link
-          className="transition-all duration-300 hover:text-primary"
-          href="/guides"
-        >
-          Courses
-        </Link>
+        <CustomNavigationMenu />
         {session ? (
           <AvatarDropdown
             picture={session.user.user_metadata.picture}
