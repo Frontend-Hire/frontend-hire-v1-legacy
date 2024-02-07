@@ -64,6 +64,7 @@ export default function useSpeechRecognition(isActive: boolean) {
       setIsRecording(true);
       setAttemptMade(true);
       recognition.start();
+      setError('');
     }
   };
 
@@ -78,6 +79,7 @@ export default function useSpeechRecognition(isActive: boolean) {
     setFinalTranscript('');
     setInterimTranscript('');
     startRecognition();
+    setError('');
   };
 
   return {
