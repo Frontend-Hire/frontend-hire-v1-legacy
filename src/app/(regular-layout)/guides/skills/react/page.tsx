@@ -6,6 +6,7 @@ import GuideSpecialItem from '@/components/GuideSpecialItem';
 import { COURSE_ITEMS } from './constants';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import CustomHeading from '@/components/CustomHeading';
 
 export const metadata: Metadata = {
   title: 'React Learning Guide | Frontend Hire',
@@ -16,15 +17,12 @@ export default function ReactSkillGuide() {
   return (
     <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <article className="flex flex-col gap-[20px] py-[10px]">
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col gap-[15px]">
-            <Heading variant="h1">React Learning Guide</Heading>
-            <p className="text-sm text-muted">
-              Our compilation of best resources out there
-            </p>
-          </div>
-          <Image src={ReactLogo} alt="" />
-        </div>
+        <CustomHeading
+          title="React Learning Guide"
+          subTitle="Our compilation of best resources out there"
+          icon={<Image src={ReactLogo} alt="" />}
+        />
+
         <section className="flex flex-col gap-[10px]">
           <Heading variant="h3">Frontend Hire Tips</Heading>
           <ul className="ml-4 list-disc">
@@ -56,7 +54,7 @@ export default function ReactSkillGuide() {
         </section>
         <section className="flex flex-col gap-[10px]">
           <Heading variant="h3">Our Top List Of Courses To Do</Heading>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-gray-300">
             Choose only one, immediately switch if chosen one does not suit your
             learning style (
             <SpecialText>money can be earned back but time?</SpecialText>)
