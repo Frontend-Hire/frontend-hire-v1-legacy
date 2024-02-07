@@ -2,6 +2,7 @@ import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import CourseCardItem from './_components/CourseCardItem';
 import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
+import CourseBanner from '@/components/CourseBanner';
 
 export default function CoursesPage() {
   return (
@@ -10,6 +11,8 @@ export default function CoursesPage() {
         title="Courses"
         subTitle="Live and pre-recorded practical focused courses"
       />
+
+      <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
       <ul className="flex flex-col gap-[20px]">
