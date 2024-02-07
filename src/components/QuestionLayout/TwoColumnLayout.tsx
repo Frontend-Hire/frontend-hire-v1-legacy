@@ -1,8 +1,12 @@
 import React from 'react';
-import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex';
-import 'react-reflex/styles.css';
-import styles from './QuestionLayout.module.css';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable';
+
 import { useQuestionLayout } from '@/app/(protected)/questions/[questionId]/_context/QuestionLayoutProvider';
+import { cn } from '@/lib/utils';
 
 type TwoColumnLayoutProps = {
   topLeft?: React.ReactNode;
@@ -20,35 +24,43 @@ export default function TwoColumnLayout({
   const { layout } = useQuestionLayout();
 
   const orientation = React.useMemo(() => {
-    if (layout === 'col-3') return 'vertical';
-    return 'horizontal';
+    if (layout === 'col-3') return 'horizontal';
+    return 'vertical';
   }, [layout]);
 
   return (
-    <ReflexContainer orientation="vertical">
-      <ReflexElement>
-        <ReflexContainer orientation="horizontal">
-          {topLeft && <ReflexElement>{topLeft}</ReflexElement>}
+    <ResizablePanelGroup direction="horizontal">
+      <ResizablePanel>
+        <ResizablePanelGroup direction="horizontal">
+          <ResizablePanel>{topLeft}</ResizablePanel>
           {topLeft && bottomLeft && (
-            <ReflexSplitter className={styles.verticalSplitter} />
+            <ResizableHandle
+              withHandle
+              className="w-[10px] rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
+            />
           )}
-          {bottomLeft && <ReflexElement>{bottomLeft}</ReflexElement>}
-        </ReflexContainer>
-      </ReflexElement>
-      <ReflexSplitter className={styles.horizontalSplitter} />
-      <ReflexElement>
-        <ReflexContainer orientation={orientation}>
-          {topRight && <ReflexElement>{topRight}</ReflexElement>}
-          {topRight &&
-            bottomRight &&
-            (orientation === 'horizontal' ? (
-              <ReflexSplitter className={styles.verticalSplitter} />
-            ) : (
-              <ReflexSplitter className={styles.horizontalSplitter} />
-            ))}
-          {bottomRight && <ReflexElement>{bottomRight}</ReflexElement>}
-        </ReflexContainer>
-      </ReflexElement>
-    </ReflexContainer>
+          {bottomLeft && <ResizablePanel>{bottomLeft}</ResizablePanel>}
+        </ResizablePanelGroup>
+      </ResizablePanel>
+      <ResizableHandle
+        withHandle
+        className="w-[10px] rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
+      />
+      <ResizablePanel>
+        <ResizablePanelGroup direction={orientation}>
+          <ResizablePanel>{topRight}</ResizablePanel>
+          {topRight && bottomRight && (
+            <ResizableHandle
+              withHandle
+              className={cn(
+                'rounded-none border-none bg-neutral-800 hover:bg-neutral-600',
+                orientation === 'vertical' ? '!h-[10px]' : '!w-[10px]',
+              )}
+            />
+          )}
+          {bottomRight && <ResizablePanel>{bottomRight}</ResizablePanel>}
+        </ResizablePanelGroup>
+      </ResizablePanel>
+    </ResizablePanelGroup>
   );
 }
