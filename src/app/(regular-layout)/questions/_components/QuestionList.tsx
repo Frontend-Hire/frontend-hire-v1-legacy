@@ -55,7 +55,7 @@ export default function QuestionList({
           ))}
         {filteredQuestions.length === 0 && (
           <div className="mt-[20px] flex items-center justify-center">
-            <p className="text-center text-muted">
+            <p className="text-center text-gray-300">
               No questions found. Try different filters.
             </p>
           </div>
