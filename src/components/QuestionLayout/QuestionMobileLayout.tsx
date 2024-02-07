@@ -27,10 +27,14 @@ export default function QuestionMobileLayout({
       value={activeTab}
       onValueChange={setActiveTab}
     >
-      <div className="flex h-[40px] items-center justify-between bg-gray-600">
-        <TabsList>
+      <div className="flex h-[40px] items-center justify-between bg-card/60">
+        <TabsList className="rounded-none p-0">
           {tabsCleaned.map((tab) => (
-            <TabsTrigger key={tab.label} value={tab.label}>
+            <TabsTrigger
+              className="h-full rounded-none data-[state=active]:bg-card"
+              key={tab.label}
+              value={tab.label}
+            >
               {tab.label}
             </TabsTrigger>
           ))}
@@ -38,7 +42,7 @@ export default function QuestionMobileLayout({
       </div>
       {tabsCleaned.map((tab) => (
         <TabsContent
-          className="flex h-full flex-col"
+          className="mt-0 flex h-full flex-col"
           asChild
           forceMount
           key={tab.label}
