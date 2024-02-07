@@ -27,9 +27,10 @@ export const INTERVIEWERS = [
   {
     avatar: ashwinImage,
     name: 'Ashwin Kumar',
-    headline: 'Software Engineer at Cisco',
-    badge: '',
-    description: '',
+    headline: 'Software Engineer at Cisco | Ex-Microsoft | Ex-Apple',
+    badge: 'Highly Experienced',
+    description:
+      'Offering personalized mock interview sessions to sharpen skills and ace coding challenges.',
     linkedIn: 'https://www.linkedin.com/in/ashwinkumarmuthukumar/',
     bookingLink:
       'https://topmate.io/ashwin7mak/780664?coupon_code=Frontendhire',

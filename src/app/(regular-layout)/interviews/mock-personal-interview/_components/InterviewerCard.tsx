@@ -38,7 +38,7 @@ export default function InterviewerCard({
             <p className="text-sm font-medium text-gray-300">{headline}</p>
           </div>
         </div>
-        <Badge>{badge}</Badge>
+        <Badge className="text-center">{badge}</Badge>
       </div>
       <p className="grow text-sm font-medium leading-5">{description}</p>
       <div className="flex items-center justify-between">
