@@ -40,13 +40,5 @@ function SkillBadge({ skill }: { skill: string }) {
     >
       {SKILL_CLASS[skill.toUpperCase()]?.label || skill}
     </Badge>
-    // <div
-    //   className={cn(
-    //     'flex items-center justify-center rounded-[5px] px-[4px] py-[2px] text-xs font-medium leading-[100%]',
-    //     SKILL_CLASS[skill.toUpperCase()]?.className || 'bg-gray-800 text-white',
-    //   )}
-    // >
-    //   {SKILL_CLASS[skill.toUpperCase()]?.label || skill}
-    // </div>
   );
 }
