@@ -48,7 +48,6 @@
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
-    "react-reflex": "^4.1.0",
     "react-resizable-panels": "^2.0.3",
     "sharp": "^0.32.6",
     "tailwind-merge": "^1.14.0",
