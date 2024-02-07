@@ -1,7 +1,6 @@
-import Badge from '@/components/Badge';
 import CardLinkItem from '@/components/CardLinkItem';
 import CustomHeading from '@/components/CustomHeading';
-import Heading from '@/components/Heading';
+import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import {
   ChevronRightIcon,
