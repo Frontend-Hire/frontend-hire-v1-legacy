@@ -17,14 +17,14 @@ export default function Header() {
             size="icon"
             asChild
           >
-            <Link href="/questions">
+            <Link href="/questions" prefetch={false}>
               <ListIcon />
             </Link>
           </Button>
         </Tooltip>
       </div>
 
-      <Link href="/questions" className="max-xs:hidden">
+      <Link href="/questions" className="max-xs:hidden" prefetch={false}>
         <HeaderLogo />
       </Link>
 
