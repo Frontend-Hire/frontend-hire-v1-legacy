@@ -1,4 +1,3 @@
-import Heading from '@/components/Heading';
 import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
 import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
 import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
