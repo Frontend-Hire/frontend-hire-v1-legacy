@@ -4,6 +4,7 @@ import Link from 'next/link';
 import HeaderLogo from '../HeaderLogo';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import CustomNavigationMenu from '../CustomNavigationMenu';
+import MobileMenu from './MobileMenu';
 
 export default async function Header() {
   const supabaseServerClient = createSupabaseServerClient();
@@ -21,7 +22,10 @@ export default async function Header() {
       <Link className="xs:" href={getLogoLink()}>
         <HeaderLogo />
       </Link>
-      <div className="flex items-center gap-[20px] text-sm font-medium md:gap-[30px] md:text-base">
+
+      <MobileMenu session={session} />
+
+      <div className="hidden items-center gap-[20px] text-sm font-medium sm:flex md:gap-[30px] md:text-base">
         <CustomNavigationMenu />
         {session ? (
           <AvatarDropdown

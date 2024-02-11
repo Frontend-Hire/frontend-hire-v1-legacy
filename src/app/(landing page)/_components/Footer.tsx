@@ -95,7 +95,7 @@ function Social() {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             aria-hidden="true"
             className="h-6 w-6"
@@ -117,7 +117,7 @@ function Social() {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             aria-hidden="true"
             className="h-6 w-6"
@@ -139,7 +139,7 @@ function Social() {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             aria-hidden="true"
             className="h-6 w-6"
