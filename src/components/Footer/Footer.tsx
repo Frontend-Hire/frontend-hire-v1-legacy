@@ -41,7 +41,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
     return (
       <footer
         className={cn(
-          'flex grow items-end justify-center py-0.5 text-center text-xs font-medium text-gray-300',
+          'flex items-end justify-center py-0.5 text-center text-xs font-medium text-gray-300',
           className,
         )}
       >

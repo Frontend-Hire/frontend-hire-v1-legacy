@@ -35,12 +35,12 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <PHProvider>
         <body
           className={cn(
-            'min-h-screen bg-background font-sans text-foreground antialiased',
+            'flex h-screen flex-col bg-background font-sans text-foreground antialiased',
             inter.variable,
           )}
         >
           <PostHogPageView />
-          <div className="relative flex h-screen flex-col">
+          <div className="flex flex-1 flex-col">
             <CourseBanner isRootTop />
             {children}
           </div>

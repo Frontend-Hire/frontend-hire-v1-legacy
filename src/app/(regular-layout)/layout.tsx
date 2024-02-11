@@ -5,7 +5,7 @@ export default function RegularLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       <Header />
-      {children}
+      <div className="grow">{children}</div>
       <Footer />
     </>
   );

@@ -23,7 +23,7 @@ export default async function ProtectedLayout({
     return (
       <>
         <Header />
-        <div className="flex h-full flex-col items-start gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+        <div className="flex h-full grow flex-col items-start gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
           <div className="flex flex-col gap-[15px] py-[10px]">
             <Heading variant="h1">
               Our platform is free for registered users!

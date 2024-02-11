@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import HeaderLogo from '@/components/HeaderLogo';
-import { ArrowLeftIcon, ListIcon } from 'lucide-react';
+import { ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
 import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
