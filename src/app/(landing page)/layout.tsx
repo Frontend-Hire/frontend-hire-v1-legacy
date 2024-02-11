@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import Header from './_components/Header';
 
 export default function LandingLayout({ children }: React.PropsWithChildren) {
   return (
