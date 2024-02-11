@@ -2,8 +2,6 @@ import ProtectedLayout from '@/components/ProtectedLayout';
 
 export default function InterviewsLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: React.PropsWithChildren) {
   return <ProtectedLayout>{children}</ProtectedLayout>;
 }

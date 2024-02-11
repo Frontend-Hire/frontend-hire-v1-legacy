@@ -34,10 +34,9 @@ export default function SkillsBadges({ skills }: SkillsBadgesProps) {
 function SkillBadge({ skill }: { skill: string }) {
   return (
     <Badge
-      className={cn(
-        SKILL_CLASS[skill.toUpperCase()]?.className || 'bg-gray-800 text-white',
-        'text-white',
-      )}
+      className={
+        SKILL_CLASS[skill.toUpperCase()]?.className || 'bg-gray-800 text-white'
+      }
     >
       {SKILL_CLASS[skill.toUpperCase()]?.label || skill}
     </Badge>
