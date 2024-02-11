@@ -6,7 +6,7 @@ import CourseBanner from '@/components/CourseBanner';
 
 export default function CoursesPage() {
   return (
-    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+    <main className="flex h-full flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <CustomHeading
         title="Courses"
         subTitle="Live and recorded practical courses"

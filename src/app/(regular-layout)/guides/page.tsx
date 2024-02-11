@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default async function Guides() {
   return (
-    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+    <main className="flex h-full flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <CustomHeading title="Guides" subTitle="All the guides you'd ever need" />
 
       <VisuallyHidden>Guides List</VisuallyHidden>

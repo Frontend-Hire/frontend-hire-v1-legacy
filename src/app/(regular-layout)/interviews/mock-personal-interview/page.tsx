@@ -7,7 +7,7 @@ import { INTERVIEWERS } from './interviewers';
 
 export default function MockPersonalInterview() {
   return (
-    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+    <main className="flex h-full flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
       <CustomHeading
         title="Mock In-Person Interview"
         subTitle="The only great way to prepare for actual interviews and get

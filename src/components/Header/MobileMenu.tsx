@@ -34,10 +34,14 @@ const LINKS = [
 ];
 
 type MobileMenuProps = {
-  session: Session | null;
+  session?: Session | null;
+  isLandingPage?: boolean;
 };
 
-export default function MobileMenu({ session }: MobileMenuProps) {
+export default function MobileMenu({
+  session,
+  isLandingPage = false,
+}: MobileMenuProps) {
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const router = useRouter();
 
@@ -86,40 +90,46 @@ export default function MobileMenu({ session }: MobileMenuProps) {
             ))}
           </div>
         </ScrollArea>
-        <div>
-          {session ? (
-            <div className="flex flex-col gap-4">
-              <h4 className="font-medium">Account</h4>
-              <div className="flex items-center gap-2">
-                <Avatar>
-                  <AvatarImage src={session.user.user_metadata.picture} />
-                  <AvatarFallback className="bg-primary">
-                    {(session.user.user_metadata.name &&
-                      session.user.user_metadata.name[0]) ||
-                      '?'}
-                  </AvatarFallback>
-                </Avatar>
-                <span>{session.user.user_metadata.email}</span>
-              </div>
-              <MobileLink
-                className="text-muted-foreground hover:text-primary"
-                href="/settings"
-                onOpenChange={setOpen}
-              >
-                Settings
-              </MobileLink>
+        {isLandingPage ? (
+          <Button className="w-fit rounded-[10px] p-[10px]" asChild>
+            <Link href={'/questions'}>Practice Now</Link>
+          </Button>
+        ) : (
+          <div>
+            {session ? (
+              <div className="flex flex-col gap-4">
+                <h4 className="font-medium">Account</h4>
+                <div className="flex items-center gap-2">
+                  <Avatar>
+                    <AvatarImage src={session.user.user_metadata.picture} />
+                    <AvatarFallback className="bg-primary">
+                      {(session.user.user_metadata.name &&
+                        session.user.user_metadata.name[0]) ||
+                        '?'}
+                    </AvatarFallback>
+                  </Avatar>
+                  <span>{session.user.user_metadata.email}</span>
+                </div>
+                <MobileLink
+                  className="text-muted-foreground hover:text-primary"
+                  href="/settings"
+                  onOpenChange={setOpen}
+                >
+                  Settings
+                </MobileLink>
 
-              <Button
-                className="w-fit rounded-[10px] p-[10px]"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            <SignInButton />
-          )}
-        </div>
+                <Button
+                  className="w-fit rounded-[10px] p-[10px]"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <SignInButton />
+            )}
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
