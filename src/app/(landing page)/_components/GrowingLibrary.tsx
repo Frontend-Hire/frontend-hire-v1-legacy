@@ -17,7 +17,7 @@ import FigmaLogo from '@/assets/toollogos/figma.png';
 
 export default function GrowingLibrary() {
   return (
-    <div className="flex flex-col gap-[20px]">
+    <div className="flex grow flex-col gap-[20px]">
       <p className="max-w-fit self-center rounded-[5px] bg-destructive px-[5px] py-[2.5px] text-xs md:text-sm">
         * Currently in Beta! Hiring Profiles available mid 2024!
       </p>
