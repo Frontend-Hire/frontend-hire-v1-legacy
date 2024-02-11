@@ -40,7 +40,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           )}
         >
           <PostHogPageView />
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex h-screen flex-col">
             <CourseBanner isRootTop />
             {children}
           </div>
