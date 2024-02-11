@@ -6,6 +6,7 @@ import { PHProvider } from '@/providers/PHProvider';
 
 import dynamic from 'next/dynamic';
 import CourseBanner from '@/components/CourseBanner';
+import { cn } from '@/lib/utils';
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -14,6 +15,7 @@ const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -27,18 +29,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
       <PHProvider>
-        <body className={inter.className}>
+        <body
+          className={cn(
+            'min-h-screen bg-background font-sans text-foreground antialiased',
+            inter.variable,
+          )}
+        >
           <PostHogPageView />
-          <CourseBanner isRootTop />
-          <div className="flex h-full flex-col">{children}</div>
+          <div className="relative flex min-h-screen flex-col">
+            <CourseBanner isRootTop />
+            {children}
+          </div>
         </body>
       </PHProvider>
       <Analytics />

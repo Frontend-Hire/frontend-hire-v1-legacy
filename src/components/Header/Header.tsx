@@ -17,11 +17,11 @@ export default async function Header() {
   };
 
   return (
-    <header className="grid grid-cols-1 items-center gap-[20px] border-b p-[10px] shadow-sm sm:grid-cols-6 sm:justify-start md:px-[40px] md:py-[10px]">
+    <header className="sticky top-0 z-50 flex w-full items-center justify-between gap-[20px] border-b border-border/40 bg-background p-[10px] md:px-[40px] md:py-[10px]">
       <Link className="xs:" href={getLogoLink()}>
         <HeaderLogo />
       </Link>
-      <div className="flex flex-wrap items-center justify-center gap-[20px] text-sm font-medium sm:col-span-5 sm:justify-end md:gap-[30px] md:text-base">
+      <div className="flex items-center gap-[20px] text-sm font-medium md:gap-[30px] md:text-base">
         <CustomNavigationMenu />
         {session ? (
           <AvatarDropdown

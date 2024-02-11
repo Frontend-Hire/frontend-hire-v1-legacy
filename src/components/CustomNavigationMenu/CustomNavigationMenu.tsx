@@ -7,9 +7,14 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-import { FileQuestionIcon, FolderGit2Icon, SpeechIcon } from 'lucide-react';
+import {
+  AlbumIcon,
+  FileQuestionIcon,
+  FolderGit2Icon,
+  LibraryBigIcon,
+  SpeechIcon,
+} from 'lucide-react';
 import Link from 'next/link';
 
 export default function CustomNavigationMenu() {
@@ -34,18 +39,18 @@ export default function CustomNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/courses" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Courses
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/guides" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Guides
-            </NavigationMenuLink>
-          </Link>
+          <NavigationMenuTrigger>Learn</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-1">
+              <ListItem href="/courses">
+                <LibraryBigIcon /> Courses
+              </ListItem>
+              <ListItem href="/guides">
+                <AlbumIcon />
+                Guides
+              </ListItem>
+            </ul>
+          </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
