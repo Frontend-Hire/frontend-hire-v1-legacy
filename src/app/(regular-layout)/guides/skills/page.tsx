@@ -5,6 +5,7 @@ import ReactLogo from '@/assets/toollogos/react.png';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
+import { GraduationCapIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Skill Guides | Frontend Hire',
@@ -17,6 +18,7 @@ export default function SkillGuides() {
       <CustomHeading
         title="Skill Guides"
         subTitle="All the resources to be confident in a skill"
+        icon={<GraduationCapIcon size={60} />}
       />
 
       <VisuallyHidden>Skill Guides List</VisuallyHidden>

@@ -24,6 +24,14 @@ export default async function Guides() {
             leftIcon={<GraduationCapIcon size={40} />}
           />
         </li>
+        <li>
+          <CardLinkItem
+            type="link"
+            title="Interview Guides"
+            link="/guides/interviews"
+            leftIcon={<UserSquareIcon size={40} />}
+          />
+        </li>
       </ul>
     </main>
   );
