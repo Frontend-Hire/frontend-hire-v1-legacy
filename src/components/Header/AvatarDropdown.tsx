@@ -20,7 +20,7 @@ export default async function AvatarDropdown({
     <DropdownMenu>
       <DropdownMenuTrigger className="hover:opacity-80">
         <Avatar>
-          <AvatarImage src={picture} />
+          <AvatarImage alt={name} src={picture} />
           <AvatarFallback className="bg-primary">
             {(name && name[0]) || '?'}
           </AvatarFallback>
