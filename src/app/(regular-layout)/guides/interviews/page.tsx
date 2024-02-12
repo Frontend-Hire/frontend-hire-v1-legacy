@@ -29,14 +29,6 @@ export default function SkillGuides() {
             leftIcon={<UserCheckIcon size={40} />}
           />
         </li>
-        <li>
-          <CardLinkItem
-            type="link"
-            title="Interviewer Interview Guide"
-            link="/guides/interviews/interviewer"
-            leftIcon={<HandHeartIcon size={40} />}
-          />
-        </li>
       </ul>
     </main>
   );
