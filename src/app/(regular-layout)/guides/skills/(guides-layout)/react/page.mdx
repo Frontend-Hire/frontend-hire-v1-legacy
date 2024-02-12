@@ -1,9 +1,11 @@
 import MdxImage from '@/components/MdxImage';
+import AuthorCard from '@/components/AuthorCard';
 import { Badge } from '@/components/ui/badge';
 import SpecialText from '@/components/SpecialText';
 import CustomHeading from '@/components/CustomHeading';
 import GuideSpecialItem from '@/components/GuideSpecialItem';
 import reactLogo from '@/assets/toollogos/react.png';
+import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg'; 
 import { COURSE_ITEMS } from './constants';
 
 export const metadata = {
@@ -16,6 +18,17 @@ export const metadata = {
   subTitle="Our compilation of best resources out there"
   icon={<MdxImage src={reactLogo} alt='' />}
   />
+
+<AuthorCard
+  name="Hruthik Reddy"
+  headline="Building Frontend Hire"
+  linkedIn="https://www.linkedin.com/in/yarala-hruthik-reddy/"
+  twitter="https://twitter.com/thisisyhr"
+  website="https://www.iamyhr.com/"
+  github="https://github.com/yaralahruthik"
+  image={authorImg}
+  lastUpdated="12th Feb 2024"
+ />
 
 ## Frontend Hire Tips
 
