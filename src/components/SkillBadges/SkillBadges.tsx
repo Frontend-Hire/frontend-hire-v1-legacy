@@ -1,5 +1,4 @@
-import { cn } from '@/lib/utils';
-import { Badge } from '../ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
   HTML: { className: 'bg-[#E44D26] text-white', label: 'HTML' },

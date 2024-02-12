@@ -1,6 +1,8 @@
-const withMDX = require('@next/mdx')();
+import createMDX from '@next/mdx';
+import createBundleAnalyzer from '@next/bundle-analyzer';
+import { withSentryConfig } from '@sentry/nextjs';
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
@@ -11,14 +13,9 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
 };
 
-module.exports = withMDX(withBundleAnalyzer(nextConfig));
-
-// Injected content via Sentry wizard below
-
-const { withSentryConfig } = require('@sentry/nextjs');
-
-module.exports = withSentryConfig(
-  module.exports,
+const withMDX = createMDX();
+export default withSentryConfig(
+  withMDX(withBundleAnalyzer(nextConfig)),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
