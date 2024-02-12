@@ -8,11 +8,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         props.href &&
         (props.href.startsWith('/') || props.href.startsWith('#'));
       if (isInternalLink) {
-        return (
-          <Link href={props.href!}>
-            <a {...props} />
-          </Link>
-        );
+        return <Link href={props.href!}>{props.children}</Link>;
       }
 
       return <a target="_blank" {...props} />;
