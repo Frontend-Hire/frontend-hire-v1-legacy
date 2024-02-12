@@ -40,7 +40,7 @@
     "clsx": "^2.0.0",
     "cva": "npm:class-variance-authority@^0.7.0",
     "lodash.debounce": "^4.0.8",
-    "lucide-react": "^0.309.0",
+    "lucide-react": "^0.330.0",
     "next": "^14.0.4",
     "nuqs": "^1.15.3",
     "posthog-js": "^1.101.0",
