@@ -1,0 +1,225 @@
+import Image from 'next/image'
+import reference from './responsive-layout-1.gif'
+
+export const meta = {
+  title: 'Responsive Layout - 1',
+  difficulty: 'medium',
+  skills: ['html', 'css'],
+  description: "Layouts are difficult. This question will give you good amount of practice and knowledge.",
+  template: 'static',
+  showPreview: true,
+  recommendedLayout: 'col-3',
+  files: {
+    '/index.html': {
+      code: `<!doctype html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>Header</header>
+
+    <aside class="left-aside">
+      <ul>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+      </ul>
+    </aside>
+
+    <aside class="right-aside">
+      <ul>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+      </ul>
+    </aside>
+
+    <main>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet
+      tortor volutpat, dictum erat quis, consequat ipsum. Curabitur vitae erat
+      vel arcu convallis scelerisque sit amet eu lacus. Aenean pretium nulla
+      eget sem auctor, congue elementum arcu aliquam. Etiam dictum dapibus nisi,
+      ac sodales orci rhoncus ac. Maecenas ultricies ligula turpis, sed tempor
+      justo dapibus hendrerit. Vivamus dapibus, massa et tempus iaculis, augue
+      neque finibus leo, eu pellentesque risus dolor nec magna. Morbi imperdiet
+      felis sit amet convallis mollis. Nam rhoncus urna lorem, vitae porttitor
+      ligula aliquet eu. Nullam a pharetra nisl. Vestibulum vestibulum pretium
+      ante, et vulputate odio euismod vel. Class aptent taciti sociosqu ad
+      litora torquent per conubia nostra, per inceptos himenaeos. Duis elit
+      lorem, tincidunt sed metus sed, mattis posuere metus. Proin pellentesque
+      lacinia lorem nec sollicitudin. Praesent eget sapien sit amet urna
+      sollicitudin venenatis. Aliquam a neque eget massa lacinia mattis. Sed
+      scelerisque vitae nisl id dapibus. Praesent a congue ex. Cras fermentum
+      elit ultricies erat porttitor posuere. Ut posuere lectus non cursus
+      lobortis. Aenean elementum aliquam leo, sed dapibus dolor viverra nec.
+      Curabitur eget velit elit. Etiam venenatis, elit ac porttitor fringilla,
+      quam augue maximus lorem, id maximus arcu diam vel augue. Nunc dictum
+      porttitor eleifend. Sed suscipit leo et consequat lacinia. Duis auctor,
+      lacus sit amet interdum porta, dolor ex tempus lorem, id volutpat ligula
+      magna sit amet enim. Cras volutpat augue eget sem hendrerit pulvinar. Nam
+      id erat at augue egestas placerat vel ac est. Aliquam vehicula, massa at
+      varius ultrices, risus justo rutrum elit, eget aliquam turpis sem pharetra
+      erat. Proin varius vulputate lacus sed convallis. Aliquam eu gravida
+      magna. Etiam quam nisl, fermentum vitae orci id, molestie pharetra ipsum.
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+      cubilia curae; Curabitur fringilla erat at quam lacinia, ut imperdiet nisl
+      auctor. Vestibulum eu pellentesque leo. Aliquam vehicula gravida lorem.
+      Aliquam id placerat risus, quis pretium ligula. Nullam eget tempus urna.
+      Fusce sed purus in massa finibus dignissim. Fusce lacus elit, suscipit nec
+      molestie eu, consectetur nec quam. Morbi eget auctor ex, non posuere nisi.
+      Vestibulum blandit sodales lectus. Morbi sagittis, nisi quis dictum
+      condimentum, nisi eros iaculis dui, vel posuere risus dolor vitae leo. Sed
+      rutrum mauris quam, eget condimentum felis blandit vitae. Duis viverra
+      hendrerit quam, id dignissim risus posuere id. Integer pharetra porttitor
+      scelerisque. Mauris mollis felis risus. Vestibulum at mauris ut ipsum
+      dapibus iaculis in eu diam. Nunc elementum lacinia leo sed porttitor.
+      Etiam ut nisi nec lacus tempor ornare. Aliquam condimentum elit at laoreet
+      suscipit. Ut mattis nibh lorem, ut scelerisque est porttitor sit amet.
+      Vestibulum euismod, neque sit amet tempor placerat, est ex convallis dui,
+      vel tristique ex mauris vitae enim. Integer ultricies non erat a ornare.
+      Nam at lacinia sem. Sed commodo, justo ac volutpat pharetra, massa mauris
+      lobortis velit, varius hendrerit elit tortor sit amet arcu. Suspendisse ut
+      semper sapien, non rhoncus enim. Integer id ante id diam vestibulum
+      consectetur. Cras ac augue placerat, gravida massa eu, ullamcorper nisl.
+      Integer vel suscipit ante, in convallis orci. Donec dignissim nibh at
+      magna maximus, quis ullamcorper mi maximus. Proin eu congue felis. Nulla
+      eu massa eu enim fermentum ullamcorper non eu magna. Nunc consectetur
+      tortor quis turpis hendrerit, vel malesuada quam blandit. Vestibulum in
+      iaculis dui. Fusce a mauris non erat ullamcorper scelerisque et et ligula.
+      Fusce sollicitudin laoreet sapien vitae placerat. Nam laoreet congue
+      felis, sit amet sodales dolor viverra ac. Sed vestibulum nulla sit amet
+      erat efficitur tempus. Sed eleifend ligula sapien. Nulla facilisi. Proin
+      vitae nisi vel erat fringilla sollicitudin. Mauris nec dolor id nunc
+      scelerisque commodo non eget arcu. Suspendisse sit amet mauris elementum,
+      egestas ligula quis, fringilla libero. Cras hendrerit vestibulum turpis,
+      et luctus nunc porta ac. Nunc tincidunt rutrum purus, in sollicitudin
+      ipsum mattis et. Orci varius natoque penatibus et magnis dis parturient
+      montes, nascetur ridiculus mus. Praesent malesuada egestas nulla,
+      dignissim dapibus lorem aliquet id. Mauris ac turpis sit amet elit egestas
+      elementum. Pellentesque euismod sapien erat, non pretium nisi consectetur
+      vel. Aenean felis neque, porttitor sit amet lorem ac, lobortis rhoncus
+      dui. Donec vitae lorem ex. Vivamus mollis mauris id leo volutpat euismod.
+      Nullam ac sapien vel justo fringilla finibus vitae ut ligula. Proin
+      lacinia leo quis nibh gravida dictum. Phasellus sit amet sem ut enim
+      gravida malesuada. Sed massa ex, iaculis ac risus a, vestibulum ornare
+      leo. Sed sed metus pretium, sollicitudin neque nec, varius felis. Nunc eu
+      lacus ut urna placerat imperdiet a sit amet nisl. Sed vitae est magna.
+      Etiam mi velit, fringilla et ante vitae, elementum lobortis odio. Nulla ut
+      tempor dolor, nec commodo nisi. Duis eget blandit felis, ut cursus quam.
+      Cras porta odio a rhoncus ultricies. Donec nec leo quis felis euismod
+      placerat. Fusce eget est commodo, pellentesque nulla et, tincidunt eros.
+      In hac habitasse platea dictumst. Nulla tincidunt arcu gravida leo congue
+      porttitor. Sed molestie lorem augue, vitae dictum mauris condimentum non.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt
+      fringilla magna. Mauris mattis condimentum justo, nec aliquet justo mattis
+      nec. Orci varius natoque penatibus et magnis dis parturient montes,
+      nascetur ridiculus mus. Proin et magna leo. Morbi malesuada semper arcu,
+      ut dignissim justo cursus at. Proin venenatis pretium ante, in tristique
+      risus euismod eu. Quisque consequat sed leo id fringilla. Aenean luctus
+      malesuada orci, nec tempus massa venenatis vitae. Cras pretium justo vel
+      pulvinar scelerisque. Aenean eleifend ligula lorem, non eleifend purus
+      lacinia ac. Pellentesque feugiat elit at elit congue, vitae eleifend
+      ligula ornare. Nam ac mauris et turpis mattis blandit. Quisque neque
+      ligula, pellentesque tempor porta vel, aliquet eu ipsum. Fusce dictum
+      purus justo, eget facilisis mauris venenatis non. Aenean ac tortor et
+      lacus lobortis semper. Fusce facilisis vitae orci vitae pharetra. Maecenas
+      tempus leo vitae gravida sodales. Quisque sit amet imperdiet arcu. Vivamus
+      scelerisque lorem in erat hendrerit tempor. Nunc velit nisl, gravida eu
+      rutrum id, finibus id urna. Fusce scelerisque mauris non arcu aliquam
+      vulputate. Mauris sit amet ex sed elit luctus porta sed at dui. In hac
+      habitasse platea dictumst. Nullam eget vulputate sem, vitae fermentum
+      ipsum. Nullam odio ex, rhoncus vel enim ut, fermentum dictum tellus.
+      Praesent ornare risus nisi, ut auctor nibh commodo nec. Sed turpis nulla,
+      molestie vitae sapien vel, consequat mollis nulla. Maecenas nec eros
+      convallis lacus mattis aliquet sit amet nec mi. Quisque sit amet dolor at
+      lacus rutrum iaculis. Nam malesuada suscipit scelerisque. Ut convallis
+      malesuada ipsum non convallis. Sed ex nibh, aliquam iaculis ullamcorper
+      sed, hendrerit suscipit eros. Cras sit amet justo id sem mattis semper
+      volutpat id lorem. Pellentesque sem dolor, faucibus sit amet odio non,
+      faucibus vestibulum massa. Aenean nec mauris viverra, tincidunt urna et,
+      feugiat nisi. Aenean tellus arcu, bibendum quis mi et, cursus semper
+      metus. Sed blandit, eros dictum euismod luctus, libero mi iaculis justo,
+      vel molestie dolor eros vestibulum eros. Integer at augue congue magna
+      euismod porta. Curabitur id dui dui. Curabitur consequat auctor odio et
+      viverra. Donec nisi nibh, dignissim sed odio vitae, placerat efficitur
+      urna. Nunc condimentum interdum rutrum. In in magna tempus, ornare quam
+      sit amet, lobortis sapien. Maecenas nulla velit, elementum at ligula ut,
+      vulputate scelerisque sem. Aenean urna lacus, viverra eget nulla sit amet,
+      fringilla tincidunt diam. Morbi molestie ex magna, vitae rutrum orci
+      accumsan id. Morbi nec tortor hendrerit, egestas quam ut, vehicula est.
+      Sed pulvinar orci nec tellus vestibulum lacinia. Etiam ut hendrerit sem.
+      Aliquam faucibus est sit amet purus porttitor, ac placerat enim dictum.
+      Etiam elementum massa est, ac mollis lacus efficitur a. Sed vulputate, mi
+      id consequat facilisis, lacus justo malesuada sapien, eget commodo risus
+      mauris nec nulla. Mauris eu hendrerit neque. Nunc ultricies justo tortor,
+      ut sollicitudin nisi eleifend non. Cras urna leo, aliquam ut purus eget,
+      interdum blandit massa. Aenean a velit sodales, sodales augue ut,
+      fringilla ex. Pellentesque eu nisl vel tellus malesuada vehicula ac id
+      tellus. Nunc ornare, lorem id egestas feugiat, sem augue ultricies dui,
+      sit amet convallis justo risus ut dolor. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Fusce viverra ut tellus ut tincidunt.
+      Vestibulum felis massa, ultricies ut fermentum quis, sodales eu nibh.
+      Aenean condimentum, dui ut gravida ultricies, arcu eros luctus tortor, et
+      pulvinar metus ipsum ut velit. Sed porta dolor non aliquam consequat.
+      Aenean posuere, ante a porta accumsan, libero massa tempus dolor, sed
+      volutpat orci nulla sed tortor. Orci varius natoque penatibus et magnis
+      dis parturient montes, nascetur ridiculus mus. Aenean varius porttitor est
+      eu venenatis. Orci varius natoque penatibus et magnis dis parturient
+      montes, nascetur ridiculus mus. Morbi at lorem dictum, porttitor justo ut,
+      gravida ligula. Fusce ac scelerisque lorem, a accumsan orci. Phasellus
+      libero velit, malesuada vitae aliquet at, vehicula at turpis. In nisl
+      nulla, consectetur sed accumsan venenatis, efficitur nec nulla. Integer eu
+      sem aliquam purus elementum sollicitudin eget ac justo. Sed eleifend
+      eleifend est, quis fringilla justo tempor in.
+    </main>
+
+    <footer>Footer</footer>
+  </body>
+</html>
+`
+},
+    '/styles.css': {
+      code: `/* Your Styles go here  */
+`
+    },
+  },
+};
+
+# Responsive Layout - 1
+
+> Why did the HTML and CSS go to therapy? Because they couldn't handle their relationship issues without a proper layout!
+
+## Requirements
+
+- A simple layout with fixed headers, left and right asides, basically they should stay in position with scroll.
+- Left and Right asides should hide for small viewports.
+- The footer should be to the bottom end of the page.
+
+### Instructions
+
+- Write your HTML markup in the **index.html** file. Though for this question, there is no need to update it but feel free to make changes.
+- Write your CSS in the **styles.css** file.
+- Your solution should use classic CSS. However, if you prefer, you can opt for TailwindCSS.
+
+#### Enabling TailwindCSS (Optional)
+
+If you choose to use TailwindCSS, include this script in the head of your **index.html** file:
+
+```
+<script src="https://cdn.tailwindcss.com"></script>
+```
+
+### Solution Reference
+
+<Image alt='Solution Reference' src={reference} />
+
+#### Resources
+
+- [An Interactive Guide to CSS Grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/)
+- [An Interactive Guide to Flexbox](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/)
+- [CSS Tricks: A Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [CSS Tricks: A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
