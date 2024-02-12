@@ -13,7 +13,7 @@ export default function GuideSpecialItem({
   isCourseItem = false,
 }: SpecialItem) {
   return (
-    <div className="flex justify-between gap-[10px] rounded bg-card p-[10px]">
+    <div className="not-prose flex justify-between gap-[10px] rounded bg-card p-[10px]">
       <div className="flex grow flex-col gap-[10px]">
         <div className="flex items-start justify-between gap-[5px]">
           <Link className="underline underline-offset-2" href={link}>

@@ -1,5 +1,4 @@
 import CardLinkItem from '@/components/CardLinkItem';
-import Heading from '@/components/Heading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 
 import ReactLogo from '@/assets/toollogos/react.png';

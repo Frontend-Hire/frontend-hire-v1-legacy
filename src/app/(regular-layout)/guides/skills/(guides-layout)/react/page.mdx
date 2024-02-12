@@ -1,0 +1,34 @@
+import MdxImage from '@/components/MdxImage';
+import { Badge } from '@/components/ui/Badge';
+import SpecialText from '@/components/SpecialText';
+import CustomHeading from '@/components/CustomHeading';
+import GuideSpecialItem from '@/components/GuideSpecialItem';
+import reactLogo from '@/assets/toollogos/react.png';
+import { COURSE_ITEMS } from './constants';
+
+<CustomHeading 
+  title="React Learning Guide"
+  subTitle="Our compilation of best resources out there"
+  icon={<MdxImage src={reactLogo} alt='' />}
+  />
+
+## Frontend Hire Tips
+
+- Do <SpecialText>not</SpecialText> jump directly into React without learning foundational JavaScript!
+- React at <SpecialText>its core is simple</SpecialText>, most of the complexity comes from the ecosystem of React.
+- If your <SpecialText>foundations are strong</SpecialText>, you can easily be comfortable in the React ecosystem.
+- Learn the different <SpecialText>component design patterns</SpecialText> as quickly as possible.
+- Have <SpecialText isLink>[this roadmap from roadmap.sh](https://roadmap.sh/react)</SpecialText> in your bookmarks and refer to it often.
+
+
+### Our Top List Of Courses To Do
+
+Choose only one, immediately switch if chosen one does not suit your learning style (<SpecialText>money can be earned back but time?</SpecialText>)
+
+<ol className="not-prose flex flex-col gap-[10px]">
+  {COURSE_ITEMS.map((item) => (
+    <li key={item.link}>
+      <GuideSpecialItem {...item} />
+    </li>
+  ))}
+</ol>
