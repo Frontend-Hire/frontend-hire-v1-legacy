@@ -34,8 +34,12 @@ export default function Output() {
       label: 'Console',
       value: 'Console',
       content: (
-        <div className="h-full p-2 text-lg">
-          You can use your default browser&apos;s console!
+        <div className="flex h-full flex-col gap-2 p-2 text-lg">
+          <span>You can use your default browser&apos;s console!</span>
+
+          {showTests
+            ? "If index.js file is not imported in the index.test.ts file, your console logs won't work in the index.js file"
+            : ''}
         </div>
       ),
     });
