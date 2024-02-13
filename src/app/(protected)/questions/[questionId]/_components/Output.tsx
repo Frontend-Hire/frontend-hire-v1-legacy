@@ -1,11 +1,7 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/Question';
-import {
-  SandpackConsole,
-  SandpackPreview,
-  SandpackTests,
-} from '@codesandbox/sandpack-react';
+import { SandpackPreview, SandpackTests } from '@codesandbox/sandpack-react';
 import { ShieldAlertIcon } from 'lucide-react';
 import RunTestsButton from './RunTestsButton';
 import { useQuestionData } from '../_context/QuestionDataProvider';
@@ -38,11 +34,13 @@ export default function Output() {
       label: 'Console',
       value: 'Console',
       content: (
-        <SandpackConsole
-          standalone={!showPreview}
-          showHeader={false}
-          className="h-full"
-        />
+        <div className="flex h-full flex-col gap-2 p-2 text-lg">
+          <span>You can use your default browser&apos;s console!</span>
+
+          {showTests
+            ? "If index.js file is not imported in the index.test.ts file, your console logs won't work in the index.js file"
+            : ''}
+        </div>
       ),
     });
   }
