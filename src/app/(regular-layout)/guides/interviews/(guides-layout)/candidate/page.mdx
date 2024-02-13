@@ -9,6 +9,12 @@ import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg';
 export const metadata = {
   title: 'Candidate Interview Guide | Frontend Hire',
   description: 'A before, during, and after interview guide for candidates to follow during an interview process.',
+  openGraph: {
+    title: 'Candidate Interview Guide | Frontend Hire',
+    description: 'A before, during, and after interview guide for candidates to follow during an interview process.',
+    url: 'https://frontendhire.com/guides/interviews/candidate',
+    type: 'article'
+  },
 };
 
 <CustomHeading 
@@ -161,4 +167,4 @@ Send a thank you email to your recruiter for helping you with the interview proc
 
 #### Also, share this guide on social media and with your friends who are preparing for an interview.
 
-<ShareLinks />
+<ShareLinks link={metadata.openGraph.url} />

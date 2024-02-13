@@ -11,6 +11,12 @@ import { COURSE_ITEMS } from './constants';
 export const metadata = {
   title: 'React Learning Guide | Frontend Hire',
   description: 'Our compilation of best resources out there',
+  openGraph: {
+    title: 'React Learning Guide | Frontend Hire',
+    description: 'Our compilation of best resources out there',
+    url: 'https://frontendhire.com/guides/skills/react',
+    type: 'article'
+  },
 };
 
 <CustomHeading 
@@ -57,4 +63,4 @@ Choose only one, and immediately switch if the chosen one does not suit your lea
 
 #### Also, share this guide on social media and with your friends who would benefit from this article.
 
-<ShareLinks />
+<ShareLinks link={metadata.openGraph.url} />

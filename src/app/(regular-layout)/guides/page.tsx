@@ -7,6 +7,11 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Guides | Frontend Hire',
   description: "All the guides you'd ever need",
+  openGraph: {
+    title: 'Guides | Frontend Hire',
+    description: "All the guides you'd ever need",
+    url: 'https://frontendhire.com/guides',
+  },
 };
 
 export default async function Guides() {

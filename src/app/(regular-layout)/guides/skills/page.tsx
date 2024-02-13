@@ -10,6 +10,11 @@ import { GraduationCapIcon } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Skill Guides | Frontend Hire',
   description: 'All the resources to be confident in a skill',
+  openGraph: {
+    title: 'Skill Guides | Frontend Hire',
+    description: 'All the resources to be confident in a skill',
+    url: 'https://frontendhire.com/guides/skills',
+  },
 };
 
 export default function SkillGuides() {

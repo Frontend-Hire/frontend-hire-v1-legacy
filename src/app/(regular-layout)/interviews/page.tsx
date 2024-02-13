@@ -14,6 +14,11 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Interviews | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
+  openGraph: {
+    title: 'Interviews | Frontend Hire',
+    description: 'Simulated and Real Interviews for Frontend Developers',
+    url: 'https://frontendhire.com/interviews',
+  },
 };
 
 export default async function Projects() {

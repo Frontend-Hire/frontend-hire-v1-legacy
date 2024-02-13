@@ -3,6 +3,17 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import CourseCardItem from './_components/CourseCardItem';
 import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
 import CourseBanner from '@/components/CourseBanner';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Courses | Frontend Hire',
+  description: 'Live and recorded practical courses',
+  openGraph: {
+    title: 'Courses | Frontend Hire',
+    description: 'Live and recorded practical courses',
+    url: 'https://frontendhire.com/courses',
+  },
+};
 
 export default function CoursesPage() {
   return (

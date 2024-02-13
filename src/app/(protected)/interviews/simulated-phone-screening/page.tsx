@@ -10,6 +10,11 @@ import CustomHeading from '@/components/CustomHeading';
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
+  openGraph: {
+    title: 'Simulated Phone Screening | Frontend Hire',
+    description: 'Simulated and Real Interviews for Frontend Developers',
+    url: 'https://frontendhire.com/interviews/simulated-phone-screening',
+  },
 };
 
 export default async function SimulatedPhoneScreening() {

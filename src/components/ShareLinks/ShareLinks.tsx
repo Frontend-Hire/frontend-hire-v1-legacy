@@ -1,16 +1,12 @@
-'use client';
-
-import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { LinkedinIcon, TwitterIcon } from 'lucide-react';
 import VisuallyHidden from '../ui/visually-hidden';
 
-export default function ShareLinks() {
-  const pathname = usePathname();
+type ShareLinksProps = {
+  link: string;
+};
 
-  const link = `https://frontendhire.com${pathname}`;
-
+export default function ShareLinks({ link }: ShareLinksProps) {
   const twitterLink = `https://twitter.com/intent/tweet?text=${link}`;
   const linkedinLink = `https://www.linkedin.com/shareArticle?mini=true&url=${link}`;
 

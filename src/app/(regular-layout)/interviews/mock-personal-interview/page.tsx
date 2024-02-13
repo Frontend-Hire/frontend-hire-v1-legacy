@@ -4,6 +4,19 @@ import InterviewerCard from './_components/InterviewerCard';
 
 import CustomHeading from '@/components/CustomHeading';
 import { INTERVIEWERS } from './interviewers';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mock Personal Interview | Frontend Hire',
+  description:
+    'The only great way to prepare for actual interviews and get actionable feedback',
+  openGraph: {
+    title: 'Mock Personal Interview | Frontend Hire',
+    description:
+      'The only great way to prepare for actual interviews and get actionable feedback',
+    url: 'https://frontendhire.com/interviews/mock-personal-interview',
+  },
+};
 
 export default function MockPersonalInterview() {
   return (

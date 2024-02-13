@@ -7,6 +7,11 @@ import CustomHeading from '@/components/CustomHeading';
 export const metadata: Metadata = {
   title: 'Questions | Frontend Hire',
   description: 'Real World And Interview Based Questions',
+  openGraph: {
+    title: 'Questions | Frontend Hire',
+    description: 'Real World And Interview Based Questions',
+    url: 'https://frontendhire.com/questions',
+  },
 };
 
 export default function Questions() {

@@ -14,6 +14,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${projectData?.meta.title || 'Project'} | Frontend Hire`,
       description: projectData?.meta.description,
+      url: `https://frontendhire.com/projects/${params.projectId}`,
     },
   };
 }

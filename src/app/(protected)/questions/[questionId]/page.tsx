@@ -15,6 +15,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
       description: questionData?.meta.description,
+      url: `https://frontendhire.com/questions/${params.questionId}`,
     },
   };
 }

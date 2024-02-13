@@ -8,6 +8,11 @@ import CustomHeading from '@/components/CustomHeading';
 export const metadata: Metadata = {
   title: 'Projects | Frontend Hire',
   description: 'Not some stupid clones but highly feature focused projects',
+  openGraph: {
+    title: 'Projects | Frontend Hire',
+    description: 'Not some stupid clones but highly feature focused projects',
+    url: 'https://frontendhire.com/projects',
+  },
 };
 
 export default async function Projects() {

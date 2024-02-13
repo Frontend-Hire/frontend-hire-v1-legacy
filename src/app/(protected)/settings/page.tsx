@@ -1,8 +1,19 @@
+import { Metadata } from 'next';
 import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
 import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
 import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 import UserInfo from './_components/UserInfo';
 import CustomHeading from '@/components/CustomHeading';
+
+export const metadata: Metadata = {
+  title: 'Settings | Frontend Hire',
+  description: 'Manage all your account related stuff',
+  openGraph: {
+    title: 'Settings | Frontend Hire',
+    description: 'Manage all your account related stuff',
+    url: 'https://frontendhire.com/settings',
+  },
+};
 
 export default function Settings() {
   return (

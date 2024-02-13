@@ -8,6 +8,11 @@ import { HandHeartIcon, UserCheckIcon, UserSquareIcon } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Interview Guides | Frontend Hire',
   description: 'Good Interview Practices for both Interviewer and Candidate',
+  openGraph: {
+    title: 'Interview Guides | Frontend Hire',
+    description: 'Good Interview Practices for both Interviewer and Candidate',
+    url: 'https://frontendhire.com/guides/interviews',
+  },
 };
 
 export default function SkillGuides() {
