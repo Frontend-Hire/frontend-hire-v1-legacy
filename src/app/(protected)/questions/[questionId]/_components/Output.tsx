@@ -1,11 +1,7 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import Tooltip from '@/components/ui/tooltip';
 import { QuestionTab } from '@/types/Question';
-import {
-  SandpackConsole,
-  SandpackPreview,
-  SandpackTests,
-} from '@codesandbox/sandpack-react';
+import { SandpackPreview, SandpackTests } from '@codesandbox/sandpack-react';
 import { ShieldAlertIcon } from 'lucide-react';
 import RunTestsButton from './RunTestsButton';
 import { useQuestionData } from '../_context/QuestionDataProvider';
@@ -38,11 +34,9 @@ export default function Output() {
       label: 'Console',
       value: 'Console',
       content: (
-        <SandpackConsole
-          standalone={!showPreview}
-          showHeader={false}
-          className="h-full"
-        />
+        <div className="h-full p-2 text-lg">
+          You can use your default browser&apos;s console!
+        </div>
       ),
     });
   }
