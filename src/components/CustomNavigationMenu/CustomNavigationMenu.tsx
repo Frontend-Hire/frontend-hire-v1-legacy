@@ -51,7 +51,12 @@ type ListItemProps = {
 function ListItem({ children, href }: React.PropsWithChildren<ListItemProps>) {
   return (
     <li>
-      <Link href={href} legacyBehavior passHref>
+      <Link
+        href={href}
+        target={href.startsWith('http') ? '_blank' : undefined}
+        legacyBehavior
+        passHref
+      >
         <NavigationMenuLink className="flex items-center gap-2 text-nowrap rounded p-3 outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
           {children}
         </NavigationMenuLink>
