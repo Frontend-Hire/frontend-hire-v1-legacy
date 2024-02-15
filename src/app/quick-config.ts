@@ -1,5 +1,5 @@
 export const BANNER_CONFIG = {
-  show: true,
+  show: false,
   text: 'A free live webinar on React Hooks is happening soon.',
   cta: {
     text: 'Book your seat now!',
