@@ -29,6 +29,7 @@ const LINKS = [
     items: [
       { title: 'Courses', href: '/courses' },
       { title: 'Guides', href: '/guides' },
+      { title: 'Course Notes ↗', href: 'https://courses.frontendhire.com/' },
     ],
   },
 ];

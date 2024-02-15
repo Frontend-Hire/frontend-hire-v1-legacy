@@ -1,33 +1,8 @@
 import HeaderLogo from '@/components/HeaderLogo';
 import VisuallyHidden from '@/components/ui/visually-hidden';
+import { MENU_LINKS } from '@/config/site';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-
-const FOOTER_LINKS: FooterLinksProps['links'] = [
-  {
-    title: 'Practice',
-    links: [
-      { title: 'Questions', href: '/questions' },
-      { title: 'Projects', href: '/projects' },
-      { title: 'Interviews', href: '/interviews' },
-    ],
-  },
-  {
-    title: 'Learn',
-    links: [
-      { title: 'Courses', href: '/courses' },
-      { title: 'Guides', href: '/guides' },
-    ],
-  },
-  // {
-  //   title: 'Company',
-  //   links: [
-  //     { title: 'About', href: '/about' },
-  //     { title: 'Contact', href: '/contact' },
-  //     { title: 'Team', href: '/team' },
-  //   ],
-  // },
-];
 
 type FooterProps = {
   isCompact?: boolean;
@@ -58,7 +33,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
         </Link>
         <Social />
       </div>
-      <FooterLinks links={FOOTER_LINKS} />
+      <FooterLinks links={MENU_LINKS} />
       <div className="text-center xs:text-left">
         © Frontend Hire {thisYear}
       </div>
@@ -69,7 +44,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
 type FooterLinksProps = {
   links: {
     title: string;
-    links: {
+    items: {
       title: string;
       href: string;
     }[];
@@ -83,14 +58,14 @@ function FooterLinks({ links }: FooterLinksProps) {
         <div key={link.title} className="leading-loose">
           <h3 className="font-bold">{link.title}</h3>
           <ul className="text-gray-400">
-            {link.links.map((link) => (
-              <li key={link.title}>
+            {link.items.map((item) => (
+              <li key={item.title}>
                 <Link
                   className="transition-colors hover:text-primary"
-                  href={link.href}
-                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
                 >
-                  {link.title}
+                  {item.title}
                 </Link>
               </li>
             ))}
