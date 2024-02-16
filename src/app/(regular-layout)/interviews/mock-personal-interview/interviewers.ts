@@ -1,6 +1,6 @@
 import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
-import deepakImage from './_assets/deepakSharmaInterviewer.jpeg';
-import ashwinImage from './_assets/ashwinKumarInterviewer.jpg';
+import deepakImage from '@/assets/team/deepakSharmaInterviewer.jpeg';
+import ashwinImage from '@/assets/team/ashwinKumarInterviewer.jpg';
 
 export const INTERVIEWERS = [
   {
