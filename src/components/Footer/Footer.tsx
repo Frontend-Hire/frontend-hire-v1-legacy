@@ -1,6 +1,6 @@
 import HeaderLogo from '@/components/HeaderLogo';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { MENU_LINKS } from '@/config/site';
+import { LINKS } from '@/config/site';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -33,7 +33,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
         </Link>
         <Social />
       </div>
-      <FooterLinks links={MENU_LINKS} />
+      <FooterLinks links={LINKS} />
       <div className="text-center xs:text-left">
         © Frontend Hire {thisYear}
       </div>

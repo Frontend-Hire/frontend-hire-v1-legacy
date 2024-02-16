@@ -8,14 +8,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { MENU_LINKS } from '@/config/site';
+import { MAIN_NAV_LINKS } from '@/config/site';
 import Link from 'next/link';
 
 export default function CustomNavigationMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {MENU_LINKS.map((menu) =>
+        {MAIN_NAV_LINKS.map((menu) =>
           menu.items.length === 1 ? (
             <ListItem key={menu.title} href={menu.items[0].href}>
               {menu.items[0].title}

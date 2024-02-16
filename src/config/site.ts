@@ -8,7 +8,11 @@ import {
   SpeechIcon,
 } from 'lucide-react';
 
-export const MENU_LINKS = [
+export const LINKS: {
+  title: string;
+  items: { title: string; href: string; icon: any }[];
+  hideOnMainNav?: boolean;
+}[] = [
   {
     title: 'Practice',
     items: [
@@ -31,9 +35,12 @@ export const MENU_LINKS = [
   },
   {
     title: 'Company',
+    hideOnMainNav: true,
     items: [{ title: 'About', href: '/about', icon: LightbulbIcon }],
   },
 ];
+
+export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav);
 
 export const BANNER_CONFIG = {
   show: false,
