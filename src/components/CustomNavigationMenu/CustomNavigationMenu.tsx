@@ -7,7 +7,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from '@/components/ui/navigation-menu';
 import { MENU_LINKS } from '@/config/site';
 import Link from 'next/link';
@@ -16,22 +15,27 @@ export default function CustomNavigationMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {MENU_LINKS.map((menu) => (
-          <NavigationMenuItem key={menu.title}>
-            <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-1">
-                {menu.items.map(({ title, href, icon: Icon }) => (
-                  <ListItem key={title} href={href}>
-                    {<Icon />} {title}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
+        {MENU_LINKS.map((menu) =>
+          menu.items.length === 1 ? (
+            <ListItem key={menu.title} href={menu.items[0].href}>
+              {menu.items[0].title}
+            </ListItem>
+          ) : (
+            <NavigationMenuItem key={menu.title}>
+              <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[300px] gap-3 p-1">
+                  {menu.items.map(({ title, href, icon: Icon }) => (
+                    <ListItem key={title} href={href}>
+                      {<Icon />} {title}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ),
+        )}
       </NavigationMenuList>
-      <NavigationMenuViewport />
     </NavigationMenu>
   );
 }

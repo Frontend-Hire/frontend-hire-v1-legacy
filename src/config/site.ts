@@ -3,6 +3,7 @@ import {
   FileQuestionIcon,
   FolderGit2Icon,
   LibraryBigIcon,
+  LightbulbIcon,
   NotebookPenIcon,
   SpeechIcon,
 } from 'lucide-react';
@@ -27,6 +28,10 @@ export const MENU_LINKS = [
         icon: NotebookPenIcon,
       },
     ],
+  },
+  {
+    title: 'Company',
+    items: [{ title: 'About', href: '/about', icon: LightbulbIcon }],
   },
 ];
 

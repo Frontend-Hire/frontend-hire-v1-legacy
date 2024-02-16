@@ -14,25 +14,7 @@ import { Session } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import SignInButton from '../SignInButton';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
-
-const LINKS = [
-  {
-    title: 'Practice',
-    items: [
-      { title: 'Questions', href: '/questions' },
-      { title: 'Projects', href: '/projects' },
-      { title: 'Interviews', href: '/interviews' },
-    ],
-  },
-  {
-    title: 'Learn',
-    items: [
-      { title: 'Courses', href: '/courses' },
-      { title: 'Guides', href: '/guides' },
-      { title: 'Course Notes ↗', href: 'https://courses.frontendhire.com/' },
-    ],
-  },
-];
+import { MENU_LINKS } from '@/config/site';
 
 type MobileMenuProps = {
   session?: Session | null;
@@ -68,7 +50,7 @@ export default function MobileMenu({
         </MobileLink>
         <ScrollArea className="my-4 pb-6 pl-2">
           <div className="flex flex-col space-y-2">
-            {LINKS.map((item, index) => (
+            {MENU_LINKS.map((item, index) => (
               <div key={index} className="flex flex-col space-y-3 pt-6">
                 <h4 className="font-medium">{item.title}</h4>
                 {item?.items?.length &&
