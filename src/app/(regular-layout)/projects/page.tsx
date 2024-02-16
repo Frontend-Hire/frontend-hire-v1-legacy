@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default async function Projects() {
   return (
-    <main className="flex flex-col gap-[20px] p-[10px] md:px-[100px] md:py-[20px] lg:px-[200px] xl:px-[250px]">
+    <article className="flex flex-col gap-[20px]">
       <CustomHeading
         title="Projects"
         subTitle="Not some stupid clones but highly feature focused projects"
@@ -36,6 +36,6 @@ export default async function Projects() {
       >
         <Container />
       </Suspense>
-    </main>
+    </article>
   );
 }
