@@ -10,14 +10,6 @@ import {
   NavigationMenuViewport,
 } from '@/components/ui/navigation-menu';
 import { MENU_LINKS } from '@/config/site';
-import {
-  AlbumIcon,
-  FileQuestionIcon,
-  FolderGit2Icon,
-  LibraryBigIcon,
-  NotebookPenIcon,
-  SpeechIcon,
-} from 'lucide-react';
 import Link from 'next/link';
 
 export default function CustomNavigationMenu() {
