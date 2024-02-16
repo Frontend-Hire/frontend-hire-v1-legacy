@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { BANNER_CONFIG } from '@/app/quick-config';
+import { BANNER_CONFIG } from '@/config/site';
 
 type CourseBannerProps = {
   isRootTop?: boolean;
