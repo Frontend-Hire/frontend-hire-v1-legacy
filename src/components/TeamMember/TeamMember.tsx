@@ -34,7 +34,7 @@ export default function TeamMember({
   return (
     <section className="not-prose mt-2 flex flex-col justify-between gap-4 rounded bg-card p-2 xs:flex-row">
       <div className="flex items-center gap-[8px]">
-        <Image src={image} alt={name} className="h-[60px] w-[60px]" />
+        <Image src={image} alt={name} className="aspect-square w-[60px]" />
         <div className="flex flex-col gap-[2px]">
           <h2 className="font-medium">{name}</h2>
           <p className="text-xs xs:text-sm">{headline}</p>
