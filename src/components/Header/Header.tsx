@@ -10,8 +10,8 @@ export default async function Header() {
   const supabaseServerClient = createSupabaseServerClient();
 
   const {
-    data: { session },
-  } = await supabaseServerClient.auth.getSession();
+    data: { user },
+  } = await supabaseServerClient.auth.getUser();
 
   const getLogoLink = () => {
     return '/';
@@ -23,14 +23,14 @@ export default async function Header() {
         <HeaderLogo />
       </Link>
 
-      <MobileMenu session={session} />
+      <MobileMenu user={user} />
 
       <div className="hidden items-center gap-[20px] text-sm font-medium sm:flex md:gap-[30px] md:text-base">
         <CustomNavigationMenu />
-        {session ? (
+        {user ? (
           <AvatarDropdown
-            picture={session.user.user_metadata.picture}
-            name={session.user.user_metadata.name}
+            picture={user.user_metadata.picture}
+            name={user.user_metadata.name}
           />
         ) : (
           <SignInButton />

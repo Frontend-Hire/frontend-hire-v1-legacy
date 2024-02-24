@@ -13,12 +13,12 @@ export default async function Container() {
   const supabaseServerClient = createSupabaseServerClient();
 
   const {
-    data: { session },
-  } = await supabaseServerClient.auth.getSession();
+    data: { user },
+  } = await supabaseServerClient.auth.getUser();
 
   const [localProjects, solvedProjects] = await Promise.all([
     getProjectsFromLocal(),
-    session ? fetchUserProjectSubmissions() : [],
+    user ? fetchUserProjectSubmissions() : [],
   ]);
 
   const sortedLocalProjects = localProjects.sort((a, b) => {

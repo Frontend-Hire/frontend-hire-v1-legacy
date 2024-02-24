@@ -21,8 +21,8 @@ export default async function SimulatedPhoneScreening() {
   const supabaseServerClient = createSupabaseServerClient();
 
   const {
-    data: { session },
-  } = await supabaseServerClient.auth.getSession();
+    data: { user },
+  } = await supabaseServerClient.auth.getUser();
 
   return (
     <main className="container flex grow flex-col gap-[20px] py-[10px] md:py-[20px]">
@@ -34,9 +34,7 @@ export default async function SimulatedPhoneScreening() {
 
       <SettingsProvider>
         <SpeechSynthesisProvider>
-          <PhoneScreening
-            candidateName={session?.user.user_metadata?.name || ''}
-          />
+          <PhoneScreening candidateName={user?.user_metadata?.name || ''} />
         </SpeechSynthesisProvider>
       </SettingsProvider>
     </main>

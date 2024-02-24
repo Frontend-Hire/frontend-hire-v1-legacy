@@ -4,14 +4,14 @@ export default async function UserInfo() {
   const supabaseServerClient = createSupabaseServerClient();
 
   const {
-    data: { session },
-  } = await supabaseServerClient.auth.getSession();
+    data: { user },
+  } = await supabaseServerClient.auth.getUser();
 
   return (
     <p className="text-gray-300">
       You are logged in as:{' '}
       <span className="bg-secondary p-1 font-bold text-foreground">
-        {session?.user.email}
+        {user?.email}
       </span>
     </p>
   );

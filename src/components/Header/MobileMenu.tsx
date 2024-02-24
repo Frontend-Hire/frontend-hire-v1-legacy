@@ -10,19 +10,19 @@ import HeaderLogo from '../HeaderLogo';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '../ui/scroll-area';
-import { Session } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import SignInButton from '../SignInButton';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { MAIN_NAV_LINKS } from '@/config/site';
 
 type MobileMenuProps = {
-  session?: Session | null;
+  user?: User | null;
   isLandingPage?: boolean;
 };
 
 export default function MobileMenu({
-  session,
+  user,
   isLandingPage = false,
 }: MobileMenuProps) {
   const supabaseBrowserClient = createSupabaseBrowserClient();
@@ -79,19 +79,19 @@ export default function MobileMenu({
           </Button>
         ) : (
           <div>
-            {session ? (
+            {user ? (
               <div className="flex flex-col gap-4">
                 <h4 className="font-medium">Account</h4>
                 <div className="flex items-center gap-2">
                   <Avatar>
-                    <AvatarImage src={session.user.user_metadata.picture} />
+                    <AvatarImage src={user.user_metadata.picture} />
                     <AvatarFallback className="bg-primary">
-                      {(session.user.user_metadata.name &&
-                        session.user.user_metadata.name[0]) ||
+                      {(user.user_metadata.name &&
+                        user.user_metadata.name[0]) ||
                         '?'}
                     </AvatarFallback>
                   </Avatar>
-                  <span>{session.user.user_metadata.email}</span>
+                  <span>{user.user_metadata.email}</span>
                 </div>
                 <MobileLink
                   className="text-muted-foreground hover:text-primary"

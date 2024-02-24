@@ -15,11 +15,9 @@ export default async function ProtectedLayout({
   showFooter = true,
 }: React.PropsWithChildren<ProtectedLayoutProps>) {
   const supabaseServerClient = createSupabaseServerClient();
-  const {
-    data: { session },
-  } = await supabaseServerClient.auth.getSession();
 
-  if (!session) {
+  const { data, error } = await supabaseServerClient.auth.getUser();
+  if (error || !data?.user) {
     return (
       <>
         <Header />
