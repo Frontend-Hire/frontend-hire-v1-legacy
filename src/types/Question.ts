@@ -4,6 +4,7 @@ export type QuestionOverview = {
   description: string;
   skills: string[];
   difficulty: QuestionDifficulty;
+  questionNumber: number;
 };
 
 export type SkillQuestions = {

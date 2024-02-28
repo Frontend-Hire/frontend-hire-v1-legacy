@@ -13,7 +13,7 @@ const InputWithIcon = React.forwardRef<HTMLInputElement, InputWithIconProps>(
     });
 
     return (
-      <div className="relative flex items-center">
+      <div className="relative flex w-full items-center">
         {cloneIcon}
         <Input className={cn('pl-8', className)} ref={ref} {...props} />
       </div>

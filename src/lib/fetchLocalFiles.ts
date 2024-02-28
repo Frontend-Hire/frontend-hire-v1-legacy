@@ -23,6 +23,7 @@ export const getQuestionsFromLocal = cache(async () => {
       description: meta.description,
       skills: meta.skills,
       difficulty: meta.difficulty,
+      questionNumber: meta.questionNumber,
     });
   }
 
