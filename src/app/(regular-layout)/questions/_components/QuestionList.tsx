@@ -39,15 +39,9 @@ export default function QuestionList({
             DIFFICULTY_ORDER[b.difficulty] - DIFFICULTY_ORDER[a.difficulty],
         );
       case 'new-first':
-        return filtered.sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-        );
+        return filtered.sort((a, b) => b.questionNumber - a.questionNumber);
       case 'old-first':
-        return filtered.sort(
-          (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
-        );
+        return filtered.sort((a, b) => a.questionNumber - b.questionNumber);
       default:
         return filtered.sort(
           (a, b) =>
