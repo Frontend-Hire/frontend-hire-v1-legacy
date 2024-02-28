@@ -13,6 +13,7 @@ export type Meta = {
   showPreview?: boolean;
   showConsole?: boolean;
   showTests?: boolean;
+  createdAT?: string;
   description?: string;
   expectedOutput?: string;
   files: SandpackFiles;

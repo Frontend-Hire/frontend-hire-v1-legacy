@@ -17,15 +17,11 @@ export default async function Container() {
     user ? fetchUserQuestionSubmissions() : undefined,
   ]);
 
-  const currentSkillData = localQuestions.sort((a, b) => {
-    return DIFFICULTY_ORDER[a.difficulty] - DIFFICULTY_ORDER[b.difficulty];
-  });
-
   return (
     <>
       <QuestionFilters />
       <QuestionList
-        questions={currentSkillData}
+        questions={localQuestions}
         solvedQuestions={solvedQuestions}
       />
     </>
