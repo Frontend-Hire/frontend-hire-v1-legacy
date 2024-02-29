@@ -78,7 +78,7 @@ function FooterLinks({ links }: FooterLinksProps) {
 
 function Social() {
   return (
-    <ul className="flex justify-center gap-4">
+    <ul className="flex flex-wrap items-center justify-center gap-4">
       <li>
         <Link
           className="transition-colors hover:text-primary"
@@ -107,7 +107,7 @@ function Social() {
           target="_blank"
           href="https://twitter.com/frontendhire"
         >
-          <VisuallyHidden>LinkedIn</VisuallyHidden>
+          <VisuallyHidden>Twitter</VisuallyHidden>
           <svg
             stroke="currentColor"
             fill="currentColor"
