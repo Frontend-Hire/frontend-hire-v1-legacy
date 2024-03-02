@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Courses | Frontend Hire',
     description: 'Live and recorded practical courses',
-    url: 'https://frontendhire.com/courses',
   },
 };
 

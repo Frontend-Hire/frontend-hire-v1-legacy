@@ -3,7 +3,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
-import { HandHeartIcon, UserCheckIcon, UserSquareIcon } from 'lucide-react';
+import { UserCheckIcon, UserSquareIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Interview Guides | Frontend Hire',
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Interview Guides | Frontend Hire',
     description: 'Good Interview Practices for both Interviewer and Candidate',
-    url: 'https://frontendhire.com/guides/interviews',
   },
 };
 

@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Settings | Frontend Hire',
     description: 'Manage all your account related stuff',
-    url: 'https://frontendhire.com/settings',
   },
 };
 

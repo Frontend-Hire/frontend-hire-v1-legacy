@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Skill Guides | Frontend Hire',
     description: 'All the resources to be confident in a skill',
-    url: 'https://frontendhire.com/guides/skills',
   },
 };
 

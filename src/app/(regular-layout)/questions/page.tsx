@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Questions | Frontend Hire',
     description: 'Real World And Interview Based Questions',
-    url: 'https://frontendhire.com/questions',
   },
 };
 

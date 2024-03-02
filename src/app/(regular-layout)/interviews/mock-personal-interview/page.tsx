@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     title: 'Mock Personal Interview | Frontend Hire',
     description:
       'The only great way to prepare for actual interviews and get actionable feedback',
-    url: 'https://frontendhire.com/interviews/mock-personal-interview',
   },
 };
 
