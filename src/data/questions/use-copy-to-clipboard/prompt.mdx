@@ -1,0 +1,64 @@
+export const meta = {
+  title: 'useCopyToClipboard',
+  difficulty: 'medium',
+  skills: ['react', 'js'],
+  description:
+    "A custom hook to copy text to the clipboard. A standard requirement in many web applications.",
+  template: 'react',
+  recommendedLayout: 'col-3',
+  questionNumber: 26,
+  files: {
+    '/useCopyToClipboard.js': {
+      code: `import React from "react";
+
+export const useCopyToClipboard = () => {
+  // Use the resources to think of the API.
+};
+`,
+      active: true
+    },
+    '/App.js': {
+      code: `import React from "react";
+import { useCopyToClipboard } from "./useCopyToClipboard";
+
+export default function App() {
+  const [inputValue, setInputValue] = React.useState("");
+  // Use the useCopyToClipboard hook here.
+
+  return (
+    <div>
+      <div>
+        <textarea
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+      </div>
+      <button onClick={() => console.log("replace this with your copy")}>
+        Copy Text
+      </button>
+      {/* Replace the below "true" condition to show the success. */}
+      {true && <p>Text copied successfully!</p>}
+    </div>
+  );
+}
+`,
+      active: false
+    },
+  },
+  showConsole: true,
+  showPreview: true,
+};
+
+# useCopyToClipboard
+
+> "Imitation is the sincerest form of flattery that mediocrity can pay to greatness." - Oscar Wilde
+
+## Objectives
+- Implement the `useCopyToClipboard` hook that enables components to copy text to the clipboard.
+- Think of a good API for this hook.
+- Validate your hook implementation with the UI component example.
+
+#### Resources
+- [Navigator: Clipboard](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/clipboard)
+- [useHooks: useCopyToClipboard](https://usehooks.com/usecopytoclipboard)
+- [usehooks-ts: Implementation](https://usehooks-ts.com/react-hook/use-copy-to-clipboard)
