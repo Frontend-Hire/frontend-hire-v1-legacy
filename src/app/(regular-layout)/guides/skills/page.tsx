@@ -30,7 +30,7 @@ export default function SkillGuides() {
         <li>
           <CardLinkItem
             type="link"
-            title="React Learning Guide"
+            title="Learning React"
             link="/guides/skills/react"
             leftIcon={<Image src={ReactLogo} alt="" />}
           />

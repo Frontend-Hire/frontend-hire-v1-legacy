@@ -3,7 +3,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
-import { UserCheckIcon, UserSquareIcon } from 'lucide-react';
+import { UserCheckIcon, UserCogIcon, UserSquareIcon } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Interview Guides | Frontend Hire',
@@ -28,9 +28,17 @@ export default function SkillGuides() {
         <li>
           <CardLinkItem
             type="link"
-            title="Candidate Interview Guide"
+            title="Candidate"
             link="/guides/interviews/candidate"
             leftIcon={<UserCheckIcon size={40} />}
+          />
+        </li>
+        <li>
+          <CardLinkItem
+            type="link"
+            title="Interviewer"
+            link="/guides/interviews/interviewer"
+            leftIcon={<UserCogIcon size={40} />}
           />
         </li>
       </ul>
