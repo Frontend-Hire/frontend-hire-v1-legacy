@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import openGraphImage from './opengraph-image.png';
+import openGraphImage from './openGraph-image.png';
 
-export const opengraphShared: Metadata['openGraph'] = {
+export const openGraphShared: Metadata['openGraph'] = {
   images: [
     {
       url: openGraphImage.src,

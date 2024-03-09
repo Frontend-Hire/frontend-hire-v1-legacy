@@ -1,3 +1,4 @@
+import { openGraphShared } from '@/app/shared-metadata';
 import MdxImage from '@/components/MdxImage';
 import ShareLinks from '@/components/ShareLinks';
 import AuthorCard from '@/components/AuthorCard';
@@ -12,6 +13,7 @@ export const metadata = {
   title: 'Learning React Guide | Frontend Hire',
   description: 'Our compilation of best resources out there',
   openGraph: {
+    ...openGraphShared,
     title: 'Learning React Guide | Frontend Hire',
     description: 'Our compilation of best resources out there',
     type: 'article'

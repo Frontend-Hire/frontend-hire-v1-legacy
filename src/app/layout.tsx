@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
 import { PHProvider } from '@/providers/PHProvider';
-import { opengraphShared } from './shared-metadata';
 
 import dynamic from 'next/dynamic';
 import CourseBanner from '@/components/CourseBanner';
@@ -24,7 +23,6 @@ export const metadata: Metadata = {
   description:
     'A frontend coding platform for actual development skills and interviews',
   openGraph: {
-    ...opengraphShared,
     title: 'Frontend Hire',
     description:
       'A frontend coding platform for actual development skills and interviews',

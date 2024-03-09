@@ -4,11 +4,13 @@ import CourseCardItem from './_components/CourseCardItem';
 import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
 import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Courses | Frontend Hire',
   description: 'Live and recorded practical courses',
   openGraph: {
+    ...openGraphShared,
     title: 'Courses | Frontend Hire',
     description: 'Live and recorded practical courses',
   },

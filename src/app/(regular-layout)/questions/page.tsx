@@ -3,11 +3,13 @@ import Container from './_components/Container';
 import { Suspense } from 'react';
 import QuestionItemSkeleton from '@/components/QuestionItemSkeleton';
 import CustomHeading from '@/components/CustomHeading';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Questions | Frontend Hire',
   description: 'Real World And Interview Based Questions',
   openGraph: {
+    ...openGraphShared,
     title: 'Questions | Frontend Hire',
     description: 'Real World And Interview Based Questions',
   },

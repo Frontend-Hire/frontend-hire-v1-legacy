@@ -8,13 +8,14 @@ import {
   PhoneCallIcon,
   UserIcon,
 } from 'lucide-react';
-
+import { openGraphShared } from '@/app/shared-metadata';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Interviews | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
   openGraph: {
+    ...openGraphShared,
     title: 'Interviews | Frontend Hire',
     description: 'Simulated and Real Interviews for Frontend Developers',
   },

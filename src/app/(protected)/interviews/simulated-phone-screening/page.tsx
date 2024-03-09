@@ -6,11 +6,13 @@ import { SpeechSynthesisProvider } from './_context/SpeechSynthesisContext';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import SettingsProvider from './_context/SettingsContext';
 import CustomHeading from '@/components/CustomHeading';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
   openGraph: {
+    ...openGraphShared,
     title: 'Simulated Phone Screening | Frontend Hire',
     description: 'Simulated and Real Interviews for Frontend Developers',
   },

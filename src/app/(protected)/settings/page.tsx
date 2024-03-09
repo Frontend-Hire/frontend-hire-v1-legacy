@@ -4,11 +4,13 @@ import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmis
 import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 import UserInfo from './_components/UserInfo';
 import CustomHeading from '@/components/CustomHeading';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Settings | Frontend Hire',
   description: 'Manage all your account related stuff',
   openGraph: {
+    ...openGraphShared,
     title: 'Settings | Frontend Hire',
     description: 'Manage all your account related stuff',
   },

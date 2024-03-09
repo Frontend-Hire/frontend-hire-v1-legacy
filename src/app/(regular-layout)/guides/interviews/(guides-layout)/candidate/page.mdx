@@ -4,11 +4,13 @@ import SpecialText from '@/components/SpecialText';
 import CustomHeading from '@/components/CustomHeading';
 import { UserCheckIcon } from 'lucide-react';
 import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg'; 
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata = {
   title: 'Candidate Interview Guide | Frontend Hire',
   description: 'A before, during, and after interview guide for candidates to follow during an interview process.',
   openGraph: {
+    ...openGraphShared,
     title: 'Candidate Interview Guide | Frontend Hire',
     description: 'A before, during, and after interview guide for candidates to follow during an interview process.',
     type: 'article'

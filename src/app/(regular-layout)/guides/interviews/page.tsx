@@ -4,11 +4,13 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
 import { UserCheckIcon, UserCogIcon, UserSquareIcon } from 'lucide-react';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Interview Guides | Frontend Hire',
   description: 'Good Interview Practices for both Interviewer and Candidate',
   openGraph: {
+    ...openGraphShared,
     title: 'Interview Guides | Frontend Hire',
     description: 'Good Interview Practices for both Interviewer and Candidate',
   },

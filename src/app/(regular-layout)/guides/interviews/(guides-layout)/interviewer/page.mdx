@@ -4,11 +4,13 @@ import SpecialText from '@/components/SpecialText';
 import CustomHeading from '@/components/CustomHeading';
 import { UserCogIcon } from 'lucide-react';
 import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg'; 
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata = {
   title: 'Interviewer Interview Guide | Frontend Hire',
   description: 'As an interviewer, you are responsible for making the candidate feel comfortable and getting the best out of them. This guide will help you to prepare for the interview and to make the candidate feel comfortable.',
   openGraph: {
+    ...openGraphShared,
     title: 'Interviewer Interview Guide | Frontend Hire',
     description: 'As an interviewer, you are responsible for making the candidate feel comfortable and getting the best out of them. This guide will help you to prepare for the interview and to make the candidate feel comfortable.',
     type: 'article'

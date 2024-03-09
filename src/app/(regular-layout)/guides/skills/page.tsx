@@ -1,6 +1,6 @@
 import CardLinkItem from '@/components/CardLinkItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-
+import { openGraphShared } from '@/app/shared-metadata';
 import ReactLogo from '@/assets/toollogos/react.png';
 import Image from 'next/image';
 import { Metadata } from 'next';
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Skill Guides | Frontend Hire',
   description: 'All the resources to be confident in a skill',
   openGraph: {
+    ...openGraphShared,
     title: 'Skill Guides | Frontend Hire',
     description: 'All the resources to be confident in a skill',
   },

@@ -4,11 +4,13 @@ import Container from './_components/Container';
 import { Suspense } from 'react';
 import ProjectItemSkeleton from '@/components/ProjectItemSkeleton';
 import CustomHeading from '@/components/CustomHeading';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Projects | Frontend Hire',
   description: 'Not some stupid clones but highly feature focused projects',
   openGraph: {
+    ...openGraphShared,
     title: 'Projects | Frontend Hire',
     description: 'Not some stupid clones but highly feature focused projects',
   },

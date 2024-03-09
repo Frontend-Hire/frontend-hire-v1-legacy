@@ -4,11 +4,13 @@ import vaishnavaImage from '@/assets/team/vaishnava.jpg';
 import deepakImage from '@/assets/team/deepakSharmaInterviewer.jpeg';
 import ashwinImage from '@/assets/team/ashwinKumarInterviewer.jpg';
 import CustomHeading from '@/components/CustomHeading';
+import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata = {
   title: 'About | Frontend Hire',
   description: 'A little about us and our mission',
   openGraph: {
+    ...openGraphShared,
     title: 'About | Frontend Hire',
     description: 'A little about us and our mission',
   },
