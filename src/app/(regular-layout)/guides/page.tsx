@@ -23,7 +23,7 @@ export default async function Guides() {
         <li>
           <CardLinkItem
             type="link"
-            title="Skill Guides"
+            title="Skills"
             link="/guides/skills"
             leftIcon={<GraduationCapIcon size={40} />}
           />
@@ -31,7 +31,7 @@ export default async function Guides() {
         <li>
           <CardLinkItem
             type="link"
-            title="Interview Guides"
+            title="Interviews"
             link="/guides/interviews"
             leftIcon={<UserSquareIcon size={40} />}
           />
