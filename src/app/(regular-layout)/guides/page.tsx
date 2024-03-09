@@ -1,3 +1,4 @@
+import { opengraphShared } from '@/app/shared-metadata';
 import CardLinkItem from '@/components/CardLinkItem';
 import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Guides | Frontend Hire',
   description: "All the guides you'd ever need",
   openGraph: {
+    ...opengraphShared,
     title: 'Guides | Frontend Hire',
     description: "All the guides you'd ever need",
   },
