@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     description:
       'A frontend coding platform for actual development skills and interviews',
   },
-  metadataBase: new URL('https://frontendhire.com'),
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
