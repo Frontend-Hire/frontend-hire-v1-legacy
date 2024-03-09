@@ -7,6 +7,7 @@ import { PHProvider } from '@/providers/PHProvider';
 import dynamic from 'next/dynamic';
 import CourseBanner from '@/components/CourseBanner';
 import { cn } from '@/lib/utils';
+import { openGraphShared } from './shared-metadata';
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   description:
     'A frontend coding platform for actual development skills and interviews',
   openGraph: {
+    ...openGraphShared,
     title: 'Frontend Hire',
     description:
       'A frontend coding platform for actual development skills and interviews',
