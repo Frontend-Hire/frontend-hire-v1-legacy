@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: 'Frontend Hire',
   description:
     'A frontend coding platform for actual development skills and interviews',
+  metadataBase: new URL('https://frontendhire.com'),
   openGraph: {
     ...openGraphShared,
     title: 'Frontend Hire',
