@@ -78,7 +78,7 @@ export default function ProjectItem({
   };
 
   return (
-    <div className="flex h-[300px] w-[300px] flex-col gap-[10px] overflow-hidden rounded-md bg-card text-card-foreground">
+    <div className="flex h-full min-h-[300px] flex-col gap-[10px] overflow-hidden rounded-md bg-card text-card-foreground">
       <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
       <div className="flex grow flex-col gap-[5px] px-[10px]">
         <h2 className="text-xl font-bold md:text-2xl">{title}</h2>

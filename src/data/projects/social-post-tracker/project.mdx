@@ -1,0 +1,64 @@
+import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
+
+export const meta = {
+  title: 'Social Posts Tracker',
+  difficulty: 'medium',
+  description: 'This project aims to build a Social Posts Tracker, integrating Excalidraw for visuals and a rich text editor for content. It leverages Firebase or Supabase for backend services, optimizing the application to track and analyze posts on LinkedIn and Twitter.',
+  tasks: ['Setup Project Environment', 'Integrate Excalidraw & Rich Text Editor', 'Firebase or Supabase Integration', 'Optimize for LinkedIn Posts', 'Optimize for Twitter Posts', 'More Features', 'Deploy', 'Paid Plan'],
+  skills: ['React', 'Firebase', 'Supabase', 'Excalidraw', 'Rich Text Editor'],
+  isRecommended: true,
+};
+
+# Social Posts Tracker
+
+Developing a Social Posts Tracker offers a unique opportunity to create a tool that not only stores social media posts but also provides insights and optimizations for platforms like LinkedIn and Twitter. This project focuses on the use of Excalidraw for creating visual content and a rich text editor for crafting post text, with Firebase or Supabase as the backend service.
+
+- Rough time estimate: 2-3 weeks
+
+<ProjectTasks>
+  <ProjectTaskItem id={1} taskName='Setup a Web Project of your choice'>
+    We recommend Next.js or Remix for the following reasons:
+    - Excalidraw has a React component that can be easily integrated.
+    - Plenty of rich text editor libraries are available for React.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={2} taskName='Integrate Excalidraw & Rich Text Editor'>
+    Integrate Excalidraw for drawing or creating visuals directly within the application. Also, embed a simple rich text editor for composing the textual content of posts. This setup allows users to craft engaging and visually appealing social media posts.
+    - Embedding Excalidraw: [Excalidraw React Package](https://www.npmjs.com/package/@excalidraw/excalidraw)
+    - Use a popular rich text editor like Quill or Draft.js for text management.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={3} taskName='Firebase or Supabase Integration'>
+    Choose between Firebase and Supabase for backend services. This involves setting up authentication, database, and storage to manage users, posts data, and media files respectively.
+    - Decide between Firebase and Supabase based on the project requirements and the developer's familiarity with the platforms.
+    - Figure out a free tier or trial period for the chosen platform to keep the project cost-effective.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={4} taskName='Feature: Optimize for LinkedIn Posts'>
+    Develop functionalities specific to optimizing posts for LinkedIn.
+    - Implement a preview feature that simulates how the post will look on LinkedIn. This helps folks build better hooks for their posts.
+    - Utilize API calls to LinkedIn (if available) for posting directly from the tracker or fetching analytics.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={5} taskName='Feature: Optimize for Twitter Posts'>
+    Similar to LinkedIn optimizations, includes features tailored for Twitter, such as tweet length restrictions, thread support, and media attachment capabilities.
+    - Provide a tweet preview functionality.
+    - Integrate with the Twitter API for direct posting and analytics retrieval (consider Twitter API limitations and authentication requirements).
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={6} taskName='More Feature Thoughts'>
+    You can launch with just the above features, but consider adding more features like:
+    - Scheduling posts for a later time.
+    - AI analysis of post content for better engagement.
+    - AI posts suggestions based on the user's content.
+    - Repeat posting for evergreen content.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={7} taskName='Deploy'>
+    Deploy the application to a hosting service like Vercel, Netlify, or Firebase Hosting. Ensure that the deployment process is well-documented and includes environment-specific configurations.
+  </ProjectTaskItem>
+
+  <ProjectTaskItem id={8} taskName='Figure out a paid plan'>
+    If the project gains traction, try to figure out a paid plan that can be offered to users. This could include additional features, analytics, or integrations with other platforms.
+  </ProjectTaskItem>
+</ProjectTasks>
