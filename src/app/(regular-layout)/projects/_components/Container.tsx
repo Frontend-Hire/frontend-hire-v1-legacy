@@ -41,7 +41,7 @@ export default async function Container() {
     );
 
   return (
-    <ul className="flex flex-wrap justify-center gap-[20px]">
+    <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {sortedLocalProjects.map((project) => {
         const solvedProject = solvedProjectsMap[project.id] || {};
         const completedTasks = solvedProject.completedTasks || [];
