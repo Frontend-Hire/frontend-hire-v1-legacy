@@ -10,7 +10,7 @@ import {
 
 export const LINKS: {
   title: string;
-  items: { title: string; href: string; icon: any }[];
+  items: { title: string; href: string; icon?: any }[];
   hideOnMainNav?: boolean;
 }[] = [
   {
@@ -36,7 +36,17 @@ export const LINKS: {
   {
     title: 'Company',
     hideOnMainNav: true,
-    items: [{ title: 'About', href: '/about', icon: LightbulbIcon }],
+    items: [
+      { title: 'About', href: '/about' },
+      {
+        title: 'Privacy Policy',
+        href: '/privacy-policy',
+      },
+      {
+        title: 'Terms and Conditions',
+        href: '/terms-and-conditions',
+      },
+    ],
   },
 ];
 
