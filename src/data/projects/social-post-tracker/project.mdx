@@ -1,7 +1,7 @@
 import { ProjectTasks, ProjectTaskItem } from '@/components/ProjectTasks';
 
 export const meta = {
-  title: 'Social Posts Tracker',
+  title: 'Social Posts Tracker/Manager',
   difficulty: 'medium',
   description: 'This project aims to build a Social Posts Tracker, integrating Excalidraw for visuals and a rich text editor for content. It leverages Firebase or Supabase for backend services, optimizing the application to track and analyze posts on LinkedIn and Twitter.',
   tasks: ['Setup Project Environment', 'Integrate Excalidraw & Rich Text Editor', 'Firebase or Supabase Integration', 'Optimize for LinkedIn Posts', 'Optimize for Twitter Posts', 'More Features', 'Deploy', 'Paid Plan'],
@@ -9,11 +9,12 @@ export const meta = {
   isRecommended: true,
 };
 
-# Social Posts Tracker
+# Social Posts Tracker/Manager
 
-Developing a Social Posts Tracker offers a unique opportunity to create a tool that not only stores social media posts but also provides insights and optimizations for platforms like LinkedIn and Twitter. This project focuses on the use of Excalidraw for creating visual content and a rich text editor for crafting post text, with Firebase or Supabase as the backend service.
+Developing a Social Posts Tracker/Manager offers a unique opportunity to create a tool that not only stores social media posts but also provides insights and optimizations for platforms like LinkedIn and Twitter. This project focuses on the use of Excalidraw for creating visual content and a rich text editor for crafting post text, with Firebase or Supabase as the backend service.
 
 - Rough time estimate: 2-3 weeks
+- Example Product: [Buffer](https://buffer.com/)
 
 <ProjectTasks>
   <ProjectTaskItem id={1} taskName='Setup a Web Project of your choice'>
@@ -38,12 +39,14 @@ Developing a Social Posts Tracker offers a unique opportunity to create a tool t
     Develop functionalities specific to optimizing posts for LinkedIn.
     - Implement a preview feature that simulates how the post will look on LinkedIn. This helps folks build better hooks for their posts.
     - Utilize API calls to LinkedIn (if available) for posting directly from the tracker or fetching analytics.
+    - If also posting directly to LinkedIn, how would you handle @Tags and #Hashtags?
   </ProjectTaskItem>
 
   <ProjectTaskItem id={5} taskName='Feature: Optimize for Twitter Posts'>
     Similar to LinkedIn optimizations, includes features tailored for Twitter, such as tweet length restrictions, thread support, and media attachment capabilities.
     - Provide a tweet preview functionality.
     - Integrate with the Twitter API for direct posting and analytics retrieval (consider Twitter API limitations and authentication requirements).
+    - If also posting directly to Twitter, how would you handle @Tags and #Hashtags?
   </ProjectTaskItem>
 
   <ProjectTaskItem id={6} taskName='More Feature Thoughts'>
