@@ -1,0 +1,67 @@
+import Image from 'next/image';
+import customInput1 from './custom-input-1.png';
+
+export const meta = {
+  title: 'Custom Input - 1: Dynamic Time Input',
+  difficulty: 'medium',
+  skills: ['react', 'css', 'html', 'js'],
+  description:
+    "Create a React component that accepts time calculations and converts minutes to hours when the result exceeds 60 minutes. The output should ",
+  template: 'react',
+  externalCDNs: ["https://cdn.tailwindcss.com"],
+  date: '2024-03-18',
+  isNew: true,
+  questionNumber: 27,
+  files: {
+    '/App.css': {
+      code: `/* Add your CSS code here */`
+    },
+    '/App.js': {
+      code: `import React, { useState } from "react";
+
+import "./App.css";
+
+export default function App() {
+  return (
+    <div className="container mx-auto p-4">
+      <TimeInput />
+    </div>
+  );
+}
+
+function TimeInput() {
+  return <input className="border" />;
+}
+`,
+      active: true
+    },
+  },
+  showPreview: true,
+  showConsole: true,
+};
+
+# Custom Input - 1: Dynamic Time Input
+
+> When a minute is more than just a minute.
+
+## Objectives
+- Implement a React component called 'TimeInput.'
+- The component should allow users to input number calculations (addition, subtraction, multiplication, division).
+- The component should automatically convert and display the result in hours if it exceeds 60 minutes.
+
+## Functional Requirements
+1. The component should support basic arithmetic operations on time values: addition, subtraction, multiplication, and division.
+2. The result should be displayed in minutes if under 60 or converted to hours if 60 or more.
+
+#### Design Reference
+
+You can use this image as a reference or this [Figma Design](https://www.figma.com/file/nT3zhFaMpNLXeoRv2asrSp/Frontend-Hire?type=design&node-id=104-2&mode=design&t=W8MyhL7k9bjpQfp0-4):
+
+<Image src={customInput1} alt="Interactive UI component mockup displaying time calculation examples, conversion rules, and supported arithmetic operations such as addition, subtraction, multiplication, and division." priority />
+
+### Note
+For styling purposes, Tailwind CSS is already included in the project. You can also use regular CSS if you prefer.
+
+#### Resources
+
+- A sample visualization of the component that inspired this question: [@heyXDave's design](https://x.com/heyXdave/status/1762131404622897323?s=20)

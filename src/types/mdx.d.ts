@@ -14,6 +14,8 @@ export type Meta = {
   showConsole?: boolean;
   showTests?: boolean;
   questionNumber: number;
+  isNew?: boolean;
+  date?: string;
   description?: string;
   expectedOutput?: string;
   files: SandpackFiles;

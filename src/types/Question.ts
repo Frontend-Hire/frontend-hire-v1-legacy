@@ -5,6 +5,7 @@ export type QuestionOverview = {
   skills: string[];
   difficulty: QuestionDifficulty;
   questionNumber: number;
+  isNew?: boolean;
 };
 
 export type SkillQuestions = {

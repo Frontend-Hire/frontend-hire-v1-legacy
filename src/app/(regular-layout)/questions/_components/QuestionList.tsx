@@ -74,6 +74,7 @@ export default function QuestionList({
                 difficulty={question.difficulty}
                 isCompleted={checkQuestionCompletion(question.id)}
                 skills={question.skills}
+                isNew={question.isNew}
               />
             </li>
           ))}
