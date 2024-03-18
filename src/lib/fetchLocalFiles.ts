@@ -24,6 +24,7 @@ export const getQuestionsFromLocal = cache(async () => {
       skills: meta.skills,
       difficulty: meta.difficulty,
       questionNumber: meta.questionNumber,
+      isNew: meta.isNew,
     });
   }
 

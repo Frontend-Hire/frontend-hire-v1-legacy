@@ -1,7 +1,6 @@
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import { DIFFICULTY_ORDER } from '@/types/Question';
 import QuestionFilters from './QuestionFilters';
 import QuestionList from './QuestionList';
 

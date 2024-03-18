@@ -4,6 +4,7 @@ import { QuestionDifficulty } from '@/types/Question';
 import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
 import SkillBadges from '../SkillBadges';
+import { Badge } from '../ui/badge';
 
 type QuestionItemProps = {
   id: string;
@@ -12,6 +13,7 @@ type QuestionItemProps = {
   description: string;
   skills: string[];
   isCompleted: boolean;
+  isNew?: boolean;
 };
 
 const DifficultyLabel = ({
@@ -58,13 +60,17 @@ export default function QuestionItem({
   description,
   difficulty,
   isCompleted,
+  isNew,
 }: QuestionItemProps) {
   return (
     <Link href={`/questions/${id}`}>
       <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground hover:bg-card/80">
         <DifficultyLabel difficulty={difficulty} />
         <div className="flex w-full flex-col gap-[5px] py-[10px]">
-          <p className="font-bold">{title}</p>
+          <div className="flex items-center gap-2">
+            <p className="font-bold">{title}</p>
+            {isNew && <Badge className="animate-pulse">New</Badge>}
+          </div>
           <p className="text-sm leading-[100%] text-gray-300">{description}</p>
           <SkillBadges skills={skills} />
         </div>
