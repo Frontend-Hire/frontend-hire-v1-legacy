@@ -10,27 +10,10 @@ import HeaderLogo from '../HeaderLogo';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '../ui/scroll-area';
-import { User } from '@supabase/supabase-js';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import SignInButton from '../SignInButton';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { MAIN_NAV_LINKS } from '@/config/site';
 
-type MobileMenuProps = {
-  user?: User | null;
-};
-
-export default function MobileMenu({ user }: MobileMenuProps) {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
-  const router = useRouter();
-
+export default function StaticMobileMenu() {
   const [open, setOpen] = React.useState(false);
-
-  const handleSignOut = async () => {
-    await supabaseBrowserClient.auth.signOut();
-    router.replace('/');
-    router.refresh();
-  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -69,40 +52,9 @@ export default function MobileMenu({ user }: MobileMenuProps) {
             ))}
           </div>
         </ScrollArea>
-
-        <div>
-          {user ? (
-            <div className="flex flex-col gap-4">
-              <h4 className="font-medium">Account</h4>
-              <div className="flex items-center gap-2">
-                <Avatar>
-                  <AvatarImage src={user.user_metadata.picture} />
-                  <AvatarFallback className="bg-primary">
-                    {(user.user_metadata.name && user.user_metadata.name[0]) ||
-                      '?'}
-                  </AvatarFallback>
-                </Avatar>
-                <span>{user.user_metadata.email}</span>
-              </div>
-              <MobileLink
-                className="text-muted-foreground hover:text-primary"
-                href="/settings"
-                onOpenChange={setOpen}
-              >
-                Settings
-              </MobileLink>
-
-              <Button
-                className="w-fit rounded-[10px] p-[10px]"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            <SignInButton />
-          )}
-        </div>
+        <Button className="w-fit rounded-[10px] p-[10px]" asChild>
+          <Link href={'/questions'}>Practice Now</Link>
+        </Button>
       </SheetContent>
     </Sheet>
   );
