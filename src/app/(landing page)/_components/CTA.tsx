@@ -7,8 +7,8 @@ type CTAButtonProps = {
 
 export default function CTA({ label = 'Practice Now' }: CTAButtonProps) {
   return (
-    <Button asChild className="rounded-[10px] p-[10px]">
-      <Link href={'/questions'}>{label}</Link>
+    <Button asChild>
+      <Link href="/questions">{label}</Link>
     </Button>
   );
 }

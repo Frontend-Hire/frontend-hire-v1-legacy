@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import QuestionItemSkeleton from '@/components/QuestionItemSkeleton';
 import CustomHeading from '@/components/CustomHeading';
 import { openGraphShared } from '@/app/shared-metadata';
+import QuestionFilters from './_components/QuestionFilters';
 
 export const metadata: Metadata = {
   title: 'Questions | Frontend Hire',
@@ -17,19 +18,19 @@ export const metadata: Metadata = {
 
 export default function Questions() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-5">
       <CustomHeading
         title="Questions"
         subTitle="Real World And Interview Based"
       />
 
+      <QuestionFilters />
       <Suspense
         fallback={
-          <div className="flex flex-col gap-[20px]">
-            <QuestionItemSkeleton />
-            <QuestionItemSkeleton />
-            <QuestionItemSkeleton />
-            <QuestionItemSkeleton />
+          <div className="flex flex-col gap-5">
+            {Array.from({ length: 20 }).map((_, index) => (
+              <QuestionItemSkeleton key={index} />
+            ))}
           </div>
         }
       >

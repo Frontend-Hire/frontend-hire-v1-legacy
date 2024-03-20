@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function Projects() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-5">
       <CustomHeading
         title="Projects"
         subTitle="Not some stupid clones but highly feature focused projects"
@@ -27,7 +27,7 @@ export default async function Projects() {
       <VisuallyHidden>Projects List</VisuallyHidden>
       <Suspense
         fallback={
-          <div className="flex flex-wrap gap-[20px]">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <ProjectItemSkeleton />
             <ProjectItemSkeleton />
             <ProjectItemSkeleton />
