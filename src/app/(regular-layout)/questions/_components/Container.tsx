@@ -1,7 +1,6 @@
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { fetchUserQuestionSubmissions } from '@/lib/supabase/fetchUserSubmissions';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import QuestionFilters from './QuestionFilters';
 import QuestionList from './QuestionList';
 
 export default async function Container() {
@@ -17,12 +16,9 @@ export default async function Container() {
   ]);
 
   return (
-    <>
-      <QuestionFilters />
-      <QuestionList
-        questions={localQuestions}
-        solvedQuestions={solvedQuestions}
-      />
-    </>
+    <QuestionList
+      questions={localQuestions}
+      solvedQuestions={solvedQuestions}
+    />
   );
 }
