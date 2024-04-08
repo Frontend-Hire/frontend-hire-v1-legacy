@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+The project has two moving pieces in total:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. the [`frontend-hire`](https://github.com/yaralahruthik/frontend-hire) repo and
+2. the [`frontend-hire-supabase-local`](https://github.com/yaralahruthik/frontend-hire-supabase-local) repo.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Setting up Supabase locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We'll set up **supabase** first of all before starting the project.
+Clone **frontend-hire-supabase-local** repo and start:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Install [Docker](https://www.docker.com/products/docker-desktop/)
+2. Now install [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started) for local development. You can also work out supabase with npx commands.
+3. Get Google OAuth credentials via [Google Console](https://console.developers.google.com/)
+4. Clone the repo: https://github.com/yaralahruthik/frontend-hire-supabase-local
+5. Config file is already defined in the project.
+   [Supabase docs for local development](https://supabase.com/docs/guides/cli/local-development)
+   [Supabase docs for setting up authentication locally](https://supabase.com/docs/guides/cli/local-development#use-auth-locally)
+6. Start Docker
+7. Run `npx supabase start` or `supabase start` to start all services.
 
-## Learn More
+> Run `npx supabase status` or `supabase status` to get information regarding all supabase services. Once the docker image is being run.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Setting up Frontend hire
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+After successful installation of supabase locally. We can install and run frontend-hire. Follow the steps:
 
-## Deploy on Vercel
+1. Clone the repo: https://github.com/yaralahruthik/frontend-hire.git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies: `npm i` or `yarn add`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Create the `.env.local` which should have the following keys for the supabase backend.
+
+   ```
+   	NEXT_PUBLIC_SUPABASE_URL = <supabase API URL>
+   	NEXT_PUBLIC_SUPABASE_ANON_KEY = <supabase anon key>
+   ```
+
+   The keys are displayed when you start the supabase service or you can get them by running command `npx supabase status`.
+
+4. Once all things are in there respective places, start the application using `npm run dev` or `npm run start`.
+
+---
+
+## To Do-
+
+- [ ] Add `.env.sample` for both repos
+- [ ] Add CONTRIBUTION.md with commit guide
