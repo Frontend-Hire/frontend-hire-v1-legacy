@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-export default function (props) {
+export default function Article(props) {
   return (
     <div className="items-left flex flex-col gap-y-4">
-      <article class="prose prose-sm prose-invert lg:prose-base">
+      <article className="prose prose-sm prose-invert lg:prose-base">
         <h1>Garlic bread with cheese: What the science tells us</h1>
         {Array(2)
           .fill('')
@@ -23,27 +23,33 @@ export default function (props) {
               </p>
             </>
           ))}
+        <div className="space-y-2">
+          <p className="w-full text-right text-xs">
+            Last updated on February 26, 2024
+          </p>
+          <hr className="text-muted" />
+          <Pagination />
+        </div>
       </article>
-      <Pagination />
     </div>
   );
 }
 
 function Pagination() {
   return (
-    <div className="my-16 w-full space-y-4">
-      <p className="w-full text-right text-xs">
-        Last updated on February 26, 2024
-      </p>
-      <hr className="text-ring" />
-      <div className="flex items-center justify-between">
-        <Button variant="primary" className="flex items-center gap-x-2">
-          <ChevronLeft className="size-4" /> Prev
-        </Button>
-        <Button variant="primary" className="flex items-center gap-x-2">
-          Next <ChevronRight className="size-4" />
-        </Button>
-      </div>
+    <div className="flex items-center justify-between">
+      <Button
+        variant="link"
+        className="flex items-center gap-2 text-xl text-white"
+      >
+        <ChevronLeft size={30} /> Prev
+      </Button>
+      <Button
+        variant="link"
+        className="flex items-center gap-2 text-xl text-white"
+      >
+        Next <ChevronRight size={30} />
+      </Button>
     </div>
   );
 }

@@ -28,9 +28,9 @@ export default function CoursesPage() {
       <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
-      <ul className="grid gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
+      <ul className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         <li>
-          <Link href="courses/todo-app-react-tdd-typescript">
+          <Link href="courses/todo-app-react/overview">
             <CourseCardItem
               image={todoAppReactTDDImg}
               title="Todo App with React, TypeScript and TDD"

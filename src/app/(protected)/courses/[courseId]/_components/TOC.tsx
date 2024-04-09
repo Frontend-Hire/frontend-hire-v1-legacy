@@ -12,18 +12,18 @@ const navigation = [
 // to be reimplemented using cva ~ashish
 export default function Example() {
   return (
-    <div className="flex flex-col gap-y-5 overflow-y-auto px-6 text-sm lg:min-w-64">
-      <h1>On This Page</h1>
-      <nav className="flex flex-1 flex-col">
-        <ul role="list" className="space-y-1">
+    <aside className="hidden md:block md:w-[150px] lg:w-[250px]">
+      <p className="mb-2 text-sm font-medium">On This Page</p>
+      <nav>
+        <ul className="space-y-1">
           {navigation.map((item, index) => (
             <li
               key={index}
               className={twMerge(
-                'rounded p-1 px-1.5 transition-colors',
-                item.current && 'text-ring',
-                item.level === 2 && 'ml-4',
-                item.level === 3 && 'ml-8',
+                'text-sm text-muted transition-colors',
+                item.current && 'text-[#CC00B8]',
+                item.level === 2 && 'ml-2',
+                item.level === 3 && 'ml-4',
               )}
             >
               <a href="#">{item.name}</a>
@@ -31,6 +31,6 @@ export default function Example() {
           ))}
         </ul>
       </nav>
-    </div>
+    </aside>
   );
 }
