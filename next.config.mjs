@@ -1,6 +1,7 @@
 import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
+import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -14,6 +15,7 @@ const nextConfig = {
 };
 
 const withMDX = createMDX();
+
 export default withSentryConfig(
   withMDX(withBundleAnalyzer(nextConfig)),
   {

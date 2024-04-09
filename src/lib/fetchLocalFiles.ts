@@ -67,3 +67,11 @@ export const getCoursePages = async (courseId: string) => {
 
   return Object.entries(courseMeta);
 };
+
+export const getCoursePage = async (courseId: string, chapter: string) => {
+  const { default: getContent } = require(
+    `@/data/courses/${courseId}/${chapter}.mdx`,
+  );
+
+  return getContent as () => React.ReactNode;
+};
