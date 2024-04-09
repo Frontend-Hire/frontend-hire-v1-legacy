@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { MDXComponents } from 'mdx/types';
+import Image from 'next/image';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -13,6 +14,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       return <a target="_blank" {...props} />;
     },
+    // @ts-expect-error
+    // eslint-disable-next-line jsx-a11y/alt-text
+    img: (props) => <Image {...props} />,
     ...components,
   };
 }

@@ -14,7 +14,11 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
 };
 
-const withMDX = createMDX();
+const withMDX = createMDX({
+  options: {
+    rehypePlugins: [rehypeMdxImportMedia],
+  },
+});
 
 export default withSentryConfig(
   withMDX(withBundleAnalyzer(nextConfig)),
