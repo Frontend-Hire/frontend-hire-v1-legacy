@@ -1,66 +1,31 @@
 import Image, { StaticImageData } from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ExternalLinkIcon } from 'lucide-react';
 
 type CourseCardItemProps = {
-  id: string;
   title: string;
-  author: { image: StaticImageData; name: string; headline: string };
+  image: StaticImageData;
   description: string;
-  liveLink?: string;
-  preRecordedLink?: string;
-  freeCourseMaterial?: string;
+  isVideoAvailable?: boolean;
+  isFree?: boolean;
 };
 
 export default function CourseCardItem({
-  id,
   title,
-  author,
+  image,
   description,
-  liveLink,
-  preRecordedLink,
-  freeCourseMaterial,
+  isFree,
+  isVideoAvailable,
 }: CourseCardItemProps) {
   return (
-    <div className="flex flex-col gap-2 rounded rounded-md border border-primary bg-card bg-muted p-4">
-      <h2 className="text-2xl font-bold">{title}</h2>
-      <div className="mb-4 flex items-center gap-2">
-        <Image
-          className="size-10 rounded-full"
-          src={author.image}
-          alt={author.name}
-        />
-        <div className="flex flex-col">
-          <span className="font-bold">{author.name}</span>
-          <span className="text-sm text-zinc-400">{author.headline}</span>
-        </div>
-      </div>
-      <p className="text-sm">{description}</p>
-      <div className="flex flex-wrap items-center justify-between gap-[10px]">
-        {freeCourseMaterial && (
-          <Button variant="secondary" asChild>
-            <Link href={'/courses/' + id}>Free Course Material</Link>
-          </Button>
-        )}
-        <div className="flex items-center justify-around gap-2">
-          {liveLink && (
-            <Button
-              variant={preRecordedLink ? 'secondary' : 'default'}
-              asChild
-              className="flex items-center gap-x-2"
-            >
-              <Link href={liveLink}>
-                Book Live <ExternalLinkIcon className="size-4" />
-              </Link>
-            </Button>
-          )}
-          {preRecordedLink && (
-            <Button asChild>
-              <Link href={preRecordedLink}>Watch Pre-recorded</Link>
-            </Button>
-          )}
+    <div className="flex flex-col gap-2 rounded-md bg-card">
+      <Image src={image} alt={title} className="w-full" />
+      <div className="flex flex-col gap-2 p-4">
+        <h2 className="text-2xl font-bold">{title}</h2>
+
+        <p className="line-clamp-3 text-sm">{description}</p>
+        <div className="flex flex-wrap items-center gap-2">
+          {isFree && <Badge>Free Access</Badge>}
+          {isVideoAvailable && <Badge>Video Available</Badge>}
         </div>
       </div>
     </div>
