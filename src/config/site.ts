@@ -3,8 +3,6 @@ import {
   FileQuestionIcon,
   FolderGit2Icon,
   LibraryBigIcon,
-  LightbulbIcon,
-  NotebookPenIcon,
   SpeechIcon,
 } from 'lucide-react';
 
@@ -26,11 +24,6 @@ export const LINKS: {
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
       { title: 'Guides', href: '/guides', icon: AlbumIcon },
-      {
-        title: 'Course Notes ↗',
-        href: 'https://courses.frontendhire.com/',
-        icon: NotebookPenIcon,
-      },
     ],
   },
   {
