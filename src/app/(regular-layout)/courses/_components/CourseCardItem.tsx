@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ExternalLinkIcon } from 'lucide-react';
 
 type CourseCardItemProps = {
+  id: string;
   title: string;
   author: { image: StaticImageData; name: string; headline: string };
   description: string;
@@ -14,6 +15,7 @@ type CourseCardItemProps = {
 };
 
 export default function CourseCardItem({
+  id,
   title,
   author,
   description,
@@ -22,33 +24,35 @@ export default function CourseCardItem({
   freeCourseMaterial,
 }: CourseCardItemProps) {
   return (
-    <div className="flex flex-col gap-[10px] rounded bg-card p-[10px]">
+    <div className="flex flex-col gap-2 rounded rounded-md border border-primary bg-card bg-muted p-4">
       <h2 className="text-2xl font-bold">{title}</h2>
-      <div className="flex items-center gap-[10px]">
+      <div className="mb-4 flex items-center gap-2">
         <Image
-          className="h-[60px] w-[60px] rounded-full"
+          className="size-10 rounded-full"
           src={author.image}
           alt={author.name}
         />
         <div className="flex flex-col">
           <span className="font-bold">{author.name}</span>
-          <span className="text-sm">{author.headline}</span>
+          <span className="text-sm text-zinc-400">{author.headline}</span>
         </div>
       </div>
-      <p className="font-medium">{description}</p>
+      <p className="text-sm">{description}</p>
       <div className="flex flex-wrap items-center justify-between gap-[10px]">
         {freeCourseMaterial && (
-          <Badge className="bg-secondary">
-            <Link target="_blank" href={freeCourseMaterial}>
-              Free Course Material
-            </Link>
-          </Badge>
+          <Button variant="secondary" asChild>
+            <Link href={'/courses/' + id}>Free Course Material</Link>
+          </Button>
         )}
-        <div className="flex flex-wrap gap-[10px]">
+        <div className="flex items-center justify-around gap-2">
           {liveLink && (
-            <Button variant={preRecordedLink ? 'secondary' : 'default'} asChild>
+            <Button
+              variant={preRecordedLink ? 'secondary' : 'default'}
+              asChild
+              className="flex items-center gap-x-2"
+            >
               <Link href={liveLink}>
-                Book Live <ExternalLinkIcon className="ml-2" />
+                Book Live <ExternalLinkIcon className="size-4" />
               </Link>
             </Button>
           )}
