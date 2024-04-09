@@ -30,7 +30,7 @@ export default function CoursesPage() {
       <VisuallyHidden>Course List</VisuallyHidden>
       <ul className="grid gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4">
         <li>
-          <Link href="todo-app-react-tdd-typescript">
+          <Link href="courses/todo-app-react-tdd-typescript">
             <CourseCardItem
               image={todoAppReactTDDImg}
               title="Todo App with React, TypeScript and TDD"
