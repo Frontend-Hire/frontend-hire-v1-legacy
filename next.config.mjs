@@ -2,6 +2,7 @@ import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
+import rehypeShiki from 'rehype-shiki';
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -16,7 +17,7 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeMdxImportMedia],
+    rehypePlugins: [rehypeMdxImportMedia, rehypeShiki],
   },
 });
 
