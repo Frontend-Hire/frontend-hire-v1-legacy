@@ -18,7 +18,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // @ts-expect-error
     // eslint-disable-next-line jsx-a11y/alt-text
     img: (props) => <Image {...props} />,
-    pre: (props) => <CodeBlock>{props.children}</CodeBlock>,
+    pre: (props) => <CodeBlock preProps={props}>{props.children}</CodeBlock>,
     ...components,
   };
 }
