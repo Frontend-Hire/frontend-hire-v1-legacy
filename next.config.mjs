@@ -2,7 +2,9 @@ import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-import rehypeShiki from 'rehype-shiki';
+import rehypePrettyCode from 'rehype-pretty-code';
+
+const CODE_BLOCK_FILENAME_REGEX = /filename="([^"]+)"/;
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -14,10 +16,17 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
 };
+/** @type {import('rehype-pretty-code').Options} */
+const prettyCodeOptions = {
+  filterMetaString: (string) => string.replace(CODE_BLOCK_FILENAME_REGEX, ''),
+};
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeMdxImportMedia, rehypeShiki],
+    rehypePlugins: [
+      rehypeMdxImportMedia,
+      [rehypePrettyCode, prettyCodeOptions],
+    ],
   },
 });
 

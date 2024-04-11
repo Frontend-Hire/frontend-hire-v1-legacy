@@ -1,3 +1,5 @@
+import CustomCodeViewer from '@/components/CustomCodeViewer';
+
 # Project Setup
 
 <iframe
@@ -9,7 +11,7 @@
   title='Introduction and Project Setup | Todo App with React, TypeScript, TDD | Frontend Hire'
   frameborder='0'
   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowfullscreen
+  allowFullScreen
 />
 
 ### Vite + React + TypeScript
@@ -112,7 +114,7 @@ npm install --save-dev eslint-config-prettier
 
 Then, update your `.eslintrc.*` file to extend the `eslint-config-prettier` config (it is just the string `prettier`):
 
-```js {8} showLineNumbers
+```js showLineNumbers
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
@@ -170,13 +172,15 @@ But let's first clear some of the boilerplate code that comes with the Vite temp
 - Clear the contents of the `index.css` file.
 - Update the contents of the `./src/App.tsx` file to the following:
 
-```tsx showLineNumbers filename="./src/App.tsx"
+<CustomCodeViewer filename="./src/App.tsx">
+```tsx showLineNumbers {2} 
 function App() {
   return <div>Hello World!</div>;
 }
 
 export default App;
 ```
+</CustomCodeViewer>
 
 Let's save our work and commit it to Git.
 
