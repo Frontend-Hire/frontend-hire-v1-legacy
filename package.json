@@ -67,6 +67,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
+    "@shikijs/rehype": "^1.3.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/lodash.debounce": "^4.0.8",

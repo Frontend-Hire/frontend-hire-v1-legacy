@@ -5,7 +5,6 @@ import { withSentryConfig } from '@sentry/nextjs';
 // Rehype plugins
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import rehypeTOC from '@jsdevtools/rehype-toc';
-import rehypePrism from 'rehype-prism-plus';
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -22,12 +21,6 @@ const withMDX = createMDX({
   options: {
     rehypePlugins: [
       rehypeMdxImportMedia,
-      [
-        rehypePrism,
-        {
-          theme: 'monokai',
-        },
-      ],
       [
         rehypeTOC,
         {
