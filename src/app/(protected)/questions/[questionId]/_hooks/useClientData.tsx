@@ -3,6 +3,7 @@ import { Meta } from '@/types/mdx';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useParams } from 'next/navigation';
 import { SandpackFile } from '@codesandbox/sandpack-react';
+import { QuestionData } from '../_types/questionData';
 
 export type QuestionLoading = {
   status: 'loading';
@@ -15,11 +16,7 @@ export type QuestionError = {
 
 export type QuestionSuccess = {
   status: 'success';
-  question: {
-    getContent: () => React.ReactNode;
-    userMeta: Meta;
-    originalMeta: Meta;
-  };
+  question: QuestionData;
 };
 
 export type QuestionIdle = {
@@ -91,7 +88,18 @@ export default function useClientData() {
           sessionStorage.setItem('code_history_id', `${codeHistoryData.id}`);
         }
 
-        return { getContent, userMeta, originalMeta };
+        let getSolutionContent = null;
+        try {
+          const { default: getContent } = require(
+            `@/data/questions/${questionId}/solution.mdx`,
+          );
+          getSolutionContent = getContent;
+        } catch (e) {
+          // We don't need to do anything here
+          getSolutionContent = null;
+        }
+
+        return { getContent, userMeta, originalMeta, getSolutionContent };
       } catch (e) {
         console.log(e);
         setData({ status: 'error', message: e as string });
