@@ -1,8 +1,13 @@
 import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
+
+// Rehype plugins
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import rehypeShiki from 'rehype-shiki';
+import rehypeTOC from '@jsdevtools/rehype-toc';
+import rehypePrism from 'rehype-prism-plus';
+// import rehypePrismTheme from '@mapbox/rehype-prism';
 
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
@@ -17,7 +22,28 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeMdxImportMedia, rehypeShiki],
+    rehypePlugins: [
+      rehypeMdxImportMedia,
+      // rehypePrismTheme,
+      [
+        rehypeShiki,
+        {
+          theme: 'monokai',
+        },
+      ],
+      [
+        rehypePrism,
+        {
+          theme: 'monokai',
+        },
+      ],
+      [
+        rehypeTOC,
+        {
+          position: 'afterbegin',
+        },
+      ],
+    ],
   },
 });
 

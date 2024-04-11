@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
+import CodeBlock from '@/components/CodeBlock';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -17,6 +18,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // @ts-expect-error
     // eslint-disable-next-line jsx-a11y/alt-text
     img: (props) => <Image {...props} />,
+    pre: (props) => <CodeBlock>{props.children}</CodeBlock>,
     ...components,
   };
 }
