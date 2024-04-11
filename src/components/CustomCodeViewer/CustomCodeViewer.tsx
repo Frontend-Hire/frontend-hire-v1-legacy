@@ -11,7 +11,7 @@ export default function CustomCodeViewer({
   filename,
 }: React.PropsWithChildren<CustomCodeViewerProps>) {
   return (
-    <div className="not-prose relative">
+    <div className="not-prose relative overflow-hidden rounded">
       {filename && <p className="text-red-600">{filename}</p>}
       {children}
     </div>
