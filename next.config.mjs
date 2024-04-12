@@ -6,6 +6,10 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 const CODE_BLOCK_FILENAME_REGEX = /filename="([^"]+)"/;
 
+// Rehype plugins
+import rehypeMdxImportMedia from 'rehype-mdx-import-media';
+import rehypeTOC from '@jsdevtools/rehype-toc';
+
 const withBundleAnalyzer = createBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });

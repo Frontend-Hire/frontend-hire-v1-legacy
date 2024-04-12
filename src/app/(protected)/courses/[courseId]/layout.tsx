@@ -16,7 +16,7 @@ export default async function CourseMainLayout({
 
   return (
     <ProtectedLayout>
-      <main className="container flex h-full gap-[30px] py-2 md:py-4">
+      <main className="container flex h-full flex-col gap-[30px] py-2 md:flex-row md:py-4">
         <Sidebar pages={pages} />
         {children}
       </main>

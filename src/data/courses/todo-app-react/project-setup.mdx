@@ -12,6 +12,7 @@ import CustomCodeViewer from '@/components/CustomCodeViewer';
   frameborder='0'
   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
   allowFullScreen
+
 />
 
 ### Vite + React + TypeScript
@@ -24,7 +25,7 @@ npm create vite@latest todo-app -- --template react-ts
 
 Then, navigate to the project directory and install the dependencies.
 
-```sh
+```sh showLineNumbers filename="example.js" copy {1}
 cd todo-app
 npm install
 ```
@@ -61,7 +62,7 @@ node --eval "fs.writeFileSync('.prettierrc','{}\n')"
 
 and add the following to it. Feel free to change the values to your liking (this is what I prefer):
 
-```json
+```json showLineNumbers
 {
   "trailingComma": "all",
   "tabWidth": 2,
@@ -114,7 +115,7 @@ npm install --save-dev eslint-config-prettier
 
 Then, update your `.eslintrc.*` file to extend the `eslint-config-prettier` config (it is just the string `prettier`):
 
-```js showLineNumbers
+```js
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
