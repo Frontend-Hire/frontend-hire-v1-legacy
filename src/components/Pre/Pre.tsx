@@ -12,7 +12,7 @@ export default function Pre({
   const preRef = React.useRef<HTMLPreElement | null>(null);
 
   return (
-    <div className="not-prose relative grid overflow-hidden rounded-md">
+    <div className="not-prose relative grid">
       <pre
         className={cn('overflow-x-auto subpixel-antialiased')}
         ref={preRef}

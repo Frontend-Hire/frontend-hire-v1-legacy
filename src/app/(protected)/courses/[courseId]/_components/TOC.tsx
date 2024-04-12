@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/lib/utils.ts';
 import { HeadingItem } from '../util/useHeadings.ts';
 
 interface TOCProps {
@@ -22,7 +22,7 @@ export default function TOC({ headings }: TOCProps) {
           {headings.map((item, index) => (
             <li
               key={index}
-              className={twMerge(
+              className={cn(
                 'text-sm text-muted transition-colors',
                 item.id === currentHeading && 'text-ring',
                 item.level === 2 && 'ml-2',
