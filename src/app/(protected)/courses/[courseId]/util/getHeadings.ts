@@ -6,7 +6,9 @@ export type HeadingItem = {
   level: number;
 };
 
-export function useHeadings(blocks: any): HeadingItem[] {
+export function getHeadings(blocks: any): HeadingItem[] {
+  console.log({ blocks });
+
   const headings: HeadingItem[] = blocks
     .filter(
       (each: any) =>

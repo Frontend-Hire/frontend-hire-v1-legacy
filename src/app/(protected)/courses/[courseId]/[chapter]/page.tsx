@@ -1,6 +1,6 @@
 import { getCoursePage } from '@/lib/fetchLocalFiles';
 import TOC from '../_components/TOC';
-import { useHeadings } from '../util/useHeadings';
+import { getHeadings } from '../util/getHeadings';
 
 type ChapterPageProps = {
   params: {
@@ -13,7 +13,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const page = await getCoursePage(params.courseId, params.chapter);
 
   const content = page();
-  const headings = useHeadings((content as any).props.children);
+  const headings = getHeadings((content as any).props.children);
 
   return (
     <div className="flex gap-[30px]">
