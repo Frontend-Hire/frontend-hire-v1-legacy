@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.fh-steps h3 {
+  counter-increment: step;
+
+  &:before {
+    @apply absolute h-[33px] w-[33px];
+    @apply bg-neutral-800;
+    @apply rounded-full text-center text-base font-normal leading-loose text-neutral-400;
+    @apply ml-[-41px] mt-[3px];
+    content: counter(step);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 0%;
