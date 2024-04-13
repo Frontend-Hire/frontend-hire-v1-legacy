@@ -9,7 +9,7 @@ export default function DesktopSidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();
 
   return (
-    <nav className="flex min-w-[250px] max-w-[250px] flex-col">
+    <nav className="hidden min-w-[250px] max-w-[250px] flex-col md:flex">
       <ul className="fixed h-full space-y-1 overflow-y-auto py-2">
         {pages.map((item) => (
           <li
