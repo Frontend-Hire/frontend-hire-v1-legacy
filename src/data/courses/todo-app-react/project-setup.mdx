@@ -1,4 +1,4 @@
-import CustomCodeViewer from '@/components/CustomCodeViewer';
+import { Steps, Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 
 # Project Setup
 
@@ -9,26 +9,30 @@ import CustomCodeViewer from '@/components/CustomCodeViewer';
   }}
   src='https://www.youtube.com/embed/ceoqAy8nFNE?si=TyvaA1d-nKCYDS2D'
   title='Introduction and Project Setup | Todo App with React, TypeScript, TDD | Frontend Hire'
-  frameborder='0'
+  frameBorder='0'
   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
   allowFullScreen
-
 />
 
+<Steps>
 ### Vite + React + TypeScript
  
 We will use the Vite template with React and TypeScript as our starting point. To get started, run the following command in your terminal:
 
+<CustomCodeViewer>
 ```sh
 npm create vite@latest todo-app -- --template react-ts
 ```
+</CustomCodeViewer>
 
 Then, navigate to the project directory and install the dependencies.
 
-```sh showLineNumbers filename="example.js" copy {1}
+<CustomCodeViewer>
+```sh
 cd todo-app
 npm install
 ```
+</CustomCodeViewer>
 
 Read more about scaffolding a Vite project [here](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
 
@@ -38,31 +42,42 @@ Who doesn't use Git these days? We will use Git to manage our code versioning.
 
 To initialize a Git repository, run the following command in your terminal:
 
+<CustomCodeViewer>
 ```sh
 git init
 ```
+</CustomCodeViewer>
 
 ### Prettier: The Opinionated Code Formatter
 
-
+<Callout>
+  Why should we even care about formatting our code? Having a consistent code style across your project is a good practice. It makes it easier for
+  other developers to read and understand your code. It also makes it easier to
+  spot errors and bugs.
+</Callout>
 
 We pretty much follow the same install instructions from the [Prettier Docs](https://prettier.io/docs/en/install).
 
-Prettier is not just used as a VSCode extension, but also as a CLI tool to format your code. We will use it to format our code before committing it to Git. To install it, run the following command in your terminal:
+Prettier is not just used as a VSCode extension but also as a CLI tool to format your code. We will use it to format our code before committing it to Git. To install it, run the following command in your terminal:
 
+<CustomCodeViewer>
 ```sh
 npm install --save-dev --save-exact prettier
 ```
+</CustomCodeViewer>
 
 Then, create an empty config file.
 
+<CustomCodeViewer>
 ```sh
 node --eval "fs.writeFileSync('.prettierrc','{}\n')"
 ```
+</CustomCodeViewer>
 
-and add the following to it. Feel free to change the values to your liking (this is what I prefer):
+And add the following to it. Feel free to change the values to your liking (this is what I prefer):
 
-```json showLineNumbers
+<CustomCodeViewer>
+```json
 {
   "trailingComma": "all",
   "tabWidth": 2,
@@ -71,20 +86,25 @@ and add the following to it. Feel free to change the values to your liking (this
   "printWidth": 80
 }
 ```
+</CustomCodeViewer>
 
-We also want to **not** format certain files. In this project, we would not have such files but it is still a good idea to create one. Create a `.prettierignore` file and add the following:
+We also want to **not** format specific files. This project would not have such files, but creating one is still a good idea. Create a `.prettierignore` file and add the following:
 
+<CustomCodeViewer>
 ```sh
 # Ignore artifacts:
 build
 coverage
 ```
+</CustomCodeViewer>
 
 We can now format all files in our project by running the following command in our terminal:
 
+<CustomCodeViewer>
 ```sh
 npx prettier . --write
 ```
+</CustomCodeViewer>
 
 ### Prettier: Editor Integration
 
@@ -92,12 +112,14 @@ We assume that you are using VSCode as your editor. If not, you can still follow
 
 Install the Prettier extension for VSCode. You can find it [here](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 
-We want to use Prettier as the default formatter and also format our code automatically when we save a file. To do this, we need to add the following to our VSCode settings:
+We want to use Prettier as the default formatter and format our code automatically when we save a file. To do this, we need to add the following to our VSCode settings:
 
+<CustomCodeViewer>
 ```json
 "editor.defaultFormatter": "esbenp.prettier-vscode",
 "editor.formatOnSave": true
 ```
+</CustomCodeViewer>
 
 You can also do this through the UI. Open the VSCode settings and search for `formatOnSave`. Check the box to enable it. Then, search for `defaultFormatter` and select `esbenp.prettier-vscode`.
 
@@ -105,17 +127,20 @@ You can also do this through the UI. Open the VSCode settings and search for `fo
 
 ESLint is a tool for finding and fixing bugs in our JavaScript code. It also helps us to enforce code style and formatting conventions. Vite template already comes with ESLint installed.
 
-Since the formatting rules can sometimes conflict with Prettier, we will use the [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation) to handle these conflicts.
+Since the formatting rules sometimes conflict with Prettier, we will use the [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation) to handle these conflicts.
 
 To install it, run the following command in your terminal:
 
+<CustomCodeViewer>
 ```sh
 npm install --save-dev eslint-config-prettier
 ```
+</CustomCodeViewer>
 
 Then, update your `.eslintrc.*` file to extend the `eslint-config-prettier` config (it is just the string `prettier`):
 
-```js
+<CustomCodeViewer>
+```js {8} showLineNumbers
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
@@ -136,23 +161,27 @@ module.exports = {
   },
 };
 ```
+</CustomCodeViewer>
 
 ### Git Hooks
 
-Git hooks are scripts that run automatically every time a particular event occurs in a Git repository. We will use it to run Prettier and ESLint before we commit our code.
+Git hooks are scripts that run automatically whenever a particular event occurs in a Git repository. We will use it to run Prettier and ESLint before we commit our code.
 
-This will ensure that we do not commit code that does not follow our code style and formatting conventions.
+This will ensure we do not commit code that does not follow our code style and formatting conventions.
 
-Install Husky and lint-staged while also setting husky script and a pre-commit hook by running the following commands in your terminal:
+Install Husky and lint-staged while also setting Husky script and a pre-commit hook by running the following commands in your terminal:
 
+<CustomCodeViewer>
 ```sh
 npm install --save-dev husky lint-staged
 npx husky init
 node --eval "fs.writeFileSync('.husky/pre-commit','npx lint-staged\n')"
 ```
+</CustomCodeViewer>
 
 Then, update your `package.json` file to include the following:
 
+<CustomCodeViewer>
 ```json
 {
   "lint-staged": {
@@ -164,6 +193,7 @@ Then, update your `package.json` file to include the following:
   }
 }
 ```
+</CustomCodeViewer>
 
 ### Great! Now, we are all set to start coding!
 
@@ -174,7 +204,7 @@ But let's first clear some of the boilerplate code that comes with the Vite temp
 - Update the contents of the `./src/App.tsx` file to the following:
 
 <CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {2} 
+```tsx showLineNumbers 
 function App() {
   return <div>Hello World!</div>;
 }
@@ -185,16 +215,20 @@ export default App;
 
 Let's save our work and commit it to Git.
 
+<CustomCodeViewer>
 ```sh
 git add .
 git commit -m "Initial commit"
 ```
+</CustomCodeViewer>
 
 And run our app to make sure everything is working as expected.
 
+<CustomCodeViewer>
 ```sh
 npm run dev
 ```
+</CustomCodeViewer>
 
 You should see the following in your browser:
 ![Expected output](./screenshots/project-setup-1.png)
@@ -203,3 +237,4 @@ That's it! We are now ready to start coding our Todo App!
 
 At this point, your code should be a good match to the branch of the repository: [1-project-setup](https://github.com/Frontend-Hire/todo-app-react-tdd-typescript/tree/1-project-setup)
 
+</Steps>

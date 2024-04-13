@@ -31,21 +31,15 @@ export default function Callout({
   return (
     <div
       className={cn(
-        'mt-6 flex overflow-x-auto rounded-lg border py-2 pr-4 ',
+        'not-prose flex overflow-x-auto rounded-lg border p-2 py-2 pr-4',
         'contrast-more:border-current',
         classes[type],
       )}
     >
-      <div
-        className="select-none pl-3 pr-2 text-xl"
-        style={{
-          fontFamily:
-            '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-        }}
-      >
+      <div className="flex w-full min-w-0 gap-2 leading-7">
         {emoji}
+        {children}
       </div>
-      <div className="w-full min-w-0 leading-7">{children}</div>
     </div>
   );
 }
