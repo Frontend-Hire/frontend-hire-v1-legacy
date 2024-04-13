@@ -6,20 +6,6 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 const CODE_BLOCK_FILENAME_REGEX = /filename="([^"]+)"/;
 
-// Rehype plugins
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-import rehypeTOC from '@jsdevtools/rehype-toc';
-
-const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Configure `pageExtensions`` to include MDX files
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  // Optionally, add any other Next.js config below
-};
 /** @type {import('rehype-pretty-code').Options} */
 const prettyCodeOptions = {
   filterMetaString: (string) => string.replace(CODE_BLOCK_FILENAME_REGEX, ''),
@@ -32,6 +18,17 @@ const withMDX = createMDX({
       [rehypePrettyCode, prettyCodeOptions],
     ],
   },
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Configure `pageExtensions`` to include MDX files
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  // Optionally, add any other Next.js config below
+};
+
+const withBundleAnalyzer = createBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
 });
 
 export default withSentryConfig(
