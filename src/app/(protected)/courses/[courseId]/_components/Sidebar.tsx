@@ -12,8 +12,8 @@ export default function Sidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();
 
   return (
-    <nav className="flex w-[250px] flex-col">
-      <ul className="space-y-1">
+    <nav className="flex min-w-[250px] max-w-[250px] flex-col">
+      <ul className="fixed h-full space-y-1 overflow-y-auto py-2">
         {pages.map((item) => (
           <li
             key={item[0]}

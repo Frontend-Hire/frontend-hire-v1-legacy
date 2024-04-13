@@ -1,18 +1,18 @@
 import slugify from 'slugify';
 
-export interface HeadingItem {
+export type HeadingItem = {
   title: string;
   id: string;
   level: number;
-}
+};
 
-export function useHeadings(blocks): HeadingItem[] {
-  let headings: HeadingItem[] = blocks
+export function useHeadings(blocks: any): HeadingItem[] {
+  const headings: HeadingItem[] = blocks
     .filter(
-      (each) =>
+      (each: any) =>
         typeof each.type === 'function' && each.type.name.startsWith('h'),
     )
-    .map((each, index) => {
+    .map((each: any) => {
       const type = each.type.name;
       const title = each.props.children;
       const id = slugify(title, { lower: true, strict: true });

@@ -10,23 +10,19 @@ const SLUGIFY_PAYLOAD = { lower: true, strict: true };
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: (props) => (
-      <h1 id={slugify(props.children, SLUGIFY_PAYLOAD)}>{props.children}</h1>
+      <h1 id={slugify(props.children as string, SLUGIFY_PAYLOAD)}>
+        {props.children}
+      </h1>
     ),
     h2: (props) => (
-      <div
-        id={slugify(props.children, SLUGIFY_PAYLOAD)}
-        className="scroll-m-20 border-b py-4 pb-2 text-3xl font-semibold tracking-tight first:mt-0"
-      >
+      <h2 id={slugify(props.children as string, SLUGIFY_PAYLOAD)}>
         <span>{props.children}</span>
-      </div>
+      </h2>
     ),
     h3: (props) => (
-      <div
-        id={slugify(props.children, SLUGIFY_PAYLOAD)}
-        className="scroll-m-20 py-4 text-2xl font-semibold tracking-tight"
-      >
+      <h3 id={slugify(props.children as string, SLUGIFY_PAYLOAD)}>
         <span>{props.children}</span>
-      </div>
+      </h3>
     ),
     a: (props) => {
       const isInternalLink =
