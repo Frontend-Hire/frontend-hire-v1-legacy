@@ -1,18 +1,15 @@
 'use client';
 
+import { useParams } from 'next/navigation';
+import { SidebarProps } from './Sidebar';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 
-type SidebarProps = {
-  pages: [string, string][];
-};
-
-export default function Sidebar({ pages }: SidebarProps) {
+export default function DesktopSidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();
 
   return (
-    <nav className="flex w-[250px] flex-col">
+    <nav className="hidden w-[250px] flex-col md:flex">
       <ul className="space-y-1">
         {pages.map((item) => (
           <li
