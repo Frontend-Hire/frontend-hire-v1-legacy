@@ -23,7 +23,7 @@ type CalloutProps = {
   emoji?: string | React.ReactNode;
 };
 
-export function Callout({
+export default function Callout({
   children,
   type = 'default',
   emoji = TypeToEmoji[type],

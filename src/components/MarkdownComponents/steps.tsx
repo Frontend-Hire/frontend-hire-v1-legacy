@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-export function Steps({
+export default function Steps({
   children,
   className,
 }: React.PropsWithChildren<{ className?: string }>) {
