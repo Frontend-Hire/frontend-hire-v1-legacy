@@ -31,7 +31,7 @@ export default function Callout({
   return (
     <div
       className={cn(
-        'not-prose flex overflow-x-auto rounded-lg border p-2 py-2 pr-4',
+        'not-prose mt-6 flex overflow-x-auto rounded-lg border p-2 py-2 pr-4',
         'contrast-more:border-current',
         classes[type],
       )}
