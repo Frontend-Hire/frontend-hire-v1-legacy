@@ -1,11 +1,9 @@
-import cn from 'clsx';
-import type { ComponentProps, ReactElement } from 'react';
+import { cn } from '@/lib/utils';
 
 export function Steps({
   children,
   className,
-  ...props
-}: ComponentProps<'div'>): ReactElement {
+}: React.PropsWithChildren<{ className?: string }>) {
   return (
     <div
       className={cn(
@@ -13,7 +11,6 @@ export function Steps({
         'border-neutral-800 [counter-reset:step]',
         className,
       )}
-      {...props}
     >
       {children}
     </div>

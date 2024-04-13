@@ -1,4 +1,3 @@
-import type { ReactElement, ReactNode } from 'react';
 import { LucideInfo } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -21,15 +20,14 @@ const classes: Record<CalloutType, string> = {
 
 type CalloutProps = {
   type?: CalloutType;
-  emoji?: string | ReactNode;
-  children: ReactNode;
+  emoji?: string | React.ReactNode;
 };
 
 export function Callout({
   children,
   type = 'default',
   emoji = TypeToEmoji[type],
-}: CalloutProps): ReactElement {
+}: React.PropsWithChildren<CalloutProps>) {
   return (
     <div
       className={cn(
