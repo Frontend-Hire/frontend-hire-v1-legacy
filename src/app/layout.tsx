@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en scroll-smooth">
+    <html lang="en" className="scroll-pt-20 scroll-smooth">
       <PHProvider>
         <body
           className={cn(
