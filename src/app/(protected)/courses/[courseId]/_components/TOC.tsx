@@ -1,32 +1,39 @@
-import { twMerge } from 'tailwind-merge';
+'use client';
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true, level: 1 },
-  { name: 'Teams', current: false, href: '#', level: 2 },
-  { name: 'Projects', current: false, href: '#', level: 2 },
-  { name: 'Calendar', href: '#', current: false, level: 1 },
-  { name: 'Documents', href: '#', current: false, level: 1 },
-  { name: 'Reports', href: '#', current: false, level: 2 },
-];
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { HeadingItem } from '../util/getHeadings';
+import Link from 'next/link';
 
-// to be reimplemented using cva ~ashish
-export default function Example() {
+type TOCProps = {
+  headings: HeadingItem[];
+};
+
+export default function TOC({ headings }: TOCProps) {
+  const [currentHeading, setCurrentHeading] = React.useState(headings[0].title);
+
   return (
-    <aside className="hidden md:block md:w-[150px] lg:w-[250px]">
+    <aside className="sticky top-20 hidden max-h-screen w-[250px] lg:block">
       <p className="mb-2 text-sm font-medium">On This Page</p>
       <nav>
         <ul className="space-y-1">
-          {navigation.map((item, index) => (
+          {headings.map((item, index) => (
             <li
               key={index}
-              className={twMerge(
+              className={cn(
                 'text-sm text-muted transition-colors',
-                item.current && 'text-[#CC00B8]',
+                item.id === currentHeading && 'text-ring',
                 item.level === 2 && 'ml-2',
                 item.level === 3 && 'ml-4',
               )}
             >
-              <a href="#">{item.name}</a>
+              <Link
+                href={`#${item.id}`}
+                className="hover:underline"
+                onClick={() => setCurrentHeading(item.id)}
+              >
+                {item.title}
+              </Link>
             </li>
           ))}
         </ul>
