@@ -1,8 +1,8 @@
 import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
 const CODE_BLOCK_FILENAME_REGEX = /filename="([^"]+)"/;
 

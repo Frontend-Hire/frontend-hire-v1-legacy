@@ -9,8 +9,8 @@ export default function DesktopSidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();
 
   return (
-    <nav className="hidden w-[250px] flex-col md:flex">
-      <ul className="space-y-1">
+    <nav className="sticky top-20 hidden flex-col md:flex md:w-[200px] lg:w-[250px]">
+      <ul className="h-full space-y-1 overflow-y-auto py-2">
         {pages.map((item) => (
           <li
             key={item[0]}
