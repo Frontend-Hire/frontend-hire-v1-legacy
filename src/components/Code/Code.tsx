@@ -10,7 +10,7 @@ export default function Code({
   return (
     <code
       className={cn(
-        'px-4 py-2 text-sm',
+        'p-4 text-sm',
         hasLineNumbers && '[counter-reset:line]',
         className,
       )}
