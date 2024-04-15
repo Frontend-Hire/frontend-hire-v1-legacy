@@ -31,14 +31,14 @@ export default function Callout({
   return (
     <div
       className={cn(
-        'not-prose mt-6 flex overflow-x-auto rounded-lg border p-2 py-2 pr-4',
+        'mt-6 flex overflow-x-auto rounded-lg border p-4 prose-p:m-0 prose-ol:m-0 prose-ul:m-0 prose-li:marker:text-white',
         'contrast-more:border-current',
         classes[type],
       )}
     >
       <div className="flex w-full min-w-0 gap-2 leading-7">
         {emoji}
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   );

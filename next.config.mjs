@@ -1,6 +1,7 @@
 import createMDX from '@next/mdx';
 import createBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
+import rehypeSlug from 'rehype-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
@@ -14,6 +15,7 @@ const prettyCodeOptions = {
 const withMDX = createMDX({
   options: {
     rehypePlugins: [
+      rehypeSlug,
       rehypeMdxImportMedia,
       [rehypePrettyCode, prettyCodeOptions],
     ],

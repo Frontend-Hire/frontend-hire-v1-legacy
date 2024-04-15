@@ -1,53 +1,60 @@
-import slugify from 'slugify';
+import React from 'react';
 
 export type HeadingItem = {
-  title: string;
   id: string;
-  level: number;
+  title: string;
+  depth: number;
 };
 
-function handleSteps(steps: React.ReactElement[]): HeadingItem[] {
-  return steps
-    .filter(
-      (each: React.ReactElement) =>
-        typeof each.type === 'function' && each.type.name.startsWith('h'),
-    )
-    .map((each: React.ReactElement) => handleHeading(each));
-}
+export function getHeadings(children: React.ReactElement): HeadingItem[] {
+  let headings: HeadingItem[] = [];
 
-function handleHeading(block: any): HeadingItem {
-  const type: string = block.type.name;
-  const title: string = block.props.children;
-  const id: string = slugify(title, { lower: true, strict: true });
-  const level: number = parseInt(type.substring(1));
+  // Recursively extracts text from nested children
+  function extractText(children: React.ReactNode): string {
+    if (children == null) {
+      return '';
+    } else if (typeof children === 'string' || typeof children === 'number') {
+      return children.toString();
+    } else if (Array.isArray(children)) {
+      return children.map(extractText).join('');
+    } else if (
+      React.isValidElement(children) &&
+      children.props &&
+      children.props.children
+    ) {
+      return extractText(children.props.children);
+    }
+    return '';
+  }
 
-  return {
-    title,
-    id,
-    level,
-  };
-}
+  function searchHeadings(child: React.ReactElement, depth: number = 0): void {
+    if (
+      React.isValidElement(child) &&
+      typeof child.type === 'string' &&
+      child.type.startsWith('h')
+    ) {
+      const title = extractText(
+        (child.props as React.PropsWithChildren).children,
+      );
+      const id = (child.props as React.PropsWithChildren<{ id: string }>).id;
+      headings.push({ id, title, depth });
+    }
 
-export function getHeadings(blocks: React.ReactElement[]): HeadingItem[] {
-  const headings: HeadingItem[] = [];
-
-  // iterate over each block and collect headings
-  for (let each of blocks) {
-    if (typeof each.type === 'function') {
-      const type = each.type.name;
-
-      // get all headings from Steps component
-      if (type === 'Steps') {
-        const steps = handleSteps(each.props.children);
-        headings.push(...steps);
-      }
-
-      // collect if any headings are littred outside
-      else if (type.startsWith('h')) {
-        headings.push(handleHeading(each));
-      }
+    if (
+      typeof child === 'object' &&
+      child !== null &&
+      child.props &&
+      child.props.children
+    ) {
+      React.Children.forEach(child.props.children, (nestedChild) => {
+        searchHeadings(nestedChild, depth + 1);
+      });
     }
   }
+
+  React.Children.forEach(children, (child) => {
+    searchHeadings(child, 0);
+  });
 
   return headings;
 }

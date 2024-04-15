@@ -1,3 +1,4 @@
+import React from 'react';
 import { getCoursePage, getCoursePages } from '@/lib/fetchLocalFiles';
 import TOC from './_components/TOC';
 import { getHeadings } from '../util/getHeadings';
@@ -17,8 +18,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
     params.chapter,
   );
 
-  const content = getContent();
-  const headings = getHeadings((content as any).props.children);
+  const content = getContent() as React.ReactElement;
 
   return (
     <div className="flex gap-[30px]">
@@ -32,7 +32,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           lastUpdated={meta?.lastUpdated}
         />
       </div>
-      <TOC headings={headings} />
+      <TOC headings={getHeadings(content.props.children)} />
     </div>
   );
 }
