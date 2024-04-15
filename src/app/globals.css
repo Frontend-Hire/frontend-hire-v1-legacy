@@ -60,6 +60,10 @@ pre {
   contain: paint;
 }
 
+pre code {
+  @apply p-4 text-sm;
+}
+
 code[data-line-numbers] {
   counter-reset: line;
 }

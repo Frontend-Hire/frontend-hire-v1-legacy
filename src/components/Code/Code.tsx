@@ -9,11 +9,7 @@ export default function Code({
 
   return (
     <code
-      className={cn(
-        'p-4 text-sm',
-        hasLineNumbers && '[counter-reset:line]',
-        className,
-      )}
+      className={cn(hasLineNumbers && '[counter-reset:line]', className)}
       dir="ltr"
       {...props}
     >

@@ -76,7 +76,7 @@ export const getCoursePage = cache(
 
     return { getContent, meta } as {
       getContent: () => React.ReactNode;
-      meta: Record<string, string>;
+      meta?: Record<string, string>;
     };
   },
 );

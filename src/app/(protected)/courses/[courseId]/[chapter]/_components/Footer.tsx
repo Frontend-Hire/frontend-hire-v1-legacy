@@ -5,7 +5,7 @@ import Link from 'next/link';
 type FooterProps = {
   allPages: string[][];
   currentPage: string;
-  lastUpdated: string;
+  lastUpdated?: string;
 };
 
 export default function Footer({

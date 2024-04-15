@@ -29,7 +29,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <Footer
           allPages={allPages}
           currentPage={params.chapter}
-          lastUpdated={meta['lastUpdated']}
+          lastUpdated={meta?.lastUpdated}
         />
       </div>
       <TOC headings={headings} />
