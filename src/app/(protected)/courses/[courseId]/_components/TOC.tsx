@@ -15,14 +15,12 @@ export default function TOC({ headings }: TOCProps) {
   );
 
   const getSections = React.useCallback(() => {
-    // This should be HTML/DOM element
-    let sections: any = [];
+    const sections: HTMLElement[] = [];
 
     headings.forEach(({ id }) => {
       const element = document.getElementById(id);
 
-      // add element to the sections stack
-      if (Boolean(element)) {
+      if (Boolean(element) && element) {
         sections.push(element);
       }
     });
@@ -30,7 +28,6 @@ export default function TOC({ headings }: TOCProps) {
     return sections;
   }, [headings]);
 
-  // listener for intersection observer
   React.useEffect(() => {
     const handleScroll = () => {
       const sections = getSections();
@@ -45,7 +42,7 @@ export default function TOC({ headings }: TOCProps) {
         }
       });
 
-      setCurrentHeading(closestSectionId);
+      setCurrentHeading(closestSectionId ?? '');
     };
 
     window.addEventListener('scroll', handleScroll);

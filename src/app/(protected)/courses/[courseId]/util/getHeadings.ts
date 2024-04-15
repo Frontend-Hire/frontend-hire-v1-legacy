@@ -1,5 +1,4 @@
 import slugify from 'slugify';
-import React from 'react';
 
 export type HeadingItem = {
   title: string;
@@ -16,7 +15,7 @@ function handleSteps(steps: React.ReactElement[]): HeadingItem[] {
     .map((each: React.ReactElement) => handleHeading(each));
 }
 
-function handleHeading(block: React.ReactElement): HeadingItem {
+function handleHeading(block: any): HeadingItem {
   const type: string = block.type.name;
   const title: string = block.props.children;
   const id: string = slugify(title, { lower: true, strict: true });
