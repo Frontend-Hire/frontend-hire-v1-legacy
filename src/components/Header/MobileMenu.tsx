@@ -56,7 +56,7 @@ export default function MobileMenu({ user }: MobileMenuProps) {
                         <MobileLink
                           href={item.href}
                           onOpenChange={setOpen}
-                          className="text-muted-foreground hover:text-primary"
+                          className="text-muted hover:text-muted-foreground"
                         >
                           {item.title}
                         </MobileLink>
