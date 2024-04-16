@@ -42,7 +42,7 @@ export default function TOC({ headings }: TOCProps) {
         }
       });
 
-      setCurrentHeading(closestSectionId ?? '');
+      if (closestSectionId) setCurrentHeading(closestSectionId);
     };
 
     window.addEventListener('scroll', handleScroll);
