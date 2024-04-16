@@ -7,9 +7,8 @@ export type HeadingItem = {
 };
 
 export function getHeadings(children: React.ReactElement): HeadingItem[] {
-  let headings: HeadingItem[] = [];
+  const headings: HeadingItem[] = [];
 
-  // Recursively extracts text from nested children
   function extractText(children: React.ReactNode): string {
     if (children == null) {
       return '';
