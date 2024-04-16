@@ -56,3 +56,27 @@ export const getProjectsFromLocal = cache(async () => {
 
   return projects;
 });
+
+// Will be used later to get all courses for the courses page
+const coursesPath = path.join(process.cwd(), '/src/data/courses');
+
+export const getCoursePages = cache(async (courseId: string) => {
+  const courseMeta: Record<string, string> = require(
+    `@/data/courses/${courseId}/_meta.json`,
+  );
+
+  return Object.entries(courseMeta);
+});
+
+export const getCoursePage = cache(
+  async (courseId: string, chapter: string) => {
+    const { default: getContent, meta } = require(
+      `@/data/courses/${courseId}/${chapter}.mdx`,
+    );
+
+    return { getContent, meta } as {
+      getContent: () => React.ReactNode;
+      meta?: Record<string, string>;
+    };
+  },
+);
