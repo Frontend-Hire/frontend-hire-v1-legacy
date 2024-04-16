@@ -82,7 +82,7 @@ export default function MobileMenu({ user }: MobileMenuProps) {
                       '?'}
                   </AvatarFallback>
                 </Avatar>
-                <span>{user.user_metadata.email}</span>
+                <span className="truncate">{user.user_metadata.email}</span>
               </div>
               <MobileLink
                 className="text-muted-foreground hover:text-primary"
