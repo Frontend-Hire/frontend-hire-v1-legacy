@@ -9,8 +9,10 @@ import { SidebarProps } from './Sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 export default function MobileSidebar({ pages }: SidebarProps) {
+  const { chapter } = useParams<{ chapter: string; courseId: string }>();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -28,7 +30,10 @@ export default function MobileSidebar({ pages }: SidebarProps) {
               <MobileLink
                 href={item[0]}
                 onOpenChange={setOpen}
-                className="text-muted hover:text-muted-foreground"
+                className={cn(
+                  'rounded px-2 py-1 text-muted transition-colors hover:bg-[#140012] hover:text-muted-foreground',
+                  chapter === item[0] && 'bg-[#290025] text-[#FF5CF2]',
+                )}
               >
                 {item[1]}
               </MobileLink>
