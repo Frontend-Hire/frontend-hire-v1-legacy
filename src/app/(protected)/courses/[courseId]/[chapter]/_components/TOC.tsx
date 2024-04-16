@@ -14,41 +14,43 @@ export default function TOC({ headings }: TOCProps) {
     headings[0].id,
   );
 
-  const getSections = React.useCallback(() => {
-    const sections: HTMLElement[] = [];
-
-    headings.forEach(({ id }) => {
-      const element = document.getElementById(id);
-
-      if (Boolean(element) && element) {
-        sections.push(element);
-      }
-    });
-
-    return sections;
-  }, [headings]);
-
   React.useEffect(() => {
     const handleScroll = () => {
-      const sections = getSections();
-      let closestSectionId = null;
-      let closestSectionTop = Infinity;
+      // Get the current scroll position
+      const scrollPosition = window.scrollY + window.innerHeight * 0.2; // Adjust this value to target when the heading should change
 
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.top < closestSectionTop) {
-          closestSectionId = section.id;
-          closestSectionTop = rect.top;
-        }
-      });
+      // Find the heading that's currently in view by comparing their positions to the scroll position
+      const currentHeadingInView = headings
+        .map((heading) => {
+          const element = document.getElementById(heading.id);
+          return {
+            id: heading.id,
+            position: element ? element.offsetTop : 0,
+          };
+        })
+        .reduce(
+          (prev, curr) => {
+            if (curr.position < scrollPosition) {
+              return curr;
+            } else {
+              return prev;
+            }
+          },
+          { id: '', position: 0 } as { id: string; position: number },
+        );
 
-      if (closestSectionId) setCurrentHeading(closestSectionId);
+      setCurrentHeading(currentHeadingInView.id);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [getSections]);
+    // Call handleScroll once to set the initial state correctly
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [headings]);
 
   return (
     <div>
