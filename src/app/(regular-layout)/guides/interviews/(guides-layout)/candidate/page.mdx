@@ -5,6 +5,8 @@ import CustomHeading from '@/components/CustomHeading';
 import { UserCheckIcon } from 'lucide-react';
 import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg'; 
 import { openGraphShared } from '@/app/shared-metadata';
+import MdxImage from '@/components/MdxImage';
+import coverPhoto from './coverPhoto.webp';
 
 export const metadata = {
   title: 'Candidate Interview Guide | Frontend Hire',
@@ -16,6 +18,8 @@ export const metadata = {
     type: 'article'
   },
 };
+
+<MdxImage src={coverPhoto} alt='' />
 
 <CustomHeading 
   title="Candidate Interview Guide"
