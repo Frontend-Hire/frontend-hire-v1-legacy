@@ -28,13 +28,24 @@ export default function CoursesPage() {
       <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
-      <ul className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <ul className="grid justify-items-stretch gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
         <li>
           <Link href="courses/todo-app-react/overview">
             <CourseCardItem
               image={todoAppReactTDDImg}
               title="Todo App with React, TypeScript and TDD"
               description="Todo apps are a great way to learn a new language or framework. We teach this course with more than just React. You would learn about a good React project setup, hooks, component composition and testing."
+              isFree
+              isVideoAvailable
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="courses/layout-shifts-101/overview">
+            <CourseCardItem
+              image={todoAppReactTDDImg}
+              title="Layout Shifts 101"
+              description="20% of stuff for 80% of the results."
               isFree
               isVideoAvailable
             />
