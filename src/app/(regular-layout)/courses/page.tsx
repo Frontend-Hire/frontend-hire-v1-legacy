@@ -40,6 +40,17 @@ export default function CoursesPage() {
             />
           </Link>
         </li>
+        <li>
+          <Link href="courses/seo-for-frontend-developers/overview">
+            <CourseCardItem
+              image={todoAppReactTDDImg}
+              title="SEO for Frontend Developers"
+              description="SEO is not just for marketers."
+              isFree
+              isVideoAvailable
+            />
+          </Link>
+        </li>
       </ul>
     </article>
   );
