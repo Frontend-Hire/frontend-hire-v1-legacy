@@ -40,17 +40,6 @@ export default function CoursesPage() {
             />
           </Link>
         </li>
-        <li>
-          <Link href="courses/layout-shifts-101/overview">
-            <CourseCardItem
-              image={todoAppReactTDDImg}
-              title="Layout Shifts 101"
-              description="20% of stuff for 80% of the results."
-              isFree
-              isVideoAvailable
-            />
-          </Link>
-        </li>
       </ul>
     </article>
   );
