@@ -17,12 +17,12 @@ export default function CourseCardItem({
   isVideoAvailable,
 }: CourseCardItemProps) {
   return (
-    <div className="flex flex-col gap-2 rounded-md bg-card">
+    <div className="flex h-full flex-col gap-2 rounded-md bg-card">
       <Image src={image} alt={title} className="w-full" />
-      <div className="flex flex-col gap-2 p-4">
+      <div className="flex h-full flex-col gap-2 p-4">
         <h2 className="text-2xl font-bold">{title}</h2>
 
-        <p className="line-clamp-3 text-sm">{description}</p>
+        <p className="line-clamp-3 grow text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-2">
           {isFree && <Badge>Free Access</Badge>}
           {isVideoAvailable && <Badge>Video Available</Badge>}

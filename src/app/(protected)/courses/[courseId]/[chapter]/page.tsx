@@ -21,9 +21,9 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const content = getContent() as React.ReactElement;
 
   return (
-    <div className="flex gap-[30px]">
-      <div className="flex flex-col gap-4 pb-10">
-        <article className="prose prose-invert w-full max-w-none py-[10px] prose-h2:mt-5">
+    <div className="flex flex-1 gap-[30px]">
+      <div className="flex flex-1 flex-col gap-4 pb-10">
+        <article className="prose prose-invert max-w-none py-[10px] prose-h2:mt-5">
           {content}
         </article>
         <Footer

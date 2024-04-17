@@ -10,8 +10,8 @@ type TOCProps = {
 };
 
 export default function TOC({ headings }: TOCProps) {
-  const [currentHeading, setCurrentHeading] = React.useState<string>(
-    headings[0].id,
+  const [currentHeading, setCurrentHeading] = React.useState(
+    headings.length !== 0 ? headings[0].id : '',
   );
 
   React.useEffect(() => {
@@ -54,7 +54,7 @@ export default function TOC({ headings }: TOCProps) {
 
   return (
     <div>
-      <aside className="sticky top-20 hidden max-h-screen min-w-[150px] lg:block">
+      <aside className="sticky top-20 hidden max-h-screen min-w-[180px] max-w-[180px] lg:block">
         <p className="mb-2 text-sm font-medium">On This Page</p>
         <nav>
           <ul className="space-y-1">
