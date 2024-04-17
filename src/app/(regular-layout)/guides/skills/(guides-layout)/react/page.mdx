@@ -8,6 +8,7 @@ import GuideSpecialItem from '@/components/GuideSpecialItem';
 import reactLogo from '@/assets/toollogos/react.png';
 import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg'; 
 import { COURSE_ITEMS } from './constants';
+import coverPhoto from './coverPhoto.webp';
 
 export const metadata = {
   title: 'Learning React Guide | Frontend Hire',
@@ -20,8 +21,10 @@ export const metadata = {
   },
 };
 
+<MdxImage src={coverPhoto} alt='' />
+
 <CustomHeading 
-  title="Learning Reacts"
+  title="Learning React"
   subTitle="Our compilation of best resources out there"
   icon={<MdxImage src={reactLogo} alt='' />}
   />
