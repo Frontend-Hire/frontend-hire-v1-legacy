@@ -24,9 +24,9 @@ export default function InterviewerCard({
   bookingLink,
 }: InterviewerCardProps) {
   return (
-    <article className="flex min-h-full flex-col justify-between gap-[10px] rounded bg-card p-[10px]">
+    <article className="flex min-h-full flex-col justify-between gap-2 rounded bg-card p-2">
       <div className="flex items-start justify-between">
-        <div className="flex items-start gap-[10px]">
+        <div className="flex items-start gap-2">
           <Image
             priority
             src={avatar}

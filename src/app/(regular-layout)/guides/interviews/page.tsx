@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function SkillGuides() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-4">
       <CustomHeading
         title="Interview Guides"
         subTitle="Good Interview Practices for both Interviewer and Candidate"
@@ -26,7 +26,7 @@ export default function SkillGuides() {
       />
 
       <VisuallyHidden>Skill Guides List</VisuallyHidden>
-      <ul className="flex flex-col gap-[20px]">
+      <ul className="flex flex-col gap-4">
         <li>
           <CardLinkItem
             type="link"

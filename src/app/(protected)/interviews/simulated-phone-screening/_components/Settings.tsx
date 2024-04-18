@@ -8,12 +8,12 @@ export default function Settings() {
     useSettings();
 
   return (
-    <div className="flex flex-col gap-[15px]">
-      <div className="flex flex-col gap-[10px]">
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <Label>Experience in Years:</Label>
         <RadioGroup
           orientation="horizontal"
-          className="flex flex-wrap gap-[10px]"
+          className="flex flex-wrap gap-2"
           defaultValue={ExperienceLevel.Entry}
           value={experienceLevel}
           onValueChange={updateExperienceLevel}
@@ -26,11 +26,11 @@ export default function Settings() {
           ))}
         </RadioGroup>
       </div>
-      <div className="flex flex-col gap-[10px]">
+      <div className="flex flex-col gap-2">
         <Label>Recruiter</Label>
         <RadioGroup
           orientation="horizontal"
-          className="flex flex-wrap gap-[10px]"
+          className="flex flex-wrap gap-2"
           defaultValue={Recruiter.Indian}
           value={recruiter}
           onValueChange={updateRecruiter}

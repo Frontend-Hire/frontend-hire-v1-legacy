@@ -63,7 +63,7 @@ export default function TOC({ headings }: TOCProps) {
                 key={index}
                 className={cn(
                   'text-sm text-muted transition-colors',
-                  item.id === currentHeading && 'text-ring',
+                  item.id === currentHeading && 'text-[#FF5CF2]',
                   item.depth === 1 && 'ml-2',
                   item.depth === 2 && 'ml-4',
                 )}

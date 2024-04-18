@@ -7,9 +7,9 @@ export default function PrimaryLayout({
   children,
 }: React.PropsWithChildren<PrimaryLayoutProps>) {
   return (
-    <div className="container flex h-full flex-col px-[10px]">
+    <div className="container flex h-full flex-col px-2">
       {header}
-      <main className="h-0 flex-grow py-[10px]">{children}</main>
+      <main className="h-0 flex-grow py-2">{children}</main>
     </div>
   );
 }

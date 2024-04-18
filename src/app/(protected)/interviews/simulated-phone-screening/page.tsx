@@ -26,7 +26,7 @@ export default async function SimulatedPhoneScreening() {
   } = await supabaseServerClient.auth.getUser();
 
   return (
-    <main className="container flex grow flex-col gap-[20px] py-[10px] md:py-[20px]">
+    <main className="container flex grow flex-col gap-4 py-2 md:py-4">
       <CustomHeading
         title="Simulated Phone Screening"
         subTitle="One of the first rounds, so first impression should be great"

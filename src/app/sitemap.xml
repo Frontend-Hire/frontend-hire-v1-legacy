@@ -5,245 +5,254 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-
 <url>
   <loc>https://www.frontendhire.com/</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/about</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/privacy-policy</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/terms-and-conditions</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/can-you-center-a-div</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/crud-js</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/design-system-buttons-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/job-application-form-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react-closures-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/responsive-card-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-effect-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-state-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-state-2</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/action-button-with-modal</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/currying-2-react</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/custom-input-1</loc>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/early-returns-js</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/flatten-object</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/js-objects-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/polyfill-array-at</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/polyfill-array-filter</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/polyfill-string-split</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/refactor-class-function-react-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/refactor-long-method-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/refactor-simplify-conditional-flows-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/respsonsive-layout-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-copy-to-clipboard</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-effect-2</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-tasks</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/currying-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/use-history</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/setup-react-project-1</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/setup-react-project-2</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/personal-portfolio-website</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/social-post-tracker</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/todo-app</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/projects/feature-video-player</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews/simulated-phone-screening</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews/mock-personal-interview</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/courses/todo-app-react/overview</loc>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides/skills</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides/interviews</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides/skills/react</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides/interviews/candidate</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/guides/interviews/interviewer</loc>
-  <lastmod>2024-03-12T19:33:17+00:00</lastmod>
+  <lastmod>2024-04-18T09:48:56+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 

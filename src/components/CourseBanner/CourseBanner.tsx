@@ -16,8 +16,8 @@ export default function CourseBanner({ isRootTop }: CourseBannerProps) {
   }
 
   return (
-    <div className="flex items-center gap-[5px] bg-primary/40 px-[20px] py-[5px]">
-      <span className="flex grow flex-col gap-[4px] text-center">
+    <div className="flex items-center gap-[5px] bg-primary/40 px-4 py-[5px]">
+      <span className="flex grow flex-col gap-1 text-center">
         <span>{BANNER_CONFIG.text}</span>
         <Link
           className="underline"
@@ -51,8 +51,8 @@ function RootTopBanner() {
   };
 
   return (
-    <div className="flex items-center gap-[5px] bg-primary/40 px-[20px] py-[5px] text-xs sm:text-sm">
-      <span className="flex grow flex-col gap-[4px] text-center">
+    <div className="flex items-center gap-[5px] bg-primary/40 px-4 py-[5px] text-xs sm:text-sm">
+      <span className="flex grow flex-col gap-1 text-center">
         <span>{BANNER_CONFIG.text}</span>
         <Link
           className="underline"
