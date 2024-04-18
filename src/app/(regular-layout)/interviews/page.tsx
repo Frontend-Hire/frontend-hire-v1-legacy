@@ -45,7 +45,8 @@ export default async function Projects() {
             type="link"
             title={
               <>
-                Mock In-Person Interview <Badge>20% Off</Badge>
+                Mock In-Person Interview{' '}
+                <Badge className="text-center">20% Off</Badge>
               </>
             }
             link="/interviews/mock-personal-interview"

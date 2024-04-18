@@ -21,11 +21,11 @@ export default function CardLinkItem(props: CardLinkItemProps) {
   if (props.type === 'comingSoon') {
     return (
       <div className="flex items-center justify-between rounded bg-card p-2 opacity-60 hover:bg-card/80">
-        <span className="flex items-center gap-10">
+        <span className="flex items-center gap-4 md:gap-10">
           {leftIcon}
-          <h3 className="flex items-center gap-2 text-2xl font-bold">
+          <h3 className="flex flex-wrap items-center gap-2 text-xl font-bold md:text-2xl">
             {title}
-            <Badge>Coming Soon</Badge>
+            <Badge className="text-center">Coming Soon</Badge>
           </h3>
         </span>
       </div>
@@ -37,9 +37,11 @@ export default function CardLinkItem(props: CardLinkItemProps) {
       className="flex items-center justify-between rounded bg-card p-2 hover:bg-card/80"
       href={props.link}
     >
-      <span className="flex items-center gap-10">
+      <span className="flex items-center gap-4 md:gap-10">
         {leftIcon}
-        <h3 className="flex items-center gap-2 text-2xl font-bold">{title}</h3>
+        <h3 className="flex flex-wrap items-center gap-2 text-xl font-bold md:text-2xl">
+          {title}
+        </h3>
       </span>
       {props.rightIcon}
     </Link>
