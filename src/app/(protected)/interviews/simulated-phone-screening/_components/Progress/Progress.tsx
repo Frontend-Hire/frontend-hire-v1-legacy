@@ -45,7 +45,7 @@ export default function Progress({ candidateName, onRestart }: ProgressProps) {
   };
 
   return (
-    <div className="flex flex-col gap-[20px]">
+    <div className="flex flex-col gap-4">
       {renderStages()}
       {currentStage === prompts.length - 1 && (
         <Button onClick={onRestart}>Restart</Button>

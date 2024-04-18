@@ -23,14 +23,14 @@ export const metadata: Metadata = {
 
 export default async function Projects() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-4">
       <CustomHeading
         title="Interviews"
         subTitle="Simulated and Real Interviews for anytime practice"
       />
 
       <VisuallyHidden>Interview Types</VisuallyHidden>
-      <ul className="flex flex-col gap-[20px]">
+      <ul className="flex flex-col gap-4">
         <li>
           <CardLinkItem
             type="link"

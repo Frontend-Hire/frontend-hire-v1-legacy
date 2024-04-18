@@ -13,14 +13,14 @@ export default function GuideSpecialItem({
   isCourseItem = false,
 }: SpecialItem) {
   return (
-    <div className="not-prose flex justify-between gap-[10px] rounded bg-card p-[10px]">
-      <div className="flex grow flex-col gap-[10px]">
+    <div className="not-prose flex justify-between gap-2 rounded bg-card p-2">
+      <div className="flex grow flex-col gap-2">
         <div className="flex items-start justify-between gap-[5px]">
           <Link className="underline underline-offset-2" href={link}>
             <Heading variant="h4">{title}</Heading>
           </Link>
           {isCourseItem && (
-            <div className="flex flex-wrap justify-end gap-[10px] text-sm">
+            <div className="flex flex-wrap justify-end gap-2 text-sm">
               {isRecommended && (
                 <span className="flex items-center gap-[5px] bg-primary p-[5px]">
                   <GemIcon size={16} /> Recommended

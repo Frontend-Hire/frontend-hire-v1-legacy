@@ -23,7 +23,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <div className="flex flex-1 gap-[30px]">
       <div className="flex flex-1 flex-col gap-4 pb-10">
-        <article className="prose prose-invert max-w-none py-[10px] prose-h2:mt-5">
+        <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5">
           {content}
         </article>
         <Footer

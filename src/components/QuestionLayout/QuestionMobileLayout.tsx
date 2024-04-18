@@ -27,7 +27,7 @@ export default function QuestionMobileLayout({
       value={activeTab}
       onValueChange={setActiveTab}
     >
-      <div className="flex h-[40px] items-center justify-between bg-card/60">
+      <div className="flex h-10 items-center justify-between bg-card/60">
         <TabsList className="rounded-none p-0">
           {tabsCleaned.map((tab) => (
             <TabsTrigger
