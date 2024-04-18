@@ -1,7 +1,7 @@
 import CardLinkItem from '@/components/CardLinkItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { openGraphShared } from '@/app/shared-metadata';
-import ReactLogo from '@/assets/toollogos/react.png';
+import ReactLogo from '@/assets/toollogos/react.webp';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
