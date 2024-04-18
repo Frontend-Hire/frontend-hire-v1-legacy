@@ -106,13 +106,13 @@ function DifficultyLabel({
   let className = 'w-full flex items-center justify-center h-4';
 
   if (difficulty == 'easy') {
-    className += ' bg-green-500';
+    className += ' bg-easy';
   } else if (difficulty == 'medium') {
-    className += ' bg-yellow-500';
+    className += ' bg-medium text-black';
   } else if (difficulty == 'hard') {
-    className += ' bg-red-500';
+    className += ' bg-hard';
   } else {
-    className += ' bg-gray-500';
+    className += ' bg-gray-600';
   }
 
   return (

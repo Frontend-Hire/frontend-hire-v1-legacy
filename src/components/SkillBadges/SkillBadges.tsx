@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 const SKILL_CLASS: { [skill: string]: { className: string; label: string } } = {
   HTML: {
-    className: 'hover:bg-[#E44D26] bg-[#E44D26] text-white',
+    className: 'hover:bg-[#da3910] bg-[#da3910] text-white',
     label: 'HTML',
   },
   CSS: {
