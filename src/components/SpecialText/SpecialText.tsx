@@ -7,17 +7,10 @@ type SpecialTextProps = {
 
 export default function SpecialText({
   children,
-  isLink = false,
   className,
 }: React.PropsWithChildren<SpecialTextProps>) {
   return (
-    <strong
-      className={cn(
-        'rounded-sm bg-primary px-0.5',
-        isLink ? 'underline' : '',
-        className,
-      )}
-    >
+    <strong className={cn('font-bold text-[#FF5CF2]', className)}>
       {children}
     </strong>
   );

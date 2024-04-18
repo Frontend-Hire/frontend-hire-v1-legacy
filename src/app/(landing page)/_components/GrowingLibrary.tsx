@@ -18,7 +18,7 @@ import FigmaLogo from '@/assets/toollogos/figma.webp';
 export default function GrowingLibrary() {
   return (
     <div className="flex grow flex-col gap-4">
-      <p className="max-w-fit self-center rounded bg-destructive px-1 py-0.5 text-xs md:text-sm">
+      <p className="max-w-fit self-center rounded bg-destructive px-1 py-0.5 text-xs font-medium md:text-sm">
         * Currently in Beta! Hiring Profiles available late 2024!
       </p>
       <p className="text-sm text-gray-300 md:text-base">
