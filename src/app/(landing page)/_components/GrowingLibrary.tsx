@@ -4,7 +4,7 @@ import CSSLogo from '@/assets/toollogos/css.webp';
 import JSLogo from '@/assets/toollogos/js.webp';
 import TSLogo from '@/assets/toollogos/ts.webp';
 import ReactLogo from '@/assets/toollogos/react.webp';
-import TailwindLogo from '@/assets/toollogos/tailwindCSS.webp';
+import TailwindLogo from '@/assets/toollogos/tailwindcss.webp';
 import ViteLogo from '@/assets/toollogos/vite.webp';
 import ParcelLogo from '@/assets/toollogos/parcel.webp';
 import JestLogo from '@/assets/toollogos/jest.webp';
