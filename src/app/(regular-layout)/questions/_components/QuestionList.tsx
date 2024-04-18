@@ -63,7 +63,7 @@ export default function QuestionList({
         {trimmedSearch ? 'Filtered' : 'Total'} questions count:{' '}
         {filteredAndSortedQuestions.length}
       </span>
-      <ul className="flex flex-col gap-[20px]">
+      <ul className="flex flex-col gap-4">
         {filteredAndSortedQuestions.length !== 0 &&
           filteredAndSortedQuestions.map((question) => (
             <li key={question.id}>
@@ -79,7 +79,7 @@ export default function QuestionList({
             </li>
           ))}
         {filteredAndSortedQuestions.length === 0 && (
-          <div className="mt-[20px] flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center">
             <p className="text-center text-gray-300">
               No questions found. Try different filters.
             </p>

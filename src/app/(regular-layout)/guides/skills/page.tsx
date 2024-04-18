@@ -1,7 +1,7 @@
 import CardLinkItem from '@/components/CardLinkItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { openGraphShared } from '@/app/shared-metadata';
-import ReactLogo from '@/assets/toollogos/react.png';
+import ReactLogo from '@/assets/toollogos/react.webp';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import CustomHeading from '@/components/CustomHeading';
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function SkillGuides() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-4">
       <CustomHeading
         title="Skill Guides"
         subTitle="All the resources to be confident in a skill"
@@ -27,7 +27,7 @@ export default function SkillGuides() {
       />
 
       <VisuallyHidden>Skill Guides List</VisuallyHidden>
-      <ul className="flex flex-col gap-[20px]">
+      <ul className="flex flex-col gap-4">
         <li>
           <CardLinkItem
             type="link"

@@ -28,8 +28,8 @@ export default function Response({
   return (
     <>
       <div className="flex flex-col overflow-hidden rounded bg-card">
-        <div className="bg-secondary px-[10px] py-[5px] font-medium">YOU</div>
-        <div className="flex gap-[5px] p-[10px]">
+        <div className="bg-secondary px-2 py-[5px] font-medium">YOU</div>
+        <div className="flex gap-[5px] p-2">
           <span className="grow">
             {finalTranscript}
             <span className="text-blue-500">{interimTranscript}</span>

@@ -59,7 +59,7 @@ type SkillsBadgesProps = {
 
 export default function SkillsBadges({ skills }: SkillsBadgesProps) {
   return (
-    <div className="flex flex-wrap gap-[10px]">
+    <div className="flex flex-wrap gap-2">
       {skills.sort().map((skill) => (
         <SkillBadge key={skill} skill={skill} />
       ))}

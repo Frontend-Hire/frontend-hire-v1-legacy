@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 
 export default async function Guides() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-4">
       <CustomHeading title="Guides" subTitle="All the guides you'd ever need" />
 
       <VisuallyHidden>Guides List</VisuallyHidden>
-      <ul className="flex flex-col gap-[20px]">
+      <ul className="flex flex-col gap-4">
         <li>
           <CardLinkItem
             type="link"
