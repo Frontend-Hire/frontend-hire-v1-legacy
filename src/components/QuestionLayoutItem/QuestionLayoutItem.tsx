@@ -24,7 +24,7 @@ export default function QuestionLayoutItem({
           <TabsList className="rounded-none bg-card p-0">
             {tabs.map((tab) => (
               <TabsTrigger
-                className="h-full rounded-none data-[state=active]:bg-muted"
+                className="h-full rounded-none data-[state=active]:bg-[#151515]"
                 key={tab.value}
                 value={tab.value}
               >

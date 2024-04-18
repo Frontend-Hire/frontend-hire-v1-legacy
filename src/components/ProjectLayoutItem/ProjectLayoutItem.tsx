@@ -26,7 +26,7 @@ export default function ProjectLayoutItem({
           <TabsList className="rounded-none p-0">
             {tabs.map((tab) => (
               <TabsTrigger
-                className="h-full rounded-none data-[state=active]:bg-card"
+                className="h-full rounded-none data-[state=active]:bg-[#151515]"
                 key={tab.value}
                 value={tab.value}
               >
