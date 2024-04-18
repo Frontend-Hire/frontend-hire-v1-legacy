@@ -20,11 +20,11 @@ export default function QuestionLayoutItem({
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <div className="z-[1] flex h-[40px] items-center justify-between bg-card/60">
+        <div className="z-[1] flex h-10 items-center justify-between bg-card/60">
           <TabsList className="rounded-none bg-card p-0">
             {tabs.map((tab) => (
               <TabsTrigger
-                className="h-full rounded-none data-[state=active]:bg-muted"
+                className="h-full rounded-none data-[state=active]:bg-[#151515]"
                 key={tab.value}
                 value={tab.value}
               >

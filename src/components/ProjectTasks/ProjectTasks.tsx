@@ -45,7 +45,7 @@ export function ProjectTaskItem({
       className="overflow-hidden rounded border-b-0 shadow"
       value={taskName}
     >
-      <AccordionTrigger className="max-h-[40px] overflow-hidden text-ellipsis whitespace-nowrap bg-card px-4 py-2 text-lg text-white">
+      <AccordionTrigger className="max-h-10 overflow-hidden text-ellipsis whitespace-nowrap bg-card px-4 py-2 text-lg text-white">
         <span className="flex items-center gap-4">
           {isCompleted ? <CheckCircleIcon /> : <CircleIcon />}
           {taskName}

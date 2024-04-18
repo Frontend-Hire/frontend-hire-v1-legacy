@@ -53,7 +53,7 @@ export default function Footer({
           Last updated on {getLastUpdated()}
         </p>
       )}
-      <hr className="h-[2px] bg-muted" />
+      <hr className="h-0.5 bg-muted" />
       <div className="flex justify-between">
         {getPrevPage() ? (
           <Button className="text-xl text-white" variant="link" asChild>

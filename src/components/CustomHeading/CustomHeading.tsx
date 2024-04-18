@@ -12,12 +12,12 @@ export default function CustomHeading({
   icon,
 }: CustomHeadingProps) {
   return (
-    <div className="not-prose flex items-start justify-between">
-      <div className="flex flex-col gap-[15px]">
+    <div className="not-prose flex justify-between">
+      <div className="flex flex-col gap-4">
         <Heading variant="h1">{title}</Heading>
         <p className="text-sm text-gray-300">{subTitle}</p>
       </div>
-      {icon}
+      {icon && <div className="shrink-0">{icon}</div>}
     </div>
   );
 }

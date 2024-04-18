@@ -5,9 +5,9 @@ import { cva } from 'class-variance-authority';
 const badge = cva('font-semibold rounded-full mx-2', {
   variants: {
     intent: {
-      [DIFFICULTY.EASY]: 'bg-green-500',
-      [DIFFICULTY.MEDIUM]: 'bg-yellow-500',
-      [DIFFICULTY.HARD]: 'bg-red-500',
+      [DIFFICULTY.EASY]: 'bg-easy text-white',
+      [DIFFICULTY.MEDIUM]: 'bg-medium text-black',
+      [DIFFICULTY.HARD]: 'bg-hard text-white',
       [DIFFICULTY.MASTER]: 'bg-gray-500',
     },
     size: {

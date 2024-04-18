@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function MockPersonalInterview() {
   return (
-    <article className="flex flex-col gap-[20px]">
+    <article className="flex flex-col gap-4">
       <CustomHeading
         title="Mock In-Person Interview"
         subTitle="The only great way to prepare for actual interviews and get
@@ -28,12 +28,12 @@ export default function MockPersonalInterview() {
         icon={<UserIcon size={60} />}
       />
 
-      <span className="flex items-center justify-center gap-[15px] rounded-full bg-secondary px-[5px] py-[10px] text-center text-sm font-extrabold sm:text-base sm:font-black">
+      <span className="flex items-center justify-center gap-4 rounded-full bg-secondary px-[5px] py-2 text-center text-sm font-extrabold sm:text-base sm:font-black">
         20% off the interviews through here
       </span>
 
       <VisuallyHidden>Available Interviews</VisuallyHidden>
-      <ul className="grid grid-cols-1 gap-[20px] md:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {INTERVIEWERS.map((interviewer) => (
           <li key={interviewer.name}>
             <InterviewerCard {...interviewer} />

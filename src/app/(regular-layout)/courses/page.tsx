@@ -4,7 +4,7 @@ import CourseCardItem from './_components/CourseCardItem';
 import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
-import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.png';
+import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export default function CoursesPage() {
       <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
-      <ul className="grid justify-items-stretch gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
         <li>
           <Link href="courses/todo-app-react/overview">
             <CourseCardItem

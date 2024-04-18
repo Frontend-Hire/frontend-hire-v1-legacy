@@ -32,7 +32,7 @@ export default function SignInButton({
     }
   };
   return (
-    <Button className="rounded-[10px] p-[10px]" onClick={handleSignIn}>
+    <Button className="rounded-2 p-2" onClick={handleSignIn}>
       {label}
     </Button>
   );
