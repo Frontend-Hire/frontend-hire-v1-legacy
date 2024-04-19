@@ -18,7 +18,13 @@ export default function CourseCardItem({
 }: CourseCardItemProps) {
   return (
     <div className="flex h-full flex-col gap-2 rounded-md bg-card">
-      <Image src={image} alt={title} className="w-full" />
+      <Image
+        priority
+        placeholder="blur"
+        src={image}
+        alt={title}
+        className="w-full"
+      />
       <div className="flex h-full flex-col gap-2 p-4">
         <h2 className="text-lg font-bold md:text-xl lg:text-2xl">{title}</h2>
 
