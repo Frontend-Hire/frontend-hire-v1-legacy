@@ -15,6 +15,24 @@ import HuskyLogo from '@/assets/toollogos/husky.webp';
 import NextLogo from '@/assets/toollogos/next-js.webp';
 import FigmaLogo from '@/assets/toollogos/figma.webp';
 
+const images = [
+  HTMLLogo,
+  CSSLogo,
+  JSLogo,
+  TSLogo,
+  ReactLogo,
+  TailwindLogo,
+  ViteLogo,
+  ParcelLogo,
+  JestLogo,
+  PrettierLogo,
+  StoryBookLogo,
+  ESLintLogo,
+  HuskyLogo,
+  NextLogo,
+  FigmaLogo,
+];
+
 export default function GrowingLibrary() {
   return (
     <div className="flex grow flex-col gap-4">
@@ -26,49 +44,15 @@ export default function GrowingLibrary() {
         <strong>5+ Projects</strong>
       </p>
       <div className="flex flex-wrap items-center justify-center gap-5 md:gap-6">
-        <Image className="h-6 w-max md:h-10" src={HTMLLogo} alt="HTML Logo" />
-        <Image className="h-6 w-max md:h-10" src={CSSLogo} alt="CSS Logo" />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={JSLogo}
-          alt="JavaScript Logo"
-        />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={TSLogo}
-          alt="TypeScript Logo"
-        />
-        <Image className="h-6 w-max md:h-10" src={ReactLogo} alt="React Logo" />
-        <Image className="h-6 w-max md:h-10" src={NextLogo} alt="Next Logo" />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={TailwindLogo}
-          alt="TailwindCSS Logo"
-        />
-        <Image className="h-6 w-max md:h-10" src={ViteLogo} alt="Vite Logo" />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={ParcelLogo}
-          alt="Parcel Logo"
-        />
-        <Image className="h-6 w-max md:h-10" src={JestLogo} alt="Jest Logo" />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={PrettierLogo}
-          alt="Prettier Logo"
-        />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={StoryBookLogo}
-          alt="StoryBook Logo"
-        />
-        <Image
-          className="h-6 w-max md:h-10"
-          src={ESLintLogo}
-          alt="ESLint Logo"
-        />
-        <Image className="h-6 w-max md:h-10" src={HuskyLogo} alt="Husky Logo" />
-        <Image className="h-6 w-max md:h-10" src={FigmaLogo} alt="Figma Logo" />
+        {images.map((image, index) => (
+          <Image
+            key={index}
+            priority
+            className="h-6 w-max md:h-10"
+            src={image}
+            alt="Tool Logo"
+          />
+        ))}
       </div>
     </div>
   );
