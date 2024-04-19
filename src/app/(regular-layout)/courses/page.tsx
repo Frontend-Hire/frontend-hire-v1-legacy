@@ -5,6 +5,7 @@ import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
 import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.webp';
+import stackpackImg from './_assets/stackpack.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default function CoursesPage() {
         <li>
           <Link href="courses/stackpack/overview">
             <CourseCardItem
-              image={todoAppReactTDDImg}
+              image={stackpackImg}
               title="Stackpack"
               description="Build a Sandpack clone with WebContainers in React and TypeScript."
               isFree

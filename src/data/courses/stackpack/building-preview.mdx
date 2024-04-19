@@ -2,7 +2,7 @@ import { CustomCodeViewer } from '@/components/MarkdownComponents';
 
 # Building Preview
 
-## Setting up Preview with an Iframe
+## Setting up Preview component
 
 Create a new file called `Preview.tsx` and the respective barrel file `index.ts` in the `src/components/Preview` directory.
 
@@ -60,3 +60,129 @@ export default function App() {
 }
 ```
 </CustomCodeViewer>
+
+## Using iframe for Preview
+
+We need a truly dynamic preview component that can render any HTML content. `iframe` elements help achieve this. Let's update the `Preview` component to use an iframe.
+
+<CustomCodeViewer filename="src/components/Preview/Preview.tsx">
+```tsx showLineNumbers {4, 7-11}
+import React from 'react';
+
+export default function Preview() {
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+
+  return (
+    <iframe
+      ref={iframeRef}
+      className="h-full w-full border-2"
+      src="loading.html"
+    />
+  );
+}
+```
+</CustomCodeViewer>
+
+We need to create a new file called `loading.html` at the root of our project. This file will be used to display a loading message while the preview is being loaded.
+
+<CustomCodeViewer filename="loading.html">
+```html showLineNumbers {1}
+Use the terminal to run a command!
+```
+</CustomCodeViewer>
+
+## Wiring up the Preview component with WebContainer API
+
+We need to update the `Preview` component to listen to the `webContainer` context and update the iframe content accordingly.
+
+We get a `server-ready` event from the `webContainer` context when the server is ready to serve the preview content. We can listen to this event and update the iframe content.
+
+<CustomCodeViewer filename='src/components/Preview/Preview.tsx'>
+```tsx showLineNumbers
+import React from 'react';
+import { useWebContainer } from '../../providers/WebContainerProvider/useWebContainer';
+
+export default function Preview() {
+  const { webContainer } = useWebContainer();
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+
+  React.useEffect(() => {
+    if (!webContainer || !iframeRef.current) return;
+
+    webContainer.on('server-ready', (_, url) => {
+      iframeRef.current!.src = url;
+    });
+  }, [webContainer]);
+
+  return (
+    <iframe
+      ref={iframeRef}
+      className="h-full w-full border-2"
+      src="loading.html"
+    />
+  );
+}
+```
+</CustomCodeViewer>
+
+Now, run the dev server through the terminal we built earlier and see the preview in action.
+
+<CustomCodeViewer>
+```sh
+npm install && npm run dev
+```
+</CustomCodeViewer>
+
+![Final Output](./assets/6-building-preview.png)
+
+## Updating the Preview on code changes
+
+But, we can see that the preview is not updating when we make changes to the code. We need to update the `webContainer` to serve the updated content when the code changes.
+
+<CustomCodeViewer filename="src/components/CodeEditor/CodeEditor.tsx">
+```tsx showLineNumbers {9, 15-19, 31}
+import React from 'react';
+import { Editor } from '@monaco-editor/react';
+import FileTabs from './FileTabs';
+import { getLanguageFromFileName } from './getLanguageFromFileName';
+import { FileNode } from '@webcontainer/api';
+import { useWebContainer } from '../../providers/WebContainerProvider/useWebContainer';
+
+export default function CodeEditor() {
+  const { template, webContainer } = useWebContainer();
+  const [activeFile, setActiveFile] = React.useState(() => template.entry);
+
+  const currentFile = template.files[activeFile] as FileNode;
+  const language = getLanguageFromFileName(activeFile);
+
+  const handleCodeChange = async (content: string) => {
+    if (!webContainer) return;
+
+    await webContainer.fs.writeFile(activeFile, content);
+  };
+
+  return (
+    <div className="h-full">
+      <FileTabs
+        files={template.visibleFiles}
+        activeFile={activeFile}
+        onFileChange={setActiveFile}
+      />
+      <Editor
+        theme="vs-dark"
+        path={activeFile}
+        onChange={(value) => handleCodeChange(value ?? '')}
+        defaultValue={currentFile.file.contents as string} // Ideally, worry about the encoding in production, for our example, this is fine.
+        defaultLanguage={language}
+      />
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+By writing to the WebContainer API's file system, we can update the preview content when the code changes. The Monaco editor's `onChange` event triggers the `handleCodeChange` function, which writes the updated content to the file system.
+
+Now, you should see the preview updating as you make changes to the code.
+
+At this point, our code should match the code in the branch [`6-building-preview`](https://github.com/Frontend-Hire/stackpack-webcontainers-react-typescript/tree/6-building-preview).
