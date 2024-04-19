@@ -264,3 +264,294 @@ export default function Terminal() {
 </CustomCodeViewer>
 
 Resize will still break the terminal style, but the commands should wrap adequately now. We will fix the resize issue by refitting the terminal when the panel is resized. We will have to use the [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Resize_Observer_API).
+
+### Using ResizeObserver to Refit the Terminal on Resize
+
+We will use the [ResizeObserver API](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) to observe the panel and refit the terminal when the panel is resized. We will do this without using any third-party libraries first, and then use a more robust library (a custom react hook) called [`use-resize-observer`](https://www.npmjs.com/package/use-resize-observer).
+
+<CustomCodeViewer filename="src/components/Terminal/Terminal.tsx">
+```tsx showLineNumbers {12-24}
+import React from 'react';
+import { Terminal as XTerminal } from '@xterm/xterm';
+import { FitAddon } from 'xterm-addon-fit';
+import '@xterm/xterm/css/xterm.css';
+import { useWebContainer } from '../../providers/WebContainerProvider/useWebContainer';
+
+export default function Terminal() {
+  const { webContainer } = useWebContainer();
+  const [terminal, setTerminal] = React.useState<XTerminal | null>(null);
+  const terminalRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      console.log('resized');
+    });
+
+    if (terminalRef.current) {
+      resizeObserver.observe(terminalRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const terminal = new XTerminal({ convertEol: true });
+    const fitAddon = new FitAddon();
+
+    terminal.loadAddon(fitAddon);
+    terminal.open(terminalRef.current!);
+    fitAddon.fit();
+
+    setTerminal(terminal);
+
+    return () => {
+      terminal.dispose();
+      setTerminal(null);
+    };
+  }, [terminalRef]);
+
+  React.useEffect(() => {
+    if (!webContainer || !terminal) return;
+
+    const startShell = async () => {
+      const shellProcess = await webContainer.spawn('jsh', {
+        terminal: {
+          cols: terminal.cols,
+          rows: terminal.rows,
+        },
+      });
+      shellProcess.output.pipeTo(
+        new WritableStream({
+          write(data) {
+            terminal.write(data);
+          },
+        }),
+      );
+
+      const input = shellProcess.input.getWriter();
+      terminal.onData((data) => {
+        input.write(data);
+      });
+
+      return shellProcess;
+    };
+
+    startShell();
+  }, [webContainer, terminal]);
+
+  return (
+    <div className="h-full border bg-red-100">
+      <div className="h-full w-full" ref={terminalRef} />
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+We are observing the terminal ref using the ResizeObserver API and logging a message when the terminal is resized. Now, instead of logging a message, we will refit the terminal when the panel is resized. For this, we will use the `fitAddon.fit()` method. We will have to save the current fitAddon instance in a ref or a state to access it in the ResizeObserver callback.
+
+We will use a ref to save the fitAddon instance and call the `fit()` method when the terminal is resized.
+
+<CustomCodeViewer filename="src/components/Terminal/Terminal.tsx">
+```tsx showLineNumbers {11, 15-17, 32}
+import React from 'react';
+import { Terminal as XTerminal } from '@xterm/xterm';
+import { FitAddon } from 'xterm-addon-fit';
+import '@xterm/xterm/css/xterm.css';
+import { useWebContainer } from '../../providers/WebContainerProvider/useWebContainer';
+
+export default function Terminal() {
+  const { webContainer } = useWebContainer();
+  const [terminal, setTerminal] = React.useState<XTerminal | null>(null);
+  const terminalRef = React.useRef<HTMLDivElement>(null);
+  const fitAddonRef = React.useRef<FitAddon | null>(null);
+
+  React.useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      if (fitAddonRef.current) {
+        fitAddonRef.current.fit();
+      }
+    });
+
+    if (terminalRef.current) {
+      resizeObserver.observe(terminalRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const terminal = new XTerminal({ convertEol: true });
+    const fitAddon = new FitAddon();
+    fitAddonRef.current = fitAddon;
+
+    terminal.loadAddon(fitAddon);
+    terminal.open(terminalRef.current!);
+    fitAddon.fit();
+
+    setTerminal(terminal);
+
+    return () => {
+      terminal.dispose();
+      setTerminal(null);
+    };
+  }, [terminalRef]);
+
+  React.useEffect(() => {
+    if (!webContainer || !terminal) return;
+
+    const startShell = async () => {
+      const shellProcess = await webContainer.spawn('jsh', {
+        terminal: {
+          cols: terminal.cols,
+          rows: terminal.rows,
+        },
+      });
+      shellProcess.output.pipeTo(
+        new WritableStream({
+          write(data) {
+            terminal.write(data);
+          },
+        }),
+      );
+
+      const input = shellProcess.input.getWriter();
+      terminal.onData((data) => {
+        input.write(data);
+      });
+
+      return shellProcess;
+    };
+
+    startShell();
+  }, [webContainer, terminal]);
+
+  return (
+    <div className="h-full border bg-red-100">
+      <div className="h-full w-full" ref={terminalRef} />
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+Our terminal should now resize properly when the panel is resized. The terminal should also wrap the commands properly.
+
+![There is a minor bug where the resize does leave little space at the bottom of the terminal](./assets/bug.gif)
+
+There is a minor bug where the resize does leave little space at the bottom of the terminal. Honestly, we do not want to fix this bug as it is not a big issue and can be covered by a little CSS.
+
+<CustomCodeViewer filename="src/index.css">
+```css showLineNumbers {5-7}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.terminal {
+  @apply h-full;
+}
+```
+</CustomCodeViewer>
+
+The terminal has a class `terminal` which we can use to apply some CSS to fix the issue. A simple fix would be to set the `height` of the terminal to `100%`.
+
+Great, let us just replace our ResizeObserver implementation to use a more robust library. We do not have to as our implementation works fine, but a robust library handles edge cases better.
+
+### Using `use-resize-observer` to Refit the Terminal on Resize
+
+Install the `use-resize-observer` library using npm.
+
+<CustomCodeViewer>
+```sh
+npm install use-resize-observer
+```
+</CustomCodeViewer>
+
+Next, import the `use-resize-observer` hook as `useResizeObserver` and use it to observe the terminal ref and refit the terminal when the panel is resized.
+
+<CustomCodeViewer filename="src/components/Terminal/Terminal.tsx">
+```tsx showLineNumbers {4, 13-19, 68}
+import React from 'react';
+import { Terminal as XTerminal } from '@xterm/xterm';
+import { FitAddon } from 'xterm-addon-fit';
+import useResizeObserver from 'use-resize-observer';
+import '@xterm/xterm/css/xterm.css';
+import { useWebContainer } from '../../providers/WebContainerProvider/useWebContainer';
+
+export default function Terminal() {
+  const { webContainer } = useWebContainer();
+  const [terminal, setTerminal] = React.useState<XTerminal | null>(null);
+  const terminalRef = React.useRef<HTMLDivElement>(null);
+  const fitAddonRef = React.useRef<FitAddon | null>(null);
+  const { ref } = useResizeObserver<HTMLDivElement>({
+    onResize: () => {
+      if (fitAddonRef.current) {
+        fitAddonRef.current.fit();
+      }
+    },
+  });
+
+  React.useEffect(() => {
+    const terminal = new XTerminal({ convertEol: true });
+    const fitAddon = new FitAddon();
+    fitAddonRef.current = fitAddon;
+
+    terminal.loadAddon(fitAddon);
+    terminal.open(terminalRef.current!);
+    fitAddon.fit();
+
+    setTerminal(terminal);
+
+    return () => {
+      terminal.dispose();
+      setTerminal(null);
+    };
+  }, [terminalRef]);
+
+  React.useEffect(() => {
+    if (!webContainer || !terminal) return;
+
+    const startShell = async () => {
+      const shellProcess = await webContainer.spawn('jsh', {
+        terminal: {
+          cols: terminal.cols,
+          rows: terminal.rows,
+        },
+      });
+      shellProcess.output.pipeTo(
+        new WritableStream({
+          write(data) {
+            terminal.write(data);
+          },
+        }),
+      );
+
+      const input = shellProcess.input.getWriter();
+      terminal.onData((data) => {
+        input.write(data);
+      });
+
+      return shellProcess;
+    };
+
+    startShell();
+  }, [webContainer, terminal]);
+
+  return (
+    <div className="h-full border bg-red-100" ref={ref}>
+      <div className="h-full w-full" ref={terminalRef} />
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+The only additional change we have to make is to use the `ref` from the `useResizeObserver` hook on the parent div of the terminal instead of the terminal ref.
+
+Alright, in the next section, we will try to preview our dev server in the preview panel. 
+
+At this point, our code should match the code in the branch [`5-building-terminal`](https://github.com/Frontend-Hire/stackpack-webcontainers-react-typescript/tree/5-building-terminal).
