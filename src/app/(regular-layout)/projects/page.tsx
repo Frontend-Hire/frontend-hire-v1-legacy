@@ -8,11 +8,13 @@ import { openGraphShared } from '@/app/shared-metadata';
 
 export const metadata: Metadata = {
   title: 'Projects | Frontend Hire',
-  description: 'Not some stupid clones but highly feature focused projects',
+  description:
+    'Not some stupid clones but highly feature focused projects intended to break you out of the tutorial hell.',
   openGraph: {
     ...openGraphShared,
     title: 'Projects | Frontend Hire',
-    description: 'Not some stupid clones but highly feature focused projects',
+    description:
+      'Not some stupid clones but highly feature focused projects intended to break you out of the tutorial hell.',
   },
 };
 
@@ -21,7 +23,7 @@ export default async function Projects() {
     <article className="flex flex-col gap-5">
       <CustomHeading
         title="Projects"
-        subTitle="Not some stupid clones but highly feature focused projects"
+        subTitle="Not some stupid clones but highly feature focused projects intended to break you out of the tutorial hell."
       />
 
       <VisuallyHidden>Projects List</VisuallyHidden>

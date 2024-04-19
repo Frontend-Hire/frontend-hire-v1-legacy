@@ -8,11 +8,12 @@ import QuestionFilters from './_components/QuestionFilters';
 
 export const metadata: Metadata = {
   title: 'Questions | Frontend Hire',
-  description: 'Real World And Interview Based Questions',
+  description: 'Questions meant for real world and interview based scenarios.',
   openGraph: {
     ...openGraphShared,
     title: 'Questions | Frontend Hire',
-    description: 'Real World And Interview Based Questions',
+    description:
+      'Questions meant for real world and interview based scenarios.',
   },
 };
 
@@ -21,7 +22,7 @@ export default function Questions() {
     <article className="flex flex-col gap-5">
       <CustomHeading
         title="Questions"
-        subTitle="Real World And Interview Based"
+        subTitle="Meant for real world and interview based scenarios."
       />
 
       <QuestionFilters />
