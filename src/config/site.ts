@@ -3,6 +3,7 @@ import {
   FileQuestionIcon,
   FolderGit2Icon,
   LibraryBigIcon,
+  PresentationIcon,
   SpeechIcon,
 } from 'lucide-react';
 
@@ -23,6 +24,11 @@ export const LINKS: {
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
+      {
+        title: 'System Design',
+        href: '/system-design',
+        icon: PresentationIcon,
+      },
       { title: 'Guides', href: '/guides', icon: AlbumIcon },
     ],
   },
