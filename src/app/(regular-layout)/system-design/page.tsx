@@ -29,7 +29,7 @@ export default function SystemDesignPage() {
       <VisuallyHidden>Frontend Design Systems List</VisuallyHidden>
       <ul className="flex flex-col gap-4">
         <li>
-          <Link href="/system-design/portfolio-website-with-blog-and-newsletter">
+          <Link href="/system-design/portfolio-website-with-blog-and-newsletter/overview">
             <SystemDesignQuestionItem
               title="Design a Portfolio Website with Blog and Newsletter"
               description="A pretty common system thought by every developer."
