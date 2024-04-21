@@ -31,6 +31,16 @@ export const COURSE_ITEMS: SpecialItem[] = [
     isCourseItem: true,
   },
   {
+    title: 'Framework Field Guide',
+    link: 'https://unicorn-utterances.com/collections/framework-field-guide-fundamentals',
+    author: 'Corbin Crutchley',
+    isPaid: false,
+    isRecommended: true,
+    description:
+      'This is a gem of a resource. In fact, it will teach you the fundamentals of React, Vue, and Angular at once. Highly recommended!',
+    isCourseItem: true,
+  },
+  {
     title: 'Complete Intro to React, v8',
     link: 'https://frontendmasters.com/courses/complete-react-v8/',
     author: 'Brian Holt on Frontend Masters',
