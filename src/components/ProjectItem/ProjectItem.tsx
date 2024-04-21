@@ -80,12 +80,12 @@ export default function ProjectItem({
   return (
     <div className="flex h-full min-h-[300px] flex-col gap-2 overflow-hidden rounded-md bg-card text-card-foreground">
       <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
-      <div className="flex grow flex-col gap-[5px] px-2">
+      <div className="flex grow flex-col gap-[5px] px-4">
         <h2 className="text-xl font-bold md:text-2xl">{title}</h2>
         <p className="grow text-sm text-gray-300">{description}</p>
         <SkillBadges skills={skills} />
       </div>
-      <div className="flex items-center justify-between p-2 text-sm font-medium">
+      <div className="flex items-center justify-between p-4 text-sm font-medium">
         <div className="flex items-center gap-2">
           {renderIcon()}
           {renderTasksLengthText()}
