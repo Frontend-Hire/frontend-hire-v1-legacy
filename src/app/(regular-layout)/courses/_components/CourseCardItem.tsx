@@ -17,7 +17,7 @@ export default function CourseCardItem({
   isVideoAvailable,
 }: CourseCardItemProps) {
   return (
-    <div className="flex h-full flex-col gap-2 rounded-md bg-card">
+    <div className="flex h-full flex-col gap-2 overflow-hidden rounded-md bg-card">
       <Image
         priority
         placeholder="blur"
