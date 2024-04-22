@@ -106,7 +106,7 @@ export const getBlogPostsMetaFromLocal = cache(async () => {
 });
 
 export const getBlogPostFromLocal = cache(async (postId: string) => {
-  const { default: getContent } = require(`@/data/blog/${postId}/content.mdx`);
+  const { default: getContent } = require(`@/data/blog/${postId}/post.mdx`);
 
   const { meta }: { meta: BlogMeta } = require(`@/data/blog/${postId}/meta.ts`);
 
