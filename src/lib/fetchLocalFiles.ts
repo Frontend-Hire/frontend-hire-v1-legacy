@@ -101,7 +101,7 @@ export const getBlogPostsMetaFromLocal = cache(async () => {
     });
 
   return posts.sort((a, b) =>
-    new Date(a.lastUpdated) > new Date(b.lastUpdated) ? -1 : 1,
+    new Date(a.publishedOn) > new Date(b.publishedOn) ? -1 : 1,
   );
 });
 
