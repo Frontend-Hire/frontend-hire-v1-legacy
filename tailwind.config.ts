@@ -26,6 +26,15 @@ module.exports = {
         sans: ['var(--font-inter)'],
       },
       colors: {
+        // Ashish added some great colors.
+        brand: 'hsl(var(--primary) / <alpha-value>)', // "#7477FF"
+        darkest: '#101010',
+        dark: '#161616',
+        mid: '#64748B',
+        light: '#B1BED1',
+        lightest: '#F8FBFE',
+
+        // previous colors
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',

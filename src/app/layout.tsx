@@ -38,7 +38,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       <PHProvider>
         <body
           className={cn(
-            'flex h-screen flex-col bg-background font-sans text-foreground antialiased',
+            'flex h-screen flex-col bg-darkest font-sans text-foreground antialiased',
             inter.variable,
           )}
         >

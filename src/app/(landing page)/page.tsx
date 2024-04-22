@@ -1,11 +1,17 @@
-import HeroSection from './_components/HeroSection';
+import Hero from './_components/Hero';
+import Features from './_components/Features';
+import Pricing from './_components/Pricing';
+import Testimonials from './_components/Testimonials';
 
 export const dynamic = 'force-static';
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-[10px] py-2">
-      <HeroSection />
+    <main className="relative flex flex-col">
+      <Hero />
+      <Features />
+      <Pricing />
+      <Testimonials />
     </main>
   );
 }
