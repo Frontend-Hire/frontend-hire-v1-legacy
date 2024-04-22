@@ -43,11 +43,11 @@ export default async function Blog() {
 
 function BlogCard({ post }: { post: BlogMeta }) {
   return (
-    <article className="w-full overflow-hidden rounded-md bg-card">
+    <article className="flex h-full w-full flex-col overflow-hidden rounded-md bg-card">
       <Image src={post.cover} alt="" />
-      <div className="space-y-2 p-4">
-        <h2 className="text-2xl font-bold">{post.title}</h2>
-        <div className="flex justify-between text-sm font-medium text-muted">
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <h2 className="grow text-2xl font-bold">{post.title}</h2>
+        <div className="flex flex-wrap justify-between gap-2 text-sm font-medium text-muted">
           <div className="flex items-center gap-2">
             <Image
               className="h-5 w-5 rounded-full"
