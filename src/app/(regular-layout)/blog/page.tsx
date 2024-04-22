@@ -1,7 +1,11 @@
 import { openGraphShared } from '@/app/shared-metadata';
 import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
+import { getBlogPostsMetaFromLocal } from '@/lib/fetchLocalFiles';
+import { BlogMeta } from '@/types/Blogs';
 import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Blog | Frontend Hire',
@@ -14,6 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
+  const posts = await getBlogPostsMetaFromLocal();
+
   return (
     <article className="flex flex-col gap-4">
       <CustomHeading
@@ -22,9 +28,45 @@ export default async function Blog() {
       />
 
       <VisuallyHidden>All blog posts</VisuallyHidden>
-      <ul className="flex flex-col gap-4">
-        <li></li>
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link href={`blog/${post.id}`}>
+              <BlogCard post={post} />
+            </Link>
+          </li>
+        ))}
       </ul>
+    </article>
+  );
+}
+
+function BlogCard({ post }: { post: BlogMeta }) {
+  return (
+    <article className="w-full overflow-hidden rounded-md bg-card">
+      <Image src={post.cover} alt="" />
+      <div className="space-y-2 p-4">
+        <h2 className="text-2xl font-bold">{post.title}</h2>
+        <div className="flex justify-between text-sm font-medium text-muted">
+          <div className="flex items-center gap-2">
+            <Image
+              className="h-5 w-5 rounded-full"
+              src={post.authors[0].image}
+              alt=""
+            />
+            <p>{post.authors[0].name}</p>
+          </div>
+          <div>
+            <p>
+              {new Date(post.publishedOn).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </p>
+          </div>
+        </div>
+      </div>
     </article>
   );
 }

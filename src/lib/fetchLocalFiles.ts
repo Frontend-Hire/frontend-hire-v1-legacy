@@ -1,3 +1,4 @@
+import { BlogMeta } from '@/types/Blogs';
 import { ProjectOverview } from '@/types/Project';
 import { QuestionOverview } from '@/types/Question';
 import fs from 'fs';
@@ -80,3 +81,37 @@ export const getCoursePage = cache(
     };
   },
 );
+
+const blogPath = path.join(process.cwd(), '/src/data/blog');
+
+export const getBlogPostsMetaFromLocal = cache(async () => {
+  const blogPosts = fs.readdirSync(blogPath);
+
+  const posts = blogPosts
+    .filter((post) => !post.startsWith('.'))
+    .map((post) => {
+      const { meta }: { meta: BlogMeta } = require(
+        `@/data/blog/${post}/meta.ts`,
+      );
+
+      return {
+        id: post,
+        ...meta,
+      };
+    });
+
+  return posts.sort((a, b) =>
+    new Date(a.lastUpdated) > new Date(b.lastUpdated) ? -1 : 1,
+  );
+});
+
+export const getBlogPostFromLocal = cache(async (postId: string) => {
+  const { default: getContent } = require(`@/data/blog/${postId}/content.mdx`);
+
+  const { meta }: { meta: BlogMeta } = require(`@/data/blog/${postId}/meta.ts`);
+
+  return { getContent, meta } as {
+    getContent: () => React.ReactNode;
+    meta: BlogMeta;
+  };
+});
