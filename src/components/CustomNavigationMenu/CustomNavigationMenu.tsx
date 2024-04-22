@@ -24,7 +24,7 @@ export default function CustomNavigationMenu() {
             <NavigationMenuItem key={menu.title}>
               <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[300px] gap-3 p-1">
+                <ul className="grid w-[220px] gap-3 p-1">
                   {menu.items.map((link) => (
                     <ListItem key={link.title} href={link.href}>
                       {<link.icon />} {link.title}
