@@ -23,7 +23,7 @@ export const LINKS: {
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
-      { title: 'Guides', href: '/guides', icon: AlbumIcon },
+      { title: 'Blog', href: '/blog', icon: AlbumIcon },
     ],
   },
   {

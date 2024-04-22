@@ -26,7 +26,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
   }
 
   return (
-    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 p-[10px] text-sm text-gray-300 xs:grid-cols-2 md:px-[40px] md:py-[10px]">
+    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-2 text-sm xs:grid-cols-2 md:px-10 md:py-2">
       <div className="flex flex-col items-center gap-4 xs:items-start">
         <Link href="/">
           <HeaderLogo />
@@ -57,11 +57,11 @@ function FooterLinks({ links }: FooterLinksProps) {
       {links.map((link) => (
         <div key={link.title} className="leading-loose">
           <h3 className="font-bold">{link.title}</h3>
-          <ul className="text-gray-400">
+          <ul className="text-muted">
             {link.items.map((item) => (
               <li key={item.title}>
                 <Link
-                  className="transition-colors hover:text-primary"
+                  className="transition-colors hover:text-primary-foreground"
                   href={item.href}
                   target={item.href.startsWith('http') ? '_blank' : undefined}
                 >

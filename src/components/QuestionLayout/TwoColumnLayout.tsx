@@ -36,7 +36,7 @@ export default function TwoColumnLayout({
           {topLeft && bottomLeft && (
             <ResizableHandle
               withHandle
-              className="w-[10px] rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
+              className="w-2 rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
             />
           )}
           {bottomLeft && <ResizablePanel>{bottomLeft}</ResizablePanel>}
@@ -44,7 +44,7 @@ export default function TwoColumnLayout({
       </ResizablePanel>
       <ResizableHandle
         withHandle
-        className="w-[10px] rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
+        className="w-2 rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
       />
       <ResizablePanel>
         <ResizablePanelGroup direction={orientation}>
@@ -54,7 +54,7 @@ export default function TwoColumnLayout({
               withHandle
               className={cn(
                 'rounded-none border-none bg-neutral-800 hover:bg-neutral-600',
-                orientation === 'vertical' ? '!h-[10px]' : '!w-[10px]',
+                orientation === 'vertical' ? '!h-2' : '!w-2',
               )}
             />
           )}

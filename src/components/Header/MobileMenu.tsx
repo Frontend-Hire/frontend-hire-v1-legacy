@@ -92,10 +92,7 @@ export default function MobileMenu({ user }: MobileMenuProps) {
                 Settings
               </MobileLink>
 
-              <Button
-                className="w-fit rounded-[10px] p-[10px]"
-                onClick={handleSignOut}
-              >
+              <Button className="rounded-2 w-fit p-2" onClick={handleSignOut}>
                 Sign Out
               </Button>
             </div>

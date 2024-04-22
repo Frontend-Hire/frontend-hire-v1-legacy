@@ -21,7 +21,7 @@ const DifficultyLabel = ({
 }: {
   difficulty: QuestionDifficulty;
 }) => {
-  let className = 'w-[20px] self-stretch';
+  let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {
     className += ' bg-easy';
@@ -64,9 +64,9 @@ export default function QuestionItem({
 }: QuestionItemProps) {
   return (
     <Link href={`/questions/${id}`}>
-      <div className="flex min-h-[80px] items-center gap-[20px] overflow-hidden rounded-[5px] bg-card pr-[20px] text-card-foreground hover:bg-card/80">
+      <div className="flex min-h-[80px] items-center gap-4 overflow-hidden rounded-[5px] bg-card pr-4 text-card-foreground hover:bg-card/80">
         <DifficultyLabel difficulty={difficulty} />
-        <div className="flex w-full flex-col gap-[5px] py-[10px]">
+        <div className="flex w-full flex-col gap-[5px] py-2">
           <div className="flex items-center gap-2">
             <p className="font-bold">{title}</p>
             {isNew && <Badge className="animate-pulse">New</Badge>}

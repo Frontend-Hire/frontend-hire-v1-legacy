@@ -9,7 +9,7 @@ type InstructionProps = {
 
 export default function Instructions({ onStart }: InstructionProps) {
   return (
-    <section className="flex flex-col gap-[15px] rounded bg-card p-[20px]">
+    <section className="flex flex-col gap-4 rounded bg-card p-4">
       <Heading variant="h3">Instructions:</Heading>
       <ul className="ml-4 flex list-disc flex-col gap-[5px]">
         <li>

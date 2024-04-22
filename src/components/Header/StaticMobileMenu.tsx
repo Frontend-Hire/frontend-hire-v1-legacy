@@ -52,7 +52,7 @@ export default function StaticMobileMenu() {
             ))}
           </div>
         </ScrollArea>
-        <Button className="w-fit rounded-[10px] p-[10px]" asChild>
+        <Button className="rounded-2 w-fit p-2" asChild>
           <Link href={'/questions'}>Practice Now</Link>
         </Button>
       </SheetContent>

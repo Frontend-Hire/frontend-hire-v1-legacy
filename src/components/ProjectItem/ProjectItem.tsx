@@ -78,14 +78,14 @@ export default function ProjectItem({
   };
 
   return (
-    <div className="flex h-full min-h-[300px] flex-col gap-[10px] overflow-hidden rounded-md bg-card text-card-foreground">
+    <div className="flex h-full min-h-[300px] flex-col gap-2 overflow-hidden rounded-md bg-card text-card-foreground">
       <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
-      <div className="flex grow flex-col gap-[5px] px-[10px]">
+      <div className="flex grow flex-col gap-[5px] px-4">
         <h2 className="text-xl font-bold md:text-2xl">{title}</h2>
         <p className="grow text-sm text-gray-300">{description}</p>
         <SkillBadges skills={skills} />
       </div>
-      <div className="flex items-center justify-between p-[10px] text-sm font-medium">
+      <div className="flex items-center justify-between p-4 text-sm font-medium">
         <div className="flex items-center gap-2">
           {renderIcon()}
           {renderTasksLengthText()}
@@ -103,23 +103,23 @@ function DifficultyLabel({
   difficulty: ProjectDifficulty;
   isRecommended?: boolean;
 }) {
-  let className = 'w-full flex items-center justify-center h-[20px]';
+  let className = 'w-full flex items-center justify-center h-4';
 
   if (difficulty == 'easy') {
-    className += ' bg-green-500';
+    className += ' bg-easy';
   } else if (difficulty == 'medium') {
-    className += ' bg-yellow-500';
+    className += ' bg-medium text-black';
   } else if (difficulty == 'hard') {
-    className += ' bg-red-500';
+    className += ' bg-hard';
   } else {
-    className += ' bg-gray-500';
+    className += ' bg-gray-600';
   }
 
   return (
     <div className={className}>
       <VisuallyHidden>{difficulty}</VisuallyHidden>
       {isRecommended && (
-        <span className="flex items-center gap-[10px]">
+        <span className="flex items-center gap-2">
           <GemIcon size={14} />
           <span className="text-xs font-bold tracking-wide">Recommended</span>
           <GemIcon size={14} />

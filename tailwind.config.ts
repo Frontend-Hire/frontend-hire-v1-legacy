@@ -22,6 +22,15 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              color: '#FF5CF2',
+            },
+          },
+        },
+      },
       fontFamily: {
         sans: ['var(--font-inter)'],
       },

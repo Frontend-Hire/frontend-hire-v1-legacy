@@ -32,7 +32,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex h-[40px] items-center justify-between gap-2">
+    <header className="flex h-10 items-center justify-between gap-2">
       <div className="flex items-center gap-4">
         <Tooltip title={`Back to all projects`}>
           <Button

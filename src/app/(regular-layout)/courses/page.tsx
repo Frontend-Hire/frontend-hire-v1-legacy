@@ -4,9 +4,9 @@ import CourseCardItem from './_components/CourseCardItem';
 import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
-import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.png';
 import layoutShifts101Img from './_assets/layout-shifts-101-banner.png';
-import tddTodoImg from './_assets/tdd-todo-banner.png';
+import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.webp';
+import stackpackImg from './_assets/stackpack.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -30,13 +30,13 @@ export default function CoursesPage() {
       <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
-      <ul className="grid justify-items-stretch gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
         <li>
           <Link href="courses/todo-app-react/overview">
             <CourseCardItem
-              image={tddTodoImg}
-              title="Todo App with React, TypeScript and TDD"
-              description="Todo apps are a great way to learn a new language or framework. We teach this course with more than just React. You would learn about a good React project setup, hooks, component composition and testing."
+              image={todoAppReactTDDImg}
+              title="Todo App"
+              description="We teach more than just React, TypeScript and TDD with this course."
               isFree
               isVideoAvailable
             />
@@ -48,8 +48,16 @@ export default function CoursesPage() {
               image={layoutShifts101Img}
               title="Layout Shifts 101"
               description="Master the art of optimistic UI changes and maintaining the visual confortability of the user."
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="courses/stackpack/overview">
+            <CourseCardItem
+              image={stackpackImg}
+              title="Stackpack"
+              description="Build a Sandpack clone with WebContainers in React and TypeScript."
               isFree
-              isVideoAvailable
             />
           </Link>
         </li>
