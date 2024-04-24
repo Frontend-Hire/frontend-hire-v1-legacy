@@ -58,7 +58,7 @@ export default function CustomCarousel() {
             key={index}
             className="basis-[18%] opacity-80 sm:basis-[15%] md:basis-[10%] lg:basis-[8%] xl:basis-[6%]"
           >
-            <Image priority className="h-10 w-max" src={image} alt="" />
+            <Image priority className="h-6 w-max sm:h-10" src={image} alt="" />
           </CarouselItem>
         ))}
       </CarouselContent>

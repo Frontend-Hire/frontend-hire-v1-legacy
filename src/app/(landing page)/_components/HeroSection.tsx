@@ -14,7 +14,7 @@ export default function HeroSection() {
           </h1>
           <div className="flex w-full items-center gap-2">
             <Line />
-            <h2 className="text-lg font-bold xs:whitespace-nowrap md:text-xl lg:text-2xl">
+            <h2 className="font-bold xs:whitespace-nowrap sm:text-lg md:text-xl lg:text-2xl">
               Make A Hiring Profile And Get Hired
             </h2>
             <Line />
