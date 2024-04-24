@@ -56,7 +56,7 @@ export default function CustomCarousel() {
         {[...images, ...images].map((image, index) => (
           <CarouselItem
             key={index}
-            className="basis-[18%] opacity-80 sm:basis-[15%] md:basis-[10%] lg:basis-[8%]"
+            className="basis-[18%] opacity-80 sm:basis-[15%] md:basis-[10%] lg:basis-[8%] xl:basis-[6%]"
           >
             <Image priority className="h-10 w-max" src={image} alt="" />
           </CarouselItem>
