@@ -3,7 +3,7 @@ import GrowingLibrary from './GrowingLibrary';
 
 export default function HeroSection() {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center gap-6 p-2 text-center md:py-2">
+    <section className="flex min-h-[calc(100svh-56px)] flex-col items-center justify-between gap-6 p-2 text-center md:py-10">
       <div className="flex w-full grow flex-col items-center justify-center gap-10">
         <p className="text-sm font-bold text-link md:text-base">
           Free Access to Questions and Projects

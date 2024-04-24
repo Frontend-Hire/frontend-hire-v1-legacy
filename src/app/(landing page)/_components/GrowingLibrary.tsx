@@ -2,7 +2,7 @@ import CustomCarousel from './CustomCarousel';
 
 export default function GrowingLibrary() {
   return (
-    <div className="flex w-full grow flex-col gap-4">
+    <div className="flex w-full flex-col gap-4">
       <p className="text-sm text-muted md:text-base">
         A Growing Library of <strong>30+ Questions</strong>,{' '}
         <strong>10+ Projects</strong>, <strong>2+ System Designs</strong>, and
