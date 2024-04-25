@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import QuestionsFeature from './QuestionsFeature';
 import ProjectsFeature from './ProjectsFeature';
 import InterviewsFeature from './InterviewsFeature';
+import CoursesFeature from './CoursesFeature';
 
 export default function FeaturesSection() {
   return (
@@ -48,6 +49,21 @@ export default function FeaturesSection() {
           'Simulated and Real Interviews.',
           'Pro plan gives you access to all simulated interviews.',
           'Folks from the community provide discounted mock-interviews.',
+        ]}
+      />
+      <FeatureLayout
+        title="Courses"
+        richComponent={{
+          component: <CoursesFeature />,
+          position: 'left',
+        }}
+        actionButton={
+          <CTA label="Learn to build great stuff" href="/courses" />
+        }
+        features={[
+          'All courses come with written walkthroughs.',
+          'Select ones come in video.',
+          'Free and Pro content available.',
         ]}
       />
     </section>

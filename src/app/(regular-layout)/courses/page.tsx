@@ -4,8 +4,8 @@ import CourseCardItem from './_components/CourseCardItem';
 import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
-import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.webp';
-import stackpackImg from './_assets/stackpack.webp';
+import todoAppReactTDDImg from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
+import stackpackImg from '@/assets/course-covers/stackpack.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
