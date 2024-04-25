@@ -2,6 +2,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import CTA from './CTA';
 import { cn } from '@/lib/utils';
 import QuestionsFeature from './QuestionsFeature';
+import ProjectsFeature from './ProjectsFeature';
 
 export default function FeaturesSection() {
   return (
@@ -25,7 +26,7 @@ export default function FeaturesSection() {
       <FeatureLayout
         title="Projects"
         richComponent={{
-          component: <div>Hello Projects</div>,
+          component: <ProjectsFeature />,
           position: 'left',
         }}
         actionButton={<CTA label="Practice Projects" href="/projects" />}
