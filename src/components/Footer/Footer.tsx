@@ -26,7 +26,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
   }
 
   return (
-    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-2 text-sm xs:grid-cols-2 md:px-10 md:py-2">
+    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-4 text-sm xs:grid-cols-2 md:px-10">
       <div className="flex flex-col items-center gap-4 xs:items-start">
         <Link href="/">
           <HeaderLogo />
