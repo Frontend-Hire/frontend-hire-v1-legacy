@@ -1,10 +1,10 @@
-import { ArrowRightIcon } from 'lucide-react';
 import CTA from './CTA';
 import { cn } from '@/lib/utils';
 import QuestionsFeature from './QuestionsFeature';
 import ProjectsFeature from './ProjectsFeature';
 import InterviewsFeature from './InterviewsFeature';
 import CoursesFeature from './CoursesFeature';
+import FeatureDescriptionItem from './FeatureDescriptionItem';
 
 export default function FeaturesSection() {
   return (
@@ -117,13 +117,5 @@ function FeatureLayout({
         {richComponent.component}
       </div>
     </div>
-  );
-}
-
-function FeatureDescriptionItem({ children }: React.PropsWithChildren) {
-  return (
-    <li className="flex gap-1">
-      <ArrowRightIcon className="flex-shrink-0 text-link" /> {children}
-    </li>
   );
 }

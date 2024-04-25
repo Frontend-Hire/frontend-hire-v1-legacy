@@ -45,6 +45,14 @@
   * {
     @apply border-border;
   }
+
+  .text-stroke {
+    text-shadow:
+      -1px -1px 0 hsl(var(--link)),
+      1px -1px 0 hsl(var(--link)),
+      -1px 1px 0 hsl(var(--link)),
+      1px 1px 0 hsl(var(--link));
+  }
 }
 
 .sp-cube-wrapper {
