@@ -51,9 +51,11 @@ export default function ProjectItem({
           className="w-fit underline"
           href={`/projects/${id}`}
         >
-          <h2 className="text-lg font-bold">{title}</h2>
+          <h2 className="text-base font-bold">{title}</h2>
         </Link>
-        <p className="line-clamp-1 grow text-sm text-gray-300">{description}</p>
+        <p className="line-clamp-2 text-sm text-gray-300">{description}</p>
+      </div>
+      <div className="px-4">
         <SkillBadges skills={skills.slice(0, 2)} />
       </div>
       <div className="flex items-center justify-between p-4 text-sm font-medium">

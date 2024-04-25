@@ -3,6 +3,7 @@ import CTA from './CTA';
 import { cn } from '@/lib/utils';
 import QuestionsFeature from './QuestionsFeature';
 import ProjectsFeature from './ProjectsFeature';
+import InterviewsFeature from './InterviewsFeature';
 
 export default function FeaturesSection() {
   return (
@@ -36,6 +37,19 @@ export default function FeaturesSection() {
           'Free access to projects.',
         ]}
       />
+      <FeatureLayout
+        title="Interviews"
+        richComponent={{
+          component: <InterviewsFeature />,
+          position: 'right',
+        }}
+        actionButton={<CTA label="Practice Interviews" href="/interviews" />}
+        features={[
+          'Simulated and Real Interviews.',
+          'Pro plan gives you access to all simulated interviews.',
+          'Folks from the community provide discounted mock-interviews.',
+        ]}
+      />
     </section>
   );
 }
@@ -60,14 +74,15 @@ function FeatureLayout({
     <div className="grid grid-cols-1 items-center justify-center justify-items-center gap-10 py-20 md:grid-cols-2">
       <div
         className={cn(
-          'w-full md:hidden',
+          'hidden w-full',
           richComponent.position === 'left' && 'md:block',
         )}
       >
         {richComponent.component}
       </div>
-      <div className="flex flex-col items-center justify-center gap-5">
+      <div className="flex w-full flex-col items-center justify-center gap-5">
         <h3 className="text-[32px] font-medium">{title}</h3>
+        <div className="w-full md:hidden">{richComponent.component}</div>
         <ul className="space-y-1.5 text-muted">
           {features.map((feature, index) => (
             <FeatureDescriptionItem key={index}>

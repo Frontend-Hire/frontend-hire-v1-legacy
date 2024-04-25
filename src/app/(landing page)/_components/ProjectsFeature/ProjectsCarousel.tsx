@@ -28,7 +28,7 @@ export default function ProjectsCarousel({ projects }: ProjectsCarouselProps) {
     >
       <CarouselContent className="h-[250px]">
         {projects.map((project) => (
-          <CarouselItem key={project.id} className="sm:basis-1/2">
+          <CarouselItem key={project.id} className="sm:basis-[60%]">
             <ProjectItem {...project} />
           </CarouselItem>
         ))}
