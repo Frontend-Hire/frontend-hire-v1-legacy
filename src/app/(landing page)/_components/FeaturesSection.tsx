@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from 'lucide-react';
 import CTA from './CTA';
 import { cn } from '@/lib/utils';
+import QuestionsFeature from './QuestionsFeature';
 
 export default function FeaturesSection() {
   return (
@@ -11,7 +12,7 @@ export default function FeaturesSection() {
       <FeatureLayout
         title="Questions"
         richComponent={{
-          component: <div>Hello Questions!</div>,
+          component: <QuestionsFeature />,
           position: 'right',
         }}
         actionButton={<CTA label="Practice Questions" href="/questions" />}
@@ -58,7 +59,7 @@ function FeatureLayout({
     <div className="grid grid-cols-1 items-center justify-center justify-items-center gap-10 md:grid-cols-2">
       <div
         className={cn(
-          'md:hidden',
+          'w-full md:hidden',
           richComponent.position === 'left' && 'md:block',
         )}
       >
@@ -77,7 +78,7 @@ function FeatureLayout({
       </div>
       <div
         className={cn(
-          'hidden',
+          'hidden w-full',
           richComponent.position === 'right' && 'md:block',
         )}
       >
