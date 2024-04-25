@@ -57,7 +57,7 @@ function FeatureLayout({
   features,
 }: FeatureLayoutProps) {
   return (
-    <div className="grid grid-cols-1 items-center justify-center justify-items-center gap-10 md:grid-cols-2">
+    <div className="grid grid-cols-1 items-center justify-center justify-items-center gap-10 py-20 md:grid-cols-2">
       <div
         className={cn(
           'w-full md:hidden',
