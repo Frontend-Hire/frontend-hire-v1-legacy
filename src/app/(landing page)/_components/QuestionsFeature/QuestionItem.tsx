@@ -1,29 +1,7 @@
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import Link from 'next/link';
 import { QuestionDifficulty } from '@/types/Question';
-import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { Badge } from '@/components/ui/badge';
 import SkillBadges from '@/components/SkillBadges';
-
-export default async function QuestionsFeature() {
-  const questions = await getQuestionsFromLocal();
-
-  return (
-    <ScrollArea className="h-[250px] w-full rounded">
-      <ul className="space-y-4">
-        {questions.map((q) => (
-          <li key={q.id}>
-            <Link prefetch={false} href={`/questions/${q.id}`}>
-              <QuestionItem {...q} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </ScrollArea>
-  );
-}
 
 type QuestionItemProps = {
   difficulty: QuestionDifficulty;
@@ -58,7 +36,7 @@ const DifficultyLabel = ({
   );
 };
 
-function QuestionItem({
+export default function QuestionItem({
   skills = [],
   title,
   description,
