@@ -35,7 +35,9 @@ export default function ProjectItem({
   const renderActionButton = () => {
     return (
       <Button size="sm" asChild>
-        <Link href={`/projects/${id}`}>Start</Link>
+        <Link prefetch={false} href={`/projects/${id}`}>
+          Start
+        </Link>
       </Button>
     );
   };
@@ -44,7 +46,13 @@ export default function ProjectItem({
     <div className="flex min-h-full flex-col gap-2 overflow-hidden rounded-md bg-card text-card-foreground">
       <DifficultyLabel isRecommended={isRecommended} difficulty={difficulty} />
       <div className="flex grow flex-col gap-1 px-4 text-sm">
-        <h2 className="text-lg font-bold">{title}</h2>
+        <Link
+          prefetch={false}
+          className="w-fit underline"
+          href={`/projects/${id}`}
+        >
+          <h2 className="text-lg font-bold">{title}</h2>
+        </Link>
         <p className="line-clamp-1 grow text-sm text-gray-300">{description}</p>
         <SkillBadges skills={skills.slice(0, 2)} />
       </div>

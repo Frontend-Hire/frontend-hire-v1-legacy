@@ -2,8 +2,10 @@ import { QuestionDifficulty } from '@/types/Question';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { Badge } from '@/components/ui/badge';
 import SkillBadges from '@/components/SkillBadges';
+import Link from 'next/link';
 
 type QuestionItemProps = {
+  id: string;
   difficulty: QuestionDifficulty;
   title: string;
   description: string;
@@ -37,6 +39,7 @@ const DifficultyLabel = ({
 };
 
 export default function QuestionItem({
+  id,
   skills = [],
   title,
   description,
@@ -48,7 +51,13 @@ export default function QuestionItem({
       <DifficultyLabel difficulty={difficulty} />
       <div className="flex w-full flex-col gap-1 py-2 text-sm">
         <div className="flex items-center gap-2">
-          <p className="font-bold">{title}</p>
+          <Link
+            className="w-fit underline"
+            prefetch={false}
+            href={`/questions/${id}`}
+          >
+            <p className="font-bold">{title}</p>
+          </Link>
           {isNew && <Badge className="animate-pulse">New</Badge>}
         </div>
         <p className="line-clamp-1 text-sm leading-[100%] text-gray-300">
