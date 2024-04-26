@@ -20,7 +20,7 @@ export default function MobileSidebar({ pages }: SidebarProps) {
       <SheetTrigger asChild>
         <Button className="text-md w-full gap-2 md:hidden" variant="outline">
           <NotebookIcon />
-          Course Menu
+          System Design Menu
         </Button>
       </SheetTrigger>
       <SheetContent side="left">

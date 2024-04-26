@@ -10,7 +10,7 @@ export default async function PremiumProtectedContentLayout({
   const { data } = await supabaseServerClient.auth.getUser();
 
   // Check if the user has pro access
-  const hasProAccess = false;
+  const hasProAccess = true;
 
   if (hasProAccess) {
     return <>{children}</>;
