@@ -36,9 +36,15 @@ export default function PricingSection() {
               <s className="text-xl md:text-2xl">₹5,000</s> after 200 paid users
             </p>
           </div>
-          <Button className="h-fit w-full p-2 text-xl font-bold md:p-3 md:text-2xl">
-            Become PRO
-          </Button>
+          <div className="w-full space-y-2">
+            <Button className="h-fit w-full p-2 text-xl font-bold md:p-3 md:text-2xl">
+              Become PRO
+            </Button>
+            <p className="text-xs font-bold text-muted">
+              Pricing will increase as more content gets added! So, become a PRO
+              now!
+            </p>
+          </div>
         </div>
       </div>
     </section>
