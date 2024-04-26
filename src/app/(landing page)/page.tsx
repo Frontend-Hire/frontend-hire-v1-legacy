@@ -6,6 +6,7 @@ const PricingSection = dynamic(() => import('./_components/PricingSection'));
 const ComingSoonSection = dynamic(
   () => import('./_components/ComingSoonSection'),
 );
+const FAQSection = dynamic(() => import('./_components/FAQSection'));
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturesSection />
       <ComingSoonSection />
       <PricingSection />
+      <FAQSection />
     </main>
   );
 }
