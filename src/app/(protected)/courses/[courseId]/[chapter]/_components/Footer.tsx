@@ -50,7 +50,7 @@ export default function Footer({
     <div className="flex w-full flex-col gap-2">
       {getLastUpdated() && (
         <p className="text-right text-xs text-muted">
-          Last updated on {getLastUpdated()}
+          Last updated on <time dateTime={lastUpdated}>{getLastUpdated()}</time>
         </p>
       )}
       <hr className="h-0.5 bg-muted" />
