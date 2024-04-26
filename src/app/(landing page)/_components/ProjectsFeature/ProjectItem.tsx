@@ -35,7 +35,7 @@ export default function ProjectItem({
   const renderActionButton = () => {
     return (
       <Button size="sm" asChild>
-        <Link prefetch={false} href={`/projects/${id}`}>
+        <Link aria-label={title} prefetch={false} href={`/projects/${id}`}>
           Start
         </Link>
       </Button>
