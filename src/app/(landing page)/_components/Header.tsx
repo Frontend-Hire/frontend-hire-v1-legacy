@@ -1,8 +1,14 @@
 import HeaderLogo from '@/components/HeaderLogo';
 import Link from 'next/link';
 import CTA from './CTA';
-import CustomNavigationMenu from '@/components/CustomNavigationMenu';
-import StaticMobileMenu from '@/components/Header/StaticMobileMenu';
+import dynamic from 'next/dynamic';
+
+const CustomNavigationMenu = dynamic(
+  () => import('@/components/CustomNavigationMenu'),
+);
+const StaticMobileMenu = dynamic(
+  () => import('@/components/Header/StaticMobileMenu'),
+);
 
 export default function Header() {
   return (

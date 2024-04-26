@@ -10,7 +10,7 @@ export default function HeaderLogo({ fill = 'WHITE' }: HeaderLogoProps) {
   return (
     <Image
       src={fill == 'WHITE' ? WhiteLogo : GrayLogo}
-      priority={true}
+      priority
       className="h-[36px]"
       alt="Frontend Hire"
     />

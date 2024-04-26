@@ -1,9 +1,11 @@
-import PricingSection from './_components/PricingSection';
-import ComingSoonSection from './_components/ComingSoonSection';
 import FeaturesSection from './_components/FeaturesSection';
 import HeroSection from './_components/HeroSection';
+import dynamic from 'next/dynamic';
 
-export const dynamic = 'force-static';
+const PricingSection = dynamic(() => import('./_components/PricingSection'));
+const ComingSoonSection = dynamic(
+  () => import('./_components/ComingSoonSection'),
+);
 
 export default function Home() {
   return (

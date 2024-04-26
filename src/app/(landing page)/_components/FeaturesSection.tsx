@@ -1,10 +1,12 @@
 import CTA from './CTA';
 import { cn } from '@/lib/utils';
 import QuestionsFeature from './QuestionsFeature';
-import ProjectsFeature from './ProjectsFeature';
-import InterviewsFeature from './InterviewsFeature';
-import CoursesFeature from './CoursesFeature';
 import FeatureDescriptionItem from './FeatureDescriptionItem';
+import dynamic from 'next/dynamic';
+
+const ProjectsFeature = dynamic(() => import('./ProjectsFeature'));
+const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
+const CoursesFeature = dynamic(() => import('./CoursesFeature'));
 
 export default function FeaturesSection() {
   return (
