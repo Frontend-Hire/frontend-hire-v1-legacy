@@ -53,7 +53,7 @@ export default function CustomCarousel() {
       ]}
     >
       <CarouselContent>
-        {[...images, ...images].map((image, index) => (
+        {[...images, ...images.slice(0, 5)].map((image, index) => (
           <CarouselItem
             key={index}
             className="basis-[18%] opacity-80 sm:basis-[15%] md:basis-[10%] lg:basis-[8%] xl:basis-[6%]"

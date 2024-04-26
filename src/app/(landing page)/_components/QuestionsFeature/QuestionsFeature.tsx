@@ -9,7 +9,7 @@ export default async function QuestionsFeature() {
   return (
     <>
       <VisuallyHidden>List of Questions</VisuallyHidden>
-      <QuestionsCarousel questions={questions} />
+      <QuestionsCarousel questions={questions.slice(0, 10)} />
     </>
   );
 }

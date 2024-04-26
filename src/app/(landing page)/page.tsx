@@ -1,3 +1,4 @@
+import PricingSection from './_components/PricingSection';
 import ComingSoonSection from './_components/ComingSoonSection';
 import FeaturesSection from './_components/FeaturesSection';
 import HeroSection from './_components/HeroSection';
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <ComingSoonSection />
+      <PricingSection />
     </main>
   );
 }

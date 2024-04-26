@@ -8,7 +8,7 @@ import FeatureDescriptionItem from './FeatureDescriptionItem';
 
 export default function FeaturesSection() {
   return (
-    <section className="container mx-auto flex flex-col gap-10 py-20">
+    <section className="container flex flex-col gap-10 py-20">
       <h2 className="text-center text-4xl font-black">
         Single Platform For Everything
       </h2>
