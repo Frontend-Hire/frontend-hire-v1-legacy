@@ -1,3 +1,5 @@
+import { Callout } from '@/components/MarkdownComponents';
+
 export const meta = {
   lastUpdated: '2024-04-27'
 }
@@ -35,3 +37,115 @@ This is how it would look if we visualize the website structure:
 
 Since the client is a developer, they would prefer to write their blog posts in Markdown. 
 
+<Callout type='warning'>
+This is an assumption. The client can choose any other format to write their blog posts and our system might change. We would anyway cover a different approach with the other clients. So, let's assume that the client wants to write their blog posts in Markdown.
+</Callout>
+
+> **What is Markdown?**
+> Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML). - John Gruber, ([Daring Fireball: Markdown Project](https://daringfireball.net/projects/markdown/))
+
+> **Who created Markdown?**
+> John Gruber, along with Aaron Swartz, ([read Gruber's post on the Markdown project](https://daringfireball.net/projects/markdown/)) created Markdown in 2004.
+
+Alright, so what are the different ways we can support Markdown in our system? At the end of the day, browsers don't understand Markdown. They understand HTML. So, we need to convert Markdown to HTML before sending it to the browser.
+
+The way this conversion happens is by parsing the Markdown content and converting it to HTML. There are libraries available in different programming languages that can help us with this conversion. Here are a few popular ones in JavaScript:
+
+- [commonmark.js](https://github.com/commonmark/commonmark.js)
+- [markdown-it](https://github.com/markdown-it/markdown-it)
+- [Showdown](https://github.com/showdownjs/showdown)
+- [mdx](https://github.com/mdx-js/mdx)
+- [Markdoc](https://github.com/markdoc/markdoc)
+
+Commonmark.js, markdown-it, and Showdown are more focused on converting Markdown to HTML. They don't provide a way to include custom components in your Markdown content.
+
+MDX is a popular choice for JSX-based applications. It allows you to write JSX in Markdown. This means you can include for example React components in your Markdown content. This is very powerful and can be used to create interactive content.
+
+Markdoc is another popular choice. It is almost similar to MDX but is more focused on Markdown. Unlike MDX, Markdoc doesn't allow you to write JSX in Markdown. But it does provide a way to include custom components in your Markdown content.
+
+Now, based on the client's requirements, we can choose one of these libraries to convert Markdown to HTML. If the client wants to write JSX in their Markdown content, we can go with MDX. If the client is fine with just Markdown, we can go with Markdoc or any other library. All of them should work fine for a simple blog.
+
+<Callout>
+Here are two great blog posts on the same: 
+
+- [Building a Markdown Blog with Next.js and MDX](https://www.joshwcomeau.com/blog/how-i-built-my-blog/#mdx-the-secret-ingredient-2) from [Josh W Comeau](https://www.joshwcomeau.com/)
+
+- [2023 Blog Refresh](https://leerob.io/blog/2023) from [Leerob](https://leerob.io/)
+</Callout>
+
+### Where to store the blog posts?
+
+We need a place to store the blog posts. We can choose to store them in the file system (in the same repo as the actual website) or a database. Depending on how frequently the client wants to update the blog, we can choose the storage. 
+
+If the client wants to update the blog posts frequently, we can choose a database. If the client is fine with updating the blog posts once in a while, we can choose the file system.
+
+<Callout>
+Most of the time, developers choose to store the blog posts in the file system. This is because it is easier to manage and version control the blog posts. Also, it is easier to deploy the blog posts along with the website. 
+
+For a simple blog, storing the blog posts in the file system is a good choice. Large blogs with potentially multiple authors might choose to store the blog posts in a database and have a **content management system** (**CMS**) to manage them.
+
+Also, [Notion](https://www.notion.so/) is a popular choice for storing blog posts. You can write your blog posts in Notion and then export them to Markdown. This way, you can have a nice editor to write your blog posts and still store them in Markdown.
+</Callout>
+
+### Newsletter Design
+
+The newsletter would be a simple form at the bottom of the blog post page. The user can enter their email address and subscribe to the newsletter.
+
+We need a way to store the email addresses of the users who subscribe to the newsletter. We can choose to store them in a database or a service like [Mailchimp](https://mailchimp.com/). These services provide APIs to add subscribers to the list. We can use these APIs to add subscribers to the list when they subscribe to the newsletter. 
+
+### UI Development
+
+For a fast and responsive website, we would ideally have to optimize a few things:
+
+- **Rendering**: We can use SSG (Static Site Generation) for the entire website. This would make the website fast and responsive. Why SSG? Because the content of the website does not change frequently. We can generate the HTML files at build time and serve them to the users. This would make the website load faster as the HTML files are already generated.
+
+- **Images:** We can optimize the images using tools like [ImageOptim](https://imageoptim.com/) or [TinyPNG](https://tinypng.com/). This would reduce the size of the images and make the website load faster. We can also use the `srcset` attribute to load different images based on the device size. There are also services like [Cloudinary](https://cloudinary.com/) that provide image optimization and transformation as a service.
+
+- **Fonts:** We can use system fonts or load the fonts asynchronously. This would make the website load faster. We can also use `font-display: swap` to show the text in the system font until the custom font is loaded. [Best practices for fonts](https://web.dev/articles/font-best-practices)
+
+- **CSS** We can minify the CSS and JavaScript files to reduce the file size. We can also use tools like [PurgeCSS](https://purgecss.com/) to remove the unused CSS from the files. Using [Tailwind CSS](https://tailwindcss.com/docs/optimizing-for-production) would also help in reducing the file size as it generates only the CSS that is used in the website.
+
+- **JavaScript:** We do not expect a lot of JavaScript on a simple blog. But if there is any JavaScript, we can minify the files using a tool like [Terser](https://terser.org/). We can also use the `defer` attribute to load the JavaScript files after the HTML content is loaded.
+
+- **Lazy Loading:** We can lazy load the images and iframes to make the website load faster. This would load the images and iframes only when they are in the viewport.
+
+- **CDN:** We can use a CDN to cache the assets and serve them faster. This would reduce the load time of the website. There are services like [Cloudflare](https://www.cloudflare.com/) that provide CDN as a service.
+
+### SEO
+
+<Callout>
+Honestly, a personal blog does not need a lot of SEO and is mostly discovered through social media or word of mouth. But still, it is good to have some basic SEO in place, for let us say when someone searches for the blog post title.
+</Callout>
+
+This is a huge topic and we have a course planned for this. But for now, let us cover a high-level overview of what we can do to improve the SEO of the website.
+
+We want to maximize the visibility of the website in search engines so that the client's work can be discovered by more people. Here are a few things we can do to improve the SEO of the website:
+
+- **Meta Tags:** We would need to add proper meta tags to the website. This includes the `title` and `description` meta tags for each page. We can also add [open graph](https://ogp.me/) tags for social media sharing. 
+
+- **[Sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview):** We can generate a sitemap for the website. This would help search engines to discover all the pages on the website as well as the blog posts.
+
+- **[Robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro):** We can create a `robots.txt` file to tell search engines which pages to crawl and which pages to ignore. Though most search engines would crawl the website without a `robots.txt` file, it is good to have one.
+
+There is a lot more to SEO. We would ideally want you to learn the things that don't matter for quick wins. [Things you should not focus on](https://developers.google.com/search/docs/fundamentals/seo-starter-guide#focusing).
+
+### Custom Domain and Hosting
+
+If the client does not have a custom domain, they can buy one from a domain registrar like [GoDaddy](https://www.godaddy.com/), [Namecheap](https://www.namecheap.com/), or [Squarespace](https://www.squarespace.com/). Once they buy the domain, they can point it to the hosting provider where the website is hosted.
+
+For hosting, we can choose a service like [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/), or [AWS](https://aws.amazon.com/). These services provide a way to deploy static websites easily. Using something like Vercel or Netlify would be a good choice for a simple blog and not having to worry about the infrastructure or configuration.
+
+### Final Tech Stack
+
+<Callout type='warning'>
+We assume the client is comfortable with React and chose the below tech stack based on the requirements. In a conversation with the client, we can discuss the tech stack and make changes if needed. This is not set in stone.
+</Callout>
+
+Here is the final tech stack for the website:
+
+- **Rendering**: We will use [SSG](https://www.cloudflare.com/learning/performance/static-site-generator/) (Static Site Generation) for the entire website. This would make the website fast and responsive. 
+- **UI Framework:** [Next.js](https://nextjs.org/) with [Tailwind CSS](https://tailwindcss.com/) and [MDX](https://mdxjs.com/).
+- **Images:** We store them in the repo and optimize them using [Next Image](https://nextjs.org/docs/app/building-your-application/optimizing/images).
+- **SEO:** [Next.js](https://nextjs.org/) provides a great DX for optimizing the website for SEO.
+- **Newsletter:** [Mailchimp](https://mailchimp.com/). We can use Next.js API routes to create an endpoint to add subscribers to the list using the Mailchimp API.
+- **Hosting:** [Vercel](https://vercel.com/) would give huge benefits when using Next.js, and the hobby tier should be enough for a simple portfolio website.
