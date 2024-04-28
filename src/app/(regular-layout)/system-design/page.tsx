@@ -33,7 +33,34 @@ export default function SystemDesignPage() {
             <SystemDesignQuestionItem
               title="Design a Portfolio Website with Blog and Newsletter"
               description="A pretty common system thought by every developer."
-              difficulty={DIFFICULTY.EASY}
+              difficulty={DIFFICULTY.MASTER}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="">
+            <SystemDesignQuestionItem
+              title="Design a PDF Invoice Generator"
+              description="PDFs are always a pain to generate. How would you design a system to generate PDF invoices?"
+              difficulty={DIFFICULTY.MASTER}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="">
+            <SystemDesignQuestionItem
+              title="Design a Blog like Medium"
+              description="A complex system design with multi tenancy."
+              difficulty={DIFFICULTY.MASTER}
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="">
+            <SystemDesignQuestionItem
+              title="Design a video meeting platform like Google Meet"
+              description="How complex can it be to design a video meeting platform?"
+              difficulty={DIFFICULTY.MASTER}
             />
           </Link>
         </li>

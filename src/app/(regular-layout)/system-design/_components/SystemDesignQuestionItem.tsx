@@ -45,7 +45,7 @@ export default function SystemDesignQuestionItem({
       <DifficultyLabel difficulty={difficulty} />
       <div className="flex w-full flex-col gap-[5px] py-2">
         <div className="flex items-center gap-2">
-          <p className="font-bold">{title}</p>
+          <p className="font-bold capitalize">{title}</p>
           {isNew && <Badge className="animate-pulse">New</Badge>}
         </div>
         <p className="text-sm leading-[100%] text-gray-300">{description}</p>
