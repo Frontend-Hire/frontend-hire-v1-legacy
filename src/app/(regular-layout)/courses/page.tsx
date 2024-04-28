@@ -51,6 +51,15 @@ export default function CoursesPage() {
             />
           </Link>
         </li>
+        <li>
+          <Link href="courses/sign-up-flow-with-e2e-tests/overview">
+            <CourseCardItem
+              image={stackpackImg}
+              title="Sign Up Flow"
+              description="Learn how to build a sign up flow with E2E tests in React and TypeScript."
+            />
+          </Link>
+        </li>
       </ul>
     </article>
   );
