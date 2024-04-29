@@ -11,11 +11,18 @@ We'll set up **supabase** first of all before starting the project.
 Clone **frontend-hire-supabase-local** repo and start:
 
 1. Install [Docker](https://www.docker.com/products/docker-desktop/)
+
 2. Now install [Supabase CLI](https://supabase.com/docs/guides/cli/getting-started) for local development. You can also work out supabase with npx commands.
+   Check for Supabase CLI version before installing.
+
 3. Get Google OAuth credentials via [Google Console](https://console.developers.google.com/)
+
 4. Clone the repo: https://github.com/yaralahruthik/frontend-hire-supabase-local
+
 5. Config file is already defined in the project.
+
 6. Start Docker
+
 7. Run `npx supabase start` or `supabase start` to start all services.
 
 > Run `npx supabase status` or `supabase status` to get information regarding all supabase services. Once the docker image is being run.
