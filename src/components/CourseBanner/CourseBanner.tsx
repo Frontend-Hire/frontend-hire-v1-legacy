@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { BANNER_CONFIG } from '@/config/site';
+import { usePathname } from 'next/navigation';
 
 type CourseBannerProps = {
   isRootTop?: boolean;
@@ -21,7 +22,9 @@ export default function CourseBanner({ isRootTop }: CourseBannerProps) {
         <span>{BANNER_CONFIG.text}</span>
         <Link
           className="underline"
-          target="_blank"
+          target={
+            BANNER_CONFIG.cta.href.startsWith('https') ? '_blank' : undefined
+          }
           href={BANNER_CONFIG.cta.href}
         >
           {BANNER_CONFIG.cta.text}
@@ -33,6 +36,7 @@ export default function CourseBanner({ isRootTop }: CourseBannerProps) {
 
 function RootTopBanner() {
   const [banner, setBanner] = React.useState<'open' | 'close' | ''>('');
+  const path = usePathname();
 
   React.useEffect(() => {
     const bannerState = sessionStorage.getItem('banner');
@@ -41,7 +45,11 @@ function RootTopBanner() {
     } else {
       setBanner('open');
     }
-  }, []);
+
+    if (path === BANNER_CONFIG.cta.href) {
+      setBanner('close');
+    }
+  }, [path]);
 
   if (banner !== 'open') return null;
 
@@ -56,7 +64,9 @@ function RootTopBanner() {
         <span>{BANNER_CONFIG.text}</span>
         <Link
           className="underline"
-          target="_blank"
+          target={
+            BANNER_CONFIG.cta.href.startsWith('https') ? '_blank' : undefined
+          }
           href={BANNER_CONFIG.cta.href}
         >
           {BANNER_CONFIG.cta.text}

@@ -4,6 +4,7 @@ import {
   FolderGit2Icon,
   LibraryBigIcon,
   SpeechIcon,
+  WandIcon,
 } from 'lucide-react';
 
 export const LINKS: {
@@ -24,6 +25,7 @@ export const LINKS: {
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
       { title: 'Blog', href: '/blog', icon: AlbumIcon },
+      { title: 'React Cohort', href: '/react-cohort', icon: WandIcon },
     ],
   },
   {
@@ -46,10 +48,10 @@ export const LINKS: {
 export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav);
 
 export const BANNER_CONFIG = {
-  show: false,
-  text: 'A free live webinar on React Hooks is happening soon.',
+  show: true,
+  text: 'Our 7-day React Cohort is open for registration!',
   cta: {
-    text: 'Book your seat now!',
-    href: 'https://topmate.io/iamyhr/796317',
+    text: 'Book your spot now',
+    href: '/react-cohort',
   },
 };
