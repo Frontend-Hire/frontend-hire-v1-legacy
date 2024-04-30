@@ -23,23 +23,15 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { formSchema } from '../_schema/formSchema';
+import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import React from 'react';
 
-const formSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, {
-      message: 'Full name must be at least 2 characters',
-    })
-    .max(100),
-  htmlExperience: z.enum(['lessThan6', 'moreThan6']).optional(),
-  cssExperience: z.enum(['lessThan6', 'moreThan6']).optional(),
-  jsExperience: z.enum(['lessThan6', 'moreThan6']).optional(),
-  reactExperience: z.enum(['lessThan6', 'moreThan6']).optional(),
-  areYouAStudent: z.enum(['yes', 'no']).optional(),
-  linkedIn: z.string().url().optional(),
-});
+type Status = 'idle' | 'loading' | 'success' | 'error';
 
 export default function CohortForm() {
+  const [status, setStatus] = React.useState<Status>('idle');
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,8 +39,57 @@ export default function CohortForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setStatus('loading');
+      const supabaseBrowserClient = createSupabaseBrowserClient();
+      const { data, error } = await supabaseBrowserClient
+        .from('react_cohort_v1')
+        .insert({
+          full_name: values.fullName,
+          html_experience: values.htmlExperience,
+          css_experience: values.cssExperience,
+          js_experience: values.jsExperience,
+          react_experience: values.reactExperience,
+          are_you_a_student: values.areYouAStudent,
+          linked_in: values.linkedIn,
+        });
+      setStatus('success');
+
+      if (error) {
+        setStatus('error');
+        throw new Error(error.message);
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="capitalize">Success</CardTitle>
+          <CardDescription>
+            Your spot has been saved. We will get back to you soon.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="capitalize">Error</CardTitle>
+          <CardDescription>
+            There was an error saving your spot. Please refresh the page and try
+            again.
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    );
   }
 
   return (
@@ -332,7 +373,11 @@ export default function CohortForm() {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit">Save Spot</Button>
+            {status === 'loading' ? (
+              <Button type="button">Submitting...</Button>
+            ) : (
+              <Button>Save Spot</Button>
+            )}
           </CardFooter>
         </form>
       </Form>
