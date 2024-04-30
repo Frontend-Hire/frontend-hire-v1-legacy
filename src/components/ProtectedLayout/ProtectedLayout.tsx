@@ -5,14 +5,20 @@ import Footer from '../Footer';
 import Header from '../Header';
 
 type ProtectedLayoutProps = {
+  headline?: string;
+  message?: string;
   showHeader?: boolean;
   showFooter?: boolean;
+  isFooterCompact?: boolean;
 };
 
 export default async function ProtectedLayout({
+  headline = 'Our platform is free for registered users!',
+  message = 'So, sign in for free with your Google account for unrestricted access to questions, projects and interviews!',
   children,
   showHeader = true,
   showFooter = true,
+  isFooterCompact = true,
 }: React.PropsWithChildren<ProtectedLayoutProps>) {
   const supabaseServerClient = createSupabaseServerClient();
 
@@ -23,13 +29,8 @@ export default async function ProtectedLayout({
         <Header />
         <div className="flex h-full grow flex-col items-start gap-4 p-2 md:px-[100px] md:py-4 lg:px-[200px] xl:px-[250px]">
           <div className="flex flex-col gap-4 py-2">
-            <Heading variant="h1">
-              Our platform is free for registered users!
-            </Heading>
-            <p className="text-sm text-gray-300">
-              So, sign in for free with your Google account for unrestricted
-              access to questions, projects and interviews!
-            </p>
+            <Heading variant="h1">{headline}</Heading>
+            <p className="text-sm text-gray-300">{message}</p>
           </div>
           <SignInButton />
           <p className="text-sm text-gray-300">
@@ -47,7 +48,7 @@ export default async function ProtectedLayout({
     <>
       {showHeader && <Header />}
       {children}
-      {showFooter && <Footer isCompact />}
+      {showFooter && <Footer isCompact={isFooterCompact} />}
     </>
   );
 }

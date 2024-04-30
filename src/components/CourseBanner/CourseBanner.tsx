@@ -46,7 +46,7 @@ function RootTopBanner() {
       setBanner('open');
     }
 
-    if (path === BANNER_CONFIG.cta.href) {
+    if (path.includes(BANNER_CONFIG.cta.href)) {
       setBanner('close');
     }
   }, [path]);
