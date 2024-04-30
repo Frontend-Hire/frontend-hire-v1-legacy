@@ -6,7 +6,7 @@ export default function HeroSection() {
     <section className="flex min-h-screen flex-col items-center justify-center gap-6 p-2 text-center md:px-10 md:py-2">
       <div className="flex w-full grow flex-col items-center justify-center gap-6">
         <p className="rounded bg-[#18005F] px-2 py-1 text-sm md:text-base">
-          100% Free Access to Questions, Projects, and Guides.
+          100% Free Access to Questions and Projects.
         </p>
         <h1 className="max-w-[25ch] text-3xl font-black md:text-4xl">
           Practice Core Frontend Skills For Interviews And Real World
