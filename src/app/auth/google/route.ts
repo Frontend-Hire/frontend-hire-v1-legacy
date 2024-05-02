@@ -30,6 +30,9 @@ export async function POST(request: Request) {
   const { data } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
+      queryParams: {
+        prompt: 'select_account',
+      },
       redirectTo: `${requestUrl.origin}/auth/callback?redirectTo=${requestData.redirectTo}`,
     },
   });
