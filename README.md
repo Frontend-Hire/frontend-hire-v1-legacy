@@ -1,5 +1,11 @@
 # Getting Started
 
+## Keeping the database structure in sync
+
+- Always take a `supabase db pull` before starting the development.
+- Apply any migrations if required using `supabase migrate up`.
+- If required, also reset the database using `supabase db reset`.
+
 ## Setting up Supabase locally
 
 We'll set up **supabase** for local development. Follow the steps below to set up supabase locally.
