@@ -42,7 +42,7 @@ type ComingSoonItemProps = {
 function ComingSoonItem({ title, features }: ComingSoonItemProps) {
   return (
     <li className="flex flex-col items-center justify-center gap-5">
-      <h3 className="text-stroke text-center text-3xl font-black uppercase tracking-widest text-black md:text-[40px]">
+      <h3 className="text-stroke text-center text-3xl font-black uppercase tracking-widest text-black motion-safe:animate-pulse md:text-[40px]">
         {title}
       </h3>
       <ul className="space-y-1.5 text-muted">
