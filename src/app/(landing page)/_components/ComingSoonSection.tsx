@@ -7,6 +7,10 @@ export default function ComingSoonSection() {
 
       <ul className="flex flex-col items-center justify-center gap-20">
         <ComingSoonItem
+          title="Pro Plan"
+          features={['Content to truly make you pro.', 'Pricing TBD.']}
+        />
+        <ComingSoonItem
           title="Frontend System Design"
           features={['New Feature.', 'Will be included in the Pro plan.']}
         />
