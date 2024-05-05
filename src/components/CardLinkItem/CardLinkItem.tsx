@@ -34,6 +34,7 @@ export default function CardLinkItem(props: CardLinkItemProps) {
 
   return (
     <Link
+      prefetch={false}
       className="flex items-center justify-between rounded bg-card p-2 hover:bg-card/80"
       href={props.link}
     >

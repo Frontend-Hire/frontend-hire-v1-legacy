@@ -57,7 +57,7 @@ export default function Footer({
       <div className="flex justify-between">
         {getPrevPage() ? (
           <Button className="text-xl text-white" variant="link" asChild>
-            <Link href={getPrevPage()![0]}>
+            <Link prefetch={false} href={getPrevPage()![0]}>
               <ChevronLeftIcon />
               Prev
             </Link>
@@ -67,7 +67,7 @@ export default function Footer({
         )}
         {getNextPage() ? (
           <Button className="text-xl text-white" variant="link" asChild>
-            <Link href={getNextPage()![0]}>
+            <Link prefetch={false} href={getNextPage()![0]}>
               Next <ChevronRightIcon />
             </Link>
           </Button>

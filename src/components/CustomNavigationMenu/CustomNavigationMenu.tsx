@@ -48,6 +48,7 @@ function ListItem({ children, href }: React.PropsWithChildren<ListItemProps>) {
   return (
     <li>
       <Link
+        prefetch={false}
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         legacyBehavior

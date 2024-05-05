@@ -31,7 +31,7 @@ export default async function Blog() {
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, index) => (
           <li key={post.id}>
-            <Link href={`blog/${post.id}`}>
+            <Link prefetch={false} href={`blog/${post.id}`}>
               <BlogCard post={post} priority={index < 6} />
             </Link>
           </li>
