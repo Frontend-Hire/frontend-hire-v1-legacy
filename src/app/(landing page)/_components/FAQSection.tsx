@@ -23,6 +23,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
         <p>
           Please email us at{' '}
           <Link
+            prefetch={false}
             className="text-link underline"
             href="mailto:info@frontendhire.com"
           >
@@ -46,6 +47,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
         <p>
           Please email us at{' '}
           <Link
+            prefetch={false}
             className="text-link underline"
             href="mailto:info@frontendhire.com"
           >
@@ -62,6 +64,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
       <p>
         Email us at{' '}
         <Link
+          prefetch={false}
           className="text-link underline"
           href="mailto:info@frontendhire.com"
         >

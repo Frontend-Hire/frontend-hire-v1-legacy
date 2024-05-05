@@ -12,7 +12,9 @@ export default function CTA({
 }: CTAButtonProps) {
   return (
     <Button asChild>
-      <Link href={href}>{label}</Link>
+      <Link prefetch={false} href={href}>
+        {label}
+      </Link>
     </Button>
   );
 }

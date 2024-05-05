@@ -40,14 +40,14 @@ export default function Header() {
             size="icon"
             asChild
           >
-            <Link href={`/projects`}>
+            <Link prefetch={false} href={`/projects`}>
               <ListIcon />
             </Link>
           </Button>
         </Tooltip>
       </div>
 
-      <Link href="/projects" className="max-xs:hidden">
+      <Link prefetch={false} href="/projects" className="max-xs:hidden">
         <HeaderLogo />
       </Link>
 

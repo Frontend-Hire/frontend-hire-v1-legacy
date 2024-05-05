@@ -69,6 +69,7 @@ export default function TOC({ headings }: TOCProps) {
                 )}
               >
                 <Link
+                  prefetch={false}
                   href={`#${item.id}`}
                   className="hover:underline"
                   onClick={() => setCurrentHeading(item.id)}

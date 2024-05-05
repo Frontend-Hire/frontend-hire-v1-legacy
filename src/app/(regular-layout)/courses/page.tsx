@@ -31,7 +31,7 @@ export default function CoursesPage() {
       <VisuallyHidden>Course List</VisuallyHidden>
       <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
         <li>
-          <Link href="courses/todo-app-react/overview">
+          <Link prefetch={false} href="courses/todo-app-react/overview">
             <CourseCardItem
               image={todoAppReactTDDImg}
               title="Todo App"
@@ -42,7 +42,7 @@ export default function CoursesPage() {
           </Link>
         </li>
         <li>
-          <Link href="courses/stackpack/overview">
+          <Link prefetch={false} href="courses/stackpack/overview">
             <CourseCardItem
               image={stackpackImg}
               title="Stackpack"

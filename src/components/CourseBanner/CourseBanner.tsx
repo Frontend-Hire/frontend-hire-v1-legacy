@@ -20,6 +20,7 @@ export default function CourseBanner({ isRootTop }: CourseBannerProps) {
       <span className="flex grow flex-col gap-1 text-center">
         <span>{BANNER_CONFIG.text}</span>
         <Link
+          prefetch={false}
           className="underline"
           target="_blank"
           href={BANNER_CONFIG.cta.href}
@@ -55,6 +56,7 @@ function RootTopBanner() {
       <span className="flex grow flex-col gap-1 text-center">
         <span>{BANNER_CONFIG.text}</span>
         <Link
+          prefetch={false}
           className="underline"
           target="_blank"
           href={BANNER_CONFIG.cta.href}

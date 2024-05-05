@@ -13,7 +13,7 @@ const StaticMobileMenu = dynamic(
 export default function Header() {
   return (
     <header className="container sticky top-0 z-50 flex w-full items-center justify-between gap-4 border-b border-border/40 bg-background/90 p-2 backdrop-blur-xl md:py-2">
-      <Link href="/">
+      <Link prefetch={false} href="/">
         <HeaderLogo />
       </Link>
 
