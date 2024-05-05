@@ -5,7 +5,7 @@ export default function FeatureDescriptionItem({
 }: React.PropsWithChildren) {
   return (
     <li className="flex gap-1 text-lg font-medium md:text-xl lg:text-2xl">
-      <ArrowRightIcon className="flex-shrink-0 text-link" /> {children}
+      <ArrowRightIcon className="mt-0.5 flex-shrink-0 text-link" /> {children}
     </li>
   );
 }
