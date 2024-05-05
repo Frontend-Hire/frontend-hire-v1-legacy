@@ -57,7 +57,9 @@ export default function ProjectItem({
     if (isSubmitted) {
       return (
         <Button asChild variant="outline">
-          <Link href={`/projects/${id}`}>Revist</Link>
+          <Link prefetch={false} href={`/projects/${id}`}>
+            Revist
+          </Link>
         </Button>
       );
     }
@@ -65,14 +67,18 @@ export default function ProjectItem({
     if (completedTasks.length === 0) {
       return (
         <Button asChild>
-          <Link href={`/projects/${id}`}>Start</Link>
+          <Link prefetch={false} href={`/projects/${id}`}>
+            Start
+          </Link>
         </Button>
       );
     }
 
     return (
       <Button asChild variant="secondary">
-        <Link href={`/projects/${id}`}>Continue</Link>
+        <Link prefetch={false} href={`/projects/${id}`}>
+          Continue
+        </Link>
       </Button>
     );
   };
