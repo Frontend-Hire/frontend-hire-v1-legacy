@@ -26,7 +26,9 @@ export default function SubmissionConfetti({
           <DialogDescription>That was a good project!</DialogDescription>
         </DialogHeader>
         <Button asChild>
-          <Link href="/projects">Try one more</Link>
+          <Link prefetch={false} href="/projects">
+            Try one more
+          </Link>
         </Button>
       </DialogContent>
     </Dialog>

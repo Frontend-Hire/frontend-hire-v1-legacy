@@ -26,9 +26,9 @@ export default function Footer({ isCompact, className }: FooterProps) {
   }
 
   return (
-    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-2 text-sm xs:grid-cols-2 md:px-10 md:py-2">
+    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-4 text-sm xs:grid-cols-2 md:px-10">
       <div className="flex flex-col items-center gap-4 xs:items-start">
-        <Link href="/">
+        <Link prefetch={false} href="/">
           <HeaderLogo />
         </Link>
         <Social />
@@ -61,6 +61,7 @@ function FooterLinks({ links }: FooterLinksProps) {
             {link.items.map((item) => (
               <li key={item.title}>
                 <Link
+                  prefetch={false}
                   className="transition-colors hover:text-primary-foreground"
                   href={item.href}
                   target={item.href.startsWith('http') ? '_blank' : undefined}
@@ -81,6 +82,7 @@ function Social() {
     <ul className="flex flex-wrap items-center justify-center gap-4">
       <li>
         <Link
+          prefetch={false}
           className="transition-colors hover:text-primary"
           target="_blank"
           href="https://www.linkedin.com/company/frontend-hire/"
@@ -103,6 +105,7 @@ function Social() {
       </li>
       <li>
         <Link
+          prefetch={false}
           className="transition-colors hover:text-primary"
           target="_blank"
           href="https://twitter.com/frontendhire"
@@ -125,6 +128,7 @@ function Social() {
       </li>
       <li>
         <Link
+          prefetch={false}
           className="transition-colors hover:text-primary"
           target="_blank"
           href="https://discord.gg/DWAVqksVtx"
@@ -147,6 +151,7 @@ function Social() {
       </li>
       <li>
         <Link
+          prefetch={false}
           className="transition-colors hover:text-primary"
           target="_blank"
           href="https://github.com/Frontend-Hire"

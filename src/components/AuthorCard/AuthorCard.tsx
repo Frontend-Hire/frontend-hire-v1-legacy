@@ -45,6 +45,7 @@ export default function AuthorCard({
           {filteredSocials.map((info) => (
             <li key={info.name}>
               <Link
+                prefetch={false}
                 className="transition-colors hover:text-primary"
                 target="_blank"
                 href={info.url!}

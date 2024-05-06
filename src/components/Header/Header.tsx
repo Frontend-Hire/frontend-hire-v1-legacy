@@ -18,8 +18,8 @@ export default async function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex h-14 w-full items-center justify-between gap-4 border-b border-border/40 bg-background/90 p-2 backdrop-blur-xl md:px-10 md:py-2">
-      <Link href={getLogoLink()}>
+    <header className="container sticky top-0 z-50 flex h-14 w-full items-center justify-between gap-4 border-b border-border/40 bg-background/90 p-2 backdrop-blur-xl md:py-2">
+      <Link prefetch={false} href={getLogoLink()}>
         <HeaderLogo />
       </Link>
 

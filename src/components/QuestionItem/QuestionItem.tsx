@@ -63,7 +63,7 @@ export default function QuestionItem({
   isNew,
 }: QuestionItemProps) {
   return (
-    <Link href={`/questions/${id}`}>
+    <Link prefetch={false} href={`/questions/${id}`}>
       <div className="flex min-h-[80px] items-center gap-4 overflow-hidden rounded-[5px] bg-card pr-4 text-card-foreground hover:bg-card/80">
         <DifficultyLabel difficulty={difficulty} />
         <div className="flex w-full flex-col gap-[5px] py-2">
