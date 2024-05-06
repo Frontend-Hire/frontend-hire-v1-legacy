@@ -31,6 +31,7 @@ export const LINKS: {
     hideOnMainNav: true,
     items: [
       { title: 'About', href: '/about' },
+      { title: 'Contact Us', href: '/contact-us' },
       {
         title: 'Privacy Policy',
         href: '/privacy-policy',
