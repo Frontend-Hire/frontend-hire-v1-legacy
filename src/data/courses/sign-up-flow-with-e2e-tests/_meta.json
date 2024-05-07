@@ -1,3 +1,13 @@
 {
-  "overview": "Overview"
+  "isPro": true,
+  "chapters": {
+    "overview": "Overview",
+    "setup-nextjs-project": "Setup Next.js Project",
+    "setup-supabase-project": "Setup Supabase Project",
+    "building-login-page": "Building Login Page",
+    "e2e-testing-login": "E2E Testing Login Page",
+    "building-register-page": "Building Register Page",
+    "e2e-testing-register": "E2E Testing Register Page",
+    "summary": "Summary"
+  }
 }

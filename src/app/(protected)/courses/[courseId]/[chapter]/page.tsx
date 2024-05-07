@@ -12,7 +12,7 @@ type ChapterPageProps = {
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const allPages = await getCoursePages(params.courseId);
+  const { isPro, chapters } = await getCoursePages(params.courseId);
   const { getContent, meta } = await getCoursePage(
     params.courseId,
     params.chapter,
@@ -27,7 +27,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           {content}
         </article>
         <Footer
-          allPages={allPages}
+          allPages={Object.entries(chapters)}
           currentPage={params.chapter}
           lastUpdated={meta?.lastUpdated}
         />
