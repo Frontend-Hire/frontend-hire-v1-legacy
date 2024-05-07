@@ -67,7 +67,7 @@ function InclusionsExclusions() {
           </li>
         ))}
       </ul>
-      <p className="text-xl font-bold text-muted">What&apos;s Not Included?</p>
+      <p className="text-xl font-bold text-muted">What's Not Included?</p>
       <ul className="flex flex-col gap-5">
         {EXCLUSIONS.map((item) => (
           <li key={item}>
