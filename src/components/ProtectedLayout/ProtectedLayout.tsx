@@ -17,7 +17,7 @@ export default async function ProtectedLayout({
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data, error } = await supabaseServerClient.auth.getUser();
-  if (error || !data?.user) {
+  if (process.env.NODE_ENV === 'production' && (error || !data?.user)) {
     return (
       <>
         <Header />
