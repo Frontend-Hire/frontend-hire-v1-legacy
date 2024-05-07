@@ -4,6 +4,7 @@
     "overview": "Overview",
     "setup-nextjs-project": "Setup Next.js Project",
     "setup-supabase-project": "Setup Supabase Project",
+    "building-landing-page": "Building Landing Page",
     "building-login-page": "Building Login Page",
     "e2e-testing-login": "E2E Testing Login Page",
     "building-register-page": "Building Register Page",
