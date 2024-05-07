@@ -80,8 +80,8 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     answer: (
       <>
         <p>
-          We want to solve issues with interviews from both the candidate&apos;s
-          and the company&apos;s perspectives.
+          We want to solve issues with interviews from both the candidate's and
+          the company's perspectives.
         </p>
         <p>
           Creating hiring profiles is part of our initial approach to addressing
