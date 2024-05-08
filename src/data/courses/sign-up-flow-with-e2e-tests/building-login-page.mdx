@@ -6,7 +6,100 @@ export const meta = {
 
 # Building Login Page
 
-In this lesson, we will build a login page with a form that allows users to enter their email and password. We will also add validation to the form fields and handle the form submission.
+In this lesson, we will build a login page with a form that allows users to enter their email and password. We will also add validation to the form fields using Zod and handle the form submission with a server action.
 
-## Login Page 
+## Login Page
 
+Let us create a new route group for the login page and the upcoming pages (register page) related to authentication. We will create a new folder named `(auth)` inside the `app` directory and add a new file named `layout.tsx` inside the `(auth)` folder. Just like we did with the `(marketing)` route group.
+
+<CustomCodeViewer filename="src/app/(auth)/layout.tsx">
+```tsx showLineNumbers
+export default function AuthLayout({ children }: React.PropsWithChildren) {
+  return (
+    <main className="flex h-svh flex-col items-center justify-center">
+      <div className="max-w-sm rounded bg-gray-300 p-4">{children}</div>
+    </main>
+  );
+}
+```
+</CustomCodeViewer>
+
+Next, let's create a new file named `page.tsx` inside a new folder named `login` within the `(auth)` route group.
+
+<CustomCodeViewer filename="src/app/(auth)/login/page.tsx">
+```tsx showLineNumbers
+export default function LoginPage() {
+  return (
+    <div>
+      <h1>Login</h1>
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+### Adding the form
+
+Now, let's add a form to the page that allows users to enter their email and password.
+
+<CustomCodeViewer filename="src/app/(auth)/login/page.tsx">
+```tsx showLineNumbers {1-20}
+import Link from 'next/link';
+
+export default function LoginPage() {
+  return (
+    <div>
+      <h1 className="mb-4 text-center text-xl">Login</h1>
+      <form className="space-y-6">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" type="email" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" type="password" />
+        </div>
+        <button className="w-full bg-black px-3 py-2 text-white">Login</button>
+      </form>
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+Let us also add a link to the register page just below the login button. We will build the actual register page later in this course.
+
+<CustomCodeViewer filename="src/app/(auth)/login/page.tsx">
+```tsx showLineNumbers {17-22}
+import Link from 'next/link';
+
+export default function LoginPage() {
+  return (
+    <>
+      <h1 className="mb-4 text-center text-xl">Login</h1>
+      <form className="space-y-6">
+        <div className="flex flex-col gap-1">
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" type="email" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" type="password" />
+        </div>
+        <button className="w-full bg-black px-3 py-2 text-white">Login</button>
+        <p>
+          Don't have an account?{' '}
+          <Link className="underline hover:opacity-60" href="/register">
+            Register for one!
+          </Link>
+        </p>
+      </form>
+    </>
+  );
+}
+```
+</CustomCodeViewer>
+
+## Tip: ESLint react/no-unescaped-entities issue
+
+This is quite an irritating issue that you might face when using the `react/no-unescaped-entities` rule in ESLint. The rule is enabled by default in the Next.js ESLint configuration. The rule throws an error when you use special characters like `&`, `<`, `>`, etc., directly in JSX. To fix this issue, you can use the `&amp;`, `&lt;`, `&gt;`, etc., HTML entities instead of the special characters.
