@@ -36,12 +36,12 @@ function PricingDetails() {
         Regional price is automatically applied.
       </p>
       <div className="flex flex-col items-center justify-center gap-4">
-        <p className="text-3xl font-black md:text-5xl">₹2,500</p>
+        <p className="text-3xl font-black md:text-5xl">₹2,999</p>
         <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">₹3,000</s> after June 1st
+          <s className="text-xl md:text-2xl">₹3,999</s> after June 1st
         </p>
         <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">₹5,000</s> after 200 paid users
+          <s className="text-xl md:text-2xl">₹4,999</s> after 200 paid users
         </p>
       </div>
       <div className="w-full space-y-2">

@@ -26,7 +26,6 @@ export default function ComingSoonSection() {
           features={[
             'Still in ideation phase.',
             'We want to solve hiring from both ends.',
-            'Might or might not be part of Pro plan.',
           ]}
         />
       </ul>
