@@ -3,7 +3,7 @@ import FeatureDescriptionItem from './FeatureDescriptionItem';
 export default function ComingSoonSection() {
   return (
     <section className="container flex flex-col gap-10 pb-20">
-      <h2 className="text-center text-3xl font-black">Coming Soon</h2>
+      <h2 className="text-center text-3xl font-black">More Features</h2>
 
       <ul className="flex flex-col items-center justify-center gap-20">
         <ComingSoonItem

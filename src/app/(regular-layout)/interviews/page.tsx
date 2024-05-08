@@ -54,13 +54,13 @@ export default async function Projects() {
             rightIcon={<ChevronRightIcon size={40} />}
           />
         </li>
-        <li>
+        {/* <li>
           <CardLinkItem
             type="comingSoon"
             title="Online Assessment"
             leftIcon={<LaptopIcon size={40} />}
           />
-        </li>
+        </li> */}
       </ul>
     </article>
   );

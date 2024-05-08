@@ -20,7 +20,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
           className,
         )}
       >
-        © Frontend Hire {thisYear}
+        © YHR Technologies {thisYear}
       </footer>
     );
   }
@@ -35,7 +35,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
       </div>
       <FooterLinks links={LINKS} />
       <div className="text-center xs:text-left">
-        © Frontend Hire {thisYear}
+        © YHR Technologies {thisYear}
       </div>
     </footer>
   );

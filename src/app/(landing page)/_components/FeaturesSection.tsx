@@ -24,7 +24,7 @@ export default function FeaturesSection() {
         features={[
           'Interview and Real World Based.',
           'Free access to questions.',
-          'Pro plan gives you access to official solutions (coming soon).',
+          'Pro plan gives you access to official solutions.',
         ]}
       />
       <FeatureLayout

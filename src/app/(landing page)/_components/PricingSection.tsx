@@ -6,8 +6,8 @@ const INCLUSIONS = [
   'Free Updates',
   'Exclusive Courses',
   'Simulated Interviews',
-  'Frontend System Design (Coming Soon)',
-  'Text/Video Solutions To Coding Questions (Coming Soon)',
+  'Frontend System Design',
+  'Text/Video Solutions To Coding Questions',
   'More New Features',
 ];
 
