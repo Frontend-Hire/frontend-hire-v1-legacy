@@ -9,6 +9,7 @@
     "e2e-testing-login": "E2E Testing Login Page",
     "building-register-page": "Building Register Page",
     "e2e-testing-register": "E2E Testing Register Page",
+    "bonus-saving-auth-state": "Bonus: Saving Auth State",
     "summary": "Summary"
   }
 }
