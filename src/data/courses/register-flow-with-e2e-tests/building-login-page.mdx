@@ -312,12 +312,12 @@ export default function LoginPage() {
         <div className="flex flex-col gap-1">
           <label htmlFor="email">Email</label>
           <input id="email" name="email" type="email" required />
-          {state?.errors.email && <p>{state.errors.email}</p>}
+          <p aria-live='polite'>{state?.errors.email}</p>
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type="password" required />
-          {state?.errors.password && <p>{state.errors.password}</p>}
+          <p aria-live='polite'>{state?.errors.password}</p>
         </div>
         <button className="w-full bg-black px-3 py-2 text-white">Login</button>
         <p>
@@ -334,6 +334,10 @@ export default function LoginPage() {
 </CustomCodeViewer>
 
 Since we are using the `useFormState` hook, we need to add the `use client` directive at the top of the file. The hook returns an object with the server action state and a function to call the server action. We can use the state object to show the validation errors to the user. If the `errors` object in the state is not empty, we show the error message below the respective input field.
+
+#### Tip: Aria Live
+
+We have used the `aria-live` attribute to make the error messages accessible to screen readers. The `aria-live` attribute tells the screen reader to announce the changes to the element when the content changes. The value `polite` tells the screen reader to announce the changes when the user is idle a.k.a when the user submits the form and waits for the response. 
 
 We are not done yet, we also have to update our server action to match the new function signature.
 
