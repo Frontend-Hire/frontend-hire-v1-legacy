@@ -30,6 +30,11 @@ module.exports = {
           css: {
             a: {
               color: '#FF5CF2',
+              code: {
+                color: '#FFF',
+                textDecorationColor: '#FFF',
+                textDecoration: 'underline',
+              },
             },
           },
         },
