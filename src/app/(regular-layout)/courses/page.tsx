@@ -53,7 +53,7 @@ export default function CoursesPage() {
           </Link>
         </li>
         <li>
-          <Link href="courses/sign-up-flow-with-e2e-tests/overview">
+          <Link href="courses/register-flow-with-e2e-tests/overview">
             <CourseCardItem
               image={loginRegisterFlow}
               title="Login Register Flow"
