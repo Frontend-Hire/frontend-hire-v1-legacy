@@ -1,3 +1,6 @@
 {
-  "overview": "Overview"
+  "isPro": true,
+  "chapters": {
+    "overview": "Overview"
+  }
 }
