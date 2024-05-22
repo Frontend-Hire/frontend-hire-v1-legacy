@@ -7,12 +7,13 @@ export default async function PremiumProtectedContentLayout({
 }: React.PropsWithChildren) {
   const supabaseServerClient = createSupabaseServerClient();
 
-  const { data } = await supabaseServerClient.auth.getUser();
+  const { data } = await supabaseServerClient
+    .from('users')
+    .select('has_pro_access')
+    .limit(1)
+    .single();
 
-  // Check if the user has pro access
-  const hasProAccess = true;
-
-  if (hasProAccess) {
+  if (data?.has_pro_access) {
     return <>{children}</>;
   }
 
