@@ -74,7 +74,9 @@ export default function CoursesPage() {
       <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
         {COURSES.map((course, index) => (
           <li key={index}>
-            <CourseCardItem {...course} />
+            <Link prefetch={false} href={course.link}>
+              <CourseCardItem {...course} />
+            </Link>
           </li>
         ))}
       </ul>
