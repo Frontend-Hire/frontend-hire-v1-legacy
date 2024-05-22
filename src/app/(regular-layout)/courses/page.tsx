@@ -71,7 +71,7 @@ export default function CoursesPage() {
       <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
-      <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
+      <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 xl:grid-cols-4">
         {COURSES.map((course, index) => (
           <li key={index}>
             <Link prefetch={false} href={course.link}>
