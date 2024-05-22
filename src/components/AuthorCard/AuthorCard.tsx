@@ -10,7 +10,7 @@ type AuthorCardProps = {
   github?: string;
   website?: string;
   image: StaticImageData;
-  lastUpdated: string;
+  publishedOn: string;
 };
 
 export default function AuthorCard({
@@ -20,7 +20,7 @@ export default function AuthorCard({
   github,
   website,
   image,
-  lastUpdated,
+  publishedOn,
 }: AuthorCardProps) {
   const socials = [
     { name: 'LinkedIn', url: linkedIn, icon: <LinkedinIcon size={20} /> },
@@ -37,7 +37,7 @@ export default function AuthorCard({
         <Image src={image} alt={name} className="h-10 w-10 rounded-full" />
         <div className="flex flex-col gap-0.5">
           <h2 className="font-medium">{name}</h2>
-          <p className="text-sm">{lastUpdated}</p>
+          <p className="text-sm">{publishedOn}</p>
         </div>
       </div>
       {filteredSocials.length > 0 && (
@@ -45,6 +45,7 @@ export default function AuthorCard({
           {filteredSocials.map((info) => (
             <li key={info.name}>
               <Link
+                prefetch={false}
                 className="transition-colors hover:text-primary"
                 target="_blank"
                 href={info.url!}

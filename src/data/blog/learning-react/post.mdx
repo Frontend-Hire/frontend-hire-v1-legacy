@@ -1,0 +1,27 @@
+import GuideSpecialItem from '@/components/GuideSpecialItem';
+import { COURSE_ITEMS } from './constants';
+
+## Frontend Hire Tips
+
+- Do **not** jump directly into React without learning foundational JavaScript!
+- React at **its core is simple**, and most of the complexity comes from the ecosystem of React.
+- If your **foundations are strong**, you can easily be comfortable in the React ecosystem.
+- Learn the different **component design patterns** as quickly as possible.
+- Have **[this roadmap from roadmap.sh](https://roadmap.sh/react)** in your bookmarks and refer to it often.
+
+
+### Our Top List Of Courses To Do
+
+Choose only one, and immediately switch if the chosen one does not suit your learning style (**money can be earned back but time?**)
+
+<ol className="not-prose flex flex-col gap-4">
+  {COURSE_ITEMS.map((item) => (
+    <li key={item.link}>
+      <GuideSpecialItem {...item} />
+    </li>
+  ))}
+</ol>
+
+---
+
+#### Folks at Frontend Hire also teach React. **[Check out our courses!](/courses)**

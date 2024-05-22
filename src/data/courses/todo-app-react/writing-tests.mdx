@@ -133,7 +133,7 @@ npm run test
 </CustomCodeViewer>
 
 The test should pass with an output like this:
-![Test Pass](./screenshots/writing-tests-1.png)
+![Test Pass](./screenshots/writing-tests-1.webp)
 
 ### Improving the Test
 
@@ -227,7 +227,7 @@ export default defineConfig({
 </CustomCodeViewer>
 
 Rerun the test, and it should pass. But you'll see an error related to TypeScript despite the test passing.
-![TypeScript error](./screenshots/writing-tests-2.png)
+![TypeScript error](./screenshots/writing-tests-2.webp)
 
 This error is because TypeScript does not include the `setupTests.ts` file in our project. Let's update our `tsconfig.json` to include this file.
 
@@ -373,7 +373,7 @@ describe('App', () => {
 </CustomCodeViewer>
 
 You might try doing something like the above! But that will fail the tests with this error:
-![Test Fail](./screenshots/writing-tests-3.png)
+![Test Fail](./screenshots/writing-tests-3.webp)
 
 The error might be intimidating at first, but it is constructive. It tells us that there are multiple elements with the exact text. This error happened because we did not `clean up` our first test's render. So, the second render had the first test's elements as well. So, we must clean up the first render and subsequent renders.
 

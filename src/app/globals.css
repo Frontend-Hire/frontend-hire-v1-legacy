@@ -13,7 +13,7 @@
     --popover: 0 0% 3%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 306 100% 18%;
+    --primary: 306 100% 24%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 0 0% 6%;
@@ -31,6 +31,7 @@
     --border: 0 0% 11%;
     --input: 0 0% 16%;
     --ring: 306 100% 40%;
+    --link: 306 100% 62%;
 
     --radius: 0.5rem;
 
@@ -43,6 +44,14 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  .text-stroke {
+    text-shadow:
+      -1px -1px 0 hsl(var(--link)),
+      1px -1px 0 hsl(var(--link)),
+      -1px 1px 0 hsl(var(--link)),
+      1px 1px 0 hsl(var(--link));
   }
 }
 

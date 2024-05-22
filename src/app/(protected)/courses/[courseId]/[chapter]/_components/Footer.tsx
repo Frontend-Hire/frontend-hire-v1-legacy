@@ -50,14 +50,14 @@ export default function Footer({
     <div className="flex w-full flex-col gap-2">
       {getLastUpdated() && (
         <p className="text-right text-xs text-muted">
-          Last updated on {getLastUpdated()}
+          Last updated on <time dateTime={lastUpdated}>{getLastUpdated()}</time>
         </p>
       )}
       <hr className="h-0.5 bg-muted" />
       <div className="flex justify-between">
         {getPrevPage() ? (
           <Button className="text-xl text-white" variant="link" asChild>
-            <Link href={getPrevPage()![0]}>
+            <Link prefetch={false} href={getPrevPage()![0]}>
               <ChevronLeftIcon />
               Prev
             </Link>
@@ -67,7 +67,7 @@ export default function Footer({
         )}
         {getNextPage() ? (
           <Button className="text-xl text-white" variant="link" asChild>
-            <Link href={getNextPage()![0]}>
+            <Link prefetch={false} href={getNextPage()![0]}>
               Next <ChevronRightIcon />
             </Link>
           </Button>
