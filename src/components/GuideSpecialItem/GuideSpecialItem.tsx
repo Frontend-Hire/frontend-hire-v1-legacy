@@ -16,7 +16,11 @@ export default function GuideSpecialItem({
     <div className="not-prose flex justify-between gap-2 rounded bg-card p-2">
       <div className="flex grow flex-col gap-2">
         <div className="flex items-start justify-between gap-[5px]">
-          <Link className="underline underline-offset-2" href={link}>
+          <Link
+            prefetch={false}
+            className="underline underline-offset-2"
+            href={link}
+          >
             <Heading variant="h4">{title}</Heading>
           </Link>
           {isCourseItem && (

@@ -39,6 +39,8 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cva": "npm:class-variance-authority@^0.7.0",
+    "embla-carousel-auto-scroll": "^8.0.2",
+    "embla-carousel-react": "^8.0.2",
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.330.0",
     "mdx-bundler": "^10.0.2",
@@ -80,7 +82,7 @@
     "lint-staged": "^14.0.1",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.5.5",
-    "supabase": "^1.142.2",
+    "supabase": "^1.165.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

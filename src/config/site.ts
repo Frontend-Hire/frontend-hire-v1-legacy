@@ -3,6 +3,7 @@ import {
   FileQuestionIcon,
   FolderGit2Icon,
   LibraryBigIcon,
+  PresentationIcon,
   SpeechIcon,
 } from 'lucide-react';
 
@@ -23,7 +24,12 @@ export const LINKS: {
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
-      { title: 'Guides', href: '/guides', icon: AlbumIcon },
+      {
+        title: 'System Design',
+        href: '/system-design',
+        icon: PresentationIcon,
+      },
+      { title: 'Blog', href: '/blog', icon: AlbumIcon },
     ],
   },
   {
@@ -31,6 +37,7 @@ export const LINKS: {
     hideOnMainNav: true,
     items: [
       { title: 'About', href: '/about' },
+      { title: 'Contact Us', href: '/contact-us' },
       {
         title: 'Privacy Policy',
         href: '/privacy-policy',

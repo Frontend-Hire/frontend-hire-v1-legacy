@@ -12,7 +12,7 @@ type ChapterPageProps = {
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const allPages = await getCoursePages(params.courseId);
+  const { isPro, chapters } = await getCoursePages(params.courseId);
   const { getContent, meta } = await getCoursePage(
     params.courseId,
     params.chapter,
@@ -23,11 +23,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <div className="flex flex-1 gap-[30px]">
       <div className="flex flex-1 flex-col gap-4 pb-10">
-        <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5 prose-a:text-[#FF5CF2]">
+        <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
           {content}
         </article>
         <Footer
-          allPages={allPages}
+          allPages={Object.entries(chapters)}
           currentPage={params.chapter}
           lastUpdated={meta?.lastUpdated}
         />
