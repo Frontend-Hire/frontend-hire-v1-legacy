@@ -30,7 +30,7 @@ export default function CourseCardItem({
 
         <p className="line-clamp-3 grow text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-2">
-          {isFree && <Badge>Free</Badge>}
+          {isFree ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
           {isVideoAvailable && <Badge>Video Available</Badge>}
         </div>
       </div>

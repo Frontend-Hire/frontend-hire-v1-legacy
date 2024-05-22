@@ -62,11 +62,12 @@ export const getProjectsFromLocal = cache(async () => {
 const coursesPath = path.join(process.cwd(), '/src/data/courses');
 
 export const getCoursePages = cache(async (courseId: string) => {
-  const courseMeta: Record<string, string> = require(
-    `@/data/courses/${courseId}/_meta.json`,
-  );
+  const courseMeta: {
+    isPro?: boolean;
+    chapters: Record<string, string>;
+  } = require(`@/data/courses/${courseId}/_meta.json`);
 
-  return Object.entries(courseMeta);
+  return courseMeta;
 });
 
 export const getCoursePage = cache(

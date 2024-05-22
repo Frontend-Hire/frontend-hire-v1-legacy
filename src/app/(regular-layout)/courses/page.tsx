@@ -6,6 +6,7 @@ import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
 import todoAppReactTDDImg from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
 import stackpackImg from '@/assets/course-covers/stackpack.webp';
+import loginRegisterFlow from '@/assets/course-covers/login-register-flow-e2e.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -48,6 +49,15 @@ export default function CoursesPage() {
               title="Stackpack"
               description="Build a Sandpack clone with WebContainers in React and TypeScript."
               isFree
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="courses/register-flow-with-e2e-tests/overview">
+            <CourseCardItem
+              image={loginRegisterFlow}
+              title="Login Register Flow"
+              description="Learn how to build a login and register flow with E2E tests and Supabase."
             />
           </Link>
         </li>
