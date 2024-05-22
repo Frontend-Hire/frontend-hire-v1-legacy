@@ -13,7 +13,9 @@ export default function CustomCodeViewer({
   return (
     <div className="not-prose relative my-2 overflow-hidden rounded">
       {filename && (
-        <p className="break-all bg-primary px-2 py-1 font-medium">{filename}</p>
+        <p className="break-all bg-primary px-2 py-1 text-sm font-medium md:text-base">
+          {filename}
+        </p>
       )}
       {children}
     </div>

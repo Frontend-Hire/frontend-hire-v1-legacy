@@ -1,3 +1,4 @@
+import { BlogMeta } from '@/types/Blogs';
 import { ProjectOverview } from '@/types/Project';
 import { QuestionOverview } from '@/types/Question';
 import fs from 'fs';
@@ -58,11 +59,12 @@ export const getProjectsFromLocal = cache(async () => {
 });
 
 export const getCoursePages = cache(async (courseId: string) => {
-  const courseMeta: Record<string, string> = require(
-    `@/data/courses/${courseId}/_meta.json`,
-  );
+  const courseMeta: {
+    isPro?: boolean;
+    chapters: Record<string, string>;
+  } = require(`@/data/courses/${courseId}/_meta.json`);
 
-  return Object.entries(courseMeta);
+  return courseMeta;
 });
 
 export const getCoursePage = cache(
@@ -99,3 +101,36 @@ export const getSystemDesignPage = cache(
     };
   },
 );
+const blogPath = path.join(process.cwd(), '/src/data/blog');
+
+export const getBlogPostsMetaFromLocal = cache(async () => {
+  const blogPosts = fs.readdirSync(blogPath);
+
+  const posts = blogPosts
+    .filter((post) => !post.startsWith('.'))
+    .map((post) => {
+      const { meta }: { meta: BlogMeta } = require(
+        `@/data/blog/${post}/meta.ts`,
+      );
+
+      return {
+        id: post,
+        ...meta,
+      };
+    });
+
+  return posts.sort((a, b) =>
+    new Date(a.publishedOn) > new Date(b.publishedOn) ? -1 : 1,
+  );
+});
+
+export const getBlogPostFromLocal = cache(async (postId: string) => {
+  const { default: getContent } = require(`@/data/blog/${postId}/post.mdx`);
+
+  const { meta }: { meta: BlogMeta } = require(`@/data/blog/${postId}/meta.ts`);
+
+  return { getContent, meta } as {
+    getContent: () => React.ReactNode;
+    meta: BlogMeta;
+  };
+});

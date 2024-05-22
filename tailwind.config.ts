@@ -12,7 +12,10 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+      },
       screens: {
         '2xl': '1400px',
       },
@@ -27,6 +30,11 @@ module.exports = {
           css: {
             a: {
               color: '#FF5CF2',
+              code: {
+                color: '#FFF',
+                textDecorationColor: '#FFF',
+                textDecoration: 'underline',
+              },
             },
           },
         },
@@ -38,6 +46,7 @@ module.exports = {
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
+        link: 'hsl(var(--link) / <alpha-value>)',
         background: 'hsl(var(--background) / <alpha-value>)',
         foreground: 'hsl(var(--foreground) / <alpha-value>)',
         primary: {

@@ -19,7 +19,9 @@ export default function Error({
     <div className="flex h-full flex-col items-center justify-center p-4">
       <h2>{error.message}</h2>
       <Button asChild>
-        <Link href={'/questions'}>Back To All Questions</Link>
+        <Link prefetch={false} href={'/questions'}>
+          Back To All Questions
+        </Link>
       </Button>
       <p>Or</p>
       <Button variant="destructive" onClick={() => reset()}>

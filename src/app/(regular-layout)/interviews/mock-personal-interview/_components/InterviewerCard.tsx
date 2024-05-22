@@ -42,11 +42,16 @@ export default function InterviewerCard({
       </div>
       <p className="grow text-sm font-medium leading-5">{description}</p>
       <div className="flex items-center justify-between">
-        <Link className="hover:text-[#2867B2]" href={linkedIn} target="_blank">
+        <Link
+          prefetch={false}
+          className="hover:text-[#2867B2]"
+          href={linkedIn}
+          target="_blank"
+        >
           <LinkedinIcon />
         </Link>
         <Button asChild>
-          <Link target="_blank" href={bookingLink}>
+          <Link prefetch={false} target="_blank" href={bookingLink}>
             Book Interview <ExternalLinkIcon className="ml-1" />
           </Link>
         </Button>

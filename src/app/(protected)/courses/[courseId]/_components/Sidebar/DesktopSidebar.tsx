@@ -19,7 +19,7 @@ export default function DesktopSidebar({ pages }: SidebarProps) {
               chapter === item[0] && 'bg-[#290025] text-[#FF5CF2]',
             )}
           >
-            <Link className="block" href={item[0]}>
+            <Link prefetch={false} className="block" href={item[0]}>
               {item[1]}
             </Link>
           </li>

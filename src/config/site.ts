@@ -29,7 +29,7 @@ export const LINKS: {
         href: '/system-design',
         icon: PresentationIcon,
       },
-      { title: 'Guides', href: '/guides', icon: AlbumIcon },
+      { title: 'Blog', href: '/blog', icon: AlbumIcon },
     ],
   },
   {
@@ -37,6 +37,7 @@ export const LINKS: {
     hideOnMainNav: true,
     items: [
       { title: 'About', href: '/about' },
+      { title: 'Contact Us', href: '/contact-us' },
       {
         title: 'Privacy Policy',
         href: '/privacy-policy',

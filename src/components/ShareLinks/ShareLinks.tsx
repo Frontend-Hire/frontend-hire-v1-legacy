@@ -14,6 +14,7 @@ export default function ShareLinks({ link }: ShareLinksProps) {
     <ul className="not-prose flex flex-wrap gap-4">
       <li>
         <Link
+          prefetch={false}
           target="_blank"
           className="flex items-center gap-2 rounded-sm bg-primary p-1 transition-colors hover:opacity-90"
           href={twitterLink}
@@ -24,6 +25,7 @@ export default function ShareLinks({ link }: ShareLinksProps) {
       </li>
       <li>
         <Link
+          prefetch={false}
           target="_blank"
           className="flex items-center gap-2 rounded-sm bg-primary p-1 transition-colors hover:opacity-90"
           href={linkedinLink}

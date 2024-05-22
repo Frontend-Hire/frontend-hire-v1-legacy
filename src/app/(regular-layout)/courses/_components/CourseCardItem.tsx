@@ -17,7 +17,7 @@ export default function CourseCardItem({
   isVideoAvailable,
 }: CourseCardItemProps) {
   return (
-    <div className="flex h-full flex-col gap-2 rounded-md bg-card">
+    <div className="flex h-full flex-col gap-2 overflow-hidden rounded-md bg-card">
       <Image
         priority
         placeholder="blur"
@@ -30,7 +30,7 @@ export default function CourseCardItem({
 
         <p className="line-clamp-3 grow text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-2">
-          {isFree && <Badge>Free</Badge>}
+          {isFree ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
           {isVideoAvailable && <Badge>Video Available</Badge>}
         </div>
       </div>

@@ -4,8 +4,9 @@ import CourseCardItem from './_components/CourseCardItem';
 import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
-import todoAppReactTDDImg from './_assets/todo-app-react-tdd-typescript.webp';
-import stackpackImg from './_assets/stackpack.webp';
+import todoAppReactTDDImg from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
+import stackpackImg from '@/assets/course-covers/stackpack.webp';
+import loginRegisterFlow from '@/assets/course-covers/login-register-flow-e2e.webp';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function CoursesPage() {
       <VisuallyHidden>Course List</VisuallyHidden>
       <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3">
         <li>
-          <Link href="courses/todo-app-react/overview">
+          <Link prefetch={false} href="courses/todo-app-react/overview">
             <CourseCardItem
               image={todoAppReactTDDImg}
               title="Todo App"
@@ -42,12 +43,21 @@ export default function CoursesPage() {
           </Link>
         </li>
         <li>
-          <Link href="courses/stackpack/overview">
+          <Link prefetch={false} href="courses/stackpack/overview">
             <CourseCardItem
               image={stackpackImg}
               title="Stackpack"
               description="Build a Sandpack clone with WebContainers in React and TypeScript."
               isFree
+            />
+          </Link>
+        </li>
+        <li>
+          <Link href="courses/register-flow-with-e2e-tests/overview">
+            <CourseCardItem
+              image={loginRegisterFlow}
+              title="Login Register Flow"
+              description="Learn how to build a login and register flow with E2E tests and Supabase."
             />
           </Link>
         </li>
