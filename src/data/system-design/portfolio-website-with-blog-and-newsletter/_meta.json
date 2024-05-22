@@ -1,0 +1,11 @@
+{
+  "isPro": true,
+  "chapters": {
+    "overview": "Overview",
+    "client-1": "Client 1",
+    "client-2": "Client 2",
+    "client-3": "Client 3",
+    "decision-matrix": "Decision Matrix",
+    "summary": "Summary"
+  }
+}

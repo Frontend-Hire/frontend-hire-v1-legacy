@@ -1,0 +1,55 @@
+import { QuestionDifficulty } from '@/types/Question';
+import VisuallyHidden from '@/components/ui/visually-hidden';
+import { Badge } from '@/components/ui/badge';
+
+type SystemDesignQuestionItemProps = {
+  difficulty: QuestionDifficulty;
+  title: string;
+  description: string;
+  isNew?: boolean;
+};
+
+const DifficultyLabel = ({
+  difficulty,
+}: {
+  difficulty: QuestionDifficulty;
+}) => {
+  let className = 'w-4 self-stretch';
+
+  if (difficulty == 'easy') {
+    className += ' bg-easy';
+  } else if (difficulty == 'medium') {
+    className += ' bg-medium';
+  } else if (difficulty == 'hard') {
+    className += ' bg-hard';
+  } else {
+    className += ' bg-gray-500';
+  }
+
+  return (
+    <>
+      <div className={className} />
+      <VisuallyHidden>{difficulty}</VisuallyHidden>
+    </>
+  );
+};
+
+export default function SystemDesignQuestionItem({
+  title,
+  description,
+  difficulty,
+  isNew,
+}: SystemDesignQuestionItemProps) {
+  return (
+    <div className="flex min-h-[80px] items-center gap-4 overflow-hidden rounded-[5px] bg-card pr-4 text-card-foreground hover:bg-card/80">
+      <DifficultyLabel difficulty={difficulty} />
+      <div className="flex w-full flex-col gap-[5px] py-2">
+        <div className="flex items-center gap-2">
+          <p className="font-bold capitalize">{title}</p>
+          {isNew && <Badge className="animate-pulse">New</Badge>}
+        </div>
+        <p className="text-sm leading-[100%] text-gray-300">{description}</p>
+      </div>
+    </div>
+  );
+}
