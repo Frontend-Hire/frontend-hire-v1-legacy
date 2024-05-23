@@ -1,5 +1,5 @@
 import React from 'react';
-import { getCoursePage, getCoursePages } from '@/lib/fetchLocalFiles';
+import { getSystemDesignPage, getSystemDesign } from '@/lib/fetchLocalFiles';
 import TOC from './_components/TOC';
 import { getHeadings } from '../util/getHeadings';
 import Footer from './_components/Footer';
@@ -7,14 +7,14 @@ import Footer from './_components/Footer';
 type ChapterPageProps = {
   params: {
     chapter: string;
-    courseId: string;
+    questionId: string;
   };
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const { isPro, chapters } = await getCoursePages(params.courseId);
-  const { getContent, meta } = await getCoursePage(
-    params.courseId,
+  const { chapters, isPro } = await getSystemDesign(params.questionId);
+  const { getContent, meta } = await getSystemDesignPage(
+    params.questionId,
     params.chapter,
   );
 
@@ -23,7 +23,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   return (
     <div className="flex flex-1 gap-[30px]">
       <div className="flex flex-1 flex-col gap-4 pb-10">
-        <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
+        <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5">
           {content}
         </article>
         <Footer

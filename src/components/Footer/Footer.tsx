@@ -1,6 +1,6 @@
 import HeaderLogo from '@/components/HeaderLogo';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { LINKS } from '@/config/site';
+import { LINKS, NavLink } from '@/config/site';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -42,13 +42,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
 }
 
 type FooterLinksProps = {
-  links: {
-    title: string;
-    items: {
-      title: string;
-      href: string;
-    }[];
-  }[];
+  links: NavLink[];
 };
 
 function FooterLinks({ links }: FooterLinksProps) {

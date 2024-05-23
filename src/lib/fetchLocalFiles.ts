@@ -58,15 +58,14 @@ export const getProjectsFromLocal = cache(async () => {
   return projects;
 });
 
-// Will be used later to get all courses for the courses page
-const coursesPath = path.join(process.cwd(), '/src/data/courses');
-
 export const getCoursePages = cache(async (courseId: string) => {
-  const courseMeta: Record<string, string> = require(
-    `@/data/courses/${courseId}/_meta.json`,
-  );
+  const courseMeta: {
+    isPro?: boolean;
+    isPublished?: boolean;
+    chapters: Record<string, string>;
+  } = require(`@/data/courses/${courseId}/_meta.json`);
 
-  return Object.entries(courseMeta);
+  return courseMeta;
 });
 
 export const getCoursePage = cache(
@@ -82,6 +81,28 @@ export const getCoursePage = cache(
   },
 );
 
+export const getSystemDesign = cache(async (questionId: string) => {
+  const systemDesignMeta: {
+    isPro?: boolean;
+    isPublished?: boolean;
+    chapters: Record<string, string>;
+  } = require(`@/data/system-design/${questionId}/_meta.json`);
+
+  return systemDesignMeta;
+});
+
+export const getSystemDesignPage = cache(
+  async (questionId: string, chapter: string) => {
+    const { default: getContent, meta } = require(
+      `@/data/system-design/${questionId}/${chapter}.mdx`,
+    );
+
+    return { getContent, meta } as {
+      getContent: () => React.ReactNode;
+      meta?: Record<string, string>;
+    };
+  },
+);
 const blogPath = path.join(process.cwd(), '/src/data/blog');
 
 export const getBlogPostsMetaFromLocal = cache(async () => {
