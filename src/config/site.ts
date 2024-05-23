@@ -7,11 +7,20 @@ import {
   SpeechIcon,
 } from 'lucide-react';
 
-export const LINKS: {
+type Link = {
   title: string;
-  items: { title: string; href: string; icon?: any }[];
+  href: string;
+  icon?: any;
+  isEarlyAccess?: boolean;
+};
+
+export type NavLink = {
+  title: string;
+  items: Link[];
   hideOnMainNav?: boolean;
-}[] = [
+};
+
+export const LINKS: NavLink[] = [
   {
     title: 'Practice',
     items: [
@@ -24,11 +33,11 @@ export const LINKS: {
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
-      {
-        title: 'System Design',
-        href: '/system-design',
-        icon: PresentationIcon,
-      },
+      // {
+      //   title: 'System Design',
+      //   href: '/system-design',
+      //   icon: PresentationIcon,
+      // },
       { title: 'Blog', href: '/blog', icon: AlbumIcon },
     ],
   },

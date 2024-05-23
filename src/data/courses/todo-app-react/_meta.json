@@ -1,5 +1,6 @@
 {
   "isPro": false,
+  "isPublished": true,
   "chapters": {
     "overview": "Overview",
     "project-setup": "Project Setup",

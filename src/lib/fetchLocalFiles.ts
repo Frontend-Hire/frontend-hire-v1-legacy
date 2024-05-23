@@ -61,6 +61,7 @@ export const getProjectsFromLocal = cache(async () => {
 export const getCoursePages = cache(async (courseId: string) => {
   const courseMeta: {
     isPro?: boolean;
+    isPublished?: boolean;
     chapters: Record<string, string>;
   } = require(`@/data/courses/${courseId}/_meta.json`);
 
@@ -83,6 +84,7 @@ export const getCoursePage = cache(
 export const getSystemDesign = cache(async (questionId: string) => {
   const systemDesignMeta: {
     isPro?: boolean;
+    isPublished?: boolean;
     chapters: Record<string, string>;
   } = require(`@/data/system-design/${questionId}/_meta.json`);
 

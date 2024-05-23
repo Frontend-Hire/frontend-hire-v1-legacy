@@ -1,5 +1,6 @@
 {
   "isPro": true,
+  "isPublished": true,
   "chapters": {
     "overview": "Overview",
     "setup-nextjs-project": "Setup Next.js Project",

@@ -7,6 +7,7 @@ import { DIFFICULTY } from '@/types/Question';
 import SystemDesignQuestionItem from './_components/SystemDesignQuestionItem';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'System Design | Frontend Hire',
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
 };
 
 export default function SystemDesignPage() {
+  redirect('/');
+
   return (
     <article className="flex flex-col gap-5">
       <CustomHeading
@@ -27,7 +30,7 @@ export default function SystemDesignPage() {
       />
 
       <VisuallyHidden>Frontend Design Systems List</VisuallyHidden>
-      <ul className="flex flex-col gap-4">
+      {/* <ul className="flex flex-col gap-4">
         <li>
           <Link href="/system-design/portfolio-website-with-blog-and-newsletter/overview">
             <SystemDesignQuestionItem
@@ -64,7 +67,7 @@ export default function SystemDesignPage() {
             />
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </article>
   );
 }

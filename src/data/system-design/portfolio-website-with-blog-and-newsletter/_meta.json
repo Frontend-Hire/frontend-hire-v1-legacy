@@ -1,5 +1,6 @@
 {
   "isPro": true,
+  "isPublished": false,
   "chapters": {
     "overview": "Overview",
     "client-1": "Client 1",
