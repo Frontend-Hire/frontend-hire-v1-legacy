@@ -1,11 +1,16 @@
 import { Button } from '@/components/ui/button';
-import { BanIcon, CheckCircle2Icon } from 'lucide-react';
+import { getPurchasePower } from '@/lib/getPurchasePower';
+import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
 
 const INCLUSIONS = [
   'Full Access To PRO Content',
   'Free Updates',
   'Exclusive Courses',
-  'Simulated Interviews',
+  'Simulated Phone Screening',
+];
+
+const COMING_SOON = [
+  'More Simulated Interview Types',
   'Frontend System Design',
   'Text/Video Solutions To Coding Questions',
   'More New Features',
@@ -27,21 +32,39 @@ export default function PricingSection() {
 }
 
 function PricingDetails() {
+  const { name, currencySymbol, curPrice, curPrice2, curPrice3 } =
+    getPurchasePower();
+
   return (
     <div className="flex flex-col items-center justify-between gap-5 text-center">
       <h3 className="text-stroke text-4xl uppercase tracking-widest text-card">
         Launch Price till June 1st
       </h3>
-      <p className="text-xs font-bold text-muted">
-        Regional price is automatically applied.
-      </p>
+      {name !== 'United States' && (
+        <p className="text-xs font-bold text-blue-400">
+          Purchase Power Parity{' '}
+          {name !== 'Rest of the world' ? `for ${name}` : ''} is automatically
+          applied.
+        </p>
+      )}
       <div className="flex flex-col items-center justify-center gap-4">
-        <p className="text-3xl font-black md:text-5xl">₹2,999</p>
-        <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">₹3,999</s> after June 1st
+        <p className="text-3xl font-black md:text-5xl">
+          {currencySymbol}
+          {curPrice}
         </p>
         <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">₹4,999</s> after 200 paid users
+          <s className="text-xl md:text-2xl">
+            {currencySymbol}
+            {curPrice2}
+          </s>{' '}
+          after June 1st
+        </p>
+        <p className="text-lg font-bold text-muted md:text-xl">
+          <s className="text-xl md:text-2xl">
+            {currencySymbol}
+            {curPrice3}
+          </s>{' '}
+          after 200 paid users
         </p>
       </div>
       <div className="w-full space-y-2">
@@ -49,8 +72,7 @@ function PricingDetails() {
           Become PRO
         </Button>
         <p className="text-xs font-bold text-muted">
-          Pricing will increase as more content gets added! So, become a PRO
-          now!
+          Pricing will increase as more content gets added!
         </p>
       </div>
     </div>
@@ -66,6 +88,11 @@ function InclusionsExclusions() {
             <IncludedItem>{item}</IncludedItem>
           </li>
         ))}
+        {COMING_SOON.map((item) => (
+          <li key={item}>
+            <ComingSoonItem>{item}</ComingSoonItem>
+          </li>
+        ))}
       </ul>
       <p className="text-xl font-bold text-muted">What&apos;s Not Included?</p>
       <ul className="flex flex-col gap-5">
@@ -75,6 +102,15 @@ function InclusionsExclusions() {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function ComingSoonItem({ children }: React.PropsWithChildren) {
+  return (
+    <div className="flex gap-3 font-medium">
+      <ConstructionIcon className="shrink-0 text-medium" />
+      {children}
     </div>
   );
 }

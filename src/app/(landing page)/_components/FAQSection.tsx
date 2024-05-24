@@ -9,8 +9,43 @@ import Link from 'next/link';
 const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
     question: 'Why just one-time payment option?',
-    answer:
-      'We believe this approach is the best way to provide maximum value when selling premium content that evolves over time. It also helps us fund our early operations, allowing us to invest in and deliver better content in the future.',
+    answer: (
+      <>
+        <p>
+          We believe this payment option is the best to provide maximum value
+          when selling premium content that evolves over time. It also helps us
+          fund our early operations, allowing us to invest in and deliver better
+          content in the future.
+        </p>
+        <p>
+          We might offer other payment options in the future as our content
+          grows.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'Do you offer Purchase Power Parity?',
+    answer: (
+      <>
+        <p>
+          Yes, we identify your geographical location and provide you the prices
+          adjusted to your location.
+        </p>
+        <p>
+          If you feel that our prices are not adjusted to your location or are
+          still expensive for you, please email us at{' '}
+          <Link
+            prefetch={false}
+            className="text-link underline"
+            href="mailto:info@frontendhire.com"
+          >
+            info@frontendhire.com
+          </Link>
+          . We will try to offer a better price for you.
+        </p>
+      </>
+    ),
   },
   {
     question: 'Do you offer student discounts?',
@@ -37,25 +72,10 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
     question: 'Do you offer refunds?',
     answer: (
-      <>
-        <p>
-          Yes, but only under a <strong>fair-use policy</strong>. If we notice
-          that you have accessed more than 20% of the premium content, we will
-          not provide a refund. Refund requests must be submitted within 7 days
-          of purchase.
-        </p>
-        <p>
-          Please email us at{' '}
-          <Link
-            prefetch={false}
-            className="text-link underline"
-            href="mailto:info@frontendhire.com"
-          >
-            info@frontendhire.com
-          </Link>{' '}
-          to request a refund.
-        </p>
-      </>
+      <p>
+        Given the nature of digital content, we do not offer refunds at the
+        moment. This might change in the future as our content grows.
+      </p>
     ),
   },
   {
