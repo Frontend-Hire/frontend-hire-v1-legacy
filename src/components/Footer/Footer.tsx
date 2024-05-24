@@ -26,15 +26,15 @@ export default function Footer({ isCompact, className }: FooterProps) {
   }
 
   return (
-    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-4 text-sm xs:grid-cols-2 md:px-10">
-      <div className="flex flex-col items-center gap-4 xs:items-start">
+    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-12 gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-4 text-sm md:grid-cols-2 md:gap-8 md:px-10">
+      <div className="flex flex-col items-center gap-4 md:items-start">
         <Link prefetch={false} href="/">
           <HeaderLogo />
         </Link>
         <Social />
       </div>
       <FooterLinks links={LINKS} />
-      <div className="text-center xs:text-left">
+      <div className="text-center md:text-left">
         © YHR Technologies {thisYear}
       </div>
     </footer>
@@ -47,7 +47,7 @@ type FooterLinksProps = {
 
 function FooterLinks({ links }: FooterLinksProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-6 xs:justify-stretch lg:gap-10">
+    <div className="grid grid-cols-2 justify-center gap-6 p-4 md:flex md:flex-wrap md:justify-stretch lg:gap-10">
       {links.map((link) => (
         <div key={link.title} className="leading-loose">
           <h3 className="font-bold">{link.title}</h3>
@@ -73,7 +73,7 @@ function FooterLinks({ links }: FooterLinksProps) {
 
 function Social() {
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-4">
+    <ul className="mt-2 grid grid-cols-3 items-center justify-center gap-4">
       <li>
         <Link
           prefetch={false}
@@ -120,6 +120,54 @@ function Social() {
           </svg>
         </Link>
       </li>
+      <li>
+        <Link
+          prefetch={false}
+          className="transition-colors hover:text-primary"
+          target="_blank"
+          href="https://www.instagram.com/frontendhire/"
+        >
+          <VisuallyHidden>Instagram</VisuallyHidden>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            className="h-6 w-6"
+            height="1em"
+            width="1em"
+            aria-hidden="true"
+            viewBox="0 0 256 256"
+          >
+            <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path>
+          </svg>
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          prefetch={false}
+          className="transition-colors hover:text-primary"
+          target="_blank"
+          href="https://www.youtube.com/@FrontendHire"
+        >
+          <VisuallyHidden>Youtube</VisuallyHidden>
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 256 256"
+            aria-hidden="true"
+            className="h-6 w-6"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-73.74,65-40,28A8,8,0,0,1,108,156V100a8,8,0,0,1,12.59-6.55l40,28a8,8,0,0,1,0,13.1Z"></path>
+          </svg>
+        </Link>
+      </li>
+
       <li>
         <Link
           prefetch={false}
