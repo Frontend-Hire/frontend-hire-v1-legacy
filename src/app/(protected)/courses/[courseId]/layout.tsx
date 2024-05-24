@@ -2,12 +2,36 @@ import ProtectedLayout from '@/components/ProtectedLayout';
 import Sidebar from './_components/Sidebar';
 import { getCoursePages } from '@/lib/fetchLocalFiles';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
+import { Metadata } from 'next';
 
 type CourseMainLayoutProps = {
   params: {
     courseId: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { courseId: string };
+}): Promise<Metadata> {
+  const meta = await getCoursePages(params.courseId);
+  return {
+    title: `${meta?.title || 'Course'} | Frontend Hire`,
+    description: meta?.description,
+    openGraph: {
+      images: [
+        {
+          url: meta.image.src,
+          width: meta.image.width,
+          height: meta.image.height,
+        },
+      ],
+      title: `${meta?.title || 'Course'} | Frontend Hire`,
+      description: meta?.description,
+    },
+  };
+}
 
 export default async function CourseMainLayout({
   params,

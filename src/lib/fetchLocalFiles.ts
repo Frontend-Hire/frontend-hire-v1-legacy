@@ -1,4 +1,5 @@
 import { BlogMeta } from '@/types/Blogs';
+import { Course } from '@/types/Course';
 import { ProjectOverview } from '@/types/Project';
 import { QuestionOverview } from '@/types/Question';
 import fs from 'fs';
@@ -58,14 +59,30 @@ export const getProjectsFromLocal = cache(async () => {
   return projects;
 });
 
-export const getCoursePages = cache(async (courseId: string) => {
-  const courseMeta: {
-    isPro?: boolean;
-    isPublished?: boolean;
-    chapters: Record<string, string>;
-  } = require(`@/data/courses/${courseId}/_meta.json`);
+const coursesPath = path.join(process.cwd(), '/src/data/courses');
 
-  return courseMeta;
+export const getCoursesFromLocal = cache(async () => {
+  const courses: Course[] = [];
+  const allCourses = fs.readdirSync(coursesPath);
+
+  for (const course of allCourses.filter((course) => !course.startsWith('.'))) {
+    const { meta } = require(`@/data/courses/${course}/meta.ts`);
+    if (meta.isPublished) {
+      courses.push({
+        ...meta,
+      });
+    }
+  }
+
+  return courses;
+});
+
+export const getCoursePages = cache(async (courseId: string) => {
+  const { meta }: { meta: Course } = require(
+    `@/data/courses/${courseId}/meta.ts`,
+  );
+
+  return meta;
 });
 
 export const getCoursePage = cache(

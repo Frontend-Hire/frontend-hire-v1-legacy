@@ -1,0 +1,25 @@
+import { Course } from '@/types/Course';
+import image from '@/assets/course-covers/stackpack.webp';
+
+export const meta: Course = {
+  id: 'stackpack',
+  title: 'Stackpack',
+  description:
+    'Build a Sandpack clone with WebContainers in React and TypeScript.',
+  link: 'courses/stackpack/overview',
+  image: image,
+  isPro: false,
+  isPublished: true,
+  chapters: {
+    overview: 'Overview',
+    'project-setup': 'Project Setup',
+    'building-layout': 'Building Layout',
+    'think-about-what-to-build-next': 'Think about what to build next',
+    'building-code-editor': 'Building Code Editor',
+    'webcontainer-api': 'WebContainer API',
+    'building-terminal': 'Building Terminal',
+    'building-preview': 'Building Preview',
+    'deploying-to-production': 'Deploying to Production',
+    summary: 'Summary',
+  },
+};

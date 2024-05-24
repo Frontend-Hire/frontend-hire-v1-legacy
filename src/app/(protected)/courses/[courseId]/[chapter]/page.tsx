@@ -12,7 +12,7 @@ type ChapterPageProps = {
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const { isPro, chapters } = await getCoursePages(params.courseId);
+  const { chapters } = await getCoursePages(params.courseId);
   const { getContent, meta } = await getCoursePage(
     params.courseId,
     params.chapter,
