@@ -73,7 +73,7 @@ function FooterLinks({ links }: FooterLinksProps) {
 
 function Social() {
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-4">
+    <ul className="mt-2 grid grid-cols-3 items-center justify-center gap-4">
       <li>
         <Link
           prefetch={false}
