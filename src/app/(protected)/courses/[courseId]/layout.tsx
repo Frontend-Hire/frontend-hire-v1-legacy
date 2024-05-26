@@ -19,16 +19,23 @@ export async function generateMetadata({
   return {
     title: `${meta?.title || 'Course'} | Frontend Hire`,
     description: meta?.description,
-    openGraph: {
-      images: [
-        {
-          url: meta.image.src,
-          width: meta.image.width,
-          height: meta.image.height,
-        },
-      ],
+    twitter: {
       title: `${meta?.title || 'Course'} | Frontend Hire`,
       description: meta?.description,
+      images: {
+        url: meta.image.src,
+        width: meta.image.width,
+        height: meta.image.height,
+      },
+    },
+    openGraph: {
+      title: `${meta?.title || 'Course'} | Frontend Hire`,
+      description: meta?.description,
+      images: {
+        url: meta.image.src,
+        width: meta.image.width,
+        height: meta.image.height,
+      },
     },
   };
 }
