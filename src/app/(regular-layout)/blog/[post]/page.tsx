@@ -15,11 +15,24 @@ export async function generateMetadata({
     title: `${meta.title} | Frontend Hire`,
     description: meta.description,
     authors: meta.authors.map((author) => ({ name: author.name })),
+    twitter: {
+      title: `${meta.title} | Frontend Hire`,
+      description: meta.description,
+      images: {
+        url: meta.cover.src,
+        width: meta.cover.width,
+        height: meta.cover.height,
+      },
+    },
     openGraph: {
-      ...openGraphShared,
       title: `${meta.title} | Frontend Hire`,
       description: meta.description,
       type: 'article',
+      images: {
+        url: meta.cover.src,
+        width: meta.cover.width,
+        height: meta.cover.height,
+      },
     },
   };
 }
