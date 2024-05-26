@@ -26,16 +26,18 @@ export default function Footer({ isCompact, className }: FooterProps) {
   }
 
   return (
-    <footer className="mt-4 grid grid-cols-1 justify-items-stretch gap-12 gap-4 border-t-2 bg-[color:hsl(0,0%,1%)] p-4 text-sm md:grid-cols-2 md:gap-8 md:px-10">
-      <div className="flex flex-col items-center gap-4 md:items-start">
-        <Link prefetch={false} href="/">
-          <HeaderLogo />
-        </Link>
-        <Social />
-      </div>
-      <FooterLinks links={LINKS} />
-      <div className="text-center md:text-left">
-        © YHR Technologies {thisYear}
+    <footer className="mt-4 border-t-2 bg-[color:hsl(0,0%,1%)]">
+      <div className="container grid grid-cols-1 justify-items-stretch gap-4 p-4 text-sm md:grid-cols-2 md:gap-8 md:px-10">
+        <div className="flex flex-col items-center gap-4 md:items-start">
+          <Link prefetch={false} href="/">
+            <HeaderLogo />
+          </Link>
+          <Social />
+        </div>
+        <FooterLinks links={LINKS} />
+        <div className="text-center md:text-left">
+          © YHR Technologies {thisYear}
+        </div>
       </div>
     </footer>
   );
