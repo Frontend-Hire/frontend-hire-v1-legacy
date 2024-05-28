@@ -1,8 +1,11 @@
 import { StaticImageData } from 'next/image';
 
+type Category = 'React' | 'Svelte' | 'Next.js';
+
 export type Course = {
   id: string;
   title: string;
+  category?: Category;
   description: string;
   image: StaticImageData;
   link: string;

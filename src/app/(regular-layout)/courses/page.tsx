@@ -19,15 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CoursesPage() {
-  const supabaseServerClient = createSupabaseServerClient();
-
   const courses = await getCoursesFromLocal();
-
-  const { data } = await supabaseServerClient
-    .from('users')
-    .select('has_pro_access')
-    .limit(1)
-    .single();
 
   return (
     <article className="flex flex-col gap-5">
@@ -42,9 +34,6 @@ export default async function CoursesPage() {
       <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 xl:grid-cols-4">
         {courses
           .filter((course) => course.isPublished)
-          .filter(
-            (course) => course.isPro === data?.has_pro_access || !course.isPro,
-          )
           .map((course, index) => (
             <li key={index}>
               <Link prefetch={false} href={course.link}>

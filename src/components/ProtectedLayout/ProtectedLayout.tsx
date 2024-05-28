@@ -24,11 +24,10 @@ export default async function ProtectedLayout({
         <div className="flex h-full grow flex-col items-start gap-4 p-2 md:px-[100px] md:py-4 lg:px-[200px] xl:px-[250px]">
           <div className="flex flex-col gap-4 py-2">
             <Heading variant="h1">
-              Our platform is free for registered users!
+              You need to sign in to access this content!
             </Heading>
             <p className="text-sm text-gray-300">
-              So, sign in for free with your Google account for unrestricted
-              access to questions, projects and interviews!
+              We support Google sign in only.
             </p>
           </div>
           <SignInButton />
