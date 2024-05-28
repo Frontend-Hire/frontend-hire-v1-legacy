@@ -1,13 +1,7 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-
-type CourseCardItemProps = {
-  title: string;
-  image: StaticImageData;
-  description: string;
-  isVideoAvailable?: boolean;
-  isPro?: boolean;
-};
+import { Course } from '@/types/Course';
+import CourseCategoryBadge from '@/components/CourseCategoryBadge';
 
 export default function CourseCardItem({
   title,
@@ -15,9 +9,10 @@ export default function CourseCardItem({
   description,
   isPro,
   isVideoAvailable,
-}: CourseCardItemProps) {
+  category,
+}: Course) {
   return (
-    <div className="flex h-full flex-col gap-2 overflow-hidden rounded-md bg-card">
+    <div className="flex h-full flex-col overflow-hidden rounded-md bg-card">
       <Image
         priority
         placeholder="blur"
@@ -32,6 +27,7 @@ export default function CourseCardItem({
         <div className="flex flex-wrap items-center gap-2">
           {!isPro ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
           {isVideoAvailable && <Badge>Video Available</Badge>}
+          <CourseCategoryBadge category={category} />
         </div>
       </div>
     </div>

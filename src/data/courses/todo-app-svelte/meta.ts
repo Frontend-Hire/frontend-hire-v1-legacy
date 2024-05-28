@@ -2,16 +2,15 @@ import { Course } from '@/types/Course';
 import image from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
 
 export const meta: Course = {
-  id: 'todo-app-react',
-  link: 'courses/todo-app-react/overview',
+  id: 'todo-app-svelte',
+  link: 'courses/todo-app-svelte/overview',
   title: 'Todo App',
-  category: 'React',
+  category: 'Svelte',
   description:
-    'We teach more than just React, TypeScript and TDD with this course.',
-  isPro: false,
+    'We teach more than just Svelte, TypeScript and TDD with this course.',
+  isPro: true,
   isPublished: true,
   image: image,
-  isVideoAvailable: true,
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',
