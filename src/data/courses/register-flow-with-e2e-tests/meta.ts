@@ -7,6 +7,7 @@ export const meta: Course = {
   description:
     'Learn how to build a login and register flow with E2E tests and Supabase.',
   link: 'courses/register-flow-with-e2e-tests/overview',
+  category: 'Next.js',
   image: image,
   isPublished: true,
   isPro: true,

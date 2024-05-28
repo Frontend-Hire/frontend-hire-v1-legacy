@@ -7,6 +7,7 @@ export const meta: Course = {
   description:
     'Build a Sandpack clone with WebContainers in React and TypeScript.',
   link: 'courses/stackpack/overview',
+  category: 'React',
   image: image,
   isPro: false,
   isPublished: true,

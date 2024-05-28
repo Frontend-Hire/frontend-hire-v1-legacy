@@ -3,6 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import Link from 'next/link';
 import { getCoursesFromLocal } from '@/lib/fetchLocalFiles';
+import CourseCategoryBadge from '@/components/CourseCategoryBadge';
+import { Course } from '@/types/Course';
 
 export default async function CoursesFeature() {
   const courses = await getCoursesFromLocal();
@@ -21,15 +23,6 @@ export default async function CoursesFeature() {
   );
 }
 
-type CourseCardItemProps = {
-  link: string;
-  title: string;
-  image: StaticImageData;
-  description: string;
-  isVideoAvailable?: boolean;
-  isPro: boolean;
-};
-
 function CourseCardItem({
   link,
   title,
@@ -37,9 +30,10 @@ function CourseCardItem({
   description,
   isPro,
   isVideoAvailable,
-}: CourseCardItemProps) {
+  category,
+}: Course) {
   return (
-    <div className="flex h-full flex-col gap-2 overflow-hidden rounded-md bg-card">
+    <div className="flex h-full flex-col overflow-hidden rounded-md bg-card">
       <Image placeholder="blur" src={image} alt={title} className="w-full" />
       <div className="flex h-full flex-col gap-2 p-4">
         <Link className="w-fit underline" prefetch={false} href={link}>
@@ -52,6 +46,7 @@ function CourseCardItem({
           {isVideoAvailable && (
             <Badge className="text-center">Video Available</Badge>
           )}
+          <CourseCategoryBadge category={category} />
         </div>
       </div>
     </div>
