@@ -9,7 +9,7 @@ export const meta: Course = {
   description:
     'We teach more than just Svelte, TypeScript and TDD with this course.',
   isPro: true,
-  isPublished: false,
+  isPublished: true,
   image: image,
   chapters: {
     overview: 'Overview',
