@@ -74,7 +74,17 @@ export const getCoursesFromLocal = cache(async () => {
     }
   }
 
-  return courses;
+  return courses.sort((a, b) => {
+    if (a.publishedOn && b.publishedOn) {
+      return b.publishedOn.getTime() - a.publishedOn.getTime();
+    } else if (a.publishedOn) {
+      return -1;
+    } else if (b.publishedOn) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
 });
 
 export const getCoursePages = cache(async (courseId: string) => {

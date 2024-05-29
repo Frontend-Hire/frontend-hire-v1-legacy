@@ -11,6 +11,7 @@ export const meta: Course = {
   image: image,
   isPro: false,
   isPublished: true,
+  publishedOn: new Date('2024-04-19'),
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',
