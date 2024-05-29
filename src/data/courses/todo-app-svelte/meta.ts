@@ -11,6 +11,7 @@ export const meta: Course = {
   isPro: true,
   isPublished: true,
   image: image,
+  isNew: true,
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',

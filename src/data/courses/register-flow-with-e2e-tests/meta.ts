@@ -11,6 +11,7 @@ export const meta: Course = {
   image: image,
   isPublished: true,
   isPro: true,
+  isNew: true,
   chapters: {
     overview: 'Overview',
     'setup-nextjs-project': 'Setup Next.js Project',
