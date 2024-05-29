@@ -1,44 +1,42 @@
 import { Steps, Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 
 export const meta = {
-  lastUpdated: '2024-02-29',
+  lastUpdated: '2024-05-29',
 };
 
 # Project Setup
 
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/ceoqAy8nFNE?si=TyvaA1d-nKCYDS2D'
-  title='Introduction and Project Setup | Todo App with React, TypeScript, TDD | Frontend Hire'
-  frameBorder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
-
 <Steps>
-### Vite + React + TypeScript
- 
-We will use the Vite template with React and TypeScript as our starting point. To get started, run the following command in your terminal:
+### SvelteKit + Vite + React + TypeScript
+
+The [recommended way](https://svelte.dev/docs/introduction#start-a-new-project) to start a Svelte project is through SvelteKit which internally uses Vite.
+
+Run the following commands in your terminal:
 
 <CustomCodeViewer>
 ```sh
-npm create vite@latest todo-app -- --template react-ts
+npm create svelte@latest todo-app-svelte-tdd-typescript
 ```
 </CustomCodeViewer>
 
-Then, navigate to the project directory and install the dependencies.
+It will prompt you for the following:
+
+- Which Svelte app template? -> `Skeleton project`
+- Add type checking with TypeScript? -> `Yes, using TypeScript syntax`
+- Select additional options (use arrow keys/space bar) -> **Select the below**
+  - `Add ESLint for code linting` 
+  - `Add Prettier for code formatting` 
+  - `Add Vitest for unit testing`
+
+Then open the project in VSCode (or your IDE of choice).
+
+Install the dependencies using the following command in your terminal:
 
 <CustomCodeViewer>
 ```sh
-cd todo-app
 npm install
 ```
 </CustomCodeViewer>
-
-Read more about scaffolding a Vite project [here](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
 
 ### Git
 
@@ -62,45 +60,28 @@ git init
 
 We pretty much follow the same install instructions from the [Prettier Docs](https://prettier.io/docs/en/install).
 
-Prettier is not just used as a VSCode extension but also as a CLI tool to format your code. We will use it to format our code before committing it to Git. To install it, run the following command in your terminal:
+Prettier is not just used as a VSCode extension but also as a CLI tool to format your code. We will use it to format our code before committing it to Git. 
 
-<CustomCodeViewer>
-```sh
-npm install --save-dev --save-exact prettier
-```
-</CustomCodeViewer>
+Our SvelteKit scaffold project already set up Prettier. 
 
-Then, create an empty config file.
+The scaffold comes with a good set of defaults. But you can change them if needed. We just have to update the `.prettierrc` file:
 
-<CustomCodeViewer>
-```sh
-node --eval "fs.writeFileSync('.prettierrc','{}\n')"
-```
-</CustomCodeViewer>
+And add the following to it. Feel free to change the values to your liking (this is what we prefer):
 
-And add the following to it. Feel free to change the values to your liking (this is what I prefer):
-
-<CustomCodeViewer>
-```json
+<CustomCodeViewer filename='.prettierrc'>
+```json showLineNumbers {1-8}
 {
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true,
-  "printWidth": 80
+	"tabWidth": 2,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"printWidth": 80,
+	"plugins": ["prettier-plugin-svelte"],
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }
 ```
 </CustomCodeViewer>
 
-We also want to **not** format specific files. This project would not have such files, but creating one is still a good idea. Create a `.prettierignore` file and add the following:
-
-<CustomCodeViewer>
-```sh
-# Ignore artifacts:
-build
-coverage
-```
-</CustomCodeViewer>
+We also want to **not** format specific files. Again, the SvelteKit scaffolded this file for us. Check the `.prettierignore` file:
 
 We can now format all files in our project by running the following command in our terminal:
 
@@ -129,43 +110,9 @@ You can also do this through the UI. Open the VSCode settings and search for `fo
 
 ### ESLint
 
-ESLint is a tool for finding and fixing bugs in our JavaScript code. It also helps us to enforce code style and formatting conventions. Vite template already comes with ESLint installed.
+ESLint is a tool for finding and fixing bugs in our JavaScript code. It also helps us to enforce code style and formatting conventions. SvelteKit scaffolded this too.
 
-Since the formatting rules sometimes conflict with Prettier, we will use the [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation) to handle these conflicts.
-
-To install it, run the following command in your terminal:
-
-<CustomCodeViewer>
-```sh
-npm install --save-dev eslint-config-prettier
-```
-</CustomCodeViewer>
-
-Then, update your `.eslintrc.*` file to extend the `eslint-config-prettier` config (it is just the string `prettier`):
-
-<CustomCodeViewer>
-```js {8} showLineNumbers
-module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-    'prettier',
-  ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
-  rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-  },
-};
-```
-</CustomCodeViewer>
+It is setup in such a way that it works with Prettier. We can check that in the `eslint.config.js` file where `eslint-config-prettier` is extended.
 
 ### Git Hooks
 
@@ -173,7 +120,7 @@ Git hooks are scripts that run automatically whenever a particular event occurs 
 
 This will ensure we do not commit code that does not follow our code style and formatting conventions.
 
-Install Husky and lint-staged while also setting Husky script and a pre-commit hook by running the following commands in your terminal:
+Install Husky and lint-staged while also setting the Husky script and a pre-commit hook by running the following commands in your terminal:
 
 <CustomCodeViewer>
 ```sh
@@ -201,23 +148,7 @@ Then, update your `package.json` file to include the following:
 
 ### Great! Now, we are all set to start coding!
 
-But let's first clear some of the boilerplate code that comes with the Vite template.
-
-- Delete the `App.css` file and `assets` folder from the `src` directory.
-- Clear the contents of the `index.css` file.
-- Update the contents of the `./src/App.tsx` file to the following:
-
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers 
-function App() {
-  return <div>Hello World!</div>;
-}
-
-export default App;
-```
-</CustomCodeViewer>
-
-Let's save our work and commit it to Git.
+But before that let's save our work and commit it to Git.
 
 <CustomCodeViewer>
 ```sh
@@ -234,11 +165,8 @@ npm run dev
 ```
 </CustomCodeViewer>
 
-You should see the following in your browser:
-![Expected output](./screenshots/project-setup-1.webp)
-
 That's it! We are now ready to start coding our Todo App!
 
-At this point, your code should be a good match to the branch of the repository: [1-project-setup](https://github.com/Frontend-Hire/todo-app-react-tdd-typescript/tree/1-project-setup)
+At this point, your code should be a good match to the branch of the repository: [1-project-setup](https://github.com/Frontend-Hire/todo-app-svelte-tdd-typescript/tree/1-project-setup)
 
 </Steps>
