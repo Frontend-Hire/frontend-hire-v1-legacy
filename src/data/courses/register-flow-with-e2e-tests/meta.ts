@@ -10,6 +10,7 @@ export const meta: Course = {
   category: 'Next.js',
   image: image,
   isPublished: true,
+  publishedOn: new Date('2024-05-22'),
   isPro: true,
   isNew: true,
   chapters: {

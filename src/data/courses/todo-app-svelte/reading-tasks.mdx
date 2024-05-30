@@ -1,22 +1,10 @@
 import { Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 
 export const meta = {
-  lastUpdated: '2024-03-13',
+  lastUpdated: '2024-05-29',
 };
 
 # Reading Tasks
-
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/a-SVcyExHjs?si=Hu6S8_hhH8hVVMtk'
-  title='Reading and Adding Tasks | Todo App with React, TypeScript, TDD | Frontend Hire'
-  frameBorder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
 
 In this section, we'll create the structure for our tasks and render them to the screen.
 
@@ -77,77 +65,75 @@ type Task = {
 Now that we have our `Task` data structure type, let's create some default data to work with. We'll create an array of `tasks`, and we'll use the `Task` data structure we just created to define the types for the array.
 
 <CustomCodeViewer>
-```tsx
+```ts
 const tasks: Task[] = [
   {
     id: 1,
-    title: 'Learn React',
+    title: 'Learn Svelte',
     isCompleted: true,
   },
 ];
 ```
 </CustomCodeViewer>
 
-Now that we have some data, let's render it to the screen. We'll use the `map` method to iterate over the `tasks` array and render each task to the screen.
+Now that we have some data, let's render it to the screen. How do we do that in Svelte?
 
 <CustomCodeViewer>
-```tsx
+```svelte
 <ul>
-  {tasks.map((task) => (
-    <li key={task.id}>{task.title}</li>
-  ))}
+  {#each tasks as task (task.id)}
+    <li>{task.title}</li>
+  {/each}
 </ul>
 ```
 </CustomCodeViewer>
 
 <Callout>
-  The `key` prop is required when rendering a list of items. It helps React keep
-  track of which items have changed, are added, or are removed. Read more about
-  rendering lists and keys [here](https://react.dev/learn/rendering-lists).
+  The `(task.id)` expression is required when rendering a list of items. It helps Svelte keep
+  track of which items have changed, are added, or are removed.
 </Callout>
 
-Putting it all together, we should have the following `App.tsx` file:
+But where do we add this entire code? In SvelteKit, we have a `src/routes/+page.svelte` file which indicates the root URL of our app.
 
-<CustomCodeViewer filename="App.tsx">
-```tsx 
-type Priority = 'p1' | 'p2' | 'p3';
+Putting it all together, we should have the following `+page.svelte` file:
 
-type Task = {
-  id: number;
-  title: string;
-  isCompleted: boolean;
-  priority?: Priority;
-};
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte
+<script lang="ts">
+  type Priority = 'p1' | 'p2' | 'p3';
 
-function App() {
+  type Task = {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+    priority?: Priority;
+  };
+
   const tasks: Task[] = [
     {
       id: 1,
-      title: 'Learn React',
+      title: 'Learn Svelte',
       isCompleted: true,
       priority: 'p1',
     },
   ];
+</script>
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
-You should see the following in your browser:
-![Expected output](./screenshots/reading-tasks-1.webp)
+The `<script>` opening and `</script>` closing tags encapsulate all the JavaScript code. By setting the `lang="ts"` attribute, we indicate that we're using TypeScript.
+
+In Svelte, we can only have one component in a file. We can't have multiple components in the same file, in this, our `div` holds the `h1` and `ul` elements. We'll break this file in the subsequent sections.
 
 Great! We've created some default data and rendered it to the screen. In the next section, we'll add some interactivity by creating an input and button to add new tasks.
 
-At this point, your code should be a good match to the branch of the repository: [2-reading-tasks](https://github.com/Frontend-Hire/todo-app-react-tdd-typescript/tree/2-reading-tasks)
+At this point, your code should be a good match to the branch of the repository: [2-reading-tasks](https://github.com/Frontend-Hire/todo-app-svelte-tdd-typescript/tree/2-reading-tasks)

@@ -1,22 +1,10 @@
 import { Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 
 export const meta = {
-  lastUpdated: '2024-03-13'
+  lastUpdated: '2024-05-30'
 }
 
 # Adding Tasks
-
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/a-SVcyExHjs?si=Hu6S8_hhH8hVVMtk&amp;start=256'
-  title='Reading and Adding Tasks | Todo App with React, TypeScript, TDD | Frontend Hire'
-  frameBorder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
 
 Let us add interactivity by letting the user add tasks to the list. We'll add a text input and a button. When the user clicks the button, we'll add the text from the input to the list of tasks.
 
@@ -24,44 +12,44 @@ Let us add interactivity by letting the user add tasks to the list. We'll add a 
 
 First, add a text input and a button to the page. We'll add them just above the list of tasks.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {5, 6}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {5, 6}
+<!-- Rest of the code omitted for brevity  -->
 
 <div>
   <h1>Tasks</h1>
   <input />
   <button>Add</button>
   <ul>
-    {tasks.map((task) => (
-      <li key={task.id}>{task.title}</li>
-    ))}
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
   </ul>
 </div>
 
-// Rest of the code omitted for brevity
+<!-- Rest of the code omitted for brevity  -->
 ```
 </CustomCodeViewer>
 
-Though this is good enough for now, we can and **should** make it more accessible by adding a label for the input and a `htmlFor` attribute on the label that matches the `id` of the input.
+Though this is good enough for now, we can and **should** make it more accessible by adding a label for the input and a `for` attribute on the label that matches the `id` of the input.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {5, 6}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {5, 6}
+<!-- Rest of the code omitted for brevity  -->
 
 <div>
   <h1>Tasks</h1>
-  <label htmlFor='task-input'>Add Task: </label>
+  <label for='task-input'>Add Task: </label>
   <input id='task-input' />
   <button>Add</button>
   <ul>
-    {tasks.map((task) => (
-      <li key={task.id}>{task.title}</li>
-    ))}
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
   </ul>
 </div>
 
-// Rest of the code omitted for brevity
+<!-- Rest of the code omitted for brevity  -->
 ```
 </CustomCodeViewer>
 
@@ -71,128 +59,129 @@ Now, clicking on the label will focus on the input.
 
 The Add button doesn't do anything yet. Let's add a click handler to it that will log to the console for now.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {7-13}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {7}
+<!-- Rest of the code omitted for brevity  -->
 
 <div>
   <h1>Tasks</h1>
-  <label htmlFor='task-input'>Add Task: </label>
-  <input id='task-input' />
-  <button
-    onClick={() => {
-      console.log('Add');
-    }}
-  >
-    Add
-  </button>
+  <label for="task-input">Add Task: </label>
+  <input id="task-input" />
+  <button on:click={() => console.log('Add')}>Add</button>
   <ul>
-    {tasks.map((task) => (
-      <li key={task.id}>{task.title}</li>
-    ))}
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
   </ul>
 </div>
 
-// Rest of the code omitted for brevity
+<!-- Rest of the code omitted for brevity  -->
 ```
 </CustomCodeViewer>
 
-Let's capture the value of the input and log it to the console. One of the ways to do this in React is to use a state variable to track the value of the input.
+Let's capture the value of the input and log it to the console. One of the ways to do this in Svelte is to bind a variable to track the value of the input.
 
-We'll use the `useState` hook to create a state variable and a setter function. We'll also add a `value` attribute to the input and set it to the state variable. While we are at it, let's add an `onChange` handler to the input to update the state variable. This input is now a [controlled input](https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable).
+All we need to do is add a `bind:value` attribute to the input and track it in the `taskName` variable.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {1, 8, 16-17}
-import React from 'react';
-
-// Some of the code omitted for brevity
-
-function App() {
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {4, 10}
+<script lang="ts">
   // Some of the code omitted for brevity
 
-  const [taskName, setTaskName] = React.useState('');
+  let taskName = '';
+</script>
 
-  return (
-    <div>
-      {/* Some of the code omitted for brevity */}
+<div>
+  <!-- Some of the code omitted for brevity  -->
 
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      {/* Some of the code omitted for brevity */}
-    </div>
-  );
-}
-
-// Some of the code omitted for brevity
+  <input id="task-input" bind:value={taskName} />
+  
+  <!-- Some of the code omitted for brevity  -->
+</div>
 ```
 </CustomCodeViewer>
 
 Now, we can update the button click handler to log the value of the input.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {5}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {6, 7}
+<!-- Rest of the code omitted for brevity  -->
 
-<button
-  onClick={() => {
-    console.log(taskName);
-  }}
->
-  Add
-</button>
-
-// Rest of the code omitted for brevity
+<div>
+  <!-- Some of the code omitted for brevity  -->
+  
+  <input id="task-input" bind:value={taskName} />
+  <button on:click={() => console.log(taskName)}>Add</button>
+  
+  <!-- Some of the code omitted for brevity  -->
+</div>
 ```
 </CustomCodeViewer>
 
-Before we can even add tasks to the list, we have to update our current `tasks` variable that holds our list of tasks to use state variables; otherwise, the list will not update when we add a task.
+Before we can even add tasks to the list, we have to update our current `tasks` variable that holds our list of tasks to be mutable a.k.a a `let`; otherwise, the list will not update when we add a task.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {4-11}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {4}
+<script lang="ts">
+  // Some of the code omitted for brevity
 
-function App() {
-  const [tasks, setTasks] = React.useState<Task[]>([
+  let tasks: Task[] = [
     {
       id: 1,
-      title: 'Learn React',
+      title: 'Learn Svelte',
       isCompleted: true,
       priority: 'p1',
     },
-  ]);
+  ];
 
-  const [taskName, setTaskName] = React.useState('');
+  // Some of the code omitted for brevity
+</script>
 
-  // Rest of the code omitted for brevity
-}
+<!-- Rest of the code omitted for brevity  -->
 ```
 </CustomCodeViewer>
 
-We can add a task to the list by updating the `tasks` state variable. We'll update the state variable using the `setTasks` setter function. We'll use the spread operator to create a new array with the new task added.
+We can add a task to the list by updating the `tasks` state variable. We can push the new task onto the end of the array but to re-render the list we must reassign the tasks array to itself. This is how reactivity in Svelte works, through assignments. This would have been natural if it was a primitive data type like a string or number. This is not the case with Objects and Arrays.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {5-11}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {6-11}
+<!-- Rest of the code omitted for brevity  -->
 
-<button
-  onClick={() => {
-    setTasks([
-      ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: taskName,
-        isCompleted: false,
-      },
-    ]);
-  }}
->
-  Add
-</button>
+<div>
+  <!-- Some of the code omitted for brevity  -->
 
-// Rest of the code omitted for brevity
+  <button
+    on:click={() => {
+      tasks.push({ id: new Date().getTime(), title: taskName, isCompleted: false });
+      tasks = tasks;
+    }}>Add</button
+  >
+
+  <!-- Some of the code omitted for brevity  -->
+</div>
+```
+</CustomCodeViewer>
+
+If that felt weird, there is a more meaningful way to add tasks to the list.
+
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte {6-13}
+<!-- Rest of the code omitted for brevity  -->
+
+<div>
+  <!-- Some of the code omitted for brevity  -->
+
+  <button
+    on:click={() => {
+      tasks = [
+        ...tasks,
+        { id: new Date().getTime(), title: taskName, isCompleted: false },
+      ];
+    }}>Add</button
+  >
+
+  <!-- Some of the code omitted for brevity  -->
+</div>
 ```
 </CustomCodeViewer>
 
@@ -203,47 +192,59 @@ We can add a task to the list by updating the `tasks` state variable. We'll upda
   as the ID for each task.
 </Callout>
 
-Great, we are now able to add tasks to the list!
+Type in the input and hit the `Add` button, we should be able to add tasks to the list!
 
-Our JSX code is getting a bit long, so let's separate the button's `onClick` handler into its own function. The input's `onChange` handler is **acceptable** for now.
+Our Svelte file is getting a bit long and messy, so let's separate the button's `on:click` handler into its function.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx {8-17, 23}
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {22-27,34}
+<script lang="ts">
+  type Priority = 'p1' | 'p2' | 'p3';
 
-function App() {
-  // Some of the code omitted for brevity
-
-  const [taskName, setTaskName] = React.useState('');
-
-  const onAddTask = () => {
-    setTasks([
-      ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: taskName,
-        isCompleted: false,
-      },
-    ]);
+  type Task = {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+    priority?: Priority;
   };
 
-  return (
-    <div>
-      {/* Some of the code omitted for brevity */}
+  let tasks: Task[] = [
+    {
+      id: 1,
+      title: 'Learn Svelte',
+      isCompleted: true,
+      priority: 'p1',
+    },
+  ];
 
-      <button onClick={onAddTask}>Add</button>
+  let taskName = '';
 
-      {/* Some of the code omitted for brevity */}
-    </div>
-  );
-}
+  const addTask = () => {
+    tasks = [
+      ...tasks,
+      { id: new Date().getTime(), title: taskName, isCompleted: false },
+    ];
+  };
+</script>
 
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <label for="task-input">Add Task: </label>
+  <input id="task-input" bind:value={taskName} />
+  <button on:click={addTask}>Add</button>
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
+
+This is how your final Svelte code should look.
 
 Awesome, but there are a ton of things that can go wrong when a user adds a task. For example, the user can add an empty task.
 
 This gives us a good opportunity to learn about **Testing**. We'll cover testing in the subsequent sections.
 
-At this point, your code should be a good match to the branch of the repository: [3-adding-tasks](https://github.com/Frontend-Hire/todo-app-react-tdd-typescript/tree/3-adding-tasks)
+At this point, your code should be a good match to the branch of the repository: [3-adding-tasks](https://github.com/Frontend-Hire/todo-app-svelte-tdd-typescript/tree/3-adding-tasks)
