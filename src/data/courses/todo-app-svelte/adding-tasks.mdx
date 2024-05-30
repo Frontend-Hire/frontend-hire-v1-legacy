@@ -12,7 +12,7 @@ Let us add interactivity by letting the user add tasks to the list. We'll add a 
 
 First, add a text input and a button to the page. We'll add them just above the list of tasks.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {5, 6}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -33,7 +33,7 @@ First, add a text input and a button to the page. We'll add them just above the 
 
 Though this is good enough for now, we can and **should** make it more accessible by adding a label for the input and a `for` attribute on the label that matches the `id` of the input.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {5, 6}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -59,7 +59,7 @@ Now, clicking on the label will focus on the input.
 
 The Add button doesn't do anything yet. Let's add a click handler to it that will log to the console for now.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {7}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -83,7 +83,7 @@ Let's capture the value of the input and log it to the console. One of the ways 
 
 All we need to do is add a `bind:value` attribute to the input and track it in the `taskName` variable.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {4, 10}
 <script lang="ts">
   // Some of the code omitted for brevity
@@ -103,7 +103,7 @@ All we need to do is add a `bind:value` attribute to the input and track it in t
 
 Now, we can update the button click handler to log the value of the input.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {6, 7}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -120,7 +120,7 @@ Now, we can update the button click handler to log the value of the input.
 
 Before we can even add tasks to the list, we have to update our current `tasks` variable that holds our list of tasks to be mutable a.k.a a `let`; otherwise, the list will not update when we add a task.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {4}
 <script lang="ts">
   // Some of the code omitted for brevity
@@ -143,7 +143,7 @@ Before we can even add tasks to the list, we have to update our current `tasks` 
 
 We can add a task to the list by updating the `tasks` state variable. We can push the new task onto the end of the array but to re-render the list we must reassign the tasks array to itself. This is how reactivity in Svelte works, through assignments. This would have been natural if it was a primitive data type like a string or number. This is not the case with Objects and Arrays.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {6-11}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -164,7 +164,7 @@ We can add a task to the list by updating the `tasks` state variable. We can pus
 
 If that felt weird, there is a more meaningful way to add tasks to the list.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte {6-13}
 <!-- Rest of the code omitted for brevity  -->
 
@@ -196,7 +196,7 @@ Type in the input and hit the `Add` button, we should be able to add tasks to th
 
 Our Svelte file is getting a bit long and messy, so let's separate the button's `on:click` handler into its function.
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte showLineNumbers {22-27,34}
 <script lang="ts">
   type Priority = 'p1' | 'p2' | 'p3';

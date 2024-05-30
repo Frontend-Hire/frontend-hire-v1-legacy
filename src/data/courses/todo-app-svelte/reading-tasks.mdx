@@ -93,11 +93,11 @@ Now that we have some data, let's render it to the screen. How do we do that in 
   track of which items have changed, are added, or are removed.
 </Callout>
 
-But where do we add this entire code? In SvelteKit, we have a `src/routes/+pages.svelte` file which indicates the root URL of our app.
+But where do we add this entire code? In SvelteKit, we have a `src/routes/+page.svelte` file which indicates the root URL of our app.
 
-Putting it all together, we should have the following `+pages.svelte` file:
+Putting it all together, we should have the following `+page.svelte` file:
 
-<CustomCodeViewer filename="src/routes/+pages.svelte">
+<CustomCodeViewer filename="src/routes/+page.svelte">
 ```svelte
 <script lang="ts">
   type Priority = 'p1' | 'p2' | 'p3';
