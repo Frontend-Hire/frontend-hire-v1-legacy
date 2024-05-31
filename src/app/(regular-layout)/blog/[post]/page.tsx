@@ -1,6 +1,5 @@
 import { getBlogPostFromLocal } from '@/lib/fetchLocalFiles';
 import { Metadata } from 'next';
-import { openGraphShared } from '@/app/shared-metadata';
 import Image from 'next/image';
 import AuthorCard from '@/components/AuthorCard';
 
