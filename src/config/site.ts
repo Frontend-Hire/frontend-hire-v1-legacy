@@ -33,11 +33,11 @@ export const LINKS: NavLink[] = [
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
-      // {
-      //   title: 'System Design',
-      //   href: '/system-design',
-      //   icon: PresentationIcon,
-      // },
+      {
+        title: 'System Design',
+        href: '/system-design',
+        icon: PresentationIcon,
+      },
       { title: 'Blog', href: '/blog', icon: AlbumIcon },
     ],
   },

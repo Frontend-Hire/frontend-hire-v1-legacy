@@ -12,10 +12,7 @@ type AvatarDropdownProps = {
   name?: string;
 };
 
-export default async function AvatarDropdown({
-  picture,
-  name,
-}: AvatarDropdownProps) {
+export default function AvatarDropdown({ picture, name }: AvatarDropdownProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="hover:opacity-80">

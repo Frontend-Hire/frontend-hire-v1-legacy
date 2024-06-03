@@ -50,7 +50,8 @@ export default function DeleteAccountButtonWithAlert() {
           <AlertDialogTitle>Delete Account</AlertDialogTitle>
           <AlertDialogDescription>
             This will delete your account and any data related to it. This
-            action is irreversible. Are you sure?
+            action is irreversible. Are you sure? Pro access will be revoked.
+            You will have to contact support to restore your Pro purchase.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

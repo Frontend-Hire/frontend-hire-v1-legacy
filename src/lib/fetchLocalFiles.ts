@@ -2,6 +2,7 @@ import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
 import { ProjectOverview } from '@/types/Project';
 import { QuestionOverview } from '@/types/Question';
+import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
 import path from 'path';
 import { cache } from 'react';
@@ -108,20 +109,46 @@ export const getCoursePage = cache(
   },
 );
 
-export const getSystemDesign = cache(async (questionId: string) => {
-  const systemDesignMeta: {
-    isPro?: boolean;
-    isPublished?: boolean;
-    chapters: Record<string, string>;
-  } = require(`@/data/system-design/${questionId}/_meta.json`);
+const systemDesignPath = path.join(process.cwd(), '/src/data/system-design');
 
-  return systemDesignMeta;
+export const getSystemDesignsFromLocal = cache(async () => {
+  const systems: SystemDesign[] = [];
+  const allSystems = fs.readdirSync(systemDesignPath);
+
+  for (const system of allSystems.filter((system) => !system.startsWith('.'))) {
+    const { meta } = require(`@/data/system-design/${system}/meta.ts`);
+    if (meta.isPublished) {
+      systems.push({
+        ...meta,
+      });
+    }
+  }
+
+  return systems.sort((a, b) => {
+    if (a.publishedOn && b.publishedOn) {
+      return b.publishedOn.getTime() - a.publishedOn.getTime();
+    } else if (a.publishedOn) {
+      return -1;
+    } else if (b.publishedOn) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+});
+
+export const getSystemDesign = cache(async (systemDesignId: string) => {
+  const { meta }: { meta: SystemDesign } = require(
+    `@/data/system-design/${systemDesignId}/meta.ts`,
+  );
+
+  return meta;
 });
 
 export const getSystemDesignPage = cache(
-  async (questionId: string, chapter: string) => {
+  async (systemDesignId: string, chapter: string) => {
     const { default: getContent, meta } = require(
-      `@/data/system-design/${questionId}/${chapter}.mdx`,
+      `@/data/system-design/${systemDesignId}/${chapter}.mdx`,
     );
 
     return { getContent, meta } as {
@@ -130,6 +157,7 @@ export const getSystemDesignPage = cache(
     };
   },
 );
+
 const blogPath = path.join(process.cwd(), '/src/data/blog');
 
 export const getBlogPostsMetaFromLocal = cache(async () => {

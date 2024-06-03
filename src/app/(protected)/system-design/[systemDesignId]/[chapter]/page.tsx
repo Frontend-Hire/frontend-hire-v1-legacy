@@ -7,14 +7,14 @@ import Footer from './_components/Footer';
 type ChapterPageProps = {
   params: {
     chapter: string;
-    questionId: string;
+    systemDesignId: string;
   };
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const { chapters, isPro } = await getSystemDesign(params.questionId);
+  const { chapters } = await getSystemDesign(params.systemDesignId);
   const { getContent, meta } = await getSystemDesignPage(
-    params.questionId,
+    params.systemDesignId,
     params.chapter,
   );
 

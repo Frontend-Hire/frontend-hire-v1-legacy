@@ -5,7 +5,6 @@ import CourseBanner from '@/components/CourseBanner';
 import { Metadata } from 'next';
 import { openGraphShared } from '@/app/shared-metadata';
 import Link from 'next/link';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { getCoursesFromLocal } from '@/lib/fetchLocalFiles';
 
 export const metadata: Metadata = {
