@@ -10,5 +10,9 @@ export const meta: SystemDesign = {
   publishedOn: new Date('2024-06-05'),
   chapters: {
     overview: 'Overview',
+    'geolocation-web-api': 'Geolocation Web API',
+    'third-party-api': 'Third-Party API',
+    'static-site-generation': 'Static Site Generation (SSG)',
+    'server-side-rendering': 'Server-Side Rendering (SSR)',
   },
 };

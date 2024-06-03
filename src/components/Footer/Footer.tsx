@@ -20,7 +20,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
           className,
         )}
       >
-        © YHR Technologies {thisYear}
+        © YHR Technologies {thisYear} | Frontend Hire
       </footer>
     );
   }
@@ -35,8 +35,18 @@ export default function Footer({ isCompact, className }: FooterProps) {
           <Social />
         </div>
         <FooterLinks links={LINKS} />
-        <div className="text-center md:text-left">
-          © YHR Technologies {thisYear}
+        <div className="space-y-2 text-center text-muted md:text-left">
+          <p>
+            Frontend Hire is a product of{' '}
+            <Link
+              className="underline underline-offset-2 transition-colors hover:text-primary-foreground"
+              prefetch={false}
+              href="https://www.withyhr.com/"
+            >
+              YHR Technologies
+            </Link>
+          </p>
+          <p>© YHR Technologies {thisYear}</p>
         </div>
       </div>
     </footer>
@@ -49,7 +59,7 @@ type FooterLinksProps = {
 
 function FooterLinks({ links }: FooterLinksProps) {
   return (
-    <div className="grid grid-cols-2 justify-center gap-6 p-4 md:flex md:flex-wrap md:justify-stretch lg:gap-10">
+    <div className="flex justify-center gap-6 p-4 md:justify-stretch lg:gap-10">
       {links.map((link) => (
         <div key={link.title} className="leading-loose">
           <h3 className="font-bold">{link.title}</h3>
