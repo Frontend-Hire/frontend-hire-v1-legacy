@@ -45,7 +45,7 @@
     "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.330.0",
     "mdx-bundler": "^10.0.2",
-    "next": "^14.1.0",
+    "next": "^14.2.3",
     "npm": "^10.5.2",
     "nuqs": "^1.16.1",
     "posthog-js": "^1.126.0",
