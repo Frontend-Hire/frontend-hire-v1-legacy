@@ -1,21 +1,10 @@
 import { Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 
 export const meta = {
-  lastUpdated: '2024-04-01'
+  lastUpdated: '2024-05-30'
 }
 
 # Refactoring
-
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/UtOxGwg-FUY?si=5urQLd8EylO0k3YM&amp;start=690'
-  title='Refactoring | Todo App with React, TypeScript, TDD | Frontend Hire'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
 
 In this section, we'll discuss why refactoring is important, and how to do it.
 
@@ -35,87 +24,67 @@ Now, of course, the topic of refactoring is vast. There are entire books written
 
 ### Let's see our current file that contains the entire code for the Todo App
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers 
-import React from 'react';
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers 
+<script lang="ts">
+  type Priority = 'p1' | 'p2' | 'p3';
 
-type Priority = 'p1' | 'p2' | 'p3';
+  type Task = {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+    priority?: Priority;
+  };
 
-type Task = {
-  id: number;
-  title: string;
-  isCompleted: boolean;
-  priority?: Priority;
-};
+  let tasks: Task[] = [];
 
-function App() {
-  const [tasks, setTasks] = React.useState<Task[]>([]);
+  let taskName = '';
 
-  const [taskName, setTaskName] = React.useState('');
-
-  const onAddTask = () => {
+  const addTask = () => {
     const trimmedTaskName = taskName.trim();
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    if (!trimmedTaskName) return;
 
-    setTasks([
+    tasks = [
       ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: trimmedTaskName,
-        isCompleted: false,
-      },
-    ]);
-
-    setTaskName('');
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
   };
 
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onAddTask();
-    }
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask();
   };
+</script>
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-      <button onClick={onAddTask}>Add</button>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <label for="task-input">Add Task: </label>
+  <input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+  <button on:click={addTask}>Add</button>
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
-Honestly, this is not bad code, and it seems easy to read with around 62 lines of code. But we can still improve it. Here are a couple of things we find that can be improved:
+Honestly, this is not bad code, and it seems easy to read with around 42 lines of code. But we can still improve it. Here are a couple of things we find that can be improved:
 
-- The `Task` type is defined inside the `App` component. This is not a good practice. We should move it outside the component.
+- The `Task` type is defined inside the `Page` component. This is not a good practice. We should move it outside the component.
 
-- The input has a good amount of logic that can be extracted into a separate component.
+- The input and the button contain a good amount of logic that can be extracted into a separate component.
 
 Let's do these two things first. Of course, refactoring is a continuous process. So, we'll keep improving our code as we go.
 
-### Moving the `Task` type outside the `App` component
+### Moving the `Task` type outside the `Page` component
 
-Move the `Task` type outside the `App` component. We'll create a new file called `types.ts` inside the `src` folder and move the `Task` type there. We'll also move the `Priority` type there as well.
+Move the `Task` type outside the `Page` component. We'll create a new file called `types.ts` inside the `src` folder and move the `Task` type there. We'll also move the `Priority` type there as well.
 
-<CustomCodeViewer filename="./src/types.ts">
-```tsx showLineNumbers {1-8} 
+<CustomCodeViewer filename="src/types.ts">
+```ts showLineNumbers {1-8} 
 type Priority = 'p1' | 'p2' | 'p3';
 
 export type Task = {
@@ -129,12 +98,17 @@ export type Task = {
 
 Export the `Task` type from the `types.ts` file, and import it in the `App` component.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {2} 
-import React from 'react';
-import { Task } from './types';
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {2} 
+<script lang="ts">
+import type { Task } from '../types';
 
-// Rest of the code omitted for brevity
+let tasks: Task[] = [];
+
+// Some of the code omitted for brevity
+</script>
+
+<!-- Rest of the code omitted for brevity -->
 ```
 </CustomCodeViewer>
 
@@ -142,86 +116,68 @@ Our main file is already 10 lines shorter. Let's move on to the next step.
 
 ### Extracting the input into a separate component
 
-Create a new `TaskInput.tsx` file inside the `src` folder. We'll move the input and the respective label into this file.
+Create a new `TaskInput.svelte` file inside the `src/routes` folder, at the same level as our `+page.svelte` file. We'll move the input and the respective label into this file.
 
-<CustomCodeViewer filename="./src/TaskInput.tsx">
-```tsx showLineNumbers {1-13} 
-export default function TaskInput() {
-  return (
-    <>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-    </>
-  );
-}
+<CustomCodeViewer filename="src/routes/TaskInput.svelte">
+```svelte showLineNumbers {1-2} 
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
 ```
 </CustomCodeViewer>
 
-Of course, this won't work because we're using `taskName`, `setTaskName`, and `onInputKeyDown` inside the `Input` component. We'll pass these as props to the `TaskInput` component.
+Of course, this won't work because we're using `taskName` and `onKeydown` inside the `Input` component. We'll pass these as props to the `TaskInput` component.
 
-<CustomCodeViewer filename="./src/TaskInput.tsx">
-```tsx showLineNumbers {1-5, 7-11} 
-type TaskInputProps = {
-  taskName: string;
-  setTaskName: (taskName: string) => void;
-  onInputKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-};
+<CustomCodeViewer filename="src/routes/TaskInput.svelte">
+```svelte showLineNumbers {1-4} 
+<script lang="ts">
+  export let taskName: string;
+  export let onKeydown: (e: KeyboardEvent) => void;
+</script>
 
-export default function TaskInput({
-  taskName,
-  setTaskName,
-  onInputKeyDown,
-}: TaskInputProps) {
-  return (
-    <>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-    </>
-  );
-}
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
 ```
 </CustomCodeViewer>
 
-Let's use the new `TaskInput` component in the `App`.
+Let's use the new `TaskInput` component in the `Page` component.`.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {3, 11-15} 
-import React from 'react';
-import { Task } from './types';
-import TaskInput from './TaskInput';
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {3,28} 
+<script lang="ts">
+  import type { Task } from '../types';
+  import TaskInput from './TaskInput.svelte';
 
-function App() {
-  // Some of the code omitted for brevity
+  let tasks: Task[] = [];
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <TaskInput
-        taskName={taskName}
-        setTaskName={setTaskName}
-        onInputKeyDown={onInputKeyDown}
-      />
-      <button onClick={onAddTask}>Add</button>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  let taskName = '';
 
-// Rest of the code omitted for brevity
+  const addTask = () => {
+    const trimmedTaskName = taskName.trim();
+
+    if (!trimmedTaskName) return;
+
+    tasks = [
+      ...tasks,
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
+  };
+
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask();
+  };
+</script>
+
+<div>
+  <h1>Tasks</h1>
+  <TaskInput bind:taskName {onKeydown} />
+  <button on:click={addTask}>Add</button>
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
@@ -229,191 +185,171 @@ Honestly, this is not a huge improvement at all. We just abstracted the label an
 
 But let's have a good look at our components. Can we move the button to our new `TaskInput` component? Let's try that.
 
-<CustomCodeViewer filename="./src/TaskInput.tsx">
-```tsx showLineNumbers {5, 12, 23} 
-type TaskInputProps = {
-  taskName: string;
-  setTaskName: (taskName: string) => void;
-  onInputKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onAddTask: () => void;
-};
+<CustomCodeViewer filename="src/routes/TaskInput.svelte">
+```svelte showLineNumbers {4,9} 
+<script lang="ts">
+  export let taskName: string;
+  export let onKeydown: (e: KeyboardEvent) => void;
+  export let addTask: () => void;
+</script>
 
-export default function TaskInput({
-  taskName,
-  setTaskName,
-  onInputKeyDown,
-  onAddTask,
-}: TaskInputProps) {
-  return (
-    <>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-      <button onClick={onAddTask}>Add</button>
-    </>
-  );
-}
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+<button on:click={addTask}>Add</button>
 ```
 </CustomCodeViewer>
 
-We'll also pass the `onAddTask` function to the `TaskInput` component.
+We'll also pass the `addTask` function to the `TaskInput` component.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {13} 
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {28} 
+<script lang="ts">
+  import type { Task } from '../types';
+  import TaskInput from './TaskInput.svelte';
 
-function App() {
-  // Some of the code omitted for brevity
+  let tasks: Task[] = [];
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <TaskInput
-        taskName={taskName}
-        setTaskName={setTaskName}
-        onInputKeyDown={onInputKeyDown}
-        onAddTask={onAddTask}
-      />
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  let taskName = '';
 
-// Rest of the code omitted for brevity
-```
-</CustomCodeViewer>
-
-We are getting there. Let's also think of a better name for the `TaskInput` component. We'll rename it to `AddTask`. Also, we'll rename to file to `AddTask.tsx`.
-
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {1, 5, 10} 
-type AddTaskProps = {
-  // Some of the code omitted for brevity
-};
-
-export default function AddTask({
-  taskName,
-  setTaskName,
-  onInputKeyDown,
-  onAddTask,
-}: AddTaskProps) {
-  // Some of the code omitted for brevity
-}
-```
-</CustomCodeViewer>
-
-Our `App` component must also be updated with the new name.
-
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {2, 10} 
-// Rest of the code omitted for brevity
-import AddTask from './AddTask';
-
-function App() {
-  // Some of the code omitted for brevity
-
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <AddTask
-        taskName={taskName}
-        setTaskName={setTaskName}
-        onInputKeyDown={onInputKeyDown}
-        onAddTask={onAddTask}
-      />
-      {/* Some of the code omitted for brevity */}
-    </div>
-  );
-}
-
-// Rest of the code omitted for brevity
-```
-</CustomCodeViewer>
-
-Now, we can also move the `onInputKeyDown` function to the `AddTask` component as it just calls the `onAddTask` function. Also, let's update the props accordingly.
-
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {1-5, 7-16} 
-type AddTaskProps = {
-  taskName: string;
-  setTaskName: (taskName: string) => void;
-  onAddTask: () => void;
-};
-
-export default function AddTask({
-  taskName,
-  setTaskName,
-  onAddTask,
-}: AddTaskProps) {
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onAddTask();
-    }
-  };
-
-  // Rest of the code omitted for brevity
-}
-```
-</CustomCodeViewer>
-
-We'll also update the `App` component accordingly.
-
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {32-36} 
-import React from 'react';
-import { Task } from './types';
-import AddTask from './AddTask';
-
-function App() {
-  const [tasks, setTasks] = React.useState<Task[]>([]);
-
-  const [taskName, setTaskName] = React.useState('');
-
-  const onAddTask = () => {
+  const addTask = () => {
     const trimmedTaskName = taskName.trim();
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    if (!trimmedTaskName) return;
 
-    setTasks([
+    tasks = [
       ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: trimmedTaskName,
-        isCompleted: false,
-      },
-    ]);
-
-    setTaskName('');
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
   };
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <AddTask
-        taskName={taskName}
-        setTaskName={setTaskName}
-        onAddTask={onAddTask}
-      />
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask();
+  };
+</script>
 
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <TaskInput bind:taskName {onKeydown} {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
+```
+</CustomCodeViewer>
+
+We are getting there. Let's also think of a better name for the `TaskInput` component. We'll rename it to `AddTask`. Also, we'll rename to file to `AddTask.svelte`.
+
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers
+<script lang="ts">
+  export let taskName: string;
+  export let onKeydown: (e: KeyboardEvent) => void;
+  export let addTask: () => void;
+</script>
+
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+<button on:click={addTask}>Add</button>
+```
+</CustomCodeViewer>
+
+Our `Page` component must also be updated with the new name.
+
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {3, 28} 
+<script lang="ts">
+  import type { Task } from '../types';
+  import AddTask from './AddTask.svelte';
+
+  let tasks: Task[] = [];
+
+  let taskName = '';
+
+  const addTask = () => {
+    const trimmedTaskName = taskName.trim();
+
+    if (!trimmedTaskName) return;
+
+    tasks = [
+      ...tasks,
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
+  };
+
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask();
+  };
+</script>
+
+<div>
+  <h1>Tasks</h1>
+  <AddTask bind:taskName {onKeydown} {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
+```
+</CustomCodeViewer>
+
+Now, we can also move the `onKeydown` function to the `AddTask` component as it just calls the `addTask` function. Also, let's update the props accordingly.
+
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers {5-7} 
+<script lang="ts">
+  export let taskName: string;
+  export let addTask: () => void;
+
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask();
+  };
+</script>
+
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+<button on:click={addTask}>Add</button>
+```
+</CustomCodeViewer>
+
+We'll also update the `Page` component accordingly.
+
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {24} 
+<script lang="ts">
+  import type { Task } from '../types';
+  import AddTask from './AddTask.svelte';
+
+  let tasks: Task[] = [];
+
+  let taskName = '';
+
+  const addTask = () => {
+    const trimmedTaskName = taskName.trim();
+
+    if (!trimmedTaskName) return;
+
+    tasks = [
+      ...tasks,
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
+  };
+</script>
+
+<div>
+  <h1>Tasks</h1>
+  <AddTask bind:taskName {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
@@ -421,174 +357,122 @@ Now we can see some reduction in the number of lines. Now, there is one more ref
 
 ### Let's see the performance problem in our app
 
-Put up a console.log inside the `App` component and see how many times it's being called when we type something in the input.
+Put up a console.log inside the `Page` component and see how many times it's being called when we type something in the input. We will do this by logging inside `afterUpdate` lifecycle hook.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {4} 
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {2, 22-24} 
+<script lang="ts">
+  import { afterUpdate } from 'svelte';
+  import type { Task } from '../types';
+  import AddTask from './AddTask.svelte';
 
-function App() {
-  console.log('App rendered');
+  let tasks: Task[] = [];
 
-  // Rest of the code omitted for brevity
-}
+  let taskName = '';
 
-// Rest of the code omitted for brevity
-```
-</CustomCodeViewer>
-
-![App re-renders on input cahnge](./screenshots/refactoring-1.gif)
-
-### Why is the `App` component being rendered so many times?
-
-It all has to do with where our state is located. Our app has two states: `tasks` and `taskName`. The respective state is updated at different places in our app. The `tasks` state is updated inside the `onAddTask` function, and the `taskName` state is updated inside the `setTaskName` function.
-
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {6, 8, 17-24, 26, 34} 
-// Rest of the code omitted for brevity
-
-function App() {
-  console.log('App rendered');
-
-  const [tasks, setTasks] = React.useState<Task[]>([]);
-
-  const [taskName, setTaskName] = React.useState('');
-
-  const onAddTask = () => {
+  const addTask = () => {
     const trimmedTaskName = taskName.trim();
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    if (!trimmedTaskName) return;
 
-    setTasks([
+    tasks = [
       ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: trimmedTaskName,
-        isCompleted: false,
-      },
-    ]);
-
-    setTaskName('');
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
+    taskName = '';
   };
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <AddTask
-        taskName={taskName}
-        setTaskName={setTaskName}
-        onAddTask={onAddTask}
-      />
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  afterUpdate(() => {
+    console.log('Page Rendered');
+  });
+</script>
 
-// Rest of the code omitted for brevity
+<div>
+  <h1>Tasks</h1>
+  <AddTask bind:taskName {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
-We could argue that the `App` component should be rendered when the `tasks` state is updated but not when the `taskName` state is updated. And we're right. But React doesn't know that. React will re-render the `App` component whenever any state inside the `App` is updated. And that's why the `App` component is being rendered so many times.
+### Why is the `Page` component being rendered so many times?
+
+It all has to do with where our state is located. Our app has two states: `tasks` and `taskName`. The respective state is updated at different places in our app. The `tasks` state is updated inside the `addTask` function, and the `taskName` state is updated because it is bound to the input.
+
+We could argue that the `Page` component should be rendered when the `tasks` state is updated but not when the `taskName` state is updated. And we're right. But Svelte doesn't know that. Svelte will re-render the `Page` component whenever any state inside the `Page` is updated. And that's why the `Page` component is being rendered so many times.
 
 But we know the `taskName` state is only used inside the `AddTask` component. So, we can move the `taskName` state inside the `AddTask` component. Let's do that.
 
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {1, 3-5, 7-8, 12, 25} 
-import React from 'react';
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers {2,4,7,13} 
+<script lang="ts">
+  export let addTask: (taskName: string) => void;
 
-type AddTaskProps = {
-  onAddTask: (taskName: string) => void;
-};
+  let taskName = '';
 
-export default function AddTask({ onAddTask }: AddTaskProps) {
-  const [taskName, setTaskName] = React.useState('');
-
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onAddTask(taskName);
-    }
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') addTask(taskName);
   };
+</script>
 
-  return (
-    <>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-      <button onClick={() => onAddTask(taskName)}>Add</button>
-    </>
-  );
-}
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+<button on:click={() => addTask(taskName)}>Add</button>
 ```
 </CustomCodeViewer>
 
-We had to update our types as the `App` component now needs to know what task the `AddTask` component sends.
+We had to update our props as the `Page` component now needs to know what task the `AddTask` component sends.
 
-Let us also clean the `App` component.
+Let us also clean the `Page` component.
 
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {10, 30}
-import React from 'react';
-import { Task } from './types';
-import AddTask from './AddTask';
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {8,26}
+<script lang="ts">
+  import { afterUpdate } from 'svelte';
+  import type { Task } from '../types';
+  import AddTask from './AddTask.svelte';
 
-function App() {
-  console.log('App rendered');
+  let tasks: Task[] = [];
 
-  const [tasks, setTasks] = React.useState<Task[]>([]);
-
-  const onAddTask = (taskName: string) => {
+  const addTask = (taskName: string) => {
     const trimmedTaskName = taskName.trim();
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    if (!trimmedTaskName) return;
 
-    setTasks([
+    tasks = [
       ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: trimmedTaskName,
-        isCompleted: false,
-      },
-    ]);
+      { id: new Date().getTime(), title: trimmedTaskName, isCompleted: false },
+    ];
   };
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <AddTask onAddTask={onAddTask} />
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  afterUpdate(() => {
+    console.log('Page Rendered');
+  });
+</script>
 
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <AddTask {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
-Try typing something in the input now. You'll see that the `App` component is not being rendered anymore unless a new task is added, which is expected.
-
-![App does not re-render on input change](./screenshots/refactoring-2.gif)
+Try typing something in the input now. You'll see that the `Page` component is not being rendered anymore unless a new task is added, which is expected.
 
 <Callout>
   We want to mention that this is not a huge performance problem. But it's a
-  good example of improving our app's performance without
-  fancy tools like useCallback, useMemo, etc. Even those
-  tools won't help us much in this case.
+  good approach to improving our app's performance and also readability.
+  
+  This course has a React version where this approach can be super powerful and helps not use fancy tools like useCallback, useMemo, etc.
 </Callout>
 
 ### Oops, We seem to have broken something
@@ -605,90 +489,66 @@ npm test
 ```
 </CustomCodeViewer>
 
-![Input Clear Test is failing](./screenshots/refactoring-3.webp)
-
 We can see that the `Input Clear Test` is failing. Let's fix it.
 
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {10-19, 23, 36} 
-import React from 'react';
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers {6-12,15,21} 
+<script lang="ts">
+  export let addTask: (taskName: string) => void;
 
-type AddTaskProps = {
-  onAddTask: (taskName: string) => void;
-};
+  let taskName = '';
 
-export default function AddTask({ onAddTask }: AddTaskProps) {
-  const [taskName, setTaskName] = React.useState('');
+  const onAddTask = () => {
+    if (!taskName.trim()) return;
 
-  const handleAddTask = () => {
-    const trimmedTaskName = taskName.trim();
+    addTask(taskName);
 
-    if (!trimmedTaskName) {
-      return;
-    }
-
-    onAddTask(trimmedTaskName);
-    setTaskName('');
+    taskName = '';
   };
 
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleAddTask();
-    }
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') onAddTask();
   };
+</script>
 
-  return (
-    <>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-        onKeyDown={onInputKeyDown}
-      />
-      <button onClick={handleAddTask}>Add</button>
-    </>
-  );
-}
+<label for="task-input">Add Task: </label>
+<input id="task-input" bind:value={taskName} on:keydown={onKeydown} />
+<button on:click={onAddTask}>Add</button>
 ```
 </CustomCodeViewer>
 
-We are proxying the `onAddTask` function inside the `handleAddTask` function. This enables us to add more logic to the `handleAddTask` function, clearing the input and passing the trimmed task to the parent without affecting the `onAddTask` function. This also cleans up the `App` component.
+We are proxying the `addTask` function inside the `onAddTask` function. This enables us to add more logic to the `onAddTask` function, clearing the input and passing the trimmed task to the parent without affecting the `addTask` function. This also cleans up the `Page` component.
 
-<CustomCodeViewer filename="./src/App.tsx">
-```tsx showLineNumbers {8-17} 
-import React from 'react';
-import { Task } from './types';
-import AddTask from './AddTask';
+<CustomCodeViewer filename="src/routes/+page.svelte">
+```svelte showLineNumbers {8-13} 
+<script lang="ts">
+  import { afterUpdate } from 'svelte';
+  import type { Task } from '../types';
+  import AddTask from './AddTask.svelte';
 
-function App() {
-  const [tasks, setTasks] = React.useState<Task[]>([]);
+  let tasks: Task[] = [];
 
-  const onAddTask = (taskName: string) => {
-    setTasks([
+  const addTask = (taskName: string) => {
+    tasks = [
       ...tasks,
-      {
-        id: new Date().getTime(), // Not a great way to generate IDs
-        title: taskName,
-        isCompleted: false,
-      },
-    ]);
+      { id: new Date().getTime(), title: taskName, isCompleted: false },
+    ];
   };
 
-  return (
-    <div>
-      <h1>Tasks</h1>
-      <AddTask onAddTask={onAddTask} />
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  afterUpdate(() => {
+    console.log('Page Rendered');
+  });
+</script>
 
-export default App;
+<div>
+  <h1>Tasks</h1>
+  <AddTask {addTask} />
+  <ul>
+    {#each tasks as task (task.id)}
+      <li>{task.title}</li>
+    {/each}
+  </ul>
+</div>
 ```
 </CustomCodeViewer>
 
@@ -696,81 +556,61 @@ Our tests are passing now, and we have a much cleaner code.
 
 ### Using the Form to contain the input and button
 
-A few folks in one of our webinars pointed out that we could have used a form to contain the input and the button. This is a good idea. As it will help eliminate the need for the `onInputKeyDown` function. Let's do that.
+A few folks in one of our webinars pointed out that we could have used a form to contain the input and the button. This is a good idea. As it will help eliminate the need for the `onKeydown` function. Let's do that.
 
 Let's do that now.
 
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {18, 20-24, 26} 
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers {15-19} 
+<script lang="ts">
+  export let addTask: (taskName: string) => void;
 
-export default function AddTask({ onAddTask }: AddTaskProps) {
-  const [taskName, setTaskName] = React.useState('');
+  let taskName = '';
 
-  const handleAddTask = () => {
-    const trimmedTaskName = taskName.trim();
+  const onAddTask = () => {
+    if (!taskName.trim()) return;
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    addTask(taskName);
 
-    onAddTask(trimmedTaskName);
-    setTaskName('');
+    taskName = '';
   };
+</script>
 
-  return (
-    <form>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button onClick={handleAddTask}>Add</button>
-    </form>
-  );
-}
+<form on:submit={onAddTask}>
+  <label for="task-input">Add Task: </label>
+  <input id="task-input" bind:value={taskName} />
+  <button>Add</button>
+</form>
 ```
 </CustomCodeViewer>
 
-We removed the `onInputKeyDown` function and the `onKeyDown` event listener from the input. We also wrapped the label, input, and button inside a `form` element. Our tests will still pass, but this approach has an issue. The form will be submitted when the button is clicked, and the browser will refresh. We don't want that. We want to prevent the form from submitting. We can add an `onSubmit` event listener to the form and stop the default event.
+We removed the `onKeydown` function and the event listener from the input. We also wrapped the label, input, and button inside a `form` element. Our tests will still pass, but this approach has an issue. The form will be submitted when the button is clicked, and SvelteKit will make a `GET` request to the same page, this is why the focus is lost from input. We don't want that. We want to prevent the form from submitting. We can simply use the `preventDefault` modifier.
 
-<CustomCodeViewer filename="./src/AddTask.tsx">
-```tsx showLineNumbers {6-7, 19, 22, 27} 
-// Rest of the code omitted for brevity
+<CustomCodeViewer filename="src/routes/AddTask.svelte">
+```svelte showLineNumbers {15-19} 
+<script lang="ts">
+  export let addTask: (taskName: string) => void;
 
-export default function AddTask({ onAddTask }: AddTaskProps) {
-  const [taskName, setTaskName] = React.useState('');
+  let taskName = '';
 
-  const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const trimmedTaskName = taskName.trim();
+  const onAddTask = () => {
+    if (!taskName.trim()) return;
 
-    if (!trimmedTaskName) {
-      return;
-    }
+    addTask(taskName);
 
-    onAddTask(trimmedTaskName);
-    setTaskName('');
+    taskName = '';
   };
+</script>
 
-  return (
-    <form onSubmit={handleAddTask}>
-      <label htmlFor='task-input'>Add Task: </label>
-      <input
-        required
-        id='task-input'
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button>Add</button>
-    </form>
-  );
-}
+<form on:submit|preventDefault={onAddTask}>
+  <label for="task-input">Add Task: </label>
+  <input id="task-input" bind:value={taskName} required />
+  <button>Add</button>
+</form>
 ```
 </CustomCodeViewer>
 
-We added an `onSubmit` event listener to the form. We also added the `required` attribute to the input. This will prevent the form from submitting if the input is empty. We also updated the `handleAddTask` function to accept the `e` argument of type `React.FormEvent<HTMLFormElement>`. We also called the `preventDefault` method on the `e` argument to prevent the form from submitting.
+We added a `submit` event listener to the form. We also added the `required` attribute to the input. This will prevent the form from submitting if the input is empty. We also called the `preventDefault` modifier to the submit event listener.
 
 We saw how good tests can help us maintain good code quality. We also saw how to improve our app's performance by moving the state to the right place.
 
@@ -778,4 +618,4 @@ This was a straightforward example of refactoring. But we hope you have an idea 
 
 This is the end of this section. In the next section, we'll discuss component composition.
 
-At this point, your code should be a good match to the branch of the repository: [7-refactoring](https://github.com/Frontend-Hire/todo-app-react-tdd-typescript/tree/7-refactoring)
+At this point, your code should be a good match to the branch of the repository: [7-refactoring](https://github.com/Frontend-Hire/todo-app-svelte-tdd-typescript/tree/7-refactoring)

@@ -10,9 +10,12 @@ type CourseCategoryProps = {
 const categoryVariants = cva('', {
   variants: {
     variant: {
-      Svelte: 'bg-[hsl(15deg,100%,20%)] text-[hsl(15deg,100%,80%)]',
-      React: 'bg-[hsl(193deg,95%,20%)] text-[hsl(193deg,95%,80%)]',
-      'Next.js': 'bg-[hsl(0deg,0%,20%)] text-[hsl(0deg,0%,80%)]',
+      Svelte:
+        'bg-[hsl(15deg,100%,20%)] text-[hsl(15deg,100%,80%)] hover:bg-[hsl(15deg,100%,30%)]',
+      React:
+        'bg-[hsl(193deg,95%,20%)] text-[hsl(193deg,95%,80%)] hover:bg-[hsl(193deg,95%,30%)]',
+      'Next.js':
+        'bg-[hsl(0deg,0%,20%)] text-[hsl(0deg,0%,80%)] hover:bg-[hsl(0deg,0%,30%)]',
     },
   },
 });

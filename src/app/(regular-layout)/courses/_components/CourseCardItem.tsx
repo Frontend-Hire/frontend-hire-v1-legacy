@@ -10,9 +10,15 @@ export default function CourseCardItem({
   isPro,
   isVideoAvailable,
   category,
+  isNew,
 }: Course) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-md bg-card">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-card">
+      {isNew && (
+        <div className="absolute right-0 top-0 bg-primary px-2 py-1 text-sm font-medium motion-safe:animate-pulse">
+          New Course
+        </div>
+      )}
       <Image
         priority
         placeholder="blur"
@@ -21,7 +27,9 @@ export default function CourseCardItem({
         className="w-full"
       />
       <div className="flex h-full flex-col gap-2 p-4">
-        <h2 className="text-lg font-bold md:text-xl lg:text-2xl">{title}</h2>
+        <div className="flex items-center justify-between gap-2">
+          <h2 className="text-lg font-bold md:text-xl lg:text-2xl">{title}</h2>
+        </div>
 
         <p className="line-clamp-3 grow text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-2">

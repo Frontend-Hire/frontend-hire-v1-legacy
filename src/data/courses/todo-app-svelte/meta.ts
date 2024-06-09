@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
+import image from '@/assets/course-covers/todo-app-svelte-tdd-typescript.webp';
 
 export const meta: Course = {
   id: 'todo-app-svelte',
@@ -9,8 +9,10 @@ export const meta: Course = {
   description:
     'We teach more than just Svelte, TypeScript and TDD with this course.',
   isPro: true,
-  isPublished: false,
+  isPublished: true,
+  publishedOn: new Date('2024-05-30'),
   image: image,
+  isNew: true,
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',

@@ -10,6 +10,7 @@ export const meta: Course = {
     'We teach more than just React, TypeScript and TDD with this course.',
   isPro: false,
   isPublished: true,
+  publishedOn: new Date('2024-04-01'),
   image: image,
   isVideoAvailable: true,
   chapters: {

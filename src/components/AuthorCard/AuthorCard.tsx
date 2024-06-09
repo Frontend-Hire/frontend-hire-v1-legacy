@@ -2,6 +2,7 @@ import { GithubIcon, LinkIcon, LinkedinIcon, TwitterIcon } from 'lucide-react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
+import { format } from 'date-fns';
 
 type AuthorCardProps = {
   name: string;
@@ -32,12 +33,12 @@ export default function AuthorCard({
   const filteredSocials = socials.filter((social) => social.url);
 
   return (
-    <section className="not-prose mt-2 flex justify-between border-b border-t">
+    <section className="not-prose mt-2 flex justify-between border-b">
       <div className="flex items-center gap-2">
         <Image src={image} alt={name} className="h-10 w-10 rounded-full" />
         <div className="flex flex-col gap-0.5">
           <h2 className="font-medium">{name}</h2>
-          <p className="text-sm">{publishedOn}</p>
+          <p className="text-sm">{format(publishedOn, 'do MMM yyyy')}</p>
         </div>
       </div>
       {filteredSocials.length > 0 && (

@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/login-register-flow-e2e.webp';
+import image from '@/assets/course-covers/login-register-flow-e2e-next-js.webp';
 
 export const meta: Course = {
   id: 'register-flow-with-e2e-tests',
@@ -10,7 +10,9 @@ export const meta: Course = {
   category: 'Next.js',
   image: image,
   isPublished: true,
+  publishedOn: new Date('2024-05-22'),
   isPro: true,
+  isNew: true,
   chapters: {
     overview: 'Overview',
     'setup-nextjs-project': 'Setup Next.js Project',

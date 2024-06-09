@@ -31,9 +31,15 @@ function CourseCardItem({
   isPro,
   isVideoAvailable,
   category,
+  isNew,
 }: Course) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-md bg-card">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-card">
+      {isNew && (
+        <div className="absolute right-0 top-0 bg-primary px-1 py-0.5 text-xs font-medium motion-safe:animate-pulse">
+          New Course
+        </div>
+      )}
       <Image placeholder="blur" src={image} alt={title} className="w-full" />
       <div className="flex h-full flex-col gap-2 p-4">
         <Link className="w-fit underline" prefetch={false} href={link}>

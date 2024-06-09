@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/stackpack.webp';
+import image from '@/assets/course-covers/stackpack-react.webp';
 
 export const meta: Course = {
   id: 'stackpack',
@@ -11,6 +11,7 @@ export const meta: Course = {
   image: image,
   isPro: false,
   isPublished: true,
+  publishedOn: new Date('2024-04-19'),
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',

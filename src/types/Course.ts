@@ -12,5 +12,7 @@ export type Course = {
   isPro: boolean;
   isVideoAvailable?: boolean;
   isPublished?: boolean;
+  publishedOn?: Date;
   chapters: Record<string, string>;
+  isNew?: boolean;
 };
