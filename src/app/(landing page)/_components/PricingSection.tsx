@@ -31,9 +31,9 @@ export default function PricingSection() {
   );
 }
 
-function PricingDetails() {
-  const { name, currencySymbol, curPrice, curPrice2, curPrice3 } =
-    getPurchasePower();
+async function PricingDetails() {
+  const { name, currencySymbol, curPrice, curPrice2 } =
+    await getPurchasePower();
 
   return (
     <div className="flex flex-col items-center justify-between gap-5 text-center">
@@ -57,14 +57,7 @@ function PricingDetails() {
             {currencySymbol}
             {curPrice2}
           </s>{' '}
-          after June 1st
-        </p>
-        <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">
-            {currencySymbol}
-            {curPrice3}
-          </s>{' '}
-          after 200 paid users
+          after 100 paying customers
         </p>
       </div>
       <div className="w-full space-y-2">
