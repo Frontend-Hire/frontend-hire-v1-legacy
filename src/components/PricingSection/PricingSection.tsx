@@ -1,6 +1,8 @@
 import BecomeProButton from '@/components/BecomeProButton';
 import { getPurchasePower } from '@/lib/getPurchasePower';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
+import SignInButton from '../SignInButton';
 
 const INCLUSIONS = [
   'Full Access To PRO Content',
@@ -35,6 +37,12 @@ async function PricingDetails() {
   const { name, currencySymbol, curPrice, curPrice2 } =
     await getPurchasePower();
 
+  const supabase = createSupabaseServerClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <div className="flex flex-col items-center justify-between gap-5 text-center">
       <h3 className="text-stroke text-4xl uppercase tracking-widest text-card">
@@ -61,6 +69,11 @@ async function PricingDetails() {
         </p>
       </div>
       <div className="w-full space-y-2">
+        {!user && (
+          <p className="text-sm font-bold text-muted">
+            We will first sign you in before making a purchase!
+          </p>
+        )}
         <BecomeProButton />
         <p className="text-xs font-bold text-muted">
           Pricing will increase as more content gets added!
