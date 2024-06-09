@@ -23,8 +23,8 @@ const COUNTRIES: Record<
     name: 'United States',
     currency: 'USD',
     currencySymbol: '$',
-    curPrice: 89,
-    curPrice2: 119,
+    curPrice: 59,
+    curPrice2: 89,
   },
 };
 

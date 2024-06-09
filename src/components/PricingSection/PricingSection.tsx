@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import BecomeProButton from '@/components/BecomeProButton';
 import { getPurchasePower } from '@/lib/getPurchasePower';
 import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
 
@@ -53,17 +53,15 @@ async function PricingDetails() {
           {curPrice}
         </p>
         <p className="text-lg font-bold text-muted md:text-xl">
-          <s className="text-xl md:text-2xl">
+          <span className="text-xl md:text-2xl">
             {currencySymbol}
             {curPrice2}
-          </s>{' '}
+          </span>{' '}
           after 100 paying customers
         </p>
       </div>
       <div className="w-full space-y-2">
-        <Button className="h-fit w-full p-2 text-xl font-bold md:p-3 md:text-2xl">
-          Become PRO
-        </Button>
+        <BecomeProButton />
         <p className="text-xs font-bold text-muted">
           Pricing will increase as more content gets added!
         </p>
