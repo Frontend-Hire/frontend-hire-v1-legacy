@@ -14,8 +14,8 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
         <p>
           We believe this payment option is the best to provide maximum value
           when selling premium content that evolves over time. It also helps us
-          fund our early operations, allowing us to invest in and deliver better
-          content in the future.
+          fund our early operations, which allows us to invest in and deliver
+          better content in the future.
         </p>
         <p>
           We might offer other payment options in the future as our content
@@ -25,24 +25,24 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     ),
   },
   {
-    question: 'Do you offer Purchase Power Parity?',
+    question:
+      'I am an Indian student studying in the US. Do I still have to pay in USD?',
     answer: (
       <>
         <p>
-          Yes, we identify your geographical location and provide you the prices
-          adjusted to your location.
+          No, you can pay in INR or USD. Since, you are a student, you will also
+          get a discounted price along with the regional Indian price.
         </p>
         <p>
-          If you feel that our prices are not adjusted to your location or are
-          still expensive for you, please email us at{' '}
+          Please email us at{' '}
           <Link
             prefetch={false}
             className="text-link underline"
             href="mailto:info@frontendhire.com"
           >
             info@frontendhire.com
-          </Link>
-          . We will try to offer a better price for you.
+          </Link>{' '}
+          to get Indian payment options or discount code for USD payments.
         </p>
       </>
     ),
@@ -104,9 +104,10 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
           and the company&apos;s perspectives.
         </p>
         <p>
-          Creating hiring profiles is part of our initial approach to addressing
-          this problem. Given the recent changes in the job market, we plan to
-          conduct further studies before implementing a solution.
+          Creating hiring profiles was part of our initial approach to
+          addressing this problem. However, given the recent changes in the job
+          market, we plan to conduct further studies before implementing a
+          solution.
         </p>
       </>
     ),

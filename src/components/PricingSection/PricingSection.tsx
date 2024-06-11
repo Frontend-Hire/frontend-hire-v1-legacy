@@ -45,15 +45,14 @@ async function PricingDetails() {
 
   return (
     <div className="flex flex-col items-center justify-between gap-5 text-center">
-      <h3 className="text-stroke text-4xl uppercase tracking-widest text-card">
-        Launch Price till June 1st
+      <h3 className="text-stroke max-w-[25ch] text-4xl uppercase tracking-widest text-card">
+        Launch Price For First 100 Customers
       </h3>
-      {name !== 'United States' && (
-        <p className="text-xs font-bold text-blue-400">
-          Purchase Power Parity{' '}
-          {name !== 'Rest of the world' ? `for ${name}` : ''} is automatically
-          applied.
-        </p>
+      {name === 'India' && (
+        <div className="space-y-1 text-sm font-bold text-blue-400">
+          <p>Frontend Hire is made in 🇮🇳 India</p>
+          <p>Indians pay the lowest price 🎉</p>
+        </div>
       )}
       <div className="flex flex-col items-center justify-center gap-4">
         <p className="text-3xl font-black md:text-5xl">
