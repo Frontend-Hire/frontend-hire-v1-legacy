@@ -1,26 +1,13 @@
 'use client';
 
 import { oAuthSignIn } from '@/actions/signInAction';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { Button } from '../ui/button';
 
 export default function ProSignInButton() {
-  const supabase = createSupabaseBrowserClient();
-
   const handleProButton = async () => {
-    try {
-      const { data } = await supabase.auth.getUser();
-
-      if (data.user) {
-        return;
-      }
-
-      const redirectTo =
-        location.pathname === '/' ? '/pricing' : location.pathname;
-      await oAuthSignIn('google', redirectTo);
-    } catch (error) {
-      console.error(error);
-    }
+    const redirectTo =
+      location.pathname === '/' ? '/pricing' : location.pathname;
+    await oAuthSignIn('google', redirectTo);
   };
 
   return (

@@ -1,5 +1,6 @@
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import ProSignInButton from './ProSignInButton';
+import CheckoutButton from './CheckoutButton';
 
 export default async function BecomeProButton() {
   const supabase = createSupabaseServerClient();
@@ -8,5 +9,5 @@ export default async function BecomeProButton() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  return user ? <div>Another button</div> : <ProSignInButton />;
+  return user ? <CheckoutButton /> : <ProSignInButton />;
 }
