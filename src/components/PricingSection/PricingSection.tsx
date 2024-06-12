@@ -18,7 +18,7 @@ const COMING_SOON = [
   'More New Features',
 ];
 
-const EXCLUSIONS = ['Hiring Profiles (Still in ideation phase)'];
+const EXCLUSIONS = ['Hiring Profiles'];
 
 export default function PricingSection() {
   return (
