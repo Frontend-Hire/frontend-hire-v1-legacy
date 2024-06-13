@@ -1,24 +1,7 @@
 import BecomeProButton from '@/components/BecomeProButton';
 import { getPurchasePower } from '@/lib/getPurchasePower';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
-import SignInButton from '../SignInButton';
-
-const INCLUSIONS = [
-  'Full Access To PRO Content',
-  'Free Updates',
-  'Exclusive Courses',
-  'Simulated Phone Screening',
-];
-
-const COMING_SOON = [
-  'More Simulated Interview Types',
-  'Frontend System Design',
-  'Text/Video Solutions To Coding Questions',
-  'More New Features',
-];
-
-const EXCLUSIONS = ['Hiring Profiles'];
+import InclusionsExclusions from '../InclusionsExclusions';
 
 export default function PricingSection() {
   return (
@@ -54,17 +37,17 @@ async function PricingDetails() {
           <p>Indians pay the lowest price 🎉</p>
         </div>
       )}
-      <div className="flex flex-col items-center justify-center gap-4">
-        <p className="text-3xl font-black md:text-5xl">
-          {currencySymbol}
+      <div className="flex items-center justify-center gap-4">
+        <span
+          aria-hidden="true"
+          className="relative text-2xl font-medium text-muted after:absolute after:inset-0 after:m-auto after:h-1 after:w-full after:-rotate-[10deg] after:rounded after:bg-red-600 after:content-[''] md:text-4xl"
+        >
+          <CurrencySymbol>{currencySymbol}</CurrencySymbol>
+          {curPrice2}
+        </span>
+        <p className="text-3xl font-bold md:text-5xl">
+          <CurrencySymbol>{currencySymbol}</CurrencySymbol>
           {curPrice}
-        </p>
-        <p className="text-lg font-bold text-muted md:text-xl">
-          <span className="text-xl md:text-2xl">
-            {currencySymbol}
-            {curPrice2}
-          </span>{' '}
-          after 100 paying customers
         </p>
       </div>
       <div className="w-full space-y-2">
@@ -82,56 +65,8 @@ async function PricingDetails() {
   );
 }
 
-function InclusionsExclusions() {
+function CurrencySymbol({ children }: React.PropsWithChildren) {
   return (
-    <div className="flex flex-col gap-5">
-      <ul className="flex flex-col gap-3">
-        {INCLUSIONS.map((item) => (
-          <li key={item}>
-            <IncludedItem>{item}</IncludedItem>
-          </li>
-        ))}
-        {COMING_SOON.map((item) => (
-          <li key={item}>
-            <ComingSoonItem>{item}</ComingSoonItem>
-          </li>
-        ))}
-      </ul>
-      <p className="text-xl font-bold text-muted">What&apos;s Not Included?</p>
-      <ul className="flex flex-col gap-5">
-        {EXCLUSIONS.map((item) => (
-          <li key={item}>
-            <ExcludedItem>{item}</ExcludedItem>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function ComingSoonItem({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex gap-3 font-medium">
-      <ConstructionIcon className="shrink-0 text-medium" />
-      {children}
-    </div>
-  );
-}
-
-function IncludedItem({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex gap-3 font-medium">
-      <CheckCircle2Icon className="shrink-0 text-easy" />
-      {children}
-    </div>
-  );
-}
-
-function ExcludedItem({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex gap-3 font-medium">
-      <BanIcon className="shrink-0 text-hard" />
-      {children}
-    </div>
+    <span className="inline-block -translate-y-4 text-[0.6em]">{children}</span>
   );
 }

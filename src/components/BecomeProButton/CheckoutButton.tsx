@@ -1,13 +1,18 @@
 import { getPurchasePower } from '@/lib/getPurchasePower';
 import RazorPayCheckoutButton from './RazorPayCheckoutButton';
 import LemonSqueezyCheckoutButton from './LemonSqueezyCheckoutButton';
+import { User } from '@supabase/supabase-js';
 
-export default async function CheckoutButton() {
+type CheckoutButtonProps = {
+  user: User;
+};
+
+export default async function CheckoutButton({ user }: CheckoutButtonProps) {
   const { name } = await getPurchasePower();
 
-  if (name === 'India') {
-    return <RazorPayCheckoutButton />;
+  if (name !== 'India') {
+    return <RazorPayCheckoutButton user={user} />;
   }
 
-  return <LemonSqueezyCheckoutButton />;
+  return <LemonSqueezyCheckoutButton user={user} />;
 }
