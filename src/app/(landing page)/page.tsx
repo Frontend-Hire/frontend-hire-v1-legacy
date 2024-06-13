@@ -1,3 +1,4 @@
+import React from 'react';
 import ComingSoonSection from './_components/ComingSoonSection';
 import FeaturesSection from './_components/FeaturesSection';
 import HeroSection from './_components/HeroSection';
@@ -10,7 +11,9 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <ComingSoonSection />
-      <PricingSection />
+      <React.Suspense>
+        <PricingSection />
+      </React.Suspense>
       <FAQSection />
     </main>
   );
