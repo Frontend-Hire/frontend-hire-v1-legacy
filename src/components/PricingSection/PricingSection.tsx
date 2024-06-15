@@ -27,7 +27,7 @@ async function PricingDetails() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="flex flex-col items-center justify-between gap-5 text-center">
+    <div className="flex flex-col items-center justify-center gap-10 text-center">
       <h3 className="text-stroke max-w-[25ch] text-4xl uppercase tracking-widest text-card">
         Launch Price For First 100 Customers
       </h3>
@@ -37,15 +37,15 @@ async function PricingDetails() {
           <p>Indians pay the lowest price 🎉</p>
         </div>
       )}
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex justify-center gap-4">
         <span
           aria-hidden="true"
-          className="relative text-2xl font-medium text-muted after:absolute after:inset-0 after:m-auto after:h-1 after:w-full after:-rotate-[10deg] after:rounded after:bg-red-600 after:content-[''] md:text-4xl"
+          className="relative text-4xl font-medium text-muted after:absolute after:inset-0 after:m-auto after:h-1 after:w-full after:-rotate-[10deg] after:rounded after:bg-red-600 after:content-['']"
         >
           <CurrencySymbol>{currencySymbol}</CurrencySymbol>
           {curPrice2}
         </span>
-        <p className="text-3xl font-bold md:text-5xl">
+        <p className="text-5xl font-bold">
           <CurrencySymbol>{currencySymbol}</CurrencySymbol>
           {curPrice}
         </p>

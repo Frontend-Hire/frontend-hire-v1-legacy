@@ -8,23 +8,23 @@ const COUNTRIES: Record<
     name: string;
     currency: string;
     currencySymbol: string;
-    curPrice: number;
-    curPrice2: number;
+    curPrice: string;
+    curPrice2: string;
   }
 > = {
   IN: {
     name: 'India',
     currency: 'INR',
     currencySymbol: '₹',
-    curPrice: 2999,
-    curPrice2: 3999,
+    curPrice: '2,999',
+    curPrice2: '3,999',
   },
   US: {
     name: 'United States',
     currency: 'USD',
     currencySymbol: '$',
-    curPrice: 59,
-    curPrice2: 89,
+    curPrice: '59',
+    curPrice2: '89',
   },
 };
 
