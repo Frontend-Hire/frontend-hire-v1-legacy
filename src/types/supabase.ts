@@ -226,6 +226,41 @@ export type Database = {
           },
         ];
       };
+      lemonsqueezy_orders: {
+        Row: {
+          amount: number;
+          created_at: string;
+          currency: string;
+          id: number;
+          order_id: string;
+          user_id: string;
+        };
+        Insert: {
+          amount: number;
+          created_at?: string;
+          currency: string;
+          id?: number;
+          order_id: string;
+          user_id: string;
+        };
+        Update: {
+          amount?: number;
+          created_at?: string;
+          currency?: string;
+          id?: number;
+          order_id?: string;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'lemonsqueezy_orders_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       project_bug_submissions: {
         Row: {
           created_at: string;

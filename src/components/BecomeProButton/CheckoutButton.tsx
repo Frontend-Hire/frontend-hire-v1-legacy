@@ -14,5 +14,5 @@ export default async function CheckoutButton({ user }: CheckoutButtonProps) {
     return <RazorPayCheckoutButton user={user} />;
   }
 
-  return <LemonSqueezyCheckoutButton user={user} />;
+  return <LemonSqueezyCheckoutButton />;
 }
