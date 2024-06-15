@@ -81,17 +81,20 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
     question: 'Who do I contact in case of issues?',
     answer: (
-      <p>
-        Email us at{' '}
-        <Link
-          prefetch={false}
-          className="text-link underline"
-          href="mailto:info@frontendhire.com"
-        >
-          info@frontendhire.com
-        </Link>{' '}
-        for any queries.
-      </p>
+      <>
+        <p>{`If your payment is stuck at "verifying payment", refresh your page and most probably you should have the pro access if the payment was successful, this is pretty rare (you lost your network or closed the payment gateway) and our webhook should catch these kind of issues.`}</p>
+        <p>
+          Either way you can Email us at{' '}
+          <Link
+            prefetch={false}
+            className="text-link underline"
+            href="mailto:info@frontendhire.com"
+          >
+            info@frontendhire.com
+          </Link>{' '}
+          for any queries.
+        </p>
+      </>
     ),
   },
   {

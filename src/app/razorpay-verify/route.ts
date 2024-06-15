@@ -1,5 +1,6 @@
 import { headers } from 'next/headers';
 import crypto from 'crypto';
+import { giveProAccessBasedOnOrderId } from '@/components/BecomeProButton/proAction';
 
 export const POST = async (request: Request) => {
   const keySecret = process.env.RAZORPAY_WEBHOOK_SECRET!;
@@ -10,8 +11,13 @@ export const POST = async (request: Request) => {
   const headersList = headers();
   const razorpaySignature = headersList.get('x-razorpay-signature');
 
-  console.log(body);
-  console.log(sig, razorpaySignature);
+  if (sig !== razorpaySignature) {
+    return Response.json({ status: 'ok' });
+  }
+
+  const jsonData = JSON.parse(body);
+
+  await giveProAccessBasedOnOrderId(jsonData.payload.payment.entity.order_id);
 
   return Response.json({ status: 'ok' });
 };

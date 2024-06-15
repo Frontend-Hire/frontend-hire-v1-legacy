@@ -10,7 +10,7 @@ type CheckoutButtonProps = {
 export default async function CheckoutButton({ user }: CheckoutButtonProps) {
   const { name } = await getPurchasePower();
 
-  if (name !== 'India') {
+  if (name === 'India') {
     return <RazorPayCheckoutButton user={user} />;
   }
 

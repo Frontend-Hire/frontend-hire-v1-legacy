@@ -3,6 +3,7 @@
 import { razorpayInstance } from '@/lib/payments/razorpay';
 import crypto from 'crypto';
 import { giveProAccess } from './proAction';
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 const generatedSignature = (
   razorpayOrderId: string,
@@ -22,10 +23,26 @@ const generatedSignature = (
 };
 
 export const createOrder = async () => {
-  return await razorpayInstance.orders.create({
+  const supabase = createSupabaseServerClient();
+
+  const order = await razorpayInstance.orders.create({
     amount: 299900,
     currency: 'INR',
   });
+
+  if (order.id) {
+    const { error } = await supabase.from('razorpay_orders').insert({
+      order_id: order.id,
+      amount: +order.amount,
+      currency: order.currency,
+    });
+
+    if (error) {
+      console.log(error);
+    }
+  }
+
+  return order;
 };
 
 type VerifyPaymentData = {
@@ -43,7 +60,9 @@ export const verifyPayment = async (data: VerifyPaymentData) => {
   );
 
   if (signature !== data.razorpaySignature) {
-    throw new Error('Invalid signature');
+    throw new Error(
+      'Oops, this was unexpected. Contact support. Sorry for the inconvenience.',
+    );
   }
 
   // GIVE ACCESS TO PRO PLAN

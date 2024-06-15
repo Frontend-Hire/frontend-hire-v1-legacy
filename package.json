@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "update-types": "npx supabase gen types typescript --project-id dwpbicyymlfxzwpffhcj --schema public > src/types/supabase.ts"
+    "update-types": "npx supabase gen types typescript --project-id dwpbicyymlfxzwpffhcj --schema public > src/types/supabase.ts",
+    "update-types:local": "npx supabase gen types typescript --local > src/types/supabase.ts"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"

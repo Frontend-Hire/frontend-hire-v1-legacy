@@ -1,12 +1,12 @@
 'use client';
 
+import React from 'react';
 import Script from 'next/script';
 import { Button } from '../ui/button';
 import { createOrder, verifyPayment } from './razorpayActions';
 import { User } from '@supabase/supabase-js';
-import Razorpay from 'razorpay';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import { Loader2Icon } from 'lucide-react';
 
 type RazorPayCheckoutButtonProps = {
   user: User;
@@ -16,6 +16,7 @@ export default function RazorPayCheckoutButton({
   user,
 }: RazorPayCheckoutButtonProps) {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
   const processPayment = async () => {
@@ -31,6 +32,7 @@ export default function RazorPayCheckoutButton({
       order_id: order.id,
       handler: async function (response: any) {
         try {
+          setLoading(true);
           const data = {
             userId: user.id,
             orderCreationId: order.id,
@@ -47,6 +49,7 @@ export default function RazorPayCheckoutButton({
         } catch (error) {
           const errorResponse = error as Error;
           setError(errorResponse.message);
+          setLoading(false);
         }
       },
       prefill: {
@@ -56,13 +59,30 @@ export default function RazorPayCheckoutButton({
     };
 
     const paymentObject = new window.Razorpay(options);
+    paymentObject.on('payment.failed', (response: any) => {
+      setError(response.error.reason);
+    });
     paymentObject.open();
   };
 
   return (
     <>
-      <div className="space-y-1">
-        <Button onClick={processPayment}>Pay Now</Button>
+      <div className="space-y-4">
+        <Button
+          size="lg"
+          className="w-full max-w-xs text-lg font-bold"
+          disabled={loading}
+          onClick={processPayment}
+        >
+          {loading ? (
+            <>
+              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" /> Verifying
+              Payment
+            </>
+          ) : (
+            'Pay Now!'
+          )}
+        </Button>
         {error && <p className="font-bold text-red-500">{error}</p>}
         <p className="text-sm font-bold">Powered by RazorPay</p>
       </div>
