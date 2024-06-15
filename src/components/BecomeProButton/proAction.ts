@@ -30,11 +30,11 @@ export const giveProAccessBasedOnOrderId = async (orderId: string) => {
     .maybeSingle();
 
   if (error) {
-    throw new Error(error.message);
+    return;
   }
 
   if (!data) {
-    throw new Error(`No order found with the given order id: ${orderId}`);
+    return;
   }
 
   const { user_id } = data;
