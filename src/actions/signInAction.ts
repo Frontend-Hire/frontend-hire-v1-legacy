@@ -11,11 +11,11 @@ export async function oAuthSignIn(provider: Provider, redirectTo: string) {
   }
 
   const supabase = createSupabaseServerClient();
-  const redirectUrl = getURL('/auth/callback');
+  const redirectUrl = getURL(`/auth/callback?redirectTo=${redirectTo}`);
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: {
-      redirectTo: `${redirectUrl}?redirectTo=${redirectTo}`,
+      redirectTo: redirectUrl,
       queryParams: {
         prompt: 'select_account',
       },

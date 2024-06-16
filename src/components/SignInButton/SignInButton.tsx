@@ -10,7 +10,7 @@ type SignInButtonProps = {
 
 export default function SignInButton({
   label = 'Sign In With Google',
-  redirectTo = '/questions',
+  redirectTo,
 }: SignInButtonProps) {
   const handleSignIn = async () => {
     const newRedirect =
