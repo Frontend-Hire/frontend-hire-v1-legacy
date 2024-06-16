@@ -1,6 +1,7 @@
 import { getPurchasePower } from '@/lib/getPurchasePower';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import BecomeProButton from '../BecomeProButton';
+import { cn } from '@/lib/utils';
 
 export default async function PricingDetails() {
   const { name, currencySymbol, curPrice, curPrice2 } =
@@ -23,15 +24,20 @@ export default async function PricingDetails() {
           <p>Indians pay the lowest price 🎉</p>
         </div>
       )}
-      <div className="flex justify-center gap-4">
+      <div
+        className={cn(
+          'flex justify-center gap-4',
+          name === 'India' && 'flex-col sm:flex-row',
+        )}
+      >
         <span
           aria-hidden="true"
-          className="relative text-4xl font-medium text-muted after:absolute after:inset-0 after:m-auto after:h-1 after:w-full after:-rotate-[10deg] after:rounded after:bg-red-600 after:content-['']"
+          className="relative text-3xl font-medium text-muted after:absolute after:inset-0 after:m-auto after:h-1 after:w-full after:-rotate-[10deg] after:rounded after:bg-red-600 after:content-['']"
         >
           <CurrencySymbol>{currencySymbol}</CurrencySymbol>
           {curPrice2}
         </span>
-        <p className="text-5xl font-bold">
+        <p className="text-4xl font-bold">
           <CurrencySymbol>{currencySymbol}</CurrencySymbol>
           {curPrice}
         </p>
