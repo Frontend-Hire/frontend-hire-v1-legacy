@@ -1,58 +1,20 @@
 import CTA from './CTA';
 import { cn } from '@/lib/utils';
-import QuestionsFeature from './QuestionsFeature';
 import FeatureDescriptionItem from './FeatureDescriptionItem';
 import dynamic from 'next/dynamic';
+import React from 'react';
+import CoursesFeature from './CoursesFeature';
 
+const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
 const ProjectsFeature = dynamic(() => import('./ProjectsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
-const CoursesFeature = dynamic(() => import('./CoursesFeature'));
 
 export default function FeaturesSection() {
   return (
-    <section className="container flex flex-col gap-10 py-20">
+    <section className="container flex flex-col gap-5 py-20 md:gap-10">
       <h2 className="text-center text-4xl font-black">
         Single Platform For Everything
       </h2>
-      <FeatureLayout
-        title="Questions"
-        richComponent={{
-          component: <QuestionsFeature />,
-          position: 'right',
-        }}
-        actionButton={<CTA label="Practice Questions" href="/questions" />}
-        features={[
-          'Interview and Real World Based.',
-          'Free access to questions.',
-          'Pro plan gives you access to official solutions.',
-        ]}
-      />
-      <FeatureLayout
-        title="Projects"
-        richComponent={{
-          component: <ProjectsFeature />,
-          position: 'left',
-        }}
-        actionButton={<CTA label="Practice Projects" href="/projects" />}
-        features={[
-          'High-level guides for resume-worthy projects.',
-          'These are meant to get you out of the tutorial hell.',
-          'Free access to projects.',
-        ]}
-      />
-      <FeatureLayout
-        title="Interviews"
-        richComponent={{
-          component: <InterviewsFeature />,
-          position: 'right',
-        }}
-        actionButton={<CTA label="Practice Interviews" href="/interviews" />}
-        features={[
-          'Simulated and Real Interviews.',
-          'Pro plan gives you access to all simulated interviews.',
-          'Folks from the community provide discounted mock-interviews.',
-        ]}
-      />
       <FeatureLayout
         title="Courses"
         richComponent={{
@@ -66,6 +28,57 @@ export default function FeaturesSection() {
           'All courses come with written walkthroughs.',
           'Select ones come in video.',
           'Free and Pro content available.',
+        ]}
+      />
+      <FeatureLayout
+        title="Questions"
+        richComponent={{
+          component: (
+            <React.Suspense>
+              <QuestionsFeature />
+            </React.Suspense>
+          ),
+          position: 'right',
+        }}
+        actionButton={<CTA label="Practice Questions" href="/questions" />}
+        features={[
+          'Interview and Real World Based.',
+          'Free access to questions.',
+          'Pro plan gives you access to official solutions.',
+        ]}
+      />
+      <FeatureLayout
+        title="Projects"
+        richComponent={{
+          component: (
+            <React.Suspense>
+              <ProjectsFeature />
+            </React.Suspense>
+          ),
+          position: 'left',
+        }}
+        actionButton={<CTA label="Practice Projects" href="/projects" />}
+        features={[
+          'High-level guides for resume-worthy projects.',
+          'These are meant to get you out of the tutorial hell.',
+          'Free access to projects.',
+        ]}
+      />
+      <FeatureLayout
+        title="Interviews"
+        richComponent={{
+          component: (
+            <React.Suspense>
+              <InterviewsFeature />
+            </React.Suspense>
+          ),
+          position: 'right',
+        }}
+        actionButton={<CTA label="Practice Interviews" href="/interviews" />}
+        features={[
+          'Simulated and Real Interviews.',
+          'Pro plan gives you access to all simulated interviews.',
+          'Folks from the community provide discounted mock-interviews.',
         ]}
       />
     </section>

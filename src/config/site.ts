@@ -42,6 +42,10 @@ export const LINKS: NavLink[] = [
     ],
   },
   {
+    title: 'Pricing',
+    items: [{ title: 'Pricing', href: '/pricing' }],
+  },
+  {
     title: 'Company',
     hideOnMainNav: true,
     items: [

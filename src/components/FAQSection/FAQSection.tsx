@@ -9,8 +9,43 @@ import Link from 'next/link';
 const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
     question: 'Why just one-time payment option?',
-    answer:
-      'We believe this approach is the best way to provide maximum value when selling premium content that evolves over time. It also helps us fund our early operations, allowing us to invest in and deliver better content in the future.',
+    answer: (
+      <>
+        <p>
+          We believe this payment option is the best to provide maximum value
+          when selling premium content that evolves over time. It also helps us
+          fund our early operations, which allows us to invest in and deliver
+          better content in the future.
+        </p>
+        <p>
+          We might offer other payment options in the future as our content
+          grows.
+        </p>
+      </>
+    ),
+  },
+  {
+    question:
+      'I am an Indian student studying in the US. Do I still have to pay in USD?',
+    answer: (
+      <>
+        <p>
+          No, you can pay in INR or USD. Since, you are a student, you will also
+          get a discounted price along with the regional Indian price.
+        </p>
+        <p>
+          Please email us at{' '}
+          <Link
+            prefetch={false}
+            className="text-link underline"
+            href="mailto:info@frontendhire.com"
+          >
+            info@frontendhire.com
+          </Link>{' '}
+          to get Indian payment options or discount code for USD payments.
+        </p>
+      </>
+    ),
   },
   {
     question: 'Do you offer student discounts?',
@@ -37,15 +72,19 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
     question: 'Do you offer refunds?',
     answer: (
+      <p>
+        Given the nature of digital content, we do not offer refunds at the
+        moment. This might change in the future as our content grows.
+      </p>
+    ),
+  },
+  {
+    question: 'Who do I contact in case of issues?',
+    answer: (
       <>
+        <p>{`If your payment is stuck at "verifying payment", refresh your page and most probably you should have the pro access if the payment was successful, this is pretty rare (you lost your network or closed the payment gateway) and our webhook should catch these kind of issues.`}</p>
         <p>
-          Yes, but only under a <strong>fair-use policy</strong>. If we notice
-          that you have accessed more than 20% of the premium content, we will
-          not provide a refund. Refund requests must be submitted within 7 days
-          of purchase.
-        </p>
-        <p>
-          Please email us at{' '}
+          Either way you can Email us at{' '}
           <Link
             prefetch={false}
             className="text-link underline"
@@ -53,25 +92,9 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
           >
             info@frontendhire.com
           </Link>{' '}
-          to request a refund.
+          for any queries.
         </p>
       </>
-    ),
-  },
-  {
-    question: 'Who do I contact in case of issues?',
-    answer: (
-      <p>
-        Email us at{' '}
-        <Link
-          prefetch={false}
-          className="text-link underline"
-          href="mailto:info@frontendhire.com"
-        >
-          info@frontendhire.com
-        </Link>{' '}
-        for any queries.
-      </p>
     ),
   },
   {
@@ -84,9 +107,10 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
           and the company&apos;s perspectives.
         </p>
         <p>
-          Creating hiring profiles is part of our initial approach to addressing
-          this problem. Given the recent changes in the job market, we plan to
-          conduct further studies before implementing a solution.
+          Creating hiring profiles was part of our initial approach to
+          addressing this problem. However, given the recent changes in the job
+          market, we plan to conduct further studies before implementing a
+          solution.
         </p>
       </>
     ),
