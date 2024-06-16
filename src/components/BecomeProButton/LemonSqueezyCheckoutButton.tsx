@@ -3,32 +3,23 @@
 import React from 'react';
 import Script from 'next/script';
 import { Button } from '../ui/button';
-import { Loader2Icon } from 'lucide-react';
-import { getCheckoutURL } from './lemonSqueezyActions';
+import { User } from '@supabase/supabase-js';
 
-const PRODUCT_VARIANT = 410423;
+const CHECKOUT_URL = process.env.NEXT_PUBLIC_LEMONSQUEEZY_PRODUCT_CHECKOUT_URL;
 
-export default function LemonSqueezyCheckoutButton() {
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState('');
+type LemonSqueezyCheckoutButtonProps = {
+  user: User;
+};
 
+export default function LemonSqueezyCheckoutButton({
+  user,
+}: LemonSqueezyCheckoutButtonProps) {
   const lemonLoaded = () => {
     window.createLemonSqueezy();
   };
 
   const processPayment = async () => {
-    let checkoutUrl: string | undefined = '';
-
-    try {
-      setLoading(true);
-      checkoutUrl = await getCheckoutURL(PRODUCT_VARIANT);
-    } catch (error) {
-      const errorResponse = error as Error;
-      setLoading(false);
-      setError(errorResponse.message);
-    } finally {
-      setLoading(false);
-    }
+    const checkoutUrl = `${CHECKOUT_URL}?embed=1&media=0&checkout[email]=${user.email}&checkout[custom][user_id]=${user.id}`;
 
     checkoutUrl && window.LemonSqueezy.Url.Open(checkoutUrl);
   };
@@ -39,19 +30,10 @@ export default function LemonSqueezyCheckoutButton() {
         <Button
           size="lg"
           className="w-full max-w-xs text-lg font-bold"
-          disabled={loading}
           onClick={processPayment}
         >
-          {loading ? (
-            <>
-              <Loader2Icon className="mr-2 h-4 w-4 animate-spin" /> Verifying
-              Payment
-            </>
-          ) : (
-            'Pay Now!'
-          )}
+          Pay Now!
         </Button>
-        {error && <p className="font-bold text-red-500">{error}</p>}
         <p className="text-sm font-bold">Powered by LemonSqueezy</p>
       </div>
       <Script

@@ -26,7 +26,6 @@ export const POST = async (request: Request) => {
   const data = JSON.parse(rawBody) as unknown;
   if (webhookHasMeta(data)) {
     await processProPlan(data);
-    console.log('this ran');
     return new Response('OK', { status: 200 });
   }
 
