@@ -24,7 +24,7 @@ export default async function PremiumProtectedContentLayout({
       <Heading variant="h1">This content is exclusively for pro users</Heading>
       <div className="space-y-10 rounded bg-card p-4">
         <PricingDetails />
-        <div className="h-0.5 w-full rounded-full bg-white md:h-auto md:min-h-full md:w-0.5" />
+        <div className="h-0.5 w-full rounded-full bg-white" />
         <InclusionsExclusions />
       </div>
       <FAQSection />
