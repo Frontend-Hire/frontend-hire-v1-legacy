@@ -22,14 +22,6 @@ export type NavLink = {
 
 export const LINKS: NavLink[] = [
   {
-    title: 'Practice',
-    items: [
-      { title: 'Questions', href: '/questions', icon: FileQuestionIcon },
-      { title: 'Projects', href: '/projects', icon: FolderGit2Icon },
-      { title: 'Interviews', href: '/interviews', icon: SpeechIcon },
-    ],
-  },
-  {
     title: 'Learn',
     items: [
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
@@ -39,6 +31,14 @@ export const LINKS: NavLink[] = [
       //   icon: PresentationIcon,
       // },
       { title: 'Blog', href: '/blog', icon: AlbumIcon },
+    ],
+  },
+  {
+    title: 'Practice',
+    items: [
+      { title: 'Questions', href: '/questions', icon: FileQuestionIcon },
+      { title: 'Projects', href: '/projects', icon: FolderGit2Icon },
+      { title: 'Interviews', href: '/interviews', icon: SpeechIcon },
     ],
   },
   {
