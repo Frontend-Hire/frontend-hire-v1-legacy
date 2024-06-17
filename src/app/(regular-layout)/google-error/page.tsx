@@ -25,7 +25,7 @@ export default function IosGoogleErrorPage() {
           >{`Upcoming security changes to Google's OAuth 2.0 authorization endpoint in embedded webviews`}</Link>
         </p>
       </div>
-      <Image priority src={googleError} alt="" />
+      <Image placeholder="blur" priority src={googleError} alt="" />
     </article>
   );
 }
