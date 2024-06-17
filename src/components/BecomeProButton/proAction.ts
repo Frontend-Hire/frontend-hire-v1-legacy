@@ -16,8 +16,8 @@ const supabaseAdminClient = createClient<Database>(
 
 export const giveProAccess = async (userId: string) => {
   return await supabaseAdminClient
-    .from('users')
-    .update({ has_pro_access: true })
+    .from('pro_users')
+    .upsert({ user_id: userId }, { onConflict: 'user_id' })
     .eq('id', userId);
 };
 
