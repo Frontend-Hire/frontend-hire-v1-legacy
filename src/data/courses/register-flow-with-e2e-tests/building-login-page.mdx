@@ -380,7 +380,7 @@ To authenticate the user, we have to send the email and password to the Supabase
 ```tsx showLineNumbers {3, 24-35}
 'use server';
 
-import { createClient } from '@/utils/subabase/server';
+import { createClient } from '@/utils/supabase/server';
 import { z } from 'zod';
 
 const schema = z.object({
@@ -417,7 +417,7 @@ export async function login(currentState: any, formData: FormData) {
 ```
 </CustomCodeViewer>
 
-We have used the `createClient` function from the `@/utils/subabase/server` module to create a new Supabase client. We then use the client to authenticate the user with the email and password. If there is an error, we return the error message to the client (in this case we repeat the error for username and password). Make sure you import the client from `@/utils/subabase/server`. Only this client can be used on the server.
+We have used the `createClient` function from the `@/utils/supabase/server` module to create a new Supabase client. We then use the client to authenticate the user with the email and password. If there is an error, we return the error message to the client (in this case we repeat the error for username and password). Make sure you import the client from `@/utils/supabase/server`. Only this client can be used on the server.
 
 Try to login and you'll see an `invalid credentials` error show up. We do not have an existing user so this will fail, let us create a user. We do not have to build a register page for this. We can use the Supabase dashboard to create a new user. Our local Supabase dashboard (studio) is available at [http://localhost:54323](http://localhost:54323) (you can always get this information by running `npx supabase status`). You can create a new user from the `Users` tab in the dashboard.
 
@@ -433,7 +433,7 @@ Let us redirect the user to the dashboard page after a successful login. We can 
 ```tsx showLineNumbers {4, 38}
 'use server';
 
-import { createClient } from '@/utils/subabase/server';
+import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -502,13 +502,17 @@ export default function Dashboard() {
 
 ### Protecting the Route Group
 
+<Callout type='warning'>
+Do not skip this section and read till the end!
+</Callout>
+
 But how to protect the route group? We will have to check if the user is authenticated before rendering the protected pages otherwise redirect them back to the login page. We can use the `getUser` function provided by Supabase Auth to check if the user is authenticated.
 
 We can put this logic in our `(protected)` layout file.
 
 <CustomCodeViewer filename="src/app/(protected)/layout.tsx">
 ```tsx showLineNumbers {1-19}
-import { createClient } from '@/utils/subabase/server';
+import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 
 export default async function ProtectedLayout({
@@ -534,6 +538,25 @@ We have used the `createClient` function to create a new Supabase client. We the
 
 Let us test this by trying to access the dashboard page. You should be redirected to the login page if you are not authenticated. But we do not have a way to log out yet. Let us add a logout button to the dashboard page.
 
+But how secure is this in reality? Let us make a GET request to the page with a special header called `RSC` set to `1` and make a request to the endpoint `http://localhost:3000/dashboard` and check the response for the text `Welcome to the dashboard`. If this was secure, we would not be able to see that text.
+
+We use [`Thunder Client`](https://www.thunderclient.com/) to make this request. You could also use [`Postman`](https://www.postman.com/), we are using `Thunder Client` because it comes as an extension for VS Code and is pretty simple to use.
+
+![Flawed Protection](./assets/flawed-protection.webp)
+
+Whoa, that is not good. Or how bad is it?
+
+It depends on the type of application you are building but yes, this is not secure. Imagine, if this course platform protected routes in a similar way. You could have easily accessed the content without paying for it! 
+
+But most dashboards are protected by something more than this. Usually, at a database level, so if the user is not authenticated, they would just see a lot of empty stuff if they tried to access it with the above method. For this course, this is perfectly fine.
+
+<Callout>
+Though we would love to explore more on this topic, we are planning a dedicated course to talk about Next.js and Security. But for now, the below resources might be helpful:
+
+- [The Right Way to do Auth with the Next.js App Router - UPDATED](https://www.youtube.com/watch?v=v6UvgfSIjQ0)
+- [Secure statically rendered paid content in Next.js (with the App Router)](https://www.ericburel.tech/blog/static-paid-content-app-router)
+</Callout>
+
 ### Logging Out
 
 We can use the `signOut` function provided by Supabase Auth to log out the user. Let us add a logout button to the dashboard page that logs out the user when clicked. 
@@ -544,7 +567,7 @@ Since we want to maximize the performance of our application, we can create a sm
 ```tsx showLineNumbers {1-23}
 'use client';
 
-import { createClient } from '@/utils/subabase/client';
+import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 
 export default function LogOutButton() {
@@ -568,7 +591,7 @@ export default function LogOutButton() {
 ```
 </CustomCodeViewer>
 
-We have used the `createClient` function from the `@/utils/subabase/client` module to create a new Supabase client. We then use the client to log out the user when the button is clicked. We also use the `useRouter` hook to get the router object and replace the current route with the login page after logging out. Make sure to use the `use client` directive at the top of the file and that you import the `createClient` function from the correct path `@/utils/subabase/client`.
+We have used the `createClient` function from the `@/utils/supabase/client` module to create a new Supabase client. We then use the client to log out the user when the button is clicked. We also use the `useRouter` hook to get the router object and replace the current route with the login page after logging out. Make sure to use the `use client` directive at the top of the file and that you import the `createClient` function from the correct path `@/utils/supabase/client`.
 
 Now, let us add the logout button to the dashboard page.
 

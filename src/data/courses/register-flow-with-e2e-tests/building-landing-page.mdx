@@ -6,7 +6,7 @@ export const meta = {
 
 # Building Landing Page
 
-In this lesson, we will build a landing page for our application. The landing page will contain a header, main content, and a footer. The header will contain a logo and a link to the login page. The main content will contain a welcome message and the footer will contain the copyright information. We will also learn about route groups and layouts in Next.js. A sample About Us page will also be created to demonstrate the use of layouts.
+In this lesson, we will build a landing page for our application. The landing page will contain a header, main content, and a footer. The header will contain a logo and a link to the login page. The main content will contain a welcome message and the footer will contain the copyright information. We will also learn about route groups and layouts in Next.js. A sample `About Us` page will also be created to demonstrate the use of layouts.
 
 ## Landing Page 
 
@@ -108,7 +108,7 @@ Clicking on the `About Us` link will take you to the `About Us` page. But wait, 
 
 We also assume that this header and footer will only be used in the `(marketing)` route group and not in other route groups. So, we will create a new directory called `src/app/(marketing)/_components` and move the header and footer components into this directory. If we want to use them in other route groups, storing them in a `src/app/components` directory would be a better choice.
 
-Why the `_` prefix in the `_components` directory? Though App router allows for [safe colocation by default](https://nextjs.org/docs/app/building-your-application/routing/colocation#safe-colocation-by-default), there is still a risk that someone creates a `page.tsx` inside the `components` directory and it gets picked up by the router. To avoid this, we use the `_` prefix to indicate that this directory should not be picked up by the router and is [a private directory](https://nextjs.org/docs/app/building-your-application/routing/colocation#private-folders).
+Why the `_ (an underscore)` prefix in the `_components` directory? Though App router allows for [safe colocation by default](https://nextjs.org/docs/app/building-your-application/routing/colocation#safe-colocation-by-default), there is still a risk that someone creates a `page.tsx` inside the `components` directory and it gets picked up by the router. To avoid this, we use the `_ (an underscore)` prefix to indicate that this directory should not be picked up by the router and is [a private directory](https://nextjs.org/docs/app/building-your-application/routing/colocation#private-folders).
 
 <CustomCodeViewer filename='src/app/(marketing)/_components/header.tsx'>
 ```tsx showLineNumbers
