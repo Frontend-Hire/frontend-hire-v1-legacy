@@ -12,12 +12,12 @@ export default async function BecomeProButton() {
   } = await supabase.auth.getUser();
 
   const { data, error } = await supabase
-    .from('users')
-    .select('has_pro_access')
+    .from('pro_users')
+    .select('*')
     .limit(1)
-    .single();
+    .maybeSingle();
 
-  if (data?.has_pro_access) {
+  if (data?.id) {
     return (
       <Button asChild>
         <Link prefetch={false} href="/pro">
