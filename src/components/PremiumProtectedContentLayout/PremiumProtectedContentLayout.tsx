@@ -1,6 +1,8 @@
 import Heading from '@/components/Heading';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import Link from 'next/link';
+import PricingDetails from '../PricingDetails';
+import InclusionsExclusions from '../InclusionsExclusions';
+import FAQSection from '../FAQSection';
 
 export default async function PremiumProtectedContentLayout({
   children,
@@ -18,22 +20,14 @@ export default async function PremiumProtectedContentLayout({
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-4 py-10">
-      <Heading variant="h1">Get access to Pro content</Heading>
-      <p>
-        This content is exclusive to pro users. We have not yet launched our
-        official offering.
-      </p>
-      <p>
-        Mail us at{' '}
-        <Link
-          className="text-link underline"
-          href="mailto:info@frontendhire.com"
-        >
-          info@frontendhire.com
-        </Link>{' '}
-        to request pre-launch access at the lowest price.
-      </p>
+    <div className="flex w-full flex-col items-center gap-10 py-10">
+      <Heading variant="h1">This content is exclusively for pro users</Heading>
+      <div className="space-y-10 rounded bg-card p-4">
+        <PricingDetails />
+        <div className="h-0.5 w-full rounded-full bg-white" />
+        <InclusionsExclusions />
+      </div>
+      <FAQSection />
     </div>
   );
 }

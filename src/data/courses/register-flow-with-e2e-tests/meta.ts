@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/login-register-flow-e2e.webp';
+import image from '@/assets/course-covers/login-register-flow-e2e-next-js.webp';
 
 export const meta: Course = {
   id: 'register-flow-with-e2e-tests',
