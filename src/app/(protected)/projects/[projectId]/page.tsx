@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import ClientContainer from './_components/ClientContainer';
 import getProjectMetaData from './_utils/getProjectMetaData';
 import { openGraphShared } from '@/app/shared-metadata';
+import ProtectedLayout from '@/components/ProtectedLayout';
 
 export async function generateMetadata({
   params,
@@ -21,5 +22,9 @@ export async function generateMetadata({
 }
 
 export default function ProjectPage() {
-  return <ClientContainer />;
+  return (
+    <ProtectedLayout>
+      <ClientContainer />
+    </ProtectedLayout>
+  );
 }

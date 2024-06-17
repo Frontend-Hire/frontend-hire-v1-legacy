@@ -1,12 +1,14 @@
-import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
-import ProtectedLayout from '@/components/ProtectedLayout';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export default function InterviewsLayout({
   children,
 }: React.PropsWithChildren) {
   return (
-    <ProtectedLayout>
-      <PremiumProtectedContentLayout>{children}</PremiumProtectedContentLayout>
-    </ProtectedLayout>
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
   );
 }

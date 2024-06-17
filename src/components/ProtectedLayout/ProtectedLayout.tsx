@@ -1,26 +1,17 @@
 import Heading from '@/components/Heading';
 import SignInButton from '@/components/SignInButton';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import Footer from '../Footer';
-import Header from '../Header';
 
-type ProtectedLayoutProps = {
-  showHeader?: boolean;
-  showFooter?: boolean;
-};
-
+// NOT TO BE USED IN A LAYOUT FILE
 export default async function ProtectedLayout({
   children,
-  showHeader = true,
-  showFooter = true,
-}: React.PropsWithChildren<ProtectedLayoutProps>) {
+}: React.PropsWithChildren) {
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data, error } = await supabaseServerClient.auth.getUser();
   if (error || !data?.user) {
     return (
       <>
-        <Header />
         <div className="flex h-full grow flex-col items-start gap-4 p-2 md:px-[100px] md:py-4 lg:px-[200px] xl:px-[250px]">
           <div className="flex flex-col gap-4 py-2">
             <Heading variant="h1">
@@ -37,16 +28,9 @@ export default async function ProtectedLayout({
             (once signed in, click on your avatar to open a menu with settings).
           </p>
         </div>
-        <Footer />
       </>
     );
   }
 
-  return (
-    <>
-      {showHeader && <Header />}
-      {children}
-      {showFooter && <Footer isCompact />}
-    </>
-  );
+  return <>{children}</>;
 }
