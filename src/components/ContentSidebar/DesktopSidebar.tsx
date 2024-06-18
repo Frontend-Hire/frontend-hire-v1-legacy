@@ -1,9 +1,9 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { SidebarProps } from '../../app/(protected)/system-design/[systemDesignId]/_components/Sidebar/Sidebar';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { SidebarProps } from '.';
 
 export default function DesktopSidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();

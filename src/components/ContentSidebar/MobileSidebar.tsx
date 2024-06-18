@@ -5,11 +5,11 @@ import { NotebookIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link, { LinkProps } from 'next/link';
 import { cn } from '@/lib/utils';
-import { SidebarProps } from '../../app/(protected)/system-design/[systemDesignId]/_components/Sidebar/Sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useParams } from 'next/navigation';
+import { SidebarProps } from '.';
 
 export default function MobileSidebar({ pages }: SidebarProps) {
   const { chapter } = useParams<{ chapter: string; courseId: string }>();
@@ -20,7 +20,7 @@ export default function MobileSidebar({ pages }: SidebarProps) {
       <SheetTrigger asChild>
         <Button className="text-md w-full gap-2 md:hidden" variant="outline">
           <NotebookIcon />
-          System Design Menu
+          Content Menu
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
