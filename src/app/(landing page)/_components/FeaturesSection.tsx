@@ -8,6 +8,7 @@ import CoursesFeature from './CoursesFeature';
 const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
 const ProjectsFeature = dynamic(() => import('./ProjectsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
+const SystemDesignFeature = dynamic(() => import('./SystemDesignFeature'));
 
 export default function FeaturesSection() {
   return (
@@ -28,6 +29,21 @@ export default function FeaturesSection() {
           'All courses come with written walkthroughs.',
           'Select ones come in video.',
           'Free and Pro content available.',
+        ]}
+      />
+      <FeatureLayout
+        title="System Design"
+        richComponent={{
+          component: <SystemDesignFeature />,
+          position: 'left',
+        }}
+        actionButton={
+          <CTA label="Learn to Design Frontend Systems" href="/courses" />
+        }
+        features={[
+          'Our take on Frontend System Design.',
+          'A unique approach that starts with a problem statement.',
+          'Pro only content.',
         ]}
       />
       <FeatureLayout
@@ -112,7 +128,9 @@ function FeatureLayout({
         {richComponent.component}
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-5">
-        <h3 className="text-[32px] font-medium">{title}</h3>
+        <h3 className="text-stroke text-x text-center text-3xl font-black uppercase tracking-widest text-black md:text-4xl">
+          {title}
+        </h3>
         <div className="w-full md:hidden">{richComponent.component}</div>
         <ul className="space-y-1.5 text-muted">
           {features.map((feature, index) => (
