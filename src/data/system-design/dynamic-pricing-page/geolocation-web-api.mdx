@@ -1,0 +1,28 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+export const meta = {
+  lastUpdated: '2024-05-18'
+}
+
+# Geolocation Web API
+
+Geolocation Web API is available in [almost all browsers](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API#browser_compatibility). The way it works is pretty simple and the simplest example you can check right away is [Google Maps](https://www.google.com/maps).
+
+1. Go to Google Maps.
+2. Click on the locate me button, located usually at the bottom right corner of the screen.
+3. The browser should now ask you for permission to access your location.
+4. Tada! You should now be able to see your current location on the map.
+
+## So, can we use this API to render the pricing page?
+
+> Does not lead to good UX!
+
+We can but it has too much friction and does not lead to good UX! Also, the Geolocation Web API gives location with high accuracy, at a **latitude and longitude level of precision**.
+
+Do we need that amount of accuracy to render the pricing page?
+
+No, the majority of the cases just require a rough location of the user to render regional pricing. Usually, at a **country-level precision**.
+
+## Conclusion
+
+Geolocation Web API has its use cases. But for a pricing page, has zero use case. We will discuss the better solution in the next section.
