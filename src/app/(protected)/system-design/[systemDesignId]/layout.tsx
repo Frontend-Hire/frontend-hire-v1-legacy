@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import Sidebar from './_components/Sidebar';
 import { getSystemDesign } from '@/lib/fetchLocalFiles';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 type SystemDesignLayoutProps = {
   params: {
@@ -35,9 +37,13 @@ export default async function SystemDesignLayout({
   const { chapters } = await getSystemDesign(params.systemDesignId);
 
   return (
-    <main className="container flex h-full flex-col gap-4 py-2 md:flex-row md:gap-[30px] md:py-4">
-      <Sidebar pages={Object.entries(chapters)} />
-      {children}
-    </main>
+    <>
+      <Header />
+      <main className="md:gap8 container flex h-full flex-col gap-4 py-2 md:flex-row md:py-4">
+        <Sidebar pages={Object.entries(chapters)} />
+        {children}
+      </main>
+      <Footer isCompact />
+    </>
   );
 }

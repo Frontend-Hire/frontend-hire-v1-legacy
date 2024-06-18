@@ -14,7 +14,7 @@ type ChapterPageProps = {
 };
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
-  const { chapters } = await getSystemDesign(params.systemDesignId);
+  const { chapters, isPro } = await getSystemDesign(params.systemDesignId);
   const { getContent, meta } = await getSystemDesignPage(
     params.systemDesignId,
     params.chapter,
@@ -23,7 +23,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const content = getContent() as React.ReactElement;
 
   const renderPage = () => (
-    <div className="flex flex-1 gap-[30px]">
+    <div className="gap8 flex flex-1">
       <div className="flex flex-1 flex-col gap-4 pb-10">
         <article className="prose prose-invert max-w-none py-2 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
           {content}

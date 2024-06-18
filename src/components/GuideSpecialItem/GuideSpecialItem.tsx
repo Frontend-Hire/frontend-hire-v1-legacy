@@ -15,7 +15,7 @@ export default function GuideSpecialItem({
   return (
     <div className="not-prose flex justify-between gap-2 rounded bg-card p-2">
       <div className="flex grow flex-col gap-2">
-        <div className="flex items-start justify-between gap-[5px]">
+        <div className="flex items-start justify-between gap-1">
           <Link
             prefetch={false}
             className="underline underline-offset-2"
@@ -26,16 +26,16 @@ export default function GuideSpecialItem({
           {isCourseItem && (
             <div className="flex flex-wrap justify-end gap-2 text-sm">
               {isRecommended && (
-                <span className="flex items-center gap-[5px] bg-primary p-[5px]">
+                <span className="flex items-center gap-1 bg-primary p-1">
                   <GemIcon size={16} /> Recommended
                 </span>
               )}
               {isPaid ? (
-                <span className="flex items-center gap-[5px] bg-hard p-[5px] uppercase">
+                <span className="flex items-center gap-1 bg-hard p-1 uppercase">
                   <BanknoteIcon size={16} /> Paid
                 </span>
               ) : (
-                <span className="flex items-center gap-[5px] bg-easy p-[5px] uppercase">
+                <span className="flex items-center gap-1 bg-easy p-1 uppercase">
                   <BanknoteIcon size={16} /> Free
                 </span>
               )}

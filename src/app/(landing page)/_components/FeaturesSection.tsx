@@ -38,7 +38,7 @@ export default function FeaturesSection() {
           position: 'left',
         }}
         actionButton={
-          <CTA label="Learn to Design Frontend Systems" href="/courses" />
+          <CTA label="Learn to Design Frontend Systems" href="/system-design" />
         }
         features={[
           'Our take on Frontend System Design.',

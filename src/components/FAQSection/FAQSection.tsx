@@ -135,10 +135,10 @@ export default function FAQSection() {
               className="overflow-hidden rounded border-0"
               value={`item-${index}`}
             >
-              <AccordionTrigger className="bg-card px-5 py-[10px] text-left">
+              <AccordionTrigger className="bg-card px-5 py-2 text-left">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="space-y-2 bg-[#1A1A1A] px-5 py-[10px] text-lg leading-[150%]">
+              <AccordionContent className="space-y-2 bg-[#1A1A1A] px-5 py-2 text-lg leading-[150%]">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

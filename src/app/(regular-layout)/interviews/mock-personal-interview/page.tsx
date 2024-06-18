@@ -28,7 +28,7 @@ export default function MockPersonalInterview() {
         icon={<UserIcon size={60} />}
       />
 
-      <span className="flex items-center justify-center gap-4 rounded-full bg-secondary px-[5px] py-2 text-center text-sm font-extrabold sm:text-base sm:font-black">
+      <span className="flex items-center justify-center gap-4 rounded-full bg-secondary px-1 py-2 text-center text-sm font-extrabold sm:text-base sm:font-black">
         20% off the interviews through here
       </span>
 

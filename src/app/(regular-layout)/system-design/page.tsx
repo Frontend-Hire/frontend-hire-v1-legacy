@@ -33,9 +33,8 @@ export default async function SystemDesignPage() {
           <li key={system.id}>
             <Link prefetch={false} href={system.link}>
               <SystemDesignQuestionItem
-                title={system.title}
-                description={system.description}
                 difficulty={DIFFICULTY.MASTER}
+                {...system}
               />
             </Link>
           </li>

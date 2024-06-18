@@ -46,8 +46,8 @@ export default function Prompt({ isActive, text }: PromptProps) {
 
   return (
     <div className="flex flex-col overflow-hidden rounded bg-card">
-      <div className="bg-primary px-2 py-[5px] font-medium">RECRUITER</div>
-      <div className="flex gap-[5px] p-2">
+      <div className="bg-primary px-2 py-1 font-medium">RECRUITER</div>
+      <div className="flex gap-1 p-2">
         <span className="grow">{displayText}</span>
         {isSpeechAvailable && isActive && (
           <Button

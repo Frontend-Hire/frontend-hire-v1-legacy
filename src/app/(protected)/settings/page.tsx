@@ -27,7 +27,7 @@ export default function Settings() {
         />
 
         <UserInfo />
-        <div className="mt-10 flex flex-col items-center justify-center gap-[30px]">
+        <div className="gap8 mt-10 flex flex-col items-center justify-center">
           <DeleteCodeSubmissionsButtonWithAlert />
           <DeleteProjectSubmissionsButtonWithAlert />
           <DeleteAccountButtonWithAlert />
