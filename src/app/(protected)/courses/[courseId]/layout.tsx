@@ -1,8 +1,8 @@
-import ProtectedLayout from '@/components/ProtectedLayout';
 import Sidebar from './_components/Sidebar';
 import { getCoursePages } from '@/lib/fetchLocalFiles';
-import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import { Metadata } from 'next';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 type CourseMainLayoutProps = {
   params: {
@@ -44,21 +44,17 @@ export default async function CourseMainLayout({
   params,
   children,
 }: React.PropsWithChildren<CourseMainLayoutProps>) {
-  const { chapters, isPro } = await getCoursePages(params.courseId);
+  const { chapters } = await getCoursePages(params.courseId);
 
   return (
-    <ProtectedLayout>
+    <>
+      <Header />
       <main className="container flex h-full flex-col gap-4 py-2 md:flex-row md:gap-[30px] md:py-4">
         <Sidebar pages={Object.entries(chapters)} />
 
-        {isPro ? (
-          <PremiumProtectedContentLayout>
-            {children}
-          </PremiumProtectedContentLayout>
-        ) : (
-          children
-        )}
+        {children}
       </main>
-    </ProtectedLayout>
+      <Footer isCompact />
+    </>
   );
 }

@@ -11,9 +11,7 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <ComingSoonSection />
-      <React.Suspense>
-        <PricingSection />
-      </React.Suspense>
+      <PricingSection />
       <FAQSection />
     </main>
   );

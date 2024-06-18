@@ -5,13 +5,17 @@ import Benefits from './_components/Benefits';
 
 export default function ProPage() {
   return (
-    <article className="space-y-4">
-      <CustomHeading
-        title="Pro Plan Active"
-        subTitle="Thanks for being a Pro member!"
-      />
+    <ProtectedLayout>
+      <PremiumProtectedContentLayout>
+        <article className="space-y-4">
+          <CustomHeading
+            title="Pro Plan Active"
+            subTitle="Thanks for being a Pro member!"
+          />
 
-      <Benefits />
-    </article>
+          <Benefits />
+        </article>
+      </PremiumProtectedContentLayout>
+    </ProtectedLayout>
   );
 }

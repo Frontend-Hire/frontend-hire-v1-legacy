@@ -7,6 +7,8 @@ import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import SettingsProvider from './_context/SettingsContext';
 import CustomHeading from '@/components/CustomHeading';
 import { openGraphShared } from '@/app/shared-metadata';
+import ProtectedLayout from '@/components/ProtectedLayout';
+import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 
 export const metadata: Metadata = {
   title: 'Simulated Phone Screening | Frontend Hire',
@@ -26,18 +28,22 @@ export default async function SimulatedPhoneScreening() {
   } = await supabaseServerClient.auth.getUser();
 
   return (
-    <main className="container flex grow flex-col gap-4 py-2 md:py-4">
-      <CustomHeading
-        title="Simulated Phone Screening"
-        subTitle="One of the first rounds, so first impression should be great"
-        icon={<PhoneCallIcon size={60} />}
-      />
+    <ProtectedLayout>
+      <PremiumProtectedContentLayout>
+        <main className="container flex grow flex-col gap-4 py-2 md:py-4">
+          <CustomHeading
+            title="Simulated Phone Screening"
+            subTitle="One of the first rounds, so first impression should be great"
+            icon={<PhoneCallIcon size={60} />}
+          />
 
-      <SettingsProvider>
-        <SpeechSynthesisProvider>
-          <PhoneScreening candidateName={user?.user_metadata?.name || ''} />
-        </SpeechSynthesisProvider>
-      </SettingsProvider>
-    </main>
+          <SettingsProvider>
+            <SpeechSynthesisProvider>
+              <PhoneScreening candidateName={user?.user_metadata?.name || ''} />
+            </SpeechSynthesisProvider>
+          </SettingsProvider>
+        </main>
+      </PremiumProtectedContentLayout>
+    </ProtectedLayout>
   );
 }

@@ -1,6 +1,15 @@
+import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { createClient } from '@supabase/supabase-js';
 
 export const DELETE = async (request: Request) => {
+  const supabase = createSupabaseServerClient();
+
+  const { data: user } = await supabase.auth.getSession();
+
+  if (!user) {
+    return Response.json({ message: 'Not Authenticated!' });
+  }
+
   const { id } = (await request.json()) as { id: string };
 
   const supabaseAdminClient = createClient(

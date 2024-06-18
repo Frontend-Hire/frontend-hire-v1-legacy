@@ -1,5 +1,10 @@
-import ProtectedLayout from '@/components/ProtectedLayout';
+import Footer from '@/components/Footer';
 
 export default function QuestionLayout({ children }: React.PropsWithChildren) {
-  return <ProtectedLayout showHeader={false}>{children}</ProtectedLayout>;
+  return (
+    <>
+      {children}
+      <Footer />
+    </>
+  );
 }

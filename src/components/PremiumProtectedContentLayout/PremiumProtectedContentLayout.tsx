@@ -10,12 +10,12 @@ export default async function PremiumProtectedContentLayout({
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data } = await supabaseServerClient
-    .from('users')
-    .select('has_pro_access')
+    .from('pro_users')
+    .select('*')
     .limit(1)
-    .single();
+    .maybeSingle();
 
-  if (data?.has_pro_access) {
+  if (data?.user_id) {
     return <>{children}</>;
   }
 
