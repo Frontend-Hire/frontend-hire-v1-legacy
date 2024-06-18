@@ -23,6 +23,17 @@ Do we need that amount of accuracy to render the pricing page?
 
 No, the majority of the cases just require a rough location of the user to render regional pricing. Usually, at a **country-level precision**.
 
+<Callout>
+Browsers would depend on various things to get the location. This is what the [Geolocation Web API Specification](https://www.w3.org/TR/geolocation/) states:
+
+> Common sources of location information include Global Positioning System (GPS) and location inferred from network signals such as IP address, RFID, WiFi and Bluetooth MAC addresses, and GSM/CDMA cell IDs, as well as user input. The API itself is agnostic of the underlying location information sources, and no guarantee is given that the API returns the device's actual location.
+
+</Callout>
+
 ## Conclusion
 
 Geolocation Web API has its use cases. But for a pricing page, has zero use case. We will discuss the better solution in the next section.
+
+### More Reading
+
+- [User Location](https://web.dev/articles/user-location)
