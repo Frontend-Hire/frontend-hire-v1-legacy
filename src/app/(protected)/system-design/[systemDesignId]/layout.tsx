@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
-import Sidebar from './_components/Sidebar';
 import { getSystemDesign } from '@/lib/fetchLocalFiles';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import ContentLayout from '@/components/ContentLayout';
 
 type SystemDesignLayoutProps = {
   params: {
@@ -36,14 +34,5 @@ export default async function SystemDesignLayout({
 }: React.PropsWithChildren<SystemDesignLayoutProps>) {
   const { chapters } = await getSystemDesign(params.systemDesignId);
 
-  return (
-    <>
-      <Header />
-      <main className="md:gap8 container flex h-full flex-col gap-4 py-2 md:flex-row md:py-4">
-        <Sidebar pages={Object.entries(chapters)} />
-        {children}
-      </main>
-      <Footer isCompact />
-    </>
-  );
+  return <ContentLayout chapters={chapters}>{children}</ContentLayout>;
 }

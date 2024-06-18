@@ -5,7 +5,7 @@ import { NotebookIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link, { LinkProps } from 'next/link';
 import { cn } from '@/lib/utils';
-import { SidebarProps } from './Sidebar';
+import { SidebarProps } from '../../app/(protected)/system-design/[systemDesignId]/_components/Sidebar/Sidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';

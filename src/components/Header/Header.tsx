@@ -16,7 +16,7 @@ export default function Header() {
           <MobileMenu />
         </React.Suspense>
 
-        <div className="md:gap8 hidden items-center gap-4 text-sm font-medium sm:flex md:text-base">
+        <div className="hidden items-center gap-4 text-sm font-medium sm:flex md:gap-8 md:text-base">
           <CustomNavigationMenu />
           <React.Suspense>
             <AvatarContainer />

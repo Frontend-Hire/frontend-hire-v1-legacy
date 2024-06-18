@@ -1,11 +1,11 @@
-import DesktopSidebar from '../../../../../../components/ContentSidebar/DesktopSidebar';
-import MobileSidebar from '../../../../../../components/ContentSidebar/MobileSidebar';
+import DesktopSidebar from './DesktopSidebar';
+import MobileSidebar from './MobileSidebar';
 
 export type SidebarProps = {
   pages: [string, string][];
 };
 
-export default function Sidebar({ pages }: SidebarProps) {
+export default function ContentSidebar({ pages }: SidebarProps) {
   return (
     // This div is needed to not break the layout
     // This helps the sticky positioning of the sidebar

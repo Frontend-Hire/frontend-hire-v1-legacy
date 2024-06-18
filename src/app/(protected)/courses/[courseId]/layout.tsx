@@ -1,8 +1,6 @@
-import Sidebar from './_components/Sidebar';
 import { getCoursePages } from '@/lib/fetchLocalFiles';
 import { Metadata } from 'next';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import ContentLayout from '@/components/ContentLayout';
 
 type CourseMainLayoutProps = {
   params: {
@@ -46,15 +44,5 @@ export default async function CourseMainLayout({
 }: React.PropsWithChildren<CourseMainLayoutProps>) {
   const { chapters } = await getCoursePages(params.courseId);
 
-  return (
-    <>
-      <Header />
-      <main className="md:gap8 container flex h-full flex-col gap-4 py-2 md:flex-row md:py-4">
-        <Sidebar pages={Object.entries(chapters)} />
-
-        {children}
-      </main>
-      <Footer isCompact />
-    </>
-  );
+  return <ContentLayout chapters={chapters}>{children}</ContentLayout>;
 }
