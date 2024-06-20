@@ -4,7 +4,7 @@ export default function QuestionLayout({ children }: React.PropsWithChildren) {
   return (
     <>
       {children}
-      <Footer />
+      <Footer isCompact />
     </>
   );
 }
