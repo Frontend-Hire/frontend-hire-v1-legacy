@@ -98,8 +98,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     ),
   },
   {
-    question:
-      'What do you mean by “Hiring Profiles”? Why is it not part of the Pro plan?',
+    question: 'What do you mean by “Hiring Profiles”?',
     answer: (
       <>
         <p>

@@ -1,7 +1,7 @@
 import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
 
 const INCLUSIONS = [
-  'Forever Full Access To PRO Content',
+  'Forever Access To PRO Content',
   'Free Updates',
   'Exclusive Courses',
   'Simulated Phone Screening',
@@ -13,8 +13,6 @@ const COMING_SOON = [
   'Text/Video Solutions To Coding Questions',
   'More New Features',
 ];
-
-const EXCLUSIONS = ['Hiring Profiles'];
 
 export default function InclusionsExclusions() {
   return (
@@ -28,14 +26,6 @@ export default function InclusionsExclusions() {
         {COMING_SOON.map((item) => (
           <li key={item}>
             <ComingSoonItem>{item}</ComingSoonItem>
-          </li>
-        ))}
-      </ul>
-      <p className="text-xl font-bold text-muted">What&apos;s Not Included?</p>
-      <ul className="flex flex-col gap-5">
-        {EXCLUSIONS.map((item) => (
-          <li key={item}>
-            <ExcludedItem>{item}</ExcludedItem>
           </li>
         ))}
       </ul>

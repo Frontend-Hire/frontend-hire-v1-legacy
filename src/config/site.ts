@@ -1,9 +1,7 @@
 import {
   AlbumIcon,
   FileQuestionIcon,
-  FolderGit2Icon,
   LibraryBigIcon,
-  PresentationIcon,
   SpeechIcon,
 } from 'lucide-react';
 
@@ -37,7 +35,6 @@ export const LINKS: NavLink[] = [
     title: 'Practice',
     items: [
       { title: 'Questions', href: '/questions', icon: FileQuestionIcon },
-      { title: 'Projects', href: '/projects', icon: FolderGit2Icon },
       { title: 'Interviews', href: '/interviews', icon: SpeechIcon },
     ],
   },

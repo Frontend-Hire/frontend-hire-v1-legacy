@@ -9,7 +9,7 @@ export const meta: Course = {
   link: 'courses/stackpack/overview',
   category: 'React',
   image: image,
-  isPro: false,
+  isPro: true,
   isPublished: true,
   publishedOn: new Date('2024-04-19'),
   chapters: {
