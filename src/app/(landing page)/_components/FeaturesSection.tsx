@@ -6,7 +6,6 @@ import React from 'react';
 import CoursesFeature from './CoursesFeature';
 
 const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
-const ProjectsFeature = dynamic(() => import('./ProjectsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
 
 export default function FeaturesSection() {

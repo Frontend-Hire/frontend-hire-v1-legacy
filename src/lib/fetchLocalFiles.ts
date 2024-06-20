@@ -1,6 +1,5 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
-import { ProjectOverview } from '@/types/Project';
 import { QuestionOverview } from '@/types/Question';
 import fs from 'fs';
 import path from 'path';
@@ -31,32 +30,6 @@ export const getQuestionsFromLocal = cache(async () => {
   }
 
   return questionsList;
-});
-
-const projectsPath = path.join(process.cwd(), '/src/data/projects');
-
-export const getProjectsFromLocal = cache(async () => {
-  const projects: ProjectOverview[] = [];
-  const allProjects = fs.readdirSync(projectsPath);
-
-  for (const project of allProjects.filter(
-    (project) => !project.startsWith('.'),
-  )) {
-    const { default: getContent, meta } = require(
-      `@/data/projects/${project}/project.mdx`,
-    );
-    projects.push({
-      id: project,
-      title: meta.title,
-      description: meta.description,
-      difficulty: meta.difficulty,
-      isRecommended: meta.isRecommended,
-      tasks: meta.tasks,
-      skills: meta.skills,
-    });
-  }
-
-  return projects;
 });
 
 const coursesPath = path.join(process.cwd(), '/src/data/courses');
