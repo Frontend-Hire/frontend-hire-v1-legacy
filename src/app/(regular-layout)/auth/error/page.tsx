@@ -1,6 +1,6 @@
+import CopyEmailOnClick from '@/components/CopyEmailOnClick';
 import CustomHeading from '@/components/CustomHeading';
 import SignInButton from '@/components/SignInButton';
-import Link from 'next/link';
 
 type AuthErrorPageProps = {
   searchParams?: { error: string };
@@ -15,13 +15,9 @@ export default function AuthErrorPage({ searchParams }: AuthErrorPageProps) {
       />
       <div className="flex w-fit flex-col gap-4">
         <SignInButton redirectTo="/questions" />
-        <Link
-          className="underline underline-offset-2"
-          prefetch={false}
-          href="mailto:info@frontendhire.com"
-        >
-          Contact Support
-        </Link>
+        <p>
+          Contact support at <CopyEmailOnClick email="info@frontendhire.com" />
+        </p>
       </div>
     </article>
   );

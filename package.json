@@ -67,7 +67,8 @@
     "swr": "^2.2.5",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
