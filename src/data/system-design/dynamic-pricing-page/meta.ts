@@ -13,7 +13,8 @@ export const meta: SystemDesign = {
     overview: 'Overview',
     'geolocation-web-api': 'Geolocation Web API',
     'third-party-api': 'Third-Party API',
-    'static-site-generation': 'Static Site Generation (SSG)',
-    'server-side-rendering': 'Server-Side Rendering (SSR)',
+    'rendering-strategies': 'Rendering Strategies',
+    'geo-redirection': 'Geo-Redirection',
+    summary: 'Summary',
   },
 };
