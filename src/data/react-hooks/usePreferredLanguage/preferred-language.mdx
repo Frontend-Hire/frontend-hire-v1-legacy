@@ -1,0 +1,30 @@
+## Introduction to usePreferredLanguage Hook
+
+React hooks are functions that let you use state and other React features in functional components. Custom hooks are a way to extract and reuse stateful logic across different components.
+
+The `usePreferredLanguage` hook helps you determine the user's preferred language from the browser settings.
+
+## usePreferredLanguage Hook Implementation
+
+Let's implement the `usePreferredLanguage` hook in TypeScript and see how it works.
+
+Install it from npm i @uidotdev/usehooks
+
+```javascript
+import React from 'react';
+import usePreferredLanguage from './usePreferredLanguage';
+
+function LanguageComponent() {
+  // Use the usePreferredLanguage hook to get the user's preferred language
+  const preferredLanguage = usePreferredLanguage();
+
+  return (
+    <div>
+      {/* Display the preferred language */}
+      <p>Your preferred language is {preferredLanguage}</p>
+    </div>
+  );
+}
+
+export default LanguageComponent;
+
