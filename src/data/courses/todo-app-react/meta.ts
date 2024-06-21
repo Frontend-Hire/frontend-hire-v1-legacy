@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/todo-app-react-tdd-typescript.webp';
+import image from './assets/cover.webp';
 
 export const meta: Course = {
   id: 'todo-app-react',
