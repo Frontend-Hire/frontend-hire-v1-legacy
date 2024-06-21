@@ -6,6 +6,7 @@ export type QuestionOverview = {
   difficulty: QuestionDifficulty;
   questionNumber: number;
   isNew?: boolean;
+  isFree?: boolean;
 };
 
 export type SkillQuestions = {

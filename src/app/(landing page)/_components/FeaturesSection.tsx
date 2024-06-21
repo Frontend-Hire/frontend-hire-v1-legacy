@@ -6,7 +6,6 @@ import React from 'react';
 import CoursesFeature from './CoursesFeature';
 
 const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
-const ProjectsFeature = dynamic(() => import('./ProjectsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
 const SystemDesignFeature = dynamic(() => import('./SystemDesignFeature'));
 
@@ -28,7 +27,7 @@ export default function FeaturesSection() {
         features={[
           'All courses come with written walkthroughs.',
           'Select ones come in video.',
-          'Free and Pro content available.',
+          'Optimized to teach you 20% of stuff for 80% of the results.',
         ]}
       />
       <FeatureLayout
@@ -59,25 +58,7 @@ export default function FeaturesSection() {
         actionButton={<CTA label="Practice Questions" href="/questions" />}
         features={[
           'Interview and Real World Based.',
-          'Free access to questions.',
-          'Pro plan gives you access to official solutions.',
-        ]}
-      />
-      <FeatureLayout
-        title="Projects"
-        richComponent={{
-          component: (
-            <React.Suspense>
-              <ProjectsFeature />
-            </React.Suspense>
-          ),
-          position: 'left',
-        }}
-        actionButton={<CTA label="Practice Projects" href="/projects" />}
-        features={[
-          'High-level guides for resume-worthy projects.',
-          'These are meant to get you out of the tutorial hell.',
-          'Free access to projects.',
+          'With a ton of high quality resources.',
         ]}
       />
       <FeatureLayout
@@ -88,12 +69,11 @@ export default function FeaturesSection() {
               <InterviewsFeature />
             </React.Suspense>
           ),
-          position: 'right',
+          position: 'left',
         }}
         actionButton={<CTA label="Practice Interviews" href="/interviews" />}
         features={[
           'Simulated and Real Interviews.',
-          'Pro plan gives you access to all simulated interviews.',
           'Folks from the community provide discounted mock-interviews.',
         ]}
       />

@@ -136,11 +136,11 @@ Then, update your `package.json` file to include the following:
 ```json
 {
   "lint-staged": {
-    "**/*.{js,ts,jsx,tsx}": [
+    "**/*.{js,ts,svelte}": [
       "eslint --fix",
       "prettier --write --ignore-unknown"
     ],
-    "!**/*.{js,ts,jsx,tsx}": ["prettier --write --ignore-unknown"]
+    "!**/*.{js,ts,svelte}": ["prettier --write --ignore-unknown"]
   }
 }
 ```

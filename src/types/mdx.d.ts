@@ -15,6 +15,7 @@ export type Meta = {
   showTests?: boolean;
   questionNumber: number;
   isNew?: boolean;
+  isFree?: boolean;
   date?: string;
   description?: string;
   expectedOutput?: string;
