@@ -2,6 +2,7 @@ import {
   AlbumIcon,
   FileQuestionIcon,
   LibraryBigIcon,
+  PresentationIcon,
   SpeechIcon,
 } from 'lucide-react';
 

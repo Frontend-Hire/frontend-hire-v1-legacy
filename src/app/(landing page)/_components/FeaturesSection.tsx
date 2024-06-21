@@ -42,7 +42,6 @@ export default function FeaturesSection() {
         features={[
           'Our take on Frontend System Design.',
           'A unique approach that starts with a problem statement.',
-          'Pro only content.',
         ]}
       />
       <FeatureLayout
