@@ -22,7 +22,7 @@ export default function FeaturesSection() {
           position: 'left',
         }}
         actionButton={
-          <CTA label="Learn to build great stuff" href="/courses" />
+          <CTA label="Learn to Build Great Stuff" href="/courses" />
         }
         features={[
           'All courses come with written walkthroughs.',
@@ -37,7 +37,7 @@ export default function FeaturesSection() {
           position: 'left',
         }}
         actionButton={
-          <CTA label="Learn to Design Frontend Systems" href="/system-design" />
+          <CTA label="Learn to Design Great Systems" href="/system-design" />
         }
         features={[
           'Our take on Frontend System Design.',
