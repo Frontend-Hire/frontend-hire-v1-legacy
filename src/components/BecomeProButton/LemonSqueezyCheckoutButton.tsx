@@ -34,6 +34,10 @@ export default function LemonSqueezyCheckoutButton({
         >
           Pay Now!
         </Button>
+        <p className="mx-auto w-fit rounded-md bg-red-300 px-2 py-1 font-bold text-red-800">
+          Avoid PayPal Payments as we cannot give programmatic access to Pro
+          plan and would need manual confirmations.
+        </p>
         <p className="text-sm font-bold">Powered by LemonSqueezy</p>
       </div>
       <Script
