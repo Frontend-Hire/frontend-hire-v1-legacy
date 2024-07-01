@@ -19,6 +19,10 @@ export default async function PremiumProtectedContentLayout({
     return <>{children}</>;
   }
 
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>;
+  }
+
   return (
     <div className="flex w-full flex-col items-center gap-10 py-10">
       <Heading variant="h1">This content is exclusively for pro users</Heading>

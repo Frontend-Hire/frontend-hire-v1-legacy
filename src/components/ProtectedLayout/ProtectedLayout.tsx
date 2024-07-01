@@ -2,13 +2,17 @@ import Heading from '@/components/Heading';
 import SignInButton from '@/components/SignInButton';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
-// NOT TO BE USED IN A LAYOUT FILE
 export default async function ProtectedLayout({
   children,
 }: React.PropsWithChildren) {
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data, error } = await supabaseServerClient.auth.getUser();
+
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>;
+  }
+
   if (error || !data?.user) {
     return (
       <>
