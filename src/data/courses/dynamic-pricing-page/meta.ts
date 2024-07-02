@@ -15,6 +15,8 @@ export const meta: Course = {
   isNew: true,
   chapters: {
     overview: 'Overview',
+    'pages-router': 'Pages Router',
+    'app-router': 'App Router',
     summary: 'Summary',
   },
 };
