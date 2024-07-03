@@ -8,6 +8,7 @@ import {
 
 type Link = {
   title: string;
+  hideOnMainNav?: boolean;
   href: string;
   icon?: any;
   isEarlyAccess?: boolean;
@@ -29,7 +30,7 @@ export const LINKS: NavLink[] = [
         href: '/system-design',
         icon: PresentationIcon,
       },
-      { title: 'Blog', href: '/blog', icon: AlbumIcon },
+      { title: 'Blog', hideOnMainNav: true, href: '/blog', icon: AlbumIcon },
     ],
   },
   {
@@ -61,7 +62,14 @@ export const LINKS: NavLink[] = [
   },
 ];
 
-export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav);
+export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav).map(
+  (menu) => {
+    return {
+      ...menu,
+      items: menu.items.filter((link) => !link.hideOnMainNav),
+    };
+  },
+);
 
 export const BANNER_CONFIG = {
   show: false,
