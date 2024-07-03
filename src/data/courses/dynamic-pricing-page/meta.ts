@@ -16,6 +16,8 @@ export const meta: Course = {
   chapters: {
     overview: 'Overview',
     'setup-pages-router': 'Setup Pages Router',
+    'rendering-strategies-pages-router': 'Rendering Strategies (Pages Router)',
+    'rendering-strategies-app-router': 'Rendering Strategies (App Router)',
     summary: 'Summary',
   },
 };
