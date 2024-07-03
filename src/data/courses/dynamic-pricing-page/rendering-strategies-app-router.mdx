@@ -32,6 +32,12 @@ export default function AppRouterSSR() {
 
 Run the dev server and navigate to the `/app-router/ssr` route. You should see the pricing page which means the `PricingSection` component works.
 
+<Callout>
+If you compare the rendering section in the Next.js docs for the [`App Router`](https://nextjs.org/docs/app/building-your-application/rendering) and [`Pages Router`](https://nextjs.org/docs/pages/building-your-application/rendering) the concepts of SSR, SSG, and CSR are not used in the `App Router`. This is crucial though the same concepts are referenced with different terminologies. 
+
+The reason for not using the same terminology is because of the React Server Components and they stick to just the terms **"server"** and **"client"**. We will though in this chapter try to still use the same terminology.
+</Callout>
+
 ## Server Side Rendering (SSR)
 
 But it is static, so how do we get that `getServerSideProps` to work in `App Router`? It is as simple as creating an async function and calling it right in the component.
@@ -220,3 +226,101 @@ Route (app)                               Size     First Load JS
 </CustomCodeViewer>
 
 With the build server (npm start) and `ngrok` server (ngrok http http://localhost:3000) running, navigate to the `/app-router` route on whatever free URL you get from `ngrok` and you should be redirected to the country-specific page.
+
+Not much difference compared to the `Pages Router`. What about `CSR`?
+
+## Client Side Rendering (CSR)
+
+There is almost no difference in the `Client Side Rendering (CSR)` approach. We just have to add a `'use client'` directive at the top of the page and the rest of the logic remains identical.
+
+Create a static page inside `app-router` folder with the route being `csr` and add the following code:
+
+<CustomCodeViewer filename="src/app/app-router/csr/page.tsx">
+```tsx {1-38} showLineNumbers
+'use client';
+
+import useSWR from 'swr';
+import PricingSection from '@/components/PricingSection';
+
+const PRICES: Record<string, string[]> = {
+  IN: ['₹8,000', '₹80,000'],
+  DEFAULT: ['$99', '$999'],
+};
+
+const fetcher = (url: string) => fetch(url).then((r) => r.json());
+
+const getPrices = async () => {
+  return fetcher('https://api.country.is/').then((data) => {
+    const country = (data.country as string) || 'DEFAULT';
+    const prices = PRICES[country.toUpperCase()];
+    return prices;
+  });
+};
+
+const usePrices = () => {
+  return useSWR('prices', getPrices, {
+    fallbackData: PRICES['DEFAULT'],
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+};
+
+export default function AppRouterCSR() {
+  const { data } = usePrices();
+
+  return (
+    <div className="container mx-auto px-5">
+      <p className="text-xl font-bold">AppRouterCSR</p>
+      <PricingSection prices={data} />
+    </div>
+  );
+}
+```
+</CustomCodeViewer>
+
+Run the build command:
+
+<CustomCodeViewer>
+```sh
+npm run build
+```
+</CustomCodeViewer>
+
+You should see an output like the following:
+
+<CustomCodeViewer>
+```sh {9, 21}
+# SOME OUTPUT OMMITTED FOR BREVITY
+
+Route (app)                               Size     First Load JS
+┌ ○ /                                     144 B          87.2 kB
+├ ○ /_not-found                           871 B          87.9 kB
+├ ● /app-router/[country]                 144 B          87.2 kB
+├   ├ /app-router/in
+├   └ /app-router/default
+├ ○ /app-router/csr                       5.49 kB        92.5 kB
+└ ƒ /app-router/ssr                       144 B          87.2 kB
++ First Load JS shared by all             87 kB
+  ├ chunks/23-763b8b58dfda55fc.js         31.5 kB
+  ├ chunks/fd9d1056-b534f136908d2bca.js   53.6 kB
+  └ other shared chunks (total)           1.89 kB
+
+# SOME OUTPUT OMMITTED FOR BREVITY
+
+ƒ Middleware                              27.2 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+```
+</CustomCodeViewer>
+
+With the build server (npm start) and `ngrok` server (ngrok http http://localhost:3000) running, navigate to the `/app-router/csr` route on whatever free URL you get from `ngrok` and you should see the relevant pricing.
+
+## Summary
+
+In this chapter, we have discussed the differences between `Pages Router` and `App Router`.
+
+Of course, there is more to `App Router` than just this one-to-one comparison with `Pages Router`. `App Router` allows for greater composition of components and rendering strategies which we will cover to a greater extent in a different course.
+
+At this point, our code should match the code in the branch [`3-rendering-app`](https://github.com/Frontend-Hire/dynamic-pricing-page-next/tree/3-rendering-app).
