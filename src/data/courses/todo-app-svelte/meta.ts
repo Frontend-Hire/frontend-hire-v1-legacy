@@ -1,5 +1,5 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/todo-app-svelte-tdd-typescript.webp';
+import image from './assets/cover.webp';
 
 export const meta: Course = {
   id: 'todo-app-svelte',
@@ -12,7 +12,6 @@ export const meta: Course = {
   isPublished: true,
   publishedOn: new Date('2024-05-30'),
   image: image,
-  isNew: true,
   chapters: {
     overview: 'Overview',
     'project-setup': 'Project Setup',

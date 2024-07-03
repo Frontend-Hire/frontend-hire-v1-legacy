@@ -437,7 +437,7 @@ function App() {
 ```
 </CustomCodeViewer>
 
-![App re-renders on input cahnge](./screenshots/refactoring-1.gif)
+![App re-renders on input cahnge](./assets/refactoring-1.gif)
 
 ### Why is the `App` component being rendered so many times?
 
@@ -582,7 +582,7 @@ export default App;
 
 Try typing something in the input now. You'll see that the `App` component is not being rendered anymore unless a new task is added, which is expected.
 
-![App does not re-render on input change](./screenshots/refactoring-2.gif)
+![App does not re-render on input change](./assets/refactoring-2.gif)
 
 <Callout>
   We want to mention that this is not a huge performance problem. But it's a
@@ -605,7 +605,7 @@ npm test
 ```
 </CustomCodeViewer>
 
-![Input Clear Test is failing](./screenshots/refactoring-3.webp)
+![Input Clear Test is failing](./assets/refactoring-3.webp)
 
 We can see that the `Input Clear Test` is failing. Let's fix it.
 

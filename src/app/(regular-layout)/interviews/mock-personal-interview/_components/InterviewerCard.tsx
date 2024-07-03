@@ -31,9 +31,9 @@ export default function InterviewerCard({
             priority
             src={avatar}
             alt={name}
-            className="h-[60px] w-[60px] rounded-full md:h-[80px] md:w-[80px]"
+            className="h-16 w-16 rounded-full md:h-20 md:w-20"
           />
-          <div className="flex flex-col justify-center gap-[5px]">
+          <div className="flex flex-col justify-center gap-1">
             <h3 className="text-xl font-bold">{name}</h3>
             <p className="text-sm font-medium text-gray-300">{headline}</p>
           </div>

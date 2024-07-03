@@ -1,9 +1,9 @@
-'use client';
-
 import React from 'react';
 import { Button } from '../ui/button';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 
+// Will have a look at the warning of props must be serializable
+// Should not be problem as the whole route is use client
 export default function CopyToClipboard({
   getValue,
 }: {

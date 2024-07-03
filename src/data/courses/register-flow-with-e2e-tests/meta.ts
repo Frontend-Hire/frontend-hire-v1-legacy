@@ -1,8 +1,8 @@
 import { Course } from '@/types/Course';
-import image from '@/assets/course-covers/login-register-flow-e2e-next-js.webp';
+import image from './assets/cover.webp';
 
 export const meta: Course = {
-  id: 'register-flow-with-e2e-tests',
+  id: 'register-flow-with-e2e-tests-next-js',
   title: 'Login Register Flow',
   description:
     'Learn how to build a login and register flow with E2E tests and Supabase.',
@@ -12,7 +12,6 @@ export const meta: Course = {
   isPublished: true,
   publishedOn: new Date('2024-05-22'),
   isPro: true,
-  isNew: true,
   chapters: {
     overview: 'Overview',
     'setup-nextjs-project': 'Setup Next.js Project',

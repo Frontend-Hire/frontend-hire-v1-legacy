@@ -2,17 +2,21 @@ import Heading from '@/components/Heading';
 import SignInButton from '@/components/SignInButton';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
-// NOT TO BE USED IN A LAYOUT FILE
 export default async function ProtectedLayout({
   children,
 }: React.PropsWithChildren) {
   const supabaseServerClient = createSupabaseServerClient();
 
   const { data, error } = await supabaseServerClient.auth.getUser();
+
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>;
+  }
+
   if (error || !data?.user) {
     return (
       <>
-        <div className="flex h-full grow flex-col items-start gap-4 p-2 md:px-[100px] md:py-4 lg:px-[200px] xl:px-[250px]">
+        <div className="container space-y-4 py-10">
           <div className="flex flex-col gap-4 py-2">
             <Heading variant="h1">
               You need to sign in to access this content!
@@ -21,12 +25,15 @@ export default async function ProtectedLayout({
               We support Google sign in only.
             </p>
           </div>
-          <SignInButton />
-          <p className="text-sm text-gray-300">
-            We will never share your data with anyone without your permission!
-            Also, you can delete your account anytime you want through settings
-            (once signed in, click on your avatar to open a menu with settings).
-          </p>
+          <div className="space-y-2">
+            <SignInButton />
+            <p className="text-sm text-gray-300">
+              We will never share your data with anyone without your permission!
+              Also, you can delete your account anytime you want through
+              settings (once signed in, click on your avatar to open a menu with
+              settings).
+            </p>
+          </div>
         </div>
       </>
     );

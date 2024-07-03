@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import Link from 'next/link';
+import CopyEmailOnClick from '../CopyEmailOnClick';
 
 const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   {
@@ -34,14 +35,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
           get a discounted price along with the regional Indian price.
         </p>
         <p>
-          Please email us at{' '}
-          <Link
-            prefetch={false}
-            className="text-link underline"
-            href="mailto:info@frontendhire.com"
-          >
-            info@frontendhire.com
-          </Link>{' '}
+          Please email us at <CopyEmailOnClick email="info@frontendhire.com" />
           to get Indian payment options or discount code for USD payments.
         </p>
       </>
@@ -56,14 +50,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
           impacted by layoffs.
         </p>
         <p>
-          Please email us at{' '}
-          <Link
-            prefetch={false}
-            className="text-link underline"
-            href="mailto:info@frontendhire.com"
-          >
-            info@frontendhire.com
-          </Link>{' '}
+          Please email us at <CopyEmailOnClick email="info@frontendhire.com" />{' '}
           to obtain discount codes.
         </p>
       </>
@@ -85,14 +72,7 @@ const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
         <p>{`If your payment is stuck at "verifying payment", refresh your page and most probably you should have the pro access if the payment was successful, this is pretty rare (you lost your network or closed the payment gateway) and our webhook should catch these kind of issues.`}</p>
         <p>
           Either way you can Email us at{' '}
-          <Link
-            prefetch={false}
-            className="text-link underline"
-            href="mailto:info@frontendhire.com"
-          >
-            info@frontendhire.com
-          </Link>{' '}
-          for any queries.
+          <CopyEmailOnClick email="info@frontendhire.com" /> for any queries.
         </p>
       </>
     ),
@@ -134,10 +114,10 @@ export default function FAQSection() {
               className="overflow-hidden rounded border-0"
               value={`item-${index}`}
             >
-              <AccordionTrigger className="bg-card px-5 py-[10px] text-left">
+              <AccordionTrigger className="bg-card px-5 py-2 text-left">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="space-y-2 bg-[#1A1A1A] px-5 py-[10px] text-lg leading-[150%]">
+              <AccordionContent className="space-y-2 bg-[#1A1A1A] px-5 py-2 text-lg leading-[150%]">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

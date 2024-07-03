@@ -19,7 +19,7 @@ export default function Settings() {
           onValueChange={updateExperienceLevel}
         >
           {Object.values(ExperienceLevel).map((value) => (
-            <div key={value} className="flex gap-[5px]">
+            <div key={value} className="flex gap-1">
               <RadioGroupItem id={value} value={value} />
               <Label htmlFor={value}>{value}</Label>
             </div>
@@ -36,7 +36,7 @@ export default function Settings() {
           onValueChange={updateRecruiter}
         >
           {Object.entries(Recruiter).map(([label, value]) => (
-            <div key={value} className="flex gap-[5px]">
+            <div key={value} className="flex gap-1">
               <RadioGroupItem id={value} value={value} />
               <Label htmlFor={value}>{label}</Label>
             </div>

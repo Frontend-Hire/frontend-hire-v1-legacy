@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import Link from 'next/link';
@@ -47,7 +47,7 @@ function CourseCardItem({
         </Link>
 
         <p className="line-clamp-1 text-sm">{description}</p>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1 sm:gap-2">
           {!isPro ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
           {isVideoAvailable && (
             <Badge className="text-center">Video Available</Badge>

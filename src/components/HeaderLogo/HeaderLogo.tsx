@@ -11,7 +11,7 @@ export default function HeaderLogo({ fill = 'WHITE' }: HeaderLogoProps) {
     <Image
       src={fill == 'WHITE' ? WhiteLogo : GrayLogo}
       priority
-      className="h-[36px]"
+      className="h-9"
       alt="Frontend Hire"
     />
   );
