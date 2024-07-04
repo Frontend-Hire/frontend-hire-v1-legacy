@@ -4,12 +4,12 @@ const INCLUSIONS = [
   'Forever Access To PRO Content',
   'Free Updates',
   'Exclusive Courses',
+  'Frontend System Design',
   'Simulated Phone Screening',
 ];
 
 const COMING_SOON = [
   'More Simulated Interview Types',
-  'Frontend System Design',
   'Text/Video Solutions To Coding Questions',
   'More New Features',
 ];
