@@ -1,22 +1,15 @@
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { UserIcon } from 'lucide-react';
 import InterviewerCard from './_components/InterviewerCard';
-import { openGraphShared } from '@/app/shared-metadata';
 import CustomHeading from '@/components/CustomHeading';
 import { INTERVIEWERS } from './interviewers';
-import { Metadata } from 'next';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'Mock Personal Interview | Frontend Hire',
   description:
-    'The only great way to prepare for actual interviews and get actionable feedback',
-  openGraph: {
-    ...openGraphShared,
-    title: 'Mock Personal Interview | Frontend Hire',
-    description:
-      'The only great way to prepare for actual interviews and get actionable feedback',
-  },
-};
+    'The only great way to prepare for actual interviews and get actionable feedback.',
+});
 
 export default function MockPersonalInterview() {
   return (

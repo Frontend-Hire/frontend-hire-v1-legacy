@@ -1,39 +1,19 @@
 import { getBlogPostFromLocal } from '@/lib/fetchLocalFiles';
-import { Metadata } from 'next';
 import Image from 'next/image';
 import AuthorCard from '@/components/AuthorCard';
+import { getMetadata } from '@/lib/getMetadata';
 
 export async function generateMetadata({
   params,
 }: {
   params: { post: string };
-}): Promise<Metadata> {
+}) {
   const { meta } = await getBlogPostFromLocal(params.post);
 
-  return {
+  return getMetadata({
     title: `${meta.title} | Frontend Hire`,
     description: meta.description,
-    authors: meta.authors.map((author) => ({ name: author.name })),
-    twitter: {
-      title: `${meta.title} | Frontend Hire`,
-      description: meta.description,
-      images: {
-        url: meta.cover.src,
-        width: meta.cover.width,
-        height: meta.cover.height,
-      },
-    },
-    openGraph: {
-      title: `${meta.title} | Frontend Hire`,
-      description: meta.description,
-      type: 'article',
-      images: {
-        url: meta.cover.src,
-        width: meta.cover.width,
-        height: meta.cover.height,
-      },
-    },
-  };
+  });
 }
 
 export default async function BlogPost({

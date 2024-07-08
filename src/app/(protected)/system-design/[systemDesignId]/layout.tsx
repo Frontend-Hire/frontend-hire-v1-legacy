@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
 import { getSystemDesign } from '@/lib/fetchLocalFiles';
 import ContentLayout from '@/components/ContentLayout';
+import { getMetadata } from '@/lib/getMetadata';
 
 type SystemDesignLayoutProps = {
   params: {
@@ -12,20 +12,13 @@ export async function generateMetadata({
   params,
 }: {
   params: { systemDesignId: string };
-}): Promise<Metadata> {
+}) {
   const meta = await getSystemDesign(params.systemDesignId);
-  return {
+
+  return getMetadata({
     title: `${meta?.title || 'System Design'} | Frontend Hire`,
     description: meta?.description,
-    twitter: {
-      title: `${meta?.title || 'System Design'} | Frontend Hire`,
-      description: meta?.description,
-    },
-    openGraph: {
-      title: `${meta?.title || 'System Design'} | Frontend Hire`,
-      description: meta?.description,
-    },
-  };
+  });
 }
 
 export default async function SystemDesignLayout({

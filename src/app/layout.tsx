@@ -1,5 +1,4 @@
 import './globals.css';
-import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
 import { PHProvider } from '@/providers/PHProvider';
@@ -7,7 +6,7 @@ import { PHProvider } from '@/providers/PHProvider';
 import dynamic from 'next/dynamic';
 import CourseBanner from '@/components/CourseBanner';
 import { cn } from '@/lib/utils';
-import { openGraphShared } from './shared-metadata';
+import { getMetadata } from '@/lib/getMetadata';
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -19,17 +18,9 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export const metadata: Metadata = {
-  title: 'Frontend Hire',
-  description:
-    'A frontend coding platform for actual development skills and interviews',
+export const metadata = {
   metadataBase: new URL('https://frontendhire.com'),
-  openGraph: {
-    ...openGraphShared,
-    title: 'Frontend Hire',
-    description:
-      'A frontend coding platform for actual development skills and interviews',
-  },
+  ...getMetadata(),
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {

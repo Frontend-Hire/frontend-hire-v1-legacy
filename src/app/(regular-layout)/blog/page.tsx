@@ -1,21 +1,15 @@
-import { openGraphShared } from '@/app/shared-metadata';
 import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { getBlogPostsMetaFromLocal } from '@/lib/fetchLocalFiles';
 import { BlogMeta } from '@/types/Blogs';
-import { Metadata } from 'next';
+import { getMetadata } from '@/lib/getMetadata';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'Blog | Frontend Hire',
   description: 'Our write-ups on everything in the frontend world.',
-  openGraph: {
-    ...openGraphShared,
-    title: 'Blog | Frontend Hire',
-    description: 'Our write-ups on everything in the frontend world.',
-  },
-};
+});
 
 export default async function Blog() {
   const posts = await getBlogPostsMetaFromLocal();
