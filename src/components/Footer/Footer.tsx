@@ -1,8 +1,10 @@
 import HeaderLogo from '@/components/HeaderLogo';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { LINKS, NavLink } from '@/config/site';
+import { getFooterLinks } from '@/config/site';
+import { checkIsProUser } from '@/lib/isProUser';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import React from 'react';
 
 type FooterProps = {
   isCompact?: boolean;
@@ -27,15 +29,19 @@ export default function Footer({ isCompact, className }: FooterProps) {
 
   return (
     <footer className="mt-4 border-t-2 bg-[color:hsl(0,0%,1%)]">
-      <div className="container grid grid-cols-1 justify-items-stretch gap-4 p-4 text-sm md:grid-cols-2 md:gap-8 md:px-10">
-        <div className="flex flex-col items-center gap-4 md:items-start">
-          <Link prefetch={false} href="/">
-            <HeaderLogo />
-          </Link>
-          <Social />
+      <div className="container flex flex-col gap-10 py-4 text-sm">
+        <div className="flex flex-col items-center justify-between gap-5 sm:flex-row sm:items-stretch">
+          <div className="flex flex-col gap-5 sm:col-span-1">
+            <Link className="w-fit" prefetch={false} href="/">
+              <HeaderLogo />
+            </Link>
+            <Social />
+          </div>
+          <React.Suspense>
+            <FooterLinks />
+          </React.Suspense>
         </div>
-        <FooterLinks links={LINKS} />
-        <div className="space-y-2 text-center text-muted md:text-left">
+        <div className="space-y-2 text-center text-muted sm:text-left">
           <p>
             Frontend Hire is a product of{' '}
             <Link
@@ -53,15 +59,13 @@ export default function Footer({ isCompact, className }: FooterProps) {
   );
 }
 
-type FooterLinksProps = {
-  links: NavLink[];
-};
+async function FooterLinks() {
+  const isProUser = await checkIsProUser();
 
-function FooterLinks({ links }: FooterLinksProps) {
   return (
-    <div className="flex justify-center gap-6 p-4 md:justify-stretch lg:gap-10">
-      {links.map((link) => (
-        <div key={link.title} className="leading-loose">
+    <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
+      {getFooterLinks(isProUser).map((link) => (
+        <div key={link.title} className="w-fit leading-normal">
           <h3 className="font-bold">{link.title}</h3>
           <ul className="text-muted">
             {link.items.map((item) => (
@@ -85,7 +89,7 @@ function FooterLinks({ links }: FooterLinksProps) {
 
 function Social() {
   return (
-    <ul className="mt-2 grid grid-cols-3 items-center justify-center gap-4">
+    <ul className="mt-2 grid grid-cols-3 gap-4">
       <li>
         <Link
           prefetch={false}

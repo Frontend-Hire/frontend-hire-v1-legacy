@@ -23,7 +23,7 @@ export type NavLink = {
   isProUserRoute?: boolean;
 };
 
-export const LINKS: NavLink[] = [
+const LINKS: NavLink[] = [
   {
     title: 'Learn',
     items: [
@@ -44,9 +44,11 @@ export const LINKS: NavLink[] = [
     ],
   },
   {
-    title: 'Pricing',
-    items: [{ title: 'Pricing', href: '/pricing' }],
-    hideForProUser: true,
+    title: 'Pro',
+    items: [
+      { title: 'Pricing', href: '/pricing', hideForProUser: true },
+      { title: 'Benefits', href: '/pro' },
+    ],
   },
   {
     title: 'Company',
@@ -93,12 +95,33 @@ const getProUserMainNavLinks = () => {
   });
 };
 
+const getUserFooterLinks = () => {
+  return LINKS.filter((menu) => !menu.isProUserRoute).map((menu) => {
+    return {
+      ...menu,
+      items: menu.items.filter((link) => !link.isProUserRoute),
+    };
+  });
+};
+
+const getProUserFooterLinks = () => {
+  return LINKS;
+};
+
 export const getMainNavLinks = (isProUser?: boolean) => {
   if (isProUser) {
     return getProUserMainNavLinks();
   }
 
   return getUserMainNavLinks();
+};
+
+export const getFooterLinks = (isProUser?: boolean) => {
+  if (isProUser) {
+    return getProUserFooterLinks();
+  }
+
+  return getUserFooterLinks();
 };
 
 export const BANNER_CONFIG = {

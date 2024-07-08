@@ -28,7 +28,7 @@ export default async function CustomNavigationMenu() {
                 <ul className="grid w-[220px] gap-3 p-1">
                   {menu.items.map((link) => (
                     <ListItem key={link.title} href={link.href}>
-                      {<link.icon />} {link.title}
+                      {link.icon && <link.icon />} {link.title}
                     </ListItem>
                   ))}
                 </ul>
