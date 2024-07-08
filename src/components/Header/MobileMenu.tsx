@@ -1,7 +1,6 @@
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import MobileMenuContainer from './MobileMenuContainer';
 import { checkIsProUser } from '@/lib/isProUser';
-import { getProUserMainNavLinks, getUserMainNavLinks } from '@/config/site';
 
 export default async function MobileMenu() {
   const supabaseServerClient = createSupabaseServerClient();
