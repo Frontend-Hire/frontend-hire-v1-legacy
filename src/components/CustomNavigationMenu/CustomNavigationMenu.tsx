@@ -6,14 +6,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { MAIN_NAV_LINKS } from '@/config/site';
+import { getMainNavLinks } from '@/config/site';
+import { checkIsProUser } from '@/lib/isProUser';
 import Link from 'next/link';
 
-export default function CustomNavigationMenu() {
+export default async function CustomNavigationMenu() {
+  const isProUser = await checkIsProUser();
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {MAIN_NAV_LINKS.map((menu) =>
+        {getMainNavLinks(isProUser).map((menu) =>
           menu.items.length === 1 ? (
             <ListItem key={menu.title} href={menu.items[0].href}>
               {menu.items[0].title}

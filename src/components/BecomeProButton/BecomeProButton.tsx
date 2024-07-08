@@ -3,21 +3,19 @@ import ProSignInButton from './ProSignInButton';
 import CheckoutButton from './CheckoutButton';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { checkIsProUser } from '@/lib/isProUser';
 
 export default async function BecomeProButton() {
   const supabase = createSupabaseServerClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const [userData, isProUser] = await Promise.all([
+    supabase.auth.getUser(),
+    checkIsProUser(),
+  ]);
 
-  const { data, error } = await supabase
-    .from('pro_users')
-    .select('*')
-    .limit(1)
-    .maybeSingle();
+  const user = userData.data?.user;
 
-  if (data?.id) {
+  if (isProUser) {
     return (
       <Button asChild>
         <Link prefetch={false} href="/pro">

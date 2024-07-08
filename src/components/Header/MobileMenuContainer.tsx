@@ -14,13 +14,17 @@ import { User } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import SignInButton from '../SignInButton';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
-import { MAIN_NAV_LINKS } from '@/config/site';
+import { getMainNavLinks } from '@/config/site';
 
 type MobileMenuProps = {
   user?: User | null;
+  isProUser?: boolean;
 };
 
-export default function MobileMenuContainer({ user }: MobileMenuProps) {
+export default function MobileMenuContainer({
+  user,
+  isProUser,
+}: MobileMenuProps) {
   const supabaseBrowserClient = createSupabaseBrowserClient();
   const router = useRouter();
 
@@ -46,7 +50,7 @@ export default function MobileMenuContainer({ user }: MobileMenuProps) {
         </MobileLink>
         <ScrollArea className="my-4 pb-6 pl-2">
           <div className="flex flex-col space-y-2">
-            {MAIN_NAV_LINKS.map((item, index) => (
+            {getMainNavLinks(isProUser).map((item, index) => (
               <div key={index} className="flex flex-col space-y-3 pt-6">
                 <h4 className="font-medium">{item.title}</h4>
                 {item?.items?.length &&

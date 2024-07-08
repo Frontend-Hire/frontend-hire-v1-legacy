@@ -1,12 +1,17 @@
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import MobileMenuContainer from './MobileMenuContainer';
+import { checkIsProUser } from '@/lib/isProUser';
+import { getProUserMainNavLinks, getUserMainNavLinks } from '@/config/site';
 
 export default async function MobileMenu() {
   const supabaseServerClient = createSupabaseServerClient();
 
-  const {
-    data: { user },
-  } = await supabaseServerClient.auth.getUser();
+  const [userData, isProUser] = await Promise.all([
+    supabaseServerClient.auth.getUser(),
+    checkIsProUser(),
+  ]);
 
-  return <MobileMenuContainer user={user} />;
+  const user = userData.data?.user;
+
+  return <MobileMenuContainer user={user} isProUser={isProUser} />;
 }
