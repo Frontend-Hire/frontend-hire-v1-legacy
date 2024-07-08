@@ -1,4 +1,25 @@
-const TESTIMONIALS = [
+export const TESTIMONIALS = [
+  {
+    author: 'Garima Pandey',
+    role: 'Topmate Testimonial',
+    testimonial: (
+      <p>
+        He <strong>explained so well</strong> and introduced a lot of resources
+        which would help me further for the interview!!
+      </p>
+    ),
+  },
+  {
+    author: 'Shivam kaushal',
+    role: 'Topmate Testimonial',
+    testimonial: (
+      <p>
+        It was a wonderfull experience meeting Hruthik, he was really friendly
+        got me great insights on <strong>how to build quality projects</strong>{' '}
+        and how to learn in public
+      </p>
+    ),
+  },
   {
     author: 'Sooraj Utsav Revankar',
     role: 'Software Developer at DLT Apps | PES University',
@@ -13,45 +34,6 @@ const TESTIMONIALS = [
           <strong>I highly recommend him.</strong>
         </p>
       </>
-    ),
-  },
-  {
-    author: 'Suraj Bhan',
-    role: 'Software Development Engineer | Founding Team HireHunch',
-    testimonial: (
-      <>
-        <p>
-          Hruthik is a very passionate and knowledgeable person.{' '}
-          <strong>I enjoyed working with him.</strong> He has very deep
-          knowledge of programming and design. Hruthik has a helping nature and{' '}
-          <strong>I learnt a lot from him </strong>
-          during our short tenure of working together, about React, Typescript,
-          Redux, Scss and most importantly how to write better, efficient, and
-          scalable code.
-        </p>
-        <p>
-          Hruthik is able to excel in any technical skill due to his passion and
-          quick learning nature.{' '}
-          <strong>I recommend Hruthik for any software professional job</strong>{' '}
-          and all the best for his future.
-        </p>
-      </>
-    ),
-  },
-  {
-    author: 'Rajdeep Gupta',
-    role: 'Topmate Testimonial',
-    testimonial: (
-      <p>
-        <strong>I was truly impressed</strong> by the abundance of valuable
-        feedback, insightful approaches, well-crafted answers, and engaging
-        discussions. He{' '}
-        <strong>
-          provided concise and constructive feedback, along with actionable
-          takeaways.
-        </strong>{' '}
-        I highly recommend this experience!
-      </p>
     ),
   },
   {
@@ -91,6 +73,23 @@ const TESTIMONIALS = [
       </p>
     ),
   },
+
+  {
+    author: 'Rajdeep Gupta',
+    role: 'Topmate Testimonial',
+    testimonial: (
+      <p>
+        <strong>I was truly impressed</strong> by the abundance of valuable
+        feedback, insightful approaches, well-crafted answers, and engaging
+        discussions. He{' '}
+        <strong>
+          provided concise and constructive feedback, along with actionable
+          takeaways.
+        </strong>{' '}
+        I highly recommend this experience!
+      </p>
+    ),
+  },
   {
     author: 'Tanuj Mittal',
     role: 'Topmate Testimonial',
@@ -99,19 +98,6 @@ const TESTIMONIALS = [
         I liked giving this Mock Interview to Hruthik. He shared a{' '}
         <strong>very relevant feedback and well researched resources</strong> to
         rectify current gaps.
-      </p>
-    ),
-  },
-  {
-    author: 'Ayush Govil',
-    role: 'Topmate Testimonial',
-    testimonial: (
-      <p>
-        Really grateful to meet Hruthik and{' '}
-        <strong>gain valuable insights about studying abroad.</strong> He would
-        dive deep to understand your queries and would then give you the best
-        suggestion to you.{' '}
-        <strong>Highly recommended to connect with him.</strong>
       </p>
     ),
   },
@@ -172,6 +158,29 @@ const TESTIMONIALS = [
         addressed all my inquiries, leaving me with a clear understanding. I
         look forward to reconnecting with him in the future.
       </p>
+    ),
+  },
+  {
+    author: 'Suraj Bhan',
+    role: 'Software Development Engineer | Founding Team HireHunch',
+    testimonial: (
+      <>
+        <p>
+          Hruthik is a very passionate and knowledgeable person.{' '}
+          <strong>I enjoyed working with him.</strong> He has very deep
+          knowledge of programming and design. Hruthik has a helping nature and{' '}
+          <strong>I learnt a lot from him </strong>
+          during our short tenure of working together, about React, Typescript,
+          Redux, Scss and most importantly how to write better, efficient, and
+          scalable code.
+        </p>
+        <p>
+          Hruthik is able to excel in any technical skill due to his passion and
+          quick learning nature.{' '}
+          <strong>I recommend Hruthik for any software professional job</strong>{' '}
+          and all the best for his future.
+        </p>
+      </>
     ),
   },
 ];
