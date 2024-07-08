@@ -1,21 +1,15 @@
-import { Metadata } from 'next';
 import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
 import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
 import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 import UserInfo from './_components/UserInfo';
 import CustomHeading from '@/components/CustomHeading';
-import { openGraphShared } from '@/app/shared-metadata';
 import ProtectedLayout from '@/components/ProtectedLayout';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'Settings | Frontend Hire',
   description: 'Manage all your account related stuff',
-  openGraph: {
-    ...openGraphShared,
-    title: 'Settings | Frontend Hire',
-    description: 'Manage all your account related stuff',
-  },
-};
+});
 
 export default function Settings() {
   return (

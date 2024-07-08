@@ -6,6 +6,9 @@ export default function HeroSection() {
     <section className="flex min-h-[calc(100svh-56px)] flex-col items-center justify-between gap-6 p-2 text-center md:py-10">
       <div className="flex w-full grow flex-col items-center justify-center gap-10">
         <div className="flex w-full flex-col gap-4">
+          <span className="font-bold text-link">
+            1000+ Developers Practice With Us!
+          </span>
           <h1 className="mx-auto max-w-[25ch] text-3xl font-black md:text-4xl lg:text-5xl">
             Practice Core Frontend Skills For Interviews And Real World
           </h1>

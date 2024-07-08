@@ -1,6 +1,6 @@
 import { getCoursePages } from '@/lib/fetchLocalFiles';
-import { Metadata } from 'next';
 import ContentLayout from '@/components/ContentLayout';
+import { getMetadata } from '@/lib/getMetadata';
 
 type CourseMainLayoutProps = {
   params: {
@@ -12,30 +12,14 @@ export async function generateMetadata({
   params,
 }: {
   params: { courseId: string };
-}): Promise<Metadata> {
+}) {
   const meta = await getCoursePages(params.courseId);
-  return {
+
+  return getMetadata({
     title: `${meta?.title || 'Course'} | Frontend Hire`,
     description: meta?.description,
-    twitter: {
-      title: `${meta?.title || 'Course'} | Frontend Hire`,
-      description: meta?.description,
-      images: {
-        url: meta.image.src,
-        width: meta.image.width,
-        height: meta.image.height,
-      },
-    },
-    openGraph: {
-      title: `${meta?.title || 'Course'} | Frontend Hire`,
-      description: meta?.description,
-      images: {
-        url: meta.image.src,
-        width: meta.image.width,
-        height: meta.image.height,
-      },
-    },
-  };
+    image: meta.image,
+  });
 }
 
 export default async function CourseMainLayout({

@@ -70,7 +70,7 @@ function SystemDesignQuestionItem({
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex items-center gap-2">
           <p className="font-bold capitalize">{title}</p>
-          {isNew && <Badge className="animate-pulse">New</Badge>}
+          {isNew && <Badge className="animate-fh-pulse">New</Badge>}
         </div>
         <p className="text-sm leading-[100%] text-gray-300">{description}</p>
       </div>

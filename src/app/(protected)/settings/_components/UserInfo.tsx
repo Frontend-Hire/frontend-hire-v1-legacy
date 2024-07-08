@@ -1,19 +1,14 @@
+import { checkIsProUser } from '@/lib/isProUser';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function UserInfo() {
   const supabaseServerClient = createSupabaseServerClient();
 
-  const { data } = await supabaseServerClient
-    .from('users')
-    .select('email')
-    .limit(1)
-    .single();
-
-  const { data: proData } = await supabaseServerClient
-    .from('pro_users')
-    .select('*')
-    .limit(1)
-    .maybeSingle();
+  const [userData, isProUser] = await Promise.all([
+    supabaseServerClient.from('users').select('email').limit(1).maybeSingle(),
+    checkIsProUser(),
+  ]);
+  const data = userData?.data;
 
   return (
     <div className="space-y-2">
@@ -27,7 +22,7 @@ export default async function UserInfo() {
       <p className="text-gray-300">
         You have access to:{' '}
         <span className="bg-secondary p-1 font-bold text-foreground">
-          {proData?.user_id ? 'Pro Content' : 'Free Content Only'}
+          {isProUser ? 'Pro Content' : 'Free Content Only'}
         </span>
       </p>
     </div>

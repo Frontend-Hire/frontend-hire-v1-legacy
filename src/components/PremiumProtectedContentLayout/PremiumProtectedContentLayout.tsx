@@ -1,21 +1,16 @@
 import Heading from '@/components/Heading';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import PricingDetails from '../PricingDetails';
 import InclusionsExclusions from '../InclusionsExclusions';
 import FAQSection from '../FAQSection';
+import { checkIsProUser } from '@/lib/isProUser';
+import TestimonialsSection from '../TestimonialsSection';
 
 export default async function PremiumProtectedContentLayout({
   children,
 }: React.PropsWithChildren) {
-  const supabaseServerClient = createSupabaseServerClient();
+  const isProUser = await checkIsProUser();
 
-  const { data } = await supabaseServerClient
-    .from('pro_users')
-    .select('*')
-    .limit(1)
-    .maybeSingle();
-
-  if (data?.user_id) {
+  if (isProUser) {
     return <>{children}</>;
   }
 
@@ -32,6 +27,7 @@ export default async function PremiumProtectedContentLayout({
         <InclusionsExclusions />
       </div>
       <FAQSection />
+      <TestimonialsSection />
     </div>
   );
 }

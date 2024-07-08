@@ -11,16 +11,19 @@ type Link = {
   hideOnMainNav?: boolean;
   href: string;
   icon?: any;
-  isEarlyAccess?: boolean;
+  hideForProUser?: boolean;
+  isProUserRoute?: boolean;
 };
 
 export type NavLink = {
   title: string;
   items: Link[];
   hideOnMainNav?: boolean;
+  hideForProUser?: boolean;
+  isProUserRoute?: boolean;
 };
 
-export const LINKS: NavLink[] = [
+const LINKS: NavLink[] = [
   {
     title: 'Learn',
     items: [
@@ -41,8 +44,11 @@ export const LINKS: NavLink[] = [
     ],
   },
   {
-    title: 'Pricing',
-    items: [{ title: 'Pricing', href: '/pricing' }],
+    title: 'Pro',
+    items: [
+      { title: 'Pricing', href: '/pricing', hideForProUser: true },
+      { title: 'Benefits', href: '/pro', isProUserRoute: true },
+    ],
   },
   {
     title: 'Company',
@@ -62,7 +68,7 @@ export const LINKS: NavLink[] = [
   },
 ];
 
-export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav).map(
+const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav).map(
   (menu) => {
     return {
       ...menu,
@@ -70,6 +76,53 @@ export const MAIN_NAV_LINKS = LINKS.filter((menu) => !menu.hideOnMainNav).map(
     };
   },
 );
+
+const getUserMainNavLinks = () => {
+  return MAIN_NAV_LINKS.filter((menu) => !menu.isProUserRoute).map((menu) => {
+    return {
+      ...menu,
+      items: menu.items.filter((link) => !link.isProUserRoute),
+    };
+  });
+};
+
+const getProUserMainNavLinks = () => {
+  return MAIN_NAV_LINKS.filter((menu) => !menu.hideForProUser).map((menu) => {
+    return {
+      ...menu,
+      items: menu.items.filter((link) => !link.hideForProUser),
+    };
+  });
+};
+
+const getUserFooterLinks = () => {
+  return LINKS.filter((menu) => !menu.isProUserRoute).map((menu) => {
+    return {
+      ...menu,
+      items: menu.items.filter((link) => !link.isProUserRoute),
+    };
+  });
+};
+
+const getProUserFooterLinks = () => {
+  return LINKS;
+};
+
+export const getMainNavLinks = (isProUser?: boolean) => {
+  if (isProUser) {
+    return getProUserMainNavLinks();
+  }
+
+  return getUserMainNavLinks();
+};
+
+export const getFooterLinks = (isProUser?: boolean) => {
+  if (isProUser) {
+    return getProUserFooterLinks();
+  }
+
+  return getUserFooterLinks();
+};
 
 export const BANNER_CONFIG = {
   show: false,

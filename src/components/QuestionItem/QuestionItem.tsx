@@ -71,7 +71,9 @@ export default function QuestionItem({
         <div className="flex w-full flex-col gap-1 py-2">
           <div className="flex items-center gap-2">
             <p className="font-bold">{title}</p>
-            {isNew && <Badge className="motion-safe:animate-pulse">New</Badge>}
+            {isNew && (
+              <Badge className="motion-safe:animate-fh-pulse">New</Badge>
+            )}
             {isFree && <Badge>Free</Badge>}
           </div>
           <p className="text-sm leading-[100%] text-gray-300">{description}</p>

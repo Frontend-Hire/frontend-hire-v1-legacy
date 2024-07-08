@@ -58,7 +58,7 @@ export default function QuestionItem({
           >
             <p className="font-bold">{title}</p>
           </Link>
-          {isNew && <Badge className="animate-pulse">New</Badge>}
+          {isNew && <Badge className="animate-fh-pulse">New</Badge>}
         </div>
         <p className="line-clamp-1 text-sm leading-[100%] text-gray-300">
           {description}

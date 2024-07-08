@@ -2,24 +2,13 @@ import CardLinkItem from '@/components/CardLinkItem';
 import CustomHeading from '@/components/CustomHeading';
 import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import {
-  ChevronRightIcon,
-  LaptopIcon,
-  PhoneCallIcon,
-  UserIcon,
-} from 'lucide-react';
-import { openGraphShared } from '@/app/shared-metadata';
-import { Metadata } from 'next';
+import { ChevronRightIcon, PhoneCallIcon, UserIcon } from 'lucide-react';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'Interviews | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
-  openGraph: {
-    ...openGraphShared,
-    title: 'Interviews | Frontend Hire',
-    description: 'Simulated and Real Interviews for Frontend Developers',
-  },
-};
+});
 
 export default async function Projects() {
   return (

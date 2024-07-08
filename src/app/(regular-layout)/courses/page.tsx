@@ -2,20 +2,15 @@ import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import CourseCardItem from './_components/CourseCardItem';
 import CourseBanner from '@/components/CourseBanner';
-import { Metadata } from 'next';
-import { openGraphShared } from '@/app/shared-metadata';
 import Link from 'next/link';
 import { getCoursesFromLocal } from '@/lib/fetchLocalFiles';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'Courses | Frontend Hire',
-  description: 'Live and recorded practical courses',
-  openGraph: {
-    ...openGraphShared,
-    title: 'Courses | Frontend Hire',
-    description: 'Live and recorded practical courses',
-  },
-};
+  description:
+    'All courses in text, select ones in video. Free and paid options. All meant to make you a better developer.',
+});
 
 export default async function CoursesPage() {
   const courses = await getCoursesFromLocal();

@@ -15,7 +15,7 @@ export default function CourseCardItem({
   return (
     <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-card">
       {isNew && (
-        <div className="absolute right-0 top-0 bg-primary px-2 py-1 text-sm font-medium motion-safe:animate-pulse">
+        <div className="absolute right-0 top-0 bg-primary px-2 py-1 text-sm font-medium motion-safe:animate-fh-pulse">
           New Course
         </div>
       )}

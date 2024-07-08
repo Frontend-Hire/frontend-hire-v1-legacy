@@ -15,6 +15,9 @@ export default async function PricingDetails() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-10 text-center">
+      <span className="font-bold text-link motion-safe:animate-fh-pulse">
+        10+ Developers Have Taken The Pro Plan!
+      </span>
       <h3 className="text-stroke max-w-[25ch] text-4xl uppercase tracking-widest text-card">
         Launch Price For First 100 Customers
       </h3>

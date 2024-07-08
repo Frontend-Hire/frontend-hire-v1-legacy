@@ -8,17 +8,12 @@ import abhishekImage from '@/assets/team/abhishek.webp';
 import nipunImage from '@/assets/team/nipun.webp';
 import CopyEmailOnClick from '@/components/CopyEmailOnClick';
 import CustomHeading from '@/components/CustomHeading';
-import { openGraphShared } from '@/app/shared-metadata';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata = {
+export const metadata = getMetadata({
   title: 'About | Frontend Hire',
   description: 'A little about us and our mission',
-  openGraph: {
-    ...openGraphShared,
-    title: 'About | Frontend Hire',
-    description: 'A little about us and our mission',
-  },
-};
+});
 
 <CustomHeading
   title="About"
