@@ -5,7 +5,6 @@ import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
 import PrettierButton from './PrettierButton';
-import AutoSave from './AutoSave';
 
 export default function CodeEditor() {
   const codemirrorInstance = React.useRef<CodeEditorRef>(null);
@@ -15,7 +14,6 @@ export default function CodeEditor() {
     <QuestionLayoutItem
       rightButtons={
         <>
-          <AutoSave />
           <ResetButtonWithAlert />
           <PrettierButton
             ref={prettierButtonRef}

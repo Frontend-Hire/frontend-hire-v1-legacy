@@ -44,7 +44,7 @@ export default function FeaturesSection() {
           'A unique approach that starts with a problem statement.',
         ]}
       />
-      <FeatureLayout
+      {/* <FeatureLayout
         title="Questions"
         richComponent={{
           component: (
@@ -59,7 +59,7 @@ export default function FeaturesSection() {
           'Interview and Real World Based.',
           'With a ton of high quality resources.',
         ]}
-      />
+      /> */}
       <FeatureLayout
         title="Interviews"
         richComponent={{

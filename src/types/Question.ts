@@ -1,3 +1,24 @@
+import {
+  SandpackFiles,
+  SandpackPredefinedTemplate,
+} from '@codesandbox/sandpack-react';
+
+export type QuestionMeta = {
+  title: string;
+  difficulty: QuestionDifficulty;
+  template: SandpackPredefinedTemplate;
+  recommendedLayout: QuestionLayout;
+  publishedOn: Date;
+  externalCDNs?: string[];
+  showPreview?: boolean;
+  showConsole?: boolean;
+  isNew?: boolean;
+  isFree?: boolean;
+  description: string;
+  files: SandpackFiles;
+  dependencies?: { [key: string]: string };
+};
+
 export type QuestionOverview = {
   id: string;
   title: string;

@@ -1,19 +1,23 @@
 import ClientContainer from './_components/ClientContainer';
-import getQuestionMetaData from './_utils/getQuestionMetaData';
 import ProtectedLayout from '@/components/ProtectedLayout';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import { getMetadata } from '@/lib/getMetadata';
+import {
+  getQuestion,
+  getQuestionMetadata,
+  getQuestionSolution,
+} from './_utils';
 
 export async function generateMetadata({
   params,
 }: {
   params: { questionId: string };
 }) {
-  const questionData = await getQuestionMetaData(params.questionId);
+  const { meta } = await getQuestionMetadata(params.questionId);
 
   return getMetadata({
-    title: `${questionData?.meta.title || 'Question'} | Frontend Hire`,
-    description: questionData?.meta.description,
+    title: `${meta.title || 'Question'} | Frontend Hire`,
+    description: meta.description,
   });
 }
 
@@ -22,15 +26,27 @@ export default async function Question({
 }: {
   params: { questionId: string };
 }) {
-  const questionData = await getQuestionMetaData(params.questionId);
+  const { meta } = await getQuestionMetadata(params.questionId);
+  const { getContent: questionContent } = await getQuestion(params.questionId);
+  const { getContent: solutionContent } = await getQuestionSolution(
+    params.questionId,
+  );
 
   return (
     <ProtectedLayout>
-      {questionData?.meta.isFree ? (
-        <ClientContainer />
+      {meta.isFree ? (
+        <ClientContainer
+          questionMeta={meta}
+          questionContent={questionContent()}
+          solutionContent={solutionContent()}
+        />
       ) : (
         <PremiumProtectedContentLayout>
-          <ClientContainer />
+          <ClientContainer
+            questionMeta={meta}
+            questionContent={questionContent()}
+            solutionContent={solutionContent()}
+          />
         </PremiumProtectedContentLayout>
       )}
     </ProtectedLayout>

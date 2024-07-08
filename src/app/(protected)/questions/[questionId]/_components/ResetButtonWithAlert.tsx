@@ -13,25 +13,14 @@ import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
-import { useQuestionData } from '../_context/QuestionDataProvider';
 
 export default function ResetButtonWithAlert() {
   const {
-    originalMeta: { files },
-  } = useQuestionData();
-
-  const {
-    sandpack: { updateFile },
+    sandpack: { resetAllFiles },
   } = useSandpack();
 
   const reset = () => {
-    try {
-      if (files) {
-        updateFile(files);
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    resetAllFiles();
   };
 
   return (
@@ -53,7 +42,9 @@ export default function ResetButtonWithAlert() {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Button variant="destructive">Yes, reset</Button>
+            <Button onClick={reset} variant="destructive">
+              Yes, reset
+            </Button>
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

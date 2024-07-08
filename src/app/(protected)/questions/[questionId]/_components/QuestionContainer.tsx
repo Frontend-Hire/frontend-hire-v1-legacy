@@ -1,33 +1,37 @@
 import DifficultyBadge from '@/components/DifficultyBadge';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import { useQuestionData } from '../_context/QuestionDataProvider';
+import { QuestionMeta } from '@/types/Question';
 
-export default function QuestionContainer() {
-  const {
-    getContent,
-    originalMeta: { difficulty },
-    getSolutionContent,
-  } = useQuestionData();
+type QuestionContainerProps = {
+  difficulty: QuestionMeta['difficulty'];
+  questionContent: React.ReactNode;
+  solutionContent?: React.ReactNode;
+};
 
+export default function QuestionContainer({
+  difficulty,
+  questionContent,
+  solutionContent,
+}: QuestionContainerProps) {
   const tabs = [
     {
       label: 'Question',
       value: 'Question',
       content: (
         <div className="prose prose-invert max-w-none bg-[#151515] p-4">
-          {getContent()}
+          {questionContent}
         </div>
       ),
     },
   ];
 
-  if (getSolutionContent) {
+  if (solutionContent) {
     tabs.push({
       label: 'Solution',
       value: 'Solution',
       content: (
         <div className="prose prose-invert max-w-none bg-[#151515] p-4">
-          {getSolutionContent()}
+          {solutionContent}
         </div>
       ),
     });

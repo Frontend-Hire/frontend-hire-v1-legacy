@@ -1,64 +1,76 @@
 'use client';
 
-import React from 'react';
-
 import { SandpackProvider } from '@codesandbox/sandpack-react';
-import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
-import HeaderSkeleton from '@/components/HeaderSkeleton';
-import Container from './Container';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
-import useClientData from '../_hooks/useClientData';
-import { QuestionDataProvider } from '../_context/QuestionDataProvider';
 import { QuestionLayoutProvider } from '../_context/QuestionLayoutProvider';
+import { QuestionMeta } from '@/types/Question';
+import QuestionLayout from '@/components/QuestionLayout';
+import QuestionContainer from './QuestionContainer';
+import CodeEditor from './CodeEditor';
+import Output from './Output';
 
-export default function ClientContainer() {
-  const { data } = useClientData();
+type ClientContainerProps = {
+  questionMeta: QuestionMeta;
+  questionContent: React.ReactNode;
+  solutionContent?: React.ReactNode;
+};
 
-  if (data.status === 'loading' || data.status === 'idle')
-    return (
-      <PrimaryLayout header={<HeaderSkeleton />}>
-        <QuestionLayoutSkeleton />
-      </PrimaryLayout>
-    );
-
-  if (data.status === 'error') {
-    throw new Error(data.message);
-  }
-
-  if (data.question == undefined) {
-    throw new Error('This was unexepected');
-  }
-
+export default function ClientContainer({
+  questionMeta,
+  questionContent,
+  solutionContent,
+}: ClientContainerProps) {
   return (
-    <QuestionDataProvider questionData={data.question}>
-      <QuestionHotkeysProvider>
-        <SandpackProvider
-          style={{
-            height: '100%',
-          }}
-          template={data.question.originalMeta.template}
-          customSetup={{
-            dependencies: data.question.originalMeta.dependencies,
-          }}
-          theme="dark"
-          files={data.question.userMeta.files}
-          options={{
-            externalResources: data.question.originalMeta.externalCDNs,
-            autoReload: true,
-            autorun: false, // If true results in infinite loader
-          }}
-        >
-          <QuestionLayoutProvider
-            questionLayout={data.question.originalMeta.recommendedLayout}
-          >
-            <PrimaryLayout header={<Header />}>
-              <Container />
-            </PrimaryLayout>
-          </QuestionLayoutProvider>
-        </SandpackProvider>
-      </QuestionHotkeysProvider>
-    </QuestionDataProvider>
+    <QuestionHotkeysProvider>
+      <SandpackProvider
+        style={{
+          height: '100%',
+        }}
+        template={questionMeta.template}
+        customSetup={{
+          dependencies: questionMeta.dependencies,
+        }}
+        theme="dark"
+        files={questionMeta.files}
+        options={{
+          externalResources: questionMeta.externalCDNs,
+          autoReload: true,
+          autorun: false, // If true results in infinite loader
+        }}
+      >
+        <QuestionLayoutProvider questionLayout={questionMeta.recommendedLayout}>
+          <PrimaryLayout header={<Header />}>
+            <QuestionLayout
+              topLeft={{
+                label: 'Question Prompt',
+                content: (
+                  <QuestionContainer
+                    difficulty={questionMeta.difficulty}
+                    questionContent={questionContent}
+                    solutionContent={solutionContent}
+                  />
+                ),
+              }}
+              topRight={{ label: 'Code Editor', content: <CodeEditor /> }}
+              bottomRight={
+                questionMeta.showConsole || questionMeta.showPreview
+                  ? {
+                      label: 'Output',
+                      content: (
+                        <Output
+                          showConsole={questionMeta.showConsole}
+                          showPreview={questionMeta.showPreview}
+                        />
+                      ),
+                    }
+                  : undefined
+              }
+            />
+          </PrimaryLayout>
+        </QuestionLayoutProvider>
+      </SandpackProvider>
+    </QuestionHotkeysProvider>
   );
 }
