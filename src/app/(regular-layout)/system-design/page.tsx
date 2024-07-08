@@ -1,21 +1,15 @@
 import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { Metadata } from 'next';
-import { openGraphShared } from '@/app/shared-metadata';
 import { DIFFICULTY } from '@/types/Question';
 import SystemDesignQuestionItem from './_components/SystemDesignQuestionItem';
 import Link from 'next/link';
 import { getSystemDesignsFromLocal } from '@/lib/fetchLocalFiles';
+import { getMetadata } from '@/lib/getMetadata';
 
-export const metadata: Metadata = {
+export const metadata = getMetadata({
   title: 'System Design | Frontend Hire',
   description: 'Our take on Frontend System Design',
-  openGraph: {
-    ...openGraphShared,
-    title: 'System Design | Frontend Hire',
-    description: 'Our take on Frontend System Design',
-  },
-};
+});
 
 export default async function SystemDesignPage() {
   const systems = await getSystemDesignsFromLocal();
