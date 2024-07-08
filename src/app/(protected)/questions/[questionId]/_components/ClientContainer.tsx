@@ -4,12 +4,15 @@ import { SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
-import { QuestionLayoutProvider } from '../_context/QuestionLayoutProvider';
 import { QuestionMeta } from '@/types/Question';
 import QuestionLayout from '@/components/QuestionLayout';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
 import Output from './Output';
+import { QuestionLayoutProvider } from '@/components/QuestionLayout/QuestionLayoutProvider';
+import React from 'react';
+import HeaderSkeleton from '@/components/HeaderSkeleton';
+import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
 
 type ClientContainerProps = {
   questionMeta: QuestionMeta;
@@ -22,6 +25,22 @@ export default function ClientContainer({
   questionContent,
   solutionContent,
 }: ClientContainerProps) {
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (loading) {
+    return (
+      <PrimaryLayout header={<HeaderSkeleton />}>
+        <QuestionLayoutSkeleton />
+      </PrimaryLayout>
+    );
+  }
+
   return (
     <QuestionHotkeysProvider>
       <SandpackProvider

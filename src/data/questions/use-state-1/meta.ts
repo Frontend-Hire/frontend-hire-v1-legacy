@@ -9,6 +9,7 @@ export const meta: QuestionMeta = {
   publishedOn: new Date('2024-07-01'),
   difficulty: DIFFICULTY.EASY,
   showPreview: true,
+  showConsole: true,
   isNew: true,
   files: {
     'App.js': { code: require('./src/App.js').code },

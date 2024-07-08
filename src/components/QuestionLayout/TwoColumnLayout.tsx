@@ -5,8 +5,8 @@ import {
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
 
-import { useQuestionLayout } from '@/app/(protected)/questions/[questionId]/_context/QuestionLayoutProvider';
 import { cn } from '@/lib/utils';
+import { useQuestionLayout } from './QuestionLayoutProvider';
 
 type TwoColumnLayoutProps = {
   topLeft?: React.ReactNode;
@@ -30,7 +30,7 @@ export default function TwoColumnLayout({
 
   return (
     <ResizablePanelGroup direction="horizontal">
-      <ResizablePanel>
+      <ResizablePanel minSize={10}>
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel>{topLeft}</ResizablePanel>
           {topLeft && bottomLeft && (
@@ -39,16 +39,18 @@ export default function TwoColumnLayout({
               className="w-2 rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
             />
           )}
-          {bottomLeft && <ResizablePanel>{bottomLeft}</ResizablePanel>}
+          {bottomLeft && (
+            <ResizablePanel minSize={10}>{bottomLeft}</ResizablePanel>
+          )}
         </ResizablePanelGroup>
       </ResizablePanel>
       <ResizableHandle
         withHandle
-        className="w-2 rounded-none border-none bg-neutral-800 hover:bg-neutral-600"
+        className="hidden w-2 rounded-none border-none bg-neutral-800 hover:bg-neutral-600 xs:flex"
       />
-      <ResizablePanel>
+      <ResizablePanel minSize={20} className="hidden xs:block">
         <ResizablePanelGroup direction={orientation}>
-          <ResizablePanel>{topRight}</ResizablePanel>
+          <ResizablePanel minSize={20}>{topRight}</ResizablePanel>
           {topRight && bottomRight && (
             <ResizableHandle
               withHandle
@@ -58,7 +60,9 @@ export default function TwoColumnLayout({
               )}
             />
           )}
-          {bottomRight && <ResizablePanel>{bottomRight}</ResizablePanel>}
+          {bottomRight && (
+            <ResizablePanel minSize={20}>{bottomRight}</ResizablePanel>
+          )}
         </ResizablePanelGroup>
       </ResizablePanel>
     </ResizablePanelGroup>

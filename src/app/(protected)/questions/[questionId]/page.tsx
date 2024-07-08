@@ -26,11 +26,15 @@ export default async function Question({
 }: {
   params: { questionId: string };
 }) {
-  const { meta } = await getQuestionMetadata(params.questionId);
-  const { getContent: questionContent } = await getQuestion(params.questionId);
-  const { getContent: solutionContent } = await getQuestionSolution(
-    params.questionId,
-  );
+  const [
+    { meta },
+    { getContent: questionContent },
+    { getContent: solutionContent },
+  ] = await Promise.all([
+    getQuestionMetadata(params.questionId),
+    getQuestion(params.questionId),
+    getQuestionSolution(params.questionId),
+  ]);
 
   return (
     <ProtectedLayout>

@@ -11,22 +11,33 @@ const plugins = {
 const getPrettierOptions = (filename: string): Options => {
   const fileType = filename.split('.').pop();
 
+  const defaults: Options = {
+    trailingComma: 'all',
+    tabWidth: 2,
+    semi: true,
+    singleQuote: true,
+    printWidth: 80,
+  };
+
   switch (fileType) {
     case 'html':
       return {
         parser: 'html',
         plugins: [plugins.html],
+        ...defaults,
       };
     case 'css':
       return {
         parser: 'css',
         plugins: [plugins.css],
+        ...defaults,
       };
     case 'jsx':
     case 'js':
       return {
         parser: 'babel',
         plugins: [plugins.babel, plugins.esTree],
+        ...defaults,
       };
     default:
       return {};

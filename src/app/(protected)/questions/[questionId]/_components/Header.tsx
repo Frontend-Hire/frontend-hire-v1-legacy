@@ -4,7 +4,6 @@ import HeaderLogo from '@/components/HeaderLogo';
 import { ListIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
-import ReportBugButtonWithDialog from './ReportBugButtonWithDialog';
 import ToggleLayoutButton from './ToggleLayoutButton';
 
 export default function Header() {
@@ -30,7 +29,6 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <ToggleLayoutButton />
-        <ReportBugButtonWithDialog />
         <SubmitSolutionButton />
       </div>
     </header>

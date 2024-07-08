@@ -1,7 +1,3 @@
-'use client';
-
-import React from 'react';
-import QuestionMobileLayout from './QuestionMobileLayout';
 import TwoColumnLayout from './TwoColumnLayout';
 
 type QuestionLayoutProps = {
@@ -29,30 +25,6 @@ export default function QuestionLayout({
   bottomLeft,
   bottomRight,
 }: QuestionLayoutProps) {
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 450);
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 450);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  if (isMobile) {
-    return (
-      <div className="h-0 flex-grow">
-        <QuestionMobileLayout
-          tabs={[topLeft, bottomLeft, topRight, bottomRight]}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="h-0 flex-grow">
       <TwoColumnLayout

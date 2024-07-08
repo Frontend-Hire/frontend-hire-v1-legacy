@@ -12,4 +12,5 @@ export const code = `export default function Task({ task, idx, onDelete }) {
       </button>
     </div>
   );
-}`;
+}
+`;

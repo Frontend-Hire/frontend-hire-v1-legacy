@@ -1,6 +1,6 @@
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { QuestionTab } from '@/types/Question';
-import { SandpackPreview } from '@codesandbox/sandpack-react';
+import { SandpackConsole, SandpackPreview } from '@codesandbox/sandpack-react';
 
 type OutputProps = {
   showPreview?: boolean;
@@ -14,7 +14,7 @@ export default function Output({ showConsole, showPreview }: OutputProps) {
     tabs.push({
       label: 'Preview',
       value: 'Preview',
-      content: <SandpackPreview showNavigator className="h-full bg-red-500" />,
+      content: <SandpackPreview showNavigator className="h-full" />,
     });
   }
 
@@ -22,11 +22,7 @@ export default function Output({ showConsole, showPreview }: OutputProps) {
     tabs.push({
       label: 'Console',
       value: 'Console',
-      content: (
-        <div className="flex h-full flex-col gap-2 p-2 text-lg">
-          <span>You can use your default browser&apos;s console!</span>
-        </div>
-      ),
+      content: <SandpackConsole className="h-full" />,
     });
   }
 
