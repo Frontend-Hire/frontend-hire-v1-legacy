@@ -17,7 +17,6 @@ export type BaseQuestion = {
   title: string;
   description: string;
   difficulty: DIFFICULTY;
-  recommendedLayout: QuestionLayout;
   publishedOn: Date;
   isNew?: boolean;
   isFree?: boolean;
@@ -25,6 +24,7 @@ export type BaseQuestion = {
 
 export type CodingQuestion = BaseQuestion & {
   type: QUESTION_TYPE.CODING;
+  recommendedLayout: QuestionLayout;
   template: SandpackPredefinedTemplate;
   externalCDNs?: string[];
   showPreview?: boolean;

@@ -4,13 +4,24 @@ import React from 'react';
 import { useQueryState } from 'nuqs';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { DIFFICULTY_ORDER, Question } from '@/types/Question';
+import {
+  DIFFICULTY_ORDER,
+  QUESTION_SKILL,
+  QUESTION_TYPE,
+  Question,
+} from '@/types/Question';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 type QuestionListProps = {
   questions: Question[];
 };
 
 export default function QuestionList({ questions }: QuestionListProps) {
+  const { skill, type } = useParams<{
+    skill: QUESTION_SKILL;
+    type: QUESTION_TYPE;
+  }>();
   const [search] = useQueryState('search');
   const [sort] = useQueryState('sort');
   const trimmedSearch = search?.trim();
@@ -77,7 +88,9 @@ export default function QuestionList({ questions }: QuestionListProps) {
         {filteredAndSortedQuestions.length !== 0 &&
           filteredAndSortedQuestions.map((question) => (
             <li key={question.id}>
-              <QuestionItem {...question} />
+              <Link href={`/questions/${skill}/${type}/${question.id}`}>
+                <QuestionItem {...question} />
+              </Link>
             </li>
           ))}
         {filteredAndSortedQuestions.length === 0 && (

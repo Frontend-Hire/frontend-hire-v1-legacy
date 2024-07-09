@@ -1,24 +1,36 @@
-import { Question } from '@/types/Question';
+import { QUESTION_SKILL, QUESTION_TYPE, Question } from '@/types/Question';
 import { cache } from 'react';
 
-export const getQuestionMetadata = cache(async (questionId: string) => {
-  const { meta } = require(`@/data/questions/${questionId}/meta.ts`);
+export const getQuestionMetadata = cache(
+  async (questionId: string, skill: QUESTION_SKILL, type: QUESTION_TYPE) => {
+    try {
+      const { meta } = require(
+        `@/data/questions/${skill}/${type}/${questionId}/meta.ts`,
+      );
 
-  return { meta } as { meta: Question };
-});
+      return { meta } as { meta: Question };
+    } catch (error) {
+      return { meta: null };
+    }
+  },
+);
 
-export const getQuestion = cache(async (questionId: string) => {
-  const { default: getContent } = require(
-    `@/data/questions/${questionId}/question.mdx`,
-  );
+export const getCodingQuestion = cache(
+  async (questionId: string, skill: QUESTION_SKILL) => {
+    const { default: getContent } = require(
+      `@/data/questions/${skill}/coding/${questionId}/question.mdx`,
+    );
 
-  return { getContent } as { getContent: () => React.ReactNode };
-});
+    return { getContent } as { getContent: () => React.ReactNode };
+  },
+);
 
-export const getQuestionSolution = cache(async (questionId: string) => {
-  const { default: getContent } = require(
-    `@/data/questions/${questionId}/solution.mdx`,
-  );
+export const getCodingQuestionSolution = cache(
+  async (questionId: string, skill: QUESTION_SKILL) => {
+    const { default: getContent } = require(
+      `@/data/questions/${skill}/coding/${questionId}/solution.mdx`,
+    );
 
-  return { getContent } as { getContent: () => React.ReactNode };
-});
+    return { getContent } as { getContent: () => React.ReactNode };
+  },
+);

@@ -4,7 +4,7 @@ import { SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
-import { Question } from '@/types/Question';
+import { CodingQuestion, Question } from '@/types/Question';
 import QuestionLayout from '@/components/QuestionLayout';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
@@ -15,7 +15,7 @@ import HeaderSkeleton from '@/components/HeaderSkeleton';
 import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
 
 type ClientContainerProps = {
-  questionMeta: Question;
+  questionMeta: CodingQuestion;
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
 };
