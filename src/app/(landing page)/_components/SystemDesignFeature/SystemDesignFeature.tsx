@@ -1,10 +1,9 @@
-import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import Link from 'next/link';
-import CourseCategoryBadge from '@/components/CourseCategoryBadge';
 import { getSystemDesignsFromLocal } from '@/lib/fetchLocalFiles';
 import { DIFFICULTY } from '@/types/Question';
+import { SystemDesign } from '@/types/SystemDesign';
 
 export default async function SystemDesignFeature() {
   const systems = await getSystemDesignsFromLocal();
@@ -15,23 +14,13 @@ export default async function SystemDesignFeature() {
       <ul className="grid gap-4">
         {systems.map((system) => (
           <li key={system.link}>
-            <SystemDesignQuestionItem
-              difficulty={DIFFICULTY.MASTER}
-              {...system}
-            />
+            <SystemDesignQuestionItem {...system} />
           </li>
         ))}
       </ul>
     </>
   );
 }
-
-type SystemDesignQuestionItemProps = {
-  difficulty: DIFFICULTY;
-  title: string;
-  description: string;
-  isNew?: boolean;
-};
 
 const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
@@ -57,15 +46,17 @@ const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
 function SystemDesignQuestionItem({
   title,
   description,
-  difficulty,
   isNew,
-}: SystemDesignQuestionItemProps) {
+  link,
+}: SystemDesign) {
   return (
     <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
-      <DifficultyLabel difficulty={difficulty} />
+      <DifficultyLabel difficulty={DIFFICULTY.MASTER} />
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex items-center gap-2">
-          <p className="font-bold capitalize">{title}</p>
+          <Link href={link} className="font-bold capitalize underline">
+            {title}
+          </Link>
           {isNew && <Badge className="animate-fh-pulse">New</Badge>}
         </div>
         <p className="text-sm leading-[100%] text-gray-300">{description}</p>

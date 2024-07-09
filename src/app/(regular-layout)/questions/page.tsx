@@ -32,7 +32,7 @@ type QuestionTypeCardProps = {
 
 function QuestionTypeCard({ title }: QuestionTypeCardProps) {
   return (
-    <div className="flex min-h-40 flex-col items-center justify-center rounded bg-card p-5 text-2xl font-bold transition-all hover:scale-105 hover:bg-[hsl(192,82%,34%)]">
+    <div className="flex min-h-40 flex-col items-center justify-center rounded bg-card p-5 text-center text-2xl font-bold transition-all hover:scale-105 hover:bg-[hsl(192,82%,34%)]">
       {title}
     </div>
   );
