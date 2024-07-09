@@ -4,7 +4,7 @@ import VisuallyHidden from '@/components/ui/visually-hidden';
 import Link from 'next/link';
 import CourseCategoryBadge from '@/components/CourseCategoryBadge';
 import { getSystemDesignsFromLocal } from '@/lib/fetchLocalFiles';
-import { DIFFICULTY, QuestionDifficulty } from '@/types/Question';
+import { DIFFICULTY } from '@/types/Question';
 
 export default async function SystemDesignFeature() {
   const systems = await getSystemDesignsFromLocal();
@@ -27,17 +27,13 @@ export default async function SystemDesignFeature() {
 }
 
 type SystemDesignQuestionItemProps = {
-  difficulty: QuestionDifficulty;
+  difficulty: DIFFICULTY;
   title: string;
   description: string;
   isNew?: boolean;
 };
 
-const DifficultyLabel = ({
-  difficulty,
-}: {
-  difficulty: QuestionDifficulty;
-}) => {
+const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {

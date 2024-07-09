@@ -1,13 +1,9 @@
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
-import { QuestionDifficulty, Question } from '@/types/Question';
+import { DIFFICULTY, Question } from '@/types/Question';
 import { Badge } from '../ui/badge';
 
-const DifficultyLabel = ({
-  difficulty,
-}: {
-  difficulty: QuestionDifficulty;
-}) => {
+const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {
