@@ -12,10 +12,18 @@ import Link from 'next/link';
 
 type SubmissionConfettiProps = {
   onClose: () => void;
+  CTA?: React.ReactNode;
 };
 
 export default function SubmissionConfetti({
   onClose,
+  CTA = (
+    <Button asChild>
+      <Link prefetch={false} href="/">
+        Back To Home
+      </Link>
+    </Button>
+  ),
 }: SubmissionConfettiProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
@@ -25,11 +33,7 @@ export default function SubmissionConfetti({
           <DialogTitle>Great Job!</DialogTitle>
           <DialogDescription>That was good practice!</DialogDescription>
         </DialogHeader>
-        <Button asChild>
-          <Link prefetch={false} href="/questions">
-            Solve More Questions
-          </Link>
-        </Button>
+        {CTA}
       </DialogContent>
     </Dialog>
   );

@@ -24,7 +24,6 @@ const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
 };
 
 export default function QuestionItem({
-  id,
   title,
   description,
   difficulty,

@@ -1,11 +1,11 @@
-import { QUESTION_SKILL, QUESTION_TYPE, Question } from '@/types/Question';
+import { QUESTION_SKILL, Question } from '@/types/Question';
 import { cache } from 'react';
 
-export const getQuestionMetadata = cache(
-  async (questionId: string, skill: QUESTION_SKILL, type: QUESTION_TYPE) => {
+export const getCodingQuestionMetadata = cache(
+  async (questionId: string, skill: QUESTION_SKILL) => {
     try {
       const { meta } = require(
-        `@/data/questions/${skill}/${type}/${questionId}/meta.ts`,
+        `@/data/questions/${skill}/coding/${questionId}/meta.ts`,
       );
 
       return { meta } as { meta: Question };

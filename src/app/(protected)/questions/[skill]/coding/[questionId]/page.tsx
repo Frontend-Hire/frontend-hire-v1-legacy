@@ -5,20 +5,16 @@ import { getMetadata } from '@/lib/getMetadata';
 import {
   getCodingQuestion,
   getCodingQuestionSolution,
-  getQuestionMetadata,
+  getCodingQuestionMetadata,
 } from './_utils';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
-
-type Params = {
-  params: { questionId: string; skill: QUESTION_SKILL };
-};
+import { Params } from './_types';
 
 export async function generateMetadata({ params }: Params) {
-  const { meta } = await getQuestionMetadata(
+  const { meta } = await getCodingQuestionMetadata(
     params.questionId,
     params.skill,
-    QUESTION_TYPE.CODING,
   );
 
   return getMetadata({
@@ -28,10 +24,9 @@ export async function generateMetadata({ params }: Params) {
 }
 
 export default async function CodingQuestion({ params }: Params) {
-  const { meta } = await getQuestionMetadata(
+  const { meta } = await getCodingQuestionMetadata(
     params.questionId,
     params.skill,
-    QUESTION_TYPE.CODING,
   );
 
   if (!meta || meta.type !== QUESTION_TYPE.CODING) {
