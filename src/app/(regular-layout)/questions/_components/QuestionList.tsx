@@ -4,17 +4,13 @@ import React from 'react';
 import { useQueryState } from 'nuqs';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { DIFFICULTY_ORDER, QuestionOverview } from '@/types/Question';
+import { DIFFICULTY_ORDER, QuestionMeta } from '@/types/Question';
 
 type QuestionListProps = {
-  questions: QuestionOverview[];
-  solvedQuestions?: { question_id: string }[];
+  questions: QuestionMeta[];
 };
 
-export default function QuestionList({
-  questions,
-  solvedQuestions = [],
-}: QuestionListProps) {
+export default function QuestionList({ questions }: QuestionListProps) {
   const [search] = useQueryState('search');
   const [sort] = useQueryState('sort');
   const trimmedSearch = search?.trim();
@@ -39,9 +35,29 @@ export default function QuestionList({
             DIFFICULTY_ORDER[b.difficulty] - DIFFICULTY_ORDER[a.difficulty],
         );
       case 'new-first':
-        return filtered.sort((a, b) => b.questionNumber - a.questionNumber);
+        return filtered.sort((a, b) => {
+          if (a.publishedOn && b.publishedOn) {
+            return b.publishedOn.getTime() - a.publishedOn.getTime();
+          } else if (a.publishedOn) {
+            return -1;
+          } else if (b.publishedOn) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
       case 'old-first':
-        return filtered.sort((a, b) => a.questionNumber - b.questionNumber);
+        return filtered.sort((a, b) => {
+          if (a.publishedOn && b.publishedOn) {
+            return a.publishedOn.getTime() - b.publishedOn.getTime();
+          } else if (b.publishedOn) {
+            return -1;
+          } else if (a.publishedOn) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
       default:
         return filtered.sort(
           (a, b) =>
@@ -49,12 +65,6 @@ export default function QuestionList({
         );
     }
   }, [trimmedSearch, questions, sort]);
-
-  const checkQuestionCompletion = (questionId: string) => {
-    if (!solvedQuestions) return false;
-
-    return solvedQuestions.map((item) => item.question_id).includes(questionId);
-  };
 
   return (
     <>
@@ -72,8 +82,6 @@ export default function QuestionList({
                 title={question.title}
                 description={question.description}
                 difficulty={question.difficulty}
-                isCompleted={checkQuestionCompletion(question.id)}
-                skills={question.skills}
                 isNew={question.isNew}
                 isFree={question.isFree}
               />

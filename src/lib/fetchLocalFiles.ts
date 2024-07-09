@@ -1,6 +1,6 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
-import { QuestionOverview } from '@/types/Question';
+import { QuestionMeta } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
 import path from 'path';
@@ -9,25 +9,18 @@ import { cache } from 'react';
 const questionsPath = path.join(process.cwd(), '/src/data/questions');
 
 export const getQuestionsFromLocal = cache(async () => {
-  const questionsList: QuestionOverview[] = [];
+  const questionsList: QuestionMeta[] = [];
 
   const questions = fs.readdirSync(questionsPath);
 
   for (const question of questions.filter(
     (question) => !question.startsWith('.'),
   )) {
-    const { default: getContent, meta } = require(
-      `@/data/questions/${question}/prompt.mdx`,
+    const { meta }: { meta: QuestionMeta } = require(
+      `@/data/questions/${question}/meta.ts`,
     );
     questionsList.push({
-      id: question,
-      title: meta.title,
-      description: meta.description,
-      skills: meta.skills,
-      difficulty: meta.difficulty,
-      questionNumber: meta.questionNumber,
-      isNew: meta.isNew,
-      isFree: meta.isFree,
+      ...meta,
     });
   }
 

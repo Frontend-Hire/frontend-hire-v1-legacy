@@ -1,6 +1,7 @@
 import { DIFFICULTY, QuestionMeta } from '@/types/Question';
 
 export const meta: QuestionMeta = {
+  id: 'use-state-1',
   title: 'useState - 1',
   description: 'State in React begins here',
   template: 'react',

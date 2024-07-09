@@ -4,6 +4,7 @@ import {
 } from '@codesandbox/sandpack-react';
 
 export type QuestionMeta = {
+  id: string;
   title: string;
   difficulty: QuestionDifficulty;
   template: SandpackPredefinedTemplate;
@@ -17,25 +18,6 @@ export type QuestionMeta = {
   description: string;
   files: SandpackFiles;
   dependencies?: { [key: string]: string };
-};
-
-export type QuestionOverview = {
-  id: string;
-  title: string;
-  description: string;
-  skills: string[];
-  difficulty: QuestionDifficulty;
-  questionNumber: number;
-  isNew?: boolean;
-  isFree?: boolean;
-};
-
-export type SkillQuestions = {
-  [skill: string]: QuestionOverview[];
-};
-
-export type SkillStats = {
-  [skill: string]: { total: number; submitted: number };
 };
 
 export type QuestionTab = {

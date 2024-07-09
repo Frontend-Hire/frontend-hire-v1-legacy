@@ -3,7 +3,6 @@ import VisuallyHidden from '../ui/visually-hidden';
 import { QuestionDifficulty } from '@/types/Question';
 import { CheckCircleIcon, CircleIcon } from 'lucide-react';
 import Tooltip from '../ui/tooltip';
-import SkillBadges from '../SkillBadges';
 import { Badge } from '../ui/badge';
 
 type QuestionItemProps = {
@@ -11,8 +10,6 @@ type QuestionItemProps = {
   difficulty: QuestionDifficulty;
   title: string;
   description: string;
-  skills: string[];
-  isCompleted: boolean;
   isNew?: boolean;
   isFree?: boolean;
 };
@@ -56,11 +53,9 @@ const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
 
 export default function QuestionItem({
   id,
-  skills = [],
   title,
   description,
   difficulty,
-  isCompleted,
   isNew,
   isFree,
 }: QuestionItemProps) {
@@ -77,9 +72,7 @@ export default function QuestionItem({
             {isFree && <Badge>Free</Badge>}
           </div>
           <p className="text-sm leading-[100%] text-gray-300">{description}</p>
-          <SkillBadges skills={skills} />
         </div>
-        <CompletedBox isCompleted={isCompleted} />
       </div>
     </Link>
   );
