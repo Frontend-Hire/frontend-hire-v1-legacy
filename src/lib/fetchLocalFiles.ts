@@ -1,13 +1,13 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
-import { Question, QuestionSkill, QuestionType } from '@/types/Question';
+import { Question, QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
 import path from 'path';
 import { cache } from 'react';
 
 export const getQuestionsFromLocal = cache(
-  async (skill: QuestionSkill, type: QuestionType) => {
+  async (skill: QUESTION_SKILL, type: QUESTION_TYPE) => {
     const questionsPath = path.join(
       process.cwd(),
       `/src/data/questions/${skill}/${type}`,
