@@ -4,10 +4,10 @@ import React from 'react';
 import { useQueryState } from 'nuqs';
 import QuestionItem from '@/components/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import { DIFFICULTY_ORDER, QuestionMeta } from '@/types/Question';
+import { DIFFICULTY_ORDER, Question } from '@/types/Question';
 
 type QuestionListProps = {
-  questions: QuestionMeta[];
+  questions: Question[];
 };
 
 export default function QuestionList({ questions }: QuestionListProps) {
@@ -77,14 +77,7 @@ export default function QuestionList({ questions }: QuestionListProps) {
         {filteredAndSortedQuestions.length !== 0 &&
           filteredAndSortedQuestions.map((question) => (
             <li key={question.id}>
-              <QuestionItem
-                id={question.id}
-                title={question.title}
-                description={question.description}
-                difficulty={question.difficulty}
-                isNew={question.isNew}
-                isFree={question.isFree}
-              />
+              <QuestionItem {...question} />
             </li>
           ))}
         {filteredAndSortedQuestions.length === 0 && (

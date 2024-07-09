@@ -3,22 +3,41 @@ import {
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
 
-export type QuestionMeta = {
+export enum QUESTION_SKILL {
+  REACT = 'react',
+}
+
+export enum QUESTION_TYPE {
+  CODING = 'coding',
+  THEORY = 'theory',
+}
+
+export type BaseQuestion = {
   id: string;
   title: string;
-  difficulty: QuestionDifficulty;
-  template: SandpackPredefinedTemplate;
+  description: string;
+  difficulty: DIFFICULTY;
   recommendedLayout: QuestionLayout;
   publishedOn: Date;
+  isNew?: boolean;
+  isFree?: boolean;
+};
+
+export type CodingQuestion = BaseQuestion & {
+  type: QUESTION_TYPE.CODING;
+  template: SandpackPredefinedTemplate;
   externalCDNs?: string[];
   showPreview?: boolean;
   showConsole?: boolean;
-  isNew?: boolean;
-  isFree?: boolean;
-  description: string;
   files: SandpackFiles;
   dependencies?: { [key: string]: string };
 };
+
+export type TheoryQuestion = BaseQuestion & {
+  type: QUESTION_TYPE.THEORY;
+};
+
+export type Question = CodingQuestion | TheoryQuestion;
 
 export type QuestionTab = {
   value: string;
@@ -41,5 +60,3 @@ export const DIFFICULTY_ORDER = {
 };
 
 export type QuestionLayout = 'col-3' | 'col-2';
-
-export type QuestionDifficulty = DIFFICULTY;

@@ -1,18 +1,7 @@
 import Link from 'next/link';
 import VisuallyHidden from '../ui/visually-hidden';
-import { QuestionDifficulty } from '@/types/Question';
-import { CheckCircleIcon, CircleIcon } from 'lucide-react';
-import Tooltip from '../ui/tooltip';
+import { QuestionDifficulty, Question } from '@/types/Question';
 import { Badge } from '../ui/badge';
-
-type QuestionItemProps = {
-  id: string;
-  difficulty: QuestionDifficulty;
-  title: string;
-  description: string;
-  isNew?: boolean;
-  isFree?: boolean;
-};
 
 const DifficultyLabel = ({
   difficulty,
@@ -39,18 +28,6 @@ const DifficultyLabel = ({
   );
 };
 
-const CompletedBox = ({ isCompleted }: { isCompleted: boolean }) => {
-  return isCompleted ? (
-    <Tooltip title="Completed">
-      <CheckCircleIcon size="48px" strokeWidth={2} />
-    </Tooltip>
-  ) : (
-    <Tooltip title="Yet to solve">
-      <CircleIcon size="48px" strokeWidth={2} />
-    </Tooltip>
-  );
-};
-
 export default function QuestionItem({
   id,
   title,
@@ -58,7 +35,7 @@ export default function QuestionItem({
   difficulty,
   isNew,
   isFree,
-}: QuestionItemProps) {
+}: Question) {
   return (
     <Link prefetch={false} href={`/questions/${id}`}>
       <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
@@ -71,7 +48,7 @@ export default function QuestionItem({
             )}
             {isFree && <Badge>Free</Badge>}
           </div>
-          <p className="text-sm leading-[100%] text-gray-300">{description}</p>
+          <p className="text-sm leading-relaxed text-gray-300">{description}</p>
         </div>
       </div>
     </Link>

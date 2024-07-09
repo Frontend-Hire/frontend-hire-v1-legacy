@@ -1,10 +1,10 @@
-import { QuestionMeta } from '@/types/Question';
+import { Question } from '@/types/Question';
 import { cache } from 'react';
 
 export const getQuestionMetadata = cache(async (questionId: string) => {
   const { meta } = require(`@/data/questions/${questionId}/meta.ts`);
 
-  return { meta } as { meta: QuestionMeta };
+  return { meta } as { meta: Question };
 });
 
 export const getQuestion = cache(async (questionId: string) => {

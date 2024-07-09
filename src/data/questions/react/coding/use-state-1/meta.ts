@@ -1,9 +1,10 @@
-import { DIFFICULTY, QuestionMeta } from '@/types/Question';
+import { DIFFICULTY, Question, QUESTION_TYPE } from '@/types/Question';
 
-export const meta: QuestionMeta = {
+export const meta: Question = {
   id: 'use-state-1',
   title: 'useState - 1',
   description: 'State in React begins here',
+  type: QUESTION_TYPE.CODING,
   template: 'react',
   externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',
@@ -12,6 +13,7 @@ export const meta: QuestionMeta = {
   showPreview: true,
   showConsole: true,
   isNew: true,
+  isFree: true,
   files: {
     'App.js': { code: require('./src/App.js').code },
     'AddTask.js': { code: require('./src/AddTask.js').code, readOnly: true },

@@ -1,31 +1,37 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
-import { QuestionMeta } from '@/types/Question';
+import { Question, QuestionSkill, QuestionType } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
 import path from 'path';
 import { cache } from 'react';
 
-const questionsPath = path.join(process.cwd(), '/src/data/questions');
-
-export const getQuestionsFromLocal = cache(async () => {
-  const questionsList: QuestionMeta[] = [];
-
-  const questions = fs.readdirSync(questionsPath);
-
-  for (const question of questions.filter(
-    (question) => !question.startsWith('.'),
-  )) {
-    const { meta }: { meta: QuestionMeta } = require(
-      `@/data/questions/${question}/meta.ts`,
+export const getQuestionsFromLocal = cache(
+  async (skill: QuestionSkill, type: QuestionType) => {
+    const questionsPath = path.join(
+      process.cwd(),
+      `/src/data/questions/${skill}/${type}`,
     );
-    questionsList.push({
-      ...meta,
-    });
-  }
 
-  return questionsList;
-});
+    const questionsList: Question[] = [];
+
+    const questions = fs.readdirSync(questionsPath);
+
+    for (const question of questions.filter(
+      (question) => !question.startsWith('.'),
+    )) {
+      const { meta }: { meta: Question } = require(
+        `@/data/questions/${skill}/${type}/${question}/meta.ts`,
+      );
+
+      questionsList.push({
+        ...meta,
+      });
+    }
+
+    return questionsList;
+  },
+);
 
 const coursesPath = path.join(process.cwd(), '/src/data/courses');
 

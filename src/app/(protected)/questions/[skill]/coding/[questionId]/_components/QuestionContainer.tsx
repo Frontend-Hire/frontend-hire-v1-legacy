@@ -1,9 +1,9 @@
 import DifficultyBadge from '@/components/DifficultyBadge';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
-import { QuestionMeta } from '@/types/Question';
+import { Question } from '@/types/Question';
 
 type QuestionContainerProps = {
-  difficulty: QuestionMeta['difficulty'];
+  difficulty: Question['difficulty'];
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
 };
