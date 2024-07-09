@@ -70,7 +70,7 @@ pre {
 }
 
 pre code {
-  @apply p-4 text-sm;
+  @apply px-4 py-2 text-sm;
 }
 
 code span[data-highlighted-line] {
@@ -99,6 +99,22 @@ code[data-line-numbers-max-digits='2'] > [data-line]::before {
 
 code[data-line-numbers-max-digits='3'] > [data-line]::before {
   width: 3rem;
+}
+
+code .diff.remove::before {
+  @apply mr-2 font-bold text-hard content-['-'];
+}
+
+code .diff.remove {
+  @apply -mx-4 bg-hard/35 px-4;
+}
+
+code .diff.add::before {
+  @apply mr-2 font-bold text-easy content-['+'];
+}
+
+code .diff.add {
+  @apply -mx-4 bg-easy/35 px-4;
 }
 
 .fh-steps h3 {

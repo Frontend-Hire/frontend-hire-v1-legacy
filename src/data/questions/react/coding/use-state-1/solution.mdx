@@ -1,1 +1,67 @@
+import { Callout } from '@/components/MarkdownComponents';
+
 # Solution
+
+This is the stuff that you would do a lot in a CRUD application.
+
+First, we will update the `tasks` variable to use state, which in React is done with the `useState` hook.
+
+`useState` returns an array with two items:
+
+1. The current value of the state
+2. A function to update the state
+
+```js title="App.js"
+const tasks = [{ id: 1, taskName: 'First Task' }]; // [!code --]
+const [tasks, setTasks] = React.useState([{ id: 1, taskName: 'First Task' }]); // [!code ++]
+```
+
+Next, we will wire up the `addTask` function:
+
+```js title="App.js"
+const addTask = (task) => {
+    // Write the logic // [!code --]
+    // [!code ++:13]
+    const trimmedTask = task.trim(); 
+
+    if (!trimmedTask) {
+      return;
+    }
+
+    const newTask = {
+      id: Math.random().toString(36).substr(2, 9),
+      taskName: trimmedTask,
+    };
+
+    setTasks([...tasks, newTask]);
+  };
+```
+
+We check if the task is empty before we add it. If it is empty, we do not add the task and return. Otherwise, we create a new task object with a unique ID and the trimmed task name.
+
+<Callout type='warning'>
+Unique IDs are usually created by a database. This random string method works for an interview setting, but do let the interviewer know that this is not the best way to generate unique IDs.
+
+But why do we need to have a unique ID? Why not just use the index as the ID? Well, we can use the index as the ID if we want. But that would not help React understand which item in the list is being changed.
+</Callout>
+
+Then we use the `setTasks` function to update the `tasks` state with the new task. We use the spread operator to create a new array with the new task added.
+
+
+
+Finally, we can wire up the `deleteTask` function:
+
+```js title="App.js"
+ const deleteTask = (id) => {
+    // Write the logic // [!code --]
+    setTasks(tasks.filter((task) => task.id !== id)); // [!code ++]
+  };
+```
+
+We filter the `tasks` array to remove the task with the matching ID and create a new array without the deleted task. Then we use the `setTasks` function to update the `tasks` state with the new array.
+
+<Callout type='error'>
+If you are new to React, you might be tempted to **push** or **splice** on the array. Never do that in React with state variables. 
+
+One of the fundamental rules of React is to not modify the state directly. Always work with a copy of the state.
+</Callout>
