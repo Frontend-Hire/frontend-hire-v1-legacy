@@ -54,7 +54,11 @@ function SystemDesignQuestionItem({
       <DifficultyLabel difficulty={DIFFICULTY.MASTER} />
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex items-center gap-2">
-          <Link href={link} className="font-bold capitalize underline">
+          <Link
+            href={link}
+            prefetch={false}
+            className="font-bold capitalize underline"
+          >
             {title}
           </Link>
           {isNew && <Badge className="animate-fh-pulse">New</Badge>}
