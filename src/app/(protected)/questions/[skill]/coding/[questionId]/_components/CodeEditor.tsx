@@ -2,11 +2,14 @@ import React from 'react';
 import QuestionLayoutItem from '@/components/QuestionLayoutItem';
 import { keymap } from '@codemirror/view';
 import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
-import ResetButtonWithAlert from './ResetButtonWithAlert';
 import RunCodeButton from './RunCodeButton';
 import PrettierButton from './PrettierButton';
 
-export default function CodeEditor() {
+type CodeEditorProps = {
+  resetButton: React.ReactNode;
+};
+
+export default function CodeEditor({ resetButton }: CodeEditorProps) {
   const codemirrorInstance = React.useRef<CodeEditorRef>(null);
   const prettierButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -14,7 +17,7 @@ export default function CodeEditor() {
     <QuestionLayoutItem
       rightButtons={
         <>
-          <ResetButtonWithAlert />
+          {resetButton}
           <PrettierButton
             ref={prettierButtonRef}
             editorInstance={codemirrorInstance}

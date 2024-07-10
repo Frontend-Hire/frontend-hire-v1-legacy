@@ -1,4 +1,6 @@
 import { QUESTION_SKILL, Question } from '@/types/Question';
+import { TypedSupabaseClient } from '@/types/typedSupabaseClient';
+import { QueryData } from '@supabase/supabase-js';
 import { cache } from 'react';
 
 export const getCodingQuestionMetadata = cache(
@@ -34,3 +36,17 @@ export const getCodingQuestionSolution = cache(
     return { getContent } as { getContent: () => React.ReactNode };
   },
 );
+
+export const getCodeHistoryQuery = async (
+  client: TypedSupabaseClient,
+  questionId: string,
+) => {
+  return client
+    .from('code_history')
+    .select('id, code_history_files (file_name, code)')
+    .eq('question_id', questionId)
+    .limit(1)
+    .maybeSingle();
+};
+
+export type CodeHistory = QueryData<ReturnType<typeof getCodeHistoryQuery>>;

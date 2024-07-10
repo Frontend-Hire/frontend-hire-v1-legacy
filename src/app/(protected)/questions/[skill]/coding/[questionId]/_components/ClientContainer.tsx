@@ -1,6 +1,6 @@
 'use client';
 
-import { SandpackProvider } from '@codesandbox/sandpack-react';
+import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
@@ -13,15 +13,21 @@ import { QuestionLayoutProvider } from '@/components/QuestionLayout/QuestionLayo
 import React from 'react';
 import HeaderSkeleton from '@/components/HeaderSkeleton';
 import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
+import { CodeHistory } from '../_utils';
+import ResetButtonWithAlert from './ResetButtonWithAlert';
 
 type ClientContainerProps = {
   questionMeta: CodingQuestion;
+  originalFiles: SandpackFiles;
+  updatedFiles: SandpackFiles;
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
 };
 
 export default function ClientContainer({
   questionMeta,
+  originalFiles,
+  updatedFiles,
   questionContent,
   solutionContent,
 }: ClientContainerProps) {
@@ -52,7 +58,7 @@ export default function ClientContainer({
           dependencies: questionMeta.dependencies,
         }}
         theme="dark"
-        files={questionMeta.files}
+        files={updatedFiles}
         options={{
           externalResources: questionMeta.externalCDNs,
           autoReload: true,
@@ -72,7 +78,16 @@ export default function ClientContainer({
                   />
                 ),
               }}
-              topRight={{ label: 'Code Editor', content: <CodeEditor /> }}
+              topRight={{
+                label: 'Code Editor',
+                content: (
+                  <CodeEditor
+                    resetButton={
+                      <ResetButtonWithAlert originalFiles={originalFiles} />
+                    }
+                  />
+                ),
+              }}
               bottomRight={
                 questionMeta.showConsole || questionMeta.showPreview
                   ? {

@@ -11,16 +11,22 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
-import { useSandpack } from '@codesandbox/sandpack-react';
+import { SandpackFiles, useSandpack } from '@codesandbox/sandpack-react';
 import { RotateCcwIcon } from 'lucide-react';
 
-export default function ResetButtonWithAlert() {
+type ResetButtonWithAlertProps = {
+  originalFiles: SandpackFiles;
+};
+
+export default function ResetButtonWithAlert({
+  originalFiles,
+}: ResetButtonWithAlertProps) {
   const {
-    sandpack: { resetAllFiles },
+    sandpack: { updateFile },
   } = useSandpack();
 
   const reset = () => {
-    resetAllFiles();
+    updateFile(originalFiles);
   };
 
   return (
