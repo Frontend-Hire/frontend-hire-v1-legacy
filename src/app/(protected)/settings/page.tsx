@@ -1,6 +1,5 @@
 import DeleteAccountButtonWithAlert from './_components/DeleteAccountButtonWithAlert';
 import DeleteCodeSubmissionsButtonWithAlert from './_components/DeleteCodeSubmissionsButtonWithAlert';
-import DeleteProjectSubmissionsButtonWithAlert from './_components/DeleteProjectSubmissionsButtonWithAlert';
 import UserInfo from './_components/UserInfo';
 import CustomHeading from '@/components/CustomHeading';
 import ProtectedLayout from '@/components/ProtectedLayout';
@@ -23,7 +22,6 @@ export default function Settings() {
         <UserInfo />
         <div className="mt-10 flex flex-col items-center justify-center gap-8">
           <DeleteCodeSubmissionsButtonWithAlert />
-          <DeleteProjectSubmissionsButtonWithAlert />
           <DeleteAccountButtonWithAlert />
         </div>
       </main>
