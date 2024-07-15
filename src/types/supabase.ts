@@ -357,7 +357,14 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      save_code_history: {
+        Args: {
+          p_question_id: string;
+          p_code_history: Json;
+          p_is_solved: boolean;
+        };
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;

@@ -16,8 +16,8 @@ export const meta: Question = {
   isNew: true,
   isFree: true,
   files: {
-    'App.js': { code: require('./src/App.js').code },
-    'AddTask.js': { code: require('./src/AddTask.js').code, readOnly: true },
-    'Task.js': { code: require('./src/Task.js').code, readOnly: true },
+    '/App.js': { code: require('./src/App.js').code },
+    '/AddTask.js': { code: require('./src/AddTask.js').code, readOnly: true },
+    '/Task.js': { code: require('./src/Task.js').code, readOnly: true },
   },
 };

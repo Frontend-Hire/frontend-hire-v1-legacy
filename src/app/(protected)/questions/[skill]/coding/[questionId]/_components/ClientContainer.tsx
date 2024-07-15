@@ -13,7 +13,6 @@ import { QuestionLayoutProvider } from '@/components/QuestionLayout/QuestionLayo
 import React from 'react';
 import HeaderSkeleton from '@/components/HeaderSkeleton';
 import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
-import { CodeHistory } from '../_utils';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 
 type ClientContainerProps = {

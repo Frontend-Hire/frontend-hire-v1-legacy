@@ -45,7 +45,7 @@ export default async function CodingQuestion({ params }: Params) {
     getCodingQuestionSolution(params.questionId, params.skill),
     getCodeHistoryQuery(
       supabaseClient,
-      `${params.skill.toLowerCase()}-${params.questionId}`,
+      `${params.skill.toLowerCase()}-${params.questionId.toLowerCase()}`,
     ),
   ]);
 

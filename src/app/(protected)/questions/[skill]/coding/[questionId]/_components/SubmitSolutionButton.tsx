@@ -5,17 +5,35 @@ import { useParams } from 'next/navigation';
 import { Params } from '../_types';
 import Link from 'next/link';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import { useSandpack } from '@codesandbox/sandpack-react';
 
 export default function SubmitSolutionButton() {
   const supabaseClient = createSupabaseBrowserClient();
   const [showConfetti, setShowConfetti] = React.useState(false);
-  const { skill } = useParams<Params['params']>();
+  const { skill, questionId } = useParams<Params['params']>();
+  const { sandpack } = useSandpack();
+
+  const { visibleFiles, files } = sandpack;
+
+  const editableVisibleFiles = visibleFiles.filter(
+    (file) => !files[file].readOnly,
+  );
 
   const handleSubmit = async () => {
     setShowConfetti(true);
     try {
-      await supabaseClient.from('code_history');
-    } catch (error) {}
+      const codeHistory: { [key: string]: string } = {};
+      editableVisibleFiles.forEach((visibleFile) => {
+        codeHistory[visibleFile] = files[visibleFile].code;
+      });
+      await supabaseClient.rpc('save_code_history', {
+        p_is_solved: true,
+        p_question_id: `${skill.toLowerCase()}-${questionId.toLowerCase()}`,
+        p_code_history: codeHistory,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
