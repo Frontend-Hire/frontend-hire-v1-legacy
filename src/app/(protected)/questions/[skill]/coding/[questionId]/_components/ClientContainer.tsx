@@ -4,7 +4,7 @@ import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
-import { CodingQuestion, Question } from '@/types/Question';
+import { CodingQuestion } from '@/types/Question';
 import QuestionLayout from '@/components/QuestionLayout';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
