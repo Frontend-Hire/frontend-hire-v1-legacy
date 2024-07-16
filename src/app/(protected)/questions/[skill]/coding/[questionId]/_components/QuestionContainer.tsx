@@ -1,5 +1,5 @@
 import DifficultyBadge from '@/components/DifficultyBadge';
-import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import { Question } from '@/types/Question';
 
 type QuestionContainerProps = {

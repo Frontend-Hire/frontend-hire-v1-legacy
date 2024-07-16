@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useQueryState } from 'nuqs';
-import QuestionItem from '@/components/QuestionItem';
+import QuestionItem from '@/components/Questions/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import {
   DIFFICULTY_ORDER,
@@ -17,19 +17,20 @@ import useCompletedQuestions from '../_hooks/useCompletedQuestions';
 type QuestionListProps = {
   questions: Question[];
   completedQuestionsServer?: string[];
+  skill: QUESTION_SKILL;
+  type: QUESTION_TYPE;
 };
 
 export default function QuestionList({
   questions,
   completedQuestionsServer = [],
+  skill,
+  type,
 }: QuestionListProps) {
   const { completedQuestions } = useCompletedQuestions(
     completedQuestionsServer,
   );
-  const { skill, type } = useParams<{
-    skill: QUESTION_SKILL;
-    type: QUESTION_TYPE;
-  }>();
+
   const [search] = useQueryState('search');
   const [sort] = useQueryState('sort');
   const trimmedSearch = search?.trim();

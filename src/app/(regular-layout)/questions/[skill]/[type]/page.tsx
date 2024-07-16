@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from './_components/Container';
-import QuestionItemSkeleton from '@/components/QuestionItemSkeleton';
+import QuestionItemSkeleton from '@/components/Questions/QuestionItemSkeleton';
 import { getMetadata } from '@/lib/getMetadata';
 import CustomHeading from '@/components/CustomHeading';
 import QuestionFilters from './_components/QuestionFilters';

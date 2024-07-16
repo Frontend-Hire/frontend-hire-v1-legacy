@@ -5,14 +5,14 @@ import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header/Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
 import { CodingQuestion } from '@/types/Question';
-import QuestionLayout from '@/components/QuestionLayout';
+import QuestionLayout from '@/components/Questions/QuestionLayout';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
 import Output from './Output';
-import { QuestionLayoutProvider } from '@/components/QuestionLayout/QuestionLayoutProvider';
+import { QuestionLayoutProvider } from '@/components/Questions/QuestionLayout/QuestionLayoutProvider';
 import React from 'react';
 import HeaderSkeleton from '@/components/HeaderSkeleton';
-import QuestionLayoutSkeleton from '@/components/QuestionLayoutSkeleton';
+import QuestionLayoutSkeleton from '@/components/Questions/QuestionLayoutSkeleton';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 
 type ClientContainerProps = {

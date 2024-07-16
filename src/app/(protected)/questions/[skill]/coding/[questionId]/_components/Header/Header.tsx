@@ -5,6 +5,7 @@ import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
 import ToggleLayoutButton from './ToggleLayoutButton';
+import QuestionsListButtonWithSheet from './QuestionsListButtonWithSheet';
 
 export default function Header() {
   return (
@@ -21,6 +22,7 @@ export default function Header() {
             </Link>
           </Button>
         </Tooltip>
+        <QuestionsListButtonWithSheet />
       </div>
 
       <Link href="/questions" className="max-xs:hidden" prefetch={false}>

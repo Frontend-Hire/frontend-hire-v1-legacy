@@ -18,6 +18,8 @@ export default async function Container({ skill, type }: ContainerProps) {
     <QuestionList
       questions={localQuestions}
       completedQuestionsServer={completedQuestions}
+      skill={skill}
+      type={type}
     />
   );
 }
