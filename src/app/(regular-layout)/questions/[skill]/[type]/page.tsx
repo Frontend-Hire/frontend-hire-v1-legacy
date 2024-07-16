@@ -3,10 +3,10 @@ import Container from './_components/Container';
 import QuestionItemSkeleton from '@/components/Questions/QuestionItemSkeleton';
 import { getMetadata } from '@/lib/getMetadata';
 import CustomHeading from '@/components/CustomHeading';
-import QuestionFilters from './_components/QuestionFilters';
 import { capitalize } from '@/utils/text';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { redirect } from 'next/navigation';
+import QuestionFilters from '@/components/Questions/QuestionsFilter';
 
 type Params = {
   params: { skill: QUESTION_SKILL; type: QUESTION_TYPE };

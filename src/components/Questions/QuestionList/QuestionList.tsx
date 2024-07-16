@@ -11,8 +11,7 @@ import {
   Question,
 } from '@/types/Question';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
-import useCompletedQuestions from '../_hooks/useCompletedQuestions';
+import useCompletedQuestions from './useCompletedQuestions';
 
 type QuestionListProps = {
   questions: Question[];

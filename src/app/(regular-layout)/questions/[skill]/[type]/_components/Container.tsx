@@ -1,5 +1,5 @@
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import QuestionList from './QuestionList';
+import QuestionList from '../../../../../../components/Questions/QuestionList/QuestionList';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { getCompletedQuestions } from '@/lib/questionStats';
 
