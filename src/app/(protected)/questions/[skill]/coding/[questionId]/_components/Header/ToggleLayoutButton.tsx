@@ -17,7 +17,7 @@ export default function ToggleLayoutButton() {
     <Tooltip title="Toggle Layout">
       <Button
         size="icon"
-        className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
+        className="hidden rounded-t-none bg-card hover:bg-card/90 active:bg-card/80 sm:inline-flex"
         onClick={toggleLayout}
       >
         {LayoutIcons[layout]}
