@@ -12,12 +12,20 @@ import {
 } from '@/types/Question';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import useCompletedQuestions from '../_hooks/useCompletedQuestions';
 
 type QuestionListProps = {
   questions: Question[];
+  completedQuestionsServer?: string[];
 };
 
-export default function QuestionList({ questions }: QuestionListProps) {
+export default function QuestionList({
+  questions,
+  completedQuestionsServer = [],
+}: QuestionListProps) {
+  const { completedQuestions } = useCompletedQuestions(
+    completedQuestionsServer,
+  );
   const { skill, type } = useParams<{
     skill: QUESTION_SKILL;
     type: QUESTION_TYPE;
@@ -89,7 +97,13 @@ export default function QuestionList({ questions }: QuestionListProps) {
           filteredAndSortedQuestions.map((question) => (
             <li key={question.id}>
               <Link href={`/questions/${skill}/${type}/${question.id}`}>
-                <QuestionItem {...question} />
+                <QuestionItem
+                  question={question}
+                  showCompleted={type === QUESTION_TYPE.CODING}
+                  isCompleted={completedQuestions.includes(
+                    `${skill}-${question.id}`,
+                  )}
+                />
               </Link>
             </li>
           ))}
