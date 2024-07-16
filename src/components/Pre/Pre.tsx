@@ -44,7 +44,7 @@ export default function Pre({
                       element.classList.contains('remove')
                     )
                   ) {
-                    const text = element.textContent?.trim() || '';
+                    const text = element.textContent;
                     if (text) {
                       content += (content ? '\n' : '') + text;
                       lastNodeWasElement = true;
