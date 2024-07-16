@@ -14,3 +14,13 @@ export const getTheoryQuestionMetadata = cache(
     }
   },
 );
+
+export const getTheoryQuestion = cache(
+  async (questionId: string, skill: QUESTION_SKILL) => {
+    const { default: getContent } = require(
+      `@/data/questions/${skill}/theory/${questionId}/prompt.mdx`,
+    );
+
+    return { getContent } as { getContent: () => React.ReactNode };
+  },
+);

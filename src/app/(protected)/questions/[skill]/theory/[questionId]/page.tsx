@@ -1,10 +1,13 @@
 import ProtectedLayout from '@/components/ProtectedLayout';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import { getMetadata } from '@/lib/getMetadata';
-import { getTheoryQuestionMetadata } from './_utils';
+import { getTheoryQuestion, getTheoryQuestionMetadata } from './_utils';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
 import Container from './_components/Container';
+import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import { getCompletedQuestions } from '@/lib/questionStats';
+import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButtonWithSheet';
 
 type Params = {
   params: { questionId: string; skill: QUESTION_SKILL };
@@ -32,13 +35,42 @@ export default async function CodingQuestion({ params }: Params) {
     notFound();
   }
 
+  const [questions, completedQuestions, { getContent: questionContent }] =
+    await Promise.all([
+      getQuestionsFromLocal(params.skill, QUESTION_TYPE.THEORY),
+      getCompletedQuestions(),
+      getTheoryQuestion(params.questionId, params.skill),
+    ]);
+
   return (
     <ProtectedLayout>
       {meta.isFree ? (
-        <Container />
+        <Container
+          questionsListButtonWithSheet={
+            <QuestionListButtonWithSheet
+              questions={questions}
+              serverCompletedQuestions={completedQuestions}
+              skill={params.skill}
+              type={QUESTION_TYPE.THEORY}
+            />
+          }
+          questionMeta={meta}
+          questionContent={questionContent()}
+        />
       ) : (
         <PremiumProtectedContentLayout>
-          <Container />
+          <Container
+            questionsListButtonWithSheet={
+              <QuestionListButtonWithSheet
+                questions={questions}
+                serverCompletedQuestions={completedQuestions}
+                skill={params.skill}
+                type={QUESTION_TYPE.THEORY}
+              />
+            }
+            questionMeta={meta}
+            questionContent={questionContent()}
+          />
         </PremiumProtectedContentLayout>
       )}
     </ProtectedLayout>

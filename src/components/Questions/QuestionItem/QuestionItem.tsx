@@ -31,7 +31,6 @@ type QuestionItemProps = {
 
 export default function QuestionItem({
   question,
-  showCompleted,
   isCompleted,
 }: QuestionItemProps) {
   const { title, description, difficulty, isNew, isFree } = question;
@@ -49,7 +48,7 @@ export default function QuestionItem({
               {isFree && <Badge>Free</Badge>}
             </div>
           </div>
-          {showCompleted && isCompleted && (
+          {isCompleted && (
             <Badge className="bg-green-700 hover:bg-green-800">Completed</Badge>
           )}
         </div>

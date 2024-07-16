@@ -99,7 +99,6 @@ export default function QuestionList({
               <Link href={`/questions/${skill}/${type}/${question.id}`}>
                 <QuestionItem
                   question={question}
-                  showCompleted={type === QUESTION_TYPE.CODING}
                   isCompleted={completedQuestions.includes(
                     `${skill}-${question.id}`,
                   )}

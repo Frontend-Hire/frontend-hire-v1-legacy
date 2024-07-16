@@ -10,12 +10,12 @@ import { Button } from '@/components/ui/button';
 import Confetti from 'react-confetti';
 import Link from 'next/link';
 
-type SubmissionConfettiProps = {
+type QuestionSubmissionConfettiProps = {
   onClose: () => void;
   CTA?: React.ReactNode;
 };
 
-export default function SubmissionConfetti({
+export default function QuestionSubmissionConfetti({
   onClose,
   CTA = (
     <Button asChild>
@@ -24,7 +24,7 @@ export default function SubmissionConfetti({
       </Link>
     </Button>
   ),
-}: SubmissionConfettiProps) {
+}: QuestionSubmissionConfettiProps) {
   return (
     <Dialog open={true} onOpenChange={onClose}>
       <Confetti />

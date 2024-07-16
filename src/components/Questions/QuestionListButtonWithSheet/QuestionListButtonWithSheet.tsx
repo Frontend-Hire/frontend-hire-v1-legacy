@@ -8,6 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import Tooltip from '@/components/ui/tooltip';
 import { QUESTION_SKILL, QUESTION_TYPE, Question } from '@/types/Question';
 import { ListIcon } from 'lucide-react';
 
@@ -26,13 +27,15 @@ export default function QuestionListButtonWithSheet({
 }: QuestionListButtonWithSheetProps) {
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
-          size="icon"
-        >
-          <ListIcon />
-        </Button>
+      <SheetTrigger>
+        <Tooltip title={`Questions List`}>
+          <Button
+            className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
+            size="icon"
+          >
+            <ListIcon />
+          </Button>
+        </Tooltip>
       </SheetTrigger>
       <SheetContent side="left" className="space-y-4">
         <SheetHeader>
