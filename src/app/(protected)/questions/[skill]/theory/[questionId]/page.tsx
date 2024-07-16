@@ -2,16 +2,13 @@ import ProtectedLayout from '@/components/ProtectedLayout';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import { getMetadata } from '@/lib/getMetadata';
 import { getTheoryQuestion, getTheoryQuestionMetadata } from './_utils';
-import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
+import { QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
 import Container from './_components/Container';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { getCompletedQuestions } from '@/lib/questionStats';
 import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButtonWithSheet';
-
-type Params = {
-  params: { questionId: string; skill: QUESTION_SKILL };
-};
+import { Params } from './_types';
 
 export async function generateMetadata({ params }: Params) {
   const { meta } = await getTheoryQuestionMetadata(
