@@ -6,14 +6,11 @@ const INCLUSIONS = [
   'Free Updates',
   'Exclusive Courses',
   'Frontend System Design',
+  'Ton of coding and theory questions',
   'Simulated Phone Screening',
 ];
 
-const COMING_SOON = [
-  'More Simulated Interview Types',
-  'Text/Video Solutions To Coding Questions',
-  'More New Features',
-];
+const COMING_SOON = ['More Simulated Interview Types', 'More New Features'];
 
 export default function InclusionsExclusions() {
   return (

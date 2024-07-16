@@ -7,22 +7,22 @@
     --background: 0 0% 0%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 3%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 3%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 306 100% 24%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 6%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 0 0% 79%;
     --muted-foreground: 0 0% 49%;
 
-    --accent: 0 0% 6%;
+    --accent: 0 0% 8%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 90% 40%;
