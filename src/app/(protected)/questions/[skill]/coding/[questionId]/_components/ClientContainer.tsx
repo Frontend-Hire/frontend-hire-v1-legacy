@@ -4,7 +4,7 @@ import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import Header from './Header/Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
-import { CodingQuestion } from '@/types/Question';
+import { CodingQuestion, QUESTION_SKILL, Question } from '@/types/Question';
 import QuestionLayout from '@/components/Questions/QuestionLayout';
 import QuestionContainer from './QuestionContainer';
 import CodeEditor from './CodeEditor';
@@ -21,9 +21,11 @@ type ClientContainerProps = {
   updatedFiles: SandpackFiles;
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
+  questionsListButtonWithSheet: React.ReactNode;
 };
 
 export default function ClientContainer({
+  questionsListButtonWithSheet,
   questionMeta,
   originalFiles,
   updatedFiles,
@@ -65,7 +67,13 @@ export default function ClientContainer({
         }}
       >
         <QuestionLayoutProvider questionLayout={questionMeta.recommendedLayout}>
-          <PrimaryLayout header={<Header />}>
+          <PrimaryLayout
+            header={
+              <Header
+                questionsListButtonWithSheet={questionsListButtonWithSheet}
+              />
+            }
+          >
             <QuestionLayout
               topLeft={{
                 label: 'Question Prompt',

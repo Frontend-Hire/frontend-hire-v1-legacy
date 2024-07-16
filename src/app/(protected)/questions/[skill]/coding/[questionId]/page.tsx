@@ -12,6 +12,9 @@ import { QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
 import { Params } from './_types';
 import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import { getCompletedQuestions } from '@/lib/questionStats';
+import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButtonWithSheet';
 
 export async function generateMetadata({ params }: Params) {
   const { meta } = await getCodingQuestionMetadata(
@@ -37,10 +40,14 @@ export default async function CodingQuestion({ params }: Params) {
   }
 
   const [
+    questions,
+    completedQuestions,
     { getContent: questionContent },
     { getContent: solutionContent },
     { data: codeHistory },
   ] = await Promise.all([
+    getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
+    getCompletedQuestions(),
     getCodingQuestion(params.questionId, params.skill),
     getCodingQuestionSolution(params.questionId, params.skill),
     getCodeHistoryQuery(
@@ -62,6 +69,14 @@ export default async function CodingQuestion({ params }: Params) {
     <ProtectedLayout>
       {meta.isFree ? (
         <ClientContainer
+          questionsListButtonWithSheet={
+            <QuestionListButtonWithSheet
+              questions={questions}
+              serverCompletedQuestions={completedQuestions}
+              skill={params.skill}
+              type={QUESTION_TYPE.CODING}
+            />
+          }
           questionMeta={meta}
           originalFiles={originalFiles}
           updatedFiles={updatedFiles}
@@ -71,6 +86,14 @@ export default async function CodingQuestion({ params }: Params) {
       ) : (
         <PremiumProtectedContentLayout>
           <ClientContainer
+            questionsListButtonWithSheet={
+              <QuestionListButtonWithSheet
+                questions={questions}
+                serverCompletedQuestions={completedQuestions}
+                skill={params.skill}
+                type={QUESTION_TYPE.CODING}
+              />
+            }
             questionMeta={meta}
             originalFiles={originalFiles}
             updatedFiles={updatedFiles}

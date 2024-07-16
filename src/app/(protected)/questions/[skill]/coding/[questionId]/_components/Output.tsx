@@ -1,4 +1,4 @@
-import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import { QuestionTab } from '@/types/Question';
 import { SandpackConsole, SandpackPreview } from '@codesandbox/sandpack-react';
 

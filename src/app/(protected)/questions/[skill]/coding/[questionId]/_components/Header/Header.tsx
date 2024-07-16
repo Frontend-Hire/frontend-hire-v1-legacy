@@ -5,9 +5,12 @@ import { HomeIcon } from 'lucide-react';
 import Link from 'next/link';
 import SubmitSolutionButton from './SubmitSolutionButton';
 import ToggleLayoutButton from './ToggleLayoutButton';
-import QuestionsListButtonWithSheet from './QuestionsListButtonWithSheet';
 
-export default function Header() {
+type HeaderProps = {
+  questionsListButtonWithSheet: React.ReactNode;
+};
+
+export default function Header({ questionsListButtonWithSheet }: HeaderProps) {
   return (
     <header className="flex h-10 items-center justify-between gap-2">
       <div className="flex items-center gap-4">
@@ -22,7 +25,7 @@ export default function Header() {
             </Link>
           </Button>
         </Tooltip>
-        <QuestionsListButtonWithSheet />
+        {questionsListButtonWithSheet}
       </div>
 
       <Link href="/questions" className="max-xs:hidden" prefetch={false}>

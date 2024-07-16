@@ -86,7 +86,7 @@ export default function QuestionList({
   }, [trimmedSearch, questions, sort]);
 
   return (
-    <>
+    <div className="space-y-2">
       <VisuallyHidden>Questions List</VisuallyHidden>
       <span>
         {trimmedSearch ? 'Filtered' : 'Total'} questions count:{' '}
@@ -115,6 +115,6 @@ export default function QuestionList({
           </div>
         )}
       </ul>
-    </>
+    </div>
   );
 }

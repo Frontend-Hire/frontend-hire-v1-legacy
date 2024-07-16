@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionLayoutItem from '@/components/QuestionLayoutItem';
+import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import { keymap } from '@codemirror/view';
 import { CodeEditorRef, SandpackCodeEditor } from '@codesandbox/sandpack-react';
 import RunCodeButton from './RunCodeButton';
