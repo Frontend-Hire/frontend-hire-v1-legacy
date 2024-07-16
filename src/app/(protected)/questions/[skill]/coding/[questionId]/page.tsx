@@ -16,6 +16,8 @@ import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { getCompletedQuestions } from '@/lib/questionStats';
 import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButtonWithSheet';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: Params) {
   const { meta } = await getCodingQuestionMetadata(
     params.questionId,
