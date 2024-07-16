@@ -108,18 +108,21 @@ export type Database = {
         Row: {
           created_at: string;
           id: number;
+          is_solved: boolean | null;
           question_id: string;
           user_id: string;
         };
         Insert: {
           created_at?: string;
           id?: number;
+          is_solved?: boolean | null;
           question_id: string;
           user_id?: string;
         };
         Update: {
           created_at?: string;
           id?: number;
+          is_solved?: boolean | null;
           question_id?: string;
           user_id?: string;
         };
@@ -287,79 +290,6 @@ export type Database = {
           },
         ];
       };
-      project_bug_submissions: {
-        Row: {
-          created_at: string;
-          description: string;
-          id: number;
-          is_fixed: boolean;
-          project_id: string;
-          user_id: string | null;
-        };
-        Insert: {
-          created_at?: string;
-          description: string;
-          id?: number;
-          is_fixed?: boolean;
-          project_id: string;
-          user_id?: string | null;
-        };
-        Update: {
-          created_at?: string;
-          description?: string;
-          id?: number;
-          is_fixed?: boolean;
-          project_id?: string;
-          user_id?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'project_bug_submissions_user_id_fkey1';
-            columns: ['user_id'];
-            isOneToOne: false;
-            referencedRelation: 'users';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      project_submissions: {
-        Row: {
-          completed_tasks: number[] | null;
-          created_at: string;
-          github_link: string;
-          id: number;
-          live_link: string;
-          project_id: string;
-          user_id: string;
-        };
-        Insert: {
-          completed_tasks?: number[] | null;
-          created_at?: string;
-          github_link?: string;
-          id?: number;
-          live_link?: string;
-          project_id: string;
-          user_id?: string;
-        };
-        Update: {
-          completed_tasks?: number[] | null;
-          created_at?: string;
-          github_link?: string;
-          id?: number;
-          live_link?: string;
-          project_id?: string;
-          user_id?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'project_submissions_user_id_fkey1';
-            columns: ['user_id'];
-            isOneToOne: false;
-            referencedRelation: 'users';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
       razorpay_orders: {
         Row: {
           amount: number;
@@ -427,7 +357,14 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      save_code_history: {
+        Args: {
+          p_question_id: string;
+          p_code_history: Json;
+          p_is_solved: boolean;
+        };
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;

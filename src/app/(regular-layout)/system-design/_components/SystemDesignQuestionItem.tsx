@@ -1,19 +1,15 @@
-import { QuestionDifficulty } from '@/types/Question';
+import { DIFFICULTY } from '@/types/Question';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { Badge } from '@/components/ui/badge';
 
 type SystemDesignQuestionItemProps = {
-  difficulty: QuestionDifficulty;
+  difficulty: DIFFICULTY;
   title: string;
   description: string;
   isNew?: boolean;
 };
 
-const DifficultyLabel = ({
-  difficulty,
-}: {
-  difficulty: QuestionDifficulty;
-}) => {
+const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {

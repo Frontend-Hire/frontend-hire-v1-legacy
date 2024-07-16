@@ -20,12 +20,13 @@ export const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
   },
   {
     question:
-      'I am an Indian student studying in the US. Do I still have to pay in USD?',
+      'I am an Indian student studying abroad. Do I still have to pay in USD?',
     answer: (
       <>
         <p>
-          No, you can pay in INR or USD. Since, you are a student, you will also
-          get a discounted price along with the regional Indian price.
+          No, you can pay in INR or USD or local currency. Since, you are a
+          student, you will also get a discounted price along with the regional
+          Indian price.
         </p>
         <p>
           Please email us at <CopyEmailOnClick email="info@frontendhire.com" />
@@ -38,10 +39,7 @@ export const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     question: 'Do you offer student discounts?',
     answer: (
       <>
-        <p>
-          Yes, we do offer student discounts and discounts for individuals
-          impacted by layoffs.
-        </p>
+        <p>Yes, we do offer student discounts.</p>
         <p>
           Please email us at <CopyEmailOnClick email="info@frontendhire.com" />{' '}
           to obtain discount codes.

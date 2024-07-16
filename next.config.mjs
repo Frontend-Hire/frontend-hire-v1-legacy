@@ -4,12 +4,14 @@ import { withSentryConfig } from '@sentry/nextjs';
 import rehypeSlug from 'rehype-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
+import { transformerNotationDiff } from '@shikijs/transformers';
 
 const CODE_BLOCK_FILENAME_REGEX = /filename="([^"]+)"/;
 
 /** @type {import('rehype-pretty-code').Options} */
 const prettyCodeOptions = {
   filterMetaString: (string) => string.replace(CODE_BLOCK_FILENAME_REGEX, ''),
+  transformers: [transformerNotationDiff()],
 };
 
 const withMDX = createMDX({
