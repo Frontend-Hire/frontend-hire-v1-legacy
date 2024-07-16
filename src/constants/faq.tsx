@@ -39,10 +39,7 @@ export const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     question: 'Do you offer student discounts?',
     answer: (
       <>
-        <p>
-          Yes, we do offer student discounts and discounts for individuals
-          impacted by layoffs.
-        </p>
+        <p>Yes, we do offer student discounts.</p>
         <p>
           Please email us at <CopyEmailOnClick email="info@frontendhire.com" />{' '}
           to obtain discount codes.
