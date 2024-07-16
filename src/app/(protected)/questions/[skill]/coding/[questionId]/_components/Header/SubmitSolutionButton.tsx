@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import SubmissionConfetti from './SubmissionConfetti';
 import { useParams } from 'next/navigation';
-import { Params } from '../_types';
+import { Params } from '../../_types';
 import Link from 'next/link';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useSandpack } from '@codesandbox/sandpack-react';

@@ -2,7 +2,7 @@
 
 import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
 import QuestionHotkeysProvider from './QuestionHotkeysProvider';
-import Header from './Header';
+import Header from './Header/Header';
 import PrimaryLayout from '../_layout/PrimaryLayout';
 import { CodingQuestion } from '@/types/Question';
 import QuestionLayout from '@/components/QuestionLayout';
