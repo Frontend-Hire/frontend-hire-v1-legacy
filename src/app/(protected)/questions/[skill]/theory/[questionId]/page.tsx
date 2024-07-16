@@ -4,6 +4,7 @@ import { getMetadata } from '@/lib/getMetadata';
 import { getTheoryQuestionMetadata } from './_utils';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
+import Container from './_components/Container';
 
 type Params = {
   params: { questionId: string; skill: QUESTION_SKILL };
@@ -34,10 +35,10 @@ export default async function CodingQuestion({ params }: Params) {
   return (
     <ProtectedLayout>
       {meta.isFree ? (
-        <div></div>
+        <Container />
       ) : (
         <PremiumProtectedContentLayout>
-          <div></div>
+          <Container />
         </PremiumProtectedContentLayout>
       )}
     </ProtectedLayout>
