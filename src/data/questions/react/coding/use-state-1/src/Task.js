@@ -1,4 +1,5 @@
-export const code = `export default function Task({ task, idx, onDelete }) {
+export const code = `// READ-ONLY FILE
+export default function Task({ task, idx, onDelete }) {
   return (
     <div className="my-2 flex items-center">
       <p className="border border-blue-500 p-2">

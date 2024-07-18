@@ -1,0 +1,254 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+## Files Given
+
+Let us first understand the given files.
+
+- App.js: This is nothing special. It just renders multiple `Button` components that we need to style.
+
+- Button.js: This is the main component that will handle the different variants of the buttons and also export the Button component.
+
+- Button.module.css: This is the CSS module that will be used to style the components. If you plan on solving this question using Tailwind CSS, you can ignore this file.
+
+- utils.js: This file contains a small utility function that will be used to handle the merging of classes without style conflicts.
+
+## Creating Variants
+
+From the design reference, it is clear that we need to create the following variants for the buttons.
+
+Intents:
+- Primary (default)
+- Outline
+- Destructive
+
+Sizes:
+- Small
+- Medium (default)
+
+So, let us set up these variants in the Button.js file.
+
+```js title="Button.js"
+const button = cva(styles.base, {
+  variants: {
+    intent: {
+      // Add intents like primary, secondary, ghost // [!code --]
+      // [!code ++:4]
+      primary: '',
+      outline: '',
+      destructive: '',
+    },
+    size: {
+      // Add sizes like small, medium, large // [!code --]
+      // [!code ++:3]
+      small: '',
+      medium: ''
+    },
+  },
+  defaultVariants: {
+    // What are the default variants? // [!code --]
+    // [!code ++:3]
+    intent: 'primary',
+    size: 'medium',
+  },
+});
+```
+
+## Connecting the Variants API
+
+Let us also connect the variants API to the Button component in our App component, so that when we style the actual variants, we can see the changes.
+
+Also, feel free to copy-paste the entire code below.
+
+```js title="App.js" showLineNumbers {11,15,21-23,27,33-35,39}
+import * as React from 'react';
+
+import Button from './Button';
+
+export default function App() {
+  return (
+    <div className="flex flex-col gap-4 p-2">
+      <div className="flex gap-4">
+        <div>
+          <p>Primary Small</p>
+          <Button size="small">Button</Button> 
+        </div>
+        <div>
+          <p>Primary Medium</p>
+          <Button>Button</Button>
+        </div>
+      </div>
+      <div className="flex gap-4">
+        <div>
+          <p>Outline Small</p>
+          <Button intent="outline" size="small">
+            Button
+          </Button>
+        </div>
+        <div>
+          <p>Outline Medium</p>
+          <Button intent="outline">Button</Button>
+        </div>
+      </div>
+      <div className="flex gap-4">
+        <div>
+          <p>Destructive Small</p>
+          <Button intent="destructive" size="small">
+            Button
+          </Button>
+        </div>
+        <div>
+          <p>Destructive Medium</p>
+          <Button intent="destructive">Button</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+```
+
+Do note that we do not specify the default variants in the App component. This is more of a personal choice. Feel free to add them explicitly if you want.
+
+## Styling the Variants (CSS Modules)
+
+Now, that the variants are connected, let us style them. We will not go over the CSS stuff here.
+
+Let us reference the styles from the Button.module.css file. We already have a base class, let us add the rest. Do not worry if a class does not exist yet. We will get there soon.
+
+```js title="Button.js" {1,4,5,6,9,10}
+const button = cva(styles.base, {
+  variants: {
+    intent: {
+      primary: styles.primary,
+      outline: styles.outline,
+      destructive: styles.destructive,
+    },
+    size: {
+      small: styles.small,
+      medium: styles.medium,
+    },
+  },
+  defaultVariants: {
+    intent: 'primary',
+    size: 'medium',
+  },
+});
+```
+
+Now that we have referenced the styles, let us add the actual classes in the `Button.module.css` file.
+
+```css title="Button.module.css" {1-30}
+.base {
+  border-radius: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.primary {
+  background-color: #0066ff;
+  color: #ffffff;
+}
+
+.outline {
+  border: 1px solid #0066ff;
+  color: #0066ff;
+}
+
+.destructive {
+  background-color: #a3000a;
+  color: #ffffff;
+}
+
+.small {
+  padding: 0.25rem 0.75rem;
+}
+
+.medium {
+  padding: 0.5rem 1rem;
+}
+
+```
+
+## Styling the Variants (Tailwind CSS)
+
+CSS Modules are great but we prefer Tailwind CSS. We will not go over the Tailwind CSS stuff here.
+
+```js title="Button.js" {1,4,5,6,9,10}
+const button = cva('inline-flex items-center justify-center rounded text-sm', {
+  variants: {
+    intent: {
+      primary: 'bg-[#0066ff] text-white',
+      outline: 'border border-[#0066ff] text-[#0066ff]',
+      destructive: 'bg-[#a3000a] text-white',
+    },
+    size: {
+      small: 'py-1 px-3 ',
+      medium: 'py-2 px-4',
+    },
+  },
+  defaultVariants: {
+    intent: 'primary',
+    size: 'medium',
+  },
+});
+```
+
+One of the advantages of Tailwind CSS is that your styles are located in the same file. This greatly improves developer productivity.
+
+## Understanding the utility function `cn`
+
+Hmm, we still have not used our utility function `cn`. But do we need to use it? In fact, what does it do?
+
+Well, though we have quite a few button variants, we would sometimes want a bit more flexibility. Imagine, if you could also pass a class to the `Button` component and it overrides the styles.
+
+The utility function `cn` does just that. It does use two libraries: `clsx` and `twMerge`.
+
+- `clsx` helps us with the conditional stuff.
+- `twMerge` helps merge the Tailwind classes and handle the style conflicts.
+
+<Callout type='error'>
+This utility function really shines when passing a lot of conditional styles where the order of the styles matters. It is tough to demonstrate in this question. We will cover it later in a dedicated course for Tailwind CSS.
+
+In this particular question, it pretty much does not do anything.
+</Callout>
+
+```js title="Button.js"
+import * as React from 'react';
+import { cva } from 'class-variance-authority';
+import { cn } from './utils'; // [!code ++]
+
+import styles from './Button.module.css';
+
+// If using TailwindCSS, replace styles.base with tailwindCSS classes example, "border bg-red-500".
+const button = cva('inline-flex items-center justify-center rounded text-sm', {
+  variants: {
+    intent: {
+      primary: 'bg-[#0066ff] text-white',
+      outline: 'border border-[#0066ff] text-[#0066ff]',
+      destructive: 'bg-[#a3000a] text-white',
+    },
+    size: {
+      small: 'px-3 py-1',
+      medium: 'px-4 py-2',
+    },
+  },
+  defaultVariants: {
+    intent: 'primary',
+    size: 'medium',
+  },
+});
+
+const Button = ({ className, intent, size, ...props }) => (
+  <button className={button({ intent, size, className })} {...props} /> // [!code --]
+  <button className={cn(button({ intent, size, className }))} {...props} /> // [!code ++]
+);
+
+export default Button;
+
+```
+
+Now, go back to the `App` component and experiment with the `Button` component by passing a class to it.
