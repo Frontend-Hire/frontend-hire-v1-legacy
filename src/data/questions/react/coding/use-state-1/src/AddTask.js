@@ -1,4 +1,5 @@
-export const code = `import React from 'react';
+export const code = `// READ-ONLY FILE
+import React from 'react';
 
 export default function AddTask({ onAdd }) {
   const [task, setTask] = React.useState('');
