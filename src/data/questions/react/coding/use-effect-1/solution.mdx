@@ -23,6 +23,10 @@ React.useEffect(() => {
 }, [seconds]);
 ```
 
+<Callout>
+Did you know that instead of clearInterval you can also use clearTimeout? Both of them share [the same pool of IDs](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval). But for readability, we should use the respective clear functions.
+</Callout>
+
 Though the bug is fixed, we prefer a different way to set the state which allows us to not pass the `seconds` value to the `useEffect` dependency array. `setSeconds` can take [an updater function](https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state)
 
 ```js title="App.js"
