@@ -1,14 +1,13 @@
-import { QUESTION_TYPE } from '@/types/Question';
 import FakeTabHeader from './FakeTabHeader';
 
 type QuestionLayoutSkeletonProps = {
-  questionType?: QUESTION_TYPE;
+  cols?: number;
 };
 
 export default function QuestionLayoutSkeleton({
-  questionType = QUESTION_TYPE.CODING,
+  cols,
 }: QuestionLayoutSkeletonProps) {
-  if (questionType === QUESTION_TYPE.CODING) {
+  if (cols === 4) {
     return (
       <div className="grid h-full grid-cols-2 grid-rows-2 gap-2">
         <div className="animate-fh-pulse bg-[#151515]">

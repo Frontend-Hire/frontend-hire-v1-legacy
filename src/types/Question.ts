@@ -5,11 +5,17 @@ import {
 
 export enum QUESTION_SKILL {
   REACT = 'react',
+  JAVASCRIPT = 'javascript',
 }
 
 export enum QUESTION_TYPE {
   CODING = 'coding',
   THEORY = 'theory',
+}
+
+export enum CODING_ENVIRONMENT_TYPE {
+  BROWSER = 'browser',
+  LOCAL = 'local',
 }
 
 export type BaseQuestion = {
@@ -22,8 +28,9 @@ export type BaseQuestion = {
   isFree?: boolean;
 };
 
-export type CodingQuestion = BaseQuestion & {
+export type BrowserCodingQuestion = BaseQuestion & {
   type: QUESTION_TYPE.CODING;
+  environment: CODING_ENVIRONMENT_TYPE.BROWSER;
   recommendedLayout: QuestionLayout;
   template: SandpackPredefinedTemplate;
   externalCDNs?: string[];
@@ -32,6 +39,14 @@ export type CodingQuestion = BaseQuestion & {
   files: SandpackFiles;
   dependencies?: { [key: string]: string };
 };
+
+export type LocalCodingQuestion = BaseQuestion & {
+  type: QUESTION_TYPE.CODING;
+  environment: CODING_ENVIRONMENT_TYPE.LOCAL;
+  repository: string;
+};
+
+export type CodingQuestion = BrowserCodingQuestion | LocalCodingQuestion;
 
 export type TheoryQuestion = BaseQuestion & {
   type: QUESTION_TYPE.THEORY;

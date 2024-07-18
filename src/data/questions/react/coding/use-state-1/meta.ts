@@ -1,4 +1,9 @@
-import { DIFFICULTY, Question, QUESTION_TYPE } from '@/types/Question';
+import {
+  CODING_ENVIRONMENT_TYPE,
+  DIFFICULTY,
+  Question,
+  QUESTION_TYPE,
+} from '@/types/Question';
 
 export const meta: Question = {
   id: 'use-state-1',
@@ -6,6 +11,7 @@ export const meta: Question = {
   description:
     'This question revolves around the most frequently used hook in React development. Your task is to implement the logic for managing tasks - including storing, adding, and deleting them within a local state variable.',
   type: QUESTION_TYPE.CODING,
+  environment: CODING_ENVIRONMENT_TYPE.BROWSER,
   template: 'react',
   externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',

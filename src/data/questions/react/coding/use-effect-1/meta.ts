@@ -1,4 +1,9 @@
-import { DIFFICULTY, Question, QUESTION_TYPE } from '@/types/Question';
+import {
+  CODING_ENVIRONMENT_TYPE,
+  DIFFICULTY,
+  Question,
+  QUESTION_TYPE,
+} from '@/types/Question';
 
 export const meta: Question = {
   id: 'use-effect-1',
@@ -6,6 +11,7 @@ export const meta: Question = {
   description:
     'The useEffect hook is notorious to cause majority of bugs in most React projects. Can you solve a similar bug?',
   type: QUESTION_TYPE.CODING,
+  environment: CODING_ENVIRONMENT_TYPE.BROWSER,
   template: 'react',
   externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',

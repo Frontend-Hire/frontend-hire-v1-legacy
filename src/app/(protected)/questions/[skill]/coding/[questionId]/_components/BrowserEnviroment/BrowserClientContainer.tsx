@@ -1,22 +1,22 @@
 'use client';
 
-import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
-import QuestionHotkeysProvider from './QuestionHotkeysProvider';
-import Header from './Header/Header';
-import PrimaryLayout from '../_layout/PrimaryLayout';
-import { CodingQuestion, QUESTION_SKILL, Question } from '@/types/Question';
-import QuestionLayout from '@/components/Questions/QuestionLayout';
-import QuestionContainer from './QuestionContainer';
-import CodeEditor from './CodeEditor';
-import Output from './Output';
-import { QuestionLayoutProvider } from '@/components/Questions/QuestionLayout/QuestionLayoutProvider';
-import React from 'react';
 import HeaderSkeleton from '@/components/HeaderSkeleton';
+import QuestionLayout from '@/components/Questions/QuestionLayout';
+import { QuestionLayoutProvider } from '@/components/Questions/QuestionLayout/QuestionLayoutProvider';
 import QuestionLayoutSkeleton from '@/components/Questions/QuestionLayoutSkeleton';
+import { BrowserCodingQuestion } from '@/types/Question';
+import { SandpackFiles, SandpackProvider } from '@codesandbox/sandpack-react';
+import React from 'react';
+import PrimaryLayout from '../../_layout/PrimaryLayout';
+import CodeEditor from './CodeEditor';
+import Header from './Header';
+import Output from './Output';
+import QuestionContainer from './QuestionContainer';
+import QuestionHotkeysProvider from './QuestionHotkeysProvider';
 import ResetButtonWithAlert from './ResetButtonWithAlert';
 
-type ClientContainerProps = {
-  questionMeta: CodingQuestion;
+type BrowserClientContainerProps = {
+  questionMeta: BrowserCodingQuestion;
   originalFiles: SandpackFiles;
   updatedFiles: SandpackFiles;
   questionContent: React.ReactNode;
@@ -24,14 +24,14 @@ type ClientContainerProps = {
   questionsListButtonWithSheet: React.ReactNode;
 };
 
-export default function ClientContainer({
+export default function BrowserClientContainer({
   questionsListButtonWithSheet,
   questionMeta,
   originalFiles,
   updatedFiles,
   questionContent,
   solutionContent,
-}: ClientContainerProps) {
+}: BrowserClientContainerProps) {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -43,7 +43,7 @@ export default function ClientContainer({
   if (loading) {
     return (
       <PrimaryLayout header={<HeaderSkeleton />}>
-        <QuestionLayoutSkeleton />
+        <QuestionLayoutSkeleton cols={4} />
       </PrimaryLayout>
     );
   }
