@@ -8,6 +8,7 @@ import { LocalCodingQuestion } from '@/types/Question';
 import React from 'react';
 import PrimaryLayout from '../../_layout/PrimaryLayout';
 import Header from './Header';
+import LocalInstructions from './LocalInstructions';
 
 type LocalClientContainerProps = {
   questionMeta: LocalCodingQuestion;
@@ -45,35 +46,38 @@ export default function LocalClientContainer({
         <Header questionsListButtonWithSheet={questionsListButtonWithSheet} />
       }
     >
-      <QuestionLayoutItem
-        rightButtons={
-          <>
-            {questionMeta.difficulty && (
-              <DifficultyBadge difficulty={questionMeta.difficulty} />
-            )}
-          </>
-        }
-        tabs={[
-          {
-            label: 'Question',
-            value: 'Question',
-            content: (
-              <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
-                {questionContent}
-              </div>
-            ),
-          },
-          {
-            label: 'Solution',
-            value: 'Solution',
-            content: (
-              <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
-                {solutionContent}
-              </div>
-            ),
-          },
-        ]}
-      />
+      <div className="h-full space-y-2">
+        <LocalInstructions link={questionMeta.repository} />
+        <QuestionLayoutItem
+          rightButtons={
+            <>
+              {questionMeta.difficulty && (
+                <DifficultyBadge difficulty={questionMeta.difficulty} />
+              )}
+            </>
+          }
+          tabs={[
+            {
+              label: 'Question',
+              value: 'Question',
+              content: (
+                <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
+                  {questionContent}
+                </div>
+              ),
+            },
+            {
+              label: 'Solution',
+              value: 'Solution',
+              content: (
+                <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
+                  {solutionContent}
+                </div>
+              ),
+            },
+          ]}
+        />
+      </div>
     </PrimaryLayout>
   );
 }
