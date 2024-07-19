@@ -19,8 +19,7 @@ export default function LocalInstructions({ link }: LocalInstructionsProps) {
       <p>
         This question can only be solved in your local environment. We want to
         give you the best learning experience possible which unfortunately is
-        not possible in the browser. If you are in a hurry, just read the
-        solution.
+        not possible in the browser.
       </p>
       <div className="flex items-center justify-between">
         <Link
