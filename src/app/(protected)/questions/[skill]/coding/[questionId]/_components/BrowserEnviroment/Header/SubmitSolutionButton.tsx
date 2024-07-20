@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useParams } from 'next/navigation';
-import { Params } from '../../_types';
 import Link from 'next/link';
 import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import QuestionSubmissionConfetti from '@/components/Questions/QuestionSubmissionConfetti';
+import { Params } from '../../../_types';
 
 export default function SubmitSolutionButton() {
   const supabaseClient = createSupabaseBrowserClient();
@@ -32,7 +32,11 @@ export default function SubmitSolutionButton() {
         p_code_history: codeHistory,
       });
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 

@@ -1,20 +1,12 @@
-import ClientContainer from './_components/ClientContainer';
-import ProtectedLayout from '@/components/ProtectedLayout';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
+import ProtectedLayout from '@/components/ProtectedLayout';
 import { getMetadata } from '@/lib/getMetadata';
-import {
-  getCodingQuestion,
-  getCodingQuestionSolution,
-  getCodingQuestionMetadata,
-  getCodeHistoryQuery,
-} from './_utils';
-import { QUESTION_TYPE } from '@/types/Question';
+import { CODING_ENVIRONMENT_TYPE, QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
+import BrowserContainer from './_components/BrowserEnviroment/BrowserContainer';
+import LocalContainer from './_components/LocalEnvironment/LocalContainer';
 import { Params } from './_types';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
-import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import { getCompletedQuestions } from '@/lib/questionStats';
-import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButtonWithSheet';
+import { getCodingQuestionMetadata } from './_utils';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,7 +23,6 @@ export async function generateMetadata({ params }: Params) {
 }
 
 export default async function CodingQuestion({ params }: Params) {
-  const supabaseClient = createSupabaseServerClient();
   const { meta } = await getCodingQuestionMetadata(
     params.questionId,
     params.skill,
@@ -41,67 +32,20 @@ export default async function CodingQuestion({ params }: Params) {
     notFound();
   }
 
-  const [
-    questions,
-    completedQuestions,
-    { getContent: questionContent },
-    { getContent: solutionContent },
-    { data: codeHistory },
-  ] = await Promise.all([
-    getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
-    getCompletedQuestions(),
-    getCodingQuestion(params.questionId, params.skill),
-    getCodingQuestionSolution(params.questionId, params.skill),
-    getCodeHistoryQuery(
-      supabaseClient,
-      `${params.skill.toLowerCase()}-${params.questionId.toLowerCase()}`,
-    ),
-  ]);
-
-  const originalFiles = structuredClone(meta.files);
-  const updatedFiles = structuredClone(meta.files);
-
-  if (codeHistory) {
-    codeHistory.code_history_files.forEach((file) => {
-      updatedFiles[file.file_name] = file.code;
-    });
-  }
+  const container =
+    meta.environment === CODING_ENVIRONMENT_TYPE.BROWSER ? (
+      <BrowserContainer params={params} />
+    ) : (
+      <LocalContainer params={params} />
+    );
 
   return (
     <ProtectedLayout>
       {meta.isFree ? (
-        <ClientContainer
-          questionsListButtonWithSheet={
-            <QuestionListButtonWithSheet
-              questions={questions}
-              serverCompletedQuestions={completedQuestions}
-              skill={params.skill}
-              type={QUESTION_TYPE.CODING}
-            />
-          }
-          questionMeta={meta}
-          originalFiles={originalFiles}
-          updatedFiles={updatedFiles}
-          questionContent={questionContent()}
-          solutionContent={solutionContent()}
-        />
+        <>{container}</>
       ) : (
         <PremiumProtectedContentLayout>
-          <ClientContainer
-            questionsListButtonWithSheet={
-              <QuestionListButtonWithSheet
-                questions={questions}
-                serverCompletedQuestions={completedQuestions}
-                skill={params.skill}
-                type={QUESTION_TYPE.CODING}
-              />
-            }
-            questionMeta={meta}
-            originalFiles={originalFiles}
-            updatedFiles={updatedFiles}
-            questionContent={questionContent()}
-            solutionContent={solutionContent()}
-          />
+          {container}
         </PremiumProtectedContentLayout>
       )}
     </ProtectedLayout>

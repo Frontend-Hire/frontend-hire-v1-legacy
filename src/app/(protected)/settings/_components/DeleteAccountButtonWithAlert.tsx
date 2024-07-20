@@ -33,8 +33,12 @@ export default function DeleteAccountButtonWithAlert() {
         await supabaseBrowserClient.auth.signOut();
         router.replace('/');
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 

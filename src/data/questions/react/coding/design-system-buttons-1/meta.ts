@@ -1,4 +1,9 @@
-import { DIFFICULTY, Question, QUESTION_TYPE } from '@/types/Question';
+import {
+  CODING_ENVIRONMENT_TYPE,
+  DIFFICULTY,
+  Question,
+  QUESTION_TYPE,
+} from '@/types/Question';
 
 export const meta: Question = {
   id: 'design-system-buttons-1',
@@ -6,6 +11,7 @@ export const meta: Question = {
   description:
     'You would learn to build a modern reusable button component in React. We cover the same libraries used to also power ShadCN and other design systems.',
   type: QUESTION_TYPE.CODING,
+  environment: CODING_ENVIRONMENT_TYPE.BROWSER,
   template: 'react',
   dependencies: {
     'class-variance-authority': '0.7.0',
@@ -14,7 +20,7 @@ export const meta: Question = {
   },
   externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',
-  publishedOn: new Date('2024-07-28'),
+  publishedOn: new Date('2024-07-18'),
   difficulty: DIFFICULTY.MEDIUM,
   showPreview: true,
   showConsole: true,

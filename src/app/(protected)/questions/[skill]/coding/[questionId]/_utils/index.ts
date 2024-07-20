@@ -37,6 +37,16 @@ export const getCodingQuestionSolution = cache(
   },
 );
 
+export const getCodingQuestionInstructions = cache(
+  async (questionId: string, skill: QUESTION_SKILL) => {
+    const { default: getContent } = require(
+      `@/data/questions/${skill}/coding/${questionId}/instructions.mdx`,
+    );
+
+    return { getContent } as { getContent: () => React.ReactNode };
+  },
+);
+
 export const getCodeHistoryQuery = async (
   client: TypedSupabaseClient,
   questionId: string,

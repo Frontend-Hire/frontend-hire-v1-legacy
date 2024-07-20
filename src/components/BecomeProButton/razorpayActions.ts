@@ -38,7 +38,11 @@ export const createOrder = async () => {
     });
 
     if (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   }
 

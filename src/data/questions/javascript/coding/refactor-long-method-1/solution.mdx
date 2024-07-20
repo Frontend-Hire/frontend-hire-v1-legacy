@@ -1,0 +1,138 @@
+import { Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
+
+# Solution
+
+It is always a good idea to write the tests first to lock the current behavior before refactoring.
+
+## Tests
+
+Based on the question, let us write the test cases for the following scenarios:
+
+### The function correctly calculates the total sales for valid sales records.
+
+<CustomCodeViewer filename="index.test.js">
+```js
+// [!code ++:6]
+test('it correctly calculates the total sales for valid sales records', () => {
+  const salesData = [{ amount: 20 }, { amount: 10 }, { amount: 5 }];
+
+  expect(processSalesData(salesData)).toEqual(35);
+});
+```
+</CustomCodeViewer>
+
+### The function ignores sales records with negative amounts.
+
+<CustomCodeViewer filename="index.test.js">
+```js
+// [!code ++:6]
+test('it ignores sales records with negative amounts', () => {
+  const salesData = [{ amount: 20 }, { amount: 10 }, { amount: -5 }];
+
+  expect(processSalesData(salesData)).toEqual(30);
+});
+```
+</CustomCodeViewer>
+
+### The function handles an empty array without errors.
+
+<CustomCodeViewer filename="index.test.js">
+```js
+// [!code ++:4]
+test('it handles an empty array without errors', () => {
+  expect(processSalesData([])).toEqual(0);
+});
+```
+</CustomCodeViewer>
+
+Putting all these tests together we end up with the following code:
+
+<CustomCodeViewer filename="index.test.js">
+```js showLineNumbers {1-20}
+import { expect, test, describe } from 'vitest';
+import { processSalesData } from '.';
+
+describe('refactor-long-method-1', () => {
+  test('it correctly calculates the total sales for valid sales records', () => {
+    const salesData = [{ amount: 20 }, { amount: 10 }, { amount: 5 }];
+
+    expect(processSalesData(salesData)).toEqual(35);
+  });
+
+  test('it ignores sales records with negative amounts', () => {
+    const salesData = [{ amount: 20 }, { amount: 10 }, { amount: -5 }];
+
+    expect(processSalesData(salesData)).toEqual(30);
+  });
+
+  test('it handles an empty array without errors', () => {
+    expect(processSalesData([])).toEqual(0);
+  });
+});
+```
+</CustomCodeViewer>
+
+## Refactoring
+
+Now that our test cases lock the current behavior, we can refactor the code safely.
+
+Looking at the `processSalesData` function we can immediately see that it does two things:
+
+1. It gets valid sales records.
+2. Using the valid sales records it calculates the total sales.
+
+So, we can extract the respective blocks into separate functions and then call them in the `processSalesData` function.
+
+<CustomCodeViewer filename="index.js">
+```js showLineNumbers {8,10,15-21,23-32}
+/**
+ * Calculates the total sales from an array of sales data.
+ *
+ * @param {Array<{amount: number}>} salesData - An array of objects representing sales data. Each object should have an 'amount' property.
+ * @return {number} The total sales calculated from the input array.
+ */
+export const processSalesData = (salesData) => {
+  const validSales = getValidSales(salesData);
+
+  let totalSales = getTotalSaleAmount(validSales);
+
+  return totalSales;
+};
+
+function getTotalSaleAmount(validSales) {
+  let totalSales = 0;
+  for (let i = 0; i < validSales.length; i++) {
+    totalSales += validSales[i].amount;
+  }
+  return totalSales;
+}
+
+function getValidSales(salesData) {
+  const validSales = [];
+  for (let i = 0; i < salesData.length; i++) {
+    if (salesData[i].amount > 0) {
+      validSales.push(salesData[i]);
+    }
+  }
+
+  return validSales;
+}
+```
+</CustomCodeViewer>
+
+We can go one step further and directly return the total sales from the `getTotalSaleAmount` function.
+
+<CustomCodeViewer filename="index.js">
+```js
+export const processSalesData = (salesData) => {
+  const validSales = getValidSales(salesData);
+
+  let totalSales = getTotalSaleAmount(validSales); // [!code --]
+
+  return totalSales; // [!code --]
+  return getTotalSaleAmount(validSales); // [!code ++]
+};
+```
+</CustomCodeViewer>
+
+Of course, make sure your tests are running and passing after this refactoring.
