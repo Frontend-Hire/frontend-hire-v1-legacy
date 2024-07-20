@@ -1,19 +1,28 @@
-import Link from 'next/link';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+'use client';
+
 import { Button } from '@/components/ui/button';
+import React from 'react';
 
-type LocalInstructionsProps = {
-  link: string;
-};
+export default function LocalInstructions() {
+  const [showLocalInstructions, setShowLocalInstructions] =
+    React.useState<boolean>(
+      JSON.parse(localStorage.getItem('showLocalInstructions') || 'true'),
+    );
 
-export default function LocalInstructions({ link }: LocalInstructionsProps) {
+  const handleToggle = () => {
+    setShowLocalInstructions((currentValue) => {
+      localStorage.setItem(
+        'showLocalInstructions',
+        JSON.stringify(!currentValue),
+      );
+      return !currentValue;
+    });
+  };
+
+  if (!showLocalInstructions) {
+    return null;
+  }
+
   return (
     <div className="space-y-2 rounded bg-card p-4 text-card-foreground">
       <p>
@@ -21,37 +30,9 @@ export default function LocalInstructions({ link }: LocalInstructionsProps) {
         give you the best learning experience possible which unfortunately is
         not possible in the browser.
       </p>
-      <div className="flex items-center justify-between">
-        <Link
-          href={link}
-          target="_blank"
-          prefetch={false}
-          className="text-link underline underline-offset-2"
-        >
-          Repository Link
-        </Link>
-        <Dialog>
-          <DialogTrigger className="text-link underline underline-offset-2">
-            Show Instructions
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Local Instructions</DialogTitle>
-              <DialogDescription>
-                In case of any issues, contact us on{' '}
-                <Link
-                  className="text-link underline underline-offset-2"
-                  href="https://discord.gg/DWAVqksVtx"
-                  prefetch={false}
-                >
-                  Discord
-                </Link>
-                .
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
-      </div>
+      <Button size="sm" onClick={handleToggle}>
+        Hide Instructions
+      </Button>
     </div>
   );
 }

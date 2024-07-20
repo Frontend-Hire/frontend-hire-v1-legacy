@@ -7,10 +7,12 @@ import { notFound } from 'next/navigation';
 import { Params } from '../../_types';
 import {
   getCodingQuestion,
+  getCodingQuestionInstructions,
   getCodingQuestionMetadata,
   getCodingQuestionSolution,
 } from '../../_utils';
 import LocalClientContainer from './LocalClientContainer';
+import LocalInstructions from './LocalInstructions';
 
 export default async function LocalContainer({ params }: Params) {
   const { meta } = await getCodingQuestionMetadata(
@@ -31,11 +33,13 @@ export default async function LocalContainer({ params }: Params) {
     completedQuestions,
     { getContent: questionContent },
     { getContent: solutionContent },
+    { getContent: instructionsContent },
   ] = await Promise.all([
     getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
     getCompletedQuestions(),
     getCodingQuestion(params.questionId, params.skill),
     getCodingQuestionSolution(params.questionId, params.skill),
+    getCodingQuestionInstructions(params.questionId, params.skill),
   ]);
 
   return (
@@ -51,6 +55,7 @@ export default async function LocalContainer({ params }: Params) {
       questionMeta={meta}
       questionContent={questionContent()}
       solutionContent={solutionContent()}
+      instructionsContent={instructionsContent()}
     />
   );
 }

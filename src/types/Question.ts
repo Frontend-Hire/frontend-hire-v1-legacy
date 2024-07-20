@@ -43,7 +43,6 @@ export type BrowserCodingQuestion = BaseQuestion & {
 export type LocalCodingQuestion = BaseQuestion & {
   type: QUESTION_TYPE.CODING;
   environment: CODING_ENVIRONMENT_TYPE.LOCAL;
-  repository: string;
 };
 
 export type CodingQuestion = BrowserCodingQuestion | LocalCodingQuestion;

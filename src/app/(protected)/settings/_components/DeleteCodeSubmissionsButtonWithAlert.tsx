@@ -28,8 +28,12 @@ export default function DeleteCodeSubmissionsButtonWithAlert() {
           .delete()
           .eq('user_id', user.id);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 

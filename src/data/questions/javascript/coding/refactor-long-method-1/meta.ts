@@ -11,7 +11,6 @@ export const meta: Question = {
   description:
     'Most common code smells are easy to spot. Long methods are one of them. Refactor it to make it more readable and maintainable.',
   type: QUESTION_TYPE.CODING,
-  repository: '',
   environment: CODING_ENVIRONMENT_TYPE.LOCAL,
   publishedOn: new Date('2024-07-18'),
   difficulty: DIFFICULTY.EASY,

@@ -38,7 +38,11 @@ export default function MarkSolvedButton() {
         return;
       }
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 

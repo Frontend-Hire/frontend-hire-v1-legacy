@@ -32,7 +32,11 @@ export default function SubmitSolutionButton() {
         p_code_history: codeHistory,
       });
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        throw error;
+      }
     }
   };
 
