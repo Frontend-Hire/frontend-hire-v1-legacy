@@ -12,7 +12,6 @@ import {
   getCodingQuestionSolution,
 } from '../../_utils';
 import LocalClientContainer from './LocalClientContainer';
-import LocalInstructions from './LocalInstructions';
 
 export default async function LocalContainer({ params }: Params) {
   const { meta } = await getCodingQuestionMetadata(

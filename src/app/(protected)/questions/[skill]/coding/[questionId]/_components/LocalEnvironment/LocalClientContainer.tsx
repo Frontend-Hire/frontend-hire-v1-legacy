@@ -35,7 +35,7 @@ export default function LocalClientContainer({
 
   if (loading) {
     return (
-      <PrimaryLayout header={<HeaderSkeleton />}>
+      <PrimaryLayout isContainer header={<HeaderSkeleton />}>
         <QuestionLayoutSkeleton />
       </PrimaryLayout>
     );
