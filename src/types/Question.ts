@@ -6,6 +6,7 @@ import {
 export enum QUESTION_SKILL {
   REACT = 'react',
   JAVASCRIPT = 'javascript',
+  CSS = 'css',
 }
 
 export enum QUESTION_TYPE {
