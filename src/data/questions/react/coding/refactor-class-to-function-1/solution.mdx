@@ -1,0 +1,176 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+Whenever you approach refactoring in React, it is a good idea to start with child components and work your way up to the parent component.
+
+In this application, our child components are:
+
+- `TodoList`
+- `AddTodo`
+
+Let us start with the `TodoList` component.
+
+```js title="TodoList.js"
+import React from 'react';
+
+class TodoList extends React.Component { // [!code --]
+function TodoList({ todos, toggleTodoCompletion }) { // [!code ++]
+render() { // [!code --]
+  return (
+    <ul>
+    {this.props.todos.map((todo) => ( // [!code --]
+      {todos.map((todo) => ( // [!code ++]
+      // [!code --:5]
+      <li
+        key={todo.id}
+        onClick={() => this.props.toggleTodoCompletion(todo.id)}
+      > 
+        <li key={todo.id} onClick={() => toggleTodoCompletion(todo.id)}> // [!code ++]
+          {todo.title} {todo.completed ? '(completed)' : ''}
+        </li>
+      ))}
+    </ul>
+  );
+  } // [!code --]
+}
+
+export default TodoList;
+```
+
+Now, let us move on to the `AddTodo` component.
+
+```js title="AddTodo.js"
+import React from 'react';
+
+class AddTodo extends React.Component { // [!code --]
+function AddTodo({ addTodo }) { // [!code ++]
+  state = { input: '' }; // [!code --]
+  const [input, setInput] = React.useState(''); // [!code ++]
+  
+  // [!code --:4]
+  handleChange = (e) => {
+    this.setState({ input: e.target.value });
+  };
+  // [!code ++:4]
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  // [!code --:10]
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTodo({
+      id: Date.now(),
+      title: this.state.input,
+      completed: false,
+    });
+    this.setState({ input: '' });
+  };
+  // [!code ++:10]
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    addTodo({
+      id: Date.now(),
+      title: input,
+      completed: false,
+    });
+    setInput('');
+  };
+
+  render() { // [!code --]
+  return (
+    <form className="mb-4" onSubmit={this.handleSubmit}> // [!code --]
+    <form className="mb-4" onSubmit={handleSubmit}> // [!code ++]
+      <input
+        type="text"
+        className="border p-2"
+        onChange={this.handleChange} // [!code --]
+        value={this.state.input} // [!code --]
+        onChange={handleChange} // [!code ++]
+        value={input} // [!code ++]
+      />
+      <button
+        className="border border-green-500 bg-green-500 p-2 text-white"
+        type="submit"
+      >
+        Add Todo
+      </button>
+    </form>
+  );
+  } // [!code --]
+}
+
+export default AddTodo;
+```
+
+Let us move on to the final `App` component.
+
+```js title="App.js"
+import React from 'react';
+
+import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+
+class App extends React.Component { // [!code --]
+function App() { // [!code ++]
+  state = { todos: [{ id: 0, title: 'Hello World!', completed: true }] }; // [!code --]
+  // [!code ++:4]
+  const [todos, setTodos] = React.useState([
+    { id: 0, title: 'Hello World!', completed: true },
+  ]); 
+
+  // [!code --:6]
+  handleAddTodo = (todo) => {
+    this.setState({
+      todos: [...this.state.todos, todo],
+    });
+  };
+  // [!code ++:4]
+  const handleAddTodo = (todo) => {
+    setTodos([...todos, todo]);
+  };
+
+  // [!code --:10]
+  handleToggleTodoCompletion = (id) => {
+    const newTodos = [...this.state.todos];
+    const todoToUpdate = newTodos.find((todo) => todo.id === id);
+    todoToUpdate.completed = !todoToUpdate.completed;
+
+    this.setState({
+      todos: newTodos,
+    });
+  };
+  // [!code ++:8]
+  const handleToggleTodoCompletion = (id) => {
+    const newTodos = [...todos];
+    const todoToUpdate = newTodos.find((todo) => todo.id === id);
+    todoToUpdate.completed = !todoToUpdate.completed;
+
+    setTodos(newTodos);
+  };
+
+  render() { // [!code --]
+  return (
+    <div className="px-4 py-2">
+      <AddTodo addTodo={this.handleAddTodo} /> // [!code --]
+      <AddTodo addTodo={handleAddTodo} /> // [!code ++]
+      <TodoList
+        todos={this.state.todos} // [!code --]
+        toggleTodoCompletion={this.handleToggleTodoCompletion} // [!code --]
+        todos={todos} // [!code ++]
+        toggleTodoCompletion={handleToggleTodoCompletion} // [!code ++]
+      />
+    </div>
+  );
+  } // [!code --]
+}
+
+export default App;
+```
+
+## Resources to Refer
+
+- [React Docs: Migrating a simple component from a class to a function](https://react.dev/reference/react/Component#migrating-a-simple-component-from-a-class-to-a-function)
+- [React Docs: Migrating from a PureComponent class component to a function](https://react.dev/reference/react/PureComponent#migrating-from-a-purecomponent-class-component-to-a-function)
