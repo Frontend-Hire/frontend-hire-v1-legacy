@@ -8,7 +8,6 @@ export default function CourseCardItem({
   image,
   description,
   isPro,
-  isVideoAvailable,
   category,
   isNew,
 }: Course) {
@@ -34,7 +33,6 @@ export default function CourseCardItem({
         <p className="line-clamp-3 grow text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-2">
           {!isPro ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
-          {isVideoAvailable && <Badge>Video Available</Badge>}
           <CourseCategoryBadge category={category} />
         </div>
       </div>

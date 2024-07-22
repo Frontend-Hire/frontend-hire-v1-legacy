@@ -19,7 +19,7 @@ export default async function PricingDetails() {
         10+ Developers Have Taken The Pro Plan!
       </span>
       <h3 className="text-stroke max-w-[25ch] text-4xl uppercase tracking-widest text-card">
-        Launch Price For First 100 Customers
+        Launch Price
       </h3>
       {name === 'India' && (
         <div className="space-y-1 text-sm font-bold text-blue-400">

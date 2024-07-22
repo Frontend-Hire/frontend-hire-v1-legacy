@@ -37,7 +37,10 @@ export default function QuestionListButtonWithSheet({
           </Button>
         </Tooltip>
       </SheetTrigger>
-      <SheetContent side="left" className="space-y-4">
+      <SheetContent
+        side="left"
+        className="max-h-screen space-y-4 overflow-y-auto"
+      >
         <SheetHeader>
           <SheetTitle>Questions List</SheetTitle>
         </SheetHeader>
