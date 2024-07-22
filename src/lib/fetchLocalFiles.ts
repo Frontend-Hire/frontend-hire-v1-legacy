@@ -1,5 +1,6 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Course } from '@/types/Course';
+import { Cohort } from '@/types/Cohort';
 import { Question, QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
@@ -73,6 +74,55 @@ export const getCoursePage = cache(
   async (courseId: string, chapter: string) => {
     const { default: getContent, meta } = require(
       `@/data/courses/${courseId}/${chapter}.mdx`,
+    );
+
+    return { getContent, meta } as {
+      getContent: () => React.ReactNode;
+      meta?: Record<string, string>;
+    };
+  },
+);
+
+const cohortsPath = path.join(process.cwd(), '/src/data/cohorts');
+
+export const getCohortsFromLocal = cache(async () => {
+  const cohorts: Cohort[] = [];
+  const allCohorts = fs.readdirSync(cohortsPath);
+
+  for (const cohort of allCohorts.filter((cohort) => !cohort.startsWith('.'))) {
+    const { meta } = require(`@/data/cohorts/${cohort}/meta.ts`);
+    if (meta.isPublished) {
+      cohorts.push({
+        ...meta,
+      });
+    }
+  }
+
+  return cohorts.sort((a, b) => {
+    if (a.publishedOn && b.publishedOn) {
+      return b.publishedOn.getTime() - a.publishedOn.getTime();
+    } else if (a.publishedOn) {
+      return -1;
+    } else if (b.publishedOn) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+});
+
+export const getCohortPages = cache(async (cohortId: string) => {
+  const { meta }: { meta: Cohort } = require(
+    `@/data/cohorts/${cohortId}/meta.ts`,
+  );
+
+  return meta;
+});
+
+export const getCohortPage = cache(
+  async (cohortId: string, chapter: string) => {
+    const { default: getContent, meta } = require(
+      `@/data/cohorts/${cohortId}/${chapter}.mdx`,
     );
 
     return { getContent, meta } as {
