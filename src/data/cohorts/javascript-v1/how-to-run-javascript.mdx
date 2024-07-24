@@ -1,5 +1,9 @@
-import { Callout } from '@/components/MarkdownComponents';
+import { Callout, CustomCodeViewer } from '@/components/MarkdownComponents';
 import HowToRunJavaScript from './examples/how-to-run-javascript';
+
+export const meta = {
+  lastUpdated: '2024-07-25'
+}
 
 # How to run JavaScript?
 
@@ -111,6 +115,21 @@ Try a small exercise:
 **Note:** The work you do in the sandbox will not be saved! We will worry about saving stuff the good way later by learning the basics of Git.
 
 <HowToRunJavaScript />
+
+<Callout>
+Do you think we need all that extra code to run JavaScript in the sandbox? Why don't you try to run just the below code in the sandbox?
+
+<CustomCodeViewer>
+```html
+<!-- index.html -->
+<script>
+  console.log("Hello, World!");
+</script>
+```
+</CustomCodeViewer>
+
+Well, the answer is you do not need any of that extra code. But it is quite rare to not have additional code in real-world applications. We will cover that later in the cohort.
+</Callout>
 
 In case of any issues, contact us on [Discord](https://discord.gg/DWAVqksVtx).
 

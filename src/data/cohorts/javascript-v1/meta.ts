@@ -15,5 +15,7 @@ export const meta: Cohort = {
   chapters: {
     overview: 'Overview',
     'how-to-run-javascript': 'How to Run JavaScript?',
+    comments: 'Comments',
+    variables: 'Variables',
   },
 };

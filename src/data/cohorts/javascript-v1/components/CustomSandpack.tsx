@@ -6,17 +6,21 @@ import {
   SandpackPreview,
   SandpackFiles,
   SandpackConsole,
+  useSandpack,
 } from '@codesandbox/sandpack-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 
 type CustomSandpackProps = {
   files?: SandpackFiles;
   showPreview?: boolean;
+  isSolution?: boolean;
 };
 
 export default function CustomSandpack({
   files,
   showPreview = false,
+  isSolution = false,
 }: CustomSandpackProps) {
   return (
     <SandpackProvider files={files} theme="dark" template="static">
@@ -28,10 +32,16 @@ export default function CustomSandpack({
         className="rounded border p-2"
       >
         <div className="flex flex-col gap-2">
+          {!isSolution && (
+            <div className="flex items-center justify-end">
+              <ResetButton />
+            </div>
+          )}
           <div className="h-[300px]">
             <SandpackCodeEditor
               showLineNumbers
               showRunButton
+              readOnly={isSolution}
               showTabs
               className="h-full"
             />
@@ -86,5 +96,15 @@ export default function CustomSandpack({
         </div>
       </div>
     </SandpackProvider>
+  );
+}
+
+function ResetButton() {
+  const { sandpack } = useSandpack();
+
+  return (
+    <Button onClick={sandpack.resetAllFiles} variant="destructive" size="sm">
+      Reset
+    </Button>
   );
 }
