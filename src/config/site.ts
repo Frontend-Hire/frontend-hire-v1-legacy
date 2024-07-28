@@ -1,6 +1,7 @@
 import {
   AlbumIcon,
   FileQuestionIcon,
+  GraduationCapIcon,
   LibraryBigIcon,
   PresentationIcon,
   SpeechIcon,
@@ -27,13 +28,13 @@ const LINKS: NavLink[] = [
   {
     title: 'Learn',
     items: [
+      { title: 'Cohorts', href: '/cohorts', icon: GraduationCapIcon },
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
       {
         title: 'System Design',
         href: '/system-design',
         icon: PresentationIcon,
       },
-      { title: 'Blog', hideOnMainNav: true, href: '/blog', icon: AlbumIcon },
     ],
   },
   {
@@ -55,6 +56,7 @@ const LINKS: NavLink[] = [
     hideOnMainNav: true,
     items: [
       { title: 'About', href: '/about' },
+      { title: 'Blog', href: '/blog', icon: AlbumIcon },
       { title: 'Contact Us', href: '/contact-us' },
       {
         title: 'Privacy Policy',
