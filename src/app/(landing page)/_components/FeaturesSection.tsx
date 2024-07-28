@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils';
 import FeatureDescriptionItem from './FeatureDescriptionItem';
 import dynamic from 'next/dynamic';
 import React from 'react';
-import CoursesFeature from './CoursesFeature';
 
+const CoursesFeature = dynamic(() => import('./CoursesFeature'));
 const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
 const SystemDesignFeature = dynamic(() => import('./SystemDesignFeature'));
