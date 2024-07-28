@@ -1,5 +1,4 @@
 import './globals.css';
-import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
 import { PHProvider } from '@/providers/PHProvider';
 
@@ -7,6 +6,7 @@ import dynamic from 'next/dynamic';
 import CourseBanner from '@/components/CourseBanner';
 import { cn } from '@/lib/utils';
 import { getMetadata } from '@/lib/getMetadata';
+import Script from 'next/script';
 
 const PostHogPageView = dynamic(() => import('./PostHogPageView'), {
   ssr: false,
@@ -26,6 +26,12 @@ export const metadata = {
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" className="scroll-pt-20 scroll-smooth">
+      <Script
+        defer
+        data-domain="frontendhire.com"
+        src="https://plausible.io/js/script.js"
+      />
+
       <PHProvider>
         <body
           className={cn(
@@ -40,7 +46,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           </div>
         </body>
       </PHProvider>
-      <Analytics />
     </html>
   );
 }
