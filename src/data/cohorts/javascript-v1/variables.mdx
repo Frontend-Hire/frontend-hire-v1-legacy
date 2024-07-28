@@ -1,8 +1,195 @@
 import { Callout } from '@/components/MarkdownComponents';
+import { VariablesLet } from './examples/variables';
 
 export const meta = {
-  lastUpdated: '2024-07-25'
+  lastUpdated: '2024-07-28'
 }
 
 # Variables
 
+<Callout type='error'>
+From now on, we will be talking a lot about JavaScript syntax. One thing that we won't discuss is semicolons. 
+
+Even though semicolons are not mandatory in JavaScript. The convention agreed on by the majority of the JavaScript developers is to use them. 
+
+**SO USE SEMICOLONS TO END A JAVASCRIPT STATEMENT**
+</Callout>
+
+How do you store something in your code that you want to use again later? Well in almost all programming languages, you do that with variables.
+
+<Callout>
+Interview Question: Where does the JavaScript Engine store the variables?
+
+**Answer: The JavaScript engine stores the variables in a heap.**
+</Callout>
+
+In JavaScript, you can declare variables in three ways:
+
+## 1. Using `let`
+
+The `let` keyword is used to declare variables that can be reassigned.
+
+Here are a few examples of using `let`:
+
+```js
+// Declare a variable without initializing it
+let variableDeclared;
+
+// Declare a variable as well as initialize it
+let variableDeclaredAndInitialized = 21;
+
+// Assign a value to a previously declared variable
+variableDeclared = 'value assigned now';
+
+/*
+Variables can be reassigned to any data type
+not a good idea but JavaScript won't complain
+but your fellow developers will
+*/ 
+variableDeclaredAndInitialized = 'reassigned the value';
+```
+
+### Common Mistakes
+
+**You cannot create another variable with the same name within the same scope.**
+
+The below example will throw an error:
+
+```js
+let variableOne = 21;
+
+// Attempt to redeclare a variable
+let variableOne = 42; // Uncaught SyntaxError: Identifier 'variableOne' has already been declared
+```
+
+But the below example will not throw an error:
+
+```js
+let variableOne = 21;
+console.log(variableOne); // 21
+
+{
+  let variableOne = 42;
+  console.log(variableOne); // 42
+}
+
+console.log(variableOne); // 21
+```
+
+**Even this won't throw an error but see how the output is different:**
+
+```js
+let variableOne = 21;
+console.log(variableOne); // 21
+
+{
+  variableOne = 42;
+  console.log(variableOne); // 42
+}
+
+console.log(variableOne); // 42
+```
+
+<Callout type="warning">
+We will discuss more about the scope later in the cohort. But for now, just remember that `curly braces {}` creates a new scope and that there is a default global scope.
+
+![Scope](./assets/scope.webp)
+</Callout>
+
+**Trying to access the same variable before it has been declared will throw an error:**
+
+```js
+let variableOne = 21;
+console.log(variableOne); // 21
+ 
+{
+  console.log(variableOne); // Uncaught ReferenceError: Cannot access 'variableOne' before initialization
+  let variableOne = 42;
+  console.log(variableOne); // Won't log due to ReferenceError
+}
+ 
+console.log(variableOne); // Won't log due to ReferenceError
+```
+
+But something like this will not throw an error:
+
+```js
+let variableOne = 21;
+console.log(variableOne); // 21
+ 
+{
+  console.log(variableOne); // 21
+  let variableTwo = 42;
+  console.log(variableTwo); // 42
+}
+ 
+console.log(variableOne); // 21
+```
+
+**Trying to access a variable that is out of scope will throw an error:**
+
+```js
+let variableOne = 21;
+console.log(variableOne); // 21
+ 
+{
+  console.log(variableOne); // 21
+  let variableTwo = 42;
+  console.log(variableTwo); // 42
+}
+ 
+console.log(variableOne); // 21
+console.log(variableTwo); // Uncaught ReferenceError: variableTwo is not defined
+```
+
+## 2. Using `const`
+
+The `const` keyword is used to declare variables that cannot be reassigned.
+
+```js
+// Basic constant declaration
+const localConstant = 'can never take another value';
+
+/*
+Global constant declaration 
+nothing different than basic constant declaration
+except the naming convention tells developers that it is global
+*/
+const GLOBAL_CONSTANT = 'global constant';
+
+const PI = 3.14;
+```
+
+### Common Mistakes
+
+**Note: Variable rules are almost consistent. So, the above mistakes that apply to `let` also apply to `const`.**
+
+**You can't reassign a constant.**
+
+The below example will throw an error:
+
+```js
+const PI = 3.14;
+// Attempt to reassign a constant
+PI = 3.14159; // Uncaught TypeError: Assignment to constant variable.
+
+{
+  // This will also throw an error, REASSIGNING A CONSTANT IS A BIG NO!
+  PI = 3.14159; // Uncaught TypeError: Assignment to constant variable.
+}
+```
+
+## 3. Using `var`
+
+<Callout type='error'>
+This is optional to learn in our opinion and can be learned when you need it! We just do not recommend using `var` at all. Some might disagree with us. Learn it now if you want or feel free to skip this section and move on to [Variable Naming Rules](#variable-naming-rules).
+</Callout>
+
+## Variable Naming Rules
+
+## Good Naming
+
+## Further Reading
+
+- [MDN Docs: Variables](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables)
+- [JavaScript Info: Variables](https://javascript.info/variables)
