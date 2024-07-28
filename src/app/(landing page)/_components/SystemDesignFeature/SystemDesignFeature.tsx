@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getSystemDesignsFromLocal } from '@/lib/fetchLocalFiles';
 import { DIFFICULTY } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
+import { isNew } from '@/utils/date';
 
 export default async function SystemDesignFeature() {
   const systems = await getSystemDesignsFromLocal();
@@ -46,7 +47,7 @@ const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
 function SystemDesignQuestionItem({
   title,
   description,
-  isNew,
+  publishedOn,
   link,
 }: SystemDesign) {
   return (
@@ -61,7 +62,9 @@ function SystemDesignQuestionItem({
           >
             {title}
           </Link>
-          {isNew && <Badge className="animate-fh-pulse">New</Badge>}
+          {isNew(publishedOn) && (
+            <Badge className="animate-fh-pulse">New</Badge>
+          )}
         </div>
         <p className="text-sm leading-[100%] text-gray-300">{description}</p>
       </div>

@@ -14,5 +14,4 @@ export type Course = {
   isPublished?: boolean;
   publishedOn?: Date;
   chapters: Record<string, string>;
-  isNew?: boolean;
 };

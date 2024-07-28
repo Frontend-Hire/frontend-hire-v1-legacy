@@ -8,6 +8,5 @@ export const meta: Question = {
   type: QUESTION_TYPE.THEORY,
   difficulty: DIFFICULTY.EASY,
   publishedOn: new Date('2024-07-01'),
-  isNew: true,
   isFree: true,
 };

@@ -1,6 +1,7 @@
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { DIFFICULTY, Question } from '@/types/Question';
 import { Badge } from '@/components/ui/badge';
+import { isNew } from '@/utils/date';
 
 const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
@@ -33,7 +34,7 @@ export default function QuestionItem({
   question,
   isCompleted,
 }: QuestionItemProps) {
-  const { title, description, difficulty, isNew, isFree } = question;
+  const { title, description, difficulty, publishedOn, isFree } = question;
   return (
     <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
       <DifficultyLabel difficulty={difficulty} />
@@ -42,7 +43,7 @@ export default function QuestionItem({
           <div className="flex flex-wrap items-center gap-2">
             <p className="font-bold">{title}</p>
             <div className="flex items-center gap-2">
-              {isNew && (
+              {isNew(publishedOn) && (
                 <Badge className="motion-safe:animate-fh-pulse">New</Badge>
               )}
               {isFree && <Badge>Free</Badge>}

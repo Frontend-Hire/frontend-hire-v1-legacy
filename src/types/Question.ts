@@ -25,7 +25,6 @@ export type BaseQuestion = {
   description: string;
   difficulty: DIFFICULTY;
   publishedOn: Date;
-  isNew?: boolean;
   isFree?: boolean;
 };
 

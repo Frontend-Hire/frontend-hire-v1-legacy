@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getCoursesFromLocal } from '@/lib/fetchLocalFiles';
 import CourseCategoryBadge from '@/components/CourseCategoryBadge';
 import { Course } from '@/types/Course';
+import { isNew } from '@/utils/date';
 
 export default async function CoursesFeature() {
   const courses = await getCoursesFromLocal();
@@ -30,11 +31,11 @@ function CourseCardItem({
   description,
   isPro,
   category,
-  isNew,
+  publishedOn,
 }: Course) {
   return (
     <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-card">
-      {isNew && (
+      {isNew(publishedOn) && (
         <div className="absolute right-0 top-0 bg-primary px-1 py-0.5 text-xs font-medium motion-safe:animate-fh-pulse">
           New Course
         </div>
