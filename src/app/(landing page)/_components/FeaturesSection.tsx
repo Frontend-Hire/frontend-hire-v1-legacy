@@ -18,7 +18,11 @@ export default function FeaturesSection() {
       <FeatureLayout
         title="Courses"
         richComponent={{
-          component: <CoursesFeature />,
+          component: (
+            <React.Suspense>
+              <CoursesFeature />
+            </React.Suspense>
+          ),
           position: 'left',
         }}
         actionButton={
@@ -28,20 +32,6 @@ export default function FeaturesSection() {
           'All courses come with written walkthroughs.',
           'Select ones come in video.',
           'Optimized to teach you 20% of stuff for 80% of the results.',
-        ]}
-      />
-      <FeatureLayout
-        title="System Design"
-        richComponent={{
-          component: <SystemDesignFeature />,
-          position: 'left',
-        }}
-        actionButton={
-          <CTA label="Learn to Design Great Systems" href="/system-design" />
-        }
-        features={[
-          'Our take on Frontend System Design.',
-          'A unique approach that starts with a problem statement.',
         ]}
       />
       <FeatureLayout
@@ -61,6 +51,25 @@ export default function FeaturesSection() {
         ]}
       />
       <FeatureLayout
+        title="System Design"
+        richComponent={{
+          component: (
+            <React.Suspense>
+              <SystemDesignFeature />
+            </React.Suspense>
+          ),
+          position: 'left',
+        }}
+        actionButton={
+          <CTA label="Learn to Design Great Systems" href="/system-design" />
+        }
+        features={[
+          'Our take on Frontend System Design.',
+          'A unique approach that starts with a problem statement.',
+        ]}
+      />
+
+      <FeatureLayout
         title="Interviews"
         richComponent={{
           component: (
@@ -68,7 +77,7 @@ export default function FeaturesSection() {
               <InterviewsFeature />
             </React.Suspense>
           ),
-          position: 'left',
+          position: 'right',
         }}
         actionButton={<CTA label="Practice Interviews" href="/interviews" />}
         features={[
