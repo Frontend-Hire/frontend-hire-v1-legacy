@@ -1,24 +1,15 @@
-# useState - 1
+# Currying - 1
 
-This question revolves around the most frequently used hook in React development.
+Currying is a functional programming technique that can be applied in React to handle events more efficiently, especially when dealing with multiple similar inputs. However, it's important to note that this approach is not commonly used and should be adopted based on the team's consensus and coding standards.
 
-> Why did the useState hook feel so important? Because every time something changed, it was called upon!
+> Why did the functional programmer get thrown out of school?
+> Because they refused to stop currying functions!
 
-### Objective
-Your task is to implement the logic for managing tasks – including storing, adding, and deleting them within a **local state variable**. Focus on functionality, and don't worry about styling, although you're welcome to add some if you wish. TailwindCSS is already set up for your convenience.
+## Objectives
+- Understand the concept of currying in functional programming.
+- Implement a curried function for handling input changes.
+- Recognize that while currying can be a powerful tool, it's not commonly used in every React project. It's essential to align with your team's coding preferences and standards.
 
-### Requirements
-- **Storing Tasks**: Implement a state variable to hold the list of tasks.
-- **Adding Tasks**: Write the logic to add new tasks to the state.
-- **Deleting Tasks**: Write the logic to remove tasks based on their id.
+## Resources to Refer
 
-#### Working with Task IDs
-In this question, each task will need a unique identifier (ID). For simplicity, you can use Math.random() to generate a pseudo-random ID for new tasks. Here's a quick way to do it:
-
-```javascript
-const newTaskId = Math.random().toString(36).substr(2, 9);
-```
-This will create a string that's reasonably unique for our purposes. However, keep in mind that in real-world applications, more robust methods are recommended for generating unique IDs (see resources).
-
-### Bonus Task
-- Implement a **clear all** tasks feature.
+- [Currying Partials from javascript.info](https://javascript.info/currying-partials)

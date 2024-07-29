@@ -2,3 +2,215 @@ import { Callout } from '@/components/MarkdownComponents';
 
 # Solution
 
+<Callout>
+Most use cases of currying in React apply when there are a lot of inputs to handle. This is just a question to help you understand the concept of currying. In 90% of the cases, using a form library like [Formik](https://formik.org/) or [React Hook Form](https://react-hook-form.com/) is recommended and makes life a lot easier when working with multiple inputs (which is most of the time a form!).
+</Callout>
+
+Let us first simplify the code by just having a single change handler.
+
+```jsx title="App.js" {11-17,28,39,50,61} showLineNumbers
+import React from 'react';
+
+const App = () => {
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  return (
+    <>
+      <div>
+        <label htmlFor="firstName">First Name: </label>
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="lastName">Last Name: </label>
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="email">Email: </label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="phone">Phone: </label>
+        <input
+          id="phone"
+          type="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+We can replace all the individual handlers with a single `onChange` handler and take advantage of the `event.target.name` property to identify which input changed.
+
+This is already a good simplification.
+
+<Callout type='error'>
+A quick note! Sometimes having individual handlers for each input is easier than having a single handler that handles all inputs, usually when there is a lot of validation. But again, a form library is a better solution than either of these!
+</Callout>
+
+## Currying
+
+So, what is currying?
+
+This is an advanced functional programming technique that transforms a function that takes multiple arguments into a sequence of functions that each take a single argument.
+
+Do not worry too much about the definition. Let us see how it works.
+
+The most common interview question on this is something like this:
+
+> Implement a curried sum function.
+
+The answer would be something like this:
+
+```js
+function regularSum(a, b) {
+  return a + b;
+}
+
+function curriedSum(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+
+const sum = curriedSum(1)(2);
+
+console.log(sum); // 3
+
+const sum2 = curriedSum(1)(2);
+
+console.log(sum2); // 3
+```
+
+Ok, that looks weird. But it is actually quite simple.
+
+The `curriedSum` just returns a function that takes the second argument. 
+
+Here `curriedSum(1)` returns the following function:
+
+```js
+function (b) {
+  return 1 + b;
+}
+```
+
+When again called with `curriedSum(1)(2)` returns `3`. 
+
+**Do not let the brackets confuse you.**
+
+So, how can we use currying for our question?
+
+```jsx title="App.js" {11-16,27,38,49,60} showLineNumbers
+import React from 'react';
+
+const App = () => {
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+  });
+
+  const handleChange = (field) => (event) => {
+    setFormData({
+      ...formData,
+      [field]: event.target.value,
+    });
+  };
+
+  return (
+    <>
+      <div>
+        <label htmlFor="firstName">First Name: </label>
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange('firstName')}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="lastName">Last Name: </label>
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange('lastName')}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="email">Email: </label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange('email')}
+        />
+      </div>
+      <br />
+      <div>
+        <label htmlFor="phone">Phone: </label>
+        <input
+          id="phone"
+          type="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange('phone')}
+        />
+      </div>
+    </>
+  );
+};
+
+export default App;
+```
+
+Our `handleChange` function now returns a function that takes an event which we call at the actual `input` field's `onChange` event. This is the same as the initial code with multiple `onChange` handlers. Except, we create those functions on the fly through currying.
+
+<Callout>
+We will do more practical use cases of currying in other questions. But we hope you get the gist of it.
+</Callout>

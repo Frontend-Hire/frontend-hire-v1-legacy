@@ -13,7 +13,6 @@ export const meta: Question = {
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.BROWSER,
   template: 'react',
-  externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',
   publishedOn: new Date('2024-07-28'),
   difficulty: DIFFICULTY.HARD,
