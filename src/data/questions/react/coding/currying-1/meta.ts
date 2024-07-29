@@ -18,7 +18,6 @@ export const meta: Question = {
   difficulty: DIFFICULTY.HARD,
   showPreview: true,
   showConsole: true,
-  isFree: true,
   files: {
     '/App.js': { code: require('./src/App.js').code },
   },
