@@ -11,7 +11,6 @@ export const meta: Cohort = {
   isPublished: true,
   publishedOn: new Date('2024-08-01'),
   isPro: true,
-  isNew: true,
   chapters: {
     overview: 'Overview',
     'how-to-run-javascript': 'How to Run JavaScript?',

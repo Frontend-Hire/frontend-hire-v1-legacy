@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { Course } from '@/types/Course';
+import { isNew } from '@/utils/date';
 
 export default function CohortCardItem({
   title,
   image,
   description,
   isPro,
-  isNew,
+  publishedOn,
 }: Course) {
   return (
     <div className="relative flex h-full max-w-md flex-col overflow-hidden rounded-md bg-card">
-      {isNew && (
+      {isNew(publishedOn) && (
         <div className="absolute right-0 top-0 bg-primary px-2 py-1 text-sm font-medium motion-safe:animate-fh-pulse">
           New Cohort
         </div>

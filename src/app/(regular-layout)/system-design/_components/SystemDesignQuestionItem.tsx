@@ -1,13 +1,8 @@
 import { DIFFICULTY } from '@/types/Question';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import { Badge } from '@/components/ui/badge';
-
-type SystemDesignQuestionItemProps = {
-  difficulty: DIFFICULTY;
-  title: string;
-  description: string;
-  isNew?: boolean;
-};
+import { SystemDesign } from '@/types/SystemDesign';
+import { isNew } from '@/utils/date';
 
 const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
   let className = 'w-4 self-stretch';
@@ -33,16 +28,17 @@ const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
 export default function SystemDesignQuestionItem({
   title,
   description,
-  difficulty,
-  isNew,
-}: SystemDesignQuestionItemProps) {
+  publishedOn,
+}: SystemDesign) {
   return (
     <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
-      <DifficultyLabel difficulty={difficulty} />
+      <DifficultyLabel difficulty={DIFFICULTY.MASTER} />
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex items-center gap-2">
           <p className="font-bold capitalize">{title}</p>
-          {isNew && <Badge className="animate-fh-pulse">New</Badge>}
+          {isNew(publishedOn) && (
+            <Badge className="animate-fh-pulse">New</Badge>
+          )}
         </div>
         <p className="text-sm leading-[100%] text-gray-300">{description}</p>
       </div>

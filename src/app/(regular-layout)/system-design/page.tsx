@@ -26,10 +26,7 @@ export default async function SystemDesignPage() {
         {systems.map((system) => (
           <li key={system.id}>
             <Link prefetch={false} href={system.link}>
-              <SystemDesignQuestionItem
-                difficulty={DIFFICULTY.MASTER}
-                {...system}
-              />
+              <SystemDesignQuestionItem {...system} />
             </Link>
           </li>
         ))}

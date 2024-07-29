@@ -15,5 +15,4 @@ export const meta: Question = {
   publishedOn: new Date('2024-07-18'),
   difficulty: DIFFICULTY.EASY,
   isFree: true,
-  isNew: true,
 };

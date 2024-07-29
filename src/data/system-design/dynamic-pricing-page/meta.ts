@@ -8,7 +8,6 @@ export const meta: SystemDesign = {
   isPro: true,
   isPublished: true,
   publishedOn: new Date('2024-06-05'),
-  isNew: true,
   chapters: {
     overview: 'Overview',
     'geolocation-web-api': 'Geolocation Web API',
