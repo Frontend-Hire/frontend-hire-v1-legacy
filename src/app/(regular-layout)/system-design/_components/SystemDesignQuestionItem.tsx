@@ -31,7 +31,7 @@ export default function SystemDesignQuestionItem({
   publishedOn,
 }: SystemDesign) {
   return (
-    <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
+    <div className="flex min-h-20 scale-95 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground transition-all hover:scale-100 hover:bg-card/80">
       <DifficultyLabel difficulty={DIFFICULTY.MASTER} />
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex items-center gap-2">

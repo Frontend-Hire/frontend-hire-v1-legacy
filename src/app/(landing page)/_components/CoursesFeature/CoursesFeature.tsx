@@ -34,7 +34,7 @@ function CourseCardItem({
   publishedOn,
 }: Course) {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-card">
+    <div className="relative flex h-full scale-95 flex-col overflow-hidden rounded-md bg-card transition-all hover:scale-100">
       {isNew(publishedOn) && (
         <div className="absolute right-0 top-0 bg-primary px-1 py-0.5 text-xs font-medium motion-safe:animate-fh-pulse">
           New Course

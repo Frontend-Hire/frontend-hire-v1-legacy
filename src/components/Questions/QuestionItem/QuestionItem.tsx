@@ -36,7 +36,7 @@ export default function QuestionItem({
 }: QuestionItemProps) {
   const { title, description, difficulty, publishedOn, isFree } = question;
   return (
-    <div className="flex min-h-20 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground hover:bg-card/80">
+    <div className="flex min-h-20 scale-95 items-center gap-4 overflow-hidden rounded bg-card pr-4 text-card-foreground transition-all hover:scale-100 hover:bg-card/80">
       <DifficultyLabel difficulty={difficulty} />
       <div className="flex w-full flex-col gap-1 py-2">
         <div className="flex flex-wrap items-start justify-between gap-2">
