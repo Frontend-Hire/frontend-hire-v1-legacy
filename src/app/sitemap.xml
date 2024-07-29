@@ -5,376 +5,440 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-
 <url>
   <loc>https://www.frontendhire.com/</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/pricing</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/dynamic-pricing-page/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/overview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <loc>https://www.frontendhire.com/questions/css/coding</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/system-design</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <loc>https://www.frontendhire.com/questions/javascript/coding</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react/coding</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react/theory</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/overview</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews/simulated-phone-screening</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews/mock-personal-interview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/interviews</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/blog</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <loc>https://www.frontendhire.com/cohorts</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/about</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/blog</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/contact-us</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/privacy-policy</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/terms-and-conditions</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/dynamic-pricing-page/setup-pages-router</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/dynamic-pricing-page/rendering-strategies-pages-router</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/dynamic-pricing-page/rendering-strategies-app-router</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/dynamic-pricing-page/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/project-setup</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/reading-tasks</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/adding-tasks</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/setup-testing</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/writing-tests</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/test-driven-development</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/refactoring</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/component-composition</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-svelte/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/setup-nextjs-project</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/setup-supabase-project</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/building-landing-page</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/building-login-page</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/e2e-testing-login</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/building-register-page</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/e2e-testing-register</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/bonus-saving-auth-state</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/register-flow-with-e2e-tests/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/project-setup</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/building-layout</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/think-about-what-to-build-next</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/building-code-editor</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/webcontainer-api</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/building-terminal</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/building-preview</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/deploying-to-production</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/stackpack/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/project-setup</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/reading-tasks</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/adding-tasks</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/setup-testing</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/writing-tests</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/test-driven-development</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/refactoring</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/component-composition</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/courses/todo-app-react/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/geolocation-web-api</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <loc>https://www.frontendhire.com/questions/css/coding/can-you-center-a-div</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/third-party-api</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/rendering-strategies</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/geo-redirection</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/summary</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <loc>https://www.frontendhire.com/questions/javascript/coding/refactor-long-method-1</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react/coding/use-effect-1</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react/coding/use-state-1</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/react/coding/design-system-buttons-1</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/react/coding/refactor-class-to-function-1</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/react/coding/testing-todo-app-1</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/questions/react/coding/currying-1</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/questions/react/theory/what-is-react</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/geolocation-web-api</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/third-party-api</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/rendering-strategies</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/geo-redirection</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/system-design/dynamic-pricing-page/summary</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/cohorts/javascript-v1/overview</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/blog/major-update-1-journey-so-far</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/blog/reading-is-better-than-watching</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/blog/interviewer-interview-guide</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/blog/candidate-interview-guide</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.frontendhire.com/blog/learning-react</loc>
-  <lastmod>2024-07-16T19:12:55+00:00</lastmod>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/cohorts/javascript-v1/how-to-run-javascript</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/cohorts/javascript-v1/comments</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.frontendhire.com/cohorts/javascript-v1/variables</loc>
+  <lastmod>2024-07-29T23:13:49+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 
