@@ -48,7 +48,7 @@ function CourseCardItem({
 
         <p className="line-clamp-1 text-sm">{description}</p>
         <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-          {!isPro ? <Badge>Free</Badge> : <Badge>Pro</Badge>}
+          {!isPro && <Badge>Free</Badge>}
           <CourseCategoryBadge category={category} />
         </div>
       </div>
