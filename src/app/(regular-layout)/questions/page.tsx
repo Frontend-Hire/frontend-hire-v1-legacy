@@ -2,6 +2,7 @@ import { getMetadata } from '@/lib/getMetadata';
 import CustomHeading from '@/components/CustomHeading';
 import Link from 'next/link';
 import QuestionTypeCard from '@/components/Questions/QuestionTypeCard';
+import { QUESTION_CATEGORIES } from '@/config/questionCategories';
 
 export const metadata = getMetadata({
   title: 'Questions | Frontend Hire',
@@ -15,32 +16,18 @@ export default function Questions() {
         title="Questions"
         subTitle="Meant for real world and interview based scenarios."
       />
-      <div className="grid grid-cols-2 gap-10">
-        <Link prefetch={false} href={'/questions/css/coding'}>
-          <QuestionTypeCard
-            className="hover:bg-[hsl(203,66%,54%)]"
-            title="CSS Coding"
-          />
-        </Link>
-        <Link prefetch={false} href={'/questions/javascript/coding'}>
-          <QuestionTypeCard
-            className="hover:bg-[hsl(52,84%,63%)] hover:text-black"
-            title="JavaScript Coding"
-          />
-        </Link>
-        <Link prefetch={false} href={'/questions/react/coding'}>
-          <QuestionTypeCard
-            className="hover:bg-[hsl(192,82%,34%)]"
-            title="React Coding"
-          />
-        </Link>
-        <Link prefetch={false} href={'/questions/react/theory'}>
-          <QuestionTypeCard
-            className="hover:bg-[hsl(192,82%,34%)]"
-            title="React Theory"
-          />
-        </Link>
-      </div>
+      <ul className="grid grid-cols-2 gap-10">
+        {QUESTION_CATEGORIES.map((category) => (
+          <li key={category.id}>
+            <Link prefetch={false} href={`/questions/${category.id}`}>
+              <QuestionTypeCard
+                className={category.className}
+                title={category.title}
+              />
+            </Link>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }
