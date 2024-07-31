@@ -2,343 +2,64 @@ import { Callout } from '@/components/MarkdownComponents';
 
 # Solution
 
-We also have a video that solves the same problem.
+So, where do we check for the active route?
 
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/UtOxGwg-FUY?si=5urQLd8EylO0k3YM'
-  title='Test Driven Development Tests | Todo App with React, TypeScript, TDD | Frontend Hire'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
+We have a `NavLink` component that handles the actual link. So, maybe we can put the logic in there. But how do we get the current path name? Well, we can use the `usePathname` hook given to us by Next.js.
 
-So, the testing team sent us the following bugs:
+```jsx title="src/components/nav-link.jsx" showLineNumbers {1-3,5,8-10,13}
+'use client';
 
-- After adding a task, the input field should be cleared.
-- You should not be able to add empty tasks.
-- You should be able to add tasks by pressing enter while the focus is on the input field.
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import styles from './nav-link.module.css';
 
-Let us try to reproduce and fix each of these bugs.
+export default function NavLink({ href, children }) {
+  const pathname = usePathname();
 
-We will also solve this question in two styles: the TDD style and the regular testing style.
-
-## TDD Approach
-
-In our opinion, the TDD style is good for such kinds of bugs. All we have to do in this style is to:
-
-- Convert the testing team's bugs into failing tests to capture the bugs.
-- Fix the code that causes the bugs.
-- Verify that the tests pass.
-
-### Converting the bugs to failing tests
-
-#### After adding a task, the input field should be cleared
-
-Let us reproduce the bug `After adding a task, the input field should be cleared` and write a failing test for the same with a good title like `should clear the input field after adding a task`
-
-```jsx title="App.test.jsx" showLineNumbers
-import { describe, expect, test } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
-import App from './App.jsx';
-
-describe('Todo App', () => {
-  test('should clear the input field after adding a task', async () => {
-    const user = userEvent.setup();
-    render(<App />);
-
-    const input = screen.getByRole('textbox', { name: 'Add Task:' });
-    const button = screen.getByRole('button', { name: 'Add' });
-
-    await user.type(input, 'New Task');
-    await user.click(button);
-
-    await waitFor(() => {
-      expect(input).toHaveValue('');
-    });
-  });
-});
-```
-
-Now, if we run the test, it should fail.
-
-Let us fix it now! We know that the issue is in the `AddTask.jsx` component because that is where the `taskName` state is updated.
-
-```jsx title="AddTask.jsx" showLineNumbers
-import React from 'react';
-
-export default function AddTask({ onAddTask }) {
-  const [taskName, setTaskName] = React.useState('');
-
-  const handleAddTask = (e) => {
-    e.preventDefault();
-
-    onAddTask(taskName);
-
-    setTaskName(''); // [!code ++]
-  };
+  const isActive = pathname === href;
 
   return (
-    <div className="space-x-2">
-      <label htmlFor="task-input">Add Task: </label>
-      <input
-        className="rounded border px-2 py-1"
-        id="task-input"
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button
-        onClick={handleAddTask}
-        className="rounded bg-blue-500 px-2 py-1 text-white"
-      >
-        Add
-      </button>
-    </div>
+    <Link className={isActive ? styles.active : ''} href={href}>
+      {children}
+    </Link>
   );
 }
 ```
 
-So, all we have to do is to set the `taskName` state to an empty string after adding a task. Run the tests again and it should pass.
+The styles are in the `nav-link.module.css` file.
 
-Let us work on the next bug.
-
-#### You should not be able to add empty tasks
-
-Let us reproduce the bug `You should not be able to add empty tasks` and write a failing test for the same with a good title like `should not be able to add empty tasks`
-
-```jsx title="App.test.jsx"
-// The rest of the code omitted for brevity
-
-test('should not add an empty task', async () => {
-  const user = userEvent.setup();
-  render(<App />);
-
-  const input = screen.getByRole('textbox', { name: 'Add Task:' });
-  const button = screen.getByRole('button', { name: 'Add' });
-
-  await user.type(input, '   '); // Makes sense to also test with spaces
-  await user.click(button);
-
-  await waitFor(() => {
-    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
-  });
-});
-
-// The rest of the code omitted for brevity
+```css title="src/components/nav-link.module.css" showLineNumbers {1-4}
+.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
 ```
 
-Now, if we run the test, it should fail.
+Do note how we use the ternary operator to check for the `isActive` state and return an empty string if not active. If we did a conditional check with `&&` then there would be a warning because that check will result in a boolean value and classNames must be a string.
 
-Let us fix it now! We again know that the issue is in the `AddTask.jsx` component because that is where the taskName is sent to the parent component.
+Why do we need the `use client` directive? Because we are using a client component hook. So, now the `NavLink` component is a client component.
 
-```jsx title="AddTask.jsx" showLineNumbers {9-15}
-import React from 'react';
+## Using Tailwind
 
-export default function AddTask({ onAddTask }) {
-  const [taskName, setTaskName] = React.useState('');
+```jsx title="src/components/nav-link.jsx" showLineNumbers {1-3,7-9,12}
+'use client';
 
-  const handleAddTask = (e) => {
-    e.preventDefault();
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
-    const trimmedTaskName = taskName.trim();
+export default function NavLink({ href, children }) {
+  const pathname = usePathname();
 
-    if (!trimmedTaskName) {
-      return;
-    }
-
-    onAddTask(trimmedTaskName);
-
-    setTaskName('');
-  };
+  const isActive = pathname === href;
 
   return (
-    <div className="space-x-2">
-      <label htmlFor="task-input">Add Task: </label>
-      <input
-        className="rounded border px-2 py-1"
-        id="task-input"
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button
-        onClick={handleAddTask}
-        className="rounded bg-blue-500 px-2 py-1 text-white"
-      >
-        Add
-      </button>
-    </div>
+    <Link className={isActive ? 'font-bold underline' : ''} href={href}>
+      {children}
+    </Link>
   );
 }
 ```
 
-So, all we have to do is check for the trimmed value of the `taskName` state before calling the `onAddTask` function. Run the tests again and it should pass.
-
-Let us work on the next bug.
-
-#### You should be able to add tasks by pressing enter while the focus is on the input field
-
-Let us reproduce the bug `You should be able to add tasks by pressing enter while the focus is on the input field` and write a failing test for the same with a good title like `should add a task by pressing the enter key`.
-
-```jsx title="App.test.jsx" showLineNumbers
-// The rest of the code omitted for brevity
-
-test('should add a task by pressing the enter key', async () => {
-  const user = userEvent.setup();
-  render(<App />);
-
-  const input = screen.getByRole('textbox', { name: 'Add Task:' });
-
-  await user.type(input, 'New Task{enter}');
-
-  await waitFor(() => {
-    expect(screen.queryAllByRole('listitem')).toHaveLength(1);
-  });
-});
-
-// The rest of the code omitted for brevity
-```
-
-Now, if we run the test, it should fail.
-
-Let us fix it now! We again know that the issue is in the `AddTask.jsx` component because that is where the input field and the button are present.
-
-```jsx title="AddTask.jsx" showLineNumbers {21,26,31}
-import React from 'react';
-
-export default function AddTask({ onAddTask }) {
-  const [taskName, setTaskName] = React.useState('');
-
-  const handleAddTask = (e) => {
-    e.preventDefault();
-
-    const trimmedTaskName = taskName.trim();
-
-    if (!trimmedTaskName) {
-      return;
-    }
-
-    onAddTask(trimmedTaskName);
-
-    setTaskName('');
-  };
-
-  return (
-    <form className="space-x-2" onSubmit={handleAddTask}>
-      <label htmlFor="task-input">Add Task: </label>
-      <input
-        className="rounded border px-2 py-1"
-        id="task-input"
-        required
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button className="rounded bg-blue-500 px-2 py-1 text-white">Add</button>
-    </form>
-  );
-}
-```
-
-So, the fix for this bug is to enclose the input and the button in a `form` element and take advantage of the browser's default behavior. We moved the handleAddTask function to the `form` element. Run the tests again and it should pass.
-
-## Regular Testing Approach
-
-There isn't much difference. All we do is fix the bugs and then write the tests. Just reverse the order followed above.
-
-Usually, a TDD approach is best suited for bug fixes! But sometimes the tests cannot be captured well for certain bugs. In that case, writing the code first might give a better test than struggling to write the test first!
-
-## Full Code
-
-Here is the full code for all the files that we have changed so far:
-
-```jsx title="App.test.jsx" showLineNumbers
-import { describe, expect, test } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-
-import App from './App.jsx';
-
-describe('Todo App', () => {
-  test('should clear the input field after adding a task', async () => {
-    const user = userEvent.setup();
-    render(<App />);
-
-    const input = screen.getByRole('textbox', { name: 'Add Task:' });
-    const button = screen.getByRole('button', { name: 'Add' });
-
-    await user.type(input, 'New Task');
-    await user.click(button);
-
-    await waitFor(() => {
-      expect(input).toHaveValue('');
-    });
-  });
-
-  test('should not add an empty task', async () => {
-    const user = userEvent.setup();
-    render(<App />);
-
-    const input = screen.getByRole('textbox', { name: 'Add Task:' });
-    const button = screen.getByRole('button', { name: 'Add' });
-
-    await user.type(input, '   '); // Makes sense to also test with spaces
-    await user.click(button);
-
-    await waitFor(() => {
-      expect(screen.queryAllByRole('listitem')).toHaveLength(0);
-    });
-  });
-
-  test('should add a task by pressing the enter key', async () => {
-    const user = userEvent.setup();
-    render(<App />);
-
-    const input = screen.getByRole('textbox', { name: 'Add Task:' });
-
-    await user.type(input, 'New Task{enter}');
-
-    await waitFor(() => {
-      expect(screen.queryAllByRole('listitem')).toHaveLength(1);
-    });
-  });
-});
-```
-
-```jsx title="AddTask.jsx" showLineNumbers
-import React from 'react';
-
-export default function AddTask({ onAddTask }) {
-  const [taskName, setTaskName] = React.useState('');
-
-  const handleAddTask = (e) => {
-    e.preventDefault();
-
-    const trimmedTaskName = taskName.trim();
-
-    if (!trimmedTaskName) {
-      return;
-    }
-
-    onAddTask(trimmedTaskName);
-
-    setTaskName('');
-  };
-
-  return (
-    <form className="space-x-2" onSubmit={handleAddTask}>
-      <label htmlFor="task-input">Add Task: </label>
-      <input
-        className="rounded border px-2 py-1"
-        id="task-input"
-        required
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button className="rounded bg-blue-500 px-2 py-1 text-white">Add</button>
-    </form>
-  );
-}
-```
+<Callout type='warning'>
+If using Tailwind CSS, then be careful about how you merge the classes. A utility library like [`tailwind-merge`](https://github.com/dcastil/tailwind-merge) should be used in such cases. In our case, we do not need it as there are no style conflicts.
+</Callout>
