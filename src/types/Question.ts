@@ -7,6 +7,7 @@ export enum QUESTION_SKILL {
   REACT = 'react',
   JAVASCRIPT = 'javascript',
   CSS = 'css',
+  NEXT = 'next',
 }
 
 export enum QUESTION_TYPE {

@@ -7,6 +7,7 @@ import { capitalize } from '@/utils/text';
 import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { redirect } from 'next/navigation';
 import QuestionFilters from '@/components/Questions/QuestionsFilter';
+import { getSkill } from '@/utils/skill';
 
 type Params = {
   params: { skill: QUESTION_SKILL; type: QUESTION_TYPE };
@@ -30,8 +31,8 @@ const areParamsValid = (skill: QUESTION_SKILL, type: QUESTION_TYPE) => {
 
 export async function generateMetadata({ params }: Params) {
   return getMetadata({
-    title: `${capitalize(params.skill)} ${capitalize(params.type)} Questions | Frontend Hire`,
-    description: `${capitalize(params.skill)} ${capitalize(params.type)} Questions meant for real world and interview based scenarios.`,
+    title: `${getSkill(params.skill)} ${capitalize(params.type)} Questions | Frontend Hire`,
+    description: `${getSkill(params.skill)} ${capitalize(params.type)} Questions meant for real world and interview based scenarios.`,
   });
 }
 
@@ -43,7 +44,7 @@ export default function QuestionTypePage({ params }: Params) {
   return (
     <article className="flex flex-col gap-5">
       <CustomHeading
-        title={`${capitalize(params.skill)} ${capitalize(params.type)} Questions`}
+        title={`${getSkill(params.skill)} ${capitalize(params.type)} Questions`}
         subTitle="Meant for real world and interview based scenarios."
       />
 

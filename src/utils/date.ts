@@ -5,5 +5,5 @@ export function isNew(date: Date | undefined) {
     return false;
   }
 
-  return differenceInDays(Date.now(), new Date(date)) < 20;
+  return differenceInDays(Date.now(), date) < 20;
 }
