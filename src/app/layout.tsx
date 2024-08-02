@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import { PHProvider } from '@/providers/PHProvider';
 
 import dynamic from 'next/dynamic';
-import CourseBanner from '@/components/CourseBanner';
+import TopBanner from '@/components/TopBanner';
 import { cn } from '@/lib/utils';
 import { getMetadata } from '@/lib/getMetadata';
 import Script from 'next/script';
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         >
           <PostHogPageView />
           <div className="flex flex-1 flex-col">
-            <CourseBanner isRootTop />
+            <TopBanner />
             {children}
           </div>
         </body>

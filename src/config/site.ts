@@ -127,10 +127,12 @@ export const getFooterLinks = (isProUser?: boolean) => {
 };
 
 export const BANNER_CONFIG = {
-  show: false,
-  text: 'A free live webinar on React Hooks is happening soon.',
+  show: true,
+  isInternational: true,
+  showForProUser: false,
+  text: 'We are running a 30% sale for the next 10 sales.',
   cta: {
-    text: 'Book your seat now!',
-    href: 'https://topmate.io/iamyhr/796317',
+    text: 'Get Pro Plan Now!',
+    href: '/pricing',
   },
 };
