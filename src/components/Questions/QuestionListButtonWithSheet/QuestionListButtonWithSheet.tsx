@@ -27,16 +27,16 @@ export default function QuestionListButtonWithSheet({
 }: QuestionListButtonWithSheetProps) {
   return (
     <Sheet>
-      <SheetTrigger>
-        <Tooltip title={`Questions List`}>
+      <Tooltip title="Questions List">
+        <SheetTrigger asChild>
           <Button
             className="rounded-t-none bg-card hover:bg-card/90 active:bg-card/80"
             size="icon"
           >
             <ListIcon />
           </Button>
-        </Tooltip>
-      </SheetTrigger>
+        </SheetTrigger>
+      </Tooltip>
       <SheetContent
         side="left"
         className="max-h-screen space-y-4 overflow-y-auto"
