@@ -16,5 +16,7 @@ export const meta: Cohort = {
     'how-to-run-javascript': 'How to Run JavaScript?',
     comments: 'Comments',
     variables: 'Variables',
+    'variables-exercise': 'Exercise: Variables',
+    'data-types': 'Data Types',
   },
 };
