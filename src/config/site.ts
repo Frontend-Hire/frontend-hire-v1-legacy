@@ -130,7 +130,7 @@ export const BANNER_CONFIG = {
   show: true,
   isInternational: true,
   showForProUser: false,
-  text: 'We are running a 30% sale for the next 10 sales.',
+  text: 'We are running a 30% sale for the next 10 sales. Use code "INT30" to get it!',
   cta: {
     text: 'Get Pro Plan Now!',
     href: '/pricing',
