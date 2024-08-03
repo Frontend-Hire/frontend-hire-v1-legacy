@@ -7,7 +7,7 @@ import {
 
 export const meta: Question = {
   id: 'use-effect-1',
-  title: 'useEffect - 1',
+  title: 'Hooks: useEffect - 1',
   description:
     'The useEffect hook is notorious to cause majority of bugs in most React projects. Can you solve a similar bug?',
   type: QUESTION_TYPE.CODING,
