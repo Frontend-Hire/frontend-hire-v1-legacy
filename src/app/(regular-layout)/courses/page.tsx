@@ -1,10 +1,9 @@
 import CustomHeading from '@/components/CustomHeading';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import CourseCardItem from './_components/CourseCardItem';
-import CourseBanner from '@/components/CourseBanner';
-import Link from 'next/link';
 import { getCoursesFromLocal } from '@/lib/fetchLocalFiles';
 import { getMetadata } from '@/lib/getMetadata';
+import Link from 'next/link';
+import CourseCardItem from './_components/CourseCardItem';
 
 export const metadata = getMetadata({
   title: 'Courses | Frontend Hire',
@@ -21,8 +20,6 @@ export default async function CoursesPage() {
         title="Courses"
         subTitle="All courses in text, select ones in video. Free and paid options. All meant to make you a better developer."
       />
-
-      <CourseBanner />
 
       <VisuallyHidden>Course List</VisuallyHidden>
       <ul className="grid justify-items-stretch gap-4 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 xl:grid-cols-4">
