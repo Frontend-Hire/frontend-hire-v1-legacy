@@ -24,7 +24,7 @@ export default function DeleteCodeSubmissionsButtonWithAlert() {
 
       if (user) {
         await supabaseBrowserClient
-          .from('code_submissions')
+          .from('code_history')
           .delete()
           .eq('user_id', user.id);
       }
