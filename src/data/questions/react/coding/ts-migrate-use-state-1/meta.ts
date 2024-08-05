@@ -12,6 +12,7 @@ export const meta: Question = {
     'Remember our question "useState - 1" but that was in JavaScript. Try to migrate it to TypeScript.',
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.LOCAL,
-  publishedOn: new Date('2024-08-03'),
+  publishedOn: new Date('2024-08-05'),
+  isFree: true,
   difficulty: DIFFICULTY.EASY,
 };
