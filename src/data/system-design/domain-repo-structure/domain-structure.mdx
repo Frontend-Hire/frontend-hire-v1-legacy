@@ -8,9 +8,9 @@ export const meta = {
 
 Let us have a look at the requirements again:
 
-- A landing page
-- A product (a web app called FEH Store) with three different types of users: customers, employees, and admins
-- Another product (a web app called FEH Learn) with two different types of users: learners and teachers
+- A landing page with products, pricing, and blog. (let us call this company as just `company`)
+- A product (a web app called `Store`) with three different types of users: customers, employees, and admins
+- Another product (a web app called `Learn`) with two different types of users: learners and teachers
 
 Before we try to structure the domains, let us understand what a domain is.
 
@@ -45,10 +45,23 @@ There is virtually no limit to how many lower levels a domain can have. But most
 
 We know a bit about domains now. Let us try to use this knowledge to structure the domain structure for the landing page. This is going to be simple.
 
-Most companies have their landing or marketing pages with a domain like `company.com` but they also redirect the sub
+Most companies have their landing or marketing pages with a domain like `www.company.com` but they also sometimes have it on the naked domain like `company.com` and redirect `www.company.com` to it.
 
+## `Store` Product Domain Structure
+
+This is where we have to think a lot. But at the top of our minds, we can think of one major question.
+
+- Does this product have an independent domain?
+
+**If No**
+
+This is a quite common scenario. In this case, we can use the main company domain and create a subdomain like `store.company.com`.
+
+But there is a problem, what about the different types of users? We could 
+
+**Yes, at `store.com`**
 
 ## Further Reading
 
-- 
+- [Domain structure for SaaS products](https://ghinda.com/blog/products/2020/domain-structure-for-saas-products.html)
 - [Adding canonical tag in Next.js](https://rishimohan.me/blog/nextjs-canonical-tag)
