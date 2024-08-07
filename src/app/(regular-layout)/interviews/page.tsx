@@ -8,6 +8,7 @@ import { getMetadata } from '@/lib/getMetadata';
 export const metadata = getMetadata({
   title: 'Interviews | Frontend Hire',
   description: 'Simulated and Real Interviews for Frontend Developers',
+  canonical: '/interviews',
 });
 
 export default async function Projects() {

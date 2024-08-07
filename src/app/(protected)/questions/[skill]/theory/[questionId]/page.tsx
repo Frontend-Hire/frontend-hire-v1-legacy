@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Params) {
   return getMetadata({
     title: `${meta?.title || 'Question'} | Frontend Hire`,
     description: meta?.description,
+    canonical: `/questions/${params.skill}/theory/${params.questionId}`,
   });
 }
 

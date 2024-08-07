@@ -1,0 +1,54 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+export const meta = {
+  lastUpdated: '2024-08-08'
+}
+
+# Domain Structure
+
+Let us have a look at the requirements again:
+
+- A landing page
+- A product (a web app called FEH Store) with three different types of users: customers, employees, and admins
+- Another product (a web app called FEH Learn) with two different types of users: learners and teachers
+
+Before we try to structure the domains, let us understand what a domain is.
+
+## What is a domain?
+
+To access any website on the internet you have to know the IP Address of that website (Something like `142.250.71.46`, this is Google's IP Address) these IP Addresses are difficult to remember. So, to make it easier we instead use human-friendly names called domains (like `google.com`).
+
+<Callout>
+How to check the IP Address of a website? We can use the `nslookup` command. We use the domain name to get the IP Address in this case.
+
+```bash
+nslookup google.com
+
+Server:		192.168.0.1
+Address:	192.168.0.1#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 142.250.71.46
+```
+</Callout>
+
+### Parts of a Domain
+
+Every domain has parts to it. 
+
+For example, `google.com` has two parts: `google` and `com`. Here, `google` is called the **second-level domain (SLD)** and `com` is called the **top-level domain (TLD)**. In the case, of `google.co.in`, there are three parts: `google`, `co`, and `in`. `google` is called the **third-level domain**. `co` is the **SLD**. `in` is called the **TLD**. 
+
+There is virtually no limit to how many lower levels a domain can have. But mostly the levels are around 2-4. Alright, why is this important? Well, we will use this to structure our domains soon.
+
+## Landing Page Domain Structure
+
+We know a bit about domains now. Let us try to use this knowledge to structure the domain structure for the landing page. This is going to be simple.
+
+Most companies have their landing or marketing pages with a domain like `company.com` but they also redirect the sub
+
+
+## Further Reading
+
+- 
+- [Adding canonical tag in Next.js](https://rishimohan.me/blog/nextjs-canonical-tag)

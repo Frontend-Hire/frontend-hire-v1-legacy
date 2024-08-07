@@ -2,6 +2,7 @@ import { getCohortPage, getCohortPages } from '@/lib/fetchLocalFiles';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import ProtectedLayout from '@/components/ProtectedLayout';
 import ContentArticleLayout from '@/components/ContentArticleLayout';
+import { getMetadata } from '@/lib/getMetadata';
 
 type ChapterPageProps = {
   params: {
@@ -9,6 +10,16 @@ type ChapterPageProps = {
     cohortId: string;
   };
 };
+
+export async function generateMetadata({ params }: ChapterPageProps) {
+  const meta = await getCohortPages(params.cohortId);
+
+  return getMetadata({
+    title: `${meta?.title || 'Cohort'} | Frontend Hire`,
+    description: meta?.description,
+    image: meta.image,
+  });
+}
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { chapters, isPro } = await getCohortPages(params.cohortId);

@@ -13,6 +13,7 @@ export async function generateMetadata({
   return getMetadata({
     title: `${meta.title} | Frontend Hire`,
     description: meta.description,
+    canonical: `/blog/${params.post}`,
   });
 }
 

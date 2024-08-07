@@ -8,6 +8,7 @@ import { getMetadata } from '@/lib/getMetadata';
 export const metadata = getMetadata({
   title: 'Cohorts | Frontend Hire',
   description: 'Practical cohorts meant to help you get started with Frontend.',
+  canonical: '/cohorts',
 });
 
 export default async function CohortsPage() {

@@ -20,7 +20,7 @@ const inter = Inter({
 
 export const metadata = {
   metadataBase: new URL('https://frontendhire.com'),
-  ...getMetadata(),
+  ...getMetadata({ canonical: '/' }),
 };
 
 export default function RootLayout({ children }: React.PropsWithChildren) {

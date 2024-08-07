@@ -9,6 +9,7 @@ export const metadata = getMetadata({
   title: 'Mock Personal Interview | Frontend Hire',
   description:
     'The only great way to prepare for actual interviews and get actionable feedback.',
+  canonical: '/interviews/mock-personal-interview',
 });
 
 export default function MockPersonalInterview() {
