@@ -34,76 +34,6 @@ export type Database = {
   };
   public: {
     Tables: {
-      bug_files: {
-        Row: {
-          bug_id: number;
-          code: string;
-          created_at: string;
-          file_name: string;
-          id: number;
-        };
-        Insert: {
-          bug_id: number;
-          code: string;
-          created_at?: string;
-          file_name: string;
-          id?: number;
-        };
-        Update: {
-          bug_id?: number;
-          code?: string;
-          created_at?: string;
-          file_name?: string;
-          id?: number;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'bug_files_bug_id_fkey';
-            columns: ['bug_id'];
-            isOneToOne: false;
-            referencedRelation: 'bug_submissions';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      bug_submissions: {
-        Row: {
-          created_at: string;
-          description: string;
-          id: number;
-          is_fixed: boolean;
-          question_id: string;
-          sandbox_link: string | null;
-          user_id: string | null;
-        };
-        Insert: {
-          created_at?: string;
-          description: string;
-          id?: number;
-          is_fixed?: boolean;
-          question_id: string;
-          sandbox_link?: string | null;
-          user_id?: string | null;
-        };
-        Update: {
-          created_at?: string;
-          description?: string;
-          id?: number;
-          is_fixed?: boolean;
-          question_id?: string;
-          sandbox_link?: string | null;
-          user_id?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'bug_submissions_user_id_fkey1';
-            columns: ['user_id'];
-            isOneToOne: false;
-            referencedRelation: 'users';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
       code_history: {
         Row: {
           created_at: string;
@@ -164,67 +94,6 @@ export type Database = {
             columns: ['code_history_id'];
             isOneToOne: false;
             referencedRelation: 'code_history';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      code_submission_files: {
-        Row: {
-          code: string;
-          code_submission_id: number;
-          created_at: string;
-          file_name: string;
-          id: number;
-        };
-        Insert: {
-          code: string;
-          code_submission_id: number;
-          created_at?: string;
-          file_name: string;
-          id?: number;
-        };
-        Update: {
-          code?: string;
-          code_submission_id?: number;
-          created_at?: string;
-          file_name?: string;
-          id?: number;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'code_submission_files_code_submission_id_fkey';
-            columns: ['code_submission_id'];
-            isOneToOne: false;
-            referencedRelation: 'code_submissions';
-            referencedColumns: ['id'];
-          },
-        ];
-      };
-      code_submissions: {
-        Row: {
-          created_at: string;
-          id: number;
-          question_id: string;
-          user_id: string;
-        };
-        Insert: {
-          created_at?: string;
-          id?: number;
-          question_id: string;
-          user_id?: string;
-        };
-        Update: {
-          created_at?: string;
-          id?: number;
-          question_id?: string;
-          user_id?: string;
-        };
-        Relationships: [
-          {
-            foreignKeyName: 'code_submissions_user_id_fkey1';
-            columns: ['user_id'];
-            isOneToOne: false;
-            referencedRelation: 'users';
             referencedColumns: ['id'];
           },
         ];
@@ -331,7 +200,6 @@ export type Database = {
           created_at: string | null;
           display_name: string | null;
           email: string | null;
-          has_pro_access: boolean | null;
           id: string;
         };
         Insert: {
@@ -339,7 +207,6 @@ export type Database = {
           created_at?: string | null;
           display_name?: string | null;
           email?: string | null;
-          has_pro_access?: boolean | null;
           id: string;
         };
         Update: {
@@ -347,7 +214,6 @@ export type Database = {
           created_at?: string | null;
           display_name?: string | null;
           email?: string | null;
-          has_pro_access?: boolean | null;
           id?: string;
         };
         Relationships: [];
