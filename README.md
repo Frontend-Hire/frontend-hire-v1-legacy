@@ -39,7 +39,7 @@ SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET=your_google_secret
 
 After the successful installation of supabase locally. We can install and run frontend-hire. Follow the steps:
 
-1. Install dependencies: `npm install`
+1. Install dependencies: `pnpm install`
 
 2. Create the `.env.local` which should have the following keys for the supabase backend. These should remain the same for every local supabase development environment.
 
@@ -51,4 +51,4 @@ SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 
 The keys are displayed when you start the supabase service or you can get them by running command `npx supabase status`.
 
-3. Once all things are in there respective places, start the application using `npm run dev`.
+3. Once all things are in their respective places, start the application using `pnpm dev`.

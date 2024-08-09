@@ -7,8 +7,8 @@ export const meta: SystemDesign = {
     'How would you setup the domains and repositories for company with multiple user facing web apps?',
   link: '/system-design/domain-repo-structure/overview',
   isPro: true,
-  isPublished: true,
-  publishedOn: new Date('2024-08-08'),
+  isPublished: false,
+  publishedOn: new Date('2024-08-09'),
   chapters: {
     overview: 'Overview',
     'domain-structure': 'Domain Structure',
