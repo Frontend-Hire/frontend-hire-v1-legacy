@@ -8,6 +8,7 @@ import { getMetadata } from '@/lib/getMetadata';
 export const metadata = getMetadata({
   title: 'Settings | Frontend Hire',
   description: 'Manage all your account related stuff',
+  canonical: '/settings',
 });
 
 export default function Settings() {

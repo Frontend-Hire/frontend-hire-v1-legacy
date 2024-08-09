@@ -9,6 +9,7 @@ import Link from 'next/link';
 export const metadata = getMetadata({
   title: 'Blog | Frontend Hire',
   description: 'Our write-ups on everything in the frontend world.',
+  canonical: '/blog',
 });
 
 export default async function Blog() {

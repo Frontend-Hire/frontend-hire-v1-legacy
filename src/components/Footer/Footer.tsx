@@ -22,7 +22,16 @@ export default function Footer({ isCompact, className }: FooterProps) {
           className,
         )}
       >
-        © YHR Technologies {thisYear} | Frontend Hire
+        ©{' '}
+        <Link
+          className="px-1 transition-colors hover:text-link"
+          prefetch={false}
+          target="_blank"
+          href="https://www.withyhr.com/"
+        >
+          YHR Technologies
+        </Link>{' '}
+        {thisYear} | Frontend Hire
       </footer>
     );
   }
@@ -47,6 +56,7 @@ export default function Footer({ isCompact, className }: FooterProps) {
             <Link
               className="underline underline-offset-2 transition-colors hover:text-primary-foreground"
               prefetch={false}
+              target="_blank"
               href="https://www.withyhr.com/"
             >
               YHR Technologies

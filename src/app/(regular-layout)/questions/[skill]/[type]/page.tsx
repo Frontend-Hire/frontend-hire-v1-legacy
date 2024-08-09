@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Params) {
   return getMetadata({
     title: `${getSkill(params.skill)} ${capitalize(params.type)} Questions | Frontend Hire`,
     description: `${getSkill(params.skill)} ${capitalize(params.type)} Questions meant for real world and interview based scenarios.`,
+    canonical: `/questions/${params.skill}/${params.type}`,
   });
 }
 

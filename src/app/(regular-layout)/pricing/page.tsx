@@ -6,6 +6,7 @@ import { getMetadata } from '@/lib/getMetadata';
 export const metadata = getMetadata({
   title: 'Pricing | Frontend Hire',
   description: 'Our Pricing for Pro Content on Frontend Hire',
+  canonical: '/pricing',
 });
 
 export default function PricingPage() {

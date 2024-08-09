@@ -2,6 +2,7 @@ import { getCoursePage, getCoursePages } from '@/lib/fetchLocalFiles';
 import PremiumProtectedContentLayout from '@/components/PremiumProtectedContentLayout';
 import ProtectedLayout from '@/components/ProtectedLayout';
 import ContentArticleLayout from '@/components/ContentArticleLayout';
+import { getMetadata } from '@/lib/getMetadata';
 
 type ChapterPageProps = {
   params: {
@@ -9,6 +10,17 @@ type ChapterPageProps = {
     courseId: string;
   };
 };
+
+export async function generateMetadata({ params }: ChapterPageProps) {
+  const meta = await getCoursePages(params.courseId);
+
+  return getMetadata({
+    title: `${meta?.title || 'Course'} | Frontend Hire`,
+    description: meta?.description,
+    image: meta.image,
+    canonical: `/courses/${params.courseId}/${params.chapter}`,
+  });
+}
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { chapters, isPro } = await getCoursePages(params.courseId);

@@ -1,0 +1,203 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+export const meta = {
+  lastUpdated: '2024-08-08'
+}
+
+# Domain Structure
+
+Let us have a look at the requirements again:
+
+- A marketing site with a products page, pricing page, and blog page. (let us call this company as just `company`)
+- A product (a web app called `Store`) with three different types of users: customers, employees, and admins
+- Another product (a web app called `Learn`) with two different types of users: learners and teachers
+
+Before we try to structure the domains, let us understand what a domain is.
+
+## What is a domain?
+
+To access any website on the internet you have to know the IP Address of that website (Something like `142.250.71.46`, this is Google's IP Address) these IP Addresses are difficult to remember. So, to make it easier we instead use human-friendly names called domains (like `google.com`).
+
+<Callout>
+How to check the IP Address of a website? We can use the `nslookup` command. We use the domain name to get the IP Address in this case.
+
+```bash
+nslookup google.com
+
+Server:		192.168.0.1
+Address:	192.168.0.1#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 142.250.71.46
+```
+</Callout>
+
+### Parts of a Domain
+
+Every domain has parts to it. 
+
+For example, `google.com` has two parts: `google` and `com`. Here, `google` is called the **second-level domain (SLD)** and `com` is called the **top-level domain (TLD)**. In the case, of `google.co.in`, there are three parts: `google`, `co`, and `in`. `google` is called the **third-level domain**. `co` is the **SLD**. `in` is called the **TLD**. 
+
+There is virtually no limit to how many lower levels a domain can have. But mostly the levels are around 2-4. Alright, why is this important? Well, we will use this to structure our domains soon.
+
+<Callout>
+We call URLs that use directories after the main domain (like company.com/blog) **"subdirectories"** while URLs that add a prefix before the main domain (like blog.company.com) are called **"subdomains"**.
+</Callout>
+
+## Marketing Site Domain Structure
+
+We know a bit about domains now. Let us try to use this knowledge to structure the domain structure for the marketing site. This is going to be simple.
+
+Most companies have their landing or marketing pages with a domain like `www.company.com` but they also sometimes have it on the naked domain like `company.com` and redirect `www.company.com` to it.
+
+In our case, we also have three more pages: `products`, `pricing`, and `blog`.
+
+We can structure these as subdirectories, something like this:
+
+- **www.company.com**
+- **www.company.com/products**
+- **www.company.com/pricing**
+- **www.company.com/blog**
+
+But depending on the requirements, we can create a subdomain for the blog instead like `blog.company.com`.
+
+Things that favor a subdomain for the blog are the following:
+
+- The blog has grown significantly and requires its own technical infrastructure.
+- The blog has a distinct brand identity or target audience.
+- There's a need for more flexibility in managing the blog separately from the main site.
+- The company plans to expand the blog into a more substantial content platform.
+
+<Callout>
+Having a subdomain for a blog can potentially dilute the SEO value of the main marketing site. 
+</Callout>
+
+### Real World Examples
+
+- Try to search for [whatsapp.com](https://whatsapp.com/) and see what happens.
+
+- We get redirected to `https://www.whatsapp.com/`.
+
+- Now, search for [openai.com](https://openai.com/) and see what happens.
+
+- We are **not redirected** and are on the same domain `https://openai.com/`.
+
+What about their `blog` page? 
+
+- WhatsApp has the blog located at a subdomain [blog.whatsapp.com](https://blog.whatsapp.com/).
+
+- Whereas OpenAI has its news page (just like a blog) on the main domain [openai.com/news](https://openai.com/news/).
+
+## Store Product Domain Structure
+
+This is where we have to think a lot. But at the top of our minds, we can think of one major question.
+
+> Does this product have an independent domain?
+
+**If No**
+
+This is a quite common scenario. In this case, we can use the main company domain and create a subdomain like `store.company.com`.
+
+However, an alternative approach is to use the main domain with subdirectories, like company.com/store. While this can work, it's important to consider potential URL clashes:
+
+- **Existing content:** If company.com already has a rich structure of pages and content, adding `/store` and its subsequent pages might conflict with existing or future content plans.
+
+- **Naming conflicts:** There's a risk of path naming conflicts. For example: `company.com/products` might be intended to showcase the company's main products or services. `company.com/store/products` would be needed for the store's product listings. This can lead to confusion for both users and content managers.
+
+- **Depth of URL structure:** Using the main domain might result in deeper URL structures, like `company.com/store/category/subcategory/product-name`. This can make URLs longer and potentially less user-friendly.
+
+- **Future expansion:** As the store grows, it might require more complex URL structures, which could increasingly conflict with the main site's content.
+
+- **Shared resources:** Using the main domain might cause conflicts in shared resources like robots.txt, sitemaps, and certain types of cookies or local storage.
+
+- **Analytics and tracking:** It may be more challenging to separate analytics data for the store from the main site when they share the same domain.
+
+To mitigate these issues, using a subdomain like `store.company.com` can provide a cleaner separation and reduce the risk of URL clashes. It allows for:
+
+- Independent URL structures
+- Clearer division of content
+- Easier management of store-specific resources
+- More straightforward analytics separation
+
+But there is still a problem: what about the different types of users?
+
+We have three types of users: customers, employees, and admins. So, we could again structure it like this:
+
+- **For customers:** `store.company.com` or maybe `store.company.com/customers` or `customers.store.company.com`
+- **For employees:** `store.company.com/employees` or `employees.store.company.com`
+- **For admins:** `store.company.com/admins` or `admins.store.company.com`
+
+The way you structure depends on how complex each of the user's operations are.
+
+**Yes, at `store.com`**
+
+If the store has its independent domain, we have more flexibility in structuring the URLs. Here's a possible setup:
+
+- Maybe another marketing site at `www.store.com` or `store.com`
+- **For customers:** `customers.store.com` or `store.com/customers`
+- **For employees:** `employees.store.com` or `store.com/employees`
+- **For admins:** `admin.store.com` or `store.com/admins`
+
+### Real World Examples
+
+WhatsApp is again a good example here. They have two types of users: web (regular users) and business (business users).
+
+Their `web` product is at [web.whatsapp.com](https://web.whatsapp.com/) and their `business` product is at [business.whatsapp.com](https://business.whatsapp.com/).
+
+## Learn Product Domain Structure
+
+This is similar to the store domain structure. We can use the same approach.
+
+As with the store product, we need to consider the primary question:
+
+> Does this learning product have an independent domain?
+
+**If No**
+
+In this scenario, we can utilize the main company domain and create a subdomain like `learn.company.com`.
+
+Alternatively, we could use the main domain with subdirectories, such as company.com/learn. However, this approach comes with similar considerations and potential issues as discussed in the store product section:
+
+- Potential conflicts with existing content
+- Naming conflicts
+- Deep URL structures
+- Future expansion limitations
+- Shared resource management
+- Analytics and tracking challenges
+
+Using a subdomain like `learn.company.com` can provide a cleaner separation and reduce these risks.
+
+For different user types, we could structure it as follows:
+
+- **For learners:** `learn.company.com` or maybe `learn.company.com/students` or `students.learn.company.com`
+- **For teachers:** `learn.company.com/instructors` or `instructors.learn.company.com`
+
+The specific structure would depend on the complexity of each user type's operations and the desired level of separation.
+
+**Yes, at learn.com**
+If the learning product has its own independent domain, we have more flexibility in structuring the URLs. Here's a possible setup:
+
+- Main site or marketing page: `www.learn.com` or `learn.com`
+- **For students:** `students.learn.com` or `learn.com/students`
+- **For instructors:** `instructors.learn.com` or `learn.com/instructors`
+- **For admins:** `admin.learn.com` or `learn.com/admins`
+
+### Real World Examples
+
+Udemy is a great example here that mixes different types of users.
+
+- **Main site:** `www.udemy.com`
+- **For learners:** `www.udemy.com`
+- **For instructors:** `www.udemy.com/teaching`
+- **For organizations:** `business.udemy.com`
+
+## Conclusion
+
+Great, we saw how to structure the domains. Let us also see how to structure the repositories of these projects in the next section.
+
+## Further Reading
+
+- [Domain structure for SaaS products](https://ghinda.com/blog/products/2020/domain-structure-for-saas-products.html)
+- [Subdomains for SEO: Should You Use Them? Why & Why Not](https://www.seo.com/blog/subdomains-for-seo)
+- [Adding canonical tag in Next.js](https://rishimohan.me/blog/nextjs-canonical-tag)

@@ -9,6 +9,7 @@ import { getMetadata } from '@/lib/getMetadata';
 export const metadata = getMetadata({
   title: 'System Design | Frontend Hire',
   description: 'Our take on Frontend System Design',
+  canonical: '/system-design',
 });
 
 export default async function SystemDesignPage() {

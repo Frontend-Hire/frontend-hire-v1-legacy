@@ -9,6 +9,7 @@ export const metadata = getMetadata({
   title: 'Courses | Frontend Hire',
   description:
     'All courses in text, select ones in video. Free and paid options. All meant to make you a better developer.',
+  canonical: '/courses',
 });
 
 export default async function CoursesPage() {

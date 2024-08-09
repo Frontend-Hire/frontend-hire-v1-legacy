@@ -7,6 +7,7 @@ import { QUESTION_CATEGORIES } from '@/config/questionCategories';
 export const metadata = getMetadata({
   title: 'Questions | Frontend Hire',
   description: 'Questions meant for real world and interview based scenarios.',
+  canonical: '/questions',
 });
 
 export default function Questions() {

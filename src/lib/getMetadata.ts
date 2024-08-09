@@ -6,16 +6,23 @@ type MetadataProps = {
   title?: string;
   description?: string;
   image?: StaticImageData;
+  canonical?: string;
 };
 
 export const getMetadata = ({
   title = 'Frontend Hire',
-  description = 'A frontend coding platform for actual development skills and interviews',
+  description = 'We are solving Frontend Interviews and Hiring. Our platform helps developers build essential frontend skills, preparing them for technical interviews and real-world development.',
   image = socialPreviewImage,
+  canonical,
 }: MetadataProps = {}): Metadata => {
   return {
     title,
     description,
+    alternates: {
+      canonical: canonical,
+    },
+    creator: 'Hruthik Reddy',
+    authors: [{ name: 'Hruthik Reddy', url: 'https://www.iamyhr.com' }],
     openGraph: {
       title,
       description,
