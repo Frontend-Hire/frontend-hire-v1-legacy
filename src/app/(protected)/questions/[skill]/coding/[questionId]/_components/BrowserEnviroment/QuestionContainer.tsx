@@ -1,4 +1,5 @@
 import DifficultyBadge from '@/components/DifficultyBadge';
+import ProseContent from '@/components/ProseContent';
 import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import { Question } from '@/types/Question';
 
@@ -17,11 +18,7 @@ export default function QuestionContainer({
     {
       label: 'Question',
       value: 'Question',
-      content: (
-        <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
-          {questionContent}
-        </div>
-      ),
+      content: <ProseContent>{questionContent}</ProseContent>,
     },
   ];
 
@@ -29,11 +26,7 @@ export default function QuestionContainer({
     tabs.push({
       label: 'Solution',
       value: 'Solution',
-      content: (
-        <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
-          {solutionContent}
-        </div>
-      ),
+      content: <ProseContent>{solutionContent}</ProseContent>,
     });
   }
 
