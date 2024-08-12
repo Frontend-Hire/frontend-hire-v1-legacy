@@ -1,9 +1,35 @@
 import { Callout } from '@/components/MarkdownComponents';
 
 export const meta = {
-  lastUpdated: '2024-08-02'
+  lastUpdated: '2024-08-10'
 }
 
 # Data Types
 
-Work in progress
+We learned how to declare and initialize variables. But what are the actual types of these variables? How many different types of data can we store in JavaScript? This section is all about that.
+
+One thing to note is that JavaScript is `dynamically typed`. This means you do not have to declare the type of a variable and can store a different type of data in the same variable later on.
+
+You can always check the type of a variable by using the [typeof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) operator. There are some **gotchas** with that but we'll cover them in this section.
+
+Quick Example:
+
+```js
+let numberVariable = 42;
+
+// You can always check the type of a variable 
+// by using the typeof operator
+console.log(typeof numberVariable); // number
+
+// But nothing stops you from reassigning a string in the same variable
+numberVariable = 'forty two';
+
+console.log(typeof numberVariable); // string
+```
+
+<Callout type='error'>
+We said JavaScript is `dynamically typed` but we do not recommend you try to change the type of a variable like in the example. Be conscious about the code you write, it should be predictable.
+</Callout>
+
+## Number Type
+
