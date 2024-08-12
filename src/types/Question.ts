@@ -4,9 +4,10 @@ import {
 } from '@codesandbox/sandpack-react';
 
 export enum QUESTION_SKILL {
-  REACT = 'react',
-  JAVASCRIPT = 'javascript',
+  WEB = 'web',
   CSS = 'css',
+  JAVASCRIPT = 'javascript',
+  REACT = 'react',
   NEXT = 'next',
 }
 

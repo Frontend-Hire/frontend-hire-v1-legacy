@@ -1,0 +1,61 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# What is a Domain?
+
+> Be clear, crisp, and concise when answering this question. If you are unsure about something, let the interviewer know. It is completely okay to be unsure.
+
+## Answer
+
+To access any website on the internet you have to know the IP Address of that website (Something like `142.250.71.46`, this is Google's IP Address) these IP Addresses are difficult to remember. So, to make it easier we instead use human-friendly names called domains (like `google.com`).
+
+<Callout>
+How to check the IP Address of a website? We can use the `nslookup` command. We use the domain name to get the IP Address in this case.
+
+```bash
+nslookup google.com
+
+Server:		192.168.0.1
+Address:	192.168.0.1#53
+
+Non-authoritative answer:
+Name:	google.com
+Address: 142.250.71.46
+```
+</Callout>
+
+## Follow Up Questions
+
+### What is DNS?
+
+Domain Naming System (DNS) is the system that maps those domain names to IP addresses. When we type a domain name in the browser, it is translated to an IP address. We call this process DNS Resolution.
+
+<Callout type="error">
+DNS is a huge topic. We will break down the topic with further standalone questions. But as a follow-up question, the above answer is enough.
+</Callout>
+
+### How many parts does a domain have?
+
+Every domain has parts to it. 
+
+For example, `google.com` has two parts: `google` and `com`. Here, `google` is called the **second-level domain (SLD)** and `com` is called the **top-level domain (TLD)**. In the case, of `google.co.in`, there are three parts: `google`, `co`, and `in`. `google` is called the **third-level domain**. `co` is the **SLD**. `in` is called the **TLD**. 
+
+There is virtually no limit to how many lower levels a domain can have. But mostly the levels are around 2-4.
+
+### What is a subdomain?
+
+The subdomain is an independent domain part of a main domain. For example, if we have `company.com` and `store.company.com`, `company.com` is the **main domain** and `blog.company.com` is the **subdomain**.
+
+Subdomains help us to better organize our web entities or projects.
+
+<Callout>
+We call URLs that use directories after the main domain (like company.com/blog) **"subdirectories"** while URLs that add a prefix before the main domain (like blog.company.com) are called **"subdomains"**.
+</Callout>
+
+<Callout>
+If this was asked in an interview, and if you have researched the company and its products or services. Try to take direct examples from the company to answer this question.
+</Callout>
+
+## Resources
+
+- [Cloudflare: What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/)
+- [Semrush: What is a subdomain?](https://www.semrush.com/blog/what-is-a-subdomain/)
