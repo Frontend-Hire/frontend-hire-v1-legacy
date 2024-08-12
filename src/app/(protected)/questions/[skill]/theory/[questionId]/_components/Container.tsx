@@ -1,8 +1,9 @@
+import DifficultyBadge from '@/components/DifficultyBadge';
+import ProseContent from '@/components/ProseContent';
+import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import { Question } from '@/types/Question';
 import PrimaryLayout from '../_layout/PrimaryLayout';
 import Header from './Header';
-import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
-import DifficultyBadge from '@/components/DifficultyBadge';
 
 type ContainerProps = {
   questionsListButtonWithSheet: React.ReactNode;
@@ -34,11 +35,7 @@ export default function Container({
             {
               label: 'Question',
               value: 'Question',
-              content: (
-                <div className="prose prose-invert max-w-none p-4 prose-h2:mt-5 prose-code:rounded prose-code:bg-primary/80 prose-code:p-0.5 prose-code:before:content-[''] prose-code:after:content-['']">
-                  {questionContent}
-                </div>
-              ),
+              content: <ProseContent>{questionContent}</ProseContent>,
             },
           ]}
         />
