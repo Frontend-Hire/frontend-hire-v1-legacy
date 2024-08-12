@@ -165,3 +165,71 @@ Since we do not have any more checks to perform, a direct return is sufficient. 
 All the tests should now pass.
 
 Compare this refactored version to our original code. The refactored version is much more readable and maintainable.
+
+## Full Code
+
+```js title="index.test.js"
+import { describe, test, expect } from 'vitest';
+
+import { processOrder } from '.';
+
+describe('refactor-early-returns-1', () => {
+  test('order is not paid', () => {
+    expect(processOrder({ isPaid: false })).toBe('Order is not paid.');
+  });
+
+  test('order is paid but not shipped', () => {
+    expect(processOrder({ isPaid: true, isShipped: false, isCanceled: false })).toBe(
+      'Order is paid but not shipped.',
+    );
+
+    expect(processOrder({ isPaid: true, isShipped: false })).toBe(
+      'Order is paid but not shipped.',
+    );
+  });
+
+  test('order is shipped', () => {
+    expect(processOrder({ isPaid: true, isShipped: true })).toBe(
+      'Order is shipped.',
+    );
+
+    expect(processOrder({ isPaid: true, isShipped: true, isCanceled: true })).toBe(
+      'Order is shipped.',
+    );
+
+    expect(processOrder({ isPaid: true, isShipped: true, isCanceled: false })).toBe(
+      'Order is shipped.',
+    );
+  });
+
+  test('order is canceled', () => {
+    expect(processOrder({ isPaid: true, isShipped: false, isCanceled: true })).toBe(
+      'Order is canceled.',
+    );
+  });
+});
+```
+
+```js title="index.js"
+/**
+ * Processes an order based on its payment and shipping status.
+ *
+ * @param {{isPaid: boolean, isShipped?: boolean, isCanceled?: boolean}} order - An object representing the order, with boolean properties 'isPaid', 'isShipped', and 'isCanceled'.
+ * @return {string} A message describing the order's status.
+ */
+export function processOrder(order) {
+  if (!order.isPaid) {
+    return 'Order is not paid.';
+  }
+
+  if (order.isShipped) {
+    return 'Order is shipped.';
+  }
+
+  if (order.isCanceled) {
+    return 'Order is canceled.';
+  }
+
+  return 'Order is paid but not shipped.';
+}
+```
