@@ -8,6 +8,11 @@ type QuestionCategory = {
 
 export const QUESTION_CATEGORIES: QuestionCategory[] = [
   {
+    id: 'web/theory',
+    title: 'Web Theory',
+    className: `hover:bg-primary`,
+  },
+  {
     id: 'css/coding',
     title: 'CSS Coding',
     className: `hover:bg-[hsl(203,66%,54%)]`,
