@@ -8,7 +8,7 @@ export const meta: Cohort = {
     'The only HTML cohort you need to get started with HTML. This course will teach you everything you need to get started with HTML.',
   link: 'cohorts/html-v1/overview',
   image: image,
-  isPublished: false,
+  isPublished: true,
   publishedOn: new Date('2024-08-20'),
   isPro: false,
   chapters: {
