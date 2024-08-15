@@ -15,8 +15,8 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "@codemirror/view": "^6.30.0",
-    "@codesandbox/sandpack-react": "^2.18.0",
+    "@codemirror/view": "^6.32.0",
+    "@codesandbox/sandpack-react": "^2.18.2",
     "@lemonsqueezy/lemonsqueezy.js": "^3.0.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",

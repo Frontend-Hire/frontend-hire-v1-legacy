@@ -2,13 +2,9 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import Tooltip from '@/components/ui/tooltip';
 import VisuallyHidden from '@/components/ui/visually-hidden';
-import {
-  CodeEditorRef,
-  useActiveCode,
-  useSandpack,
-} from '@codesandbox/sandpack-react';
+import { CodeEditorRef } from '@codesandbox/sandpack-react';
 import { SparklesIcon } from 'lucide-react';
-import { formatCodeWithPrettier } from './utils';
+import usePrettier from '@/hooks/usePrettier';
 
 type PrettierButtonProps = {
   editorInstance: React.RefObject<CodeEditorRef>;
@@ -16,17 +12,11 @@ type PrettierButtonProps = {
 
 const PrettierButton = React.forwardRef<HTMLButtonElement, PrettierButtonProps>(
   ({ editorInstance }, ref) => {
-    const { code, updateCode, readOnly } = useActiveCode();
-    const {
-      sandpack: { activeFile },
-    } = useSandpack();
+    const { prettify, readOnly } = usePrettier();
 
-    const prettify = async () => {
+    const onPretty = async () => {
       try {
-        if (readOnly) return;
-
-        const prettyCode = await formatCodeWithPrettier(code, activeFile);
-        updateCode(prettyCode);
+        await prettify();
 
         if (!editorInstance) return;
         editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
@@ -40,7 +30,7 @@ const PrettierButton = React.forwardRef<HTMLButtonElement, PrettierButtonProps>(
         <Button
           ref={ref}
           disabled={readOnly}
-          onClick={prettify}
+          onClick={onPretty}
           variant="ghost"
           size="icon"
           className="rounded-none"

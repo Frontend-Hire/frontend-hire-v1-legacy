@@ -5,13 +5,15 @@ export const meta: Cohort = {
   id: 'html-v1',
   title: 'Learn HTML V1',
   description:
-    'You do not have to learn everything about JavaScript. This course will teach you almost everything that you need to get started with JavaScript.',
+    'The only HTML cohort you need to get started with HTML. This course will teach you everything you need to get started with HTML.',
   link: 'cohorts/html-v1/overview',
   image: image,
-  isPublished: true,
+  isPublished: false,
   publishedOn: new Date('2024-08-20'),
   isPro: false,
   chapters: {
     overview: 'Overview',
+    'how-to-run-html': 'How to run HTML?',
+    headings: 'Headings',
   },
 };

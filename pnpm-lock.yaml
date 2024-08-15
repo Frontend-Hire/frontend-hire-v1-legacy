@@ -8,11 +8,11 @@ importers:
   .:
     dependencies:
       '@codemirror/view':
-        specifier: ^6.30.0
-        version: 6.30.0
+        specifier: ^6.32.0
+        version: 6.32.0
       '@codesandbox/sandpack-react':
-        specifier: ^2.18.0
-        version: 2.18.0(@lezer/common@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: ^2.18.2
+        version: 2.18.2(@lezer/common@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@lemonsqueezy/lemonsqueezy.js':
         specifier: ^3.0.0
         version: 3.0.0
@@ -488,22 +488,16 @@ packages:
         integrity: sha512-wzRkluWb1ptPKdzlsrbwwjYCPLgzU6N88YBAmlZi8WFyuiEduSd05MnJYNogzyc8rPK7pj6m95ptUApc8sHKVA==,
       }
 
-  '@codemirror/state@6.2.1':
-    resolution:
-      {
-        integrity: sha512-RupHSZ8+OjNT38zU9fKH2sv+Dnlr8Eb8sl4NOnnqz95mCFTZUaiRP8Xv5MeeaG0px2b8Bnfe7YGwCV3nsBhbuw==,
-      }
-
   '@codemirror/state@6.4.1':
     resolution:
       {
         integrity: sha512-QkEyUiLhsJoZkbumGZlswmAhA7CBU02Wrz7zvH4SrcifbsqwlXShVXg65f3v/ts57W3dqyamEriMhij1Z3Zz4A==,
       }
 
-  '@codemirror/view@6.30.0':
+  '@codemirror/view@6.32.0':
     resolution:
       {
-        integrity: sha512-96Nmn8OeLh6aONQprIeYk8hGVnEuYpWuxKSkdsODOx9hWPxyuyZGvmvxV/JmLsp+CubMO1PsLaN5TNNgrl0UrQ==,
+        integrity: sha512-AgVNvED2QTsZp5e3syoHLsrWtwJFYWdx1Vr/m3f4h1ATQz0ax60CfXF3Htdmk69k2MlYZw8gXesnQdHtzyVmAw==,
       }
 
   '@codesandbox/nodebox@0.1.8':
@@ -512,16 +506,16 @@ packages:
         integrity: sha512-2VRS6JDSk+M+pg56GA6CryyUSGPjBEe8Pnae0QL3jJF1mJZJVMDKr93gJRtBbLkfZN6LD/DwMtf+2L0bpWrjqg==,
       }
 
-  '@codesandbox/sandpack-client@2.18.0':
+  '@codesandbox/sandpack-client@2.18.2':
     resolution:
       {
-        integrity: sha512-KGNjKMAwaOkpRW2PbAzqjkYndgreM1aERlSJ1YpjWQRy6br72GiandWPFgdF8UpzwKNetkLUyuJ/XT12sehl4A==,
+        integrity: sha512-zKSZWoCqpUFHqSbG1Q88ICqbY/nKKTY3rKKxTdNCSv0miI3JAR671kFcq6fkoCYVHFg6WIVpW7EzYwA/TYzX0w==,
       }
 
-  '@codesandbox/sandpack-react@2.18.0':
+  '@codesandbox/sandpack-react@2.18.2':
     resolution:
       {
-        integrity: sha512-WYsezuoBFw5v4CS29fDib3tanU7JbZkydtXp3543PoczC4bJZztmVPjC2PgqG90VRjxXRv37UD7HClqqPL1aiw==,
+        integrity: sha512-OvXHAUKTjqXfjB9qd+6Pt3Pzjpk2/SRxVFUAC7cRwnSap3X7T0uBDdoRIJTlueXVrD+F1FkaGRzIE5GgGm4FEQ==,
       }
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
@@ -8388,25 +8382,25 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  '@codemirror/autocomplete@6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.30.0)(@lezer/common@1.1.0)':
+  '@codemirror/autocomplete@6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.1.0)':
     dependencies:
       '@codemirror/language': 6.9.1
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       '@lezer/common': 1.1.0
 
   '@codemirror/commands@6.3.0':
     dependencies:
       '@codemirror/language': 6.9.1
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       '@lezer/common': 1.1.0
 
-  '@codemirror/lang-css@6.2.1(@codemirror/view@6.30.0)':
+  '@codemirror/lang-css@6.2.1(@codemirror/view@6.32.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.30.0)(@lezer/common@1.1.0)
+      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.1.0)
       '@codemirror/language': 6.9.1
-      '@codemirror/state': 6.2.1
+      '@codemirror/state': 6.4.1
       '@lezer/common': 1.1.0
       '@lezer/css': 1.1.3
     transitivePeerDependencies:
@@ -8414,30 +8408,30 @@ snapshots:
 
   '@codemirror/lang-html@6.4.6':
     dependencies:
-      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.30.0)(@lezer/common@1.1.0)
-      '@codemirror/lang-css': 6.2.1(@codemirror/view@6.30.0)
+      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.1.0)
+      '@codemirror/lang-css': 6.2.1(@codemirror/view@6.32.0)
       '@codemirror/lang-javascript': 6.2.1
       '@codemirror/language': 6.9.1
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       '@lezer/common': 1.1.0
       '@lezer/css': 1.1.3
       '@lezer/html': 1.3.6
 
   '@codemirror/lang-javascript@6.2.1':
     dependencies:
-      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.30.0)(@lezer/common@1.1.0)
+      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.1.0)
       '@codemirror/language': 6.9.1
       '@codemirror/lint': 6.4.2
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       '@lezer/common': 1.1.0
       '@lezer/javascript': 1.4.8
 
   '@codemirror/language@6.9.1':
     dependencies:
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       '@lezer/common': 1.1.0
       '@lezer/highlight': 1.1.6
       '@lezer/lr': 1.3.13
@@ -8445,15 +8439,13 @@ snapshots:
 
   '@codemirror/lint@6.4.2':
     dependencies:
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
       crelt: 1.0.6
-
-  '@codemirror/state@6.2.1': {}
 
   '@codemirror/state@6.4.1': {}
 
-  '@codemirror/view@6.30.0':
+  '@codemirror/view@6.32.0':
     dependencies:
       '@codemirror/state': 6.4.1
       style-mod: 4.1.0
@@ -8464,7 +8456,7 @@ snapshots:
       outvariant: 1.4.0
       strict-event-emitter: 0.4.6
 
-  '@codesandbox/sandpack-client@2.18.0':
+  '@codesandbox/sandpack-client@2.18.2':
     dependencies:
       '@codesandbox/nodebox': 0.1.8
       buffer: 6.0.3
@@ -8473,17 +8465,17 @@ snapshots:
       outvariant: 1.4.0
       static-browser-server: 1.0.3
 
-  '@codesandbox/sandpack-react@2.18.0(@lezer/common@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@codesandbox/sandpack-react@2.18.2(@lezer/common@1.1.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.2.1)(@codemirror/view@6.30.0)(@lezer/common@1.1.0)
+      '@codemirror/autocomplete': 6.10.2(@codemirror/language@6.9.1)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/common@1.1.0)
       '@codemirror/commands': 6.3.0
-      '@codemirror/lang-css': 6.2.1(@codemirror/view@6.30.0)
+      '@codemirror/lang-css': 6.2.1(@codemirror/view@6.32.0)
       '@codemirror/lang-html': 6.4.6
       '@codemirror/lang-javascript': 6.2.1
       '@codemirror/language': 6.9.1
-      '@codemirror/state': 6.2.1
-      '@codemirror/view': 6.30.0
-      '@codesandbox/sandpack-client': 2.18.0
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
+      '@codesandbox/sandpack-client': 2.18.2
       '@lezer/highlight': 1.1.6
       '@react-hook/intersection-observer': 3.1.1(react@18.2.0)
       '@stitches/core': 1.2.8
@@ -10731,7 +10723,7 @@ snapshots:
       eslint: 8.51.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.51.0))(eslint@8.51.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.51.0))(eslint@8.51.0))(eslint@8.51.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1)(eslint@8.51.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.51.0)
       eslint-plugin-react: 7.33.2(eslint@8.51.0)
       eslint-plugin-react-hooks: 4.6.0(eslint@8.51.0)
@@ -10759,7 +10751,7 @@ snapshots:
       enhanced-resolve: 5.15.0
       eslint: 8.51.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.51.0))(eslint@8.51.0))(eslint@8.51.0)
-      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.51.0))(eslint@8.51.0))(eslint@8.51.0)
+      eslint-plugin-import: 2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1)(eslint@8.51.0)
       fast-glob: 3.3.1
       get-tsconfig: 4.7.2
       is-core-module: 2.13.1
@@ -10781,7 +10773,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1(eslint@8.51.0))(eslint@8.51.0))(eslint@8.51.0):
+  eslint-plugin-import@2.28.1(@typescript-eslint/parser@6.7.5(eslint@8.51.0)(typescript@5.2.2))(eslint-import-resolver-typescript@3.6.1)(eslint@8.51.0):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.3
