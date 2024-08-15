@@ -8,7 +8,7 @@ export const meta: Cohort = {
     'You do not have to learn everything about JavaScript. This course will teach you almost everything that you need to get started with JavaScript.',
   link: 'cohorts/javascript-v1/overview',
   image: image,
-  isPublished: true,
+  isPublished: false,
   publishedOn: new Date('2024-08-01'),
   isPro: true,
   chapters: {
