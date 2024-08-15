@@ -13,6 +13,7 @@ export const meta: Cohort = {
   isPro: false,
   chapters: {
     overview: 'Overview',
+    'what-is-html': 'What is HTML?',
     'how-to-run-html': 'How to run HTML?',
     headings: 'Headings',
   },
