@@ -15,6 +15,7 @@ export const meta: Cohort = {
     overview: 'Overview',
     'what-is-html': 'What is HTML?',
     'how-to-run-html': 'How to run HTML?',
+    comments: 'Comments',
     headings: 'Headings',
   },
 };

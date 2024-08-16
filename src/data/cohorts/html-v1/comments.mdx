@@ -1,0 +1,52 @@
+import { Callout } from '@/components/MarkdownComponents';
+import { CommentsExercise, CommentsSolution } from './examples/comments';
+
+export const meta = {
+  lastUpdated: '2024-08-16'
+}
+
+# Comments
+
+Comments are used to add explanatory notes or disable code in your programs. Comments are available in almost all programming languages.
+
+In HTML, we can use `<!-- -->` to add comments for both inline and multiline.
+
+**Inline Comments:** Inline means that the comment is on the same line as the code.
+
+**Multiline Comments:** Multiline means that the comment is on multiple lines.
+
+```html showLineNumbers title="index.html"
+<!-- this is an inline comment -->
+
+<!-- this is 
+a multiline 
+comment -->
+```
+
+## Exercise
+
+Here is a quick exercise to help you understand comments:
+
+- Comment out all the tags so that none of the text "Comment me out!" appears.
+
+<CommentsExercise />
+
+<Callout>
+There is also an editor shortcut to toggle comments: 
+- On Windows: <kbd>Ctrl</kbd> + <kbd>/</kbd>
+- On macOS: <kbd>Cmd</kbd> + <kbd>/</kbd>
+</Callout>
+
+## Solution
+
+<CommentsSolution />
+
+<Callout type="warning">
+We have seen too many folks using comments to disable code (we kind of did the same above). This just clutters the codebase. Just delete that code instead of commenting if you use version control like Git. Your version control already tracks the code so you can always find it. We will cover version control with Git later in a different cohort.
+</Callout>
+
+---
+
+As a beginner, feel free to add comments liberally to aid your learning. As you gain experience, you will develop a sense of when comments are truly necessary.
+
+**Note:** We would also be using comments to nudge you into doing something or try to explain things better.

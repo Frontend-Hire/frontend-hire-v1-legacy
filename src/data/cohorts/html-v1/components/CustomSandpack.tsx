@@ -7,7 +7,6 @@ import {
   SandpackPreview,
   SandpackFiles,
   useSandpack,
-  CodeEditorRef,
 } from '@codesandbox/sandpack-react';
 import { keymap } from '@codemirror/view';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -17,42 +16,25 @@ import { RotateCcwIcon, SparklesIcon } from 'lucide-react';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import Tooltip from '@/components/ui/tooltip';
 
-type PrettierButtonProps = {
-  editorInstance: React.RefObject<CodeEditorRef>;
-};
+const PrettierButton = React.forwardRef<HTMLButtonElement>(({}, ref) => {
+  const { prettify, readOnly } = usePrettier();
 
-const PrettierButton = React.forwardRef<HTMLButtonElement, PrettierButtonProps>(
-  ({ editorInstance }, ref) => {
-    const { prettify, readOnly } = usePrettier();
-
-    const onPretty = async () => {
-      try {
-        await prettify();
-
-        if (!editorInstance) return;
-        editorInstance.current?.getCodemirror()?.scrollDOM.scrollIntoView();
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
-    return (
-      <Tooltip title="Format Code">
-        <Button
-          ref={ref}
-          disabled={readOnly}
-          onClick={onPretty}
-          variant="ghost"
-          size="icon"
-          className="rounded-none"
-        >
-          <SparklesIcon className="text-white" />
-          <VisuallyHidden>Format Code</VisuallyHidden>
-        </Button>
-      </Tooltip>
-    );
-  },
-);
+  return (
+    <Tooltip title="Format Code">
+      <Button
+        ref={ref}
+        disabled={readOnly}
+        onClick={prettify}
+        variant="ghost"
+        size="icon"
+        className="rounded-none"
+      >
+        <SparklesIcon className="text-white" />
+        <VisuallyHidden>Format Code</VisuallyHidden>
+      </Button>
+    </Tooltip>
+  );
+});
 
 PrettierButton.displayName = 'PrettierButton';
 
@@ -82,7 +64,6 @@ export default function CustomSandpack({
   files,
   isSolution = false,
 }: CustomSandpackProps) {
-  const codemirrorInstance = React.useRef<CodeEditorRef>(null);
   const prettierButtonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
@@ -97,16 +78,12 @@ export default function CustomSandpack({
         <div className="flex flex-col gap-2">
           {!isSolution && (
             <div className="flex items-center justify-end gap-2">
-              <PrettierButton
-                editorInstance={codemirrorInstance}
-                ref={prettierButtonRef}
-              />
+              <PrettierButton ref={prettierButtonRef} />
               <ResetButton />
             </div>
           )}
           <div className="h-[300px]">
             <SandpackCodeEditor
-              ref={codemirrorInstance}
               extensions={[
                 keymap.of([
                   {

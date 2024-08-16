@@ -28,11 +28,11 @@ const LINKS: NavLink[] = [
   {
     title: 'Learn',
     items: [
-      // {
-      //   title: 'Cohorts',
-      //   href: '/cohorts',
-      //   icon: GraduationCapIcon,
-      // },
+      {
+        title: 'Cohorts',
+        href: '/cohorts',
+        icon: GraduationCapIcon,
+      },
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
       {
         title: 'System Design',
