@@ -1,0 +1,90 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Flatten an Object
+
+> Use case? Pretty common to have an object with a nested structure and you want to flatten it! 
+
+## Objectives
+
+- Given an object, return a flattened version of that object.
+- The keys of the flattened object should prefix the parent keys and **camelCased**.
+- Sample inputs and outputs might give you a better idea of the requirements.
+- Consider potential edge cases and include them in your tests.
+
+### Sample Input and Expected Output
+
+```js
+// Input - 1: 
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": "49"
+}
+```
+
+```js
+// Output - 1: No change since already a flat object
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": "49"
+}
+```
+
+```js
+// Input - 2: 
+{
+  "id": "123",
+  "name": {
+    "first": "John"
+    "last": "Doe",
+  }
+  "age": "49"
+}
+```
+
+```js
+// Output - 2:
+{
+  "id": "123",
+  "name.first": "John",
+  "name.last": "Doe",
+  "age": "49"
+}
+```
+
+```js
+// Input - 3: 
+{
+  "id": "123",
+  "name": {
+    "first": "John"
+    "last": "Doe",
+  },
+  "address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip": "12345"
+  },
+  "age": "49"
+}
+```
+
+```js
+// Output - 3:
+{
+  "id": "123",
+  "name.first": "John",
+  "name.last": "Doe",
+  "address.street": "123 Main St",
+  "address.city": "Anytown",
+  "address.state": "CA",
+  "address.zip": "12345",
+  "age": "49"
+}
+```
+
+## Tests
+
+As usual, you should write the proper test cases maybe well before you write the code to solve the problem.
