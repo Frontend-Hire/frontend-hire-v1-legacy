@@ -6,10 +6,10 @@ import {
 } from '@/types/Question';
 
 export const meta: Question = {
-  id: 'flatten-an-object',
-  title: 'Flatten an Object',
+  id: 'polyfill-array-filter',
+  title: 'Polyfill: Array.filter() Method',
   description:
-    'One of our favorite questions to test a bit of problem solving skills.',
+    'The Array.filter() method creates a new array with all elements that pass the test implemented by the provided function.',
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.LOCAL,
   publishedOn: new Date('2024-08-18'),
