@@ -1,0 +1,437 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout type="warning">
+If such a question is asked in an interview, do not rush to write the code. Write the tests first as it will greatly help clarify things with the interviewer. It is also very much possible to not catch the edge cases with the initial tests. That is completely fine! This is where the interviewer should nudge you about the edge cases.
+</Callout>
+
+## Tests
+
+We can immediately write the basic tests for this problem. The tests would look something like this:
+
+- Should return the same object if already flat
+- Should flatten object with one level of nesting
+- Should flatten object with multiple levels of nesting
+
+```js title="index.test.js" showLineNumbers {6,16,35}
+import { describe, test, expect } from 'vitest';
+
+import { flattenObject } from '.';
+
+describe('flatten-an-object', () => {
+  test('should return the same object if already flat', () => {
+    const input = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: '49',
+    };
+
+    expect(flattenObject(input)).toEqual(input);
+  });
+
+  test('should flatten object with one level of nesting', () => {
+    const input = {
+      id: '123',
+      name: {
+        first: 'John',
+        last: 'Doe',
+      },
+      age: '49',
+    };
+
+    const expected = {
+      id: '123',
+      'name.first': 'John',
+      'name.last': 'Doe',
+      age: '49',
+    };
+    expect(flattenObject(input)).toEqual(expected);
+  });
+
+  test('should flatten object with multiple levels of nesting', () => {
+    const input = {
+      id: '123',
+      user: {
+        name: {
+          first: 'John',
+          last: 'Doe',
+        },
+        address: {
+          street: '123 Main St',
+          city: 'Anytown',
+          state: 'CA',
+          zip: '12345',
+        },
+        age: '49',
+      },
+    };
+
+    const expected = {
+      id: '123',
+      'user.name.first': 'John',
+      'user.name.last': 'Doe',
+      'user.address.street': '123 Main St',
+      'user.address.city': 'Anytown',
+      'user.address.state': 'CA',
+      'user.address.zip': '12345',
+      'user.age': '49',
+    };
+    expect(flattenObject(input)).toEqual(expected);
+  });
+});
+```
+
+## Implementation
+
+Now that we have basic tests, let's write the implementation.
+
+For the first test, we just have to check if the object is already flat and return it if so.
+
+```js title="index.js" showLineNumbers {5}
+export function flattenObject(obj) {
+  const result = {};
+
+  for (const key in obj) {
+    if (typeof obj[key] === 'object') {
+      // NOT FLAT
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
+```
+
+Simply checking for the type of all values in the object should be enough. This should pass the first test.
+
+But now how do we flatten an object with nested objects? The trick is to use recursion.
+
+```js title="index.js" showLineNumbers {6}
+export function flattenObject(obj) {
+  const result = {};
+
+  for (const key in obj) {
+    if (typeof obj[key] === 'object') {
+      const nested = flattenObject(obj[key]);
+      for (const nestedKey in nested) {
+        result[key + '.' + nestedKey] = nested[nestedKey];
+      }
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
+```
+
+We just have to call the `flattenObject` function recursively for the values that are objects. Then we simply add new keys with the parent key as a prefix to the result object.
+
+This implementation should pass both the second and third tests.
+
+But there are edge cases that we need to consider.
+
+## Edge Cases
+
+The basic tests cover pretty much the happy path. But there are some edge cases that we need to consider.
+
+**In fact, the check for the object type is not enough. We just checked if the typeof value is an object but both arrays and null are also the typeof object.**
+
+Let us write two new tests to cover these edge cases.
+
+```js title="index.test.js" {2,36-45,52,63}
+// Other tests omitted for brevity
+test('should flatten object with array values', () => {
+  const input = {
+    id: '123',
+    name: {
+      first: 'John',
+      last: 'Doe',
+    },
+    address: {
+      street: '123 Main St',
+      city: 'Anytown',
+      state: 'CA',
+      zip: '12345',
+    },
+    pets: [
+      {
+        name: 'Fluffy',
+        type: 'cat',
+      },
+      {
+        name: 'Spot',
+        type: 'dog',
+      },
+    ],
+    age: '49',
+  };
+
+  const expected = {
+    id: '123',
+    'name.first': 'John',
+    'name.last': 'Doe',
+    'address.street': '123 Main St',
+    'address.city': 'Anytown',
+    'address.state': 'CA',
+    'address.zip': '12345',
+    pets: [
+      {
+        name: 'Fluffy',
+        type: 'cat',
+      },
+      {
+        name: 'Spot',
+        type: 'dog',
+      },
+    ],
+    age: '49',
+  };
+
+  expect(flattenObject(input)).toEqual(expected);
+});
+
+test('should flatten object with null values', () => {
+  const input = {
+    id: '123',
+    name: {
+      first: 'John',
+      last: 'Doe',
+    },
+    address: {
+      street: '123 Main St',
+      city: 'Anytown',
+      state: 'CA',
+      zip: null,
+    },
+    age: '49',
+  };
+
+  const expected = {
+    id: '123',
+    'name.first': 'John',
+    'name.last': 'Doe',
+    'address.street': '123 Main St',
+    'address.city': 'Anytown',
+    'address.state': 'CA',
+    'address.zip': null,
+    age: '49',
+  };
+  expect(flattenObject(input)).toEqual(expected);
+});
+```
+
+These two tests will obviously fail! Let us fix our implementation.
+
+## Fixing the Implementation
+
+```js title="index.js" {5-9}
+export function flattenObject(obj) {
+  const result = {};
+
+  for (const key in obj) {
+    if (
+      typeof obj[key] === 'object' &&
+      obj[key] !== null &&
+      !Array.isArray(obj[key])
+    ) {
+      const nested = flattenObject(obj[key]);
+      for (const nestedKey in nested) {
+        result[key + '.' + nestedKey] = nested[nestedKey];
+      }
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
+```
+
+We simply have to add to the if statement that checks if the value is an object and not an array or null.
+
+<Callout type='error'>
+Of course, there could be more edge cases that we need to consider and more functionality that we could add to the implementation. The above solution is more than enough in an interview setting. If you can write tests and implementation, we are pretty sure the interviewer will be happy with it.
+
+For production use, you will definitely need to handle more edge cases. For example, check this good package that flattens an object: [flat](https://www.npmjs.com/package/flat).
+</Callout>
+
+## Full Code
+
+```js title="index.js" showLineNumbers
+/**
+ * Flattens a nested object into a single-level object, while prefixing parent keys with the child key.
+ *
+ * @param {Object} obj - The object to be flattened.
+ * @return {Object} The flattened object.
+ */
+export function flattenObject(obj) {
+  const result = {};
+
+  for (const key in obj) {
+    if (
+      typeof obj[key] === 'object' &&
+      obj[key] !== null &&
+      !Array.isArray(obj[key])
+    ) {
+      const nested = flattenObject(obj[key]);
+      for (const nestedKey in nested) {
+        result[key + '.' + nestedKey] = nested[nestedKey];
+      }
+    } else {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
+```
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, expect } from 'vitest';
+
+import { flattenObject } from '.';
+
+describe('flatten-an-object', () => {
+  test('should return the same object if already flat', () => {
+    const input = {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: '49',
+    };
+
+    expect(flattenObject(input)).toEqual(input);
+  });
+
+  test('should flatten object with one level of nesting', () => {
+    const input = {
+      id: '123',
+      name: {
+        first: 'John',
+        last: 'Doe',
+      },
+      age: '49',
+    };
+
+    const expected = {
+      id: '123',
+      'name.first': 'John',
+      'name.last': 'Doe',
+      age: '49',
+    };
+    expect(flattenObject(input)).toEqual(expected);
+  });
+
+  test('should flatten object with multiple levels of nesting', () => {
+    const input = {
+      id: '123',
+      user: {
+        name: {
+          first: 'John',
+          last: 'Doe',
+        },
+        address: {
+          street: '123 Main St',
+          city: 'Anytown',
+          state: 'CA',
+          zip: '12345',
+        },
+        age: '49',
+      },
+    };
+
+    const expected = {
+      id: '123',
+      'user.name.first': 'John',
+      'user.name.last': 'Doe',
+      'user.address.street': '123 Main St',
+      'user.address.city': 'Anytown',
+      'user.address.state': 'CA',
+      'user.address.zip': '12345',
+      'user.age': '49',
+    };
+    expect(flattenObject(input)).toEqual(expected);
+  });
+
+  test('should flatten object with array values', () => {
+    const input = {
+      id: '123',
+      name: {
+        first: 'John',
+        last: 'Doe',
+      },
+      address: {
+        street: '123 Main St',
+        city: 'Anytown',
+        state: 'CA',
+        zip: '12345',
+      },
+      pets: [
+        {
+          name: 'Fluffy',
+          type: 'cat',
+        },
+        {
+          name: 'Spot',
+          type: 'dog',
+        },
+      ],
+      age: '49',
+    };
+
+    const expected = {
+      id: '123',
+      'name.first': 'John',
+      'name.last': 'Doe',
+      'address.street': '123 Main St',
+      'address.city': 'Anytown',
+      'address.state': 'CA',
+      'address.zip': '12345',
+      pets: [
+        {
+          name: 'Fluffy',
+          type: 'cat',
+        },
+        {
+          name: 'Spot',
+          type: 'dog',
+        },
+      ],
+      age: '49',
+    };
+
+    expect(flattenObject(input)).toEqual(expected);
+  });
+
+  test('should flatten object with null values', () => {
+    const input = {
+      id: '123',
+      name: {
+        first: 'John',
+        last: 'Doe',
+      },
+      address: {
+        street: '123 Main St',
+        city: 'Anytown',
+        state: 'CA',
+        zip: null,
+      },
+      age: '49',
+    };
+
+    const expected = {
+      id: '123',
+      'name.first': 'John',
+      'name.last': 'Doe',
+      'address.street': '123 Main St',
+      'address.city': 'Anytown',
+      'address.state': 'CA',
+      'address.zip': null,
+      age: '49',
+    };
+    expect(flattenObject(input)).toEqual(expected);
+  });
+});
+```

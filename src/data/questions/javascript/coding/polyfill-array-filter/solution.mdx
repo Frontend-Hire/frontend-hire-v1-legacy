@@ -1,0 +1,145 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+TDD (test-driven development) shines in this type of scenario. We will also use the same approach here.
+
+## Understanding the Array.filter() Method
+
+Let us first understand the array filter method in detail.
+
+```js
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+arr.filter((number) => number > 5); // [6, 7, 8, 9, 10]
+
+function isEven(number) {
+  return number % 2 === 0;
+}
+
+arr.filter(isEven); // [2, 4, 6, 8, 10]
+
+arr.filter((...args) => console.log(args)); // [1, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], [2, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]] etc.,
+// Basically, the first argument is the item, the second is the index, and the third is the array itself.
+```
+
+So, the filter method takes a callback function as a parameter and returns a new array with all the elements that pass the test implemented by the function.
+
+<Callout type='warning'>
+Array.filter method also takes another parameter which is `thisArg`. This is a little out of the scope of this question. But it is used to specify the value of `this` inside the callback function.
+</Callout>
+
+## Tests
+
+Let us first write the tests for the following cases:
+
+### Filters values based on the item
+
+```js title="index.test.js"
+test('filters values based on the item', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  expect(arr.myFilter((item) => item > 5)).toEqual([6, 7, 8, 9, 10]);
+});
+```
+
+This is the most common use case that we also use with the regular filter method.
+
+### Filters values based on the index
+
+```js title="index.test.js"
+test('filters values based on the index', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  expect(arr.myFilter((_item, index) => index > 5)).toEqual([7, 8, 9, 10]);
+});
+```
+
+This time instead of the first argument of the callback function, we use the second argument. We use `_underscore` to indicate that we are not using the first argument.
+
+### Filters values based on the item and the array itself
+
+```js title="index.test.js"
+test('filters values based on the item and the array itself', () => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  expect(arr.myFilter((item, _index, array) => item > array[5])).toEqual([
+    7, 8, 9, 10,
+  ]);
+});
+```
+
+We now use both the first and the third argument in the callback function. Just using the third argument does not make any sense.
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, beforeAll, expect } from 'vitest';
+
+import { myFilter } from '.';
+
+describe('polyfill-array-filter', () => {
+  beforeAll(() => {
+    Array.prototype.myFilter = myFilter;
+  });
+
+  test('filters values based on the item', () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    expect(arr.myFilter((item) => item > 5)).toEqual([6, 7, 8, 9, 10]);
+  });
+
+  test('filters values based on the index', () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    expect(arr.myFilter((_item, index) => index > 5)).toEqual([7, 8, 9, 10]);
+  });
+
+  test('filters values based on the item and the array itself', () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    expect(arr.myFilter((item, _index, array) => item > array[5])).toEqual([
+      7, 8, 9, 10,
+    ]);
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be different from what we implement here. This is because for an interview setting this is more than enough. But if you were actually implementing a JS polyfill for production (quite rare), you would need to check the actual specification and handle more edge cases than what you see here.
+</Callout>
+
+Now that the basic tests are done, we can start implementing the actual polyfill.
+
+```js title="index.js"
+export function myFilter(cb) {
+  const result = []; // [!code ++]
+}
+```
+
+We will use the `result` array to store the filtered values. Remember that we need to return a new array and not modify the original array. Of course, we return a shallow copy of the original array.
+
+```js title="index.js"
+export function myFilter(cb) {
+  const result = [];
+
+  // [!code ++:8]
+  for (let i = 0; i < this.length; i++) {
+    if (cb(this[i], i, this)) {
+      result.push(this[i]);
+    }
+  }
+
+  return result;
+}
+```
+
+Now for each of the values in the original array, we call the callback function and check if it returns `true`. If it does, we push the value to the `result` array. As per our understanding of the Array.filter method, we have to pass the following arguments to the callback function:
+
+- The item: **this[i]**
+- The index: **i**
+- The array itself: **this**
+
+We then just return the `result` array. This should pass all the tests.
