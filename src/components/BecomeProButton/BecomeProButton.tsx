@@ -1,4 +1,4 @@
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import ProSignInButton from './ProSignInButton';
 import CheckoutButton from './CheckoutButton';
 import { Button } from '../ui/button';
@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { checkIsProUser } from '@/lib/isProUser';
 
 export default async function BecomeProButton() {
-  const supabase = createSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
 
   const [userData, isProUser] = await Promise.all([
     supabase.auth.getUser(),

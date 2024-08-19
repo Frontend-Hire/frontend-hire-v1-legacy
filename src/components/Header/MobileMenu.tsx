@@ -1,9 +1,9 @@
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import MobileMenuContainer from './MobileMenuContainer';
 import { checkIsProUser } from '@/lib/isProUser';
 
 export default async function MobileMenu() {
-  const supabaseServerClient = createSupabaseServerClient();
+  const supabaseServerClient = getSupabaseServerClient();
 
   const [userData, isProUser] = await Promise.all([
     supabaseServerClient.auth.getUser(),

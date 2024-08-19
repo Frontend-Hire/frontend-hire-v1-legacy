@@ -2,13 +2,13 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { useSandpack } from '@codesandbox/sandpack-react';
 import QuestionSubmissionConfetti from '@/components/Questions/QuestionSubmissionConfetti';
 import { Params } from '../../../_types';
 
 export default function SubmitSolutionButton() {
-  const supabaseClient = createSupabaseBrowserClient();
+  const supabaseClient = getSupabaseBrowserClient();
   const [showConfetti, setShowConfetti] = React.useState(false);
   const { skill, questionId } = useParams<Params['params']>();
   const { sandpack } = useSandpack();

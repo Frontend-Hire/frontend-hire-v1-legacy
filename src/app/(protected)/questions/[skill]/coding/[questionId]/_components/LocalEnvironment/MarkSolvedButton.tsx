@@ -1,13 +1,13 @@
 import QuestionSubmissionConfetti from '@/components/Questions/QuestionSubmissionConfetti';
 import { Button } from '@/components/ui/button';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import { Params } from '../../_types';
 
 export default function MarkSolvedButton() {
-  const supabaseClient = createSupabaseBrowserClient();
+  const supabaseClient = getSupabaseBrowserClient();
   const [showConfetti, setShowConfetti] = React.useState(false);
   const { skill, questionId } = useParams<Params['params']>();
 

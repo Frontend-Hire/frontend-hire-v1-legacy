@@ -13,7 +13,7 @@ import { ScrollArea } from '../ui/scroll-area';
 import { User } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import SignInButton from '../SignInButton';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import { getMainNavLinks } from '@/config/site';
 
 type MobileMenuProps = {
@@ -25,7 +25,7 @@ export default function MobileMenuContainer({
   user,
   isProUser,
 }: MobileMenuProps) {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
+  const supabaseBrowserClient = getSupabaseBrowserClient();
   const router = useRouter();
 
   const [open, setOpen] = React.useState(false);

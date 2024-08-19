@@ -3,7 +3,7 @@
 import { razorpayInstance } from '@/lib/payments/razorpay';
 import crypto from 'crypto';
 import { giveProAccess } from './proAction';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 const generatedSignature = (
   razorpayOrderId: string,
@@ -23,7 +23,7 @@ const generatedSignature = (
 };
 
 export const createOrder = async () => {
-  const supabase = createSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
 
   const order = await razorpayInstance.orders.create({
     amount: 299900,

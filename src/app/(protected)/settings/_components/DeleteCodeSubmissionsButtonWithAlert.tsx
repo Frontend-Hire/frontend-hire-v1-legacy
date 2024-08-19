@@ -12,10 +12,10 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function DeleteCodeSubmissionsButtonWithAlert() {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
+  const supabaseBrowserClient = getSupabaseBrowserClient();
   const clearCodeSubmissions = async () => {
     try {
       const {

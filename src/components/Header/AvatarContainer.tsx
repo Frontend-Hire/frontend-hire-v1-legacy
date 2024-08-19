@@ -1,9 +1,9 @@
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import AvatarDropdown from './AvatarDropdown';
 import SignInButton from '../SignInButton';
 
 export default async function AvatarContainer() {
-  const supabaseServerClient = createSupabaseServerClient();
+  const supabaseServerClient = getSupabaseServerClient();
 
   const {
     data: { user },

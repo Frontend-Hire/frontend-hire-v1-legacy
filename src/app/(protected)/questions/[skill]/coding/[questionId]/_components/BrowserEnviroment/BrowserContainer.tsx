@@ -2,7 +2,7 @@ import QuestionListButtonWithSheet from '@/components/Questions/QuestionListButt
 import BrowserClientContainer from './BrowserClientContainer';
 import { CODING_ENVIRONMENT_TYPE, QUESTION_TYPE } from '@/types/Question';
 import { Params } from '../../_types';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import {
   getCodeHistoryQuery,
   getCodingQuestion,
@@ -14,7 +14,7 @@ import { getCompletedQuestions } from '@/lib/questionStats';
 import { notFound } from 'next/navigation';
 
 export default async function BrowserContainer({ params }: Params) {
-  const supabaseClient = createSupabaseServerClient();
+  const supabaseClient = getSupabaseServerClient();
   const { meta } = await getCodingQuestionMetadata(
     params.questionId,
     params.skill,
