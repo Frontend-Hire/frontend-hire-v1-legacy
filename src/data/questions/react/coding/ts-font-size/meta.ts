@@ -6,11 +6,11 @@ import {
 } from '@/types/Question';
 
 export const meta: Question = {
-  id: 'ts-icon-size',
-  title: 'TypeScript: Icon Size',
+  id: 'ts-font-size',
+  title: 'TypeScript: Font Size',
   description: '',
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.LOCAL,
-  publishedOn: new Date('2024-08-19'),
-  difficulty: DIFFICULTY.EASY,
+  publishedOn: new Date('2024-08-20'),
+  difficulty: DIFFICULTY.MEDIUM,
 };
