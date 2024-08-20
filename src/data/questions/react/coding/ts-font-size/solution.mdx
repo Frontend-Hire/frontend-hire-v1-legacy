@@ -2,6 +2,12 @@ import { Callout } from '@/components/MarkdownComponents';
 
 # Solution
 
+<Callout>
+Though we are a huge fan of text-based learning, sometimes we need to go for a video for a better experience. This is one of those times. We still tried to give you as much as possible in text.
+
+**Watch the video for a better experience (coming soon).** 
+</Callout>
+
 <Callout type='warning'>
 If you feel like something is not working as expected with TypeScript, just try to restart the TypeScript server. 
 
@@ -19,3 +25,171 @@ This will restart the TypeScript server, which can often resolve unexpected beha
 Sometimes a restart to the dev server might also be needed.
 </Callout>
 
+## Typing the API of the `Text` component
+
+> It should only take one prop: `fontSize` which is optional and takes either `sm`, `lg`, or any valid string value like `"1.5rem"`.
+
+So, based on the above objective, we can type the API of the `Text` component like this:
+
+```tsx title='Text.tsx' showLineNumbers {1-3,5-8}
+type TextProps = {
+  fontSize?: 'sm' | 'lg' | string
+}
+
+export default function Text({
+  children,
+  fontSize = '1rem',
+}: React.PropsWithChildren<TextProps>) {
+  return <p>{children}</p>;
+}
+```
+
+Great, let us also add the logic for the `fontSize` prop.
+
+```tsx title='Text.tsx' showLineNumbers {9-17}
+type TextProps = {
+  fontSize?: 'sm' | 'lg' | string;
+};
+
+export default function Text({
+  children,
+  fontSize = '1rem',
+}: React.PropsWithChildren<TextProps>) {
+  let computedFontSize = fontSize;
+
+  if (fontSize === 'sm') {
+    computedFontSize = '0.75rem';
+  } else if (fontSize === 'lg') {
+    computedFontSize = '1.25rem';
+  }
+
+  return <p style={{ fontSize: computedFontSize }}>{children}</p>;
+}
+```
+
+We simply use a `computedFontSize` variable to set the `fontSize` of the `p` element. This checks for the `fontSize` prop and sets the `fontSize` accordingly.
+
+## Trying the Auto-Completion of the `fontSize` Prop
+
+In the `App` component, let us try to auto-complete the `fontSize` prop.
+
+```tsx title='App.tsx' showLineNumbers
+import Text from './Text';
+
+export default function App() {
+  return (
+    <div className="space-y-4 px-4 py-2">
+      <Text>This should be a small text!</Text>
+
+      <Text>This should be the default size (16px) text!</Text>
+
+      <Text>This should be a large text!</Text>
+
+      <Text>This should have a size of 50px</Text>
+
+      <Text>This should have a size of 5rem</Text>
+    </div>
+  );
+}
+```
+
+The autocomplete detects the prop but it does not detect the `sm` or `lg` types.
+
+**What is happening?**
+
+Let us try to update the `fontSize` prop to the following:
+
+```tsx title='Text.tsx' {2}
+type TextProps = {
+  fontSize?: 'sm' | 'lg';
+};
+```
+
+We removed the union of string and let us see how the autocomplete works now.
+
+Well, the autocomplete works and it detects the `sm` and `lg` types. But it now complains when we try to pass a string like `"1.5rem"` to the `fontSize` prop.
+
+## The Weird TypeScript Fix
+
+Weirdly, the solution to this is a hacky fix. Let us use the following type for the `fontSize` prop:
+
+```tsx title='Text.tsx' {2}
+type TextProps = {
+  fontSize?: 'sm' | 'lg' | (string & {});
+};
+```
+
+**What the hell is that?**
+
+So, the TypeScript compiler when you type something like `'sm' | 'lg' | string` will ignore the first two types as they are also strings. But when you type something like `'sm' | 'lg' | (string & {})`, the compiler now delays the check and is kind of lost computing the `string & {}` type. Yeah, it is really weird. But this is the solution and is going to be around for a while.
+
+**ESLint complains**
+
+Ok, if that was the solution then why is ESLint complaining?
+
+```text
+Don't use `{}` as a type. `{}` actually means "any non-nullish value".
+- If you want a type meaning "any object", you probably want `object` instead.
+- If you want a type meaning "any value", you probably want `unknown` instead.
+- If you want a type meaning "empty object", you probably want `Record<string, never>` instead.
+- If you really want a type meaning "any non-nullish value", you probably want `NonNullable<unknown>` instead.eslint@typescript-eslint/ban-types
+```
+
+Well, we just need to use the `NonNullable<unknown>` type (Watch the video for a better experience.). This is the same as `string & {}` but additionally excludes `null` and `undefined`. This is pretty much done to just keep the linter happy. You could also just disable that rule for that particular line and it should be fine (most folks know this hack).
+
+<Callout>
+Read the following resources for more information:
+- [Why is \`NonNullable\<unknown\>\` assignable to \`object\`?](https://www.reddit.com/r/typescript/comments/19c6tuw/why_is_nonnullableunknown_assignable_to_object/)
+- [The Empty Object Type in TypeScript](https://www.totaltypescript.com/the-empty-object-type-in-typescript)
+</Callout>
+
+```tsx title='Text.tsx' {2}
+type TextProps = {
+  fontSize?: 'sm' | 'lg' | (string & NonNullable<unknown>);
+};
+```
+
+## Full Code
+
+The final working solution should look something like this:
+
+```tsx title='App.tsx' showLineNumbers
+import Text from './Text';
+
+export default function App() {
+  return (
+    <div className="space-y-4 px-4 py-2">
+      <Text fontSize="sm">This should be a small text!</Text>
+
+      <Text>This should be the default size (16px) text!</Text>
+
+      <Text fontSize="lg">This should be a large text!</Text>
+
+      <Text fontSize="50px">This should have a size of 50px</Text>
+
+      <Text fontSize="5rem">This should have a size of 5rem</Text>
+    </div>
+  );
+}
+```
+
+```tsx title='Text.tsx' showLineNumbers
+type TextProps = {
+  fontSize?: 'sm' | 'lg' | (string & NonNullable<unknown>);
+};
+
+export default function Text({
+  children,
+  fontSize = '1rem',
+}: React.PropsWithChildren<TextProps>) {
+  let computedFontSize = fontSize;
+
+  if (fontSize === 'sm') {
+    computedFontSize = '0.75rem';
+  } else if (fontSize === 'lg') {
+    computedFontSize = '1.25rem';
+  }
+
+  return <p style={{ fontSize: computedFontSize }}>{children}</p>;
+}
+```
