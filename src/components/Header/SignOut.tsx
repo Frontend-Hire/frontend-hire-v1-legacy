@@ -2,10 +2,10 @@
 
 import { useRouter } from 'next/navigation';
 import { DropdownMenuItem } from '../ui/dropdown-menu';
-import createSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
+import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 
 export default function SignOut() {
-  const supabaseBrowserClient = createSupabaseBrowserClient();
+  const supabaseBrowserClient = getSupabaseBrowserClient();
   const router = useRouter();
 
   const handleSignOut = async () => {

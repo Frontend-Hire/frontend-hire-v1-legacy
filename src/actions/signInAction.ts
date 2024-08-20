@@ -1,6 +1,6 @@
 'use server';
 
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { Provider } from '@supabase/supabase-js';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -15,7 +15,7 @@ export async function oAuthSignIn(provider: Provider, redirectTo: string) {
     return redirect('/google-error');
   }
 
-  const supabase = createSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
   const origin = headers().get('origin');
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,

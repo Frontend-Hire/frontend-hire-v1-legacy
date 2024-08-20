@@ -1,8 +1,8 @@
 import { checkIsProUser } from '@/lib/isProUser';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function UserInfo() {
-  const supabaseServerClient = createSupabaseServerClient();
+  const supabaseServerClient = getSupabaseServerClient();
 
   const [userData, isProUser] = await Promise.all([
     supabaseServerClient.from('users').select('email').limit(1).maybeSingle(),

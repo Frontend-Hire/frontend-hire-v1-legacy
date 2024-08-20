@@ -1,8 +1,8 @@
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import { createClient } from '@supabase/supabase-js';
 
 export const DELETE = async (request: Request) => {
-  const supabase = createSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
 
   const { data: user } = await supabase.auth.getSession();
 

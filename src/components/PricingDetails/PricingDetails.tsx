@@ -1,5 +1,5 @@
 import { getPurchasePower } from '@/lib/getPurchasePower';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import BecomeProButton from '../BecomeProButton';
 import { cn } from '@/lib/utils';
 
@@ -7,7 +7,7 @@ export default async function PricingDetails() {
   const { name, currencySymbol, curPrice, curPrice2 } =
     await getPurchasePower();
 
-  const supabase = createSupabaseServerClient();
+  const supabase = getSupabaseServerClient();
 
   const {
     data: { user },

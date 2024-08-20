@@ -1,0 +1,22 @@
+# TypeScript: Font Size
+
+> Why did the TypeScript developer quit his job at the React component factory?
+> He got tired of constantly having to prop up everyone else's work!
+
+With this question, you will learn a weird thing about TypeScript that helps with better autocomplete.
+
+## Objectives
+
+- Your task is to create a good API for the `Text` component.
+- It should only take one prop: `fontSize` which is optional and takes either `sm`, `lg`, or any valid string value like `"1.5rem"`.
+- Basically this prop should have:
+  - A default `fontSize` of `1rem`.
+  - A small `fontSize` of `0.75rem` but the value passed to the API should be `sm`.
+  - A large `fontSize` of `1.25rem` but the value passed to the API should be `lg`.
+  - Can also take any string value as `fontSize` like `"1.5rem"`.
+- Of course, we need type safety along with good auto-completion.
+
+## Resources to Refer
+
+- [TypeScript Issues: Literal String Union Autocomplete](https://github.com/microsoft/TypeScript/issues/29729)
+- [Stack Overflow: What is the purpose of `string & {}`](https://stackoverflow.com/questions/75262513/what-is-the-purpose-of-string)

@@ -2,7 +2,7 @@ import { PhoneCallIcon } from 'lucide-react';
 
 import PhoneScreening from './_components/PhoneScreening';
 import { SpeechSynthesisProvider } from './_context/SpeechSynthesisContext';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import SettingsProvider from './_context/SettingsContext';
 import CustomHeading from '@/components/CustomHeading';
 import ProtectedLayout from '@/components/ProtectedLayout';
@@ -16,7 +16,7 @@ export const metadata = getMetadata({
 });
 
 export default async function SimulatedPhoneScreening() {
-  const supabaseServerClient = createSupabaseServerClient();
+  const supabaseServerClient = getSupabaseServerClient();
 
   const {
     data: { user },

@@ -1,11 +1,11 @@
 import Heading from '@/components/Heading';
 import SignInButton from '@/components/SignInButton';
-import createSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
+import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 
 export default async function ProtectedLayout({
   children,
 }: React.PropsWithChildren) {
-  const supabaseServerClient = createSupabaseServerClient();
+  const supabaseServerClient = getSupabaseServerClient();
 
   const { data, error } = await supabaseServerClient.auth.getUser();
 

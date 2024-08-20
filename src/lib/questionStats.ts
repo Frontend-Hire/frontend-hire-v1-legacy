@@ -1,10 +1,10 @@
 'use server';
 
-import createSupabaseServerClient from './supabase/supabaseServerClient';
+import getSupabaseServerClient from './supabase/supabaseServerClient';
 import { cache } from 'react';
 
 export const getCompletedQuestions = cache(async () => {
-  const supabaseClient = createSupabaseServerClient();
+  const supabaseClient = getSupabaseServerClient();
   const { data } = await supabaseClient
     .from('code_history')
     .select('question_id')
