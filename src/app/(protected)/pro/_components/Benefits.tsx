@@ -1,8 +1,5 @@
 import Heading from '@/components/Heading';
 import InclusionsExclusions from '@/components/InclusionsExclusions';
-import { Button } from '@/components/ui/button';
-import { PhoneIcon } from 'lucide-react';
-import Link from 'next/link';
 
 export default function Benefits() {
   return (
