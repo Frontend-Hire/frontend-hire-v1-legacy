@@ -2,7 +2,6 @@ import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
 
 const INCLUSIONS = [
   'Forever Access To PRO Content',
-  'Free 15 minute calls with the founder',
   'Free Updates',
   'Exclusive Courses',
   'Frontend System Design',
