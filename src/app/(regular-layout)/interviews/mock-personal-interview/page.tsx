@@ -14,17 +14,13 @@ export const metadata = getMetadata({
 
 export default function MockPersonalInterview() {
   return (
-    <article className="flex flex-col gap-4">
+    <article className="flex flex-col gap-5">
       <CustomHeading
         title="Mock In-Person Interview"
         subTitle="The only great way to prepare for actual interviews and get
             actionable feedback"
         icon={<UserIcon size={60} />}
       />
-
-      <span className="flex items-center justify-center gap-4 rounded-full bg-secondary px-1 py-2 text-center text-sm font-extrabold sm:text-base sm:font-black">
-        20% off the interviews through here
-      </span>
 
       <VisuallyHidden>Available Interviews</VisuallyHidden>
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">

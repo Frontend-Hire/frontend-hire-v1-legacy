@@ -1,17 +1,18 @@
-import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
+import ashrafImage from '@/assets/team/ashraf.webp';
 import deepakImage from '@/assets/team/deepakSharmaInterviewer.jpeg';
 import ashwinImage from '@/assets/team/ashwinKumarInterviewer.jpg';
 
 export const INTERVIEWERS = [
   {
-    avatar: hruthikImage,
-    name: 'Hruthik Reddy',
-    headline: 'Building Frontend Hire',
-    badge: 'Top 1%',
+    avatar: ashrafImage,
+    isFree: true,
+    name: 'Abdelrahman Ashraf',
+    headline: 'Tech Lead at LottieFiles | Ex-TikTok',
+    badge: 'Highly Experienced',
     description:
-      'Perfect for folks with less than 2 years of frontend experience.',
-    linkedIn: 'https://www.linkedin.com/in/yarala-hruthik-reddy/',
-    bookingLink: 'https://topmate.io/iamyhr/362939?coupon_code=FRONTENDHIRE',
+      'General Mentorship: Guidance on career paths, personal projects, and technical skills. Mock Coding Interviews: Realistic mock sessions with detailed feedback.',
+    linkedIn: 'https://www.linkedin.com/in/theashraf/',
+    bookingLink: 'https://adplist.org/mentors/abdelrahman-ashraf',
   },
   {
     avatar: deepakImage,

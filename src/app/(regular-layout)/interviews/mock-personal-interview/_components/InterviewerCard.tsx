@@ -12,6 +12,7 @@ type InterviewerCardProps = {
   description: string;
   linkedIn: string;
   bookingLink: string;
+  isFree?: boolean;
 };
 
 export default function InterviewerCard({
@@ -22,9 +23,10 @@ export default function InterviewerCard({
   description,
   linkedIn,
   bookingLink,
+  isFree,
 }: InterviewerCardProps) {
   return (
-    <article className="flex min-h-full flex-col justify-between gap-2 rounded bg-card p-4">
+    <article className="flex min-h-full scale-95 flex-col justify-between gap-2 rounded bg-card p-4 transition-all hover:scale-100">
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-2">
           <Image
@@ -38,9 +40,16 @@ export default function InterviewerCard({
             <p className="text-sm font-medium text-gray-300">{headline}</p>
           </div>
         </div>
-        <Badge className="text-center">{badge}</Badge>
       </div>
       <p className="grow text-sm font-medium leading-5">{description}</p>
+      <div className="flex flex-wrap gap-2">
+        <Badge className="text-center">{badge}</Badge>
+        {isFree && (
+          <Badge className="bg-easy text-center hover:bg-easy">
+            Offers Free Interviews
+          </Badge>
+        )}
+      </div>
       <div className="flex items-center justify-between">
         <Link
           prefetch={false}

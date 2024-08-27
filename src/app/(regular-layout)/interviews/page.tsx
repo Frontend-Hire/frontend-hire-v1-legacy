@@ -24,33 +24,21 @@ export default async function Projects() {
         <li>
           <CardLinkItem
             type="link"
-            title="Simulated Phone Screening"
-            link="/interviews/simulated-phone-screening"
-            leftIcon={<PhoneCallIcon size={40} />}
+            title="Mock In-Person Interview"
+            link="/interviews/mock-personal-interview"
+            leftIcon={<UserIcon size={40} />}
             rightIcon={<ChevronRightIcon size={40} />}
           />
         </li>
         <li>
           <CardLinkItem
             type="link"
-            title={
-              <>
-                Mock In-Person Interview{' '}
-                <Badge className="text-center">20% Off</Badge>
-              </>
-            }
-            link="/interviews/mock-personal-interview"
-            leftIcon={<UserIcon size={40} />}
+            title="Simulated Phone Screening"
+            link="/interviews/simulated-phone-screening"
+            leftIcon={<PhoneCallIcon size={40} />}
             rightIcon={<ChevronRightIcon size={40} />}
           />
         </li>
-        {/* <li>
-          <CardLinkItem
-            type="comingSoon"
-            title="Online Assessment"
-            leftIcon={<LaptopIcon size={40} />}
-          />
-        </li> */}
       </ul>
     </article>
   );
