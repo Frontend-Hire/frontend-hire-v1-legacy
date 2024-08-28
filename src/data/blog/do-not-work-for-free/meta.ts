@@ -16,7 +16,7 @@ export const meta: BlogMeta = {
     },
   ],
   cover: coverImg,
-  publishedOn: '2024-08-27',
-  lastUpdated: '2024-08-27',
+  publishedOn: '2024-08-28',
+  lastUpdated: '2024-08-28',
   isPublished: true,
 };
