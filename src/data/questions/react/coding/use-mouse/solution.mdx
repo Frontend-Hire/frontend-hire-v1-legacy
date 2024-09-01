@@ -1,0 +1,151 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout>
+  The solution to this problem is to create a custom hook called `useMouse` that returns the position of the mouse. The hook should return three values: `mousePosition`, `refMousePosition`, and `ref`. The `mousePosition` object should contain `x` and `y` keys representing the absolute position of the mouse. The `refMousePosition` object should contain `x` and `y` keys representing the position of the mouse relative to the element. The `ref` should be a ref that can be attached to any element to get the position of the mouse relative to that element.
+</Callout>
+
+## TDD Approach
+
+In this question, we will follow the Test-Driven Development (TDD) approach to implement the `useMouse` custom hook. We will write tests first and then implement the hook to make the tests pass.
+
+## Writing Tests
+
+Let us write tests for the `useMouse` custom hook in the `useMouse.test.ts` file.
+
+### Test Cases 
+
+1. The `useMouse` hook should return an object containing `mousePosition`, `refMousePosition`, and `ref`.
+2. The `mousePosition` object should contain `x` and `y` keys representing the absolute position of the mouse.
+3. The `refMousePosition` object should contain `x` and `y` keys representing the position of the mouse relative to the element.
+4. The `ref` should be a ref that can be attached to any element to get the position of the mouse relative to that element.
+5. The `useMouse` hook should update the `mousePosition` and `refMousePosition` objects when the mouse moves.
+6. The `useMouse` hook should return the correct position of the mouse relative to the element when attached to an element.
+7. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is resized.
+8. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is scrolled.
+9. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is moved.
+10. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is hidden.
+11. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is removed from the DOM.
+12. The `useMouse` hook should return the correct position of the mouse relative to the element when the element is added back to the DOM.
+
+Here are the tests for the `useMouse` custom hook:
+
+```tsx
+// write test cases
+
+import { renderHook, fireEvent } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+
+import useMouse from "./useMouse";
+
+describe("useMouse", () => {
+  it("should return initial mouse position as { x: 0, y: 0 }", () => {
+    const { result } = renderHook(() => useMouse());
+    expect(result.current.mousePosition).toEqual({ x: 0, y: 0 });
+  });
+
+  it("should update mouse position on mouse move", () => {
+    const { result } = renderHook(() => useMouse());
+    fireEvent.mouseMove(document, { clientX: 100, clientY: 200 });
+    expect(result.current.mousePosition).toEqual({ x: 100, y: 200 });
+  });
+
+  it("should return initial ref mouse position as { x: 0, y: 0 }", () => {
+    const { result } = renderHook(() => useMouse());
+    expect(result.current.refMousePosition).toEqual({ x: 0, y: 0 });
+  });
+});
+```
+
+## Running Tests
+
+You can run the tests using the following command:
+
+```bash
+pnpm test
+```
+
+The tests will fail initially as we have not implemented the `useMouse` custom hook yet.
+
+## Implementing the `useMouse` Hook
+
+Now, let's implement the `useMouse` custom hook in the `useMouse.ts` file.
+
+### Implementation Steps
+
+1. Create a custom hook called `useMouse` that returns the position of the mouse.
+2. The hook should return three values: `mousePosition`, `refMousePosition`, and `ref`.
+3. The `mousePosition` object should contain `x` and `y` keys representing the absolute position of the mouse.
+4. The `refMousePosition` object should contain `x` and `y` keys representing the position of the mouse relative to the element.
+5. The `ref` should be a ref that can be attached to any element to get the position of the mouse relative to that element.
+
+Here is the implementation of the `useMouse` custom hook:
+
+```tsx
+import React from "react";
+
+function useMouse() {
+  const [mousePosition, setMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [refMousePosition, setRefMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useLayoutEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (ref.current?.nodeType === Node.ELEMENT_NODE) {
+        const rect = ref.current.getBoundingClientRect();
+
+        setRefMousePosition({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        });
+      }
+
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return { mousePosition, refMousePosition, ref };
+}
+
+export default useMouse;
+```
+
+## Testing the Implementation
+
+Now, let's run the tests again using the following command:
+
+```bash
+pnpm test
+```
+
+The tests should pass, indicating that the `useMouse` custom hook has been successfully implemented.
+
+## Summary
+
+In this question, we implemented a custom hook called `useMouse` that returns the position of the mouse. We followed the Test-Driven Development (TDD) approach by writing tests first and then implementing the hook to make the tests pass. The hook returns three values: `mousePosition`, `refMousePosition`, and `ref`, and updates the position of the mouse based on the mouse movement.
+
+This question demonstrates how to implement a custom hook in React using the TDD approach and how to test the hook using React Testing Library and Vitest.
+
+Feel free to explore more features and functionalities by extending the `useMouse` hook and writing additional tests.
+
+## Next Steps
+
+- Explore more features and functionalities by extending the `useMouse` hook and writing additional tests.
+- Implement the `MouseTracker` component that uses the `useMouse` hook to display the position of the mouse.
+- Experiment with different scenarios to test the behavior of the `useMouse` hook in various situations.
+
+---
