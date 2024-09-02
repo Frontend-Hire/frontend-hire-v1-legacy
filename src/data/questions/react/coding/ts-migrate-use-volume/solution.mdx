@@ -180,7 +180,7 @@ Hmm, the errors are gone from the `App` component but there is now an error in t
 Property 'volume' does not exist on type 'NonNullable<T>'.ts(2339)
 ```
 
-Though we now pass the type from the `App` component to the `useVolume` hook. TypeScript still does not know for a certain that a `volume` property is available on the `ref` object. We can fix this by letting it know that the Generic `T` extends `HTMLAudioElement` or `HTMLVideoElement`:
+Though we now pass the type from the `App` component to the `useVolume` hook. TypeScript still does not know for a certain that a `volume` property is available on the `ref` object. We can fix this by contraining the Generic `T` by extending `HTMLAudioElement` or `HTMLVideoElement`:
 
 ```ts title="useVolume.ts" showLineNumbers {4}
 import React from 'react';
