@@ -13,5 +13,5 @@ export const meta: Question = {
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.LOCAL,
   publishedOn: new Date('2024-09-02'),
-  difficulty: DIFFICULTY.MEDIUM,
+  difficulty: DIFFICULTY.HARD,
 };

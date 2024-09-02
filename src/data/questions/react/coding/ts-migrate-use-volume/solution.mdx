@@ -3,3 +3,348 @@ import { Callout } from '@/components/MarkdownComponents';
 # Solution
 
 We will only discuss the TypeScript part of the solution. The other logical solution is already covered in the [JS version of the question](/questions/react/coding/use-volume).
+
+Let us look at the `useVolume` hook from the [JavaScript version](/questions/react/coding/use-volume) and paste the code in the `useVolume.ts` file.
+
+```js title="useVolume.ts" showLineNumbers {9, 13}
+import React from 'react';
+
+export default function useVolume(defaultVolume = 1) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+We see two TS errors:
+
+- **Line 9:** Property 'volume' does not exist on type 'never'.ts (2339)
+- **Line 13:** Parameter 'newVolume' implicitly has an 'any' type.ts (7006)
+
+The fix for Line 13 is to type the `newVolume` parameter as `number`:
+
+```ts title="useVolume.ts" {1}
+const setElementVolume = (newVolume: number) => {
+  setVolume(Math.max(0, Math.min(1, newVolume)));
+};
+```
+
+But for Line 9, the fix isn't so straightforward.
+
+TypeScript knows that there is no `volume` property in the `never` type which comes from the ref being a `null`. We know that this ref can point to an HTML Video or Audio element, let us type that and see what happens:
+
+```ts title="useVolume.ts" showLineNumbers {5}
+import React from 'react';
+
+export default function useVolume(defaultVolume = 1) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef<HTMLVideoElement | HTMLAudioElement>(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume: number) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+Ok, looks like the error is gone. Let us now use this hook in the `App` component:
+
+```js title="App.js" showLineNumbers {15, 21, 25, 31, 37, 41}
+import React from 'react';
+import CustomAudioControl from './CustomAudioControl';
+import useVolume from './useVolume';
+
+export default function App() {
+  return (
+    <div className="space-y-4 p-4">
+      <AudioTest />
+      <VideoTest />
+    </div>
+  );
+}
+
+function AudioTest() {
+  const { ref, volume, setElementVolume } = useVolume();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <audio
+        ref={ref}
+        controls
+        src="https://frontendhire.com/sample-audio.mp3"
+      />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+
+function VideoTest() {
+  const { ref, volume, setElementVolume } = useVolume();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <video
+        ref={ref}
+        controls
+        src="https://frontendhire.com/sample-video.mp4"
+      />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+```
+
+There is now an error at **Line 37**:
+
+```text
+Type 'RefObject<HTMLVideoElement | HTMLAudioElement>' is not assignable to type 'LegacyRef<HTMLVideoElement> | undefined'.
+  Type 'RefObject<HTMLVideoElement | HTMLAudioElement>' is not assignable to type 'RefObject<HTMLVideoElement>'.
+    Type 'HTMLVideoElement | HTMLAudioElement' is not assignable to type 'HTMLVideoElement'.
+      Type 'HTMLAudioElement' is missing the following properties from type 'HTMLVideoElement': disablePictureInPicture, height, onenterpictureinpicture, onleavepictureinpicture, and 9 more.ts(2322)
+index.d.ts(303, 9): The expected type comes from property 'ref' which is declared here on type 'DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>'
+```
+
+Hmm, this is not a problem for the `audio` element, but for the `video` element. Why?
+
+Looks like TypeScript is saying that you can't use a ref that could be either an `HTMLAudioElement` or `HTMLVideoElement` where a ref for specifically an `HTMLVideoElement` is expected.
+
+<Callout type='warning'>
+This might be irritating to work with. But a little effort can help a lot fix the issue.
+</Callout>
+
+Basically, we have to narrow down the type further ourselves as TypeScript is struggling to narrow it down.
+
+What if we could tell the useVolume hook the type of the ref? Something like this:
+
+```ts
+function AudioTest() {
+  const { ref, volume, setElementVolume } = useVolume<HTMLAudioElement>();
+
+  // Rest of the code omitted for brevity
+}
+
+
+function VideoTest() {
+  const { ref, volume, setElementVolume } = useVolume<HTMLVideoElement>();
+
+  // Rest of the code omitted for brevity
+}
+```
+
+This means we have to use **TypeScript Generics** to tell TypeScript that the ref is either `HTMLAudioElement` or `HTMLVideoElement`.
+
+```ts title="useVolume.ts" showLineNumbers {3, 5}
+import React from 'react';
+
+export default function useVolume<T>(defaultVolume = 1) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef<T>(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume: number) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+Hmm, the errors are gone from the `App` component but there is now an error in the `useVolume` hook at **Line 9**: 
+
+```text
+Property 'volume' does not exist on type 'NonNullable<T>'.ts(2339)
+```
+
+Though we now pass the type from the `App` component to the `useVolume` hook. TypeScript still does not know for a certain that a `volume` property is available on the `ref` object. We can fix this by letting it know that the Generic `T` extends `HTMLAudioElement` or `HTMLVideoElement`:
+
+```ts title="useVolume.ts" showLineNumbers {4}
+import React from 'react';
+
+export default function useVolume<
+  T extends HTMLAudioElement | HTMLVideoElement,
+>(defaultVolume = 1) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef<T>(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume: number) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+In fact, we can further simplify this as both `HTMLAudioElement` and `HTMLVideoElement` actually extend the base `HTMLMediaElement` interface.
+
+```ts title="useVolume.ts" showLineNumbers {3}
+import React from 'react';
+
+export default function useVolume<T extends HTMLMediaElement>(
+  defaultVolume = 1,
+) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef<T>(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume: number) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+Let us also type the `CustomAudioControl` component as well:
+
+```ts title="CustomAudioControl.tsx" showLineNumbers {1-4, 9}
+type CustomAudioControlProps = {
+  volume: number;
+  setVolume: (newVolume: number) => void;
+};
+
+export default function CustomAudioControl({
+  volume,
+  setVolume,
+}: CustomAudioControlProps) {
+  return (
+    <input
+      value={volume}
+      onChange={(e) => setVolume(parseFloat(e.target.value))}
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+    />
+  );
+}
+```
+
+## Final Code
+
+```js title="App.tsx" showLineNumbers
+import CustomAudioControl from './CustomAudioControl';
+import useVolume from './useVolume';
+
+export default function App() {
+  return (
+    <div className="space-y-4 p-4">
+      <AudioTest />
+      <VideoTest />
+    </div>
+  );
+}
+
+function AudioTest() {
+  const { ref, volume, setElementVolume } = useVolume<HTMLAudioElement>();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <audio
+        ref={ref}
+        controls
+        src="https://frontendhire.com/sample-audio.mp3"
+      />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+
+function VideoTest() {
+  const { ref, volume, setElementVolume } = useVolume<HTMLVideoElement>();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <video
+        ref={ref}
+        controls
+        src="https://frontendhire.com/sample-video.mp4"
+      />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+```
+
+```js title="useVolume.ts" showLineNumbers
+import React from 'react';
+
+export default function useVolume<T extends HTMLMediaElement>(
+  defaultVolume = 1,
+) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef<T>(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume: number) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+```js title="CustomAudioControl.tsx" showLineNumbers
+type CustomAudioControlProps = {
+  volume: number;
+  setVolume: (newVolume: number) => void;
+};
+
+export default function CustomAudioControl({
+  volume,
+  setVolume,
+}: CustomAudioControlProps) {
+  return (
+    <input
+      value={volume}
+      onChange={(e) => setVolume(parseFloat(e.target.value))}
+      type="range"
+      min="0"
+      max="1"
+      step="0.1"
+    />
+  );
+}
+```
