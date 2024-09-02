@@ -1,0 +1,76 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+The only way to control the actual volume of a video or audio player in React is through `refs` which provide the access to the actual DOM element.
+
+```js title="useVolume.js" showLineNumbers {4, 6-19}
+import React from 'react';
+
+export default function useVolume(
+  defaultVolume = 1,
+) {
+  const [volume, setVolume] = React.useState(defaultVolume);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.volume = volume;
+    }
+  }, [volume]);
+
+  const setElementVolume = (newVolume) => {
+    setVolume(Math.max(0, Math.min(1, newVolume)));
+  };
+
+  return { ref, volume, setElementVolume };
+}
+```
+
+As per the requirements:
+
+- We have a default value for the initial volume called `defaultVolume`.
+- We synchronize the actual DOM element with the `volume` state using `React.useEffect`.
+- We use `setElementVolume` to update the volume and make sure it is within the range of `0` and `1`.
+- The custom hook should return a reference to the audio or video element, along with the current volume and a function to update the volume.
+
+Let us now use the custom hook in the `App` component.
+
+```js title="App.js" showLineNumbers {15, 20-21, 27, 32-33}
+import React from 'react';
+import CustomAudioControl from './CustomAudioControl';
+import useVolume from './useVolume';
+
+export default function App() {
+  return (
+    <div className="space-y-4 p-4">
+      <AudioTest />
+      <VideoTest />
+    </div>
+  );
+}
+
+function AudioTest() {
+  const { ref, volume, setElementVolume } = useVolume();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <audio ref={ref} controls src="https://frontendhire.com/sample-audio.mp3" />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+
+function VideoTest() {
+  const { ref, volume, setElementVolume } = useVolume();
+
+  return (
+    <div className="space-y-4 p-4">
+      {/* In real world, we disable the default controls using JS */}
+      <video ref={ref} controls src="https://frontendhire.com/sample-video.mp4" />
+      <CustomAudioControl volume={volume} setVolume={setElementVolume} />
+    </div>
+  );
+}
+```
