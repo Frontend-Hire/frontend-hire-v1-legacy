@@ -4,108 +4,138 @@ import { Callout } from '@/components/MarkdownComponents';
 
 TDD (test-driven development) shines in this type of scenario. We will also use the same approach here.
 
-## Understanding the Array.filter() Method
+## Understanding the Promise.all() Static Method
 
-Let us first understand the array filter method in detail.
+Let us first understand the Promise.all() static method by trying out a few examples.
+
+<Callout>
+We suggest you also do this in an interview setting. As this helps you form a better thought process. This also clears up some of the edge cases. You can also pull up the documentation (we encourage doing this) if the interviewer has no issue with that.
+</Callout>
 
 ```js
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let promise1 = Promise.resolve(3);
+let promise2 = Promise.resolve(1);
+let promise3 = Promise.resolve(2);
 
-arr.filter((number) => number > 5); // [6, 7, 8, 9, 10]
+Promise.all([promise1, promise2, promise3]).then(r => console.log(r)).catch(e => console.log(e));
+// [3, 1, 2]
 
-function isEven(number) {
-  return number % 2 === 0;
-}
+promise2 = Promise.reject(new Error('error'));
 
-arr.filter(isEven); // [2, 4, 6, 8, 10]
+Promise.all([promise1, promise2, promise3]).then(r => console.log(r)).catch(e => console.log(e));
+// Error: error
 
-arr.filter((...args) => console.log(args)); // [1, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], [2, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]] etc.,
-// Basically, the first argument is the item, the second is the index, and the third is the array itself.
+Promise.all().then(r => console.log(r)).catch(e => console.log(e));
+// TypeError: undefined is not iterable (cannot read property Symbol(Symbol.iterator))
+
+Promise.all([]).then(r => console.log(r)).catch(e => console.log(e));
+// []
 ```
 
-So, the filter method takes a callback function as a parameter and returns a new array with all the elements that pass the test implemented by the function.
+So, the Promise.all() method takes an **iterable** of promises as an argument and returns a new promise that resolves to an array of all the results of the promises. But if any of the promises reject, the returned promise will reject with the first rejection reason. The rest of the promises will be ignored.
 
-<Callout type='warning'>
-Array.filter method also takes another parameter which is `thisArg`. This is a little out of the scope of this question. But it is used to specify the value of `this` inside the callback function.
+<Callout type="error">
+Note that argument is an iterable, not just an array, this can impact the implementation. In an interview, you could maybe assume that the argument is an array but do confirm with the interviewer. We will in this solution though handle the case for iterables.
 </Callout>
 
 ## Tests
 
-Let us first write the tests for the following cases:
+Great. Given the idea of how Promise.all() works, let us write some tests for our implementation.
 
-### Filters values based on the item
-
-```js title="index.test.js"
-test('filters values based on the item', () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  expect(arr.myFilter((item) => item > 5)).toEqual([6, 7, 8, 9, 10]);
-});
-```
-
-This is the most common use case that we also use with the regular filter method.
-
-### Filters values based on the index
+<Callout>
+Given that it is a static method, we have already set the right base for the tests.
 
 ```js title="index.test.js"
-test('filters values based on the index', () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  expect(arr.myFilter((_item, index) => index > 5)).toEqual([7, 8, 9, 10]);
+beforeAll(() => {
+  // We attach the polyfill to the constructor of the Promise object
+  // and not to the prototype!
+  Promise.myAll = myAll;
 });
 ```
+</Callout>
 
-This time instead of the first argument of the callback function, we use the second argument. We use `_underscore` to indicate that we are not using the first argument.
-
-### Filters values based on the item and the array itself
+### The method returns an array of resolved values when all promises resolve
 
 ```js title="index.test.js"
-test('filters values based on the item and the array itself', () => {
-  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  expect(arr.myFilter((item, _index, array) => item > array[5])).toEqual([
-    7, 8, 9, 10,
-  ]);
+test('should resolve with an array of resolved values when all promises resolve', async () => {
+  const promises = [
+    Promise.resolve(1),
+    Promise.resolve(2),
+    Promise.resolve(3),
+  ];
+  const result = await Promise.myAll(promises);
+  expect(result).toEqual([1, 2, 3]);
 });
 ```
 
-We now use both the first and the third argument in the callback function. Just using the third argument does not make any sense.
+### The method rejects with the reason of the first rejected promise
 
-Putting them all together:
-
-```js title="index.test.js" showLineNumbers
-import { describe, test, beforeAll, expect } from 'vitest';
-
-import { myFilter } from '.';
-
-describe('polyfill-array-filter', () => {
-  beforeAll(() => {
-    Array.prototype.myFilter = myFilter;
-  });
-
-  test('filters values based on the item', () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    expect(arr.myFilter((item) => item > 5)).toEqual([6, 7, 8, 9, 10]);
-  });
-
-  test('filters values based on the index', () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    expect(arr.myFilter((_item, index) => index > 5)).toEqual([7, 8, 9, 10]);
-  });
-
-  test('filters values based on the item and the array itself', () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    expect(arr.myFilter((item, _index, array) => item > array[5])).toEqual([
-      7, 8, 9, 10,
-    ]);
-  });
+```js title="index.test.js"
+test('should reject with the reason of the first rejected promise', async () => {
+  const promises = [
+    Promise.resolve(1),
+    Promise.reject(new Error('Oops 1')),
+    Promise.resolve(3),
+    Promise.reject(new Error('Oops 2')),
+  ];
+  await expect(Promise.myAll(promises)).rejects.toThrowError('Oops 1');
 });
 ```
+
+### The method resolves with an empty array if given an empty array
+
+```js title="index.test.js"
+test('should resolve with an empty array if given an empty array', async () => {
+  const result = await Promise.myAll([]);
+  expect(result).toEqual([]);
+});
+```
+
+### The method throws an error if given a non-iterable or no argument
+
+```js title="index.test.js"
+test('should throw an error if given a non-iterable or no argument', async () => {
+  await expect(Promise.myAll({})).rejects.toThrowError();
+
+  await expect(Promise.myAll()).rejects.toThrowError();
+});
+```
+
+### The method handles non-promise values in the input array
+
+```js title="index.test.js"
+test('should handle non-promise values in the input array', async () => {
+  const promises = [
+    Promise.resolve(1),
+    2,
+    Promise.resolve(3)
+  ];
+  const result = await Promise.myAll(promises);
+  expect(result).toEqual([1, 2, 3]);
+});
+```
+
+### The method maintains the order of results
+
+```js title="index.test.js"
+test('should maintain the order of results', async () => {
+  const promises = [
+    new Promise(resolve => setTimeout(() => resolve(3), 30)),
+    new Promise(resolve => setTimeout(() => resolve(1), 10)),
+    new Promise(resolve => setTimeout(() => resolve(2), 20))
+  ];
+  const result = await Promise.myAll(promises);
+  expect(result).toEqual([3, 1, 2]);
+});
+```
+
+Of course, you can write more tests but the above should be enough.
 
 ## The Polyfill
+
+<Callout type='warning'>
+Given how promises and async code work, you will face some frustraions when running the tests. The recommendation is to exit and run the tests again.
+</Callout>
 
 <Callout type='error'>
 The actual implementation would be different from what we implement here. This is because for an interview setting this is more than enough. But if you were actually implementing a JS polyfill for production (quite rare), you would need to check the actual specification and handle more edge cases than what you see here.
@@ -113,33 +143,247 @@ The actual implementation would be different from what we implement here. This i
 
 Now that the basic tests are done, we can start implementing the actual polyfill.
 
+No matter what, we still return a promise. So, our base code would be:
+
 ```js title="index.js"
-export function myFilter(cb) {
-  const result = []; // [!code ++]
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {});
 }
 ```
 
-We will use the `result` array to store the filtered values. Remember that we need to return a new array and not modify the original array. Of course, we return a shallow copy of the original array.
+Let us start with the rest of the implementation.
 
-```js title="index.js"
-export function myFilter(cb) {
-  const result = [];
+```js title="index.js" {3}
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+  });
+}
+```
 
-  // [!code ++:8]
-  for (let i = 0; i < this.length; i++) {
-    if (cb(this[i], i, this)) {
-      result.push(this[i]);
+We use a `results` array to store the results of each promise.
+
+Next, let us handle the test **"should resolve with an empty array if given an empty array"** as this adds an early return and help clean up the code.
+
+```js title="index.test.js" {5-8}
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+
+    if (promises.length === 0) {
+      resolve(results);
+      return;
     }
-  }
-
-  return result;
+  });
 }
 ```
 
-Now for each of the values in the original array, we call the callback function and check if it returns `true`. If it does, we push the value to the `result` array. As per our understanding of the Array.filter method, we have to pass the following arguments to the callback function:
+We simply check for the length of the array, resolve the promise with an empty array if the length is 0 and return.
 
-- The item: **this[i]**
-- The index: **i**
-- The array itself: **this**
+Run the tests and you should have a passing test for **"should resolve with an empty array if given an empty array"**
 
-We then just return the `result` array. This should pass all the tests.
+Next, let us handle the test **"should resolve with an array of resolved values when all promises resolve"**.
+
+```js title="index.test.js" {10-16}
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+
+    if (promises.length === 0) {
+      resolve(results);
+      return;
+    }
+
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise).then((value) => {
+        results[index] = value;
+      });
+    });
+
+    resolve(results);
+  });
+}
+```
+
+Save the code and run the tests. You should have multiple passing tests:
+
+- **"should resolve with an array of resolved values when all promises resolve"**: This passes because the `resolve` function is called for each promise and the `results` array is filled with the resolved values.
+- **"should throw an error if given a non-iterable or no argument"**: This passes because the `promises.forEach` is called. This would fail for when the argument is a non-iterable.
+- **"should handle non-promise values in the input array"**: This passes because the `resolve` function for non-promises just returns the value.
+
+But the two failing tests need to be fixed.
+
+What if we put a catch block?
+
+```js title="index.test.js" {15}
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+
+    if (promises.length === 0) {
+      resolve(results);
+      return;
+    }
+
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((value) => {
+          results[index] = value;
+        })
+        .catch(reject);
+    });
+
+    resolve(results);
+  });
+}
+```
+
+Hmm, we still have the same two failing tests.
+
+This implementation has two main issues:
+
+- Failing "should maintain the order of results":
+The problem here is that the function resolves immediately after starting all the promises, not waiting for them to complete. The resolve(results) call at the end of the function happens before any of the promises have a chance to resolve and populate the results array.
+
+- Failing "should reject with the reason of the first rejected promise":
+While this implementation does call reject when a promise is rejected, it doesn't stop the execution. The main promise will still resolve with the results array, which will be partially filled.
+
+So, we need to use a counter to keep track of the number of promises that have been resolved and return the results array when all promises have been resolved.
+
+Let us update the code:
+
+```js title="index.test.js" showLineNumbers {4, 15, 17-19}
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+    let resolvedCount = 0;
+
+    if (promises.length === 0) {
+      resolve(results);
+      return;
+    }
+
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((value) => {
+          results[index] = value;
+          resolvedCount++;
+
+          if (resolvedCount === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch(reject);
+    });
+  });
+}
+```
+
+Perfect, all our tests should pass now.
+
+## Final Code
+
+```js title="index.js" showLineNumbers
+// Normally, a polyfill would be implemented as part of the prototype or the constructor of a global object.
+// In this case, it is part of the Promise constructor.
+/* Something like the below
+if (!Promise.all) {
+  Promise.all = function(index) {
+    // Implementation goes here.
+  };
+} 
+*/
+// However, for this exercise, we'll define it with a different name to not confuse the global object.
+// We can of course, also override it but let's not do that!
+
+/**
+ * A polyfill implementation of the Promise.all method.
+ *
+ * @param {Array<Promise<any>>} promises - An array of promises.
+ * @return {Promise<Array<any>>} A promise that resolves when all promises in the input array have resolved, or rejects immediately upon any of the input promises rejecting.
+ */
+export function myAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = new Array(promises.length);
+    let resolvedCount = 0;
+
+    if (promises.length === 0) {
+      resolve(results);
+      return;
+    }
+
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then((value) => {
+          results[index] = value;
+          resolvedCount++;
+
+          if (resolvedCount === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch(reject);
+    });
+  });
+}
+```
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, beforeAll, expect } from 'vitest';
+import { myAll } from './polyfill-promise-all';
+
+describe('myAll', () => {
+  beforeAll(() => {
+    // We attach the polyfill to the constructor of the Promise object
+    // and not to the prototype!
+    Promise.myAll = myAll;
+  });
+
+  test('should resolve with an array of resolved values when all promises resolve', async () => {
+    const promises = [
+      Promise.resolve(1),
+      Promise.resolve(2),
+      Promise.resolve(3),
+    ];
+    const result = await Promise.myAll(promises);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  test('should reject with the reason of the first rejected promise', async () => {
+    const promises = [
+      Promise.resolve(1),
+      Promise.reject(new Error('Oops 1')),
+      Promise.resolve(3),
+      Promise.reject(new Error('Oops 2')),
+    ];
+    await expect(Promise.myAll(promises)).rejects.toThrowError('Oops 1');
+  });
+
+  test('should resolve with an empty array if given an empty array', async () => {
+    const result = await Promise.myAll([]);
+    expect(result).toEqual([]);
+  });
+
+  test('should throw an error if given a non-iterable or no argument', async () => {
+    await expect(Promise.myAll({})).rejects.toThrowError();
+
+    await expect(Promise.myAll()).rejects.toThrowError();
+  });
+
+  test('should handle non-promise values in the input array', async () => {
+    const promises = [Promise.resolve(1), 2, Promise.resolve(3)];
+    const result = await Promise.myAll(promises);
+    expect(result).toEqual([1, 2, 3]);
+  });
+
+  test('should maintain the order of results', async () => {
+    const promises = [
+      new Promise((resolve) => setTimeout(() => resolve(3), 30)),
+      new Promise((resolve) => setTimeout(() => resolve(1), 10)),
+      new Promise((resolve) => setTimeout(() => resolve(2), 20)),
+    ];
+    const result = await Promise.myAll(promises);
+    expect(result).toEqual([3, 1, 2]);
+  });
+});
+```
