@@ -243,10 +243,4 @@ function useMouse(options = {}) {
 
 In this solution, we have implemented a custom hook called `useMouse` that returns the position of the mouse. The hook returns four values: `mousePosition`, `refMousePosition`, `ref`, and `isInside`. The `mousePosition` object contains `x` and `y` keys representing the absolute position of the mouse. The `refMousePosition` object contains `x` and `y` keys representing the position of the mouse relative to the element. The `ref` is a ref that can be attached to any element to get the position of the mouse relative to that element. The `isInside` value indicates if the mouse is inside the ref element or not.
 
-## Next Steps
-
-- Test the `useMouse` hook with the `App` component to see if it works as expected.
-- Add Testing for the `useMouse` hook to ensure it works correctly in different scenarios.
-- We can also migrate the `useMouse` hook to TypeScript for better type safety.
-
 ---
