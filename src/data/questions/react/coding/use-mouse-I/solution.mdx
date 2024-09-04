@@ -1,0 +1,252 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout>
+  The solution to this problem is to create a custom hook called `useMouse` that returns the position of the mouse. The hook should return three values: `mousePosition`, `refMousePosition`, `ref`, and `isInside`. The `mousePosition` object should contain `x` and `y` keys representing the absolute position of the mouse. The `refMousePosition` object should contain `x` and `y` keys representing the position of the mouse relative to the element. The `ref` should be a ref that can be attached to any element to get the position of the mouse relative to that element. The `isInside` value should indicate if the mouse is inside the ref element or not.
+</Callout>
+
+## Implementing the `useMouse` Hook
+
+Now, let's implement the `useMouse` custom hook in the `useMouse.js` file.
+
+### Implementation Steps
+1. Create a custom hook called `useMouse` that returns the position of the mouse.
+
+```jsx
+import React from "react";
+
+function useMouse() {
+
+}
+
+export default useMouse;
+```
+
+2. The hook should return four values: `mousePosition`, `refMousePosition`, `ref`, and `isInside`.
+
+```jsx
+function useMouse() {
+  const [mousePosition, setMousePosition] = React.useState();
+  const [refMousePosition, setRefMousePosition] = React.useState();
+  const [isInside, setIsInside] = React.useState(false);
+
+  const ref = React.useRef(null);
+
+  return { mousePosition, refMousePosition, ref, isInside };
+}
+```
+3. The `mousePosition` and `refMousePosition` object should contain `x` and `y` keys representing the absolute and respective position of the mouse respectively.
+```jsx
+function useMouse() {
+  const [mousePosition, setMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [refMousePosition, setRefMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [isInside, setIsInside] = React.useState(false);
+
+  const ref = React.useRef(null);
+
+  return { mousePosition, refMousePosition, ref };
+}
+```
+
+4. The `ref` should be a ref that can be attached to any element to get the position of the mouse relative to that element.
+5. The hook should update the position of the mouse based on the mouse movement.
+
+```jsx
+  /* state and ref initialization */
+  const updateMousePosition = React.useCallback(
+    (event) => {
+      const { clientX, clientY } = event;
+      setMousePosition({ x: clientX, y: clientY });
+
+      if (ref.current?.nodeType === Node.ELEMENT_NODE && ref.current.contains(event.target)) {
+        const rect = ref.current.getBoundingClientRect();
+        setRefMousePosition({
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        });
+      }
+    },
+    []
+  );
+
+  React.useLayoutEffect(() => {
+    document.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      document.removeEventListener("mousemove", updateMousePosition);
+    };
+  }, [updateMousePosition, handleMouseEnter, handleMouseLeave]);
+
+  /* return values */
+```
+
+6. The `isInside` value should indicate if the mouse is inside the ref element or not.
+
+```jsx
+  /* state, ref initialization and mouse moment function handlers goes here */
+  const handleMouseEnter = React.useCallback(() => setIsInside(true), []);
+  const handleMouseLeave = React.useCallback(() => setIsInside(false), []);
+
+  React.useLayoutEffect(() =>{
+   const element = ref.current;
+    if (element) {
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
+    }
+    /* add mousemove event listener */
+    return () => {
+      if (element) {
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+      }
+    };
+  }, [handleMouseEnter, handleMouseLeave]);
+  /* return values */
+```
+
+7. Return the `mousePosition`, `refMousePosition`, `ref`, and `isInside` values from the hook.
+
+```jsx
+  return { mousePosition, refMousePosition, ref, isInside };
+```
+
+8. The complete implementation of the `useMouse` custom hook is as follows:
+
+```jsx
+function useMouse() {
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const [refMousePosition, setRefMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [isInside, setIsInside] = React.useState(false);
+
+  const ref = React.useRef(null);
+
+  const updateMousePosition = React.useCallback(
+    (event) => {
+      const { clientX, clientY } = event;
+      setMousePosition({ x: clientX, y: clientY });
+
+      if (ref.current?.nodeType === Node.ELEMENT_NODE && ref.current.contains(event.target)) {
+        const rect = ref.current.getBoundingClientRect();
+        setRefMousePosition({
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        });
+      }
+    },
+    []
+  );
+
+  const handleMouseEnter = React.useCallback(() => setIsInside(true), []);
+  const handleMouseLeave = React.useCallback(() => setIsInside(false), []);
+
+  React.useLayoutEffect(() => {
+    const element = ref.current;
+    if (element) {
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    document.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      if (element) {
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+      }
+      document.removeEventListener("mousemove", updateMousePosition);
+    };
+  }, [updateMousePosition, handleMouseEnter, handleMouseLeave]);
+
+  return { mousePosition, refMousePosition, isInside, ref };
+}
+```
+
+## Extra functionality
+
+- The hook should also provide an option, if we want to track mouse position relative to ref element even if mouse is outside the ref element. This could be totally optional and should be false by default and should be passed as an argument to the hook.
+
+```jsx
+function useMouse(options = {}) {
+  const { trackOutside = false } = options;
+
+  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
+  const [refMousePosition, setRefMousePosition] = React.useState({
+    x: 0,
+    y: 0,
+  });
+  const [isInside, setIsInside] = React.useState(false);
+
+  const ref = React.useRef(null);
+
+  const updateMousePosition = React.useCallback(
+    (event) => {
+      const { clientX, clientY } = event;
+      setMousePosition({ x: clientX, y: clientY });
+
+      /* We will calculate mouse position to ref element, based on two conditions, if mouse is inside ref element, or trackOutside is true */
+      if (
+        ref.current?.nodeType === Node.ELEMENT_NODE &&
+        (ref.current.contains(event.target) || trackOutside)
+      ) {
+        const rect = ref.current.getBoundingClientRect();
+        setRefMousePosition({
+          x: clientX - rect.left,
+          y: clientY - rect.top,
+        });
+      }
+    },
+    [trackOutside]
+  );
+
+  const handleMouseEnter = React.useCallback(() => setIsInside(true), []);
+  const handleMouseLeave = React.useCallback(() => {
+    setIsInside(false);
+    /* we will reset ref's relative positions when trackOutside is false */
+    if (!trackOutside) {
+      setRefMousePosition({ x: 0, y: 0 });
+    }
+  }, [trackOutside]);
+
+  React.useLayoutEffect(() => {
+    const element = ref.current;
+    if (element) {
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
+    }
+
+    document.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      if (element) {
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+      }
+      document.removeEventListener("mousemove", updateMousePosition);
+    };
+  }, [updateMousePosition, handleMouseEnter, handleMouseLeave]);
+
+  return { mousePosition, refMousePosition, isInside, ref };
+}
+```
+
+## Summary
+
+In this solution, we have implemented a custom hook called `useMouse` that returns the position of the mouse. The hook returns four values: `mousePosition`, `refMousePosition`, `ref`, and `isInside`. The `mousePosition` object contains `x` and `y` keys representing the absolute position of the mouse. The `refMousePosition` object contains `x` and `y` keys representing the position of the mouse relative to the element. The `ref` is a ref that can be attached to any element to get the position of the mouse relative to that element. The `isInside` value indicates if the mouse is inside the ref element or not.
+
+## Next Steps
+
+- Test the `useMouse` hook with the `App` component to see if it works as expected.
+- Add Testing for the `useMouse` hook to ensure it works correctly in different scenarios.
+- We can also migrate the `useMouse` hook to TypeScript for better type safety.
+
+---
