@@ -1,0 +1,19 @@
+# useMouse
+
+You will be implementing a custom hook called `useMouse` that will return position of mouse, it will also return a ref, using which you can attach it to any element and get the position of mouse relative to that element, we will also get response, if our cursor is inside that ref element or not.
+
+## Objectives
+
+- Implement a custom hook `useMouse` that returns the position of the mouse.
+- This hook should return four values:
+    - `mousePosition` - an object with `x` and `y` keys representing the absolute position of the mouse.
+    - `refMousePosition` - an object with `x` and `y` keys representing the position of the mouse relative to the element.
+    - `ref` - a ref that can be attached to any element to get the position of the mouse relative to that element.
+    - `isInside` - a boolean value that indicates if the mouse is inside the ref element or not.
+- A component `App` is already given, that will show the position of mouse and the position of mouse relative to the element using the hook `useMouse`.
+
+## Resources to Refer
+
+- [React Docs: Hooks](https://react.dev/reference/react/hooks)
+- [React Docs: Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [React Docs: Refs and the DOM](https://react.dev/learn/manipulating-the-dom-with-refs)
