@@ -11,7 +11,7 @@ export const meta: Course = {
   image: image,
   isPublished: true,
   publishedOn: new Date('2024-06-21'),
-  isPro: true,
+  isPro: false,
   chapters: {
     overview: 'Overview',
     'setup-pages-router': 'Setup Pages Router',
