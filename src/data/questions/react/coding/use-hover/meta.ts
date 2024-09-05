@@ -23,6 +23,6 @@ export const meta: Question = {
   files: {
     '/App.js': { code: require('./src/App.js').code },
     '/useHover.js': { code: require('./src/useHover.js').code },
-    'App.css': require('./src/App.css.js').code,
+    'App.css': { code: require('./src/App.css.js').code, readOnly: true },
   },
 };
