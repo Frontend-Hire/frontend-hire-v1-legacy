@@ -1,20 +1,22 @@
-# Testing: use Hover
+# useHover
 
-You will be building a custom hook that will track the mouse hover state of an element, if no element is provided to hook, it should point to the document object.
-
-> React developers do TDD because they prefer their components shaken, not stirred.
+Create a custom hook that tracks the hover state of an element. The hook should return a boolean value indicating whether the element is being hovered over. If no element is provided, the hook should track the hover state of the entire document.
 
 ## Objectives
 
-- Implement the `useHover` custom hook in the `useHover.ts` file.
-- The hook should return a boolean value that indicates whether the mouse is hovering over the provided element.
-- If no element is provided, the hook should use the document object as the default element.
-- Write tests for the `useHover` hook in the `useHover.test.ts` file.
+1. Implement a useHover custom hook that:
+    - Returns an object with isHovering (boolean) and refElement (React ref)
+    - Tracks hover state for a specific element or the entire document
+
+2. Ensure the hook:
+    - Adds and removes event listeners appropriately
+    - Handles both element-specific and document-wide hover tracking
+    - Cleans up event listeners on component unmount
+
+3. Use the useHover hook in the provided App component to display the hover state of the document or a specific element.
 
 ## Resources to Refer
 
-- [React Docs: Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-- [React Docs: Jest](https://jestjs.io/docs/getting-started)
-- [React Docs: Vitest](https://vitest.io/docs/getting-started)
-- [React Docs: Hooks](https://reactjs.org/docs/hooks-intro.html)
-- [React Docs: Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+- [React Docs: Hooks](https://react.dev/reference/react/hooks)
+- [React Docs: Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [React Docs: Refs and the DOM](https://react.dev/learn/manipulating-the-dom-with-refs)

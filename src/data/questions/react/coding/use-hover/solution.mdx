@@ -1,132 +1,68 @@
+import { Callout } from '@/components/MarkdownComponents';
+
 # Solution
 
-## TDD Approach
+<Callout>
+  The solution to this problem is to create a custom hook called `useHover` that returns a boolean value `isHovering` and `refElement` (React ref). The hook should track the hover state for a specific element or the entire document. The hook should add and remove event listeners appropriately, handle both element-specific and document-wide hover tracking, and clean up event listeners on component unmount.
+</Callout>
 
-In this question, we will follow the Test-Driven Development (TDD) approach to implement the `useHover` custom hook. We will write tests first and then implement the hook to make the tests pass.
+## Implementing the `useMouse` Hook
 
-## Writing Tests
+Now, let's implement the `useHover` custom hook in the `useHover.js` file.
 
-Let us write tests for the `useHover` custom hook in the `useHover.test.ts` file.
+### Implementation Steps
+1. Create a custom hook called `useHover` that tracks the hover state of an element.
 
-### Test Cases
+```jsx
+import React from "react";
 
-1. The hook should return `false` initially.
-2. The hook should return `true` when the mouse enters the element.
-3. The hook should return `false` when the mouse leaves the element.
-4. The hook should clean up event listeners on unmount.
-5. The hook should use the document as the default element and return `true` when the mouse enters the document.
-6. The hook should use the document as the default element and return `false` when the mouse leaves the document.
+function useHover() {
 
-```ts title="useHover.test.ts" showLineNumbers
-import { renderHook, act } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+}
 
-// internal hook
-import useHover from "./useHover";
-
-describe("useHover on element ref", () => {
-  beforeEach(() => {
-    document.body.innerHTML = '<div id="test-element"></div>';
-  });
-
-  it("should return false initially", () => {
-    const ref = { current: document.getElementById("test-element") };
-    const { result } = renderHook(() => useHover(ref));
-    expect(result.current).toBe(false);
-  });
-
-  it("should return true when mouse enters the element", () => {
-    const ref = { current: document.getElementById("test-element") };
-    const { result } = renderHook(() => useHover(ref));
-
-    act(() => {
-      ref.current?.dispatchEvent(new MouseEvent("mouseenter"));
-    });
-
-    expect(result.current).toBe(true);
-  });
-
-  it("should return false when mouse leaves the element", () => {
-    const ref = { current: document.getElementById("test-element") };
-    const { result } = renderHook(() => useHover(ref));
-
-    act(() => {
-      ref.current?.dispatchEvent(new MouseEvent("mouseenter"));
-    });
-    expect(result.current).toBe(true);
-
-    act(() => {
-      ref.current?.dispatchEvent(new MouseEvent("mouseleave"));
-    });
-    expect(result.current).toBe(false);
-  });
-
-  it("should clean up event listeners on unmount", () => {
-    const ref = { current: document.getElementById("test-element") };
-    const removeEventListenerSpy = vi.spyOn(
-      ref.current!,
-      "removeEventListener"
-    );
-
-    const { unmount } = renderHook(() => useHover(ref));
-    unmount();
-
-    expect(removeEventListenerSpy).toHaveBeenCalledTimes(2);
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mouseenter",
-      expect.any(Function)
-    );
-    expect(removeEventListenerSpy).toHaveBeenCalledWith(
-      "mouseleave",
-      expect.any(Function)
-    );
-  });
-});
-
-describe("useHover on document ref", () => {
-  it("should use document as default ref and return true when mouse enters the document", () => {
-    const { result } = renderHook(() => useHover());
-
-    act(() => {
-      document.dispatchEvent(new MouseEvent("mouseenter"));
-    });
-
-    expect(result.current).toBe(true);
-  });
-
-  it("should use document as default ref and return false when mouse leaves the document", () => {
-    const { result } = renderHook(() => useHover());
-
-    act(() => {
-      document.dispatchEvent(new MouseEvent("mouseenter"));
-    });
-    expect(result.current).toBe(true);
-
-    act(() => {
-      document.dispatchEvent(new MouseEvent("mouseleave"));
-    });
-    expect(result.current).toBe(false);
-  });
-});
-
+export default useHover;
 ```
 
-### Fixing the code
+2. The hook should return an object with `isHovering` (boolean) and `refElement` (React ref).
 
-Now, let us fix the code that causes the bugs. We will implement the `useHover` hook in the `useHover.ts` file.
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
 
-```ts title="useHover.ts" showLineNumbers
-import { useState, useEffect, RefObject } from "react";
+  return { isHovering, refElement };
+}
+```
 
-function useHover<T extends HTMLElement = HTMLElement>(
-  ref?: RefObject<T>
-): boolean {
-  const [isHovering, setIsHovering] = useState(false);
+3. The hook should track hover state for a specific element or the entire document.
 
-  useEffect(() => {
-    const element = ref?.current || document;
-    if (!element) return;
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
 
+  React.useEffect(() => {
+    const element = refElement.current || document;
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
+    element.addEventListener("mouseenter", handleMouseEnter);
+    element.addEventListener("mouseleave", handleMouseLeave);
+  }, [refElement]);
+
+  return { isHovering, refElement };
+}
+```
+
+4. Ensure the hook adds and removes event listeners appropriately.
+
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
+
+  React.useEffect(() => {
+    const element = refElement.current || document;
     const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => setIsHovering(false);
 
@@ -136,27 +72,37 @@ function useHover<T extends HTMLElement = HTMLElement>(
     return () => {
       element.removeEventListener("mouseenter", handleMouseEnter);
       element.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [ref]);
+    }
+  }, [refElement]);
 
-  return isHovering;
+  return { isHovering, refElement };
+}
+```
+
+## Using the `useHover` Hook
+
+Now, let's use the `useHover` hook in the `App` component to display the hover state of the document or a specific element.
+  
+```jsx
+import React from "react";
+import useHover from "./useHover";
+
+function App() {
+  const { isHovering, refElement } = useHover();
+
+  return (
+    <div>
+      <h1>{isHovering ? "Hovering" : "Not Hovering"}</h1>
+      <div ref={refElement}>Hover over this element</div>
+    </div>
+  );
 }
 
-export default useHover;
+export default App;
 ```
-
-### Verifying that the tests pass
-
-Now, let us verify that the tests pass.
-
-```bash
-pnpm test
-```
-
-The tests should pass.
 
 ## Summary
 
-In this question, we have successfully implemented the `useHover` custom hook and written tests for it. We have followed the TDD approach to fix the bugs in the hook.
+In this solution, we created a custom hook called `useHover` that tracks the hover state of an element. The hook returns a boolean value `isHovering` and `refElement` (React ref) and tracks the hover state for a specific element or the entire document. We used the `useHover` hook in the `App` component to display the hover state of the document or a specific element.
 
 ---

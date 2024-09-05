@@ -27,10 +27,12 @@ export default async function BlogPost({
   return (
     <>
       <Image src={meta.cover} placeholder="blur" priority alt="" />
-      <h1 className="mb-1 capitalize">{meta.title}</h1>
-      <p className="my-0">{meta.description}</p>
-      <AuthorCard {...meta.authors[0]} publishedOn={meta.publishedOn} />
-      {getContent()}
+      <div className="mx-auto max-w-3xl">
+        <h1 className="mb-1 capitalize">{meta.title}</h1>
+        <p className="my-0">{meta.description}</p>
+        <AuthorCard {...meta.authors[0]} publishedOn={meta.publishedOn} />
+        {getContent()}
+      </div>
     </>
   );
 }
