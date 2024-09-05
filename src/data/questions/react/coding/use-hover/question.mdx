@@ -1,0 +1,22 @@
+# useHover
+
+Create a custom hook that tracks the hover state of an element. The hook should return a boolean value indicating whether the element is being hovered over. If no element is provided, the hook should track the hover state of the entire document.
+
+## Objectives
+
+1. Implement a useHover custom hook that:
+    - Returns an object with isHovering (boolean) and refElement (React ref)
+    - Tracks hover state for a specific element or the entire document
+
+2. Ensure the hook:
+    - Adds and removes event listeners appropriately
+    - Handles both element-specific and document-wide hover tracking
+    - Cleans up event listeners on component unmount
+
+3. Use the useHover hook in the provided App component to display the hover state of the document or a specific element.
+
+## Resources to Refer
+
+- [React Docs: Hooks](https://react.dev/reference/react/hooks)
+- [React Docs: Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [React Docs: Refs and the DOM](https://react.dev/learn/manipulating-the-dom-with-refs)

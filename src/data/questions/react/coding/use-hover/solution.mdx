@@ -1,0 +1,108 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout>
+  The solution to this problem is to create a custom hook called `useHover` that returns a boolean value `isHovering` and `refElement` (React ref). The hook should track the hover state for a specific element or the entire document. The hook should add and remove event listeners appropriately, handle both element-specific and document-wide hover tracking, and clean up event listeners on component unmount.
+</Callout>
+
+## Implementing the `useMouse` Hook
+
+Now, let's implement the `useHover` custom hook in the `useHover.js` file.
+
+### Implementation Steps
+1. Create a custom hook called `useHover` that tracks the hover state of an element.
+
+```jsx
+import React from "react";
+
+function useHover() {
+
+}
+
+export default useHover;
+```
+
+2. The hook should return an object with `isHovering` (boolean) and `refElement` (React ref).
+
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
+
+  return { isHovering, refElement };
+}
+```
+
+3. The hook should track hover state for a specific element or the entire document.
+
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
+
+  React.useEffect(() => {
+    const element = refElement.current || document;
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
+    element.addEventListener("mouseenter", handleMouseEnter);
+    element.addEventListener("mouseleave", handleMouseLeave);
+  }, [refElement]);
+
+  return { isHovering, refElement };
+}
+```
+
+4. Ensure the hook adds and removes event listeners appropriately.
+
+```jsx
+function useHover() {
+  const [isHovering, setIsHovering] = React.useState(false);
+  const refElement = React.useRef(null);
+
+  React.useEffect(() => {
+    const element = refElement.current || document;
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
+    element.addEventListener("mouseenter", handleMouseEnter);
+    element.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      element.removeEventListener("mouseenter", handleMouseEnter);
+      element.removeEventListener("mouseleave", handleMouseLeave);
+    }
+  }, [refElement]);
+
+  return { isHovering, refElement };
+}
+```
+
+## Using the `useHover` Hook
+
+Now, let's use the `useHover` hook in the `App` component to display the hover state of the document or a specific element.
+  
+```jsx
+import React from "react";
+import useHover from "./useHover";
+
+function App() {
+  const { isHovering, refElement } = useHover();
+
+  return (
+    <div>
+      <h1>{isHovering ? "Hovering" : "Not Hovering"}</h1>
+      <div ref={refElement}>Hover over this element</div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+## Summary
+
+In this solution, we created a custom hook called `useHover` that tracks the hover state of an element. The hook returns a boolean value `isHovering` and `refElement` (React ref) and tracks the hover state for a specific element or the entire document. We used the `useHover` hook in the `App` component to display the hover state of the document or a specific element.
+
+---
