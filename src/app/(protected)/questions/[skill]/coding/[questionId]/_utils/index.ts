@@ -3,6 +3,18 @@ import { TypedSupabaseClient } from '@/types/typedSupabaseClient';
 import { QueryData } from '@supabase/supabase-js';
 import { cache } from 'react';
 
+export const FILE_TYPES = {
+  QUESTION: 'question.mdx',
+  SOLUTION: 'solution.mdx',
+  INSTRUCTIONS: 'instructions.mdx',
+  HINTS: 'hints.mdx',
+  META: 'meta.ts',
+} as const;
+
+type FileTypesKeys = keyof typeof FILE_TYPES;
+
+type FileTypes = (typeof FILE_TYPES)[FileTypesKeys];
+
 export const getCodingQuestionMetadata = cache(
   async (questionId: string, skill: QUESTION_SKILL) => {
     try {
@@ -17,33 +29,17 @@ export const getCodingQuestionMetadata = cache(
   },
 );
 
-export const getCodingQuestion = cache(
-  async (questionId: string, skill: QUESTION_SKILL) => {
-    const { default: getContent } = require(
-      `@/data/questions/${skill}/coding/${questionId}/question.mdx`,
-    );
+export const getFileData = cache(
+  async (questionId: string, skill: QUESTION_SKILL, file: FileTypes) => {
+    try {
+      const { default: getContent } = require(
+        `@/data/questions/${skill}/coding/${questionId}/${file}`,
+      );
 
-    return { getContent } as { getContent: () => React.ReactNode };
-  },
-);
-
-export const getCodingQuestionSolution = cache(
-  async (questionId: string, skill: QUESTION_SKILL) => {
-    const { default: getContent } = require(
-      `@/data/questions/${skill}/coding/${questionId}/solution.mdx`,
-    );
-
-    return { getContent } as { getContent: () => React.ReactNode };
-  },
-);
-
-export const getCodingQuestionInstructions = cache(
-  async (questionId: string, skill: QUESTION_SKILL) => {
-    const { default: getContent } = require(
-      `@/data/questions/${skill}/coding/${questionId}/instructions.mdx`,
-    );
-
-    return { getContent } as { getContent: () => React.ReactNode };
+      return { getContent } as { getContent: () => React.ReactNode };
+    } catch (error) {
+      return { getContent: () => null };
+    }
   },
 );
 

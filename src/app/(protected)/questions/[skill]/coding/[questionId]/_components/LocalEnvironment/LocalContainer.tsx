@@ -6,10 +6,9 @@ import { CODING_ENVIRONMENT_TYPE, QUESTION_TYPE } from '@/types/Question';
 import { notFound } from 'next/navigation';
 import { Params } from '../../_types';
 import {
-  getCodingQuestion,
-  getCodingQuestionInstructions,
+  FILE_TYPES,
   getCodingQuestionMetadata,
-  getCodingQuestionSolution,
+  getFileData,
 } from '../../_utils';
 import LocalClientContainer from './LocalClientContainer';
 
@@ -33,12 +32,14 @@ export default async function LocalContainer({ params }: Params) {
     { getContent: questionContent },
     { getContent: solutionContent },
     { getContent: instructionsContent },
+    { getContent: hintsContent },
   ] = await Promise.all([
     getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
     getCompletedQuestions(),
-    getCodingQuestion(params.questionId, params.skill),
-    getCodingQuestionSolution(params.questionId, params.skill),
-    getCodingQuestionInstructions(params.questionId, params.skill),
+    getFileData(params.questionId, params.skill, FILE_TYPES.QUESTION),
+    getFileData(params.questionId, params.skill, FILE_TYPES.SOLUTION),
+    getFileData(params.questionId, params.skill, FILE_TYPES.INSTRUCTIONS),
+    getFileData(params.questionId, params.skill, FILE_TYPES.HINTS),
   ]);
 
   return (
@@ -55,6 +56,7 @@ export default async function LocalContainer({ params }: Params) {
       questionContent={questionContent()}
       solutionContent={solutionContent()}
       instructionsContent={instructionsContent()}
+      hintsContent={hintsContent()}
     />
   );
 }

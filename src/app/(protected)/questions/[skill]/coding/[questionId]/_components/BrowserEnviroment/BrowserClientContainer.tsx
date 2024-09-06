@@ -21,6 +21,7 @@ type BrowserClientContainerProps = {
   updatedFiles: SandpackFiles;
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
+  hintsContent?: React.ReactNode;
   questionsListButtonWithSheet: React.ReactNode;
 };
 
@@ -31,6 +32,7 @@ export default function BrowserClientContainer({
   updatedFiles,
   questionContent,
   solutionContent,
+  hintsContent,
 }: BrowserClientContainerProps) {
   const [loading, setLoading] = React.useState(true);
 
@@ -82,6 +84,7 @@ export default function BrowserClientContainer({
                     difficulty={questionMeta.difficulty}
                     questionContent={questionContent}
                     solutionContent={solutionContent}
+                    hintsContent={hintsContent}
                   />
                 ),
               }}

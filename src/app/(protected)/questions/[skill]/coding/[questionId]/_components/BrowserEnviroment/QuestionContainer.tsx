@@ -7,12 +7,14 @@ type QuestionContainerProps = {
   difficulty: Question['difficulty'];
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
+  hintsContent?: React.ReactNode;
 };
 
 export default function QuestionContainer({
   difficulty,
   questionContent,
   solutionContent,
+  hintsContent,
 }: QuestionContainerProps) {
   const tabs = [
     {
@@ -21,6 +23,14 @@ export default function QuestionContainer({
       content: <ProseContent>{questionContent}</ProseContent>,
     },
   ];
+
+  if (hintsContent) {
+    tabs.push({
+      label: 'Hints',
+      value: 'Hints',
+      content: <ProseContent>{hintsContent}</ProseContent>,
+    });
+  }
 
   if (solutionContent) {
     tabs.push({
