@@ -16,7 +16,7 @@ export const meta: Question = {
   externalCDNs: ['https://cdn.tailwindcss.com'],
   recommendedLayout: 'col-3',
   publishedOn: new Date('2024-09-05'),
-  difficulty: DIFFICULTY.EASY,
+  difficulty: DIFFICULTY.MEDIUM,
   showPreview: true,
   showConsole: true,
   isFree: true,
