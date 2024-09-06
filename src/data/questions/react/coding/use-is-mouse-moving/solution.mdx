@@ -1,0 +1,118 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout>
+  The solution to this problem is to create a custom hook called `useIsMouseMoving` that returns a boolean value `isMouseMoving` and `refElement` (React ref). The hook should track the mouse movement state for a specific element or the entire document. The hook should add and remove event listeners appropriately, handle both element-specific and document-wide mouse movement tracking, implement throttling, and clean up event listeners and timeouts on component unmount.
+</Callout>
+
+## Implementing the `useIsMouseMoving` Hook
+
+Now, let's implement the `useIsMouseMoving` custom hook in the `useIsMouseMoving.js` file.
+
+### Implementation Steps
+1. Create a custom hook called `useIsMouseMoving` that tracks the mouse movement state.
+
+```jsx
+import React from "react";
+function useIsMouseMoving({ delay = 300 } = {}) {
+}
+export default useIsMouseMoving;
+
+```
+2. Set up the state and refs needed for the hook.
+
+```jsx
+function useIsMouseMoving({ delay = 300 } = {}) {
+  const [isMouseMoving, setIsMouseMoving] = React.useState(false);
+  const refElement = React.useRef(null);
+  const timeoutId = React.useRef();
+  // ... rest of the implementation
+}
+
+```
+
+3. Implement the `handleMouseMove` function using `useCallback`.
+
+```jsx
+function useIsMouseMoving({ delay = 300 } = {}) {
+  const [isMouseMoving, setIsMouseMoving] = React.useState(false);
+  const refElement = React.useRef(null);
+  const timeoutId = React.useRef();
+
+  const handleMouseMove = React.useCallback(() => {
+    setIsMouseMoving(true);
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => setIsMouseMoving(false), delay);
+  }, [delay]);
+  // ... rest of the implementation
+}
+```
+
+4. Set up the event listener using `useEffect`.
+
+```jsx
+function useIsMouseMoving({ delay = 300 } = {}) {
+  const [isMouseMoving, setIsMouseMoving] = React.useState(false);
+  const refElement = React.useRef(null);
+  const timeoutId = React.useRef();
+
+  const handleMouseMove = React.useCallback(() => {
+    setIsMouseMoving(true);
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => setIsMouseMoving(false), delay);
+  }, [delay]);
+
+  React.useEffect(() => {
+    const element = refElement.current || document;
+    element.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      element.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(timeoutId.current);
+    };
+  }, [handleMouseMove]);
+  return { isMouseMoving, refElement };
+}
+
+```
+
+## Using the `useIsMouseMoving` Hook
+
+Now, let's use the `useIsMouseMoving` hook in a component to display the mouse movement state of the document or a specific element.
+
+```jsx
+import useIsMouseMoving from "./useIsMouseMoving";
+
+function App() {
+  const { isMouseMoving, refElement } = useIsMouseMoving();
+
+  return (
+    <div
+      ref={refElement}
+      className={
+        "w-full flex items-center justify-center h-screen transition-background-color duration-300 ease-in " +
+        (isMouseMoving ? "bg-[#90ee90]" : "bg-[#f08080]")
+      }
+    >
+      <h1>Move your mouse!</h1>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+## Summary
+
+In this solution, we created a custom hook called `useIsMouseMoving` that tracks the mouse movement state of an element or the entire document. The hook returns a boolean value `isMouseMoving` and `refElement` (React ref). It implements throttling to avoid excessive state updates during continuous mouse movement. 
+
+Key points of the implementation:
+1. We use `useState` to track the `isMouseMoving` state.
+2. `useRef` is used for the element reference and to store the timeout ID.
+3. `useCallback` is used to memoize the `handleMouseMove` function.
+4. `useEffect` is used to set up and clean up the event listener.
+5. The hook works for both a specific element (when `refElement` is attached) and the entire document.
+6. Throttling is implemented using `setTimeout` to avoid excessive updates.
+7. Proper cleanup is ensured by removing event listeners and clearing timeouts.

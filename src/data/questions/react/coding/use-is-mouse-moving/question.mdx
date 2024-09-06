@@ -1,0 +1,18 @@
+# useIsMouseMoving
+
+You will be implementing a custom hook called `useIsMouseMoving` that will return a boolean `isMouseMoving` value indicating if the mouse is moving or not inside a particular element & a ref `refElement`  that can be attached to a specific element to track mouse movement within it. By default the hook will track mouse movement for the entire document. The hook should also accept an optional configuration object with a `delay` property (default: 300ms) to control the throttle interval.
+
+## Objectives
+1. Implement a custom React hook called useIsMouseMoving.
+2. The hook should return an object with two properties:
+    - `isMouseMoving`: a boolean indicating whether the mouse is currently moving.
+    - `refElement`: a ref object that can be attached to a specific element to track mouse movement within it.
+3. Accept an optional configuration object with a `delay` property (default: 300ms) to control the **throttle interval**.
+4. Apply throttling to the mouse movement detection.
+5. If no specific element is provided (via refElement), track mouse movement for the **entire document**.
+
+## Resources to Refer
+
+- [React Docs: Hooks](https://react.dev/reference/react/hooks)
+- [React Docs: Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- [React Docs: Refs and the DOM](https://react.dev/learn/manipulating-the-dom-with-refs)
