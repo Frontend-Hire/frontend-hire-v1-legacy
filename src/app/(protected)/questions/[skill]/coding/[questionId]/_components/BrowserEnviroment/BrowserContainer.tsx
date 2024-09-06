@@ -4,10 +4,10 @@ import { CODING_ENVIRONMENT_TYPE, QUESTION_TYPE } from '@/types/Question';
 import { Params } from '../../_types';
 import getSupabaseServerClient from '@/lib/supabase/supabaseServerClient';
 import {
+  FILE_TYPES,
   getCodeHistoryQuery,
-  getCodingQuestion,
   getCodingQuestionMetadata,
-  getCodingQuestionSolution,
+  getFileData,
 } from '../../_utils';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
 import { getCompletedQuestions } from '@/lib/questionStats';
@@ -33,12 +33,14 @@ export default async function BrowserContainer({ params }: Params) {
     completedQuestions,
     { getContent: questionContent },
     { getContent: solutionContent },
+    { getContent: hintsContent },
     { data: codeHistory },
   ] = await Promise.all([
     getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
     getCompletedQuestions(),
-    getCodingQuestion(params.questionId, params.skill),
-    getCodingQuestionSolution(params.questionId, params.skill),
+    getFileData(params.questionId, params.skill, FILE_TYPES.QUESTION),
+    getFileData(params.questionId, params.skill, FILE_TYPES.SOLUTION),
+    getFileData(params.questionId, params.skill, FILE_TYPES.HINTS),
     getCodeHistoryQuery(
       supabaseClient,
       `${params.skill.toLowerCase()}-${params.questionId.toLowerCase()}`,
@@ -69,6 +71,7 @@ export default async function BrowserContainer({ params }: Params) {
       updatedFiles={updatedFiles}
       questionContent={questionContent()}
       solutionContent={solutionContent()}
+      hintsContent={hintsContent()}
     />
   );
 }

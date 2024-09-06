@@ -5,7 +5,7 @@ import HeaderSkeleton from '@/components/HeaderSkeleton';
 import ProseContent from '@/components/ProseContent';
 import QuestionLayoutItem from '@/components/Questions/QuestionLayoutItem';
 import QuestionLayoutSkeleton from '@/components/Questions/QuestionLayoutSkeleton';
-import { LocalCodingQuestion } from '@/types/Question';
+import { LocalCodingQuestion, QuestionTab } from '@/types/Question';
 import React from 'react';
 import PrimaryLayout from '../../_layout/PrimaryLayout';
 import Header from './Header';
@@ -17,6 +17,7 @@ type LocalClientContainerProps = {
   solutionContent: React.ReactNode;
   instructionsContent: React.ReactNode;
   questionsListButtonWithSheet: React.ReactNode;
+  hintsContent: React.ReactNode;
 };
 
 export default function LocalClientContainer({
@@ -25,6 +26,7 @@ export default function LocalClientContainer({
   questionContent,
   solutionContent,
   instructionsContent,
+  hintsContent,
 }: LocalClientContainerProps) {
   const [loading, setLoading] = React.useState(true);
 
@@ -41,6 +43,31 @@ export default function LocalClientContainer({
       </PrimaryLayout>
     );
   }
+
+  const tabs = [
+    {
+      label: 'Question',
+      value: 'Question',
+      content: <ProseContent>{questionContent}</ProseContent>,
+    },
+    hintsContent
+      ? {
+          label: 'Hints',
+          value: 'Hints',
+          content: <ProseContent>{hintsContent}</ProseContent>,
+        }
+      : null,
+    {
+      label: 'Solution',
+      value: 'Solution',
+      content: <ProseContent>{solutionContent}</ProseContent>,
+    },
+    {
+      label: 'Local Setup Instructions',
+      value: 'Local Setup Instructions',
+      content: <ProseContent>{instructionsContent}</ProseContent>,
+    },
+  ].filter(Boolean) as Array<QuestionTab>;
 
   return (
     <PrimaryLayout
@@ -60,23 +87,7 @@ export default function LocalClientContainer({
                 )}
               </>
             }
-            tabs={[
-              {
-                label: 'Question',
-                value: 'Question',
-                content: <ProseContent>{questionContent}</ProseContent>,
-              },
-              {
-                label: 'Solution',
-                value: 'Solution',
-                content: <ProseContent>{solutionContent}</ProseContent>,
-              },
-              {
-                label: 'Local Setup Instructions',
-                value: 'Local Setup Instructions',
-                content: <ProseContent>{instructionsContent}</ProseContent>,
-              },
-            ]}
+            tabs={tabs}
           />
         </div>
       </div>
