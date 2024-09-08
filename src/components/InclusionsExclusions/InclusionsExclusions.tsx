@@ -1,40 +1,25 @@
-import { BanIcon, CheckCircle2Icon, ConstructionIcon } from 'lucide-react';
+import { CheckCircle2Icon } from 'lucide-react';
 
 const INCLUSIONS = [
-  'Forever Access To PRO Content',
-  'Free Updates',
-  'Exclusive Courses',
-  'Frontend System Design',
-  'Ton of coding and theory questions',
+  'Lifetime Access to All PRO Content',
+  'Regular Updates and New Features',
+  'Exclusive Feature Focused Courses',
+  'Comprehensive Frontend System Design',
+  'Well Researched Coding and Theory Questions',
   'Simulated Phone Screening',
+  'Access to Premium Webinars',
 ];
-
-const COMING_SOON = ['More Simulated Interview Types', 'More New Features'];
 
 export default function InclusionsExclusions() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 sm:items-center sm:justify-center">
       <ul className="flex flex-col gap-3">
         {INCLUSIONS.map((item) => (
           <li key={item}>
             <IncludedItem>{item}</IncludedItem>
           </li>
         ))}
-        {COMING_SOON.map((item) => (
-          <li key={item}>
-            <ComingSoonItem>{item}</ComingSoonItem>
-          </li>
-        ))}
       </ul>
-    </div>
-  );
-}
-
-function ComingSoonItem({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex gap-3 font-medium">
-      <ConstructionIcon className="shrink-0 text-medium" />
-      {children}
     </div>
   );
 }
@@ -43,15 +28,6 @@ function IncludedItem({ children }: React.PropsWithChildren) {
   return (
     <div className="flex gap-3 font-medium">
       <CheckCircle2Icon className="shrink-0 text-easy" />
-      {children}
-    </div>
-  );
-}
-
-function ExcludedItem({ children }: React.PropsWithChildren) {
-  return (
-    <div className="flex gap-3 font-medium">
-      <BanIcon className="shrink-0 text-hard" />
       {children}
     </div>
   );
