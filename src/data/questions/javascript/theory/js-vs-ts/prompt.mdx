@@ -1,53 +1,69 @@
 import { Callout } from '@/components/MarkdownComponents';
 
-# What is React?
+# What are the differences between JavaScript and TypeScript?
 
-<iframe
-  width='100%'
-  style={{
-    aspectRatio: '16 / 9',
-  }}
-  src='https://www.youtube.com/embed/v3eJb8VAyiQ'
-  title='What is React? | React Theory | Easy Question | Frontend Hire'
-  frameBorder='0'
-  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-  allowFullScreen
-/>
-
-> A standard interview question used as a warm-up for the rest of the interview.
-
-<Callout type='warning'>
-Of course, there are various answers to this question. But this is usually a warm-up question in most interviews so keep the answer short and to the point.
-</Callout>
+> Companies are finding out that TypeScript is the way to go. So, can you explain the differences between JavaScript and TypeScript?
 
 ## Answer
 
-It is an open-source JavaScript library for building user interfaces. React enables a strong composition model, which allows you to build complex UIs out of simple components.
+JavaScript is a dynamically typed language. It means that the type of a variable is known at run-time. This can potentially lead to errors and not-so-great development experience.
+
+Whereas TypeScript is a statically typed language. It means that the type of a variable is known at compile-time. This means you get the type safety that eliminates a lot of the errors that come with dynamically typed languages and the editor also can help with better autocompletion leading to better development experience.
+
+**Code Example**
+
+![Code Example](./assets/js-vs-ts-example.webp)
+
+In the JavaScript example, if you hover over the message variable in the console.log, it will tell you it is a string. But just above that line, you assigned a number to it.
+
+In the TypeScript example, you have the same issue. But the assignment to number will complain!
 
 ## Follow Up Questions
 
-### Open Source? Isn't React owned by Facebook/Meta?
+### What do you mean by dynamic and static types?
 
-Yes, it was developed by Facebook/Meta to solve their problems. But they made it open-source and is maintained by Meta and a couple of other companies and individual developers.
+```javascript
+let message;
 
-### What is a component?
+message = "Hello, World!";
 
-<Callout>
-The way we like to answer this would be to use the platform you are interviewing on to describe the UI and talk about the components.
-</Callout>
+console.log(typeof message); // string
 
-A component is a reusable UI element that can be reused across your application. An example would be a button or a card. 
+message = 200;
 
-### What do you mean by a **"strong composition model"**?
+console.log(typeof message); // number
+```
 
-<Callout>
-Again, use the platform you are interviewing on to describe the UI and try to look for a component that is composed of other components.
-</Callout>
+In the above JavaScript code block from the previous example, we can see that we have not written what type a variable is and let the JavaScript run-time figure it out. This means the types are **dynamically** figured out!
 
-The **strong composition model** is a design pattern that allows you to build complex UIs out of simple components. Something like Lego blocks. For example, a card can be composed of a header, a body, and a footer. Another example would be a text input, which can be composed of a label and an input.
+```typescript
+let message: string;
+
+message = "Hello, World!";
+
+console.log(typeof message); // string
+
+message = 200; // TypeScript COMPLAINS!
+
+console.log(typeof message); // number
+```
+
+Whereas in the TypeScript example, we have explicitly declared the type of the variable `message` to be `string` . This means the type is well-known even before the code is compiled or run and the word generally used for things that are not changed is **static**!
+
+### What do you mean by compile-time and run-time?
+
+![Compile-time vs Run-time](./assets/compile-time-vs-run-time.webp) 
+
+Compile-time is basically the time taken to compile from code A to code B. This process of conversion from code A to code B is called compilation. In the case of TypeScript, it compiles down to a similar level of abstraction hence we can call such compilation as **transpilation** too!
+
+While run-time simply means the time it takes for the code to execute!
+
+### Which is better?
+
+Depends on your project requirements, but in the majority of cases, TypeScript is going to scale better.
 
 ## Resources
 
-- [What is React](https://www.epicreact.dev/what-is-react)
-- [Describing the UI](https://react.dev/learn/describing-the-ui)
-- [Composition vs Inheritance](https://legacy.reactjs.org/docs/composition-vs-inheritance.html)
+- [Reddit: What's the difference between TypeScript and JavaScript?](https://www.reddit.com/r/learnprogramming/comments/zi9ora/whats_the_difference_between_typescript_and/)
+- [Reddit: Is TypeScript a compiled language?](https://www.reddit.com/r/AskProgramming/comments/ob7z80/is_typescript_a_compiled_language/)
+- [Javascript vs typescript](https://www.reddit.com/r/reactjs/comments/14784fy/javascript_vs_typescript/)
