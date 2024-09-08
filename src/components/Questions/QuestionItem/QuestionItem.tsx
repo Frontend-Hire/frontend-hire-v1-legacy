@@ -1,9 +1,9 @@
-import VisuallyHidden from '@/components/ui/visually-hidden';
-import { DIFFICULTY, Question } from '@/types/Question';
 import { Badge } from '@/components/ui/badge';
+import VisuallyHidden from '@/components/ui/visually-hidden';
+import { Difficulty, Question } from '@/types/Question';
 import { isNew } from '@/utils/date';
 
-const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
+const DifficultyLabel = ({ difficulty }: { difficulty: Difficulty }) => {
   let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {

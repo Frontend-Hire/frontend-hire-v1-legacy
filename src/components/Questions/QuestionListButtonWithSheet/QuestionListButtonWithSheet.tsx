@@ -9,14 +9,14 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import Tooltip from '@/components/ui/tooltip';
-import { QUESTION_SKILL, QUESTION_TYPE, Question } from '@/types/Question';
+import { Question, QuestionSkill, QuestionType } from '@/types/Question';
 import { ListIcon } from 'lucide-react';
 
 type QuestionListButtonWithSheetProps = {
   questions: Question[];
   serverCompletedQuestions: string[];
-  skill: QUESTION_SKILL;
-  type: QUESTION_TYPE;
+  skill: QuestionSkill;
+  type: QuestionType;
 };
 
 export default function QuestionListButtonWithSheet({

@@ -1,7 +1,6 @@
 import {
   AlbumIcon,
   FileQuestionIcon,
-  GraduationCapIcon,
   LibraryBigIcon,
   PresentationIcon,
   SpeechIcon,

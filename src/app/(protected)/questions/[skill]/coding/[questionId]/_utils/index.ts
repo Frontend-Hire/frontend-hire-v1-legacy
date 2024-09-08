@@ -1,4 +1,4 @@
-import { QUESTION_SKILL, Question } from '@/types/Question';
+import { QuestionSkill, Question } from '@/types/Question';
 import { TypedSupabaseClient } from '@/types/typedSupabaseClient';
 import { QueryData } from '@supabase/supabase-js';
 import { cache } from 'react';
@@ -16,7 +16,7 @@ type FileTypesKeys = keyof typeof FILE_TYPES;
 type FileTypes = (typeof FILE_TYPES)[FileTypesKeys];
 
 export const getCodingQuestionMetadata = cache(
-  async (questionId: string, skill: QUESTION_SKILL) => {
+  async (questionId: string, skill: QuestionSkill) => {
     try {
       const { meta } = require(
         `@/data/questions/${skill}/coding/${questionId}/meta.ts`,
@@ -30,7 +30,7 @@ export const getCodingQuestionMetadata = cache(
 );
 
 export const getFileData = cache(
-  async (questionId: string, skill: QUESTION_SKILL, file: FileTypes) => {
+  async (questionId: string, skill: QuestionSkill, file: FileTypes) => {
     try {
       const { default: getContent } = require(
         `@/data/questions/${skill}/coding/${questionId}/${file}`,

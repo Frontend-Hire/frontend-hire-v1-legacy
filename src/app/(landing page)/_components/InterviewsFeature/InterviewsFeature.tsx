@@ -21,12 +21,7 @@ export default function InterviewsFeature() {
         <li>
           <Link prefetch={false} href="/interviews/mock-personal-interview">
             <InterviewItem
-              title={
-                <>
-                  Mock In-Person Interview{' '}
-                  <Badge className="text-center">20% Off</Badge>
-                </>
-              }
+              title="Mock In-Person Interview"
               leftIcon={<UserIcon size={30} />}
               rightIcon={<ChevronRightIcon size={30} />}
             />

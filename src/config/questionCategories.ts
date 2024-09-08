@@ -1,7 +1,7 @@
-import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
+import { QuestionSkill, QuestionType } from '@/types/Question';
 
 type QuestionCategory = {
-  id: `${QUESTION_SKILL}/${QUESTION_TYPE}`;
+  id: `${QuestionSkill}/${QuestionType}`;
   title: string;
   className: string;
 };
@@ -20,6 +20,11 @@ export const QUESTION_CATEGORIES: QuestionCategory[] = [
   {
     id: 'javascript/coding',
     title: 'JavaScript Coding',
+    className: `hover:bg-[hsl(52,84%,63%)] hover:text-black`,
+  },
+  {
+    id: 'javascript/theory',
+    title: 'JavaScript Theory',
     className: `hover:bg-[hsl(52,84%,63%)] hover:text-black`,
   },
   {

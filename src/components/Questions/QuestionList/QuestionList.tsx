@@ -6,8 +6,8 @@ import QuestionItem from '@/components/Questions/QuestionItem';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import {
   DIFFICULTY_ORDER,
-  QUESTION_SKILL,
-  QUESTION_TYPE,
+  QuestionSkill,
+  QuestionType,
   Question,
 } from '@/types/Question';
 import Link from 'next/link';
@@ -16,8 +16,8 @@ import useCompletedQuestions from './useCompletedQuestions';
 type QuestionListProps = {
   questions: Question[];
   completedQuestionsServer?: string[];
-  skill: QUESTION_SKILL;
-  type: QUESTION_TYPE;
+  skill: QuestionSkill;
+  type: QuestionType;
 };
 
 export default function QuestionList({

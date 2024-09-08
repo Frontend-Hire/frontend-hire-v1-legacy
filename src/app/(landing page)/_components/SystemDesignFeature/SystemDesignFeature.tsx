@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import VisuallyHidden from '@/components/ui/visually-hidden';
 import Link from 'next/link';
 import { getSystemDesignsFromLocal } from '@/lib/fetchLocalFiles';
-import { DIFFICULTY } from '@/types/Question';
+import { DIFFICULTY, Difficulty } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import { isNew } from '@/utils/date';
 
@@ -23,7 +23,7 @@ export default async function SystemDesignFeature() {
   );
 }
 
-const DifficultyLabel = ({ difficulty }: { difficulty: DIFFICULTY }) => {
+const DifficultyLabel = ({ difficulty }: { difficulty: Difficulty }) => {
   let className = 'w-4 self-stretch';
 
   if (difficulty == 'easy') {

@@ -30,7 +30,6 @@ export default function FeaturesSection() {
         }
         features={[
           'All courses come with written walkthroughs.',
-          'Select ones come in video.',
           'Optimized to teach you 20% of stuff for 80% of the results.',
         ]}
       />
@@ -47,7 +46,7 @@ export default function FeaturesSection() {
         actionButton={<CTA label="Practice Questions" href="/questions" />}
         features={[
           'Interview and Real World Based.',
-          'With a ton of high quality resources.',
+          'With well researched and high quality answers.',
         ]}
       />
       <FeatureLayout
