@@ -23,6 +23,11 @@ export const QUESTION_CATEGORIES: QuestionCategory[] = [
     className: `hover:bg-[hsl(52,84%,63%)] hover:text-black`,
   },
   {
+    id: 'javascript/theory',
+    title: 'JavaScript Theory',
+    className: `hover:bg-[hsl(52,84%,63%)] hover:text-black`,
+  },
+  {
     id: 'react/coding',
     title: 'React Coding',
     className: `hover:bg-[hsl(192,82%,34%)]`,
