@@ -3,36 +3,60 @@ import {
   SandpackPredefinedTemplate,
 } from '@codesandbox/sandpack-react';
 
-export enum QUESTION_SKILL {
-  WEB = 'web',
-  CSS = 'css',
-  JAVASCRIPT = 'javascript',
-  REACT = 'react',
-  NEXT = 'next',
-}
+export const QUESTION_SKILL = {
+  WEB: 'web',
+  CSS: 'css',
+  JAVASCRIPT: 'javascript',
+  REACT: 'react',
+  NEXT: 'next',
+} as const;
 
-export enum QUESTION_TYPE {
-  CODING = 'coding',
-  THEORY = 'theory',
-}
+export type QuestionSkill =
+  (typeof QUESTION_SKILL)[keyof typeof QUESTION_SKILL];
 
-export enum CODING_ENVIRONMENT_TYPE {
-  BROWSER = 'browser',
-  LOCAL = 'local',
-}
+export const QUESTION_TYPE = {
+  CODING: 'coding',
+  THEORY: 'theory',
+} as const;
+
+export type QuestionType = (typeof QUESTION_TYPE)[keyof typeof QUESTION_TYPE];
+
+export const CODING_ENVIRONMENT_TYPE = {
+  BROWSER: 'browser',
+  LOCAL: 'local',
+} as const;
+
+export type CodingEnvironmentType =
+  (typeof CODING_ENVIRONMENT_TYPE)[keyof typeof CODING_ENVIRONMENT_TYPE];
+
+export const DIFFICULTY = {
+  EASY: 'easy',
+  MEDIUM: 'medium',
+  HARD: 'hard',
+  MASTER: 'master',
+} as const;
+
+export type Difficulty = (typeof DIFFICULTY)[keyof typeof DIFFICULTY];
+
+export const DIFFICULTY_ORDER: Record<Difficulty, number> = {
+  [DIFFICULTY.EASY]: 1,
+  [DIFFICULTY.MEDIUM]: 2,
+  [DIFFICULTY.HARD]: 3,
+  [DIFFICULTY.MASTER]: 4,
+};
 
 export type BaseQuestion = {
   id: string;
   title: string;
   description: string;
-  difficulty: DIFFICULTY;
+  difficulty: Difficulty;
   publishedOn: Date;
   isFree?: boolean;
 };
 
 export type BrowserCodingQuestion = BaseQuestion & {
-  type: QUESTION_TYPE.CODING;
-  environment: CODING_ENVIRONMENT_TYPE.BROWSER;
+  type: typeof QUESTION_TYPE.CODING;
+  environment: typeof CODING_ENVIRONMENT_TYPE.BROWSER;
   recommendedLayout: QuestionLayout;
   template: SandpackPredefinedTemplate;
   externalCDNs?: string[];
@@ -43,14 +67,14 @@ export type BrowserCodingQuestion = BaseQuestion & {
 };
 
 export type LocalCodingQuestion = BaseQuestion & {
-  type: QUESTION_TYPE.CODING;
-  environment: CODING_ENVIRONMENT_TYPE.LOCAL;
+  type: typeof QUESTION_TYPE.CODING;
+  environment: typeof CODING_ENVIRONMENT_TYPE.LOCAL;
 };
 
 export type CodingQuestion = BrowserCodingQuestion | LocalCodingQuestion;
 
 export type TheoryQuestion = BaseQuestion & {
-  type: QUESTION_TYPE.THEORY;
+  type: typeof QUESTION_TYPE.THEORY;
 };
 
 export type Question = CodingQuestion | TheoryQuestion;
@@ -59,20 +83,6 @@ export type QuestionTab = {
   value: string;
   label: React.ReactNode;
   content: React.ReactNode;
-};
-
-export enum DIFFICULTY {
-  EASY = 'easy',
-  MEDIUM = 'medium',
-  HARD = 'hard',
-  MASTER = 'master',
-}
-
-export const DIFFICULTY_ORDER = {
-  [DIFFICULTY.EASY]: 1,
-  [DIFFICULTY.MEDIUM]: 2,
-  [DIFFICULTY.HARD]: 3,
-  [DIFFICULTY.MASTER]: 4,
 };
 
 export type QuestionLayout = 'col-3' | 'col-2';
