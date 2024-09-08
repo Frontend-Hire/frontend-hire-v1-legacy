@@ -1,11 +1,11 @@
+import QuestionList from '@/components/Questions/QuestionList';
 import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
-import QuestionList from '../../../../../../components/Questions/QuestionList/QuestionList';
-import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
 import { getCompletedQuestions } from '@/lib/questionStats';
+import { QuestionSkill, QuestionType } from '@/types/Question';
 
 type ContainerProps = {
-  skill: QUESTION_SKILL;
-  type: QUESTION_TYPE;
+  skill: QuestionSkill;
+  type: QuestionType;
 };
 
 export default async function Container({ skill, type }: ContainerProps) {

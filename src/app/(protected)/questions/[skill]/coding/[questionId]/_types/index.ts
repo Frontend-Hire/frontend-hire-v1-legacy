@@ -1,5 +1,5 @@
-import { QUESTION_SKILL } from '@/types/Question';
+import { QuestionSkill } from '@/types/Question';
 
 export type Params = {
-  params: { questionId: string; skill: QUESTION_SKILL };
+  params: { questionId: string; skill: QuestionSkill };
 };

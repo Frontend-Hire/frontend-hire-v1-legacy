@@ -1,4 +1,4 @@
-import { DIFFICULTY } from '@/types/Question';
+import { DIFFICULTY, Difficulty } from '@/types/Question';
 
 import { cva } from 'class-variance-authority';
 
@@ -21,7 +21,7 @@ const badge = cva('font-semibold rounded-full mx-2', {
 });
 
 type DifficultyBadgeProps = {
-  difficulty: DIFFICULTY;
+  difficulty: Difficulty;
   size?: 'small' | 'medium';
 };
 

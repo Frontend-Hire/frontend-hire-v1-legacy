@@ -1,7 +1,7 @@
-import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
+import { QuestionSkill, QuestionType } from '@/types/Question';
 
 type QuestionCategory = {
-  id: `${QUESTION_SKILL}/${QUESTION_TYPE}`;
+  id: `${QuestionSkill}/${QuestionType}`;
   title: string;
   className: string;
 };

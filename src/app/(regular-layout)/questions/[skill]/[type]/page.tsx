@@ -1,28 +1,20 @@
+import CustomHeading from '@/components/CustomHeading';
+import QuestionItemSkeleton from '@/components/Questions/QuestionItemSkeleton';
+import QuestionFilters from '@/components/Questions/QuestionsFilter';
+import { getMetadata } from '@/lib/getMetadata';
+import { QuestionSkill, QuestionType } from '@/types/Question';
+import { getSkill } from '@/utils/skill';
+import { capitalize } from '@/utils/text';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import Container from './_components/Container';
-import QuestionItemSkeleton from '@/components/Questions/QuestionItemSkeleton';
-import { getMetadata } from '@/lib/getMetadata';
-import CustomHeading from '@/components/CustomHeading';
-import { capitalize } from '@/utils/text';
-import { QUESTION_SKILL, QUESTION_TYPE } from '@/types/Question';
-import { redirect } from 'next/navigation';
-import QuestionFilters from '@/components/Questions/QuestionsFilter';
-import { getSkill } from '@/utils/skill';
 
 type Params = {
-  params: { skill: QUESTION_SKILL; type: QUESTION_TYPE };
+  params: { skill: QuestionSkill; type: QuestionType };
 };
 
-const areParamsValid = (skill: QUESTION_SKILL, type: QUESTION_TYPE) => {
+const areParamsValid = (skill: QuestionSkill, type: QuestionType) => {
   if (!skill || !type) {
-    return false;
-  }
-
-  if (!Object.values(QUESTION_SKILL).includes(skill)) {
-    return false;
-  }
-
-  if (!Object.values(QUESTION_TYPE).includes(type)) {
     return false;
   }
 
