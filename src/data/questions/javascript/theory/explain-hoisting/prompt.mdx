@@ -14,6 +14,7 @@ The most common scenario where we can see hoisting is with `var` variable declar
 variableOne = 21; 
 // VM71:1 Uncaught ReferenceError: Cannot access 'variableOne' before initialization
 // The code below this is never executed due to the run-time error
+// The error is because of TEMPORAL DEAD ZONE of the "let" variable
 let variableOne;
 console.log(variableOne);
 ```
@@ -55,7 +56,42 @@ Technically speaking, the JavaScript interpreter goes through the code twice. Th
 
 `let` and `const` declarations do not get hoisted and hence are more predictable when compared to working with `var`.
 
+### What is `TEMPORAL DEAD ZONE (TDZ)`?
+
+`let`, `const`, and `class` declarations have a zone where accessing them before they are declared will throw a reference error.
+
+```javascript
+{ // Start of TDZ
+  variableOne = 21; 
+  // VM71:1 Uncaught ReferenceError: Cannot access 'variableOne' before initialization
+  // The code below this is never executed due to the run-time error
+  // The error is because of TEMPORAL DEAD ZONE of the "let" variable
+  let variableOne;
+  console.log(variableOne); // End of TDZ for variableOne
+} 
+```
+
+### Can you give me an example of hoisting in the case of functions?
+
+```javascript
+hoistedFunction(); // This will work because the actual function is hoisted
+
+function hoistedFunction() {
+  console.log("hello");
+}
+
+// ------------------------------
+
+notHoistedFunction(); // Uncaught ReferenceError: notHoistedFunction is not defined
+
+const notHoistedFunction = function() {
+  console.log("hello");
+}
+```
+
 ## Resources
+
 - [JavaScript.info: The old "var"](https://javascript.info/var) 
 - [MDN Docs: Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) 
+- [MDN Docs: Function Hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#function_hoisting)
 - [Stackoverflow: How does hoisting work if JavaScript is an interpreted language?](https://stackoverflow.com/questions/45620041/how-does-hoisting-work-if-javascript-is-an-interpreted-language) 
