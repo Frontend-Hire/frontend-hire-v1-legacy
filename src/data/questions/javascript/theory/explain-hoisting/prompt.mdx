@@ -1,0 +1,97 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Explain Hoisting
+
+> You do not have to worry much about Hoisting in the real world but for interviews this is a must to know topic!
+
+## Answer
+
+The [MDN Docs](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) answer is quite perfect. We also recommend the same: "JavaScript **Hoisting** refers to the process whereby the interpreter appears to move the _declaration_ of functions, variables, classes, or imports to the top of their scope, prior to execution of the code."
+
+The most common scenario where we can see hoisting is with `var` variable declarations.
+
+```javascript
+variableOne = 21; 
+// VM71:1 Uncaught ReferenceError: Cannot access 'variableOne' before initialization
+// The code below this is never executed due to the run-time error
+// The error is because of TEMPORAL DEAD ZONE of the "let" variable
+let variableOne;
+console.log(variableOne);
+```
+
+```javascript
+variableOne = 21;
+var variableOne;
+console.log(variableOne); // 21
+
+// No Error this time
+// Because the var variableOne is hoisted
+// Essentially the above code becomes
+// The below
+
+var variableOne;
+variableOne = 21;
+console.log(variableOne); // 21
+```
+
+<Callout>
+There is more to hoisting but for interviews, the above answer should be good. But we recommend you read the [MDN Docs](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) for a better understanding.
+</Callout>
+
+## Follow Up Questions
+
+<Callout type='warning'>
+The follow-up questions for this question will be better covered in dedicated questions. The below follow-up questions are more like a refresher!
+</Callout>
+
+### How does the interpreter know when to hoist?
+
+<Callout type='warning'>
+The answer to this question is quite complex. We will give a simpler answer below that works if asked in an interview.
+</Callout>
+
+Technically speaking, the JavaScript interpreter goes through the code twice. The first time it figures out all the scopes and this is where it also knows when to hoist! So, the second time when it runs the code, things are moved a bit, and hoisting works.
+
+### What is the difference between `var`, `let`, and `const`?
+
+`let` and `const` declarations do not get hoisted and hence are more predictable when compared to working with `var`.
+
+### What is `TEMPORAL DEAD ZONE (TDZ)`?
+
+`let`, `const`, and `class` declarations have a zone where accessing them before they are declared will throw a reference error.
+
+```javascript
+{ // Start of TDZ
+  variableOne = 21; 
+  // VM71:1 Uncaught ReferenceError: Cannot access 'variableOne' before initialization
+  // The code below this is never executed due to the run-time error
+  // The error is because of TEMPORAL DEAD ZONE of the "let" variable
+  let variableOne;
+  console.log(variableOne); // End of TDZ for variableOne
+} 
+```
+
+### Can you give me an example of hoisting in the case of functions?
+
+```javascript
+hoistedFunction(); // This will work because the actual function is hoisted
+
+function hoistedFunction() {
+  console.log("hello");
+}
+
+// ------------------------------
+
+notHoistedFunction(); // Uncaught ReferenceError: notHoistedFunction is not defined
+
+const notHoistedFunction = function() {
+  console.log("hello");
+}
+```
+
+## Resources
+
+- [JavaScript.info: The old "var"](https://javascript.info/var) 
+- [MDN Docs: Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) 
+- [MDN Docs: Function Hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#function_hoisting)
+- [Stackoverflow: How does hoisting work if JavaScript is an interpreted language?](https://stackoverflow.com/questions/45620041/how-does-hoisting-work-if-javascript-is-an-interpreted-language) 
