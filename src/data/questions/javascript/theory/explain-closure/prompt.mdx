@@ -1,0 +1,67 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Explain Closure
+
+> Closure is a fundamental concept in JavaScript that allows inner functions to access variables from outer functions even after the outer functions have returned.
+
+## Answer
+
+The [MDN Docs](https://developer.mozilla.org/en-US/docs/Glossary/Closure) answer is quite perfect. We also recommend the same: "JavaScript **Closure** is the ability to access variables in a function from the outer scope even after the function has returned."
+
+
+```javascript
+function outerFunction() {
+  let outerVariable = 'I am from outer function';
+
+  function innerFunction() {
+    console.log(outerVariable);
+  }
+
+  return innerFunction;
+}
+
+const closureFunction = outerFunction();
+closureFunction(); // Output: I am from outer function
+```
+
+Here we can see that the `innerFunction` has access to the `outerVariable` even after the `outerFunction` has returned. This is because of closure.
+
+<Callout>
+  Closure is a powerful feature of JavaScript that allows for data privacy and encapsulation. It is created whenever a function is defined inside another function and has access to the outer function's scope.
+</Callout>
+
+
+## Medium Example
+
+Here is a medium level example of closure:
+
+```javascript
+function createCounter() {
+  let count = 0;
+
+  return function() {
+    count++;
+    console.log(count);
+  };
+}
+
+const counter1 = createCounter();
+const counter2 = createCounter();
+
+counter1(); // Output: 1
+counter1(); // Output: 2
+
+counter2(); // Output: 1
+counter2(); // Output: 2
+```
+
+In this example, `createCounter` is a function that returns a new function. The new function maintains its own `count` variable, which is incremented each time the function is called. Each instance of `createCounter` creates a new closure with its own `count` variable.
+
+<Callout>
+  In this example, each instance of `createCounter` creates a new closure with its own `count` variable. The closures are independent and maintain their own state.
+</Callout>
+
+## Resources
+
+- [Variable scope, closure - JavaScript.info](https://javascript.info/closure) 
+- [MDN Docs: Closure](https://developer.mozilla.org/en-US/docs/Glossary/Closure)
