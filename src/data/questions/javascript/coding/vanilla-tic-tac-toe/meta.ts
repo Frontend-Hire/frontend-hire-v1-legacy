@@ -11,7 +11,7 @@ export const meta: Question = {
   description: 'A classic game but can you build it without using a framework?',
   type: QUESTION_TYPE.CODING,
   environment: CODING_ENVIRONMENT_TYPE.BROWSER,
-  publishedOn: new Date('2024-09-11'),
+  publishedOn: new Date('2024-09-12'),
   template: 'static',
   files: {
     '/index.html': { code: require('./src/index.html.js').code },
