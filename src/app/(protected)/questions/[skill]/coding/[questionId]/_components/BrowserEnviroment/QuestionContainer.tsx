@@ -24,11 +24,13 @@ export default function QuestionContainer({
       value: 'Question',
       content: <ProseContent>{questionContent}</ProseContent>,
     },
-    {
-      label: 'Local Setup Instructions',
-      value: 'Local Setup Instructions',
-      content: <ProseContent>{instructionsContent}</ProseContent>,
-    },
+    instructionsContent
+      ? {
+          label: 'Local Setup Instructions',
+          value: 'Local Setup Instructions',
+          content: <ProseContent>{instructionsContent}</ProseContent>,
+        }
+      : null,
     hintsContent
       ? {
           label: 'Hints',
