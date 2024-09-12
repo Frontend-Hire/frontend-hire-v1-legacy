@@ -58,17 +58,18 @@ const LINKS: NavLink[] = [
     title: 'Company',
     hideOnMainNav: true,
     items: [
+      { title: 'Request Content', href: '/request-content' },
       { title: 'About', href: '/about' },
       { title: 'Blog', href: '/blog', icon: AlbumIcon },
       { title: 'Contact Us', href: '/contact-us' },
-      {
-        title: 'Privacy Policy',
-        href: '/privacy-policy',
-      },
-      {
-        title: 'Terms and Conditions',
-        href: '/terms-and-conditions',
-      },
+    ],
+  },
+  {
+    title: 'Legal',
+    hideOnMainNav: true,
+    items: [
+      { title: 'Privacy Policy', href: '/privacy-policy' },
+      { title: 'Terms and Conditions', href: '/terms-and-conditions' },
     ],
   },
 ];
