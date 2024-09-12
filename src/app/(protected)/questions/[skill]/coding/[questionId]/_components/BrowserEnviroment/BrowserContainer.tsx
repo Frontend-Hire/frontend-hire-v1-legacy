@@ -34,6 +34,7 @@ export default async function BrowserContainer({ params }: Params) {
     { getContent: questionContent },
     { getContent: solutionContent },
     { getContent: hintsContent },
+    { getContent: instructionsContent },
     { data: codeHistory },
   ] = await Promise.all([
     getQuestionsFromLocal(params.skill, QUESTION_TYPE.CODING),
@@ -41,6 +42,7 @@ export default async function BrowserContainer({ params }: Params) {
     getFileData(params.questionId, params.skill, FILE_TYPES.QUESTION),
     getFileData(params.questionId, params.skill, FILE_TYPES.SOLUTION),
     getFileData(params.questionId, params.skill, FILE_TYPES.HINTS),
+    getFileData(params.questionId, params.skill, FILE_TYPES.INSTRUCTIONS),
     getCodeHistoryQuery(
       supabaseClient,
       `${params.skill.toLowerCase()}-${params.questionId.toLowerCase()}`,
@@ -71,6 +73,7 @@ export default async function BrowserContainer({ params }: Params) {
       updatedFiles={updatedFiles}
       questionContent={questionContent()}
       solutionContent={solutionContent()}
+      instructionsContent={instructionsContent()}
       hintsContent={hintsContent()}
     />
   );

@@ -2,7 +2,7 @@ import { Callout } from '@/components/MarkdownComponents';
 
 # Solution
 
-<Callout>
+<Callout type='warning'>
 Even before you start writing the code, grab a pen and paper or a drawing tool and think of the implementation.
 
 In fact, if asked in an interview, even if you know the solution do not rush! You have to talk the approach you are going to take with the interviewer. Do not be robotic!
@@ -42,6 +42,10 @@ Meaning after each turn we can have a function `checkResult` that will check the
 Of course, we will use more helper variables to understand the game's active state, current player state, etc ., but we will do that on the fly as needed.
 
 Let us get into the actual code now!
+
+<Callout>
+There are various ways to solve this question. This is just one of them and not the only way to solve it.
+</Callout>
 
 ## Basic HTML Markup
 
@@ -387,7 +391,7 @@ After these checks, we can then update the `currentPlayer` to the next player an
 Of course, we could have moved the logic for player update into `updateTurnIndicator` or maybe created another function `updateTurn`. The reason we did not do it is because in an interview there really won't be much time to refactor, if the interviewer also wants to improve the code readability then go ahead and do such a refactoring! Otherwise, the code such as above will work!
 </Callout>
 
-<Callout>
+<Callout type="warning">
 We can get a bit smart here and try to optimize for checking the result only after a minimum number of moves needed to achieve a win are made. In our opinion, it is premature optimization and there is no real performance gain from doing so! But you could put this out for the interviewer! They might be impressed.
 </Callout>
 
@@ -405,7 +409,8 @@ cell.textContent = i;
   <head>
     <title>FH: Tic-Tac-Toe</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/styles.css" />
+    <!-- IF LOCAL: <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="/styles.css" /> 
   </head>
 
   <body>

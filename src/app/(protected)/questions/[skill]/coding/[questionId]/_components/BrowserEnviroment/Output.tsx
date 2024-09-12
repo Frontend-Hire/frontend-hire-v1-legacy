@@ -14,7 +14,13 @@ export default function Output({ showConsole, showPreview }: OutputProps) {
     tabs.push({
       label: 'Preview',
       value: 'Preview',
-      content: <SandpackPreview showNavigator className="h-full" />,
+      content: (
+        <SandpackPreview
+          showOpenInCodeSandbox={false}
+          showNavigator
+          className="h-full"
+        />
+      ),
     });
   }
 
