@@ -1,11 +1,15 @@
-import hruthikImage from '@/assets/team/hruthikReddyInterviewer.jpeg';
-import umeshImage from '@/assets/team/umeshMalik.jpg';
+import hruthikImage from '@/assets/team/hruthikReddy.webp';
+import umeshImage from '@/assets/team/umeshMalik.webp';
 import Link from 'next/link';
 
 const WHO_IS_BUILDING_FRONTEND_HIRE = [
   {
     name: 'Hruthik Reddy',
     image: hruthikImage,
+    socials: {
+      linkedIn: 'https://www.linkedin.com/in/yarala-hruthik-reddy/',
+      twitter: 'https://twitter.com/thisisyhr',
+    },
     content: (
       <>
         <p>{`I've been building web applications since 2020 and have worked with a few startups full-time and a lot of clients as a freelancer. Though I can work across the stacks, the bulk of my knowledge is in the UI department.`}</p>
@@ -23,23 +27,8 @@ const WHO_IS_BUILDING_FRONTEND_HIRE = [
           the content on the platform, highly practical and quick to learn.
         </p>
         <p>
-          The best way to connect or reach out to me is via{' '}
-          <Link
-            href="https://www.linkedin.com/in/yarala-hruthik-reddy/"
-            prefetch={false}
-            className="text-link underline"
-          >
-            LinkedIn
-          </Link>{' '}
-          or{' '}
-          <Link
-            href="https://twitter.com/thisisyhr"
-            prefetch={false}
-            className="text-link underline"
-          >
-            Twitter
-          </Link>
-          .
+          Doing this alone meant being slow, so I decided to onboard Umesh as a
+          co-founder!
         </p>
       </>
     ),
@@ -47,13 +36,17 @@ const WHO_IS_BUILDING_FRONTEND_HIRE = [
   {
     name: 'Umesh Malik',
     image: umeshImage,
+    socials: {
+      linkedIn: 'https://www.linkedin.com/in/umesh-malik/',
+      twitter: 'https://twitter.com/lumeshmalik',
+    },
     content: (
       <>
         <p>
-          Hi, I&apos;m Umesh. I&apos;ve been a full-stack developer for more
-          than 3 years now. I&apos;ve always been fascinated by the intersection
-          of design and technology. I&apos;ve had the opportunity to work on a
-          variety of projects, from small business websites to large-scale web
+          I&apos;ve been a full-stack developer for more than 3 years now.
+          I&apos;ve always been fascinated by the intersection of design and
+          technology. I&apos;ve had the opportunity to work on a variety of
+          projects, from small business websites to large-scale web
           applications. Even though I&apos;ve been a full-stack developer, I
           have a strong preference for the frontend side of things.
         </p>
@@ -84,24 +77,6 @@ const WHO_IS_BUILDING_FRONTEND_HIRE = [
             className="text-link underline"
           >
             Expedia Group
-          </Link>
-          . The best way to connect or reach out to me is via{' '}
-          <Link
-            href="https://www.linkedin.com/in/umesh-malik/"
-            prefetch={false}
-            target="_blank"
-            className="text-link underline"
-          >
-            LinkedIn
-          </Link>{' '}
-          or{' '}
-          <Link
-            href="https://twitter.com/lumeshmalik"
-            prefetch={false}
-            target="_blank"
-            className="text-link underline"
-          >
-            Twitter
           </Link>
           .
         </p>

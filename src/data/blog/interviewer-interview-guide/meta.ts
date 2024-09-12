@@ -1,4 +1,4 @@
-import authorImg from '@/assets/team/hruthikReddyInterviewer.jpeg';
+import authorImg from '@/assets/team/hruthikReddy.webp';
 import coverImg from './cover.webp';
 import { BlogMeta } from '@/types/Blogs';
 

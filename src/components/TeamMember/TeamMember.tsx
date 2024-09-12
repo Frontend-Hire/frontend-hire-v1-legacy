@@ -47,6 +47,7 @@ export default function TeamMember({
               <Link
                 className="transition-colors hover:text-primary"
                 target="_blank"
+                prefetch={false}
                 href={info.url!}
               >
                 <VisuallyHidden>{info.name}</VisuallyHidden>

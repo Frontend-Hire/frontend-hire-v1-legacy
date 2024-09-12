@@ -1,6 +1,6 @@
 import ashrafImage from '@/assets/team/ashraf.webp';
-import deepakImage from '@/assets/team/deepakSharmaInterviewer.jpeg';
-import ashwinImage from '@/assets/team/ashwinKumarInterviewer.jpg';
+import deepakImage from '@/assets/team/deepakSharmaInterviewer.webp';
+import ashwinImage from '@/assets/team/ashwinKumarInterviewer.webp';
 
 export const INTERVIEWERS = [
   {
