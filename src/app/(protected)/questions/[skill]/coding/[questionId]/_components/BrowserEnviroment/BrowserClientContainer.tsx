@@ -22,6 +22,7 @@ type BrowserClientContainerProps = {
   questionContent: React.ReactNode;
   solutionContent?: React.ReactNode;
   hintsContent?: React.ReactNode;
+  instructionsContent?: React.ReactNode;
   questionsListButtonWithSheet: React.ReactNode;
 };
 
@@ -33,6 +34,7 @@ export default function BrowserClientContainer({
   questionContent,
   solutionContent,
   hintsContent,
+  instructionsContent,
 }: BrowserClientContainerProps) {
   const [loading, setLoading] = React.useState(true);
 
@@ -84,6 +86,7 @@ export default function BrowserClientContainer({
                     difficulty={questionMeta.difficulty}
                     questionContent={questionContent}
                     solutionContent={solutionContent}
+                    instructionsContent={instructionsContent}
                     hintsContent={hintsContent}
                   />
                 ),

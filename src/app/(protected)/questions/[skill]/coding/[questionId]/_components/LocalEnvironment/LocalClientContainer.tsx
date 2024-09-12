@@ -50,6 +50,11 @@ export default function LocalClientContainer({
       value: 'Question',
       content: <ProseContent>{questionContent}</ProseContent>,
     },
+    {
+      label: 'Local Setup Instructions',
+      value: 'Local Setup Instructions',
+      content: <ProseContent>{instructionsContent}</ProseContent>,
+    },
     hintsContent
       ? {
           label: 'Hints',
@@ -61,11 +66,6 @@ export default function LocalClientContainer({
       label: 'Solution',
       value: 'Solution',
       content: <ProseContent>{solutionContent}</ProseContent>,
-    },
-    {
-      label: 'Local Setup Instructions',
-      value: 'Local Setup Instructions',
-      content: <ProseContent>{instructionsContent}</ProseContent>,
     },
   ].filter(Boolean) as Array<QuestionTab>;
 
