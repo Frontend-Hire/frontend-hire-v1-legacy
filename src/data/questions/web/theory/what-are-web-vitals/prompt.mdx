@@ -1,0 +1,67 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# What are Web Vitals?
+
+> Web Vitals are Google's metrics for measuring user experience on websites, focusing on loading speed, interactivity, and visual stability.
+
+<Callout type="warning">
+Another huge topic. We recommend using the below as a quick reference before interviews. For actual work, you might want to read more from the attached resources.
+</Callout>
+
+## Answer
+
+Web Vitals are a set of specific factors that Google considers important in a webpage's overall user experience. The subset of Web Vitals that are most important is the Core Web Vitals. 
+
+The current Core Web Vitals are:
+- Largest Contentful Paint (LCP)
+- Interaction to Next Paint (INP)
+- Cumulative Layout Shift (CLS)
+
+## Follow Up Questions
+
+### What is the Largest Contentful Paint (LCP)?
+
+> "LCP reports the render time of the largest image, text block, or video visible in the viewport, relative to when the user first navigated to the page." - [web.dev definition of LCP.](https://web.dev/articles/lcp#what-is-lcp) 
+
+An example would be if you load a marketing website then most probably the hero section would be the LCP.
+
+### What is Interaction to Next Paint (INP)?
+
+INP takes into account all the user interactions made and reports the metric as the longest-observed interaction. These interactions are:
+
+- Mouse Click Input
+- Touch Input
+- Keyboard Input
+
+INP replaces the First Input Delay (FID) for a better responsiveness metric. As the first input might not usually be the main input for a webpage.
+
+### What is Cumulative Layout Shift (CLS)?
+
+> CLS is a measure of the largest burst of _layout shift scores_ for every unexpected layout shift that occurs during the entire lifecycle of a page. - [web.dev definition of CLS](https://web.dev/articles/cls#what-is-cls)
+
+This measures visual stability. It helps quantify how often users experience unexpected layout shifts.
+
+### How do you measure any of these Core Web Vitals?
+
+Google has a couple of tools to measure these vitals in the lab and field.
+
+Lab Tools (cannot give you INP score as there is no user input):
+- Chrome DevTools
+- Lighthouse
+
+Field Tools:
+
+- Chrome User Experience Report (CrUX)
+- PageSpeed Insights
+- Search Console
+- Can also setup custom data collection with JavaSciprt using web-vitals package
+
+### Is the Lighthouse test in the dev tools a good measure of these vitals?
+
+Since it is a lab test, it can be a good starting point but checking the field data would be a better and more productive metric to consider!
+
+## Resources
+- [web.dev: Web Vitals](https://web.dev/articles/vitals) 
+- [web.dev: LCP](https://web.dev/articles/lcp) 
+- [web.dev: INP](https://web.dev/articles/inp)
+- [web.dev: CLS](https://web.dev/articles/cls)
