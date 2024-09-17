@@ -21,5 +21,8 @@ export const meta: Question = {
   showConsole: true,
   files: {
     '/App.js': { code: require('./src/App.js').code },
+    '/ChessBoard.js': { code: require('./src/ChessBoard.js').code },
+    '/constants.js': { code: require('./src/constants.js').code },
+    '/utils.js': { code: require('./src/utils.js').code },
   },
 };

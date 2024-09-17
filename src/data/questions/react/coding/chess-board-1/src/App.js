@@ -1,6 +1,4 @@
-export const code = `function ChessBoard() {
-  return null;
-}
+export const code = `import ChessBoard from './ChessBoard';
 
 export default function App() {
   return (

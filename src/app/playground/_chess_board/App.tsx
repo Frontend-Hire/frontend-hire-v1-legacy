@@ -1,6 +1,4 @@
-function ChessBoard() {
-  return <div></div>;
-}
+import ChessBoard from './ChessBoard';
 
 export default function App() {
   return (
