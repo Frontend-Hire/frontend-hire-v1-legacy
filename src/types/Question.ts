@@ -9,6 +9,7 @@ export const QUESTION_SKILL = {
   JAVASCRIPT: 'javascript',
   REACT: 'react',
   NEXT: 'next',
+  DSA: 'dsa',
 } as const;
 
 export type QuestionSkill =
