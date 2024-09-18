@@ -13,11 +13,6 @@ export const QUESTION_CATEGORIES: QuestionCategory[] = [
     className: `hover:bg-white hover:text-black`,
   },
   {
-    id: 'dsa/coding',
-    title: 'DSA Coding',
-    className: `hover:bg-white hover:text-black`,
-  },
-  {
     id: 'web/theory',
     title: 'Web Theory',
     className: `hover:bg-primary`,
