@@ -19,6 +19,18 @@ export const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
     ),
   },
   {
+    question: 'Do you offer student discounts?',
+    answer: (
+      <>
+        <p>Yes, we offer a flat 50% discount for students.</p>
+        <p>
+          Please email us at <CopyEmailOnClick email="info@frontendhire.com" />{' '}
+          with a valid student ID card to obtain discount codes.
+        </p>
+      </>
+    ),
+  },
+  {
     question:
       'I am an Indian student studying abroad. Do I still have to pay in USD?',
     answer: (
@@ -31,18 +43,6 @@ export const FAQ: { question: React.ReactNode; answer: React.ReactNode }[] = [
         <p>
           Please email us at <CopyEmailOnClick email="info@frontendhire.com" />
           to get Indian payment options or discount code for USD payments.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: 'Do you offer student discounts?',
-    answer: (
-      <>
-        <p>Yes, we do offer student discounts.</p>
-        <p>
-          Please email us at <CopyEmailOnClick email="info@frontendhire.com" />{' '}
-          to obtain discount codes.
         </p>
       </>
     ),
