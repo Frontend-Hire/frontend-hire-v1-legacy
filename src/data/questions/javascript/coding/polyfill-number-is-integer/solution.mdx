@@ -120,7 +120,11 @@ export function myIsInteger(value) {
 
 Our special values are `Infinity` and `-Infinity`. So, we use the JS `isFinite` function to check if the value is finite. We could have also explicitly checked for `value !== Infinity` and `value !== -Infinity` but this is cleaner and easier to read. If such a function was not provided, we would have created another utility function to do the same thing.
 
-Another edge case we missed was dealing with `NaN` values. Because the `typeof NaN` is `number`. Luckily, the JS function isFinite() will return false for `NaN` values.
+<Callout type="error">
+Another edge case we missed was dealing with `NaN` values. Because the `typeof NaN` is `number`. Luckily, the JS function `isFinite()` will return false for `NaN` values.
+
+Missing such things is quite common to happen in an interview. It is important to know how to deal with them. In this case, the interviewer would nudge you to handle it.
+</Callout>
 
 ## Full Code
 
