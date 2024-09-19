@@ -1,3 +1,5 @@
+import { Callout } from '@/components/MarkdownComponents';
+
 # Solution
 
 We will be following TDD approach to solve this problem. According to which, we will write test cases first and then write code to pass the test cases. Test cases for reversing a linked list are very simple. We will create a linked list and then reverse it. We will then compare the reversed linked list with the expected linked list.
@@ -45,14 +47,15 @@ describe('reverse-linked-list', () => {
 });
 ```
 
-## Solution
+After writing the above tests, we can see that the test cases are failing. We will now write the code to actually pass the test cases.
 
-As we have already written the test cases, we can see that the test cases are failing. We need to write the code to pass the test cases.
+The repo already comes with a linked-list implemented as a helper but in an interview you might be asked to implement one!
 
-We will start by creating a linked list.
-Don't know how to create a linked list? Check out [this](http://localhost:3000/questions/dsa/coding/linked-list-implementation) article.
+<Callout>
+Don't know how to create a linked list? Check out [our question](http://localhost:3000/questions/dsa/coding/linked-list-implementation) on implementing one. The helper in this repo comes with another method to get a list which uses an array to represent the linked list.
+</Callout>
 
-As now you know how to create a linked list, let's write the code to reverse a linked list.
+Let's write the code to reverse a linked list.
 
 Before writing the code, let's think about the approach.
 
