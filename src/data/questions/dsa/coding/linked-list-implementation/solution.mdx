@@ -1,0 +1,211 @@
+# Linked List Implementation
+
+Implement a linked list.
+
+# Answer
+
+## Linked List Implementation
+
+1. Create a `Node` class with a value and a pointer to the next node.
+
+Here we will be implementing a `linked list Node` with a value and a pointer to the next node.
+ 
+#### But why do we need a `Node` for the linked list?
+
+We need a `Node` for the linked list because the linked list is a linear data structure that stores elements in a sequential manner. Each element in the linked list is called a `node`. Each node contains two parts:
+
+- The data part that stores the value of the element.
+- The pointer part that stores the address of the next node in the sequence.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+```
+
+
+2. Create a `LinkedList` class with a head and a tail.
+
+Here we will be implementing a `LinkedList` class with a head and a tail.
+
+#### But why do we need a `LinkedList` class?
+
+We need a `LinkedList` class to store the elements of the linked list. The `LinkedList` class contains a `head` and a `tail`. The `head` is the first node in the linked list and the `tail` is the last node in the linked list.
+
+```javascript
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+}
+```
+
+3. Implement the `insert` method to add a new node to the linked list.
+
+Here we will be implementing the `insert` method to add a new node to the linked list.
+
+```javascript
+insert(value) {
+  const newNode = new Node(value);
+  if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+  } else {
+    this.tail.next = newNode;
+    this.tail = newNode;
+  }
+}
+```
+
+
+4. Implement the `remove` method to remove a node from the linked list.
+
+Here we will be implementing the `remove` method to remove a node from the linked list.
+
+```javascript
+remove(value) {
+  if (!this.head) return false;
+  let current = this.head;
+  let previous = null;
+
+  while (current) {
+    if (current.value === value) {
+      if (previous) {
+        previous.next = current.next;
+      } else {
+        this.head = current.next;
+      }
+      if (!current.next) {
+        this.tail = previous;
+      }
+      return true;
+    }
+    previous = current;
+    current = current.next;
+  }
+
+  return false;
+}
+```
+
+  
+5. Implement the `search` method to search for a node in the linked list.
+
+Here we will be implementing the `search` method to search for a node in the linked list.
+
+```javascript
+search(value) {
+  let current = this.head;
+  while (current) {
+    if (current.value === value) {
+      return current;
+    }
+    current = current.next;
+  }
+  return null;
+}
+```
+
+
+6. Implement the `print` method to print the linked list.
+Here we will be implementing the `print` method to print the linked list.
+
+```javascript
+print() {
+  let current = this.head;
+  while (current) {
+    console.log(current.value);
+    current = current.next;
+  }
+}
+```
+
+This is the complete implementation of a linked list.
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  insert(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+  }
+
+  remove(value) {
+    if (!this.head) return false;
+    let current = this.head;
+    let previous = null;
+
+    while (current) {
+      if (current.value === value) {
+        if (previous) {
+          previous.next = current.next;
+        } else {
+          this.head = current.next;
+        }
+        if (!current.next) {
+          this.tail = previous;
+        }
+        return true;
+      }
+      previous = current;
+      current = current.next;
+    }
+
+    return false;
+  }
+
+  search(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return current;
+      }
+      current = current.next;
+    }
+    return null;
+  }
+
+  print() {
+    let current = this.head;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+}
+```
+
+## Time Complexity
+
+- `insert`: O(1)
+- `remove`: O(n)
+- `search`: O(n)
+- `print`: O(n)
+
+## Space Complexity
+
+- `insert`: O(1)
+- `remove`: O(1)
+- `search`: O(1)
+- `print`: O(1)
