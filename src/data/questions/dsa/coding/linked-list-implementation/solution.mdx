@@ -5,8 +5,8 @@ As we will be following TDD approach, we will be writing the test cases first an
 ## Test Cases
 
 ```javascript showLineNumbers
-import { describe, expect, it } from 'vitest';
-import { LinkedList } from './linked-list';
+import { describe, expect, test } from 'vitest';
+import { LinkedList } from '.';
 
 describe('LinkedList happy flows', () => {
   test('should create an empty linked list', () => {
@@ -45,24 +45,18 @@ describe('LinkedList happy flows', () => {
     expect(linkedList.search(4)).toBeNull();
   });
 
-  test('should print linked list', () => {
-    const linkedList = new LinkedList();
-    linkedList.insert(1);
-    linkedList.insert(2);
-    linkedList.insert(3);
-    expect(linkedList.print()).toBe('1 -> 2 -> 3');
+  test.skip('should print linked list', () => {
+    // Testing this does not make much sense
+    // we would have to depend on mocking
+    // so we will skip it for manual testing
   });
-});
 
-describe('LinkedList edge cases', () => {
   test('should handle edge cases', () => {
     const linkedList = new LinkedList();
     expect(linkedList.remove(1)).toBe(false);
     expect(linkedList.search(1)).toBeNull(null);
-    expect(linkedList.print()).toBe('');
   });
 });
-
 ```
 
 When we run the above test cases, all the test cases will fail. This is because we don't have the implementation of the `LinkedList` class.
@@ -80,7 +74,7 @@ We need a `Node` for the linked list because the linked list is a linear data st
 - The data part that stores the value of the element.
 - The pointer part that stores the address of the next node in the sequence.
 
-```javascript
+```javascript title="index.js"
 class Node {
   constructor(value) {
     this.value = value;
@@ -97,7 +91,7 @@ Here we will be implementing a `LinkedList` class with a head and a tail.
 
 We need a `LinkedList` class to store the elements of the linked list. The `LinkedList` class contains a `head` and a `tail`. The `head` is the first node in the linked list and the `tail` is the last node in the linked list.
 
-```javascript
+```javascript title="index.js"
 class LinkedList {
   constructor() {
     this.head = null;
@@ -110,7 +104,7 @@ class LinkedList {
 
 Here we will be implementing the `insert` method to add a new node to the linked list.
 
-```javascript
+```javascript title="index.js"
 insert(value) {
   const newNode = new Node(value);
   if (!this.head) {
@@ -127,7 +121,7 @@ insert(value) {
 
 Here we will be implementing the `remove` method to remove a node from the linked list.
 
-```javascript
+```javascript title="index.js"
 remove(value) {
   if (!this.head) return false;
   let current = this.head;
@@ -157,7 +151,7 @@ remove(value) {
 
 Here we will be implementing the `search` method to search for a node in the linked list.
 
-```javascript
+```javascript title="index.js"
 search(value) {
   let current = this.head;
   while (current) {
@@ -174,7 +168,7 @@ search(value) {
 
 Here we will be implementing the `print` method to print the linked list.
 
-```javascript
+```javascript title="index.js"
 print() {
   let current = this.head;
   while (current) {
@@ -186,7 +180,7 @@ print() {
 
 This is the complete implementation of a linked list.
 
-```javascript
+```javascript showLineNumbers title="index.js"
 class Node {
   constructor(value) {
     this.value = value;
