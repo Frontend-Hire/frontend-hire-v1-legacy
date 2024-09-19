@@ -1,0 +1,105 @@
+# Solution
+
+We will be following TDD approach to solve this problem. According to which, we will write test cases first and then write code to pass the test cases. Test cases for reversing a linked list are very simple. We will create a linked list and then reverse it. We will then compare the reversed linked list with the expected linked list.
+
+
+## Test Cases
+
+```js title="index.test.js" showLineNumbers
+import { describe, expect, it } from "vitest";
+import { reverseLinkedList } from "./index";
+import { LinkedList } from "./linked-list";
+
+describe("reverseLinkedList", () => {
+    it("should reverse a linked list", () => {
+        const linkedList = new LinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        reverseLinkedList(linkedList);
+        expect(linkedList.getList()).toEqual([5, 4, 3, 2, 1]);
+    });
+
+
+    it("should reverse a linked list with two elements", () => {
+        const linkedList = new LinkedList();
+        linkedList.add(1);
+        linkedList.add(2);
+        reverseLinkedList(linkedList);
+        expect(linkedList.getList()).toEqual([2, 1]);
+    });
+
+    it("should return same list if it is empty", () => {
+        const linkedList = new LinkedList();
+        reverseLinkedList(linkedList);
+        expect(linkedList.getList()).toEqual([]);
+    });
+
+    it("should return same list if it has only one element", () => {
+        const linkedList = new LinkedList();
+        linkedList.add(1);
+        reverseLinkedList(linkedList);
+        expect(linkedList.getList()).toEqual([1]);
+    });
+
+});
+```
+
+## Solution
+
+As we have already written the test cases, we can see that the test cases are failing. We need to write the code to pass the test cases.
+
+We will start by creating a linked list.
+Don't know how to create a linked list? Check out [this](http://localhost:3000/questions/dsa/coding/linked-list-implementation) article.
+
+As now you know how to create a linked list, let's write the code to reverse a linked list.
+
+Before writing the code, let's think about the approach.
+
+We will be using two pointers to reverse the linked list. We will be iterating through the linked list and reversing the direction of the pointers.
+
+These steps we will be following:
+
+1. Initialize two pointers: `current` and `previous`.
+2. Initially `current` will be the head of the linked list and `previous` will be `null`.
+3. Iterate through the linked list.
+`loop started`
+4. For storing the next node, we will be using a temporary variable.
+5. We will assign value of `previous` to `current.next`.
+6. After that we will be assigning value of `current` to `previous`. As we already broken the link of `current` node with `next` node, we don't need to worry about loosing the next node.
+7. For moving forward, we will be assigning value of `temp` to `current`. As we have stored the next node in `temp`, we can safely move forward.
+`loop ended`
+8. After the loop, in `previous` we will have the new head of the linked list. So, we will return the value of `previous`.
+
+Let's write the code for the above approach.
+
+```js title="index.js" showLineNumbers
+export function reverseLinkedList(linkedList) {
+  let current = linkedList.head;
+  let previous = null;
+
+  while (current) {
+    const temp = current.next;
+    current.next = previous;
+    previous = current;
+    current = temp;
+  }
+
+  linkedList.head = previous;
+  return linkedList;
+}
+```
+
+## Conclusion
+
+We have successfully reversed the linked list.
+
+Let's run the test cases to see if our code is working fine or not.
+
+```sh
+pnpm vitest index.test.js
+```
+
+![Test Cases Passed](./assets/test-cases-passed.webp)
