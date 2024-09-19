@@ -1,0 +1,192 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+TDD (test-driven development) shines in this type of scenario. We will also use the same approach here.
+
+## Understanding the Number.isInteger() Static Method
+
+The `Number.isInteger()` method determines whether the passed value is an integer. It returns `true` for integers and `false` otherwise.
+
+<Callout>
+We suggest you also do this in an interview setting. As this helps you form a better thought process. This also clears up some of the edge cases. You can also pull up the documentation (we encourage doing this) if the interviewer has no issue with that.
+</Callout>
+
+```js 
+console.log(Number.isInteger(4));        // true
+console.log(Number.isInteger(-2));       // true
+console.log(Number.isInteger(3.14));     // false
+console.log(Number.isInteger("hello"));   // false
+console.log(Number.isInteger(null));      // false
+console.log(Number.isInteger(Infinity));  // false
+console.log(Number.isInteger(-Infinity)); // false
+```
+
+So, `Number.isInteger()` checks if a value is an integer and returns a boolean.
+
+## Tests
+
+Great! Now let's write some tests for our implementation.
+
+<Callout>
+Since `Number.isInteger` is a static method, we will attach our polyfill to the `Number` constructor directly. 
+
+```js
+beforeAll(() => {
+  // We attach the polyfill to the constructor of the Number object
+  Number.myIsInteger = myIsInteger;
+});
+```
+</Callout>
+
+### The method returns true for integers
+
+```js title="index.test.js"
+test('should return true for integers', () => {
+  expect(Number.myIsInteger(4)).toBe(true);
+  expect(Number.myIsInteger(-10)).toBe(true);
+});
+```
+
+### The method returns false for non-integers
+
+```js title="index.test.js"
+test('should return false for non-integers', () => {
+  expect(Number.myIsInteger(3.5)).toBe(false);
+  expect(Number.myIsInteger(-2.7)).toBe(false);
+  expect(Number.myIsInteger(NaN)).toBe(false);
+  expect(Number.myIsInteger(null)).toBe(false);
+});
+```
+
+### The method returns false for non-numeric values
+
+```js title="index.test.js"
+test('should return false for non-numeric values', () => {
+  expect(Number.myIsInteger("string")).toBe(false);
+  expect(Number.myIsInteger(undefined)).toBe(false);
+  expect(Number.myIsInteger({})).toBe(false);
+});
+```
+
+### The method returns false for special cases
+
+```js title="index.test.js"
+test('should return false for special cases', () => {
+  expect(Number.myIsInteger(Infinity)).toBe(false);
+  expect(Number.myIsInteger(-Infinity)).toBe(false);
+});
+```
+
+## The Polyfill
+
+<Callout>
+The below solution is pretty much the actual implementation of the polyfill.
+</Callout>
+
+Now, let's implement the polyfill.
+
+Let us check if the value is a number or not.
+
+```js title="index.js" showLineNumbers {2}
+export function myIsInteger(value) {
+  return typeof value === 'number';
+}
+```
+
+This passes the following tests:
+
+- should return true for integers
+- should return false for non-numeric values
+
+Let us now work on the failing test: `should return false for non-integers`
+
+```js title="index.test.js" showLineNumbers {2}
+export function myIsInteger(value) {
+  return typeof value === 'number' && Math.floor(value) === value;
+}
+```
+
+We simply check if the floor of the value is equal to the value. This is a nice mathematical trick because for non-integers, the floor either falls on the right or on the left side of the value.
+
+Let us now work on the final failing test: `should return false for special cases`
+
+```js title="index.test.js" showLineNumbers {2-4}
+export function myIsInteger(value) {
+  return (
+    typeof value === 'number' && Math.floor(value) === value && isFinite(value)
+  );
+}
+```
+
+Our special values are `Infinity` and `-Infinity`. So, we use the JS `isFinite` function to check if the value is finite. We could have also explicitly checked for `value !== Infinity` and `value !== -Infinity` but this is cleaner and easier to read. If such a function was not provided, we would have created another utility function to do the same thing.
+
+<Callout type="error">
+Another edge case we missed was dealing with `NaN` values. Because the `typeof NaN` is `number`. Luckily, the JS function `isFinite()` will return false for `NaN` values.
+
+Missing such things is quite common to happen in an interview. It is important to know how to deal with them. In this case, the interviewer would nudge you to handle it.
+</Callout>
+
+## Full Code
+
+```js title="index.js" showLineNumbers
+// Normally, a polyfill would be implemented as part of the prototype or the constructor of a global object.
+// In this case, it is part of the Promise constructor.
+/* Something like the below
+if (!Number.isInteger) {
+  Number.isInteger = function(value) {
+    // Implementation goes here.
+  };
+} 
+*/
+// However, for this exercise, we'll define it with a different name to not confuse the global object.
+// We can of course, also override it but let's not do that!
+
+/**
+ * Checks if the given value is an integer.
+ *
+ * @param {*} value - The value to be checked.
+ * @return {boolean} true if the value is an integer, false otherwise.
+ */
+export function myIsInteger(value) {
+  return (
+    typeof value === 'number' && isFinite(value) && Math.floor(value) === value
+  );
+}
+```
+
+```js title="index.test.js" showLineNumbers
+import { expect, describe, test, beforeAll } from 'vitest';
+import { myIsInteger } from '.';
+
+describe('myIsInteger', () => {
+  beforeAll(() => {
+    // We attach the polyfill to the constructor of the Promise object
+    // and not to the prototype!
+    Number.myIsInteger = myIsInteger;
+  });
+
+  test('should return true for integers', () => {
+    expect(Number.myIsInteger(4)).toBe(true);
+    expect(Number.myIsInteger(-10)).toBe(true);
+  });
+
+  test('should return false for non-integers', () => {
+    expect(Number.myIsInteger(3.5)).toBe(false);
+    expect(Number.myIsInteger(-2.7)).toBe(false);
+    expect(Number.myIsInteger(NaN)).toBe(false);
+    expect(Number.myIsInteger(null)).toBe(false);
+  });
+
+  test('should return false for non-numeric values', () => {
+    expect(Number.myIsInteger('string')).toBe(false);
+    expect(Number.myIsInteger(undefined)).toBe(false);
+    expect(Number.myIsInteger({})).toBe(false);
+  });
+
+  test('should return false for special cases', () => {
+    expect(Number.myIsInteger(Infinity)).toBe(false);
+    expect(Number.myIsInteger(-Infinity)).toBe(false);
+  });
+});
+```
