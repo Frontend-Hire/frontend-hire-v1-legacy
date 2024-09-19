@@ -7,7 +7,7 @@ import {
 
 export const meta: Question = {
   id: 'reverse-linked-list',
-  title: 'How to reverse a Linked List',
+  title: 'Linked List: How to reverse a Linked List',
   description:
     'This is a common interview question that is asked in many companies, it is a good question to test your understanding of Linked Lists.',
   type: QUESTION_TYPE.CODING,

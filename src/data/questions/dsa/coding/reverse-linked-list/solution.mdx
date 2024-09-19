@@ -2,48 +2,46 @@
 
 We will be following TDD approach to solve this problem. According to which, we will write test cases first and then write code to pass the test cases. Test cases for reversing a linked list are very simple. We will create a linked list and then reverse it. We will then compare the reversed linked list with the expected linked list.
 
-
 ## Test Cases
 
 ```js title="index.test.js" showLineNumbers
-import { describe, expect, it } from "vitest";
-import { reverseLinkedList } from "./index";
-import { LinkedList } from "./linked-list";
+import { describe, expect, test } from 'vitest';
 
-describe("reverseLinkedList", () => {
-    it("should reverse a linked list", () => {
-        const linkedList = new LinkedList();
-        linkedList.add(1);
-        linkedList.add(2);
-        linkedList.add(3);
-        linkedList.add(4);
-        linkedList.add(5);
-        reverseLinkedList(linkedList);
-        expect(linkedList.getList()).toEqual([5, 4, 3, 2, 1]);
-    });
+import { reverseLinkedList } from '.';
+import { LinkedList } from './linked-list';
 
+describe('reverse-linked-list', () => {
+  test('should reverse a linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    linkedList.insert(4);
+    linkedList.insert(5);
+    reverseLinkedList(linkedList);
+    expect(linkedList.getList()).toEqual([5, 4, 3, 2, 1]);
+  });
 
-    it("should reverse a linked list with two elements", () => {
-        const linkedList = new LinkedList();
-        linkedList.add(1);
-        linkedList.add(2);
-        reverseLinkedList(linkedList);
-        expect(linkedList.getList()).toEqual([2, 1]);
-    });
+  test('should reverse a linked list with two elements', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    reverseLinkedList(linkedList);
+    expect(linkedList.getList()).toEqual([2, 1]);
+  });
 
-    it("should return same list if it is empty", () => {
-        const linkedList = new LinkedList();
-        reverseLinkedList(linkedList);
-        expect(linkedList.getList()).toEqual([]);
-    });
+  test('should return same list if it is empty', () => {
+    const linkedList = new LinkedList();
+    reverseLinkedList(linkedList);
+    expect(linkedList.getList()).toEqual([]);
+  });
 
-    it("should return same list if it has only one element", () => {
-        const linkedList = new LinkedList();
-        linkedList.add(1);
-        reverseLinkedList(linkedList);
-        expect(linkedList.getList()).toEqual([1]);
-    });
-
+  test('should return same list if it has only one element', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    reverseLinkedList(linkedList);
+    expect(linkedList.getList()).toEqual([1]);
+  });
 });
 ```
 
@@ -92,14 +90,4 @@ export function reverseLinkedList(linkedList) {
 }
 ```
 
-## Conclusion
-
-We have successfully reversed the linked list.
-
-Let's run the test cases to see if our code is working fine or not.
-
-```sh
-pnpm vitest index.test.js
-```
-
-![Test Cases Passed](./assets/test-cases-passed.webp)
+The tests should pass now.
