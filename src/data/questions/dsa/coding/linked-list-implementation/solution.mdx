@@ -1,6 +1,75 @@
 # Solution
 
-## Create a `Node` class with a value and a pointer to the next node.
+As we will be following TDD approach, we will be writing the test cases first and then the implementation.
+
+## Test Cases
+
+```javascript showLineNumbers
+import { describe, expect, it } from 'vitest';
+import { LinkedList } from './linked-list';
+
+describe('LinkedList happy flows', () => {
+  test('should create an empty linked list', () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+  });
+
+  test('should insert node to linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    expect(linkedList.head.value).toBe(1);
+    expect(linkedList.head.next.value).toBe(2);
+    expect(linkedList.tail.value).toBe(3);
+  });
+
+  test('should remove node from linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    linkedList.remove(2);
+    expect(linkedList.head.value).toBe(1);
+    expect(linkedList.head.next.value).toBe(3);
+    expect(linkedList.tail.value).toBe(3);
+  });
+
+  test('should search node in linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    expect(linkedList.search(2).value).toBe(2);
+    expect(linkedList.search(4)).toBeNull();
+  });
+
+  test('should print linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    expect(linkedList.print()).toBe('1 -> 2 -> 3');
+  });
+});
+
+describe('LinkedList edge cases', () => {
+  test('should handle edge cases', () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.remove(1)).toBe(false);
+    expect(linkedList.search(1)).toBeNull(null);
+    expect(linkedList.print()).toBe('');
+  });
+});
+
+```
+
+When we run the above test cases, all the test cases will fail. This is because we don't have the implementation of the `LinkedList` class.
+
+As we have test cases for the `LinkedList` class, we will be implementing the `LinkedList` class.
+
+## Before creating the `LinkedList` class, create a `Node` class with a value and a pointer to the next node.
 
 Here we will be implementing a `linked list Node` with a value and a pointer to the next node.
  
@@ -189,14 +258,22 @@ class LinkedList {
 
 ## Time Complexity
 
-- `insert`: O(1)
-- `remove`: O(n)
-- `search`: O(n)
-- `print`: O(n)
+1. `insert`: O(1)
+  - As we are only adding a new node at the end of the list and we have a pointer to the tail, we don't need to traverse the list.
+2. `remove`: O(n)
+  - We need to traverse the list to find the node to remove and update the pointers.
+3. `search`: O(n)
+  - We need to traverse the list to find the node to search for.
+4. `print`: O(n)
+  - We need to traverse the list to print the values.
 
 ## Space Complexity
 
-- `insert`: O(1)
-- `remove`: O(1)
-- `search`: O(1)
-- `print`: O(1)
+1. `insert`: O(1)
+  - We are only adding a new node at the end of the list and we have a pointer to the tail.
+2. `remove`: O(1)
+  - We are only removing a node from the list and we have a pointer to the tail.
+3. `search`: O(1)
+  - We are only searching for a node in the list and we have a pointer to the tail.
+4. `print`: O(1)
+  - We are only printing the values in the list and we have a pointer to the tail.

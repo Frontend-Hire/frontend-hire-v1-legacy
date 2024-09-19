@@ -1,8 +1,8 @@
 import {
-  CODING_ENVIRONMENT_TYPE,
   DIFFICULTY,
   QUESTION_TYPE,
   Question,
+  CODING_ENVIRONMENT_TYPE,
 } from '@/types/Question';
 
 export const meta: Question = {
