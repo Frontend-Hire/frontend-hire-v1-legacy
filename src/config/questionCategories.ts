@@ -10,7 +10,7 @@ export const QUESTION_CATEGORIES: QuestionCategory[] = [
   {
     id: 'dsa/theory',
     title: 'DSA Theory',
-    className: `hover:bg-white hover:text-black`,
+    className: `hover:bg-primary`,
   },
   {
     id: 'dsa/coding',
