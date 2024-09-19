@@ -1,0 +1,273 @@
+# Solution
+
+As we will be following TDD approach, we will be writing the test cases first and then the implementation.
+
+## Test Cases
+
+```javascript showLineNumbers
+import { describe, expect, test } from 'vitest';
+import { LinkedList } from '.';
+
+describe('LinkedList happy flows', () => {
+  test('should create an empty linked list', () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+  });
+
+  test('should insert node to linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    expect(linkedList.head.value).toBe(1);
+    expect(linkedList.head.next.value).toBe(2);
+    expect(linkedList.tail.value).toBe(3);
+  });
+
+  test('should remove node from linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    linkedList.remove(2);
+    expect(linkedList.head.value).toBe(1);
+    expect(linkedList.head.next.value).toBe(3);
+    expect(linkedList.tail.value).toBe(3);
+  });
+
+  test('should search node in linked list', () => {
+    const linkedList = new LinkedList();
+    linkedList.insert(1);
+    linkedList.insert(2);
+    linkedList.insert(3);
+    expect(linkedList.search(2).value).toBe(2);
+    expect(linkedList.search(4)).toBeNull();
+  });
+
+  test.skip('should print linked list', () => {
+    // Testing this does not make much sense
+    // we would have to depend on mocking
+    // so we will skip it for manual testing
+  });
+
+  test('should handle edge cases', () => {
+    const linkedList = new LinkedList();
+    expect(linkedList.remove(1)).toBe(false);
+    expect(linkedList.search(1)).toBeNull(null);
+  });
+});
+```
+
+When we run the above test cases, all the test cases will fail. This is because we don't have the implementation of the `LinkedList` class.
+
+As we have test cases for the `LinkedList` class, we will be implementing the `LinkedList` class.
+
+## Before creating the `LinkedList` class, create a `Node` class with a value and a pointer to the next node.
+
+Here we will be implementing a `linked list Node` with a value and a pointer to the next node.
+ 
+### But why do we need a `Node` for the linked list?
+
+We need a `Node` for the linked list because the linked list is a linear data structure that stores elements in a sequential manner. Each element in the linked list is called a `node`. Each node contains two parts:
+
+- The data part that stores the value of the element.
+- The pointer part that stores the address of the next node in the sequence.
+
+```javascript title="index.js"
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+```
+
+## Create a `LinkedList` class with a head and a tail.
+
+Here we will be implementing a `LinkedList` class with a head and a tail.
+
+### But why do we need a `LinkedList` class?
+
+We need a `LinkedList` class to store the elements of the linked list. The `LinkedList` class contains a `head` and a `tail`. The `head` is the first node in the linked list and the `tail` is the last node in the linked list.
+
+```javascript title="index.js"
+export class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+}
+```
+
+## Implement the `insert` method to add a new node to the linked list
+
+Here we will be implementing the `insert` method to add a new node to the linked list.
+
+```javascript title="index.js"
+insert(value) {
+  const newNode = new Node(value);
+  if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+  } else {
+    this.tail.next = newNode;
+    this.tail = newNode;
+  }
+}
+```
+
+## Implement the `remove` method to remove a node from the linked list
+
+Here we will be implementing the `remove` method to remove a node from the linked list.
+
+```javascript title="index.js"
+remove(value) {
+  if (!this.head) return false;
+  let current = this.head;
+  let previous = null;
+
+  while (current) {
+    if (current.value === value) {
+      if (previous) {
+        previous.next = current.next;
+      } else {
+        this.head = current.next;
+      }
+      if (!current.next) {
+        this.tail = previous;
+      }
+      return true;
+    }
+    previous = current;
+    current = current.next;
+  }
+
+  return false;
+}
+```
+  
+## Implement the `search` method to search for a node in the linked list
+
+Here we will be implementing the `search` method to search for a node in the linked list.
+
+```javascript title="index.js"
+search(value) {
+  let current = this.head;
+  while (current) {
+    if (current.value === value) {
+      return current;
+    }
+    current = current.next;
+  }
+  return null;
+}
+```
+
+## Implement the `print` method to print the linked list
+
+Here we will be implementing the `print` method to print the linked list.
+
+```javascript title="index.js"
+print() {
+  let current = this.head;
+  while (current) {
+    console.log(current.value);
+    current = current.next;
+  }
+}
+```
+
+This is the complete implementation of a linked list.
+
+```javascript showLineNumbers title="index.js"
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+export class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  insert(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+  }
+
+  remove(value) {
+    if (!this.head) return false;
+    let current = this.head;
+    let previous = null;
+
+    while (current) {
+      if (current.value === value) {
+        if (previous) {
+          previous.next = current.next;
+        } else {
+          this.head = current.next;
+        }
+        if (!current.next) {
+          this.tail = previous;
+        }
+        return true;
+      }
+      previous = current;
+      current = current.next;
+    }
+
+    return false;
+  }
+
+  search(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return current;
+      }
+      current = current.next;
+    }
+    return null;
+  }
+
+  print() {
+    let current = this.head;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+}
+```
+
+## Time Complexity
+
+1. `insert`: O(1)
+    - As we are only adding a new node at the end of the list and we have a pointer to the tail, we don't need to traverse the list.
+2. `remove`: O(n)
+    - We need to traverse the list to find the node to remove and update the pointers.
+3. `search`: O(n)
+    - We need to traverse the list to find the node to search for.
+4. `print`: O(n)
+    - We need to traverse the list to print the values.
+
+## Space Complexity
+
+1. `insert`: O(1)
+    - We are only adding a new node at the end of the list and we have a pointer to the tail.
+2. `remove`: O(1)
+    - We are only removing a node from the list and we have a pointer to the tail.
+3. `search`: O(1)
+    - We are only searching for a node in the list and we have a pointer to the tail.
+4. `print`: O(1)
+    - We are only printing the values in the list and we have a pointer to the tail.
