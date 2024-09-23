@@ -43,10 +43,10 @@ export default function QuestionItem({
           <div className="flex flex-wrap items-center gap-2">
             <p className="font-bold">{title}</p>
             <div className="flex items-center gap-2">
+              {isFree && <Badge>Free</Badge>}
               {isNew(publishedOn) && (
                 <Badge className="motion-safe:animate-fh-pulse">New</Badge>
               )}
-              {isFree && <Badge>Free</Badge>}
             </div>
           </div>
           {isCompleted && (
