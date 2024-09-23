@@ -1,0 +1,88 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# What is a callback?
+
+> Callbacks are a fundamental concept in JavaScript, especially important for handling asynchronous operations. Understanding callbacks is crucial for both practical development and interview scenarios.
+
+## Answer
+
+A callback is a function that is passed as an argument to another function and is executed after the first function has completed. The idea is to allow you to define code that should run after a certain task has finished, rather than immediately.
+
+Here's a simple example:
+
+```javascript
+function doSomething(callback) {
+  console.log("Doing something...");
+  // Simulate an asynchronous operation
+  setTimeout(() => {
+    console.log("Done!");
+    callback();
+  }, 1000);
+}
+
+function onComplete() {
+  console.log("Callback executed!");
+}
+
+doSomething(onComplete);
+```
+
+In this example, `onComplete` is a callback function that's passed to `doSomething`. It's executed after the simulated asynchronous operation completes.
+
+<Callout>
+Callbacks are widely used in JavaScript, especially in older code and APIs. However, modern JavaScript often uses Promises and async/await for better handling of asynchronous operations.
+</Callout>
+
+## Follow Up Questions
+
+### What is callback hell and how can it be avoided?
+
+Callback hell, also known as the "pyramid of doom," occurs when you have multiple nested callbacks, making the code hard to read and maintain. For example:
+
+```javascript
+asyncOperation1(function(result1) {
+  asyncOperation2(result1, function(result2) {
+    asyncOperation3(result2, function(result3) {
+      // More nested callbacks...
+    });
+  });
+});
+```
+
+To avoid callback hell, you can:
+- Use named functions instead of anonymous functions
+- Modularize your code
+- Use Promises or async/await syntax
+
+### How do callbacks relate to asynchronous programming?
+
+Callbacks are fundamental to asynchronous programming in JavaScript. They allow you to define what should happen after an asynchronous operation completes, without blocking the execution of the rest of your code.
+
+### What's the difference between synchronous and asynchronous callbacks?
+
+- Synchronous callbacks are executed immediately by the function they're passed to.
+- Asynchronous callbacks are usually executed after some asynchronous operation completes.
+
+Example of synchronous callback:
+```javascript
+[1, 2, 3].forEach(num => console.log(num));
+```
+
+Example of asynchronous callback:
+```javascript
+setTimeout(() => console.log("This runs after a delay"), 1000);
+```
+
+### How do Promises and async/await relate to callbacks?
+
+Promises and async/await are more modern ways to handle asynchronous operations in JavaScript. They were introduced to address some of the issues with callbacks, such as callback hell.
+
+- Promises provide a way to handle asynchronous operations with a more structured syntax.
+- async/await is syntactic sugar built on top of Promises, making asynchronous code look and behave more like synchronous code.
+
+## Resources
+
+- [MDN: Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)
+- [JavaScript.info: Introduction: callbacks](https://javascript.info/callbacks)
+- [MDN: Using Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+- [MDN: Async function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
