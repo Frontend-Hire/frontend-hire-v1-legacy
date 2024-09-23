@@ -32,6 +32,16 @@ obj1.greet(); // Output: Hello, Alice!
 obj2.greet(); // Output: Hello, Bob!
 ```
 
+Real-world example: `Array.prototype.filter()`
+
+The `filter()` method is attached to the `Array.prototype`, so all array instances can use it:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // Output: [2, 4]
+```
+
 2. Attaching a function directly to the object (instance method):
 
 ```javascript
@@ -43,6 +53,29 @@ const obj = {
 };
 
 obj.greet(); // Output: Hi, I'm Charlie!
+```
+
+Real-world example: Methods in custom objects
+
+While less common in built-in JavaScript objects, this pattern is often used when creating custom objects:
+
+```javascript
+const calculator = {
+  value: 0,
+  add: function(x) {
+    this.value += x;
+    return this;
+  },
+  subtract: function(x) {
+    this.value -= x;
+    return this;
+  },
+  getValue: function() {
+    return this.value;
+  }
+};
+
+console.log(calculator.add(5).subtract(2).getValue()); // Output: 3
 ```
 
 3. Attaching a function as a static method:
@@ -72,15 +105,34 @@ class NewClass {
 NewClass.staticGreet("Eve"); // Output: Static hello to Eve!
 ```
 
+Real-world example: `Promise.all()`
+
+`Promise.all()` is a static method on the `Promise` constructor. It's called on the `Promise` class itself, not on instances of promises:
+
+```javascript
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values); // Output: [3, 42, 'foo']
+});
+```
+
+Another example of a static method is `Object.keys()`:
+
+```javascript
+const obj = { a: 1, b: 2, c: 3 };
+console.log(Object.keys(obj)); // Output: ['a', 'b', 'c']
+```
+
 <Callout>
-The main differences lie in memory usage, inheritance, and usage patterns. Prototype methods are shared among all instances, instance methods are unique to each object, and static methods are called on the class itself.
+The main differences lie in memory usage, inheritance, and usage patterns. Prototype methods are shared among all instances, instance methods are unique to each object, and static methods are called on the class itself. Built-in JavaScript functions and methods use these patterns based on their intended use and behavior.
 </Callout>
 
 ## Follow Up Questions
-
-<Callout type='warning'>
-These follow-up questions delve deeper into the concept and its practical implications.
-</Callout>
 
 ### What are the performance implications of each approach?
 
