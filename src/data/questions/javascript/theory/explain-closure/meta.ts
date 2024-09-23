@@ -2,7 +2,7 @@ import { DIFFICULTY, QUESTION_TYPE, Question } from '@/types/Question';
 
 export const meta: Question = {
   id: 'explain-closure',
-  title: 'Explain Closure',
+  title: 'Explain Closures',
   description:
     'Closure is a fundamental concept in JavaScript that allows inner functions to access variables from outer functions even after the outer functions have returned.',
   type: QUESTION_TYPE.THEORY,
