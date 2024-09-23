@@ -1,0 +1,64 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Explain Temporal Dead Zone (TDZ)
+
+> Understanding Temporal Dead Zone is crucial for mastering variable scoping in JavaScript, especially in modern JavaScript with `let` and `const`.
+
+## Answer
+
+According to the [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz), the **Temporal Dead Zone (TDZ)** refers to the period between entering a scope (block or function) and the actual declaration of a variable using `let`, `const`, or `class`. During this period, even though the variable is bound in memory, it is not accessible and any attempt to reference it will result in a `ReferenceError`.
+
+The TDZ applies to variables declared with `let` and `const`, and functions defined using `class`. It's important to note that variables declared with `var` do not experience a TDZ and are hoisted differently.
+
+### Example of Temporal Dead Zone
+
+```javascript
+{
+  console.log(variableOne); // ReferenceError: Cannot access 'variableOne' before initialization
+  let variableOne = 21; // TDZ ends here
+}
+```
+
+In this case, the variable `variableOne` is declared with `let`, but it cannot be accessed before its declaration. Attempting to do so results in an error.
+
+```javascript
+{
+  let variableOne; // Declaration happens here, TDZ ends
+  console.log(variableOne); // undefined, but no error
+  variableOne = 21; // Assignment happens after declaration
+  console.log(variableOne); // 21
+}
+```
+
+Here, `variableOne` is declared with `let`, and even though it is declared but not initialized, the TDZ ends after the declaration, and you can safely access it (even though it's `undefined` until assignment).
+
+<Callout>
+Keep in mind, the **Temporal Dead Zone** only applies to `let`, `const`, and `class` declarations, not `var`. This behavior makes `let` and `const` more predictable.
+</Callout>
+
+## Follow-Up Questions
+
+<Callout type='warning'>
+The below questions are often asked as follow-ups to ensure a deeper understanding of TDZ and scoping.
+</Callout>
+
+### How is TDZ different from hoisting?
+
+Variables declared with `let` and `const` are technically hoisted but remain in the TDZ until the code execution reaches the line where they are declared. This is in contrast to `var` variables, which are hoisted and initialized as `undefined`.
+
+### Why does `var` not have a Temporal Dead Zone?
+
+The `var` declarations are hoisted and initialized to `undefined` immediately, meaning you can access the variable before its declaration (though the value will be `undefined`). With `let` and `const`, no such initialization happens until the variable is declared.
+
+### Why does accessing variables in the TDZ throw a `ReferenceError` instead of returning `undefined`?
+
+This behavior ensures that `let` and `const` are not used before their declaration, enforcing more predictable and error-free code execution. Returning `undefined` would break the principle of the TDZ, which is to prevent access before declaration.
+
+## Resources
+
+- [MDN Docs: let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#temporal_dead_zone_tdz)
+- [JavaScript.info: Variables](https://javascript.info/var)
+- [MDN Docs: Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+- [Stackoverflow: What is Temporal Dead Zone?](https://stackoverflow.com/questions/31219420/what-is-the-temporal-dead-zone)
+
+```
