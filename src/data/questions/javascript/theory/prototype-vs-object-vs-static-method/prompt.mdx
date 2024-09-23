@@ -1,0 +1,146 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Explain Attaching a Function to Prototype of an Object vs to the Object Itself vs Static Methods
+
+> Understanding the differences between attaching functions to an object's prototype, directly to the object itself, and as static methods is crucial for effective JavaScript programming and proper use of object-oriented patterns.
+
+## Answer
+
+In JavaScript, there are three primary ways to attach functions to objects or classes:
+
+1. To the object's prototype
+2. Directly to the object itself (instance method)
+3. As a static method on the constructor function or class
+
+Let's explore each method:
+
+1. Attaching a function to the prototype:
+
+```javascript
+function MyClass(name) {
+  this.name = name;
+}
+
+MyClass.prototype.greet = function() {
+  console.log(`Hello, ${this.name}!`);
+};
+
+const obj1 = new MyClass("Alice");
+const obj2 = new MyClass("Bob");
+
+obj1.greet(); // Output: Hello, Alice!
+obj2.greet(); // Output: Hello, Bob!
+```
+
+2. Attaching a function directly to the object (instance method):
+
+```javascript
+const obj = {
+  name: "Charlie",
+  greet: function() {
+    console.log(`Hi, I'm ${this.name}!`);
+  }
+};
+
+obj.greet(); // Output: Hi, I'm Charlie!
+```
+
+3. Attaching a function as a static method:
+
+```javascript
+function MyClass(name) {
+  this.name = name;
+}
+
+MyClass.staticGreet = function(name) {
+  console.log(`Static hello to ${name}!`);
+};
+
+MyClass.staticGreet("David"); // Output: Static hello to David!
+
+// With ES6 class syntax:
+class NewClass {
+  constructor(name) {
+    this.name = name;
+  }
+
+  static staticGreet(name) {
+    console.log(`Static hello to ${name}!`);
+  }
+}
+
+NewClass.staticGreet("Eve"); // Output: Static hello to Eve!
+```
+
+<Callout>
+The main differences lie in memory usage, inheritance, and usage patterns. Prototype methods are shared among all instances, instance methods are unique to each object, and static methods are called on the class itself.
+</Callout>
+
+## Follow Up Questions
+
+<Callout type='warning'>
+These follow-up questions delve deeper into the concept and its practical implications.
+</Callout>
+
+### What are the performance implications of each approach?
+
+1. Prototype methods: Memory-efficient for multiple instances as the function is shared.
+2. Instance methods: Use more memory if many instances are created, as each has its own function copy.
+3. Static methods: Single copy in memory, not duplicated for instances.
+
+### How does inheritance work with these different approaches?
+
+1. Prototype methods: Inherited by all instances and subclasses.
+2. Instance methods: Not inherited, specific to each instance.
+3. Static methods: Inherited by subclasses but not available on instances.
+
+```javascript
+class Parent {
+  static staticMethod() { console.log("Parent static method"); }
+}
+Parent.prototype.protoMethod = function() { console.log("Parent prototype method"); };
+
+class Child extends Parent {}
+
+Child.staticMethod(); // Output: Parent static method
+new Child().protoMethod(); // Output: Parent prototype method
+```
+
+### When would you choose one approach over the others?
+
+1. Prototype methods: When the function should be shared across all instances and inherited by subclasses.
+2. Instance methods: When you need instance-specific behavior or the method relies heavily on instance-specific data.
+3. Static methods: For utility functions related to the class but not dependent on instance data.
+
+### How do these approaches work with the `this` keyword?
+
+1. Prototype and instance methods: `this` refers to the instance.
+2. Static methods: `this` refers to the class itself, not an instance.
+
+```javascript
+class Example {
+  constructor(value) {
+    this.value = value;
+  }
+
+  protoMethod() {
+    console.log(this.value);
+  }
+
+  static staticMethod() {
+    console.log(this.value); // undefined
+    console.log(this); // [class Example]
+  }
+}
+
+const ex = new Example(42);
+ex.protoMethod(); // Output: 42
+Example.staticMethod(); // Output: undefined, then [class Example]
+```
+
+## Resources
+
+- [MDN: Object prototypes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes)
+- [MDN: Static methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static)
+- [JavaScript.info: Prototypal inheritance](https://javascript.info/prototype-inheritance)
+- [MDN: this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
