@@ -1,0 +1,158 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Arrow Functions vs Normal Functions in JavaScript
+
+> A common question in JavaScript interviews is the difference between arrow functions and normal functions. This is an essential topic, especially when dealing with `this` keyword behavior and function scopes.
+
+## Answer
+
+In JavaScript, **Arrow Functions** and **Normal Functions** have key differences in syntax, behavior, and how they handle certain features like `this`, `arguments`, and scope. 
+
+The main distinctions between arrow functions and normal (regular) functions are:
+
+### 1. `this` Binding
+
+- **Normal Functions**: In regular functions, the value of `this` depends on how the function is called (runtime binding). When called as a method of an object, `this` refers to the object. When called in the global context, `this` refers to the global object or `undefined` in strict mode.
+
+  ```javascript
+  const obj = {
+    name: 'Alice',
+    regularFunc() {
+      console.log(this.name); // "Alice"
+    }
+  };
+  
+  obj.regularFunc(); // Works fine, `this` refers to `obj`
+  ```
+
+- **Arrow Functions**: Arrow functions do not have their own `this`. Instead, they inherit `this` from the enclosing lexical scope, meaning it retains the value of `this` from the context where it was defined. This makes them more predictable when working with callbacks and event handlers.
+
+  ```javascript
+  const obj = {
+    name: 'Alice',
+    arrowFunc: () => {
+      console.log(this.name); // undefined, as `this` points to the global object in the lexical scope
+    }
+  };
+  
+  obj.arrowFunc(); // `this` does not refer to `obj`, but to the global context
+  ```
+
+<Callout>
+**Tip:** If you need to preserve `this` from the surrounding context (lexical binding), use an arrow function. If you need to dynamically bind `this` based on how the function is invoked, use a normal function.
+</Callout>
+
+### 2. The `arguments` Object
+
+- **Normal Functions**: Regular functions have access to the `arguments` object, which contains all arguments passed to the function, regardless of whether they are named in the function signature or not.
+
+  ```javascript
+  function regularFunc() {
+    console.log(arguments); // [1, 2, 3]
+  }
+  
+  regularFunc(1, 2, 3);
+  ```
+
+- **Arrow Functions**: Arrow functions do not have their own `arguments` object. If you need to access `arguments` in an arrow function, you can use the rest parameter syntax (`...args`) or access `arguments` from the parent scope.
+
+  ```javascript
+  const arrowFunc = (...args) => {
+    console.log(args); // [1, 2, 3]
+  };
+  
+  arrowFunc(1, 2, 3);
+  ```
+
+### 3. Usage as Methods
+
+- **Normal Functions**: Regular functions are well-suited to being used as methods of objects, where the `this` keyword is often needed to reference the object itself.
+
+  ```javascript
+  const obj = {
+    name: 'Alice',
+    greet() {
+      console.log(`Hello, ${this.name}`);
+    }
+  };
+  
+  obj.greet(); // "Hello, Alice"
+  ```
+
+- **Arrow Functions**: Arrow functions are not ideal as methods because they do not bind `this` to the object and thus, `this` will not behave as expected.
+
+  ```javascript
+  const obj = {
+    name: 'Alice',
+    greet: () => {
+      console.log(`Hello, ${this.name}`); // `this` is undefined or refers to the global object
+    }
+  };
+  
+  obj.greet(); // "Hello, undefined"
+  ```
+
+### 4. Constructor Functions
+
+- **Normal Functions**: Regular functions can be used as constructors, which means they can be invoked with the `new` keyword to create new instances of an object.
+
+  ```javascript
+  function Person(name) {
+    this.name = name;
+  }
+  
+  const alice = new Person('Alice');
+  console.log(alice.name); // "Alice"
+  ```
+
+- **Arrow Functions**: Arrow functions cannot be used as constructors. Attempting to use the `new` keyword with an arrow function will throw an error.
+
+  ```javascript
+  const Person = (name) => {
+    this.name = name;
+  };
+  
+  const alice = new Person('Alice'); // TypeError: Person is not a constructor
+  ```
+
+### 5. Syntax
+
+- **Normal Functions**: Have a more verbose syntax, with the `function` keyword required for declaration.
+
+  ```javascript
+  function greet(name) {
+    return `Hello, ${name}`;
+  }
+  ```
+
+- **Arrow Functions**: Arrow functions have a shorter, more concise syntax, especially for simple one-liner functions.
+
+  ```javascript
+  const greet = (name) => `Hello, ${name}`;
+  ```
+
+<Callout>
+Arrow functions are typically used for shorter functions, especially when you want to maintain the `this` binding from the surrounding scope. Normal functions are useful when you need dynamic `this` binding or when creating constructors.
+</Callout>
+
+## Follow-Up Questions
+
+### Can you use arrow functions for event handlers?
+
+Yes, but arrow functions inherit `this` from the enclosing scope, so if you need to access the element that triggered the event (`this` in a normal function would point to the DOM element), an arrow function may not behave as expected. In such cases, a regular function is preferable.
+
+### Why can't arrow functions be used as constructors?
+
+Arrow functions do not have their own `this` and are not designed to be invoked with `new`, which is why they throw an error if used as a constructor.
+
+### When should you avoid using arrow functions?
+
+You should avoid using arrow functions when you need dynamic `this` behavior (e.g., object methods or constructors) or when you rely on the `arguments` object.
+
+## Resources
+
+- [MDN Docs: Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [MDN Docs: Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+- [JavaScript.info: Arrow Functions](https://javascript.info/arrow-functions-basics)
+
+```
