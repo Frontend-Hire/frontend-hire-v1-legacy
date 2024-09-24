@@ -1,0 +1,88 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Using Cookies vs Local Storage for Authentication
+
+> When implementing authentication in web applications, developers have a choice between storing tokens in cookies or local storage. Both methods have their pros and cons in terms of security, ease of use, and compatibility with various authentication methods.
+
+<Callout type="warning">
+Security should always be a top priority when dealing with sensitive information like authentication tokens. While both cookies and local storage can be used for storing tokens, each comes with specific vulnerabilities that need to be addressed to ensure your web app remains secure. The choice between the two should be informed by the nature of your app, the security requirements, and the user experience you're aiming to provide.
+</Callout>
+
+<Callout type='error'>This is a difficult topic to summarize in fact security as a topic is a vast and complex topic. We tried out best here for an interview purpose. But we highly recommend you read the attached resources at the end.</Callout>
+
+## Answer
+
+When it comes to managing authentication tokens (like JWTs) in web applications, cookies and local storage are the most common options. Each method has its own benefits and drawbacks, particularly in terms of security, accessibility, and ease of implementation. Let's break them down:
+
+### **Cookies**
+
+Cookies are small pieces of data stored by the browser and sent with each HTTP request to the server. Cookies can be further categorized into session cookies or persistent cookies based on how long they persist in the browser.
+
+#### **Pros:**
+1. **Built-in Security Features:**
+   - Cookies support `HttpOnly` and `Secure` flags, which enhance security:
+     - `HttpOnly`: Prevents client-side JavaScript from accessing the cookie, reducing the risk of XSS (Cross-Site Scripting) attacks.
+     - `Secure`: Ensures the cookie is only sent over HTTPS, protecting it from being intercepted by attackers.
+  
+2. **Automatic Transmission with Requests:**
+   - Cookies are automatically sent with every request to the server, making them suitable for session management and server-side authentication (e.g., using `SameSite` cookies).
+
+3. **Supports `SameSite` Attribute:**
+   - The `SameSite` attribute helps protect against CSRF (Cross-Site Request Forgery) attacks by controlling whether cookies should be sent with cross-site requests.
+
+#### **Cons:**
+1. **Storage Limitations:**
+   - Cookies have a size limit (usually around 4KB), which might be restrictive if you're storing large JWTs or other data.
+
+2. **CSRF Vulnerability:**
+   - Even with the `SameSite` attribute, cookies can still be vulnerable to CSRF attacks if not properly handled.
+
+3. **Complexity in Configuration:**
+   - Configuring cookies securely requires additional effort, like setting the `HttpOnly`, `Secure`, and `SameSite` attributes, especially when dealing with third-party services or cross-domain requests.
+
+### **Local Storage**
+
+Local storage is a browser-based storage mechanism that allows you to store key-value pairs directly in the browser with no expiration time, meaning data persists even after the browser is closed.
+
+#### **Pros:**
+1. **Ease of Use:**
+   - Local storage is easy to work with using simple JavaScript methods like `localStorage.setItem()` and `localStorage.getItem()`. There's no need for additional server-side configuration.
+
+2. **Larger Storage Capacity:**
+   - Local storage typically offers up to 5-10MB of storage space, far more than cookies, making it suitable for larger tokens or user data.
+
+3. **Persistent Storage:**
+   - Data in local storage persists even after the browser is closed, unlike session cookies, which are deleted when the browser is closed.
+
+#### **Cons:**
+1. **Vulnerable to XSS Attacks:**
+   - Local storage is fully accessible by JavaScript, making it highly susceptible to XSS attacks. If an attacker can execute JavaScript on your page, they can steal authentication tokens from local storage.
+
+2. **Manual Token Handling:**
+   - Unlike cookies, tokens stored in local storage are not automatically sent with HTTP requests. This means you have to manually attach the token to each request (e.g., adding it to the `Authorization` header).
+
+3. **No Built-in Security Features:**
+   - Local storage doesn't offer the same security mechanisms as cookies (like `HttpOnly` or `Secure`), making it more exposed to client-side threats.
+
+### **Which One Should You Use?**
+
+#### **For Security-First Applications (Use Cookies):**
+- If security is a priority, cookies are generally a better option due to their support for `HttpOnly` and `Secure` flags, making them less vulnerable to XSS attacks. Cookies also have built-in CSRF protections with the `SameSite` attribute, making them a more robust option for sensitive authentication workflows.
+
+#### **For Simplicity or Token-Based Systems (Use Local Storage):**
+- If you're building a simpler, token-based system where you need to store larger tokens or prefer easier client-side handling, local storage can be a good fit. However, this comes with a higher risk of XSS attacks, so you must implement strict Content Security Policies (CSP) and sanitize inputs properly.
+
+#### **Hybrid Approach:**
+- Many developers opt for a hybrid approach: using **cookies for secure, server-side session management** (e.g., setting a session cookie) and **local storage for less sensitive, non-auth-related data**. This approach balances security and ease of use.
+
+### Conclusion
+
+- **Cookies** offer more security features and are automatically sent with requests, making them more suited for authentication in secure applications.
+- **Local storage** is easier to use and offers more space but is vulnerable to XSS attacks and requires manual token management.
+
+Ultimately, your choice should depend on the security requirements of your application and the complexity of the user experience you're aiming to deliver.
+
+## Resources
+
+- [Using Cookies vs Local Storage for storing access tokens](https://zellwk.com/blog/cookies-vs-localstorage-for-storing-access-tokens/)
+- [Stackoverflow: Do I have to store tokens in cookies or localstorage or session?](https://stackoverflow.com/questions/54258233/do-i-have-to-store-tokens-in-cookies-or-localstorage-or-session)
