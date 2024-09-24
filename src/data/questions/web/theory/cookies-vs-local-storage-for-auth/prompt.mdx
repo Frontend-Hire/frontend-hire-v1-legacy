@@ -75,16 +75,6 @@ Local storage is a browser-based storage mechanism that allows you to store key-
 #### **Hybrid Approach:**
 - Many developers opt for a hybrid approach: using **cookies for secure, server-side session management** (e.g., setting a session cookie) and **local storage for less sensitive, non-auth-related data**. This approach balances security and ease of use.
 
-### Follow-Up Questions
-
-#### Is local storage safe for storing authentication tokens?
-
-No, local storage is vulnerable to XSS attacks. If an attacker can execute JavaScript in your app, they can access tokens stored in local storage, which makes it less secure for sensitive information like authentication tokens.
-
-#### Why is `HttpOnly` important in cookies?
-
-The `HttpOnly` attribute makes cookies inaccessible to JavaScript running on the client-side, protecting them from XSS attacks. This makes it a crucial feature when storing authentication tokens in cookies.
-
 ### Conclusion
 
 - **Cookies** offer more security features and are automatically sent with requests, making them more suited for authentication in secure applications.
