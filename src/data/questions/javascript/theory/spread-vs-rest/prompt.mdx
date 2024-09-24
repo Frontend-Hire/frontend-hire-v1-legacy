@@ -1,0 +1,159 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Spread vs Rest in JavaScript
+
+> Simple but important, especially for managing function arguments and handling collections of data.
+
+## Answer
+
+In JavaScript, both the **spread (`...`)** and **rest (`...`)** operators use the same syntax, but they serve opposite purposes depending on where they are used in the code.
+
+### 1. **Spread Operator**
+
+The **spread operator** is used to expand (or “spread”) an array, object, or iterable into individual elements. It is commonly used when passing arguments to functions or combining arrays and objects.
+
+#### Example: Spreading an Array
+
+```javascript
+const arr = [1, 2, 3];
+console.log(...arr); // 1 2 3
+```
+
+#### Example: Using Spread in Function Arguments
+
+```javascript
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+console.log(sum(...numbers)); // 6
+```
+
+#### Example: Combining Arrays with Spread
+
+```javascript
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4]
+```
+
+#### Example: Spreading Objects
+
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3 };
+const combinedObj = { ...obj1, ...obj2 }; // { a: 1, b: 2, c: 3 }
+```
+
+<Callout>
+The **spread operator** is used when you need to split an array, object, or iterable into individual elements or properties.
+</Callout>
+
+### 2. **Rest Operator**
+
+The **rest operator** is used to collect multiple elements and “condense” them into a single array or object. It’s often used in function parameter lists to capture any remaining arguments or to destructure arrays and objects.
+
+#### Example: Using Rest in Function Parameters
+
+```javascript
+function sum(...args) {
+  return args.reduce((acc, curr) => acc + curr, 0);
+}
+
+console.log(sum(1, 2, 3, 4)); // 10
+```
+
+In this example, the rest operator `...args` collects all arguments passed to the `sum` function into an array called `args`.
+
+#### Example: Rest in Array Destructuring
+
+```javascript
+const [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
+```
+
+Here, `first` takes the first element of the array, and `rest` collects the remaining elements into an array.
+
+#### Example: Rest in Object Destructuring
+
+```javascript
+const { a, ...rest } = { a: 1, b: 2, c: 3 };
+console.log(a); // 1
+console.log(rest); // { b: 2, c: 3 }
+```
+
+<Callout>
+The **rest operator** is used to gather a collection of elements or properties into an array or object, typically in destructuring or function arguments.
+</Callout>
+
+### 3. Key Differences Between Spread and Rest
+
+- **Spread (`...`)** is used to expand or spread elements into individual pieces (e.g., from an array to individual values).
+- **Rest (`...`)** is used to gather multiple elements into a single array or object (e.g., function arguments or destructuring).
+
+#### Spread Example (Expanding Elements)
+
+```javascript
+const arr = [1, 2, 3];
+console.log(...arr); // 1 2 3
+```
+
+#### Rest Example (Collecting Elements)
+
+```javascript
+function example(...args) {
+  console.log(args); // [1, 2, 3]
+}
+
+example(1, 2, 3);
+```
+
+<Callout>
+**Tip:** The key difference between spread and rest is context: **Spread** expands values, while **Rest** collects values. Both use the same syntax (`...`), but their behavior changes based on whether they are in function calls, destructuring, or parameter lists.
+</Callout>
+
+## Follow-Up Questions
+
+### Can you use the spread operator with objects?
+
+Yes, you can use the spread operator to copy and merge objects, as well as extract properties. This is especially useful when creating shallow copies of objects or combining objects.
+
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 };
+console.log(obj2); // { a: 1, b: 2, c: 3 }
+```
+
+### When would you use the rest operator in function arguments?
+
+The rest operator is useful when you don't know how many arguments a function will receive, allowing you to capture all the arguments into a single array. This is common in variadic functions like `Math.max`, where you need to handle multiple arguments.
+
+```javascript
+function max(...args) {
+  return Math.max(...args);
+}
+
+console.log(max(1, 5, 3)); // 5
+```
+
+### What happens if you mix both spread and rest in a single function?
+
+You can use both spread and rest together in functions. Spread can be used to pass an array of arguments, while rest can be used to collect the remaining arguments.
+
+```javascript
+function log(a, b, ...rest) {
+  console.log(a, b);   // 1 2
+  console.log(rest);   // [3, 4, 5]
+}
+
+const args = [1, 2, 3, 4, 5];
+log(...args);
+```
+
+## Resources
+
+- [MDN Docs: Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+- [MDN Docs: Rest Parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+- [JavaScript.info: Spread and Rest](https://javascript.info/rest-parameters-spread)
