@@ -1,0 +1,41 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Polyfill: Array.reduce() Method
+
+> "Why did the JavaScript developer use reduce()? Because they wanted to condense their array of problems into a single solution!"
+
+Polyfills are a way to add functionality to the JavaScript language by implementing methods that are not natively supported. This is useful for older browsers that do not support newer features of the language. Also, they are interview questions that are commonly asked in JavaScript interviews. In this exercise, you will implement a polyfill for the Array.reduce() method.
+
+## Objectives
+
+- Understand how the Array.reduce() method works in JavaScript.
+- Implement a polyfill for the Array.reduce method called Array.myReduce.
+- Write tests to verify your implementation behaves as expected.
+
+## Tests
+
+Consider writing tests based on your understanding of the Array.reduce() method. You can also do a TDD approach to this problem if you prefer. Remember to test different scenarios, including:
+
+- Reducing an array to a single value (e.g., sum of numbers)
+- Using an initial value vs. not using an initial value
+- Reducing an array of objects
+- Handling empty arrays with and without initial values
+- Using reduce to create a new object or array
+
+## Additional Considerations
+
+- The behavior when no initial value is provided and the array has only one element
+- Handling of sparse arrays (arrays with empty slots)
+- The order in which the reducer function is applied to the array elements
+- Performance considerations for large arrays or complex reducer functions
+- Potential use cases beyond simple aggregation (e.g., flattening arrays, grouping elements)
+
+Remember, while reduce is a powerful method with many applications, it's important to implement its core functionality correctly. Be prepared to discuss its versatility and potential pitfalls in an interview setting.
+
+## Resources to Refer
+
+- [ECMAScript Language Specification: Array.prototype.reduce](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.reduce)
+- [MDN Web Docs: Array.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+- [What is a Polyfill?](https://remysharp.com/2010/10/08/what-is-a-polyfill)
+- [JavaScript Info: Polyfills and transpilers](https://javascript.info/polyfills)
+- [Understanding the reduce method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#description)

@@ -1,0 +1,39 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Polyfill: Array.sort() Method
+
+> "Why did the JavaScript developer use sort()? Because they wanted to put their array in order!"
+
+Polyfills are a way to add functionality to the JavaScript language by implementing methods that are not natively supported. This is useful for older browsers that do not support newer features of the language. Also, they are interview questions that are commonly asked in JavaScript interviews. In this exercise, you will implement a polyfill for the Array.sort() method.
+
+## Objectives
+
+- Understand how the Array.sort() method works in JavaScript.
+- Implement a polyfill for the Array.sort method called Array.mySort.
+- Write tests to verify your implementation behaves as expected.
+
+## Tests
+
+Consider writing tests based on your understanding of the Array.sort() method. You can also do a TDD approach to this problem if you prefer. Remember to test different scenarios, including:
+
+- Sorting numbers in ascending and descending order
+- Sorting strings alphabetically
+- Sorting with a custom comparison function
+- Handling arrays with undefined elements
+
+## Additional Considerations
+
+- The default behavior of Array.sort() when no comparison function is provided
+- The stability of the sorting algorithm (is it required to maintain the relative order of equal elements?)
+- Performance considerations for different array sizes
+- Handling of non-array objects with a 'length' property and indexed elements
+
+Remember, implementing a full-featured sort method can be complex. For interview purposes, focus on the core functionality and be prepared to discuss potential optimizations or edge cases.
+
+## Resources to Refer
+
+- [ECMAScript Language Specification: Array.prototype.sort](https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.sort)
+- [MDN Web Docs: Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+- [What is a Polyfill?](https://remysharp.com/2010/10/08/what-is-a-polyfill)
+- [JavaScript Info: Polyfills and transpilers](https://javascript.info/polyfills)
+- [Sorting algorithms](https://en.wikipedia.org/wiki/Sorting_algorithm)
