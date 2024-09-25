@@ -1,0 +1,186 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+TDD (test-driven development) shines in this type of scenario. We will also use the same approach here.
+
+## Understanding the Array.reduce() Method
+
+Let us first understand the array reduce method by trying out a few examples.
+
+<Callout>
+We suggest you also do this in an interview setting. As this helps you form a better thought process. This also clears up some of the edge cases. You can also pull up the documentation (we encourage doing this) if the interviewer has no issue with that.
+</Callout>
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+// Sum of numbers
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 15
+
+// Product of numbers
+const product = numbers.reduce((acc, curr) => acc * curr, 1);
+console.log(product); // 120
+
+// Creating an object from an array
+const fruits = ['apple', 'banana', 'apple', 'cherry', 'banana', 'apple'];
+const fruitCount = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+console.log(fruitCount); // { apple: 3, banana: 2, cherry: 1 }
+
+// Flattening an array of arrays
+const arrays = [[1, 2], [3, 4], [5, 6]];
+const flattened = arrays.reduce((acc, curr) => acc.concat(curr), []);
+console.log(flattened); // [1, 2, 3, 4, 5, 6]
+```
+
+The reduce method executes a reducer function on each element of the array, resulting in a single output value. It takes two arguments: a callback function (the reducer) and an optional initial value.
+
+## Tests
+
+Let's write tests for the following cases:
+
+### Reduces an array to a single value (sum of numbers)
+
+```js title="index.test.js"
+test('reduces an array to a single value (sum of numbers)', () => {
+  const arr = [1, 2, 3, 4, 5];
+  expect(arr.myReduce((acc, curr) => acc + curr, 0)).toBe(15);
+});
+```
+
+### Reduces without an initial value
+
+```js title="index.test.js"
+test('reduces without an initial value', () => {
+  const arr = [1, 2, 3, 4, 5];
+  expect(arr.myReduce((acc, curr) => acc + curr)).toBe(15);
+});
+```
+
+### Reduces an array of objects
+
+```js title="index.test.js"
+test('reduces an array of objects', () => {
+  const arr = [{ x: 1 }, { x: 2 }, { x: 3 }];
+  expect(arr.myReduce((acc, curr) => acc + curr.x, 0)).toBe(6);
+});
+```
+
+### Handles empty array with initial value
+
+```js title="index.test.js"
+test('handles empty array with initial value', () => {
+  const arr = [];
+  expect(arr.myReduce((acc, curr) => acc + curr, 10)).toBe(10);
+});
+```
+
+### Throws error for empty array with no initial value
+
+```js title="index.test.js"
+test('throws error for empty array with no initial value', () => {
+  const arr = [];
+  expect(() => arr.myReduce((acc, curr) => acc + curr)).toThrow(TypeError);
+});
+```
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, beforeAll, expect } from 'vitest';
+
+import { myReduce } from '.';
+
+describe('polyfill-array-reduce', () => {
+  beforeAll(() => {
+    Array.prototype.myReduce = myReduce;
+  });
+
+  test('reduces an array to a single value (sum of numbers)', () => {
+    const arr = [1, 2, 3, 4, 5];
+    expect(arr.myReduce((acc, curr) => acc + curr, 0)).toBe(15);
+  });
+
+  test('reduces without an initial value', () => {
+    const arr = [1, 2, 3, 4, 5];
+    expect(arr.myReduce((acc, curr) => acc + curr)).toBe(15);
+  });
+
+  test('reduces an array of objects', () => {
+    const arr = [{ x: 1 }, { x: 2 }, { x: 3 }];
+    expect(arr.myReduce((acc, curr) => acc + curr.x, 0)).toBe(6);
+  });
+
+  test('handles empty array with initial value', () => {
+    const arr = [];
+    expect(arr.myReduce((acc, curr) => acc + curr, 10)).toBe(10);
+  });
+
+  test('throws error for empty array with no initial value', () => {
+    const arr = [];
+    expect(() => arr.myReduce((acc, curr) => acc + curr)).toThrow(TypeError);
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be different from what we implement here. This is because for an interview setting this is more than enough. But if you were actually implementing a JS polyfill for production (quite rare), you would need to check the actual specification and handle more edge cases than what you see here.
+</Callout>
+
+Now that the basic tests are done, we can start implementing the actual polyfill.
+
+```js title="index.js" showLineNumbers
+export function myReduce(callback, initialValue) {
+  if (this == null) {
+    throw new TypeError('Array.prototype.myReduce called on null or undefined');
+  }
+
+  if (typeof callback !== 'function') {
+    throw new TypeError(callback + ' is not a function');
+  }
+
+  const array = this;
+  const length = array.length;
+  let index = 0;
+  let accumulator;
+
+  if (arguments.length >= 2) {
+    accumulator = initialValue;
+  } else {
+    if (length === 0) {
+      throw new TypeError('Reduce of empty array with no initial value');
+    }
+    accumulator = array[0];
+    index = 1;
+  }
+
+  for (; index < length; index++) {
+    if (index in array) {
+      accumulator = callback(accumulator, array[index], index, array);
+    }
+  }
+
+  return accumulator;
+}
+```
+
+This implementation:
+1. Checks if `this` is null or undefined and throws a TypeError if so.
+2. Ensures the callback is a function.
+3. Converts `this` to an object and gets its length.
+4. Handles the case with and without an initial value.
+5. Throws a TypeError for an empty array with no initial value.
+6. Iterates through the array, applying the callback function.
+7. Returns the final accumulated value.
+
+<Callout type='warning'>
+This implementation uses `>>> 0` to convert the length to a 32-bit unsigned integer, which is a common practice in JavaScript to ensure a valid array length.
+</Callout>
+
+This implementation should pass all the tests we've written. It provides the core functionality of the Array.reduce() method, including support for initial values, handling of empty arrays, and proper iteration over array elements.

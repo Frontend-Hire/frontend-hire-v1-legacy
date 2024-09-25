@@ -117,7 +117,7 @@ The actual implementation would be different from what we implement here. This i
 
 Now that the basic tests are done, we can start implementing the actual polyfill.
 
-```js title="index.js"
+```js title="index.js" showLineNumbers
 export function myMap(cb) {
   const result = []; // [!code ++]
 }
@@ -125,7 +125,7 @@ export function myMap(cb) {
 
 We will use the `result` array to store the mapped values. Remember that we need to return a new array and not modify the original array. Of course, we return a shallow copy of the original array.
 
-```js title="index.js"
+```js title="index.js" showLineNumbers
 export function myMap(cb) {
   const result = [];
 
