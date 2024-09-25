@@ -1,0 +1,158 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+TDD (test-driven development) shines in this type of scenario. We will also use the same approach here.
+
+## Understanding the Array.sort() Method
+
+Let us first understand the array sort method by trying out a few examples.
+
+<Callout>
+We suggest you also do this in an interview setting. As this helps you form a better thought process. This also clears up some of the edge cases. You can also pull up the documentation (we encourage doing this) if the interviewer has no issue with that.
+</Callout>
+
+```js
+const numbers = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+numbers.sort(); // [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
+const fruits = ['banana', 'apple', 'cherry', 'date'];
+fruits.sort(); // ['apple', 'banana', 'cherry', 'date']
+
+const mixedArray = [10, 1, 'a', 'Z', 'b', 20];
+mixedArray.sort(); // [1, 10, 20, 'Z', 'a', 'b']
+
+// Using a compare function
+const scores = [1, 10, 2, 21];
+scores.sort((a, b) => a - b); // [1, 2, 10, 21]
+```
+
+So, the sort method sorts the elements of an array in place and returns the sorted array. It optionally takes a compare function as an argument to determine the order of elements.
+
+<Callout type='warning'>
+The default behavior of Array.sort() converts elements to strings and compares their UTF-16 code unit values. This can lead to unexpected results when sorting numbers without a compare function.
+</Callout>
+
+## Tests
+
+Let's write tests for the following cases:
+
+### Sorts numbers in ascending order
+
+```js title="index.test.js"
+test('sorts numbers in ascending order', () => {
+  const arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+  expect(arr.mySort()).toEqual([1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]);
+});
+```
+
+### Sorts strings alphabetically
+
+```js title="index.test.js"
+test('sorts strings alphabetically', () => {
+  const arr = ['banana', 'apple', 'cherry', 'date'];
+  expect(arr.mySort()).toEqual(['apple', 'banana', 'cherry', 'date']);
+});
+```
+
+### Sorts with a custom comparison function
+
+```js title="index.test.js"
+test('sorts with a custom comparison function', () => {
+  const arr = [1, 10, 21, 2];
+  expect(arr.mySort((a, b) => a - b)).toEqual([1, 2, 10, 21]);
+});
+```
+
+### Handles arrays with undefined elements
+
+```js title="index.test.js"
+test('handles arrays with undefined elements', () => {
+  const arr = [3, undefined, 1, undefined, 2];
+  expect(arr.mySort()).toEqual([1, 2, 3, undefined, undefined]);
+});
+```
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, beforeAll, expect } from 'vitest';
+
+import { mySort } from '.';
+
+describe('polyfill-array-sort', () => {
+  beforeAll(() => {
+    Array.prototype.mySort = mySort;
+  });
+
+  test('sorts numbers in ascending order', () => {
+    const arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
+    expect(arr.mySort()).toEqual([1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]);
+  });
+
+  test('sorts strings alphabetically', () => {
+    const arr = ['banana', 'apple', 'cherry', 'date'];
+    expect(arr.mySort()).toEqual(['apple', 'banana', 'cherry', 'date']);
+  });
+
+  test('sorts with a custom comparison function', () => {
+    const arr = [1, 10, 21, 2];
+    expect(arr.mySort((a, b) => a - b)).toEqual([1, 2, 10, 21]);
+  });
+
+  test('handles arrays with undefined elements', () => {
+    const arr = [3, undefined, 1, undefined, 2];
+    expect(arr.mySort()).toEqual([1, 2, 3, undefined, undefined]);
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be different from what we implement here. This is because for an interview setting this is more than enough. But if you were actually implementing a JS polyfill for production (quite rare), you would need to check the actual specification and handle more edge cases than what you see here.
+</Callout>
+
+Now that the basic tests are done, we can start implementing the actual polyfill. We'll use a simple bubble sort algorithm for this implementation.
+
+```js title="index.js"
+export function mySort(compareFunction) {
+  const arr = this;
+  const len = arr.length;
+
+  // Default comparison function
+  const defaultCompare = (a, b) => {
+    if (a === undefined) return 1;
+    if (b === undefined) return -1;
+    return String(a).localeCompare(String(b));
+  };
+
+  // Use provided compare function or default
+  const compare = compareFunction || defaultCompare;
+
+  // Bubble sort implementation
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - 1 - i; j++) {
+      if (compare(arr[j], arr[j + 1]) > 0) {
+        // Swap elements
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+
+  return arr;
+}
+```
+
+This implementation:
+1. Uses the `this` keyword to access the array being sorted.
+2. Defines a default comparison function that mimics the behavior of the native sort method.
+3. Uses the provided comparison function if one is given, otherwise uses the default.
+4. Implements a simple bubble sort algorithm to sort the array in place.
+5. Returns the sorted array.
+
+<Callout type='warning'>
+This implementation is not as efficient as the native sort method for large arrays. In a real-world scenario, you might want to implement a more efficient sorting algorithm like QuickSort or MergeSort.
+</Callout>
+
+This implementation should pass all the tests we've written. It provides the core functionality of the Array.sort() method, including support for custom comparison functions and handling of undefined elements.
