@@ -1,6 +1,7 @@
 import { BlogMeta } from '@/types/Blogs';
 import { Cohort } from '@/types/Cohort';
 import { Course } from '@/types/Course';
+import { OSS } from '@/types/OSS';
 import { Question, QuestionSkill, QuestionType } from '@/types/Question';
 import { SystemDesign } from '@/types/SystemDesign';
 import fs from 'fs';
@@ -212,5 +213,44 @@ export const getBlogPostFromLocal = cache(async (postId: string) => {
   return { getContent, meta } as {
     getContent: () => React.ReactNode;
     meta: BlogMeta;
+  };
+});
+
+const ossPath = path.join(process.cwd(), '/src/data/oss');
+
+export const getOSSProjectsFromLocal = cache(async () => {
+  const OSSProjects = fs.readdirSync(ossPath);
+
+  const filteredOSSProjects = OSSProjects.filter(
+    (project) => !project.startsWith('.'),
+  ).map((project) => {
+    const { meta }: { meta: OSS } = require(`@/data/oss/${project}/meta.ts`);
+
+    return {
+      ...meta,
+    };
+  });
+
+  return filteredOSSProjects.sort((a, b) => {
+    if (a.publishedOn && b.publishedOn) {
+      return b.publishedOn.getTime() - a.publishedOn.getTime();
+    } else if (a.publishedOn) {
+      return -1;
+    } else if (b.publishedOn) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+});
+
+export const getOSSProject = cache(async (ossId: string) => {
+  const { default: getContent } = require(`@/data/oss/${ossId}/project.mdx`);
+
+  const { meta }: { meta: OSS } = require(`@/data/oss/${ossId}/meta.ts`);
+
+  return { getContent, meta } as {
+    getContent: () => React.ReactNode;
+    meta: OSS;
   };
 });

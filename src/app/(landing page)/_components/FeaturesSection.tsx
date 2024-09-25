@@ -7,6 +7,7 @@ import React from 'react';
 const CoursesFeature = dynamic(() => import('./CoursesFeature'));
 const QuestionsFeature = dynamic(() => import('./QuestionsFeature'));
 const InterviewsFeature = dynamic(() => import('./InterviewsFeature'));
+const OSSFeature = dynamic(() => import('./OSSFeature'));
 const SystemDesignFeature = dynamic(() => import('./SystemDesignFeature'));
 
 export default function FeaturesSection() {
@@ -50,6 +51,22 @@ export default function FeaturesSection() {
         ]}
       />
       <FeatureLayout
+        title="OSS"
+        richComponent={{
+          component: (
+            <React.Suspense>
+              <OSSFeature />
+            </React.Suspense>
+          ),
+          position: 'left',
+        }}
+        actionButton={<CTA label="Contribute to OSS" href="/oss" />}
+        features={[
+          'Projects to give you real work experience.',
+          'With code-reviews and architecture review.',
+        ]}
+      />
+      <FeatureLayout
         title="System Design"
         richComponent={{
           component: (
@@ -57,7 +74,7 @@ export default function FeaturesSection() {
               <SystemDesignFeature />
             </React.Suspense>
           ),
-          position: 'left',
+          position: 'right',
         }}
         actionButton={
           <CTA label="Learn to Design Great Systems" href="/system-design" />
@@ -76,7 +93,7 @@ export default function FeaturesSection() {
               <InterviewsFeature />
             </React.Suspense>
           ),
-          position: 'right',
+          position: 'left',
         }}
         actionButton={<CTA label="Practice Interviews" href="/interviews" />}
         features={[
