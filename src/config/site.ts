@@ -2,6 +2,7 @@ import {
   AlbumIcon,
   FileQuestionIcon,
   LibraryBigIcon,
+  PackageOpenIcon,
   PresentationIcon,
   SpeechIcon,
 } from 'lucide-react';
@@ -25,26 +26,22 @@ export type NavLink = {
 
 const LINKS: NavLink[] = [
   {
+    title: 'Practice',
+    items: [
+      { title: 'Questions', href: '/questions', icon: FileQuestionIcon },
+      { title: 'OSS', href: '/oss', icon: PackageOpenIcon },
+      { title: 'Interviews', href: '/interviews', icon: SpeechIcon },
+    ],
+  },
+  {
     title: 'Learn',
     items: [
-      // {
-      //   title: 'Cohorts',
-      //   href: '/cohorts',
-      //   icon: GraduationCapIcon,
-      // },
       { title: 'Courses', href: '/courses', icon: LibraryBigIcon },
       {
         title: 'System Design',
         href: '/system-design',
         icon: PresentationIcon,
       },
-    ],
-  },
-  {
-    title: 'Practice',
-    items: [
-      { title: 'Questions', href: '/questions', icon: FileQuestionIcon },
-      { title: 'Interviews', href: '/interviews', icon: SpeechIcon },
     ],
   },
   {
