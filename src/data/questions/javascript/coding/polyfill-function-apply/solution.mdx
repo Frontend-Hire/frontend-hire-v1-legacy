@@ -1,0 +1,154 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+We'll use a Test-Driven Development (TDD) approach to implement this polyfill, which is an excellent method for tackling this type of problem.
+
+## Understanding the Function.prototype.apply() Method
+
+Let's first understand the apply method by examining a few examples.
+
+<Callout>
+We recommend doing this in an interview setting as well. It helps you develop a better thought process and clarifies some edge cases. Feel free to refer to the documentation (which we encourage) if the interviewer permits.
+</Callout>
+
+```js
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: 'John' };
+
+greet.apply(person, ['Hello', '!']); // Output: Hello, John!
+
+// Using apply with built-in functions
+const numbers = [5, 6, 2, 3, 7];
+const max = Math.max.apply(null, numbers); // Returns 7
+
+// Using apply to append an array to another
+const array = ['a', 'b'];
+const elements = [0, 1, 2];
+array.push.apply(array, elements);
+console.log(array); // ["a", "b", 0, 1, 2]
+```
+
+The apply method calls a function with a given `this` value and arguments provided as an array (or an array-like object).
+
+## Tests
+
+Let's write tests for the following cases:
+
+### Applies 'this' context
+
+```js title="index.test.js"
+test('applies this context', () => {
+  const obj = { value: 42 };
+  function getValue() {
+    return this.value;
+  }
+
+  expect(getValue.myApply(obj)).toBe(42);
+});
+```
+
+### Passes arguments as an array
+
+```js title="index.test.js"
+test('passes arguments as an array', () => {
+  function sum(a, b, c) {
+    return a + b + c;
+  }
+
+  expect(sum.myApply(null, [1, 2, 3])).toBe(6);
+});
+```
+
+### Works with built-in methods
+
+```js title="index.test.js"
+test('works with built-in methods', () => {
+  const numbers = [5, 6, 2, 3, 7];
+  expect(Math.max.myApply(null, numbers)).toBe(7);
+});
+```
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, expect, beforeAll } from 'vitest';
+
+import { myApply } from '.';
+
+describe('polyfill-function-apply', () => {
+  beforeAll(() => {
+    Function.prototype.myApply = myApply;
+  });
+
+  test('applies this context', () => {
+    const obj = { value: 42 };
+    function getValue() {
+      return this.value;
+    }
+
+    expect(getValue.myApply(obj)).toBe(42);
+  });
+
+  test('passes arguments as an array', () => {
+    function sum(a, b, c) {
+      return a + b + c;
+    }
+
+    expect(sum.myApply(null, [1, 2, 3])).toBe(6);
+  });
+
+  test('works with built-in methods', () => {
+    const numbers = [5, 6, 2, 3, 7];
+    expect(Math.max.myApply(null, numbers)).toBe(7);
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be more complex than what we implement here. This version is sufficient for an interview setting. For a production-ready polyfill (which is rare nowadays), you would need to consult the actual specification and handle more edge cases than shown here.
+</Callout>
+
+Now that we have our tests, let's implement the actual polyfill:
+
+```js title="index.js" showLineNumbers
+export function myApply(thisArg, args) {
+  // If thisArg is undefined or null, set it to the global object
+  thisArg = thisArg || globalThis;
+  
+  // Create a unique property on the thisArg
+  const uniqueProp = Symbol();
+  
+  // Assign this function to the unique property of the thisArg
+  thisArg[uniqueProp] = this;
+  
+  // Call the function with the provided arguments
+  const result = args ? thisArg[uniqueProp](...args) : thisArg[uniqueProp]();
+  
+  // Remove the unique property from the thisArg
+  delete thisArg[uniqueProp];
+  
+  // Return the result
+  return result;
+}
+```
+
+Let's break down this implementation:
+
+1. We first ensure that `thisArg` is set to the global object if it's `undefined` or `null`.
+2. We create a unique property on the `thisArg` object using `Symbol()` to avoid naming conflicts.
+3. We assign the function (`this`) to this unique property on the `thisArg` object.
+4. We call the function with the provided arguments (if any) using the spread operator.
+5. We remove the unique property from the `thisArg` object to clean up.
+6. Finally, we return the result of the function call.
+
+This implementation should pass all the tests we've written.
+
+<Callout>
+Note that this is a simplified version of `apply`. The actual `apply` method in JavaScript has additional complexities, such as handling primitive values for `context` and properly dealing with array-like objects for `args`. For most practical purposes and interview scenarios, this implementation is sufficient.
+</Callout>
