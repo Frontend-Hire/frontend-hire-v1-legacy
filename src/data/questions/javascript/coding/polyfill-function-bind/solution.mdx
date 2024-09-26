@@ -1,0 +1,151 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+TDD (test-driven development) is an excellent approach for this type of problem. We'll follow a similar process here.
+
+## Understanding the Function.prototype.bind() Method
+
+Let's first understand the bind method by trying out a few examples.
+
+<Callout>
+We suggest you also do this in an interview setting. This helps you form a better thought process and clears up some of the edge cases. You can also refer to the documentation (we encourage doing this) if the interviewer has no issue with that.
+</Callout>
+
+```js
+const obj = {
+  name: 'John',
+  greet: function(greeting) {
+    console.log(`${greeting}, ${this.name}!`);
+  }
+};
+
+const unboundGreet = obj.greet;
+unboundGreet('Hello'); // Hello, undefined!
+
+const boundGreet = obj.greet.bind(obj);
+boundGreet('Hello'); // Hello, John!
+
+const boundGreetWithArg = obj.greet.bind(obj, 'Hi');
+boundGreetWithArg(); // Hi, John!
+```
+
+So, the bind method creates a new function that, when called, has its `this` keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.
+
+## Tests
+
+Let's write tests for the following cases:
+
+### Binds 'this' context
+
+```js title="index.test.js"
+test('binds this context', () => {
+  const obj = { value: 42 };
+  function getValue() {
+    return this.value;
+  }
+
+  const boundGetValue = getValue.myBind(obj);
+  expect(boundGetValue()).toBe(42);
+});
+```
+
+### Binds arguments
+
+```js title="index.test.js"
+test('binds arguments', () => {
+  function add(a, b) {
+    return a + b;
+  }
+
+  const add5 = add.myBind(null, 5);
+  expect(add5(10)).toBe(15);
+});
+```
+
+### Allows for partial application
+
+```js title="index.test.js"
+test('allows for partial application', () => {
+  function greet(greeting, name) {
+    return `${greeting}, ${name}!`;
+  }
+
+  const greetHello = greet.myBind(null, 'Hello');
+  expect(greetHello('John')).toBe('Hello, John!');
+});
+```
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, expect, beforeAll } from 'vitest';
+
+import { myBind } from '.';
+
+describe('polyfill-function-bind', () => {
+  beforeAll(() => {
+    Function.prototype.myBind = myBind;
+  });
+
+  test('binds this context', () => {
+    const obj = { value: 42 };
+    function getValue() {
+      return this.value;
+    }
+
+    const boundGetValue = getValue.myBind(obj);
+    expect(boundGetValue()).toBe(42);
+  });
+
+  test('binds arguments', () => {
+    function add(a, b) {
+      return a + b;
+    }
+
+    const add5 = add.myBind(null, 5);
+    expect(add5(10)).toBe(15);
+  });
+
+  test('allows for partial application', () => {
+    function greet(greeting, name) {
+      return `${greeting}, ${name}!`;
+    }
+
+    const greetHello = greet.myBind(null, 'Hello');
+    expect(greetHello('John')).toBe('Hello, John!');
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be different from what we implement here. This is sufficient for an interview setting. But if you were actually implementing a JS polyfill for production (which is quite rare), you would need to check the actual specification and handle more edge cases than what you see here.
+</Callout>
+
+Now that the basic tests are done, we can start implementing the actual polyfill.
+
+```js title="index.js" showLineNumbers
+export function myBind(context, ...args) {
+  const originalFunction = this;
+
+  return function(...newArgs) {
+    return originalFunction.apply(context, [...args, ...newArgs]);
+  };
+}
+```
+
+Let's break down this implementation:
+
+1. We capture the original function (`this`) and the context to which we want to bind it.
+2. We also capture any arguments passed to `bind` (...args).
+3. We return a new function that, when called:
+   - Combines the arguments passed to `bind` with any new arguments.
+   - Calls the original function using `apply`, setting the correct `this` context and passing all arguments.
+
+This implementation should pass all the tests we've written.
+
+<Callout>
+Note that this is a simplified version of `bind`. The actual `bind` method in JavaScript has additional complexities, such as handling edge cases with the `new` operator. For most practical purposes and interview scenarios, this implementation is sufficient.
+</Callout>
