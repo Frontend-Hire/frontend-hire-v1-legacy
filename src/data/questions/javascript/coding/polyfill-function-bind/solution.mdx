@@ -149,3 +149,13 @@ This implementation should pass all the tests we've written.
 <Callout>
 Note that this is a simplified version of `bind`. The actual `bind` method in JavaScript has additional complexities, such as handling edge cases with the `new` operator. For most practical purposes and interview scenarios, this implementation is sufficient.
 </Callout>
+
+## Comparing call(), apply(), and bind()
+
+While implementing these polyfills, you might have noticed similarities between `call()`, `apply()`, and `bind()`. Here's a quick comparison:
+
+1. `call()`: Invokes the function immediately, allowing you to pass arguments individually.
+2. `apply()`: Also invokes the function immediately, but allows you to pass arguments as an array.
+3. `bind()`: Returns a new function with the specified `this` value and initial arguments. It doesn't invoke the function immediately.
+
+Understanding these differences is crucial for effective use of these methods in JavaScript programming.
