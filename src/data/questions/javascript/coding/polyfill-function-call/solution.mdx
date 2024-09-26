@@ -1,0 +1,203 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+We'll use a Test-Driven Development (TDD) approach to implement this polyfill, which is an excellent method for tackling this type of problem.
+
+## Understanding the Function.prototype.call() Method
+
+Let's first understand the call method by examining a few examples.
+
+<Callout>
+We recommend doing this in an interview setting as well. It helps you develop a better thought process and clarifies some edge cases. Feel free to refer to the documentation (which we encourage) if the interviewer permits.
+</Callout>
+
+```js
+function greet(greeting, punctuation) {
+  console.log(`${greeting}, ${this.name}${punctuation}`);
+}
+
+const person = { name: 'John' };
+
+greet.call(person, 'Hello', '!'); // Output: Hello, John!
+
+// Using call to chain constructors
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+const cheese = new Food('feta', 5);
+console.log(cheese.name); // "feta"
+console.log(cheese.category); // "food"
+
+// Using call to invoke an anonymous function
+const animals = [
+  { species: 'Lion', name: 'King' },
+  { species: 'Whale', name: 'Fail' }
+];
+
+for (let i = 0; i < animals.length; i++) {
+  (function(i) {
+    this.print = function() {
+      console.log('#' + i + ' ' + this.species + ': ' + this.name);
+    }
+    this.print();
+  }).call(animals[i], i);
+}
+// Output:
+// #0 Lion: King
+// #1 Whale: Fail
+```
+
+The call method calls a function with a given `this` value and arguments provided individually.
+
+## Tests
+
+Let's write tests for the following cases:
+
+### Calls with 'this' context
+
+```js title="index.test.js"
+test('calls with this context', () => {
+  const obj = { value: 42 };
+  function getValue() {
+    return this.value;
+  }
+
+  expect(getValue.myCall(obj)).toBe(42);
+});
+```
+
+### Passes arguments individually
+
+```js title="index.test.js"
+test('passes arguments individually', () => {
+  function sum(a, b, c) {
+    return a + b + c;
+  }
+
+  expect(sum.myCall(null, 1, 2, 3)).toBe(6);
+});
+```
+
+### Works with object methods
+
+```js title="index.test.js"
+test('works with object methods', () => {
+  const obj = {
+    name: 'John',
+    greet(greeting) {
+      return `${greeting}, ${this.name}!`;
+    }
+  };
+
+  const otherObj = { name: 'Jane' };
+
+  expect(obj.greet.myCall(otherObj, 'Hello')).toBe('Hello, Jane!');
+});
+```
+
+Putting them all together:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, expect, beforeAll } from 'vitest';
+
+import { myCall } from '.';
+
+describe('polyfill-function-call', () => {
+  beforeAll(() => {
+    Function.prototype.myCall = myCall;
+  });
+
+  test('calls with this context', () => {
+    const obj = { value: 42 };
+    function getValue() {
+      return this.value;
+    }
+
+    expect(getValue.myCall(obj)).toBe(42);
+  });
+
+  test('passes arguments individually', () => {
+    function sum(a, b, c) {
+      return a + b + c;
+    }
+
+    expect(sum.myCall(null, 1, 2, 3)).toBe(6);
+  });
+
+  test('works with object methods', () => {
+    const obj = {
+      name: 'John',
+      greet(greeting) {
+        return `${greeting}, ${this.name}!`;
+      }
+    };
+
+    const otherObj = { name: 'Jane' };
+
+    expect(obj.greet.myCall(otherObj, 'Hello')).toBe('Hello, Jane!');
+  });
+});
+```
+
+## The Polyfill
+
+<Callout type='error'>
+The actual implementation would be more complex than what we implement here. This version is sufficient for an interview setting. For a production-ready polyfill (which is rare nowadays), you would need to consult the actual specification and handle more edge cases than shown here.
+</Callout>
+
+Now that we have our tests, let's implement the actual polyfill:
+
+```js title="index.js" showLineNumbers
+export function myCall(thisArg, ...args) {
+  // If thisArg is undefined or null, set it to the global object
+  thisArg = thisArg || globalThis;
+  
+  // Create a unique property on the thisArg
+  const uniqueProp = Symbol();
+  
+  // Assign this function to the unique property of the thisArg
+  thisArg[uniqueProp] = this;
+  
+  // Call the function with the provided arguments
+  const result = thisArg[uniqueProp](...args);
+  
+  // Remove the unique property from the thisArg
+  delete thisArg[uniqueProp];
+  
+  // Return the result
+  return result;
+}
+```
+
+Let's break down this implementation:
+
+1. We first ensure that `thisArg` is set to the global object if it's `undefined` or `null`.
+2. We create a unique property on the `thisArg` object using `Symbol()` to avoid naming conflicts.
+3. We assign the function (`this`) to this unique property on the `thisArg` object.
+4. We call the function with the provided arguments using the spread operator.
+5. We remove the unique property from the `thisArg` object to clean up.
+6. Finally, we return the result of the function call.
+
+This implementation should pass all the tests we've written.
+
+<Callout>
+Note that this is a simplified version of `call`. The actual `call` method in JavaScript has additional complexities, such as handling primitive values for `context` and properly dealing with the arguments. For most practical purposes and interview scenarios, this implementation is sufficient.
+</Callout>
+
+## Comparing call(), apply(), and bind()
+
+While implementing these polyfills, you might have noticed similarities between `call()`, `apply()`, and `bind()`. Here's a quick comparison:
+
+1. `call()`: Invokes the function immediately, allowing you to pass arguments individually.
+2. `apply()`: Also invokes the function immediately, but allows you to pass arguments as an array.
+3. `bind()`: Returns a new function with the specified `this` value and initial arguments. It doesn't invoke the function immediately.
+
+Understanding these differences is crucial for effective use of these methods in JavaScript programming.
