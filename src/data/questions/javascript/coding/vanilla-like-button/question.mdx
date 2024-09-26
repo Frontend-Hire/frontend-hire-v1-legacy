@@ -1,0 +1,47 @@
+# Vanilla JS: Like Button Component
+
+> I created a like button for my website, but it seems people prefer to dislike my content.
+
+## Requirements
+
+- Create a button with the text "Like" and a heart icon to the left of the text
+- Initial (unclicked) state:
+  - Gray text (#808080)
+  - Gray heart icon (#808080)
+  - Gray border (#808080)
+  - Text should be "Like"
+- Hover state:
+  - Red text (#FF0000)
+  - Red heart icon (#FF0000)
+  - Red border (#FF0000)
+- Liked (clicked) state:
+  - White text (#FFFFFF)
+  - White heart icon (#FFFFFF)
+  - Red background color (#FF0000)
+  - Text should be "Liked"
+- Implement interaction with a back-end service:
+  - When the user clicks the button, call a back-end service (simulate a network request with a timeout) 
+  - While the request is processing, display a loading or processing state
+  - Loading text should be "Liking..." with the same styles as "Hover state" but all actions should be disabled
+  - Only update the button to the "clicked" state once the request is complete
+  - Liked state should have a text of "Liked"
+- The button should return to its initial state if clicked again
+- Implement error handling for failed requests
+- Ensure the button state persists across page reloads
+
+The svg and css for the heart icon is provided for you:
+
+```html
+<svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+</svg>
+
+<style>
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    fill: currentColor;
+  }
+</style>
+```

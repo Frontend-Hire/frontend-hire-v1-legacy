@@ -1,0 +1,351 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout type='warning'>
+Before diving into the code, it's crucial to plan your approach. Sketch out your ideas on paper or using a digital tool. In an interview setting, even if you know the solution, take time to discuss your approach with the interviewer. Remember, the process is as important as the end result!
+</Callout>
+
+## Approach
+
+<Callout>
+We provide a solution that uses a class-based approach but you can easily switch to a functional approach if you prefer.
+</Callout>
+
+Let's break down the updated requirements and plan our implementation:
+
+1. Create a button with "Like" text and a heart icon to the left
+2. Implement different states: initial (unclicked), hover, liked (clicked), and loading
+3. Handle user interactions: hover and click
+4. Simulate a backend service call with a loading state
+5. Update button state based on the backend response
+6. Implement error handling for failed requests
+7. Ensure the button state persists across page reloads
+
+We'll use HTML for structure, CSS for styling, and JavaScript for interactivity and state management.
+
+## Basic HTML Markup
+
+Let's start with the HTML structure for our Like Button:
+
+```html title="index.html"
+<body>
+  <div class="like-button-container">
+    <button id="likeButton" class="like-button">
+      <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      <span class="button-text">Like</span>
+    </button>
+  </div>
+  
+  <script src="index.js"></script>
+</body>
+```
+
+We've created a button with an SVG heart icon and "Like" text. The SVG is inline to allow easy styling with CSS.
+
+## Styling the Button
+
+Now, let's style our button to match the requirements:
+
+```css title="styles.css"
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #808080;
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #808080;
+}
+
+.heart-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  fill: currentColor;
+}
+
+.like-button:hover,
+.like-button.loading {
+  color: #FF0000;
+  border-color: #FF0000;
+}
+
+.like-button.liked {
+  color: #FFFFFF;
+  background-color: #FF0000;
+  border-color: #FF0000;
+}
+
+.like-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+```
+
+This CSS covers all the states of our button: initial, hover, liked, and loading.
+
+## JavaScript Implementation
+
+Now, let's implement the button's functionality:
+
+```javascript title="index.js"
+class LikeButton {
+  constructor() {
+    this.button = document.getElementById('likeButton');
+    this.buttonText = this.button.querySelector('.button-text');
+    this.isLiked = false;
+    this.isLoading = false;
+
+    this.init();
+  }
+
+  init() {
+    this.loadState();
+    this.button.addEventListener('click', () => this.handleClick());
+  }
+
+  handleClick() {
+    if (this.isLoading) return;
+
+    this.isLoading = true;
+    this.updateButtonState();
+
+    // Simulate API call
+    setTimeout(() => {
+      if (Math.random() < 0.8) { // 80% success rate
+        this.isLiked = !this.isLiked;
+        this.isLoading = false;
+        this.updateButtonState();
+        this.saveState();
+      } else {
+        this.handleError();
+      }
+    }, 1500);
+  }
+
+  updateButtonState() {
+    this.button.classList.toggle('liked', this.isLiked);
+    this.button.disabled = this.isLoading;
+    
+    if (this.isLoading) {
+      this.buttonText.textContent = 'Liking...';
+      this.button.classList.add('loading');
+    } else {
+      this.buttonText.textContent = this.isLiked ? 'Liked' : 'Like';
+      this.button.classList.remove('loading');
+    }
+  }
+
+  handleError() {
+    this.isLoading = false;
+    this.button.classList.remove('loading');
+    this.buttonText.textContent = 'Error! Try again';
+    this.button.disabled = false;
+    
+    setTimeout(() => {
+      this.buttonText.textContent = this.isLiked ? 'Liked' : 'Like';
+    }, 2000);
+  }
+
+  saveState() {
+    localStorage.setItem('likeButtonState', JSON.stringify(this.isLiked));
+  }
+
+  loadState() {
+    const savedState = localStorage.getItem('likeButtonState');
+    if (savedState !== null) {
+      this.isLiked = JSON.parse(savedState);
+      this.updateButtonState();
+    }
+  }
+}
+
+// Initialize the Like Button
+const likeButton = new LikeButton();
+```
+
+Let's break down the implementation:
+
+1. We create a `LikeButton` class to encapsulate all the button's functionality.
+2. The constructor initializes the button state and sets up event listeners.
+3. `handleClick` manages the click event, simulates an API call, and updates the button state.
+4. `updateButtonState` updates the button's appearance based on its current state.
+5. `handleError` manages error states when the simulated API call fails.
+6. `saveState` and `loadState` manage the persistence of the button's state using localStorage.
+
+## Final Code
+
+Here's the complete code for our updated Like Button Component:
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>FH: Like Button</title>
+      <meta charset="UTF-8" />
+      <!-- IF LOCAL: <link rel="stylesheet" href="styles.css" /> -->
+      <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+      <div class="like-button-container">
+          <button id="likeButton" class="like-button">
+              <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span class="button-text">Like</span>
+          </button>
+      </div>
+      
+      <script src="index.js"></script>
+  </body>
+</html>
+```
+
+```css title="styles.css"
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+ 
+.like-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #808080;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #808080
+}
+ 
+.heart-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    fill: currentColor;
+}
+ 
+.like-button:hover,
+.like-button.loading {
+    color: #FF0000;
+    border-color: #FF0000;
+}
+ 
+.like-button.liked {
+    color: #FFFFFF;
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+ 
+.like-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+```
+
+```javascript title="index.js"
+class LikeButton {
+    constructor() {
+        this.button = document.getElementById('likeButton');
+        this.buttonText = this.button.querySelector('.button-text');
+        this.isLiked = false;
+        this.isLoading = false;
+
+        this.init();
+    }
+
+    init() {
+        this.loadState();
+        this.button.addEventListener('click', () => this.handleClick());
+    }
+
+    handleClick() {
+        if (this.isLoading) return;
+
+        this.isLoading = true;
+        this.updateButtonState();
+
+        // Simulate API call
+        setTimeout(() => {
+            if (Math.random() < 0.8) { // 80% success rate
+                this.isLiked = !this.isLiked;
+                this.isLoading = false;
+                this.updateButtonState();
+                this.saveState();
+            } else {
+                this.handleError();
+            }
+        }, 1500);
+    }
+
+    updateButtonState() {
+        this.button.classList.toggle('liked', this.isLiked);
+        this.button.disabled = this.isLoading;
+        
+        if (this.isLoading) {
+            this.buttonText.textContent = 'Liking...';
+            this.button.classList.add('loading');
+        } else {
+            this.buttonText.textContent = this.isLiked ? 'Liked' : 'Like';
+            this.button.classList.remove('loading');
+        }
+    }
+
+    handleError() {
+        this.isLoading = false;
+        this.button.classList.remove('loading');
+        this.buttonText.textContent = 'Error! Try again';
+        this.button.disabled = false;
+        
+        setTimeout(() => {
+            this.buttonText.textContent = this.isLiked ? 'Liked' : 'Like';
+        }, 2000);
+    }
+
+    saveState() {
+        localStorage.setItem('likeButtonState', JSON.stringify(this.isLiked));
+    }
+
+    loadState() {
+        const savedState = localStorage.getItem('likeButtonState');
+        if (savedState !== null) {
+            this.isLiked = JSON.parse(savedState);
+            this.updateButtonState();
+        }
+    }
+}
+
+// Initialize the Like Button
+const likeButton = new LikeButton();
+```
+
+This implementation fulfills all the updated requirements:
+- The button displays "Like" text with a heart icon to the left
+- It has different states for unclicked, hover, liked, and loading
+- It simulates a backend service call with a loading state
+- The button state persists across page reloads
+- It handles errors for failed requests
+- It uses the specified colors for different states
+
+<Callout>
+Remember, this is one possible implementation. In an interview, you might discuss trade-offs, potential improvements, or alternative approaches with your interviewer. For example, you could talk about using Web Components for better encapsulation, or discuss how to handle real API calls and more complex error states.
+</Callout>
