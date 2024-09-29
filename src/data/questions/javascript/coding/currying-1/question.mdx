@@ -1,0 +1,26 @@
+# Currying - 1
+
+> Use case? Currying is a technique in functional programming that transforms a function with multiple arguments into a sequence of functions, each taking a single argument. A generic curry function allows you to curry any function, increasing flexibility and reusability in your code.
+
+## Objectives
+
+- Implement a generic `curry` function that can curry any function with a fixed number of arguments.
+- The curried function should be callable with any number of arguments.
+- If all arguments are provided, it should return the result of the original function.
+- If fewer arguments are provided, it should return a new function expecting the remaining arguments.
+
+### Sample Input and Expected Output
+
+```js
+const sum = (a, b, c) => a + b + c;
+const curriedSum = curry(sum);
+
+curriedSum(1)(2)(3)  // Output: 6
+curriedSum(1, 2)(3)  // Output: 6
+curriedSum(1)(2, 3)  // Output: 6
+curriedSum(1, 2, 3)  // Output: 6
+```
+
+## Resources
+
+- [Javascript.info: Currying Partials](https://javascript.info/currying-partials)

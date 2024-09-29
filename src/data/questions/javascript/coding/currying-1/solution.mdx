@@ -1,0 +1,119 @@
+import { Callout } from '@/components/MarkdownComponents';
+
+# Solution
+
+<Callout type='error'>
+This is one of those "interview question bank" questions that you just have to potentially memorize to answer in time for an interview. Trying to solve this without that knowledge can be very challenging.
+</Callout>
+
+<Callout type="warning">
+In an interview setting, start by writing tests. This clarifies requirements and helps you catch edge cases early. Don't rush to implementation before you have a clear understanding of what you're building.
+</Callout>
+
+## Tests
+
+Let's write some tests to cover the basic functionality and edge cases:
+
+```js title="index.test.js" showLineNumbers
+import { describe, test, expect } from 'vitest';
+
+import { curry } from '.';
+
+describe('currying-1', () => {
+  const sum = (a, b, c) => a + b + c;
+  test('should curry a function and call it with individual arguments', () => {
+    const curriedSum = curry(sum);
+    expect(curriedSum(1)(2)(3)).toBe(6);
+  });
+
+  test('should curry a function and call it with partial application', () => {
+    const curriedSum = curry(sum);
+    expect(curriedSum(1, 2)(3)).toBe(6);
+    expect(curriedSum(1)(2, 3)).toBe(6);
+  });
+
+  test('should curry a function and call it with all arguments at once', () => {
+    const curriedSum = curry(sum);
+    expect(curriedSum(1, 2, 3)).toBe(6);
+  });
+
+  test('should work with functions that return non-primitive values', () => {
+    const arrayMaker = (a, b, c) => [a, b, c];
+    const curriedArrayMaker = curry(arrayMaker);
+    expect(curriedArrayMaker(1)(2)(3)).toEqual([1, 2, 3]);
+  });
+
+  // This is a common use case, hence should be considered as part of the
+  // discussion during the interview.
+  test('should maintain the correct `this` binding', () => {
+    function greet(greeting, name) {
+      return `${greeting}, ${name}! I'm ${this.title} ${this.lastName}.`;
+    }
+    const person = { title: 'Mr.', lastName: 'Smith' };
+    const curriedGreet = curry(greet.bind(person));
+    expect(curriedGreet('Hello')('John')).toBe("Hello, John! I'm Mr. Smith.");
+  });
+
+  test('should handle functions with no arguments', () => {
+    const noArgs = () => 42;
+    const curriedNoArgs = curry(noArgs);
+    expect(curriedNoArgs()).toBe(42);
+  });
+});
+```
+
+## Implementation
+
+Now that we have our tests, let's implement the `curry` function:
+
+```js title="index.js" showLineNumbers
+export function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...moreArgs) {
+        return curried.apply(this, args.concat(moreArgs));
+      }
+    }
+  }
+}
+```
+
+Let's break down the implementation:
+
+1. The `curry` function takes a function `fn` as an argument and returns a new function `curried`.
+2. `curried` uses the rest parameter `...args` to collect any number of arguments.
+3. If the number of arguments provided is greater than or equal to the number of parameters the original function expects (`fn.length`), we call the original function with these arguments.
+4. If fewer arguments are provided, we return a new function that waits for more arguments. When called, this function recursively calls `curried` with all arguments collected so far.
+5. We use `apply` to ensure that the `this` context is correctly maintained.
+
+This implementation should pass all the tests we've written.
+
+## Edge Cases and Considerations
+
+1. **Maintaining `this` context**: Our implementation uses `apply` to ensure that the `this` context is correctly maintained.
+2. **Handling functions with no arguments**: The implementation works correctly for functions that take no arguments.
+3. **Error handling**: Our implementation doesn't throw an error if not enough arguments are provided. Instead, it continues to return new functions. If you want to add explicit error handling, you could modify the implementation like this:
+
+```js title="index.js" showLineNumbers {9-11}
+export function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else if (args.length > 0) {
+      return function(...moreArgs) {
+        return curried.apply(this, args.concat(moreArgs));
+      }
+    } else {
+      throw new Error('Not enough arguments provided');
+    }
+  }
+}
+```
+
+<Callout>
+In a real-world scenario, you might want to add more robust type checking and error handling. For an interview setting, acknowledging these considerations and providing a simple implementation is usually sufficient.
+
+Either way, such level of currying is rarely used in practice.
+</Callout>
