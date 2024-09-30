@@ -147,3 +147,40 @@ Now for each of the values in the original array, we call the callback function 
 - The array itself: **this**
 
 We then just return the `result` array. This should pass all the tests.
+
+## Optional: Handling the `thisArg` Argument
+
+<Callout>This is an optional challenge, pretty rare for an interviewer to ask you to do it. But we want you to excel in these challenges. So, here goes the better solution.</Callout>
+
+```js title="index.test.js"
+test('filters values using thisArg', () => {
+  const arr = [1, 2, 3, 4, 5];
+  const filterObj = { limit: 3 };
+
+  function filterFunction(item) {
+    return item <= this.limit;
+  }
+
+  expect(arr.myFilter(filterFunction, filterObj)).toEqual([1, 2, 3]);
+});
+```
+
+We add the `thisArg` argument to the callback function. We pass the `filterObj` object as the `thisArg` argument.
+
+So, now our implementation changes a bit and uses `call` to handle the `thisArg` argument.
+
+```js title="index.js" showLineNumbers {1, 5}
+export function myFilter(cb, thisArg) {
+  const result = [];
+
+  for (let i = 0; i < this.length; i++) {
+    if (cb.call(thisArg, this[i], i, this)) {
+      result.push(this[i]);
+    }
+  }
+
+  return result;
+}
+```
+
+Take your time to understand the `call` method. We have a polyfill question on [`Function.prototype.call()`](./polyfill-function-call) too.
