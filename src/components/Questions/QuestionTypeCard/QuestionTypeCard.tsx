@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 type QuestionTypeCardProps = {
   title: string;
   className?: string;
-  totalQuestions: number;
+  totalQuestions?: number | null;
 };
 
 export default function QuestionTypeCard({
@@ -19,9 +19,11 @@ export default function QuestionTypeCard({
       )}
     >
       <div>{title}</div>
-      <span className="mt-1 text-base">
-        {totalQuestions > 1 ? `${totalQuestions} questions` : '1 question'}
-      </span>
+      {totalQuestions && (
+        <span className="mt-1 text-base">
+          {totalQuestions > 1 ? `${totalQuestions} questions` : '1 question'}
+        </span>
+      )}
     </div>
   );
 }
