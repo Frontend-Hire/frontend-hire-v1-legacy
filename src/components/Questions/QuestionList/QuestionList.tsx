@@ -100,7 +100,7 @@ export default function QuestionList({
                 <QuestionItem
                   question={question}
                   isCompleted={completedQuestions.includes(
-                    `${skill}-${question.id}`,
+                    `${skill}-${type}-${question.id}`,
                   )}
                 />
               </Link>
