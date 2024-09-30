@@ -1,10 +1,12 @@
+'use client';
+
 import QuestionSubmissionConfetti from '@/components/Questions/QuestionSubmissionConfetti';
 import { Button } from '@/components/ui/button';
 import getSupabaseBrowserClient from '@/lib/supabase/supabaseBrowserClient';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React from 'react';
-import { Params } from '../../_types';
+import { Params } from '../_types';
 
 export default function MarkSolvedButton() {
   const supabaseClient = getSupabaseBrowserClient();
@@ -19,7 +21,7 @@ export default function MarkSolvedButton() {
         .select('*')
         .eq(
           'question_id',
-          `${skill.toLowerCase()}-coding-${questionId.toLowerCase()}`,
+          `${skill.toLowerCase()}-theory-${questionId.toLowerCase()}`,
         )
         .limit(1)
         .maybeSingle();
@@ -36,7 +38,7 @@ export default function MarkSolvedButton() {
 
         await supabaseClient.from('code_history').insert({
           is_solved: true,
-          question_id: `${skill.toLowerCase()}-coding-${questionId.toLowerCase()}`,
+          question_id: `${skill.toLowerCase()}-theory-${questionId.toLowerCase()}`,
         });
         return;
       }
@@ -61,7 +63,7 @@ export default function MarkSolvedButton() {
         <QuestionSubmissionConfetti
           CTA={
             <Button asChild>
-              <Link href={`/questions/${skill}/coding`}>
+              <Link href={`/questions/${skill}/theory`}>
                 Practice Another Question
               </Link>
             </Button>

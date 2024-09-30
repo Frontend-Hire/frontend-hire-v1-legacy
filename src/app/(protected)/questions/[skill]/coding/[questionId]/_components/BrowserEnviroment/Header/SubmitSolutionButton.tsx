@@ -28,7 +28,7 @@ export default function SubmitSolutionButton() {
       });
       await supabaseClient.rpc('save_code_history', {
         p_is_solved: true,
-        p_question_id: `${skill.toLowerCase()}-${questionId.toLowerCase()}`,
+        p_question_id: `${skill.toLowerCase()}-coding-${questionId.toLowerCase()}`,
         p_code_history: codeHistory,
       });
     } catch (error) {
