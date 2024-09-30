@@ -1,8 +1,9 @@
-import { getMetadata } from '@/lib/getMetadata';
 import CustomHeading from '@/components/CustomHeading';
-import Link from 'next/link';
 import QuestionTypeCard from '@/components/Questions/QuestionTypeCard';
 import { QUESTION_CATEGORIES } from '@/config/questionCategories';
+import { getQuestionsFromLocal } from '@/lib/fetchLocalFiles';
+import { getMetadata } from '@/lib/getMetadata';
+import Link from 'next/link';
 
 export const metadata = getMetadata({
   title: 'Questions | Frontend Hire',
@@ -10,7 +11,19 @@ export const metadata = getMetadata({
   canonical: '/questions',
 });
 
-export default function Questions() {
+export default async function Questions() {
+  const totalQuestionsMap: Record<string, number> = {};
+
+  await Promise.all(
+    QUESTION_CATEGORIES.map(async (category) => {
+      const questions = await getQuestionsFromLocal(
+        category.skill,
+        category.type,
+      );
+      totalQuestionsMap[category.id] = questions.length;
+    }),
+  );
+
   return (
     <article className="flex flex-col gap-5">
       <CustomHeading
@@ -24,6 +37,7 @@ export default function Questions() {
               <QuestionTypeCard
                 className={category.className}
                 title={category.title}
+                totalQuestions={totalQuestionsMap[category.id]}
               />
             </Link>
           </li>
