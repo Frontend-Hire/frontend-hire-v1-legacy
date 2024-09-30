@@ -3,11 +3,13 @@ import { cn } from '@/lib/utils';
 type QuestionTypeCardProps = {
   title: string;
   className?: string;
+  totalQuestions: number;
 };
 
 export default function QuestionTypeCard({
   title,
   className,
+  totalQuestions,
 }: QuestionTypeCardProps) {
   return (
     <div
@@ -16,7 +18,10 @@ export default function QuestionTypeCard({
         className,
       )}
     >
-      {title}
+      <div>{title}</div>
+      <span className="mt-1 text-base">
+        {totalQuestions > 1 ? `${totalQuestions} questions` : '1 question'}
+      </span>
     </div>
   );
 }
