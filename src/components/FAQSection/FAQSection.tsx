@@ -7,6 +7,8 @@ import {
 import { FAQ } from '@/constants/faq';
 
 export default function FAQSection() {
+  return null;
+
   return (
     <section className="container flex flex-col gap-10 pb-20">
       <h2 className="text-center text-3xl font-black">

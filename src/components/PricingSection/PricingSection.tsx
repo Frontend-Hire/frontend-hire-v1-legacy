@@ -5,6 +5,7 @@ import { GraduationCapIcon } from 'lucide-react';
 import CopyEmailOnClick from '../CopyEmailOnClick';
 
 export default function PricingSection() {
+  return null;
   return (
     <section className="container flex flex-col gap-10 pb-10">
       <h2 className="text-center text-4xl font-black">Pricing</h2>

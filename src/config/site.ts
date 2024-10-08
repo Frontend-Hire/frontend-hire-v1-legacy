@@ -45,13 +45,6 @@ const LINKS: NavLink[] = [
     ],
   },
   {
-    title: 'Pro',
-    items: [
-      { title: 'Pricing', href: '/pricing', hideForProUser: true },
-      { title: 'Benefits', href: '/pro', isProUserRoute: true },
-    ],
-  },
-  {
     title: 'Company',
     hideOnMainNav: true,
     items: [

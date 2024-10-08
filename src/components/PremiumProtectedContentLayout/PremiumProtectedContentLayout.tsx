@@ -10,7 +10,7 @@ export default async function PremiumProtectedContentLayout({
 }: React.PropsWithChildren) {
   const isProUser = await checkIsProUser();
 
-  if (isProUser) {
+  if (true) {
     return <>{children}</>;
   }
 
