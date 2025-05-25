@@ -1,4 +1,8 @@
-# Getting Started
+# Frontend Hire V1
+
+The very first version of Frontend Hire that had a custom coding workspace, lemonsqueezy and razorpay integrations, and a lot more.
+
+This codebase is a bit raw but can be useful for some folks. Also, has some interesting patterns.
 
 ## Keeping the database structure in sync
 
